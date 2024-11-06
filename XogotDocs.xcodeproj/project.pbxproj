@@ -6,8 +6,13 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		02D19A272CDAE1B10019D110 /* Documentation.docc in Sources */ = {isa = PBXBuildFile; fileRef = 02D19A262CDAE1B10019D110 /* Documentation.docc */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		02D19A142CDAE08A0019D110 /* XogotDocs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XogotDocs.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		02D19A262CDAE1B10019D110 /* Documentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Documentation.docc; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -32,6 +37,7 @@
 		02D19A0B2CDAE08A0019D110 = {
 			isa = PBXGroup;
 			children = (
+				02D19A262CDAE1B10019D110 /* Documentation.docc */,
 				02D19A162CDAE08A0019D110 /* XogotDocs */,
 				02D19A152CDAE08A0019D110 /* Products */,
 			);
@@ -119,6 +125,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02D19A272CDAE1B10019D110 /* Documentation.docc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
