@@ -46,7 +46,7 @@ jobs:
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload only docs directory
-          path: 'docs/documentation/xogotdocs'
+          path: 'docs/documentation'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
