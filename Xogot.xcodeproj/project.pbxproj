@@ -11,14 +11,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		02D19A142CDAE08A0019D110 /* XogotDocs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XogotDocs.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		02D19A142CDAE08A0019D110 /* Xogot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Xogot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02D19A262CDAE1B10019D110 /* Documentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Documentation.docc; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		02D19A162CDAE08A0019D110 /* XogotDocs */ = {
+		02D19A162CDAE08A0019D110 /* Xogot */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = XogotDocs;
+			path = Xogot;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -38,7 +38,7 @@
 			isa = PBXGroup;
 			children = (
 				02D19A262CDAE1B10019D110 /* Documentation.docc */,
-				02D19A162CDAE08A0019D110 /* XogotDocs */,
+				02D19A162CDAE08A0019D110 /* Xogot */,
 				02D19A152CDAE08A0019D110 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -46,7 +46,7 @@
 		02D19A152CDAE08A0019D110 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				02D19A142CDAE08A0019D110 /* XogotDocs.app */,
+				02D19A142CDAE08A0019D110 /* Xogot.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -54,9 +54,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		02D19A132CDAE08A0019D110 /* XogotDocs */ = {
+		02D19A132CDAE08A0019D110 /* Xogot */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 02D19A232CDAE08B0019D110 /* Build configuration list for PBXNativeTarget "XogotDocs" */;
+			buildConfigurationList = 02D19A232CDAE08B0019D110 /* Build configuration list for PBXNativeTarget "Xogot" */;
 			buildPhases = (
 				02D19A102CDAE08A0019D110 /* Sources */,
 				02D19A112CDAE08A0019D110 /* Frameworks */,
@@ -67,13 +67,13 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				02D19A162CDAE08A0019D110 /* XogotDocs */,
+				02D19A162CDAE08A0019D110 /* Xogot */,
 			);
-			name = XogotDocs;
+			name = Xogot;
 			packageProductDependencies = (
 			);
-			productName = XogotDocs;
-			productReference = 02D19A142CDAE08A0019D110 /* XogotDocs.app */;
+			productName = Xogot;
+			productReference = 02D19A142CDAE08A0019D110 /* Xogot.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -91,7 +91,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 02D19A0F2CDAE08A0019D110 /* Build configuration list for PBXProject "XogotDocs" */;
+			buildConfigurationList = 02D19A0F2CDAE08A0019D110 /* Build configuration list for PBXProject "Xogot" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -105,7 +105,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				02D19A132CDAE08A0019D110 /* XogotDocs */,
+				02D19A132CDAE08A0019D110 /* Xogot */,
 			);
 		};
 /* End PBXProject section */
@@ -255,11 +255,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = XogotDocs/XogotDocs.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Xogot/Xogot.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"XogotDocs/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Xogot/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -268,7 +268,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.xibbon.XogotDocs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xibbon.Xogot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -280,11 +280,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = XogotDocs/XogotDocs.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Xogot/Xogot.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"XogotDocs/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Xogot/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -293,7 +293,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.xibbon.XogotDocs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xibbon.Xogot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -303,7 +303,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		02D19A0F2CDAE08A0019D110 /* Build configuration list for PBXProject "XogotDocs" */ = {
+		02D19A0F2CDAE08A0019D110 /* Build configuration list for PBXProject "Xogot" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				02D19A212CDAE08B0019D110 /* Debug */,
@@ -312,7 +312,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		02D19A232CDAE08B0019D110 /* Build configuration list for PBXNativeTarget "XogotDocs" */ = {
+		02D19A232CDAE08B0019D110 /* Build configuration list for PBXNativeTarget "Xogot" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				02D19A242CDAE08B0019D110 /* Debug */,

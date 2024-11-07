@@ -1,4 +1,4 @@
-# ``Xogot Documentation``
+# Xogot
 
 Game development with Xogot: Powered by Godot
 
