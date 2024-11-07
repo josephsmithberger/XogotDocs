@@ -42,7 +42,6 @@ jobs:
           find docs -name "*.json" -type f -print0 | xargs -0 sed -i '' -e 's/"title":"XogotDocs"/"title":"Xogot Documentation"/g';
           find docs -name index.html -exec cp /tmp/docs/index.html {} \;
           mv Documentation.docc/Resources/favicon.* docs;
-          mv docs/documentation/XogotDocs/* docs;
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
