@@ -4,7 +4,7 @@
 
         The following lessons are here to prepare you for Your first 2D game, a step-by-step tutorial where you will code a game from scratch. By the end of it, you will have the necessary foundations to explore more features in other sections. We also included links to pages that cover a given topic in-depth where appropriate.
         
-        @Image(source: "first-script.png",
+        @Image(source: "3DPlatformer.png",
                alt: "A screenshot of the the step-by-step example.")
     }
     
@@ -15,15 +15,15 @@
         
         @Steps {
             @Step {
-                Please reate a new project to start with a clean slate. Your project should contain one picture: the Godot icon, which we often use for prototyping in the community.
+                Please create a new project to start with a clean slate. Your project should contain one picture: the Godot icon, which we often use for prototyping in the community.
 
-                @Image(source: "NewProject.png",
+                @Image(source: "XogotHome.png",
                        alt: "A screenshot of Xogot's Home Screen featuring the 'New Game' button")
             }
             @Step {
                 Name the project and tap 'Add'
                 
-                @Image(source: "ProjectName.png",
+                @Image(source: "XogotHome.png",
                        alt: "A screenshot of Xogot's project creation dialog.")
             }
             @Step {

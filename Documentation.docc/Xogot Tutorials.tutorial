@@ -2,16 +2,22 @@
     @Intro(title: "Welcome to Xogot") {
         SwiftGodot allows developers to take new and existing Swift packages and use them as extensions for the Godot game engine.
         
+        @Image(source: "XogotHome", alt: "Xogot Homescreen")
+        
     }
     
     @Chapter(name: "Step by Step") {
         Learn the fundamentals of Xogot.
         
-        @TutorialReference(tutorial: "doc:Step by Step")
+        @Image(source: "3DPlatformer", alt: "3D Platformer Starter Kit")
+        
+        @TutorialReference(tutorial: "doc:Step-by-Step")
     }
 
     @Chapter(name: "Build Some Games") {
         If you're ready to dive in, you can start building games.
+        
+        @Image(source: "3DPlatformer", alt: "3D Platformer Starter Kit")
         
         @TutorialReference(tutorial: "doc:Your-First-2D-Game")
         @TutorialReference(tutorial: "doc:Your-First-3D-Game")
