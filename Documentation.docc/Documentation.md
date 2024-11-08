@@ -10,8 +10,6 @@ Game development with Xogot: Powered by Godot
 
 ### Tutorials
 
-- <doc:Your-First-2D-Game>
-- <doc:Your-First-3D-Game>
 
 ### Group
 
