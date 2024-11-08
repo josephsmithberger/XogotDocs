@@ -30,7 +30,6 @@ jobs:
           xcodebuild docbuild CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -scheme Xogot \
             -derivedDataPath /tmp/docbuild \
             -destination 'generic/platform=macOS';
-            rm Documentation.docc/Documentation.md;
           $(xcrun --find docc) process-archive \
             transform-for-static-hosting /tmp/docbuild/Build/Products/Debug/Xogot.doccarchive \
             --hosting-base-path / \
