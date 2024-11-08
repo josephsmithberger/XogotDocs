@@ -1,4 +1,4 @@
-# Test
+# ``Xogot``
 
 Game development with Xogot: Powered by Godot
 
@@ -14,5 +14,6 @@ Game development with Xogot: Powered by Godot
 - <doc:Your-First-2D-Game>
 - <doc:Your-First-3D-Game>
 
-### Articles
+### Group
 
+- <!--@START_MENU_TOKEN@-->``Symbol``<!--@END_MENU_TOKEN@-->
