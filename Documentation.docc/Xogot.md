@@ -1,4 +1,4 @@
-# Xogot
+# ``Xogot``
 
 Game development with Xogot: Powered by Godot
 
@@ -8,6 +8,7 @@ Game development with Xogot: Powered by Godot
 
 ## Topics
 
-### <!--@START_MENU_TOKEN@-->Group<!--@END_MENU_TOKEN@-->
+### Tutorials
 
-- <!--@START_MENU_TOKEN@-->``Symbol``<!--@END_MENU_TOKEN@-->
+### Articles
+
