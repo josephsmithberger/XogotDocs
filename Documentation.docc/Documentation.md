@@ -2,18 +2,21 @@
 
 Game development with Xogot: Powered by Godot
 
-## Overview
+## Welcome to Xogot
 
-<!--@START_MENU_TOKEN@-->Text<!--@END_MENU_TOKEN@-->
+To get started building games with Xogot, check out our <doc:Getting-Started> guide.
 
-## Topics
+## Tutorials
 
-### Tutorials
+To learn how to make games with Godot, you can follow these step-by-step tutorials:
 
 - <doc:Step-by-Step>
 - <doc:Your-First-2D-Game>
 - <doc:Your-First-3D-Game>
 
-### Group
+## Articles
 
-- <!--@START_MENU_TOKEN@-->``Symbol``<!--@END_MENU_TOKEN@-->
+- <doc:Differences>
+- <doc:Importing-Assets>
+- <doc:Onscreen-Controls>
+- <doc:Working-with-Source-Control>
