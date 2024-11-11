@@ -55,7 +55,7 @@ We are actively working to resolve these issues and appreciate your patience and
 
 Your feedback is invaluable to improving Xogot. If you encounter any issues or have suggestions, please follow these steps to file an issue:
 
-1. **Visit the XogotIssues GitHub repository** at [https://github.com/xibbon/XogotIssues/issues](https://github.com/xibbon/XogotIssues/issues).
+1. **Visit the XogotIssues GitHub repository** at [github.com/xibbon/XogotIssues](https://github.com/xibbon/XogotIssues).
 2. **Sign in to your GitHub account** (if you don't have one, you can create it for free).
 3. Click on the **"Issues"** tab.
 4. Select **"New Issue"** and provide a clear and descriptive title.

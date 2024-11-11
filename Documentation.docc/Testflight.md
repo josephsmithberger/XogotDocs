@@ -1,6 +1,7 @@
 # Xogot: Godot on iPad
 
-Thank you for your interest in testing Godot for iPad, this small guide will explain how to get the most of out this TestFlight release.
+Thank you for your interest in testing Godot for iPad. This small guide will 
+explain how to get the most of out this TestFlight release.
 
 Xogot layers an iOS-native user experience on top of the existing Godot Editor
 engine, so your projects should be fully compatible with the desktop edition of
@@ -15,13 +16,15 @@ but we are open to bringing back a handful of those.
 
 ## Desired Feedback
 
-We really want to hear your feedback, you can give us feedback in any of these
+We really want to hear your feedback! You can give us feedback in any of these
 ways:
 
-- Taking a screenshot of the issue, and then selecting "Send Feedback" from the
-  "Done" drop down button.
-- Sending us an email to support@xibbon.com
-- Filing an issue on
+- Inside Xogot: Take a screenshot of the issue by simultaneously pressing and 
+  quickly releasing the "top button" (power button) and either volume button at 
+  the same time, and then select **"Send Feedback"** from the "Done" drop down button.
+- Open the TestFlight app and tap the **"Send Feedback"** button at the top of the Xogot page.
+- Send us an email at support@xibbon.com
+- File an issue on
   [github.com/xibbon/XogotIssues](https://github.com/xibbon/XogotIssues).
 
 - Bugs in Xogot: we are interested in finding bugs, crashes or unexpected
