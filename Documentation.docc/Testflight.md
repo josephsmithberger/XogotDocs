@@ -32,30 +32,35 @@ ways:
 - File an issue on
   [github.com/xibbon/XogotIssues](https://github.com/xibbon/XogotIssues).
 
-- Bugs in Xogot: we are interested in finding bugs, crashes or unexpected
-  behaviors in the application.   If you find a bug, we would love if you could
-  describe how you triggered it, so we can fix it.
+### Join the Community
+We've set up a [Xogot Discord server](https://discord.gg/TDEcyfHZAh).  Please join us there!
+
+### Bugs in Xogot
+We are interested in finding bugs, crashes or unexpected
+behaviors in the application.   If you find a bug, we would love if you could
+describe how you triggered it, so we can fix it.
     
-- Poor User Experience: while we worked hard to make sure that we provide a good
-  user experience for iPad users, we have also gotten used to it, and we want to
-  find out what things do not work as expected, are confusing or could be
-  improved.   We are interested in improving the user experience for iPad users,
-  both by ensuring that the UI works well on the iPad and its various input
-  systems as well as living up to the expectations of users on iPadOS.
+### Poor User Experience
+While we worked hard to make sure that we provide a good
+user experience for iPad users, we have also gotten used to it, and we want to
+find out what things do not work as expected, are confusing or could be
+improved.   We are interested in improving the user experience for iPad users,
+both by ensuring that the UI works well on the iPad and its various input
+systems as well as living up to the expectations of users on iPadOS.
 
+### Improving over Godot’s defaults   
+We think that we have a unique opportunity
+to improve the workflow of using Godot that go beyond the surface [1].  Some
+of the design choices and default choices from Godot make sense for
+professionals using a desktop computer, but those are not necessarily great
+for mobile users, we would love to hear what you think could be improved
+overall to make your journey more pleasant. 
 
-- Improving over Godot’s defaults.   We think that we have a unique opportunity
-  to improve the workflow of using Godot that go beyond the surface [1].  Some
-  of the design choices and default choices from Godot make sense for
-  professionals using a desktop computer, but those are not necessarily great
-  for mobile users, we would love to hear what you think could be improved
-  overall to make your journey more pleasant. 
-
-
-- Missed opportunities: we prioritized what we thought were the high-traffic
-  areas of the user interface, but we might have missed some.   Let us know if
-  there are areas of the user interface that you are using extensively and you
-  would prefer a native user experience to be provided. 
+### Missed opportunities 
+We prioritized what we thought were the high-traffic
+areas of the user interface, but we might have missed some.   Let us know if
+there are areas of the user interface that you are using extensively and you
+would prefer a native user experience to be provided. 
 
 We expose a new user interface for high-traffic parts of the application, and
 fallback to the Godot-based UI when a piece of the UI has not been rewritten.
@@ -65,7 +70,6 @@ fallback to the Godot-based UI when a piece of the UI has not been rewritten.
 The most visible limitation currently is that the progress indicators in the UI
 are not shown, which can be a little jarring when importing a large new project
 and Xogot not responding.   This fix will be coming soon.
-
 
 ### Renderer
 - Xogot is based on Godot 4.3-based: and it imposes a few limitations when it
