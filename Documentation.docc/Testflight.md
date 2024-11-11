@@ -1,7 +1,12 @@
-# Xogot on iPad: TestFlight
+# Testing Xogot: on iPad: TestFlight
 
-Thank you for your interest in testing Godot for iPad. This small guide will 
-explain how to get the most of out this TestFlight release.
+Xogot is an iPadOS UI for the Godot game engine.  
+
+If you want an invitation to participate in the early testing of Godot 
+for iPad, you can sign up at [beta.xogot.com](https://beta.xogot.com).
+
+Thank you for your interest in testing Xogot:  Godot for iPad. This small guide
+will explain how to get the most of out this TestFlight release.
 
 Xogot layers an iOS-native user experience on top of the existing Godot Editor
 engine, so your projects should be fully compatible with the desktop edition of
