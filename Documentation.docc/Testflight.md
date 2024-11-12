@@ -1,4 +1,4 @@
-# Testing Xogot: on iPad: TestFlight
+# Testing Xogot: Godot on iPad 
 
 Xogot is an iPadOS UI for the Godot game engine.  
 
@@ -19,7 +19,7 @@ that we took liberties to simplify the user interface when it comes to the Godot
 editor itself, we only surface a handful of configuration options on purpose,
 but we are open to bringing back a handful of those. 
 
-## Desired Feedback
+## Providing Feedback
 
 We really want to hear your feedback! You can give us feedback in any of these
 ways:
