@@ -1,5 +1,9 @@
 # Working with Source Control in Xogot
 
+Using Working Copy to manage your project in Git
+
+## Working Copy
+
 To work with Godot projects stored in Git, Xogot recommends using [Working Copy](https://workingcopyapp.com), a native iOS Git client that integrates seamlessly with the Files App, making it an excellent tool for managing source control on your iPad.
 
 ## Cloning an Existing Project

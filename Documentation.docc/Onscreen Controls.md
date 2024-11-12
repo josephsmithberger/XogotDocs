@@ -1,5 +1,9 @@
 # Onscreen Controls in Xogot
 
+Using Onscreen Controls to quickly touch-enable projects
+
+## Onscreen Controls
+
 Onscreen controls are crucial for testing and playing games directly on your iPad. For projects that are not designed for touch, Xogot offers two main ways to add onscreen controls to your project: using the **Project Setting** (available only on iOS) or adding the **Virtual Joystick Addon**. This guide will help you understand the differences between these methods and how to set each up.
 
 ## How to Enable Onscreen Controls
@@ -13,7 +17,7 @@ To enable onscreen controls, you can choose between the **Project Setting Option
 **Pros**:
 - Directly integrated into Xogot, offering a native experience.
 - Requires minimal setup and configuration.
-- Automatically adapts to game settings without any extra work.
+- Automatically adapts to game settings without any extra work in projects that have gamepad input mappings configured.
 
 **Cons**:
 - Limited to iOS devices.

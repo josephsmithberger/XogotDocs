@@ -1,5 +1,9 @@
 # Getting Started
 
+Dive into game development with Xogot
+
+## Welcome to Xogot
+
 Welcome to **Xogot**, a complete game development environment that runs on your iPad! Xogot is built on the popular **Godot** engine and offers a native iPad experience optimized for touch. This guide will help you dive into game development with Xogot and get comfortable with its core features.
 
 ## 1. Finding and Running Sample Projects
