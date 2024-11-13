@@ -66,3 +66,40 @@ and Xogot not responding.   This fix will be coming soon.
 ### Shader Globals
 - It is currently not possible to edit values of sampler2D/sampler3D values
   (#147)
+
+# Releases
+
+## Build TBD
+
+* Adds 3D editor, "Align Transform with View" and "Align Rotation with View" are
+  now available on the viewport menu.
+
+## Build 1237
+
+* 3D Node Editor, surface the "Use Local Space" coordinate option to the toolbar
+
+* Fixes the text input in the inspector
+
+* If you have a node selected in the scenepad and tap the "Script" icon at the
+  top automatically load that script (only happens if you do not have any
+  scripts opened).
+
+* Quick Open dialog, Pick scene dialog, sprite frame editor: tapping anywhere in
+  the row selects the row, not just the part with the text.
+
+* "Run Specific Scene" and "Run Current Scene" work now, they were always
+  running the main scene.
+
+* You can now select the new SpriteFrameEditor from the settings menu.
+
+
+## Build 1230
+
+* Fixes the bug where if you were running your game in full screen, the stop
+  button would not stop it.
+
+* Disabled localization of Godot (it was mixing English and your local
+  language), for now only English is supported.
+
+* Double tapping on a row in the "Create New Node" will create the item,
+    without having to tap "Add"
