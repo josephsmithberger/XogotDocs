@@ -67,6 +67,9 @@ and Xogot not responding.   This fix will be coming soon.
 - It is currently not possible to edit values of sampler2D/sampler3D values
   (#147)
 
+### Bluetooth Controllers
+- A running a game will not react to controller input from a paired bluetooth controller (#283)
+
 # Releases
 
 ## Build 1245
