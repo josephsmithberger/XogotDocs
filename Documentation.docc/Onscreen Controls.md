@@ -109,8 +109,9 @@ To add the **Virtual Joystick Addon** to your project:
    - Copy the addon folder into your project’s **“addons”** directory inside the
      Xogot folder.
 3. **Enable the Addon**:
-   - In Xogot, go to **“Project > Project Settings”**.
-   - Navigate to the **“Plugins”** tab.
+   - In Xogot, tap the Switch button in the upper-righthand corner and choose
+   **“Settings”**
+   - Tap **General** in the drop down at the top of the dialog and select **"Plugins"**
    - Locate the **Virtual Joystick Addon** and toggle it to **“Enabled”**.
 4. **Customize the Controls**: The Virtual Joystick can be customized by
    accessing the provided scripts and scenes. You can adjust the joystick
