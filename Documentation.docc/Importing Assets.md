@@ -60,6 +60,7 @@ There are several excellent iPad apps for creating assets compatible with Xogot:
 - **Procreate**: Great for drawing and creating sprites and textures. Use the **Share** option to export images directly to Files.
 - **GarageBand**: Perfect for creating and exporting sounds and background music for your game.
 - **Affinity Designer/Photo**: Professional-grade vector and raster tools for creating game graphics.
+- **[Nomad Sculpt](https://nomadsculpt.com)**: Sculpting and painting mobile application.
 
 These apps, combined with Xogot’s easy importing process, can help you create high-quality game assets directly on your iPad, making the development process smoother and more enjoyable.
 
