@@ -72,6 +72,33 @@ and Xogot not responding.   This fix will be coming soon.
 
 # Releases
 
+## Build 1264
+
+* SwiftGodot upgrade (just internal, nothing really visible)
+
+* Fixes the popup closing errors.
+
+## Build 1260
+
+* Font color in the filepad search is now visible in dark themes.
+
+* A serious bug that would prevent plenty of components of Xogot to work on the
+  second project opened has been fixed.   It was most obviously manifest as
+  buttons or objects not responding sometimes to taps, and a "SignalProxy" error
+  logged in the output window.
+
+* Duplicate labels in the Project Settings have been fixed.
+
+* Searching in the FilePad will automatically expand folder nodes when there are
+  matches inside a closed folder.
+
+## Build 1256
+
+* Numeric popups no longer move as the values change.
+
+* Additional improvements at Project Shutdown to prevent it from crashing, an
+orderly shutdown has been implemented now.
+
 ## Build 1253
 
 * Toolbar Animation icons are now displayed.
