@@ -16,3 +16,13 @@ In Xogot, tap the Switch button in the upper-righthand corner and choose **“Se
 to open Project Settings.  The individual Project Settings tabs from Godot, such as
 Input Map, Autoload and Plugins, can be navigated to by tapping on the **General** in
 the drop-down list at the top of the Settings dialog.
+
+## Layout changes 
+
+Xogot's UI has been adapted to better suit the iPad, including making parts of
+the UI more tappable, and removing some parts of the user interface to economize
+available real estate.  Many toolbar icons have been replaced with Apple's 
+SF Symbols to better match the look and feel of iPadOS.  Because the iPad does 
+not have the concept of hovering over a button, tooltips are not surfaced in the
+UI.  <doc:Xogot-User-Interface> provides a guide to the layout and structure of 
+Xogot's toolbars.
