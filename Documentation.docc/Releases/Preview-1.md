@@ -72,11 +72,21 @@ and Xogot not responding.   This fix will be coming soon.
 
 # Releases
 
-## Build 1264
+## Build 1274
+
+* Now it valides project names
+
+* Fixes slow response times on dialogs, this fixes a regression from when I
+  added double-tap to activate. 
+
+* Fixes the ratio-lock button not working.
 
 * SwiftGodot upgrade (just internal, nothing really visible)
 
 * Fixes the popup closing errors.
+
+* When using StageManager, there is an iPadOS bug that shows an empty bar at the
+  bottom when doing text entry, so we deployed a workaround.
 
 ## Build 1260
 
