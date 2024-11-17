@@ -19,12 +19,24 @@ The first step to importing files into a Xogot project is saving the asset to th
 
 ## Importing Files from Within Xogot
 
-Xogot provides a straightforward way to import assets through its **Files Pad**:
+Xogot provides a straightforward way to import assets through its **File Pad**:
 
-1. **Open Xogot** and tap on the **“Files”** icon in the sidebar.
-2. Tap the **“+” button** and choose **“Import Files”**.
-3. Browse through the **Files App** to locate and select the assets you saved.
-4. Once imported, these files will become accessible in the Files Pad, ready for use in your game scenes.
+1. **Open Xogot** 
+2. If the File Pad is not visible, you can open it by tapping on the **Folder** 
+   button in the bottom-left corner of the app.
+3. Check the path at the top of the File Pad.  This is the location where
+   imported files will be saved.  If you'd like to import files to a different
+   location, select a different folder in the File Pad.  
+3. Tap the **“+” button** and choose **“Import Files”**.
+3. Browse through the **Files App** to locate and select the assets you want to import.
+4. Once imported, these files will become accessible in the File Pad, ready for
+   use in your game scenes.  
+
+You can also use the **Import** button in the toolbar at the top of the screen to
+quickly access the Import Files dialog.
+
+@Image(source: "ImportButton.png",
+       alt: "A screenshot of Xogot's toolbar with the Import button magnified")
 
 ## Drag and Drop Assets
 

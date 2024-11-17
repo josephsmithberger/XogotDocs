@@ -16,7 +16,7 @@ Below is an overview of each element in the toolbar, along with a numbered
 screenshot to help you locate each feature.
 
 @Image(source: "XogotToolbar.png",
-       alt: "A screenshot Xogot with numbered toolbar elements.")
+       alt: "A screenshot of Xogot with numbered toolbar elements.")
 
 1. Show/Hide Xogot Sidebar
 2. Document Menu - New/Open/Save/Close Scene, Close Project
@@ -38,8 +38,8 @@ The Scene Tree and File Pad help you organize your game’s structure and manage
 resources. The Scene Tree allows you to add, manage and select nodes in the
 editor while the File Pad helps you manage the files in your project. 
 
-@Image(source: "XogotSceneFile.png", alt: "A screenshot Xogot with numbered
-       scene tree and file pad elements.")
+@Image(source: "XogotSceneFile.png", 
+       alt: "A screenshot of Xogot with numbered scene tree and file pad elements.")
 
 1. Create New Node
 2. Instantiate Child Scene
@@ -63,8 +63,8 @@ The 3D Editor Toolbar floats in the 3D editor workspace, and can easily be
 pushed to any corner of the workspace to make it easier for you access these
 controls while editing your scene.  
 
-@Image(source: "3DToolbar.png", alt: "A screenshot Xogot with numbered
-       scene tree and file pad elements.")
+@Image(source: "3DToolbar.png", 
+       alt: "A screenshot of Xogot with numbered scene tree and file pad elements.")
 
 1. Select Mode
 2. Move Mode
@@ -90,8 +90,8 @@ Like the 3D Editor Toolbar, the 2D Editor Toolbar floats in the 2D editor worksp
 when you are working in a 2D scene.  This toolbar can be easily moved to any corner 
 of the 2D workspace.  
 
-@Image(source: "2DToolbar.png", alt: "A screenshot Xogot with numbered
-       scene tree and file pad elements.")
+@Image(source: "2DToolbar.png", 
+       alt: "A screenshot of Xogot with numbered scene tree and file pad elements.")
 
 1. Select Mode
 2. Move Mode
