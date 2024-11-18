@@ -72,6 +72,43 @@ and Xogot not responding.   This fix will be coming soon.
 
 # Releases
 
+## Build 1283
+
+* Should fix crashes related to the inspector and custom resources that were
+  triggered under various different conditions.
+
+## Build 1280
+
+* Fixes the scenario where tapping the filepad and scenepad icons to
+hide the sidebar would cause the sidebar to not be shown again (#446).
+
+* *Did not set min/max settings for windows when resizing, which
+caused runtime warnings, now we are correct (#437)
+
+* Clip the top window, so that we do not overdraw (no bug filed, but
+preemptive).
+
+* Tracks the state of the code editor and the bottom bars, and the
+last used gets the priority for the display.  The priority is very
+simple, if the text editor just became the first responder, then when
+the keyboard appears on the screen, we hide the bottom bar.  Fixes
+#375.
+
+* Allows the dragging handle to be used when a bottom pad is
+maximized.
+
+* It is now possible to tap anwyhere in a row on the Create New Dialog,
+
+* Disable node 3D editor plugin mouse motion event handling if pinch or pan
+  event occurred.
+
+* Adds Command-shift-C shortcut to copy the node path
+
+* Adds Command-Shift-[ and Command-Shift-] to go move across editor tabs.
+
+* Style: search boxes no longer auto-capitalize.
+
+
 ## Build 1274
 
 * Now it valides project names
