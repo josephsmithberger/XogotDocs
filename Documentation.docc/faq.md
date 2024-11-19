@@ -34,8 +34,8 @@ steps below:
 
 1. Tap on the switch button in the top-right corner of the app and select "Settings".  
 2. Scroll to the Rendering section on the left-hand column and tap "Renderer" 
-3. Make sure that you do not have OpenGL selected.
-4. Once you have selected a compatible renderer, close and re-open the project
+3. Make sure that Rendering Method.mobile is not set to OpenGL
+4. Once you have selected a compatible mobile renderer, close and re-open the project
 
 For the final release, we will be switching to a Godot-4.4-based system which
 will support all three renderers.
