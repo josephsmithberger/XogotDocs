@@ -1,5 +1,7 @@
 # Differences between Xogot and Godot
 
+Notable differences in adapting Godot to iPad
+
 ## Only gdscript
 
 Xogot does not include support for C#, nor other compiled languages, including

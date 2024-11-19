@@ -8,6 +8,7 @@ To get started building games with Xogot, check out our <doc:Getting-Started> gu
 - <doc:Testflight>
 - <doc:Getting-Started>
 - <doc:Xogot-User-Interface>
+- <doc:faq>
 
 ### Release Notes
 - <doc:Preview-1>
