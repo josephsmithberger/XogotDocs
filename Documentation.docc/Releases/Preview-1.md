@@ -72,9 +72,19 @@ and Xogot not responding.   This fix will be coming soon.
 
 # Releases
 
-## Build TBD
+## Build 1309
 
 * Fixes the debugger window positioning when there is no target running.
+
+* Added debugging symbols for the Godot component, it turns out that the
+crash reports were getting very hard to see due to the lack of this information.
+
+* Fixes the crash that was triggered when tapping on the sky or sun in the 3D
+  editor, finally tracked it down.  This only happened in release builds.  A
+  lovely gift from the C++ optimizer to us.
+
+* Importer and other properties: avoid replicating the last section in
+  properties with implicit categories.
 
 ## Build 1307
 
