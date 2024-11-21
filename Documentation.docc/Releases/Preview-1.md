@@ -72,6 +72,25 @@ and Xogot not responding.   This fix will be coming soon.
 
 # Releases
 
+## Build TBD
+
+* Fixes the debugger window positioning when there is no target running.
+
+## Build 1307
+
+* Makes sure that a deprecated toolbar is not shown while editing controls.
+
+* Does not restore Built-in script loading, like Godot does.
+
+* Internal improvements (Godot rehosting code).
+
+* Saves all scenes and scripts before running, to match Godot on desktop, and
+  also is much better UX.
+
+* Fixes crash on the Groups pad.
+
+* Brings Crashlytics, hoping to find the location of some ellusive bugs being reported.
+
 ## Build 1296
 
 * Native SpriteSheetImporter implemented.
