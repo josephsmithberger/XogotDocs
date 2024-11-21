@@ -39,3 +39,13 @@ steps below:
 
 For the final release, we will be switching to a Godot-4.4-based system which
 will support all three renderers.
+
+## Why does my bluetooth controller not work?
+
+You can use Xogot with your project that has configured input maps for 
+physical controller, but there is currently a bug that prevents the 
+controller from working if the controller was already connected before
+the first time the game is run.  To work around this, disconnect your
+paired controller, launch your game, and then reconnect the controller.
+It is not necessary to reconnect the controller every time you launch
+the game, but it is necessary to do it every time Xogot is restarted.

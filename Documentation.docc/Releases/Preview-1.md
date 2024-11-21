@@ -10,11 +10,11 @@ and Xogot not responding.   This fix will be coming soon.
 
 
 ### Renderer
-- Xogot is based on Godot 4.3-based: and it imposes a few limitations when it
-  comes to the renderers when running on device (Forward+, Forward Mobile work,
-  but OpenGL in this release is not working).   You might need to adjust your
-  settings for your game to fully work on iPad.   For the final release, we will
-  be switching to a Godot-4.4-based system which will support all three modes.
+- Xogot is based on Godot 4.3, which imposes a few limitations when it comes to
+  the renderers running on mobile devices (Forward+ and Mobile work, but OpenGL
+  does not).   You might need to adjust your settings for your game to fully
+  work on iPad.   For the final release, we will be switching to a
+  Godot-4.4-based system which will support all three renderers.
 
 - Currently we do not use the new Godot Metal-based renderer, we are hoping to
   bring it soon.
@@ -68,7 +68,9 @@ and Xogot not responding.   This fix will be coming soon.
   (#147)
 
 ### Bluetooth Controllers
-- A running a game will not react to controller input from a paired bluetooth controller (#283)
+- A bluetooth controller will not work if it was connected before running (#283)
+  You can work around this by waiting to connect your controller until after the game
+  is up and running.  
 
 # Releases
 
