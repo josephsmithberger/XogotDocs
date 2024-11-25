@@ -74,7 +74,21 @@ and Xogot not responding.   This fix will be coming soon.
 
 # Releases
 
-## Build
+## Build TBD
+
+* Inspector now also capitalizes properties that use camel case, so things like
+  "playerSpeed" are rendered as "Player Speed".  #10
+
+* Adds shortcuts for select, move, rotate, scale, group, pan, ruler, lock,
+  center selection, frame selection, local coords, snap.
+
+* Compliance: states the purpose of accessing the microphone, this prevents a
+  crash when trying to use games that want to record audio.  #29
+
+* Launching Xogot will no longer interrupt audio playback.   There is still
+  additional work necessary to allow games to change those settings. #37
+
+* Property editors for dictionaries are now exposed.
 
 ## Build 1347
 
@@ -91,7 +105,7 @@ and Xogot not responding.   This fix will be coming soon.
   ** Option: 0.1 units
   ** Shift: 10 units
   ** Control: 100 units
-  
+
 ## Build 1342
 
 * Resource pickers will now have the proper filters for the data type being
@@ -144,8 +158,6 @@ a row, the second tap was always considered a double-tap.
 * Enabled the Mac-command like shortcuts in Godot, rather than the default
   Windows-based ones (visible in things like "Select All" in a Godot Text
   editor, now it is Command-A rather than Control-A).
-
-* Property editors for dictionaries
 
 ## Build 1320
 
