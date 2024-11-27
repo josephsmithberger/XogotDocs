@@ -74,6 +74,46 @@ and Xogot not responding.   This fix will be coming soon.
 
 # Releases
 
+## Build 1370
+
+* Fixes crash on dictionary editors for unknown data types, and adds support for
+  using "Objects" as keys and values in the godot editor for dictionaries.
+
+* "Pad" menu becomes more noticeable when launching an app.
+
+* Dirty-file indicator is now properly tracked (Discord, Testflight feedback).
+
+* Fixes the icon alignment on the toolbars.
+
+* Bring a visual indicator that "select mode" is active in 2D and 3D toolbars.
+
+* Bring back the Display Type Selector in te 3DViewport options.
+
+* Work in progress: audio modes from the game are saved when the game pauses and
+  the system defaults are put back in place, and restored when the game resumes (Discord feedback).
+
+* Built-in scripts will now get their proper name when creating them.
+
+* Fixed scrolling on launch screen for the learning projects (Testflight
+  feedback)
+
+## Build 1360
+
+* Updates MoltenVK to v1.2.11, hoping that this fixes a number of crashes that 
+happen on startup (Testflight feedback)
+
+* Removes an assertion for a resource that was not released (Testflight crash report)
+
+* Reduces the FPS to 60 frames per second while using the editor, and keeps it
+  at 120 while running games.   This should reduce battery usage a little, but
+  there is more work to do here (Testflight feedback)
+
+* Fixes a crash on the dictionary editor for unknown dictionary types
+  (Testflight crash)
+
+* Fixed: Attempting to scroll Godot node selection dialogs drags instead of
+  scrolling (Testflight feedback).
+
 ## Build 1354
 
 * Inspector now also capitalizes properties that use camel case, so things like
