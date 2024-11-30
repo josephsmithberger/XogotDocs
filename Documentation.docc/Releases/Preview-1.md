@@ -70,7 +70,26 @@ and Xogot not responding.   This fix will be coming soon.
 
 # Releases
 
-## Build 1384
+## Build 1399
+
+* Fix regression that prevented the debuggee from closing its window.
+
+* Looks: removed extra padding that was added to some BottomBar pads to leave
+  room for a drag-handle, before I changed course to the current approach.
+
+* Adds support for dropping files into Resource picker and file pickers.
+
+* Fixes setVirtualControllerCallbacks
+
+* Fixes a series of crashes that we tracked via Testflight related to spawning a
+  game and the editor.
+
+* Related, fixes a crash on the virtual controller that might crash.
+
+* Implemented support for editing arrays of certain elements in the inspector -
+  most notably folks reported it missing in things like TileSet (User feedback)
+
+## Build 1387
 
 * Fix a crash on the audio interruption handler (Testflight feedback)
 
@@ -89,6 +108,8 @@ and Xogot not responding.   This fix will be coming soon.
   triggers an error.
 
 * Bumped version to 1.0.3 to make it easier to diagnose.
+
+* Fixes objects not being inspectable in some scenarios, tracked via Crashlytics.
 
 ## Build 1379
 
