@@ -70,6 +70,61 @@ and Xogot not responding.   This fix will be coming soon.
 
 # Releases
 
+## Build 1425
+
+* Groups Editor now support Global groups in addition to scene groups.
+
+* Bring back the stricter object tracking.
+
+* You can now type in any place in a row in the "Create New" dialog (Testflight
+  report).
+
+* In the Project Manager, the delete option is properly colored (red, internal
+  #800
+
+* Dictionaries and array editors no longer use pagiation for consistency with
+  the other editors.  Internal #810.
+
+* When deleting files from the FilePad, we will now show the user the impact
+  that deleting the files would have on the project, fixes #779.
+
+* Signals declared in scripts are show on the inspector, fixes internal #608
+
+## Build 1415
+
+* Fixes crash in the tile editor when painting with a physics layer.
+
+* Create Node dialog now hides deprecated and experimental by default, but
+  allows you to show them if needed.  
+
+* Create Node dialog can be expanded to have more space to see the node types. 
+
+* Undoes the stricter object tracking, as it has a design flaw.
+
+## Build 1411
+
+* Qualify of life improvement: for resources that only have a single type,
+  rather than offering a "New" submenu, just inline the value, like "New
+  TileSet"
+
+* Quality of life: when pausing a program, if the program is paused and there 
+  is not script to highlight, rather than showing the debugger pad, show the
+  output pad, internal #772.
+
+* We introduced a vastly stricter binding from SwiftUI to Godot in 1399, which
+  will cause a few crashes in the next few days in - this version contains fixes
+  for the early crashes that have been spotted.
+
+## Build 1402
+
+* Fixes the issue that prevented data input in text fields in sheets triggered
+  from the inspector view (Public report #41), this also should fix other similar scenarios.
+
+* Additional fixes for the new more stringent object tracking, fixes a crash
+  (reported by Joseph - internal #801)
+
+* Create Node now flags experimental and deprecated nodes.in
+
 ## Build 1399
 
 * Fix regression that prevented the debuggee from closing its window.
