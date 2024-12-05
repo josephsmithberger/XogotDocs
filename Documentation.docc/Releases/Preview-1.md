@@ -70,16 +70,39 @@ and Xogot not responding.   This fix will be coming soon.
 
 # Releases
 
+## Build 1439
+
+* Fixes another class of crashes, this time triggered by the animation editor,
+  but this is a general fix that will apply to many more scenarios (internal
+  #825)
+
+* 2D Editor: Disable rotation line, when pinch or pan event occurred.
+
+
+* Sets the minimum hardware requirements required by Godot, as older iPads (7th
+  generation and older) do not have the GPU support that the Godot editor
+  requires.
+
+* Fixes a crash on the code editor (Crashlytics)
+
+## Build 1433
+
+* Fixes the scrolling not working, regression introduced in 1430 the fix is to
+  loosen up the sensitivity of the swipe handlers.
+
 ## Build 1430
 
 * Backported another Tile Editor fix
 
 * Swipe actions on inspector properties now exposes "copy path" operation, as
-  well as copy value and paste value.
+  well as copy value and paste value (internal #623)
 
 * Swipe actions on ScenePad now allow selection/deleting.
 
 * Swipe actions on FilePad now allow selection.
+
+* Make it easier to tap on menus in resources (it was too easy to navigate into
+  the subresource, internal #737)
 
 ## Build 1425
 
