@@ -70,14 +70,39 @@ and Xogot not responding.   This fix will be coming soon.
 
 # Releases
 
-## Build 1459
+## Build 1465
+
+* Interacting with embedded inspector plugins will no longer scroll the
+  inspector as you scroll inside those elements. 
+
+* Gradient previews will now properly show.
+
+* Embedded controls on the inspector will no longer vanish
+
+* Follow up to picking custom locations: there were a few file pickers in Godot
+  that defaulted to the wrong file system location if you had picked a custom
+  location. 
+
+* Panning: panning across the Godot controls should now track the finger, as
+  expected by ipad users, rather than the accelerated mode that is more suitable
+  for desktop users.  This should be visible in various places that implemented
+  panning in the Godot controls.
+
+* New Text Editor Setting for completion: add type hints on/off toggle, feedback
+  from Testflight.
+
+
+## Build 1464
+
+* Now renders inspector plugins for nested elements of an object.   Fixes #796.
 
 * Prevents a crash that happened after a game was stopped.
+
+## Build 1459
 
 * Makes the swipe action on the ScenePad and FilePad less sensitive.
 
 * Code completion for GDScript code is back.
-
 
 ## Build 1457
 
@@ -117,13 +142,16 @@ and Xogot not responding.   This fix will be coming soon.
   have to figure out a good UI for it.
 
 * Fixes the Setting crasher 
+
 ## Build 1439
 
 * Fixes another class of crashes, this time triggered by the animation editor,
   but this is a general fix that will apply to many more scenarios (internal
   #825)
 
-* 2D Editor: Disable rotation line, when pinch or pan event occurred.
+* 2D Editor: Disable rotation line, when pinch or pan event occurred, also seen
+  as "Pinch to zoom causes node to move if transform tool is selected" reported
+  via Testflight.
 
 * Sets the minimum hardware requirements required by Godot, as older iPads (7th
   generation and older) do not have the GPU support that the Godot editor
