@@ -61,6 +61,30 @@ and Xogot not responding.   This fix will be coming soon.
 
 # Releases
 
+## Build
+
+* Improvements to the signal connection dialog:
+
+  * When connecting a signal, we now stub the signal in the target method
+    (#873), this is what users of Godot expect, and we accidentally dropped this
+    support when we switched to the native editors.
+
+  * Save the Godot scripts using the resource API, ensuring that the list of
+    available methods is reflected when the user needs them on the connection
+    dialog (#870).
+
+  * Change the filter options to use a button toggle-style, rather than a menu
+    picker, as it is faster to switch between the options.
+
+* Syncs the ScenePad collapsed state, avoiding a rare scenario that would
+  forcefully collapse the ScenePad (#781).
+
+* When importing assets, prevent read-only fields from being modified (#816)
+
+* Fixes a crash with plugin extensions, this was mostly noticeable when opening
+  Skeleton objects, but could potentially happen elsewhere.   Now every
+  extension is shut-down immediately when navigating in the inspector (#849).
+
 ## Build 1508
 
 * When downloading samples, if the remote server does not include a
