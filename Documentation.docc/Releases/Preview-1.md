@@ -61,6 +61,32 @@ and Xogot not responding.   This fix will be coming soon.
 
 # Releases
 
+## Build 
+
+* When loading a Godot project, if the configured renderer is not support in
+  Xogot, you will get a chance to change it to the "mobile" renderer.   Fixes
+  public #50.
+
+* Sprite Editor: commits a rename change, even if you tap away (report from
+  Discord).
+
+* Introduce multi-touch input options for the running game.   This version will
+  by default dispatch raw multi-touch input to your program, but we introduced
+  an option in project settings
+  input_devices/pointing/ios/enable_pan_and_scale_gestures, similar to the
+  option that exists for Android that will instead turn multi-touch input events
+  into pan or scaling gestures (that was our non-configurable, old behavior).
+  Fixes #854 and public #24.
+
+* Various Autoload features were completed (#883): Autoload renaming, allow
+  enable/disable of autoloads, expose as global.
+
+## Build 1546
+
+* Fix a regression introduced in 1541 that prevented the bottom tab actions from
+  activating.   This was a bug introduced due to a fix preventing a hang for
+  Theme resources in 1541
+
 ## Build 1541
 
 * Godot-native popups would sometimes show up and not get the focus, and users
@@ -89,6 +115,8 @@ and Xogot not responding.   This fix will be coming soon.
 * Fixes debugger breakpoints on built-in scripts (partial fix for #877).
 
 * Fixes an issue with array elements crashing the editor (Crashlytics).
+
+* Fixes a hang when activating certain resources on the inspector (reported on Discord).
   
 ## Build 1516
 
