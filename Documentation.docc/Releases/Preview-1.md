@@ -61,7 +61,40 @@ and Xogot not responding.   This fix will be coming soon.
 
 # Releases
 
-## Build 
+## Build 1567
+
+* Fixes the touchesEnded event being delayed with multiple finger inputs
+  (#823, submitted as Testflight feedback).
+
+* Further refinements to the multi-touch handling (improvement over the fix for
+  #854 from Build 1552).
+
+* SpriteSheetImporter: allow users to change the background of the image, to
+  simplify importing images that might be white on transparent colors (Discord feedback).
+
+* Launch Screen: no longer overloads the [+] button to be new game or browse
+  locations.  The browse location option is now on the toolbar (#891)
+
+* If you do not have a physical keyboard attached, we will not auto-focus the
+  search field in the "Create New Node" dialog, going to experiment if this is a
+  better workflow for users (#749).   But if you have a keybaord, it will
+  autofocus.
+  
+* Launch Screen: style changes for the "Delete Project" confirmation dialog
+  (#821).
+
+* Xogot will no longer show the convenience keyboard input accessory if you have
+  a hardware keyboard attached.
+
+* New SwiftUI-based Shader Editor, it is currently missing the
+  VisualShaderEditor, but will allow us to tune the UI and experience for the
+  shader editor (Discord feedback).
+
+* Improved the heuristics for positioning the code completion window, it should
+  not jump anymore (Discord feedback).
+
+  
+## Build 1552
 
 * When loading a Godot project, if the configured renderer is not support in
   Xogot, you will get a chance to change it to the "mobile" renderer.   Fixes
