@@ -59,7 +59,27 @@ and Xogot not responding.   This fix will be coming soon.
 
 # Releases
 
+## Build 1594 - a Christmas Miracle!
+
+* The Godot Embedded content will now track the system color scheme.  While
+  Xogot already did this, the embedded Godot code did not, it was running in 
+  dark mode (#924, #627, #715)
+
+* By popular demand, the ScenePad now shows the Godot icons for the node types,
+  as folks say that this is an important visual cue to determine what things
+  are.  Initially, I thought the colors were pretty bad, but thanks to DETOX,
+  and SigitSP on Discord, they pointed out that the colors were dynamic and
+  based on the theme.
+
+* New size font picker for the code editor (#906, based on survey feedback).
+
+* Added a nested array editing capability, this was surfaced as lacking support
+  for adding an InputEventAction (#920, based on Testflight feedback).
+
+* Show type icons on the scenepad.
+
 ## Build 1582
+
 
 * Surface "Create Shader" in the FilePad "+" menu (#894)
 
@@ -78,6 +98,11 @@ and Xogot not responding.   This fix will be coming soon.
 
 * When you create shaders, we will open the shader editor right away.
 
+* Fixes a bug when trying to rename a scene node, and the keyboard would cover
+  up the pad, and dismiss the rename operation (#919, Testflight feedback).
+
+* Add additional space to the "trash" icon on the output window, so that it is
+  easier to close (#927, Testflight feedback)
 
 ## Build 1572
 
