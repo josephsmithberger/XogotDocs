@@ -59,6 +59,50 @@ and Xogot not responding.   This fix will be coming soon.
 
 # Releases
 
+## Build 1620
+
+* Crash fix on the Project Settings if you modified a text input field and
+  switched tabs.  But it means that in Stage Manager, an extra empty row 
+  is shown when a hardware keyboard is attached when editing text (Xcode crash
+  reports, internal #964)
+
+
+## Build 1616
+
+### Features
+
+* Add support for "Property Keying", this is the feature that shows a small
+  "key" object next to a property when the Animation pad is selected and there
+  is an active animation (Issue #995, feedback from recent survey).
+
+* Added comment/uncomment shortcut for code (various feedback requests, among
+  those #40, Testflight and survey feedback).
+
+* The Inspector will now show the object name/type when inspecting it, but only
+  if the name is different than the first category name (#948).
+
+### Bug Fixes
+
+* Take into consideration the size of the resizing handle to set the minimum
+  bottom bar panel sizes for fixed panels (like the Audio one).   #931.
+
+* Fixes the scenario where the completion window could become too small.
+  Testtflight feedback.
+
+* Reworked the ownership model in SwiftGodot, which fixes a fundamental design
+  flaw which we had worked around by leaking.
+
+* Fixes the code completion window not being large enough after running a
+  program with an error (#921), Testflight feedback.
+
+* Fixes a scenario that took up too much space in the debugger (#922),
+  Testflight feedback.
+
+* Fixes Drag gestures: Camera jumps on transition from moving to dragging
+  (public bug #45).
+
+* Look and Feel: Create New Dialog does not have uneven row sizes (#952).
+
 ## Build 1594 - a Christmas Miracle!
 
 * The Godot Embedded content will now track the system color scheme.  While
@@ -79,7 +123,6 @@ and Xogot not responding.   This fix will be coming soon.
 * Show type icons on the scenepad.
 
 ## Build 1582
-
 
 * Surface "Create Shader" in the FilePad "+" menu (#894)
 
@@ -102,7 +145,7 @@ and Xogot not responding.   This fix will be coming soon.
   up the pad, and dismiss the rename operation (#919, Testflight feedback).
 
 * Add additional space to the "trash" icon on the output window, so that it is
-  easier to close (#927, Testflight feedback)
+  easier to close (#927, Testflight feedback).
 
 ## Build 1572
 
