@@ -59,13 +59,34 @@ and Xogot not responding.   This fix will be coming soon.
 
 # Releases
 
+
+## Build 1631
+
+* Confirmation and accept dialogs mapped from Godot to SwiftUI will have the
+  primary action at the end, following the iOS platform conventions (#963)
+
+* Temporarily remove the "Minimize debugger" option, which produced an ugly UI,
+  proper fix will come soon (#922).
+
+* Breakpoints on early code (typically _ready) are now honored (Testflight
+  feedback, #761)
+
+* Fixes a lifecycle bug that we caught thanks to recent hardening of the
+  runtime.   We noticed a few scenarios that were wrong and addressed them.
+
+* Actions on multiple scene nodes now works with the Swipe-based actions (#950).
+
+* Selecting a new file on the FilePad should now update the inspector
+  accordingly (#953)
+
+* The code editors are not reset after switching tabs anymore (public bug #55).
+
 ## Build 1620
 
 * Crash fix on the Project Settings if you modified a text input field and
   switched tabs.  But it means that in Stage Manager, an extra empty row 
   is shown when a hardware keyboard is attached when editing text (Xcode crash
   reports, internal #964)
-
 
 ## Build 1616
 
