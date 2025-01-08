@@ -21,7 +21,6 @@ and Xogot not responding.   This fix will be coming soon.
 
 ### Game Editor
 - QuickOpen is missing a “Recents” tab (#87)
-- Godot-native UI is not tracking the dark/light mode (#627)
 - Godot-native is not using the system fonts (#176)
 - IO Errors are reported with the old UI (#544)
 
@@ -36,7 +35,8 @@ and Xogot not responding.   This fix will be coming soon.
   capabilities (#636).
 
 ### Output Panel
-- The output panel does not display RichText output, it will render as plain text (#574)
+- The output panel does not display RichText output, it will render as plain
+  text (#574).
 
 ### Exporting Projects
 - Godot has a notion of Exporting projects for publishing your games.   This
@@ -51,7 +51,6 @@ and Xogot not responding.   This fix will be coming soon.
   written in Godot, let us know of any common ones, so we can prioritize them
   (#540) 
 - Currently on the English locale is supported (#440)
-- Editor Toaster Notifications are not currently shown (#383)
 
 ### Shader Globals
 - It is currently not possible to edit values of sampler2D/sampler3D values
@@ -59,7 +58,18 @@ and Xogot not responding.   This fix will be coming soon.
 
 # Releases
 
-## Build #1636
+## Build 
+
+* Tapping on the Script icon when you are already on script mode, will bring up
+  the "Quick Open" dialog for scripts.
+
+* Will now show warnings when the system is low on memory, the messages are
+  displayed with a new toaster-like notification system, and we will be wiring
+  up some Godot messages here too.
+
+* Editor Toast notifications are now shown (fixes #383)
+
+## Build 1636
 
 * Some resource previews on the inspector were not being dispayed if the
   resource renderer did not support generating tiny versions of the image (which
