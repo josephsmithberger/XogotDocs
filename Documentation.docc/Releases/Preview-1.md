@@ -59,6 +59,16 @@ and Xogot not responding.   This fix will be coming soon.
 
 # Releases
 
+## Build #1636
+
+* Some resource previews on the inspector were not being dispayed if the
+  resource renderer did not support generating tiny versions of the image (which
+  we did not even use).  Fixes #837.
+
+* Fixes the missing Output data when debugging a program (Discord feedback).
+
+* Allows Animation Key Frames to be edited in the inspector (Testflight
+  feedback, internal #795).
 
 ## Build 1631
 
