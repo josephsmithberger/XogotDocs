@@ -22,7 +22,6 @@ and Xogot not responding.   This fix will be coming soon.
 ### Game Editor
 - QuickOpen is missing a “Recents” tab (#87)
 - Godot-native is not using the system fonts (#176)
-- IO Errors are reported with the old UI (#544)
 
 ### Inspector
 - No computed expression support for numeric values (#369)
@@ -58,16 +57,71 @@ and Xogot not responding.   This fix will be coming soon.
 
 # Releases
 
-## Build 
+## Build 1660
+
+* IO Errors are now reported on a native UI, rather than the Godot native UI
+  (#544).
+
+* Internal: avoid an invalid idiom in Swift, which mostly works, I had been
+  warned against, but "works for me" had carried me for weeks.  Decided to
+  finally fix every instance of the problem (#618).
+
+* New Scene dialog will now work if you are editing in half-screen (for example,
+  if you are running side by side, Discord Feedback, #774)
+
+* Potential crash fix related to the Joypad (#850).   Some users had their Xogot
+  crash due to us invoking Joypad methods, we believe that there was a scenario
+  where we could invoke the Joypad methods on the wrong process/thread.   We
+  hope that this fixes the problem.  
+
+* Fixes the launch screen display for large displays - this only happens when
+  you connect an external display to your iPad at a higher resolution (#923).
+
+* Avoid inserting quotes when it is not necessary when dragging nodes from the
+  scenepad into the text editor (fine tuning #973)
+
+* SpriteAnimationEditor: the FPS value was not being set on the animation, now
+  it is (Discord, #994).
+
+* SpriteAnimationEditor: inputing a value on the FPS display on the sprite frame
+  editor will auto-dismiss.
+
+* When stopping a game that had audio playing, we will now stop the audio fully
+  and not keep it lingering in the background (#968).
+
+## Build 1648
 
 * Tapping on the Script icon when you are already on script mode, will bring up
   the "Quick Open" dialog for scripts.
 
 * Will now show warnings when the system is low on memory, the messages are
   displayed with a new toaster-like notification system, and we will be wiring
-  up some Godot messages here too.
+  up some Godot messages here too (#977)
 
 * Editor Toast notifications are now shown (fixes #383)
+
+* Fixes drag-and-dropping of scene pad nodes into the text editor, it will now
+  insert the optimal path, rather than the raw node id (Fixes #973)
+
+* Internals: add additional logging to help us track down crashes.
+
+* Game runtime errors are now rendered with an error description, not just the
+  high-level warning, as it was confusing as to what exactly this was.
+
+* The UI will no longer fight you when single-stepping in the debugger if you do
+  not have a keyboard attached (#491).
+
+* The ScenePad's Node/Info contains triggers to open connections and groups, and
+  an easier region to tap them.
+
+* The ScenePad Info popup will now format the brief documentation for the node
+  and will show the entire brief description.
+
+* SignalPad: "Get Info" on a signal will now render its documentation, previousy
+  it would only render it for the signals on the most-derived class.
+
+* Undo/Redo buttons on the code editor are wired up when not using the physical
+  keyboard. Fixes #941.
 
 ## Build 1636
 
