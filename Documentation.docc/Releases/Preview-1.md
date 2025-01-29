@@ -61,7 +61,7 @@ and Xogot not responding.   This fix will be coming soon.
 
 ### Features
 
-New native Animation Editor for Xogot.
+### New native Animation Editor for Xogot.
 
 We just landed the new animation editor, it will appear now whenever you select
 an animation and you activate the the "Animation" bottom panel.   When you do,
@@ -103,6 +103,11 @@ on them, and they will be coming in the next few releases:
 * Missing Onion Support.
 
 * Missing Bezier Editor.
+
+### Sharing
+  
+You can now tap the share button in the upper-right corner of the app to 
+share a build of your project that can playtested by anyone else running Xogot.
 
 ### Bug Fixes
 
