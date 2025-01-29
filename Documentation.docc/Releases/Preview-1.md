@@ -57,13 +57,75 @@ and Xogot not responding.   This fix will be coming soon.
 
 # Releases 
 
-## Build
+## Build 1756
 
-* Fixes for multiple editor windows being opened.
+### Features
+
+New native Animation Editor for Xogot.
+
+We just landed the new animation editor, it will appear now whenever you select
+an animation and you activate the the "Animation" bottom panel.   When you do,
+you still have an option to go back to the old UI.
+
+This new editor has been adapted to be a good iPad citizen, and being a complete
+SwiftUI rewrite, gives us opportunities to improve the editor over time with
+more native features.
+
+We are particularly interestd in feedback on how the experience feels to touch -
+and make sure that everything that you need to do is present, but also that it
+is an enjoyable experience - so feel free to send us feedback on Discord or via
+TestFlight on any issues you might have - no matter how small.
+
+There are some features missing in the current editor, we are actively working
+on them, and they will be coming in the next few releases:
+
+* It is not possible to "inspect" a key when you select it on the inspector.
+
+* Snapping has not been surfaced in the UI
+
+* No help is displayed when selecting a node property or a method from the Add
+  Track selector.
+
+* Confirmation for adding multiple tracks to the RESET track is not required.
+
+* Can not currently add sub-animation tracks.
+
+* Volume tracks merely render as data points, does not show volume levels.
+
+* The Animation Library Editor is missing Save-as functionality.
+
+* The timeline rendering currentl only displays the timeline in seconds, but not
+  in frames.
+
+* Various advanced commands are not implemented: Bake Animation, Optimize
+  Animation, Cleanup Animation, Make Easing Keys. 
+
+* Missing Onion Support.
+
+* Missing Bezier Editor.
+
+### Bug Fixes
+
+* Makes the shell buttons for the left-side panes easier to tap (#1029,
+  TestFlight feedback).
+
+* We are starting to test the capability of sharing your games with other Xogot
+  users.  
+
+* Signal pad: change the colors for signals to be the secondary color, and the
+  connections to use the primary color to be easier to spot.
+
+* Arrow keys no longer "stick" when running a game (#1002, TestFlight feedback).
+
+## Build 1732
+
+* Fixes for multiple editor windows being opened, it was not possible to open
+  projects, with the error "Another editor is already active"
 
 * Updated profile page.
 
-* Fixes the "jumpy" behavior while dragging public bug report #25.
+* Fixes the "jumpy" behavior while dragging public bug report #25 (Internal
+  #889). 
 
 ## Build 1717
 
