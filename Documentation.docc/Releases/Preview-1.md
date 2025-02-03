@@ -57,6 +57,97 @@ and Xogot not responding.   This fix will be coming soon.
 
 # Releases 
 
+## Build
+
+## Changes New Animation Editor for Xogot
+
+* Setting the snap value for an animation has been implemented.
+
+* Renaming an animation without using the library has been implemented.
+
+* Help is shown for both property nodes (when selecting a target for the
+  animation) and for methods (when selecting a method to invoke in the animation
+track).
+
+* Added a convenience "Sprite Animation Track" option to "Add Track", which will
+  automatically filter nodes to sprites, and will filter properties to those you
+  can set - to reduce the complexity of animating sprites (#1041).
+
+* It is now possible to edit sprite animations that were using sprite
+  coordinates rather than just sprite frames.
+
+* Ergonomics: When switching animations, we no longer default to the "RESET"
+  track.
+
+## Testing Wanted: New Animation Editor
+
+We just landed the new animation editor, it will appear now whenever you select
+an animation and you activate the the "Animation" bottom panel.   When you do,
+you still have an option to go back to the old UI.
+
+This new editor has been adapted to be a good iPad citizen, and being a complete
+SwiftUI rewrite, gives us opportunities to improve the editor over time with
+more native features.
+
+We are particularly interestd in feedback on how the experience feels to touch -
+and make sure that everything that you need to do is present, but also that it
+is an enjoyable experience - so feel free to send us feedback on Discord or via
+TestFlight on any issues you might have - no matter how small.
+
+
+Known limitations:
+
+* Confirmation for adding multiple tracks to the RESET track is not required.
+
+* Can not currently add sub-animation tracks.
+
+* Volume tracks merely render as data points, does not show volume levels.
+
+* The Animation Library Editor is missing Save-as functionality.
+
+* The timeline rendering currentl only displays the timeline in seconds, but not
+  in frames.
+
+* Various advanced commands are not implemented: Bake Animation, Optimize
+  Animation, Cleanup Animation, Make Easing Keys. 
+
+* Missing Onion Support.
+
+* Missing Bezier Editor.
+
+## Changes and Fixes
+
+* When loading a scene that contained assigned nodes, we were discarding them
+  from Node selectors - this has been fixed (Discord, #1056)
+
+* Easing properties are now rendered with a small graph showing the effect in
+  addition to the numeric value - and pressing long-press displays presets that
+  you can use.
+
+* The File Pad no longer shows the "search" input line by default, this now
+  requires toggling it on - it provides an additional row of text to see the
+  contents of your project.
+
+* Fixes to integer property editors that were not refreshing when selecting new
+  objects (very noticeable in AnimationKey inspection, #1053).
+
+* Controlling gizmos on the 3D editor should be easier, as the touch area has
+  been expanded (#652, TestFlight feedback)
+
+* The SpriteEditor will no longer hang if you try to inspect objects while it is
+  open (#863).
+
+* The inspector will no longer undo/redo operations for animation keys,
+  following the same behavior as the Godot editor (#938).
+
+* Removing tracks from the animation editor now works (#1054).
+
+* Auto-mapped Godot toolbar items are easier to tap, with a wider tap
+  region. 
+
+* Menus in auto-mapped toolbars that do not contain any text are now displayed
+  with an ellipsis, previously they were completely hidden (#1030).
+
 ## Build 1774
 
 * We now display the menu with options for animations in the 2D Editor that were
