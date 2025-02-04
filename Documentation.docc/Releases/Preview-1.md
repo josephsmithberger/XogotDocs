@@ -57,9 +57,53 @@ and Xogot not responding.   This fix will be coming soon.
 
 # Releases 
 
+## Build 
+
+### Changes to the New Animation Editor in Xogot
+
+* When a new node is created, it will now start in "Rename Mode" in the
+  ScenePad: we are experimenting with this new default as we replicate various
+  tutorials to ensure a smooth operation (#1058)
+
+* You can now create animations from the popup menu in the Animation tab (#1064).
+
+* Moving keys in the Animation Track lanes now go into the undo/redo stack.
+
+* The Animation Library now supports saving animations, libraries of animations
+  and loading libraries of animations.   This completes that pending task.
+
+* Volume tracks now render like Godot, with a color gradient for the volume -
+  but I also bumped the size to be larger to read.
+
+* Fixed a serious regression in SwiftGodot (#1024) which was manifesting itself
+  as a crash while configuring the Input Event, but could happen in other
+  places.
+
+### SpriteFrame Editor
+
+Changed the style to match the UI in the new Animation Editor, I cover this in
+more detail here: https://blog.la-terminal.net/xogot-animations-tab/
+
+### Overall Changes
+
+* Games now show previously shared games with the option to re-download if your
+  logged in! As well as all of your shared games
+
+* Dropped the duplicate "Instantiate Child Scene" which gives us a little bit
+  more space to work with.
+
+* We harmonized the UI in the SpriteFrame pad to more closely match the user
+  interface idioms of the new Animation Pad, so they are both more consistent,
+  but it also helped clear up the user interface (#1055).
+
+* Fixes to the 2D snap parameters, some properties were rendering degrees
+  incorrectly, and two properties were loaded as zeroes due to a type mismatch. 
+
+* Improves the look of the swipe icons on the ScenePad (#996, #1062)
+
 ## Build 1788
 
-## Changes New Animation Editor for Xogot
+### Changes New Animation Editor for Xogot
 
 * Setting the snap value for an animation has been implemented.
 
@@ -79,7 +123,7 @@ track).
 * Ergonomics: When switching animations, we no longer default to the "RESET"
   track.
 
-## Testing Wanted: New Animation Editor
+### Testing Wanted: New Animation Editor
 
 We just landed the new animation editor, it will appear now whenever you select
 an animation and you activate the the "Animation" bottom panel.   When you do,
@@ -115,7 +159,7 @@ Known limitations:
 
 * Missing Bezier Editor.
 
-## Changes and Fixes
+### Changes and Fixes
 
 * When loading a scene that contained assigned nodes, we were discarding them
   from Node selectors - this has been fixed (Discord, #1056)
