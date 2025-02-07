@@ -10,6 +10,7 @@ and Xogot not responding.   This fix will be coming soon.
 
 
 ### Renderer
+
 - Xogot is based on Godot 4.3, which imposes a few limitations when it comes to
   the renderers running on mobile devices (Forward+ and Mobile work, but OpenGL
   does not).   You might need to adjust your settings for your game to fully
@@ -19,28 +20,6 @@ and Xogot not responding.   This fix will be coming soon.
 - Currently we do not use the new Godot Metal-based renderer, we are hoping to
   bring it soon.
 
-### Game Editor
-- QuickOpen is missing a “Recents” tab (#87)
-- Godot-native is not using the system fonts (#176)
-
-### Inspector
-- No computed expression support for numeric values (#369)
-- Some buttons on embedded controls are too small (#445)
-- Some warnings for controls are not shown inline (#337)
-- AudioStream property inspector is missing some features (#634)
-
-### Debugger Panel
-- The debugger does not currently surface any of the performance profiling
-  capabilities (#636).
-
-### Output Panel
-- The output panel does not display RichText output, it will render as plain
-  text (#574).
-
-### Exporting Projects
-- Godot has a notion of Exporting projects for publishing your games.   This
-  functionality is currently not exposed, but is coming up (#637).
-
 ### Running
 - There is currently no support for Feature Tags when running your game (these
   are like “ifdefs”)  (#614).
@@ -49,15 +28,53 @@ and Xogot not responding.   This fix will be coming soon.
 - Various confirmation dialogs that will be ported over to SwiftUI remain
   written in Godot, let us know of any common ones, so we can prioritize them
   (#540) 
-- Currently on the English locale is supported (#440)
-
-### Shader Globals
-- It is currently not possible to edit values of sampler2D/sampler3D values
-  (#147)
+- Currently only the English locale is supported (#440)
 
 # Releases 
 
-## Build 
+## Build
+
+We are done with all the core features to sharing games (build a game and send a
+link to another Xogot user to test) as well completing the new iPad native
+interface for the Animation Editor - we would love to get your feedback on these
+and to help us improve it.
+
+### Usability Improvements:
+
+* Performance improvements: switching from a node to another is now much faster,
+  done by removing the peer work being done by Godot.
+
+* Ability to set the Main Scene from the FilePad (it was possible from settings,
+  but this is a convenience long-press option - #1065).
+
+* When triggering a runtime error, the debugger will now display the information
+  associated with the problem - previously, the debugger just stopped with no
+  additional information (Discord).
+
+* When creating new animations in the Animation Pad, we automatically switch to
+  it.
+
+* When adding a new "Other Node" on a fresh scene, we will go automatically into
+  rename-mode.
+
+* Bezier track and Subanimations are now supported in the Animation Editor -
+  this completes all the editing tasks.
+
+* When adding a new Animation track, we auto-select it.
+
+### Fixes
+
+* Steppers for the Snap Grid parameter are now 1, not 0.1 (#1073)
+
+* Fixes accidental creation of points when using two-finger pan (#1059).
+
+* Animation Key editing for setting animations (#1072)
+
+### Foundational Work
+
+* Ongoing work on the new TileSet editor.
+
+## Build 1800
 
 ### Changes to the New Animation Editor in Xogot
 
@@ -100,6 +117,35 @@ more detail here: https://blog.la-terminal.net/xogot-animations-tab/
   incorrectly, and two properties were loaded as zeroes due to a type mismatch. 
 
 * Improves the look of the swipe icons on the ScenePad (#996, #1062)
+
+### Testing Wanted: New Animation Editor
+
+We just landed the new animation editor, it will appear now whenever you select
+an animation and you activate the the "Animation" bottom panel.   When you do,
+you still have an option to go back to the old UI.
+
+This new editor has been adapted to be a good iPad citizen, and being a complete
+SwiftUI rewrite, gives us opportunities to improve the editor over time with
+more native features.
+
+We are particularly interestd in feedback on how the experience feels to touch -
+and make sure that everything that you need to do is present, but also that it
+is an enjoyable experience - so feel free to send us feedback on Discord or via
+TestFlight on any issues you might have - no matter how small.
+
+Known limitations:
+
+* Confirmation for adding multiple tracks to the RESET track is not required.
+
+* Can not currently add sub-animation tracks.
+
+* The timeline rendering currentl only displays the timeline in seconds, but not
+  in frames.
+
+* Various advanced commands are not implemented: Bake Animation, Optimize
+  Animation, Cleanup Animation, Make Easing Keys. 
+
+* Missing Onion Support.
 
 ## Build 1788
 
