@@ -13,3 +13,6 @@ To get started building games with Xogot, check out our <doc:Getting-Started> gu
 ### Release Notes
 - <doc:Preview-1>
 
+### Tutorials
+- <doc:Tutorials>
+
