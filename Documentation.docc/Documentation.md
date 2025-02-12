@@ -14,5 +14,5 @@ To get started building games with Xogot, check out our <doc:Getting-Started> gu
 - <doc:Preview-1>
 
 ### Tutorials
-- <doc:Tutorials>
+- <doc:Xogot-Tutorials>
 

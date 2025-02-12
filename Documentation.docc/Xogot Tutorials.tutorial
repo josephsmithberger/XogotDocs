@@ -1,4 +1,4 @@
-@Tutorials(name: "Tutorials") {
+@Tutorials(name: "Xogot Tutorials") {
     @Intro(title: "Xogot Tutorials") {
         This series will introduce you to Godot and give you an overview of its features.
 
