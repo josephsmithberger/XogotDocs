@@ -180,7 +180,7 @@
                 signal of `MessageTimer` to new Receiver Methods in the `HUD` node.
                 
                 Add this code to the new functions.
-                @Code(name: "hud.gd", file: hud-06.gd, previousFile: hud-05.gd)
+                @Code(name: "hud.gd", file: hud-06.gd)
             }
         }
     }

@@ -1,4 +1,4 @@
-@Tutorial(time: 30) {
+@Tutorial(time: 10) {
     @Intro(title: "Finishing up") {
             
             We have now completed all the functionality for our game. This lesson will
