@@ -1,4 +1,4 @@
-@Tutorial(time: 10) {
+@Tutorial(time: 20) {
     @Intro(title: "Creating the Player scene") {
             
             With the project settings configured and assets in place, we can start working on the
@@ -122,34 +122,35 @@
             }
             @Step {  
                 The **warning icon** has been removed, and there is a new **SpriteFrames** tab button
-                visible at the bottom of the screen.  We're done with the Inspector for now, so feel free
-                to hide it by tapping the `scope` toolbar button.
+                visible at the bottom of the screen.  We're done with the *Inspector* for now, so let's 
+                hide it by tapping the *scope* toolbar button.
                 
-                Expand the `SpriteFrames` panel by tapping **SpriteFrames** at the bottom of the app.
+                Expand the *SpriteFrames* panel by tapping **SpriteFrames** at the bottom of the app.
                 
                 @Image(source: spriteframes_button.png)
             }
             @Step {  
-                On the left is a list of animations. 
+                The new SpriteFrames starts out with an empty animation named "default".
                 
-                Long-press the **default** animation and rename it to "walk". 
+                Tap **Animation** (1) in the SpriteFrames toolbar, then tap **`default`** (2) and 
+                select **Rename Animation** (3) to rename the animation to "`walk`". 
                 
                 @Image(source: spriteframes_panel.png)
             }
             @Step {
-                Now find the player images in the File Pad - they're in the `art` folder you imported 
+                Find the player images in the File Pad - they're in the `art` folder you imported 
                 earlier. 
                 
                 Drag each image for the `walk` animation (named `playerGrey_walk1.png` and 
                 `playerGrey_walk2.png`) from the File Pad (1) into the **Animation Frames** side of 
-                the **SpriteFrames** panel for the `walk` animation.
+                the *SpriteFrames* panel for the `walk` animation.
                 
                 @Image(source: spriteframes_walk.png)
             }
             @Step {  
-                Then Tap the **New Animation** toolbar button (1) to create a second animation.
+                Tap **Animation** (1) and select **New Animation** (2) to create a second animation.
                 
-                Rename the **new_animation** (2) to "up". 
+                Rename the **new_animation**  to "`up`". 
                 
                 @Image(source: new_animation.png)
             }

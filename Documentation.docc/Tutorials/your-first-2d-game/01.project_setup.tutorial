@@ -1,4 +1,4 @@
-@Tutorial(time: 10, projectFiles: "dodge_the_creeps_2d_assets.zip") {
+@Tutorial(time: 15, projectFiles: "dodge_the_creeps_2d_assets.zip") {
     @Intro(title: "Setting up the project") {
             
         @Image(source: setting_up.png,
@@ -12,13 +12,14 @@
         @Steps {
             @Step {
                 
-                Launch Xogot and tap **"New Game"** to create a new project.
+                Launch Xogot and tap **"New Game"** on the `Projects` tab to create a new project.
                 
                 @Image(source: new-project-button.png)
                 
             }
             @Step {
-                When creating the new project, you only need to choose a valid *Project Name*. 
+                When creating the new project, you only need to choose a valid *Project Name*
+                and tap the **Add** button. 
                 
                 By default, your project will be saved inside Xogot's dedicated file storage. 
                 
