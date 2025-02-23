@@ -32,6 +32,60 @@ and Xogot not responding.   This fix will be coming soon.
 
 # Releases 
 
+## Build
+
+### Improvements
+
+- Brand new "Create Node" that categorizes the node types in 3D, 2D, Controls
+  and other.   The 3D mode in particular makes it easier to create 3D meshes,
+  rigid bodies and static bodies in one step.
+
+  It will automatically pick the most relevant section depending on your
+  context, or if you choose to use the "All" option, you will continue to use
+  the traditional class-based/search-based node picker.
+
+- The Inspector gains some hints for Control/Layout, tracking the same behavior
+  in Godot, up until now, we did not display that guidance.  #337.
+
+- Small style touch up to the Inspector to make title sections more prominent
+  (#444).
+
+- FilePad: when duplicating a file, we will now propose a new file name, rather
+  than making one up behind the scenes after you have chosen one, and will warn
+  of a conflict instead of silently failing.
+
+### Bug Fixes
+
+- ScenePad: adjusted the UI for the Node Information slightly, to follow iOS
+  conventions and idioms a little better, and display updated signal connections
+  and groups (issue spotted on Discord).
+
+
+- Recently, we started showing the keying on the inspector if there was an
+  animation active - even if the animation pad was hidden.  Rectify this.
+
+- Various 2D plugins were not working correctly due to a mistake introduced some
+  months ago.  Their failures were subtle and not exactly obvious, like not
+  being able to add points to a path, or immediately losing the focus.   Fixes
+  #971 and various others.
+
+- The CreateNode UI will now render the markup documentation correctly, rather
+  than displaying markup (#1125).
+
+- The "Export Game" option has moved into the menu, to avoid accidentally
+  attemtping to export while developing a game.
+
+- Project Launcher: It will no longer show "On my iPad" on iPhone, Vision or
+  Macs, it will use the proper name and icon.
+
+### Infrastrucutre Work
+
+- Ongoing work on the new TileSet Editor.
+
+- Various internal cleanups in preparation for localization, and long-term
+  maintenance (like adopting internally Swift Lint).
+
+
 ## Build 1841
 
 ### Improvements
