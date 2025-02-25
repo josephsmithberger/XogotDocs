@@ -32,7 +32,29 @@ and Xogot not responding.   This fix will be coming soon.
 
 # Releases 
 
-## Build
+## Build 1851
+
+- Additional improvements to the Create New Node dialog, for the Mesh options,
+  we try to create a CollisionShape that matches your request when you select
+  RigidBody or StaticBody.   You can still replace it with your own, but the
+  default will work out of the box.
+
+- When creating Rigid and Solid bodies, we now name the child mesh with the mesh
+  type, to make the result clearer.
+
+- Switch to use SF-Symbols based icons for the app, rather than the Godot icons.
+  Might make this optional in the future.
+
+
+## Build 1850
+
+- Hides an old-style toolbar that was accidentally left enabled in Godot 2D
+  editor.
+
+- Fixes the "Add" node to auto-dimiss the Create Node Dialog when you are in the
+  "All" tab. 
+
+## Build 1846
 
 ### Improvements
 
