@@ -37,10 +37,19 @@
                 Set **MobTimer** to `0.5` seconds, **ScoreTimer** to `1.0` second, and 
                 **StartTimer** to `2.0` seconds.
                 
-                In addition, on **StartTimer** set the `One Shot` property to "On" and set
-                `Position` of the `StartPosition` node to `(240, 450)`.
+                In addition, on **StartTimer** set the `One Shot` property to "On".
                 
                 @Image(source: main_timers.png)
+            }
+            @Step {
+                On the **`StartPosition`** node, Navigate into **Transform** under **Node2D** 
+                and set **Position**  to **`(240, 450)`**.
+                
+                Note: When you navigate into any section, you can "pin" the section open so
+                that those properties will be expanded whenever you open the Inspector for
+                that node.
+                
+                @Image(source: main_start_position.png)
             }
         }
     }
@@ -62,8 +71,8 @@
                 @Image(source: path2d_buttons.png)
             }
             @Step {
-                To have points snap to the grid, make sure "Snow Snap Grid" (1) and "Use Smart 
-                Snap" (2) are both selected. 
+                To have points snap to the grid, make sure "Show Snap Grid" (1) and "Smart 
+                Snap" (2) are both enabled. 
                 
                 These toolbar buttons can be found to the left of the "Lock" button, appearing as a 
                 tic-tac-toe board and a waffle with square filled, respectively.
@@ -133,11 +142,16 @@
                 @Image(source: main_connect_hit.png)
             }
             @Step {
+                When the game ends, we need to stop the `MobTimer` and `ScoreTimer`.
+                
                 Add the following code  to the `game_over` function that was just created.
                 
-                Also, add this `new_game` function that will set everything up for a new game.
-                
                 @Code(name: "main.gd", file: main-03.gd, previousFile: main-02.gd)
+            }
+            @Step {
+                Add a `new_game` function that will set everything up for a new game.
+                
+                @Code(name: "main.gd", file: main-04.gd
             }
             @Step {
                 Now connect the `timeout()` signal of each of the Timer nodes (`StartTimer`,
@@ -146,7 +160,7 @@
                 `ScoreTimer` will increment the score by 1 as the game progresses. 
                 `StartTimer` will start `ScoreTimer` and `MobTimer`.
                 
-                @Code(name: "main.gd", file: main-05.gd, previousFile: main-04.gd)
+                @Code(name: "main.gd", file: main-05.gd)
             }
             @Step {
                 In `_on_mob_timer_timeout()`, we will create a mob instance, pick a random
@@ -155,7 +169,7 @@
                 will use that to select the mob's direction as well as its position.
                 
                 
-                @Code(name: "main.gd", file: main-06.gd)
+                @Code(name: "main.gd", file: main-06.gd, previousFile: main-05.gd)
             }
             @Step {
                 When we spawn a mob, we'll pick a random value between `150.0` and
@@ -163,7 +177,7 @@
                 all moving at the same speed).  Note that a new instance must be added 
                 to the scene using `add_child()`.
                 
-                Important: Why `PI`? In functions requiring angles, Godot uses *radians*,
+                *Important*: Why `PI`? In functions requiring angles, Godot uses *radians*,
                 not degrees. Pi represents a half turn in radians, about
                 `3.1415` (there is also `TAU` which is equal to `2 * PI`).
                 If you're more comfortable working with degrees, you'll need to

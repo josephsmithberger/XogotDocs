@@ -1,4 +1,4 @@
-@Tutorial(time: 15) {
+@Tutorial(time: 25) {
     @Intro(title: "Creating the enemy") {
             With the player working, it's time to make the enemies our player will have to dodge. 
             
@@ -37,10 +37,12 @@
                 @Image(source: mob_rename.png)
             }
             @Step {
-                Add `AnimatedSprite2D` and `CollisionShape2D` nodes, and a new node
-                type - `VisibleOnScreenNotifier2D` - as children of the **Mob**.  
+                Add `**AnimatedSprite2D**` and `**CollisionShape2D**` nodes, and a new node
+                type - `**VisibleOnScreenNotifier2D**` - as children of the **Mob**.  
                 
-                Your scene tree for the new Scene should look like this. 
+                Your scene tree for the new Scene should look like this. You can drag the nodes
+                to rearrange them if they are nested or not in the right order.
+                
                 
                 @Image(source: mob_scene_tree.png)
             }
@@ -74,7 +76,7 @@
             }
             @Step {
                 You can use the "Play Animation" buttons (1) on the right of the `Animation Speed` 
-                input field to preview your animations.  You can use two-finger gestures to pan 
+                input field to preview your animations.  Use two-finger gestures to pan 
                 and zoom the 2D viewport to get a better view of your mob animating.                
                 
                 We'll select one of these animations randomly in code so that the mobs will have some

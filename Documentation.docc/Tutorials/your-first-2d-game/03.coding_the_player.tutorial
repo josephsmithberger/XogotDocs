@@ -1,4 +1,4 @@
-@Tutorial(time: 20) {
+@Tutorial(time: 30) {
     @Intro(title: "Coding the player") {
         In this lesson, we'll add player movement, animation, and set it up to detect
         collisions.
@@ -275,7 +275,7 @@
                 @Code(name: "player.gd", file: player-10.gd, previousFile: player-09.gd)
             }
             @Step {
-                We will an `Area2D` signal to detect the collision. 
+                We will use an `Area2D` signal to detect the collision. 
                 Select the `Player` node and open the Inspector.  Notice there are four tabs at 
                 the top of the Inspector.  
                 

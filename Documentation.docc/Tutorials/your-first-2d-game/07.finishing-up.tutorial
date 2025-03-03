@@ -1,4 +1,4 @@
-@Tutorial(time: 10) {
+@Tutorial(time: 15) {
     @Intro(title: "Finishing up") {
             
             We have now completed all the functionality for our game. This lesson will
@@ -23,17 +23,17 @@
             @Step {
                 `ColorRect` only has one property: **Color**. Choose a color you like (1).
                 
-                @Image(source: fin_background.png)
+                @Image(source: fin_color.png)
             }
             @Step {
-                Next, to make it cover the screen,  select **Full Rect** (2) from **Anchors Preset** 
+                Next, to make it cover the screen,  select **Full Rect** (1) from **Anchors Preset** 
                 under either the `Anchors` toolbar at the top of the viewport or in the inspector 
                 under `Layout` so that it covers the screen.
                 
                 You could also add a background image, if you have one, by using a
                 `TextureRect` node instead.
                 
-                @Image(source: fin_background.png)
+                @Image(source: fin_fullrect.png)
             }
         }
     }
@@ -50,15 +50,23 @@
             @Step {
                 Add two `AudioStreamPlayer` nodes as children of `Main`. 
                 
-                Name one of them `Music` and the other `DeathSound`. On each one, tap on 
-                the `Stream` property, select "Load", and choose the corresponding audio file.
+                Name one of them `Music` and the other `DeathSound`. 
                 
                 @Image(source: fin_audio.png)
             }
             @Step {
+                Select the **`DeathSound`** `AudioStreamPlayer` you just created, open the 
+                Inspector, and tap **Pick Resource** next to the **`Stream`** property.
+                Select **Quick Load**, and choose the "gameover.wav" audio file.  
+                
+                Repeat this process to load the music loop for the **`Music`** `AudioStreamPlayer`.
+                
+                @Image(source: fin_gameover.png)
+            }
+            @Step {
                 All audio is automatically imported with the `Loop` setting disabled.
                 
-                If you want the music to loop seamlessly, tap the **...** next to the 
+                If you want the music loop seamlessly, tap the **...** next to the 
                 Stream file name and select **Make Unique** (1). Then, select **Inspect** (2) 
                 in the **...** menu and enable **Loop**.
                 
@@ -66,14 +74,22 @@
             }
             @Step {
                 To play the music, add `$Music.play()` in the `new_game()`
-                function and `$Music.stop()` in the `game_over()` function.
+                function.
                 
                 @Code(name: "main.gd", file: main-14.gd, previousFile: main-13.gd)
             }
             @Step {
-                Finally, add `$DeathSound.play()` in the `game_over()` function.
+                And call `$Music.stop()` to the `game_over()` function to stop the music
+                when the game is over.
                 
                 @Code(name: "main.gd", file: main-15.gd)
+            }
+            @Step {
+                
+                
+                Finally, add `$DeathSound.play()` in the `game_over()` function.
+                
+                @Code(name: "main.gd", file: main-16.gd)
             }
         }
     }
