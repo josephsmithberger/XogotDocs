@@ -32,6 +32,114 @@ and Xogot not responding.   This fix will be coming soon.
 
 # Releases 
 
+## Build 
+
+### Features
+
+* Additional tune up for TileSet editor, and we have officially deprecated
+  Godot's original TileSet editor tab, so it is no longer available.
+
+* Upgraded from Godot 4.4 Release Candiate 1 to Godot 4.4 official release.
+
+* Even more improvements to the TileSet editor.
+
+### Bug fixes
+
+* Brought various Godot fixes from Godot for shaders and the Metal backend
+  rendering.   They should prevent a deadlock on startup when loading projects
+  with a lot of shaders and bring additional stability to Metal.
+
+* Now will honor the rendering mode/driver you set on the project - I made a
+  mistake on the previous release: so now you can  choose between Metal or
+  Vulkan rendering engines, you can do this from the project launcher, by
+  selecting "Get Info" and setting the desired renderer options (#1148) as well
+  as allowing you to configure the rendering method: before you
+  start a game: Mobile, Forward+ or OpenGL.
+
+
+## Build 1876
+
+### Godot 4.4
+
+Upgraded Godot to the 4.4 Release Candidate 1 release and switched from Vulkan
+to the Metal renderer engine.  There might be some hiccups as we work through
+some of the differences from our pre-4.3 release to our 4.4-based Godot.
+  
+This fixes the long-standing "The editor does not fill the screen when using an
+external display" (Testflight Feedback #22, Internal #689)
+
+This introduces support for the new Shader Global Variable type "External" (#1119).
+
+The sample projects have been updated to 4.4
+
+### Features
+
+- Implemented support for reloading the current project (#701, Discord), which
+  became more important as Godot 4.4 will want to upgrade Godot 4.3 projects.
+
+- You can now choose between Metal or Vulkan rendering engines, you can do this
+  from the project launcher, by selecting "Get Info" and setting the desired
+  renderer options (#1148).   
+  
+- The above UI additionally lets you configure the rendering method before you
+  start a game: Mobile, Forward+ or OpenGL.
+
+- Editor Progress Reporting (#619) has been implemented, so no longer will you
+  have to wonder "What is taking so long for the editor to launch?".   You will
+  now be the first one to know.
+
+- New native iOS TileSet is ready for testing!   This is one of our last
+  components that we are rewriting with a native UI given the high-traffic
+  nature of this feature - so we would love your feedback on it.
+
+  (We are starting work on the last chapter before the launch: the TileMap
+  native editor pane).
+
+- Preview of the Asset Catalog for iOS is now available - we are tweaking the UI
+  and the backend, but we finally have a pipeline to assist users in getting
+  their plugins.
+
+### Fixes
+
+- If you enable HDR in your game, the editor will still work correctly, this was
+  reported on Discord (#901).
+
+- Internal fixes to our inspector (#1138)
+
+- Fixes game updating, when a new version of an existing game has been
+  published.
+
+- GameShare popup, and the user profile view now have "Dismiss" buttons and use
+  the same style as other dialogs.
+
+- Godot should now detect changes done to the files if you modified them
+  externally (#1000, Testflight feedback).
+
+- Allow reimport of assets to be done without having to change any properties in
+  the import pad.
+
+- Initialize iOS's AudioSession following the project settings.
+
+## Build 1854
+
+- Replaced the icon for the menu from being a set of switches to be the more
+  common idiom, the ellipsis.   The previous choice of an icon was a source of
+  confusion (Discord, months of agonizing over it).
+
+- CreateNode: now it is easy to add images to a 3D scene, we take care of
+  loading the ImageTexture and setting the image texture for you when creating
+  Meshes (#1127).   This also adds the Constructive Solid Geometry nodes to the
+  3D tab.
+
+- CreateNode wrap up: added construcive solid geometry nodes to the 3D tab.
+
+- CPU/GPU 3D/2D particle emitters interaction dialogs have been moved over to
+  be iOS native as well.
+
+- The inspector now has a documentation button to easily learn about the type
+  you are editing, and the documentation now also renders information about what
+  this class inherits from, to easily learn more about their base classes (#275).
+
 ## Build 1851
 
 - Additional improvements to the Create New Node dialog, for the Mesh options,
