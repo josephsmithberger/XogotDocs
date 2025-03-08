@@ -8,18 +8,6 @@ The most visible limitation currently is that the progress indicators in the UI
 are not shown, which can be a little jarring when importing a large new project
 and Xogot not responding.   This fix will be coming soon.
 
-
-### Renderer
-
-- Xogot is based on Godot 4.3, which imposes a few limitations when it comes to
-  the renderers running on mobile devices (Forward+ and Mobile work, but OpenGL
-  does not).   You might need to adjust your settings for your game to fully
-  work on iPad.   For the final release, we will be switching to a
-  Godot-4.4-based system which will support all three renderers.
-
-- Currently we do not use the new Godot Metal-based renderer, we are hoping to
-  bring it soon.
-
 ### Running
 - There is currently no support for Feature Tags when running your game (these
   are like “ifdefs”)  (#614).
@@ -32,7 +20,44 @@ and Xogot not responding.   This fix will be coming soon.
 
 # Releases 
 
-## Build 
+## Build 1898
+
+- This release disables our Metal Shader cache, as this was causing crashes when
+running games with the 'mobile' rendering method, or when you had edited a game
+with the 'mobile' rendering method.   
+
+- New "Rescan" directory option on the FilePad, for when you make changes
+  externally to your document folder and you want to force a rescan (for example
+  with iPadOS file system providers like iCloud Drive).
+
+- Fixes the visual rendering of the import pad (#1164)
+
+- Fixes duplicate labels for some inspector properties (#1080)
+
+- Brings back "Rename" on the ScenePad context menu (it was accidentally
+  disabled).
+
+
+## Build 1886
+
+This is a quick release to address a couple of regressions introduced in the new
+features.   The EditorProgress dialog was showing up for background tasks (which
+was triggered when you come back from the background) and it would show the
+game controls on top of the game editor window (Discord)
+
+### Features
+
+* When creating  controls like labels, menus, menu buttons, or text meshes, they
+  will now default to having some text when created, similar to what a UI
+  designer would do - rather than being empty.
+
+* Small improvements to the Asset Catalog.
+
+* Smaller download due to fewer precompiled shaders bundled (we now only bundle
+  those that Godot uses at startup).
+
+
+## Build 1880
 
 ### Features
 
