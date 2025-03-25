@@ -19,6 +19,86 @@ Release notes for our preview release of Xogot to TestFlight.
 
 # Releases 
 
+## Build 1960
+
+### Features
+
+- New native TileMapLayer editor, a companion to our new TileSet plugin - it is
+  currently running side-by-side the original Godot editor, you must tap "WIP"
+  in the bottom bar to enable (Task #667).
+
+### Crash Fixes
+
+- Import/Rescan crash has been fixed (#1190).
+
+- Prevent crash when users sent Xogot to the background while it was loading and
+  came back (#1204).
+
+- Prevent crash that happened when users attempted to interact with Xogot, while
+  it was still initializing (#1207).
+
+- Prevents a crash when stopping a project, this was one of our top crashes
+  (#1202, Testflight).
+
+### Small Features
+
+- The keyboard accessory bar now has '_' as a shortcut, and we moved the "("
+  and ")" to a more prominent location (#955).
+
+- Added cut and paste to the keyboard accessory bar (#928).
+
+- Learning Center content is now downloaded from the network, rather than being
+  bundled.
+
+- Add "Insert spaces for tab" editor setting (#936).
+
+- It is now possible to retry downloads for starter projects
+
+- Added Smooth Scrolling to SpriteSheetImport and tile set: This allows for
+  smooth scrolling, improves performance with large grids and also does auto
+  scalling to fill view size if image is smaller than container view. 
+
+- TileSet editor now uses the toaster notifications to report errors.
+
+- Project Info on the launch page will now display the location for a project
+  (#1187).
+
+### Fixes
+
+- Fixes dynamic content on the Inspector that was not updating (example,
+  enabling "Region" in Sprite2D - #1169).
+
+- Learning Center will now use all space - this was noticeable if you hooked up
+  your iPad to a larger display (#1136).
+
+- Learning Center detail view had icons that were too small (#965).
+
+- Numbers in the Sprite Sheet importer now scale (#898).
+
+- Fixes the property array editor not updating on add/delete operations (#1197).
+
+- Fixes crashes on projects that were using the OpenGL compatibility driver
+  (#1191, Discord).
+
+- Fixes overlay grid on TileSet, move toolbar to separate view for TileMap.
+
+- "Open Shader" now filters using shader types, instead of using the default
+  resource filters.
+
+- Changing the project settings on projects that were imported from a new
+  location has been fixes (#1189, Discord).
+
+
+## Build 1902
+
+- Memory leak fix.   With Build 1876 that introduced our 4.4 support for Godot,
+  the code that dealt with "Reload Project" prevented the resources used by the
+  game from being released, causing a memory leak.   This impacted all uses of
+  Xogot, not just project being upgraded.
+
+- Updated Learning Center templates to 4.4 and Forward+ renderer where possible.
+
+
 ## Build 1898
 
 - This release disables our Metal Shader cache, as this was causing crashes when
