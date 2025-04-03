@@ -19,7 +19,51 @@ Release notes for our preview release of Xogot to TestFlight.
 
 # Releases 
 
-## Build
+## Build 2019
+
+### Changes
+
+* In-App Purchases are here.  We are starting to test the In-App Purchase
+  workflow, the first time that you start the editor, it will prompt you for the
+  IAP.   You will not be charged for this purchase on the Testflight.
+
+* Large samples that consume too much memory are no longer shown for low-end
+  iPads that might not be able to run them (#962)
+
+* Improved the layout of the TileSet editor, we plan on doing more polish in
+  this department now that it is feature complete.
+
+* Filled the Support page with links, getting ready to release (#1143).
+
+### Fixes
+
+* Fixes a rare crash when Xogot is updating files and you close the project.
+
+* Input events can now be handled by the new TileMap editor plugin.
+
+* Fixes a regression we introduced that prevented the undo stack from working on
+  3D objects.  Fixes #1234, but reopens the "bumpy drag" issue from #889.
+
+* Deleting files in projects hosted on a File Provider will no longer error out
+  (this was a problem for File Providers that do not have a concept of a
+  "trashcan", so we would report an error that the file had not been moved to
+  the trashcan, despite the file being deleted).
+
+* The TileSet tab will automatically show up when you add a new TileSet to a
+  TileMapLayer (#1237)
+
+* Fixes a crash when starting the editor after you had started a game (#999).
+
+* Foundational: to allow us to continue our work to replace some components of
+  Godot we added some missing marshalling capabilities (this enables the new
+  TileMapLayer editor, but will be used for more in the future #1228).
+
+* Uses the internal scene structure as the source of truth for the node names -
+  fixes #1069.
+
+* Should prevent the "Another Editor is Already Running" Error 
+
+## Build 1992
 
 * Upgraded Godot to 4.4.1stable
 
@@ -47,6 +91,12 @@ Release notes for our preview release of Xogot to TestFlight.
 * Drops the style for the toolbar introduced the previous release, as it
   triggers a SwiftUI bug that hides those buttons after the first time you
   launch a game.
+
+* Fixes a regression that hid the remote tree view from the scenepad while
+  running (#1216).
+
+* Fixes the selection not rendering on the remote scene pad (it was working,
+  just not showing, #1220).
 
 ## Build 1980
 
