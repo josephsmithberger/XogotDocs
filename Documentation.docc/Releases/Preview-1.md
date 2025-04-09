@@ -19,6 +19,71 @@ Release notes for our preview release of Xogot to TestFlight.
 
 # Releases 
 
+## Build 2060
+
+* Added support for deleting your account.
+
+* Fixes "Can not instantiate Child Scene" (#1246, Testflight)
+
+* Fixes a common crash when terminating an application (#1213, Crashlytics
+  reports)
+
+## Build 2047
+
+### Features
+
+* Docks added by extensions will now surface on the inspector on a dedicated
+  tab (#1240).
+
+* Animation Panel: implement "Optimize animation" (#1078).
+
+* Focus Selection and Focus Origin are now options on the 3D Viewport menu,
+  rather than commands that are harder to find (#979).
+
+* TileSet: Add action for create and remove tiles in transparent and non
+  transparent regions #1231
+
+* TileSet: you can now delete Scene Collections
+
+* WIP TileMap editor: you can now draw lines with tiles, move, pick and viewport
+  preview support, as well as all supported drag types (#667 still work in
+  progress).
+
+* We will now adjust the size of the running application based on the display
+  density. 
+
+* Exporting games to Wasm will now will export a virtual controller if enabled.
+
+* AudioStream properties will now display the name of the file stream, or the
+  type of the stream added for non-file cases and tapping on those will inspect
+  the property (#1090, #990).
+
+
+### Fixes
+
+* Fixed a major memory leak that was triggered by iOS re-rendering Godot in Dark
+  and then light mode when going to the background.   This explains many crashes
+  when folks were switching apps.
+
+* Xogot will warn you if you log-out entirely on your iPad and then log-in as a
+  different user that the existing imported projects need to be re-added.
+
+* Brought in some memory leak fixes to SwiftGodot
+
+* Small look and feel updates to the paywall
+
+* Renamed the dialog in the FilePad to "Files" rather than "Create New", as this
+  dialog also could import files #439.
+
+* Prevents a crash if you attempted to zoom an empty scene
+
+* Various TileSet bug fixes introduced (in Build 2019, we would hide the tileset
+  when you changed views, this fixes it).
+
+* Fixes a family of crashes when terminating an application (#1213, but also
+  many crash reports submitted via Testflight).
+  
+
 ## Build 2019
 
 ### Changes
@@ -42,7 +107,7 @@ Release notes for our preview release of Xogot to TestFlight.
 * Input events can now be handled by the new TileMap editor plugin.
 
 * Fixes a regression we introduced that prevented the undo stack from working on
-  3D objects.  Fixes #1234, but reopens the "bumpy drag" issue from #889.
+  3D objects.  Fixes #1234.
 
 * Deleting files in projects hosted on a File Provider will no longer error out
   (this was a problem for File Providers that do not have a concept of a
