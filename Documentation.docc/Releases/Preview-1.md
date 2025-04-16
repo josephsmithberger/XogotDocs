@@ -19,7 +19,67 @@ Release notes for our preview release of Xogot to TestFlight.
 
 # Releases 
 
-## Build
+## Build 2114 (AppStore: 2115)
+
+* FilePad changes: now the current path line, rather than being an input line
+  that can be used to navigat to a specific path, becomes the search bar when
+  tapped - usability improvement based on our own testing (before the search
+  bar had to be manually toggled due to space constraints).
+
+* We have upgraded from a rooster to an axolotl.
+
+* Internally: we upgraded SwiftGodot to the latest version from GitHub, should
+  not have any visible changes.
+
+### Fixes
+
+* Node pickers on the property editor should now save Nodes, previously they
+  were saving NodePaths, preventing the inspector from working correctly (#1266,
+  Testflight).
+
+* Should prevent a crash that happened when closing a project (#999,
+  Crashlytics). 
+
+* Workaround for a crash induced by iOS when your application goes to the
+  background: iOS attempts to take screenshots in light and dark modes, and this
+  triggers a crash in UIKit via the Runestone editor.  
+  We have a band-aid that we suspect will help (#1264).
+  
+* Controllers that were already paired were not recognized by the game.   This
+  was a fix we had already fixed, but we regressed during the 4.4 upgrade, it
+  has been fixed again (#283).
+
+* Allow nodes provided by an add-on to be instantiated (#1254)
+
+* "Copy Path" in the FilePad was not working, it works now.
+
+### Telemetry
+
+* We added telemtry to try to catch a situation where the editor fails to start
+  and crashes.  This is internal bug #1232, which we tracked down using
+  Crashlytics.  
+
+* New telemetry: another issue that we found in the wild is that Xogot is
+  crashing due to the system doing screenshots of light/dark modes when sending
+  the app to the background, and something is triggering the Project Launcher to
+  end up in a state that crashes.   Tracking as issue #1265.
+
+## Build 2099
+
+* Memory Reduction: Emoji fonts are no longer duplicated in memory, saving over
+  256 megs of ram from being consumed - we now only load what is necessary and
+  can reload on demand (#1263)
+
+* Other small memory reduction efforts, saving another half a megabyte.
+
+### Fixes
+
+* Fixes a number of regressions on the Path2D Editor in the 2D editor that
+  prevented points from being deleted (#1258), and from curve closing, curve
+  adding from working (#1257) - one was a long-standing bug, the other a
+  regression from the 4.3->4.4 upgrade.
+
+## Build 2091
 
 * More work towards the native TileMap editor, now supports terrains and
   patterns.
@@ -158,7 +218,7 @@ Release notes for our preview release of Xogot to TestFlight.
 
 * Should prevent the "Another Editor is Already Running" Error 
 
-## Build 1992
+## Build 1992/1994
 
 * Upgraded Godot to 4.4.1stable
 
