@@ -19,7 +19,168 @@ Release notes for our preview release of Xogot to TestFlight.
 
 # Releases 
 
-## Build 2114 (AppStore: 2115)
+## Build 2198
+
+### Major Changes
+
+* The SwiftUI-based TileMapLayer is now the default, and the Godot
+  TileMapLayer editor is no longer in use.   We would love if those of you that
+  are doing 2D games with tiles try it out and provide us feedback on it.   This
+  completes the TileMap/TileSet editor work that we started in January.
+
+* 
+
+### Improvements
+
+* The TileMapLayer finally got support for terrains bit pattern overlays (part
+  of #1238).
+
+* Prevents scenarios where the user could spawn a new Project Window and then
+  attempt to run the editor when a game was running, and variations of it.
+
+* Small message consistency improvemen in the 4.4 project upgrade dialog
+  (Testflight feedback).
+  
+* Initial plumbing to support external displays, but it is not yet fully
+  working. 
+
+* Rewrote the rendering code for the TileSets and TileMapLayer editor, making it
+ very smooth. 
+
+ * New Audio bus editor, this replaces the original Godot one, and it was the
+   last part of the main editor screen that had not been ported to SwiftUI,
+   closes #815 and #1290.
+
+### Fixes
+
+* Fixes a crash that would sometimes crash when closing a project, as we were
+  completing some shutdown tasks after the Godot instance had been closed,
+  another instance of #999.
+
+* Crash a crash related to dereferencing a null pointer (Testflight, #1268).
+
+* Fixes a crash that would sometimes trigger after Godot has finished scanning
+  your project directory (Testflight).
+
+* Prevents a crash triggered by a race condition when attempting to relase the
+  game controller (Testflight).
+
+
+## Build 2171
+
+* The output window will now just keep track of the last 1,000 lines by default,
+  but now you can change this value.
+
+### Fixes
+
+* The text editor will no longer flash on updates or debugging - it took us a
+  while to find a reliable way of tracking this down, but it is now gone for
+  good (#1174).
+
+* Fixes " if the distance is less than around 150, it would lost track one of
+  the input, and reassign it with new index." reported on Discord.
+
+* Prevents users from launching the game repeatedly at startup, which fixes a
+  crash, additionally, the Game View experience will show that the game is
+  running on a separate window if that is what the user did, rather than
+  offering to start the game again (#1274).   
+  
+* And we now also have a general system from preventing this from happening
+  again.  For example, if the user cloned the launcher window and then tried to
+  launch two editors at once.
+
+* Internal runtime fix #1250, 
+
+* We will no longer crash when the user launches a "Play Unoptimized" game from
+  the launch screen.
+
+## Build 2153
+
+### Features
+
+* Tiny micro-feature, opening a packed scene is now handled without relying on a
+  Godot extension.   Mostly as a proof of concept and foundational piece to
+  replace additional custom controls on the Property Inspector than anything
+  else.
+
+* TileSet inspection will now automatically show up on the properties inspector.
+  While the release notes have alluded for a while to the work in progress on
+  the TileSet and TileMapLayer editors, we have never quite detailed all the
+  work that has gone into them.  We are very happy now with the core rewrite of
+  the TileSet editor, which will let us improve it in the future directly in
+  SwiftUI, and the TileMapLayer editor is quickly catching up, and it will also
+  allow us to adapt and tune the user interface for iPad use.
+
+### Internal Improvements
+
+* This release upgraded the SwiftGodot library, and brings the new
+  _GodotBridgeable code.   Not much user visible, purely an upgrade to a better
+  foundation.
+
+* Slight improvements to the paywall experience.
+
+### Fixes
+
+* Xogot will once again honor the display driver and rendering method feature
+  that we regressed - this completes #1256.
+
+* Fixes a crash that we saw reported via Testflight.
+
+* Removed a blue debugging background that was left by accident in the Gameplay
+  pad. 
+
+* Fixes a crash that would happen when using the TileSet editor (multiple
+  Testflight feedback reports).
+  
+## Build 2134
+
+### Features
+
+This version starts to polish the iPhone experience, and there are a number of
+areas that were touched on which might affect the iPad experience as well:
+
+* The Xogot shell now has a dedicated iPhone UI, it will continue to be improved
+  there.
+
+* Playing your game is now supported on the iPhone on the "game" tab, where you
+  can pause/run the game - other advanced features like frame-by-frame stepping
+  and camera control are not surfaced on the iPhone.
+
+* 2D and 3D toolbars will wrap around on portrait mode to allow all the
+  operations to be accessible on the phone.
+
+* The popups from the toolbars have been styled to work properlty on iPhone too.
+
+* Tapping on the documentation icon on the inspector on the iPhone will open the
+  documentation automatically
+
+### Improvements
+
+* It is now possible to pick colors for gradients on the inspector.
+
+* Notifications can now be dismissed faster by swiping them out of the way, or
+  held by swiping down.
+
+### Fixes
+
+* One pesky crash on closing a project has finally been deal with (yes, the same
+  one as #999, there were more issues to deal with).
+
+* Thanks to the recent telemetry changes, we could narrow down and fix the
+  crashers for #1265 - good news, it only ever happened on the launch screen,
+  never with your game.
+
+* If you delete your Xogot account, it is now possible to create a new one
+  without reinstalling the app.
+
+* Verification of your email will work even if you suspend Xogot.
+
+
+## Build 2121 (1.0.9)
+
+* Quick crash fix on startup, from telemtry.
+
+## Build 2114 (1.0.6), (AppStore: 2115, 1.0.7)
 
 * FilePad changes: now the current path line, rather than being an input line
   that can be used to navigat to a specific path, becomes the search bar when
