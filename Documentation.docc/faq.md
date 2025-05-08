@@ -2,6 +2,18 @@
 
 Frequently Asked Questions
 
+## What scripting languages are supported by Xogot?
+
+Xogot only support's Godot's GDScript language, plugins authored in other languages are not
+available on the iPad.
+
+## What kind of plugins does Xogot support?
+
+Xogot only supports GDScript-based plugins.   
+
+Plugins written in C# or C++ are not available on Xogot/iPad.
+
+
 ## Why does Xogot seem to lock up when opening my project?
 
 It can take a while to re-import assets for your project to the iPad, and one of

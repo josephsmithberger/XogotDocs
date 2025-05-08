@@ -19,6 +19,32 @@ Release notes for our preview release of Xogot to TestFlight.
 
 # Releases 
 
+## Build 2217
+
+### Fixes
+
+* Fixed the Viewport view options labels to match the actual viewport settings.
+
+* The inspector can now edit arrays of NodePaths and arrays of Nodes (Testflight
+  feedback, #1284).
+
+* The defaults for the debugger to sync scenes and sync scripts are now enabled
+  by default, using the same default as desktop Godot (#1306).
+
+* TileSet picker will now use a more visible selection region to make it easier
+to observe the selection.
+
+* Better handling for zooming out the TileSet.
+
+* Fixes the scaling for the Godot editor on iPhone (it was too small, #1278).
+
+* Fixed setting the duration for the animation editor, it was previously not
+  being recorded and would auto-reset (#1305)
+
+* Fixes the animation tab auto-closing when opening an animation or opening
+  an animation (#1301).
+
+
 ## Build 2198
 
 ### Major Changes
@@ -27,8 +53,6 @@ Release notes for our preview release of Xogot to TestFlight.
   TileMapLayer editor is no longer in use.   We would love if those of you that
   are doing 2D games with tiles try it out and provide us feedback on it.   This
   completes the TileMap/TileSet editor work that we started in January.
-
-* 
 
 ### Improvements
 
