@@ -19,6 +19,25 @@ Release notes for our preview release of Xogot to TestFlight.
 
 # Releases 
 
+## Build 
+
+### Improvements
+
+* Made the input accessory work on the iPhone by merging some cells, fixing
+  the spacing and the popup windows now have fixed-size buttons, rather than
+  being relative to the display size (#1272)
+
+* If you tap on the `script` icon on the Filepad and you are in compact mode,
+  the sidebar will collapse to show the text editor (#1307).
+
+* Easier to spot the app unlock (#1311).
+
+### Fixes
+
+* Sometimes the virtual controllers would remain on the screen, instead of being
+  dismissed (#1291).
+
+
 ## Build 2217
 
 ### Fixes
