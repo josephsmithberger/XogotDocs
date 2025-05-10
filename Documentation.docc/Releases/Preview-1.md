@@ -37,6 +37,25 @@ Release notes for our preview release of Xogot to TestFlight.
 * Sometimes the virtual controllers would remain on the screen, instead of being
   dismissed (#1291).
 
+* You can now also use swipe-to-delete on the File Pad (#1334).
+
+* The animation editor will automatically track the timeline when playing back an animation (#1299).
+
+* Create Node dialog now also includes "ColorRect" (Discord feedback).
+
+* New keyboard shortcuts for running scenes, hold the command key to see all three options (Run current scene, run specific scene, run game).  (#1317 discord feedback).
+
+* Shader Editor now surfaces a "File" menu to make it easier to explicitly save shaders (#1314, #1315).
+
+* iPhone: the keyboard accessory view for the iphone is no longer cramped, and reorganized the buttons for iPhones (#1272).
+
+* When the editormode switches and there is no room to show the sidebar and the editor, auto-hide the sidebar (#1307).
+
+### Fixes
+
+* Selecting the next/previous key frame will automatically scroll the animation editor view (#1295).
+
+* Virtual controllers that were sticky after a game ended now get properly removed from the screen (#1291)
 
 ## Build 2217
 
@@ -62,7 +81,6 @@ to observe the selection.
 
 * Fixes the animation tab auto-closing when opening an animation or opening
   an animation (#1301).
-
 
 ## Build 2198
 

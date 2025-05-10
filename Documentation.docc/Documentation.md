@@ -11,7 +11,8 @@ To get started building games with Xogot, check out our <doc:Getting-Started> gu
 - <doc:faq>
 
 ### Release Notes
-- <doc:Preview-1>
+- AppStore Release Notes: <doc:AppStore>
+- Testflight release notes: <doc:Preview-1>
 
 ### Tutorials
 - <doc:Xogot-Tutorials>
