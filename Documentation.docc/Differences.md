@@ -19,6 +19,12 @@ to open Project Settings.  The individual Project Settings tabs from Godot, such
 Input Map, Autoload and Plugins, can be navigated to by tapping on the **General** in
 the drop-down list at the top of the Settings dialog.
 
+## Visual Shader Editor
+
+While Xogot projects can include and run Visual Shaders that were created in Godot 
+on the desktop, Xogot does not currently include the Visual Shader Editor, so it is
+not currenlty possible to create or update Visual Shaders in Xogot.  
+
 ## Layout changes 
 
 Xogot's UI has been adapted to better suit the iPad, including making parts of
