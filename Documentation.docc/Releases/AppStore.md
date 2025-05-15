@@ -1,4 +1,10 @@
-# Build 2225
+# Release Notes
+
+Release notes for of Xogot to the App Store.
+
+# Releases 
+
+## Build 2225
 
 * We clear error messages when we restart a game
 
@@ -20,6 +26,6 @@
 
 * When Xogot is running in half-screen, tapping on the "Script" icon, will now automatically hide the sidebar, so you can see your script.
 
-# Build 2220
+## Build 2220
 
 This is the initial Godot release to the public on May 6th, 20254
