@@ -1,6 +1,6 @@
 # Release Notes
 
-Release notes for of Xogot to the App Store.
+Release notes for public releases of Xogot to the App Store.
 
 # Releases 
 
