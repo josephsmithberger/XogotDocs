@@ -1,0 +1,110 @@
+<!-- Remove this line to publish to docs.xogot.com -->
+# Using NavigationObstacles
+
+2D and 3D versions of NavigationObstacles nodes are available as
+[NavigationObstacle2D](https://docs.godotengine.org/en/stable/classes/class_navigationobstacle2d.html#class-navigationobstacle2d) and
+[NavigationObstacle3D](https://docs.godotengine.org/en/stable/classes/class_navigationobstacle3d.html#class-navigationobstacle3d)  respectively.
+
+Navigation obstacles are dual purpose in that they can affect both the navigation mesh baking, and the agent avoidance.
+
+- With affect_navigation_mesh enabled the obstacle will affect navigation mesh when baked.
+
+- With avoidance_enabled the obstacle will affect avoidance agents.
+
+> Tip:
+>
+> Avoidance is enabled by default. If the obstacle is not used for avoidance disable enabled_avoidance to save performance.
+>
+
+## Obstacles and navigation mesh
+
+@Image(source: "nav_mesh_obstacles.png", alt: "Navigation obstacles affecting navigation mesh baking") {Navigation obstacles affecting navigation mesh baking.}
+
+For navigation mesh baking, obstacles can be used to discard parts of all other source geometry inside the obstacle shape.
+
+This can be used to stop navigation meshes being baked in unwanted places,
+e.g. inside "solid" geometry like thick walls or on top of other geometry that should not be included for gameplay like roofs.
+
+@Image(source: "nav_mesh_obstacles_discard.png", alt: "Navigation obstacles discard of unwanted navigation mesh") {Navigation obstacles discard of unwanted navigation mesh.}
+
+An obstacle does not add geometry in the baking process, it only removes geometry.
+It does so by nullifying all the (voxel) cells with rasterized source geometry that are within the obstacle shape.
+As such its effect and shape detail is limited to the cell resolution used by the baking process.
+
+For more details on the navigation mesh baking see <doc:navigation_using_navigationmeshes>.
+
+@Image(source: "nav_mesh_obstacles_properties.png")
+
+The property affect_navigation_mesh makes the obstacle contribute to the navigation mesh baking.
+It will be parsed or unparsed like all other node objects in a navigation mesh baking process.
+
+The carve_navigation_mesh property makes the shape unaffected by offsets of the baking,
+e.g. the offset added by the navigation mesh agent_radius.
+It will basically act as a stencil and cut into the already offset navigation mesh surface.
+It will still be affected by further postprocessing of the baking process like edge simplification.
+
+The obstacle shape and placement is defined with the height and vertices properties, and the global_position of the obstacle.
+The y-axis value of any Vector3 used for the vertices is ignored as the obstacle is projected on a flat horizontal plane.
+
+When baking navigation meshes in scripts obstacles can be added procedurally as a projected obstruction.
+Obstacles are not involved in the source geometry parsing so adding them just before baking is enough.
+
+## Obstacles and agent avoidance
+
+For avoidance navigation obstacles can be used either as static or dynamic obstacles to affect avoidance controlled agents.
+
+- When used statically NavigationObstacles constrain avoidance controlled agents outside or inside a polygon defined area.
+
+- When used dynamically NavigationObstacles push away avoidance controlled agents in a radius around them.
+
+### Static avoidance obstacles
+
+An avoidance obstacle is considered static when its vertices property is populated with an outline array of positions to form a polygon.
+
+@Image(source: "nav_static_obstacle_build.gif", alt: "Static obstacle drawn in the editor to block or contain navigation agents") {Static obstacle drawn in the editor to block or contain navigation agents.}
+
+- Static obstacles act as hard do-not-cross boundaries for avoidance using agents, e.g. similar to physics collision but for avoidance.
+
+- Static obstacles define their boundaries with an array of outline vertices (positions), and in case of 3D with an additional height property.
+
+- Static obstacles only work for agents that use the 2D avoidance mode.
+
+- Static obstacles define through winding order of the vertices if agents are pushed out or sucked in.
+
+- Static obstacles can not change their position. They can only be warped to a new position and rebuilt from scratch.
+Static obstacles as a result are ill-suited for usages where the position is changed every frame, as the constant rebuild has a high performance cost.
+
+- Static obstacles that are warped to another position can not be predicted by agents. This creates the risk of getting agents stuck should a static obstacle be warped on top of agents.
+
+When the 2D avoidance is used in 3D the y-axis of Vector3 vertices is ignored. Instead, the global y-axis position of the obstacle is used as the elevation level. Agents will ignore static obstacles in 3D that are below or above them. This is automatically determined by global y-axis position of both obstacle and agent as the elevation level as well as their respective height properties.
+
+### Dynamic avoidance obstacles
+
+An avoidance obstacle is considered dynamic when its radius property is greater than zero.
+
+- Dynamic obstacles act as a soft please-move-away-from-me object for avoidance using agents, e.g. similar to how they avoid other agents.
+
+- Dynamic obstacles define their boundaries with a single radius for a 2D circle, or in case of 3D avoidance a sphere shape.
+
+- Dynamic obstacles can change their position every frame without additional performance cost.
+
+- Dynamic obstacles with a set velocity can be predicted in their movement by agents.
+
+- Dynamic obstacles are not a reliable way to constrain agents in crowded or narrow spaces.
+
+While both static and dynamic properties can be active at the same time on the same obstacle this is not recommended for performance.
+Ideally when an obstacle is moving the static vertices are removed and instead the radius activated.
+When the obstacle reaches the new final position it should gradually enlarge its radius to push all other agents away.
+With enough created safe space around the obstacle it should add the static vertices again and remove the radius.
+This helps avoid getting agents stuck in the suddenly appearing static obstacle when the rebuilt static boundary is finished.
+
+Similar to agents the obstacles can make use of the avoidance_layers bitmask.
+All agents with a matching bit on their own avoidance mask will avoid the obstacle.
+
+## Procedural obstacles
+
+New obstacles can be created in a script without a Node by using the NavigationServer directly.
+
+Obstacles created with scripts require at least a map and a position.
+For dynamic use a radius is required.
+For static use an array of vertices is required.

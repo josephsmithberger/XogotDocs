@@ -1,0 +1,150 @@
+<!-- Remove this line to publish to docs.xogot.com -->
+# Animation Track types
+
+This page gives an overview of the track types available for Godot's animation
+player node on top of the default property tracks.
+
+> Seealso:
+>
+> We assume you already read <doc:introduction>, which covers
+> the basics, including property tracks.
+>
+
+@Image(source: "track_types.png")
+
+## Property Track
+
+The most basic track type. See <doc:introduction>.
+
+## Position 3D / Rotation 3D / Scale 3D Track
+
+These 3D transform tracks control the location, rotation, and scale of a 3D object.
+They make it easier to animate a 3D object's transform compared to using regular
+property tracks.
+
+It is designed for animations imported from external 3D models and can reduce resource capacity through compression.
+
+## Blend Shape Track
+
+A blend shape track is optimized for animating blend shape in [MeshInstance3D](https://docs.godotengine.org/en/stable/classes/class_meshinstance3d.html#class-meshinstance3d).
+
+It is designed for animations imported from external 3D models and can reduce resource capacity through compression.
+
+## Call Method Track
+
+A call method track allow you to call a function at a precise time from within an
+animation. For example, you can call queue_free() to delete a node at the
+end of a death animation.
+
+> Note: The events placed on the call method track are not executed when the animation is previewed in the editor for safety.
+>
+
+To create such a track in the editor, click "Add Track -> Call Method Track." Then, a window
+opens and lets you select the node to associate with the track. To call one of
+the node's methods, right-click the timeline and select "Insert Key". A window
+opens with a list of available methods. Double-click one to finish creating the
+keyframe.
+
+@Image(source: "node_methods.png")
+
+To change the method call or its arguments, click on the key and head to the
+inspector dock. There, you can change the method to call. If you expand the
+"Args" section, you will see a list of arguments you can edit.
+
+@Image(source: "node_method_args.png")
+
+To create such a track through code, pass a dictionary that contains the target method's name
+and parameters as the Variant for key in Animation.track_insert_key(). The keys and
+their expected values are as follows:
+
+**Key** | **Value**
+------- | ---------
+"method" | The name of the method as aString
+"args" | The arguments to pass to the function as anArray
+
+## Bezier Curve Track
+
+A bezier curve track is similar to a property track, except it allows you to
+animate a property's value using a bezier curve.
+
+> Note: Bezier curve track and property track cannot be blended in [AnimationPlayer](https://docs.godotengine.org/en/stable/classes/class_animationplayer.html#class-animationplayer) and [AnimationTree](https://docs.godotengine.org/en/stable/classes/class_animationtree.html#class-animationtree).
+>
+
+To create one, click "Add Track -> Bezier Curve Track". As with property tracks,
+you need to select a node and a property to animate. To open the bezier curve
+editor, click the curve icon to the right of the animation track.
+
+@Image(source: "bezier_curve_icon.png")
+
+In the editor, keys are represented by filled diamonds and the outlined
+diamonds connected to them by a line control curve's shape.
+
+> Tip:
+>
+> For better precision while manually working with curves, you might want to alter
+> the zoom levels of the editor. The slider on the bottom right of the editor can be used to
+> zoom in and out on the time axis, you can also do that with `Ctrl + Shift + Mouse wheel`.
+> Using `Ctrl + Alt + Mouse wheel` will zoom in and out on the Y axis
+>
+
+@Image(source: "bezier_curves.png")
+
+While a keyframe is selected (not the handle), in the right click panel of the
+editor, you can select the handle mode:
+
+- Free: Allows you to orient a manipulator in any direction without affecting the
+other's position.
+
+- Linear: Does not allow rotation of the manipulator and draws a linear graph.
+
+- Balanced: Makes it so manipulators rotate together, but the distance between
+the key and a manipulator is not mirrored.
+
+- Mirrored: Makes the position of one manipulator perfectly mirror the other,
+including their distance to the key.
+
+@Image(source: "manipulator_modes.png")
+
+## Audio Playback Track
+
+If you want to create an animation with audio, you need to create an audio
+playback track. To create one, your scene must have either an AudioStreamPlayer,
+AudioStreamPlayer2D, or AudioStreamPlayer3D node. When creating the track, you
+must select one of those nodes.
+
+To play a sound in your animation, drag and drop an audio file from the file
+system dock onto the animation track. You should see the waveform of your audio
+file in the track.
+
+@Image(source: "audio_track.png")
+
+To remove a sound from the animation, you can right-click it and select "Delete
+Key(s)" or click on it and press the `Del` key.
+
+The blend mode allows you to choose whether or not to adjust the audio volume when blending in the [AnimationTree](https://docs.godotengine.org/en/stable/classes/class_animationtree.html#class-animationtree).
+
+@Image(source: "blend_mode.png")
+
+## Animation Playback Track
+
+Animation playback tracks allow you to sequence the animations of other
+animation player nodes in a scene. For example, you can use it to animate
+several characters in a cut-scene.
+
+To create an animation playback track, select "New Track -> Animation Playback
+Track."
+
+Then, select the animation player you want to associate with the track.
+
+To add an animation to the track, right-click on it and insert a key. Select the
+key you just created to select an animation in the inspector dock.
+
+@Image(source: "animation_player_animation.png")
+
+If an animation is already playing and you want to stop it early, you can create
+a key and have it set to `[STOP]` in the inspector.
+
+> Note: If you instanced a scene that contains an animation player into your
+> scene, you need to enable "Editable Children" in the scene tree to
+> access its animation player. Also, an animation player cannot
+> reference itself.

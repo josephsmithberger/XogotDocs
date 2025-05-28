@@ -1,0 +1,128 @@
+<!-- Remove this line to publish to docs.xogot.com -->
+# Node type customization using name suffixes
+
+Many times, when editing a scene, there are common tasks that need to be done
+after exporting:
+
+- Adding collision detection to objects.
+
+- Setting objects as navigation meshes.
+
+- Deleting nodes that are not used in the game engine (like specific lights used
+for modeling).
+
+To simplify this workflow, Godot offers several suffixes that can be added to
+the names of the objects in your 3D modeling software. When imported, Godot
+will detect suffixes in object names and will perform actions automatically.
+
+> Warning:
+>
+> All the suffixes described below can be used with -, $, and _ and are
+> **case-insensitive**.
+>
+
+## Remove nodes (-noimp)
+
+Objects that have the -noimp suffix will be removed at import-time no matter
+what their type is. They will not appear in the imported scene.
+
+This is equivalent to enabling **Skip Import** for a node in the Advanced Import
+Settings dialog.
+
+## Create collisions (-col, -convcol, -colonly, -convcolonly)
+
+The option -col will work only for Mesh objects. If it is detected, a child
+static collision node will be added, using the same geometry as the mesh. This
+will create a triangle mesh collision shape, which is a slow, but accurate
+option for collision detection. This option is usually what you want for level
+geometry (but see also -colonly below).
+
+The option -convcol will create a [ConvexPolygonShape3D](https://docs.godotengine.org/en/stable/classes/class_convexpolygonshape3d.html#class-convexpolygonshape3d) instead of
+a [ConcavePolygonShape3D](https://docs.godotengine.org/en/stable/classes/class_concavepolygonshape3d.html#class-concavepolygonshape3d). Unlike triangle meshes which can be concave,
+a convex shape can only accurately represent a shape that doesn't have any
+concave angles (a pyramid is convex, but a hollow box is concave). Due to this,
+convex collision shapes are generally not suited for level geometry. When
+representing simple enough meshes, convex collision shapes can result in better
+performance compared to a triangle collision shape. This option is ideal for
+simple or dynamic objects that require mostly-accurate collision detection.
+
+However, in both cases, the visual geometry may be too complex or not smooth
+enough for collisions. This can create physics glitches and slow down the engine
+unnecessarily.
+
+To solve this, the -colonly modifier exists. It will remove the mesh upon
+importing and will create a [StaticBody3D](https://docs.godotengine.org/en/stable/classes/class_staticbody3d.html#class-staticbody3d) collision instead.
+This helps the visual mesh and actual collision to be separated.
+
+The option -convcolonly works in a similar way, but will create a
+[ConvexPolygonShape3D](https://docs.godotengine.org/en/stable/classes/class_convexpolygonshape3d.html#class-convexpolygonshape3d) instead using convex decomposition.
+
+With Collada files, the option -colonly can also be used with Blender's
+empty objects. On import, it will create a [StaticBody3D](https://docs.godotengine.org/en/stable/classes/class_staticbody3d.html#class-staticbody3d) with a
+collision node as a child. The collision node will have one of a number of
+predefined shapes, depending on Blender's empty draw type:
+
+@Image(source: "importing_3d_scenes_blender_empty_draw_types.png", alt: "Choosing a draw type for an Empty on creation in Blender") {Choosing a draw type for an Empty on creation in Blender}
+
+- Single arrow will create a [SeparationRayShape3D](https://docs.godotengine.org/en/stable/classes/class_separationrayshape3d.html#class-separationrayshape3d).
+
+- Cube will create a [BoxShape3D](https://docs.godotengine.org/en/stable/classes/class_boxshape3d.html#class-boxshape3d).
+
+- Image will create a [WorldBoundaryShape3D](https://docs.godotengine.org/en/stable/classes/class_worldboundaryshape3d.html#class-worldboundaryshape3d).
+
+- Sphere (and the others not listed) will create a [SphereShape3D](https://docs.godotengine.org/en/stable/classes/class_sphereshape3d.html#class-sphereshape3d).
+
+When possible, **try to use a few primitive collision shapes** instead of triangle
+mesh or convex shapes. Primitive shapes often have the best performance and
+reliability.
+
+> Note:
+>
+> For better visibility on Blender's editor, you can set the "X-Ray" option
+> on collision empties and set some distinct color for them by changing
+> **Edit > Preferences > Themes > 3D Viewport > Empty**.
+>
+> If using Blender 2.79 or older, follow these steps instead:
+> **User Preferences > Themes > 3D View > Empty**.
+>
+
+> Seealso:
+>
+> See <doc:collision_shapes_3d> for a comprehensive overview of collision
+> shapes.
+>
+
+## Create Occluder (-occ, -occonly)
+
+If a mesh is imported with the -occ suffix an [occluder3D](https://docs.godotengine.org/en/stable/classes/class_occluder3d.html#class-occluder3d) node
+will be created based on the geometry of the mesh, it does not replace the mesh.
+A mesh node with the -occonly suffix will be converted to an
+[occluder3D](https://docs.godotengine.org/en/stable/classes/class_occluder3d.html#class-occluder3d) on import.
+
+## Create navigation (-navmesh)
+
+A mesh node with the -navmesh suffix will be converted to a navigation mesh.
+The original Mesh object will be removed at import-time.
+
+## Create a VehicleBody (-vehicle)
+
+A mesh node with the -vehicle suffix will be imported as a child to a
+[VehicleBody3D](https://docs.godotengine.org/en/stable/classes/class_vehiclebody3d.html#class-vehiclebody3d) node.
+
+## Create a VehicleWheel (-wheel)
+
+A mesh node with the -wheel suffix will be imported as a child to a
+[VehicleWheel3D](https://docs.godotengine.org/en/stable/classes/class_vehiclewheel3d.html#class-vehiclewheel3d) node.
+
+## Rigid Body (-rigid)
+
+A mesh node with the -rigid suffix will be imported as a [RigidBody3D](https://docs.godotengine.org/en/stable/classes/class_rigidbody3d.html#class-rigidbody3d).
+
+## Animation loop (-loop, -cycle)
+
+Animation clips in the source 3D file that start or end with the token loop or cycle
+will be imported as a Godot [Animation](https://docs.godotengine.org/en/stable/classes/class_animation.html#class-animation) with the loop flag set.
+**Unlike the other suffixes described above, this does not require a hyphen.**
+
+In Blender, this requires using the NLA Editor and naming the Action with the loop or
+cycle prefix or suffix.

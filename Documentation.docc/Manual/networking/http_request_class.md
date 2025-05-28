@@ -1,0 +1,76 @@
+<!-- Remove this line to publish to docs.xogot.com -->
+# Making HTTP requests
+
+## Why use HTTP?
+
+HTTP requests are useful
+to communicate with web servers and other non-Godot programs.
+
+Compared to Godot's other networking features (like
+<doc:high_level_multiplayer>),
+HTTP requests have more overhead and take more time to get going,
+so they aren't suited for real-time communication, and aren't great to send
+lots of small updates as is common for multiplayer gameplay.
+
+HTTP, however, offers interoperability with external
+web resources and is great at sending and receiving large amounts
+of data, for example to transfer files like game assets. These assets can then
+be loaded using
+<doc:runtime_file_loading_and_saving>.
+
+So HTTP may be useful for your game's login system, lobby browser,
+to retrieve some information from the web or to download game assets.
+
+## HTTP requests in Godot
+
+The [HTTPRequest](https://docs.godotengine.org/en/stable/classes/class_httprequest.html#class-httprequest) node is the easiest way to make HTTP requests in Godot.
+It is backed by the more low-level [HTTPClient](https://docs.godotengine.org/en/stable/classes/class_httpclient.html#class-httpclient),
+for which a tutorial is available <doc:http_client_class>.
+
+For this example, we will make an HTTP request to GitHub to retrieve the name
+of the latest Godot release.
+
+> Warning:
+>
+> When exporting to **Android**, make sure to enable the **Internet**
+> permission in the Android export preset before exporting the project or
+> using one-click deploy. Otherwise, network communication of any kind will be
+> blocked by the Android OS.
+>
+
+## Preparing the scene
+
+Create a new empty scene, add a root [Node](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node) and add a script to it.
+Then add an [HTTPRequest](https://docs.godotengine.org/en/stable/classes/class_httprequest.html#class-httprequest) node as a child.
+
+@Image(source: "rest_api_scene.png")
+
+## Scripting the request
+
+When the project is started (so in _ready()), we're going to send an HTTP request
+to Github using our [HTTPRequest](https://docs.godotengine.org/en/stable/classes/class_httprequest.html#class-httprequest) node,
+and once the request completes, we're going to parse the returned JSON data,
+look for the name field and print that to console.
+
+Save the script and the scene, and run the project.
+The name of the most recent Godot release on Github should be printed to the output log.
+For more information on parsing JSON, see the class references for [JSON](https://docs.godotengine.org/en/stable/classes/class_json.html#class-json).
+
+Note that you may want to check whether the result equals RESULT_SUCCESS
+and whether a JSON parsing error occurred, see the JSON class reference and
+[HTTPRequest](https://docs.godotengine.org/en/stable/classes/class_httprequest.html#class-httprequest) for more.
+
+You have to wait for a request to finish before sending another one.
+Making multiple request at once requires you to have one node per request.
+A common strategy is to create and delete HTTPRequest nodes at runtime as necessary.
+
+## Sending data to the server
+
+Until now, we have limited ourselves to requesting data from a server.
+But what if you need to send data to the server? Here is a common way of doing it:
+
+## Setting custom HTTP headers
+
+Of course, you can also set custom HTTP headers. These are given as a string array,
+with each string containing a header in the format "header: value".
+For example, to set a custom user agent (the HTTP User-Agent header) you could use the following:

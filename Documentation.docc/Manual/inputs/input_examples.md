@@ -1,0 +1,174 @@
+<!-- Remove this line to publish to docs.xogot.com -->
+# Input examples
+
+## Introduction
+
+In this tutorial, you'll learn how to use Godot's [InputEvent](https://docs.godotengine.org/en/stable/classes/class_inputevent.html#class-inputevent)
+system to capture player input. There are many different types of input your
+game may use - keyboard, gamepad, mouse, etc. - and many different ways to
+turn those inputs into actions in your game. This document will show you some
+of the most common scenarios, which you can use as starting points for your
+own projects.
+
+> Note: For a detailed overview of how Godot's input event system works,
+> see <doc:inputevent>.
+>
+
+## Events versus polling
+
+Sometimes you want your game to respond to a certain input event - pressing
+the "jump" button, for example. For other situations, you might want something
+to happen as long as a key is pressed, such as movement. In the first case,
+you can use the _input() function, which will be called whenever an input
+event occurs. In the second case, Godot provides the [Input](https://docs.godotengine.org/en/stable/classes/class_input.html#class-input)
+singleton, which you can use to query the state of an input.
+
+Examples:
+
+This gives you the flexibility to mix-and-match the type of input processing
+you do.
+
+For the remainder of this tutorial, we'll focus on capturing individual
+events in _input().
+
+## Input events
+
+Input events are objects that inherit from [InputEvent](https://docs.godotengine.org/en/stable/classes/class_inputevent.html#class-inputevent).
+Depending on the event type, the object will contain specific properties
+related to that event. To see what events actually look like, add a Node and
+attach the following script:
+
+As you press keys, move the mouse, and perform other inputs, you'll see each
+event scroll by in the output window. Here's an example of the output:
+
+```
+A
+Mouse motion at position ((971, 5)) with velocity ((0, 0))
+Right Mouse Button
+Mouse motion at position ((870, 243)) with velocity ((0.454937, -0.454937))
+Left Mouse Button
+Mouse Wheel Up
+A
+B
+Shift
+Alt+Shift
+Alt
+Shift+T
+Mouse motion at position ((868, 242)) with velocity ((-2.134768, 2.134768))
+```
+
+As you can see, the results are very different for the different types of
+input. Key events are even printed as their key symbols. For example, let's
+consider [InputEventMouseButton](https://docs.godotengine.org/en/stable/classes/class_inputeventmousebutton.html#class-inputeventmousebutton).
+It inherits from the following classes:
+
+- [InputEvent](https://docs.godotengine.org/en/stable/classes/class_inputevent.html#class-inputevent) - the base class for all input events
+
+- [InputEventWithModifiers](https://docs.godotengine.org/en/stable/classes/class_inputeventwithmodifiers.html#class-inputeventwithmodifiers) - adds the ability to check if modifiers are pressed, such as `Shift` or `Alt`.
+
+- [InputEventMouse](https://docs.godotengine.org/en/stable/classes/class_inputeventmouse.html#class-inputeventmouse) - adds mouse event properties, such as position
+
+- [InputEventMouseButton](https://docs.godotengine.org/en/stable/classes/class_inputeventmousebutton.html#class-inputeventmousebutton) - contains the index of the button that was pressed, whether it was a double-click, etc.
+
+> Tip: It's a good idea to keep the class reference open while you're working
+> with events so you can check the event type's available properties and
+> methods.
+>
+
+You can encounter errors if you try to access a property on an input type that
+doesn't contain it - calling position on InputEventKey for example. To
+avoid this, make sure to test the event type first:
+
+## InputMap
+
+The [InputMap](https://docs.godotengine.org/en/stable/classes/class_inputmap.html#class-inputmap) is the most flexible way to handle a
+variety of inputs. You use this by creating named input actions, to which
+you can assign any number of input events, such as keypresses or mouse clicks.
+To see them, and to add your own, open Project -> Project Settings and select
+the InputMap tab:
+
+@Image(source: "inputs_inputmap.png")
+
+> Tip:
+> A new Godot project includes a number of default actions already defined.
+> To see them, turn on Show Built-in Actions in the InputMap dialog.
+>
+
+### Capturing actions
+
+Once you've defined your actions, you can process them in your scripts using
+is_action_pressed() and is_action_released() by passing the name of
+the action you're looking for:
+
+## Keyboard events
+
+Keyboard events are captured in [InputEventKey](https://docs.godotengine.org/en/stable/classes/class_inputeventkey.html#class-inputeventkey).
+While it's recommended to use input actions instead, there may be cases where
+you want to specifically look at key events. For this example, let's check for
+the `T`:
+
+> Tip: See :ref:`@GlobalScope_Key <enum_@GlobalScope_Key>` for a list of keycode
+> constants.
+>
+
+> Warning:
+>
+> Due to keyboard ghosting, not all key inputs may be registered at a given time
+> if you press too many keys at once. Due to their location on the keyboard,
+> certain keys are more prone to ghosting than others. Some keyboards feature
+> antighosting at a hardware level, but this feature is generally
+> not present on low-end keyboards and laptop keyboards.
+>
+> As a result, it's recommended to use a default keyboard layout that is designed to work well
+> on a keyboard without antighosting. See
+> this Gamedev Stack Exchange question
+> for more information.
+>
+
+### Keyboard modifiers
+
+Modifier properties are inherited from
+[InputEventWithModifiers](https://docs.godotengine.org/en/stable/classes/class_inputeventwithmodifiers.html#class-inputeventwithmodifiers). This allows
+you to check for modifier combinations using boolean properties. Let's imagine
+you want one thing to happen when the `T` is pressed, but something
+different when it's `Shift + T`:
+
+> Tip: See :ref:`@GlobalScope_Key <enum_@GlobalScope_Key>` for a list of keycode
+> constants.
+>
+
+## Mouse events
+
+Mouse events stem from the [InputEventMouse](https://docs.godotengine.org/en/stable/classes/class_inputeventmouse.html#class-inputeventmouse) class, and
+are separated into two types: [InputEventMouseButton](https://docs.godotengine.org/en/stable/classes/class_inputeventmousebutton.html#class-inputeventmousebutton)
+and [InputEventMouseMotion](https://docs.godotengine.org/en/stable/classes/class_inputeventmousemotion.html#class-inputeventmousemotion). Note that this
+means that all mouse events will contain a position property.
+
+### Mouse buttons
+
+Capturing mouse buttons is very similar to handling key events. :ref:`@GlobalScope_MouseButton <enum_@GlobalScope_MouseButton>`
+contains a list of MOUSE_BUTTON_* constants for each possible button, which will
+be reported in the event's button_index property. Note that the scrollwheel
+also counts as a button - two buttons, to be precise, with both
+MOUSE_BUTTON_WHEEL_UP and MOUSE_BUTTON_WHEEL_DOWN being separate events.
+
+### Mouse motion
+
+[InputEventMouseMotion](https://docs.godotengine.org/en/stable/classes/class_inputeventmousemotion.html#class-inputeventmousemotion) events occur whenever
+the mouse moves. You can find the move's distance with the relative
+property.
+
+Here's an example using mouse events to drag-and-drop a [Sprite2D](https://docs.godotengine.org/en/stable/classes/class_sprite2d.html#class-sprite2d)
+node:
+
+## Touch events
+
+If you are using a touchscreen device, you can generate touch events.
+[InputEventScreenTouch](https://docs.godotengine.org/en/stable/classes/class_inputeventscreentouch.html#class-inputeventscreentouch) is equivalent to
+a mouse click event, and [InputEventScreenDrag](https://docs.godotengine.org/en/stable/classes/class_inputeventscreendrag.html#class-inputeventscreendrag)
+works much the same as mouse motion.
+
+> Tip: To test your touch events on a non-touchscreen device, open Project
+> Settings and go to the "Input Devices/Pointing" section. Enable "Emulate
+> Touch From Mouse" and your project will interpret mouse clicks and
+> motion as touch events.
