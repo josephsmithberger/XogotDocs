@@ -19,7 +19,46 @@ Release notes for our preview release of Xogot to TestFlight.
 
 # Releases 
 
-## Build 
+## Build
+
+### Improvements
+
+* It is now possible to search in the help pages using the Command-F shortcut and other iPad gestures (#1380, Discord).
+
+* When using an Apple pencil, if you hover over a property in the inspector, a popup with documentation will show up.
+
+### Fixes
+
+* Fixed a case where resize gizmos were staying visible when another node was selected (#1068).
+
+* Drag and drop of nodes could end up in a situation where an invalid drop would delete the node, rather than reporting the mistake (#1419, Discord).
+
+* The position in the documentation stays where you leave it, it no longer resets when you switch tabs (#1347)
+
+* Numeric input values now update immediately upon changes (Better fix for #1296 and #1304)
+## Build 2354
+
+### Improvements
+
+* Numeric fields in the popup can now also be adjusted by swiping left/right the numeric value (#1402, public issue #68, repeated feedback on Discord).
+
+* Numeric input fields now have a subtle indicator when you have reached a limit (a flashing accent color shows up for a quick moment).
+
+* Divider for the ScenePad/FilePad and the main shell and bottom panels is a little more subtle: it no longer uses a contrasting color which was adding visual noise to the screen, and instead uses the default background.
+
+* You can now reorder array elements in the property inspector (#1390).
+
+* It is now possible to select multiple nodes, and change the shared properties of those nodes in the UI (#947, Discord).
+
+* AnimationPlayerEditor now standardizes the selection color on yellows, rather than using different colors to show the selection, and for regions, uses the FinalCut Pro style (#1382).
+
+### Fixes
+
+* In some places in the UI (Some Resource Editors, Shader Globals, Array editing popups), tapping on a row would not automatically navigate to its destination, you had to tap on the disclosure button and select "Inspect", this step is no longer necessary (#1389).
+
+* Prevenets a crash when importing new projects at startup #1413 (Xcode crash logs).
+
+## Build 2334
 
 ### Improvements
 
