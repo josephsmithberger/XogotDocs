@@ -23,7 +23,6 @@ Release notes for our preview release of Xogot to TestFlight.
 
 ### Improvements
 
-## Build 2374
 
 * Remote Debugging: we are starting to test support for running games on a companion device, you can now develop on your iPad and run the game in a companion iPad or iPhone.   To do this, you must be logged in on both devices (this is how we do the zero-password configuration).   The target device needs to stay on the main screen, while the editor device is used to scan and find your other device.  Both devices must be on the same network.
 
@@ -36,6 +35,8 @@ Release notes for our preview release of Xogot to TestFlight.
 * Fixes the iPhone support
 
 * We now wrap around text to make the first error in the error list show up completely (#1423, TestFlight)
+
+## Build 2374
 
 ### Improvements
 
