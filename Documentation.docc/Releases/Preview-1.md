@@ -19,6 +19,18 @@ Release notes for our preview release of Xogot to TestFlight.
 
 # Releases 
 
+## Build 
+
+### Improvements
+
+* New InputMap filtering option to make it simpler to pick letters and numbers, as our filtering before would list all items that matched a letter, for example "a" would show every possible key name that included the letter "a".   Addresses #1118.
+
+### Fixes
+
+* On iPhone, if you did not have a main scene selected, you would not get a prompt asking for one, this made it so that running the game would not complete its work (#1416)
+
+* When selecting a new sprite on the Canvas editor, sometimes the handles for the item would remain on the screen (#1118).
+
 ## Build 2397
 
 ### Improvements
