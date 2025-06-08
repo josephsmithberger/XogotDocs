@@ -4,7 +4,7 @@ Release notes for public releases of Xogot to the App Store.
 
 # Releases 
 
-## Build 2413
+## 1.1.2 (Build 2413)
 
 * If you have an Apple Pencil, when you hover over properties in the inspector, you will get a documentation tooltip.
 
@@ -122,4 +122,4 @@ Release notes for public releases of Xogot to the App Store.
 
 ## Build 2220
 
-This is the initial Godot release to the public on May 6th, 20254
+This is the initial Godot release to the public on May 6th, 2025
