@@ -121,21 +121,16 @@ column of the Input Map configuration screen.
 
 To add the **Virtual Joystick Addon** to your project:
 
-1. **Download the Addon**: Obtain the Virtual Joystick Addon from a trusted
-   source like the official Godot Asset Library or GitHub.
-2. **Add the Addon to Your Project**:
-   - Open the **Files App** and locate the downloaded addon.
-   - Copy the addon folder into your project’s **“addons”** directory inside the
-     Xogot folder.
-3. **Enable the Addon**:
-   - In Xogot, tap the **...** button in the upper-righthand corner and choose
-   **“Settings”**
-   - Tap **General** in the drop down at the top of the dialog and select **"Plugins"**
-   - Locate the **Virtual Joystick Addon** and toggle it to **“Enabled”**.
-4. **Customize the Controls**: The Virtual Joystick can be customized by
-   accessing the provided scripts and scenes. You can adjust the joystick
-   visuals, size, and behavior to best fit your game.
+1. In Xogot, open your project and tap the **Menu** toolbar button in the 
+upper-right corner of Xogot and choose **Asset Library**.
+2. Search for **Virtual Joystick** and tap the **Virtual Joystick** add-on.
+3. Tap **Get**, then tap **Import**.
+   * The addon will be automatically added to your project’s `addons/` directory.
+4. Tap the **Menu** toolbar button in the upper-right corner of Xogot and 
+choose **Settings**.
+5. Tap **General** at the top of the dialog, then select **Plugins**.
+6. Find **Virtual Joystick** in the list and toggle it to **Enabled**.
+7. **Customize the Controls**: You can customize the joystick’s appearance and behavior by editing the provided scenes and scripts.  
 
-After adding and configuring the Virtual Joystick, it will become available in
-your game, providing a flexible and fully customizable onscreen control option.
-
+More details of customizing and configuring the Virtual Joystick Addon can be found in the
+[Virtual Joystick readme on GitHub](https://github.com/MarcoFazioRandom/Virtual-Joystick-Godot).
