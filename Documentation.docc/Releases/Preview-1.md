@@ -19,6 +19,58 @@ Release notes for our preview release of Xogot to TestFlight.
 
 # Releases 
 
+## Build 2514
+
+### Improvements
+
+* New 'use_hidpi' setting under the display/window/stretch settings, which is
+  independent of the previous attempt we had to support HIDPI by extending the
+  meaning of the 'display/window/stretch/scale_mode' to have an 'auto' mode,
+  which was not compatible with Desktop Godot.
+
+* It is now possible to edit the labels of collission masks - the feature had
+  not been wired up before (Discord, #1488)
+
+* Double-tapping a node in the create node dialog will create the node, this
+  makes it consistent with the existing behavior in the "All" tree-view that
+  allowed this behavior (#1481).
+
+* Dropping files from the file pad into the scene pad should work if you drop in
+  an empty region, and not just when you drop on top of an existing node
+  (Discord, #1492).
+
+* We completed a memory leak journey, we have been chasing some pesky memory
+  leaks when closing a project and going back to the main screen.   This will
+  also improve the reliability after closing a project, because these dangling
+  objects kept running for a little while after the editor closed, and this
+  should no longer happen.
+
+* True and false keywords should now be highlighted (Discord, #1491)
+
+* Import button on the toolbar now shows a menu, which will help users determine
+  that this is an import operation with a label, and adding a simple option to
+  import Photos from the user's photo library (#1482).
+
+### Fixes
+
+* Fixes the order of navigation commands, so the commands on the menus match the
+ order in the toolbar (Discord, #1485).
+
+ * Renaming a project was not working (Discord, #1490)
+
+ * Fix a regression when performing symbol lookups in the integrated
+   documentation (#1490, the regression was introduced with the fix for #1353)
+
+* Fixes drag-and-drop of a node not undoing the work in a single step (Discord,
+  #1500). 
+
+## Build-2486
+
+### Fixes
+
+* Editing array values would immediately dismiss the editor, this is now fixed
+  (Discord, #1484)
+
 ## Build 2474
 
 * Network scan prompt will not trigger until you press "Discover".
