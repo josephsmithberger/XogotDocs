@@ -19,6 +19,63 @@ Release notes for our preview release of Xogot to TestFlight.
 
 # Releases 
 
+## Build 2705
+
+### Improvements
+
+* Reference Guide: when searching for keywords, it now allows multiple words to
+  be specified, requiring all matches to be present, as well as the notation
+  "-word" to exclude any matches containing that word.
+
+* Added keyboard shortcuts to increase and decreate the text editor font size
+  using Command-Shift-minus and Command-shift-plus.  (Discord, #1323)
+
+* Provides visual guidance that the editor is closing down a project when you go
+  back to the main screen (#1454).
+
+* The Free Edition will now have the debugger available, but will limit the
+  project size.
+
+* Added support for sub-property picking in the AnimationPlayer - be warned that
+  while both Xogot and Godot support this, the feature is not fully baked in
+  Godot, and has various limitations:
+  https://github.com/godotengine/godot/issues/99115
+  
+* Godot native popovers now use our Floating Window (the feature part of a bug
+  request #1531).
+
+### iPhone Progress
+
+* Major progress on revamping the user interface for the iPhone - after not
+  being exactly sure how we would bring the user interface to the iPhone, we
+  finally got a few idioms in place for bottom-bar plugins and the Xogot Shell.
+
+  We moved away from the TabView to a system that has a slide-out menu for the
+  scene pad, and a menu that allows you to pop up the various plugin tabs on the
+  phone.   Will discuss in more detail on a follow up blog post.
+
+  While we are very happy with the new iPhone shell, we are looking for real
+  user feedback on annoyances and hinderances in people's workflows so we can
+  address those. 
+
+* We started to adapt various components to work on this new design on the
+  iPhone, taking advantage of the native "toolbar item" capabilities of the
+  platform, many of the iPad tabs are being modified to embrace this new idiom
+  on the iPhone.   
+
+* Significant progress on the AnimationPlayer on the iPhone, still not amazing -
+  but getting impressive.
+
+### Fixes
+
+* Fixed a regression in the Remote Tree node tree is now updated when you are
+  running your game (Discord, #1575).
+
+* Fixed a hang in the Claude Chat client
+
+* iPhone: various dialogs would only trigger when you were on the 3D/2D editor,
+  all these design flaws from the previous shell have been addressed.
+
 ## Build 2673
 
 ### Improvements
