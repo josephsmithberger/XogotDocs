@@ -19,7 +19,44 @@ Release notes for our preview release of Xogot to TestFlight.
 
 # Releases 
 
-## Build 2718
+## Build
+
+### iPhone
+
+Another major push, thanks for all the feedback on the iPhone challenges.
+
+* Add support for using iOS native non-modal sheets in most scenarios (only the
+  shader editor uses the old system for now).
+
+* Fixes the 2D/3D labels (#1591)
+
+* All the bottom tabs were revamped once again, now that we are using iOS
+  sheets, it was worth taking full advantage of them - and on iOS 26, there was
+  more padding added, so it was necessasry to restructure a few views.
+
+* More dialogs that were too large have been tuned (#1596),
+
+* SpriteSheetImport was reworked to be usable on the phone (#1593, Discord).
+
+* Touch ups for iOS 26 to prevent button bleeding at the bottom of the screen
+  (#1597). 
+
+* Run and Stop are now pervasive on the UI, as it was too common of an operation
+  (#1592, Discord)
+
+* The editor view should rotate without vanishing (#1585, #1586,)
+
+### Improvements
+
+* The Animation Player editor previously had a number of options under the menu
+  for the animation, but there was also an "Options" menu for one single task,
+  so I unified those.
+
+* For built games, if the game uses audio permissions, it will ask before
+  launching, to make sure you have permissions to use those features (Completes
+  the last part of #1456).
+
+## Build 2719
 
 ### Changes
 
