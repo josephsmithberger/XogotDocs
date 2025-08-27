@@ -21,6 +21,22 @@ Release notes for our preview release of Xogot to TestFlight.
 
 ## Build
 
+### Improvements
+
+* Based on feedback from Discord, This release contains updates to the
+  TileMap/TileSet to steer users that are getting started with these plugins.
+  On Discord we got feedback that some tools were difficult to use for those
+  that were not familiar with the design of tiles and terrains in Godot - we
+  felt that we could improve the experience by adopting the idioms we adopted
+  elsewhere - whenever there is an empty space in the plugin, we gently offer
+  defaults that the user can pick.
+
+* First release of Xogot localized.   Currently we only support Spanish.   We
+  would love to know what you think of it!
+
+
+## Build 2774
+
 Starting to test publicly the iOS26 changes.  
 
 This version has been built with Xcode 26 in preparation for iOS 26 and includes
@@ -51,7 +67,7 @@ a few updates to track the new iOS 2026 look.
 * Mac Catalyst: major changes internally to support various scenarios that were
   broken due to how this system works (crashes when triggering sheets should now
   be gone).
-  
+
 ### Fixes
 
 * iPhone: learning center no longer clips the label for "GET" (#1612), and
