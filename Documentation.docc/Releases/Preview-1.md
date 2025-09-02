@@ -23,6 +23,49 @@ Release notes for our preview release of Xogot to TestFlight.
 
 ### Improvements
 
+* Performance improvement to node selection - internally we stopped doing a lot
+  fo work when scanning for plugins for a node (#1108).
+
+* Additional languages supported in addition to English: Arabic, Chinese
+  Simplified, French, German, Japanese, Portuguese, Russian, Spanish and Turkish.
+
+* iPhone: extend the Xogot editors beyond the safe area at the bottom of the
+  screen. 
+
+* iPhone: scene info node is now a sheet, rather than a full screen popup
+ (#1639).
+
+### Fixes
+
+* iOS 26: context menu on the scene pad now activates, and fixes a bug that
+  extended the selection beyond where it was supposed to be on iOS 18 (#1566,
+  #1638, ).
+
+* You can now delete exported games, and deletes ones will not show up (#1498,
+  Discord). 
+
+* TileSet, custom data was not working (#1632, Discord).
+
+* Fix CodeEditorUI: initially debugger doesn't scroll properly to highlighted
+  line (#1640).
+
+* Bring back the Mac "Designed for iPad" fixes.
+
+* Game controllers no longer stay visible in the screen after a game crashes
+  (#1633)
+
+* iPhone: State of the bottom bar items should be properly synchornized with the
+  menu - some popups might appear more often than before, would love to know if
+  you run into some of these.
+
+* iPhone: Output pad gets a close button, for convenience.
+
+* Right-to-Left swipe actions work.
+
+## Build 2795
+
+### Improvements
+
 * AnimationEditor UX improvements: no longer resets the current editing object
   if you tap on the timeline or you select a track.   We will only change the
   currentlys selected item if you tap on an actual key element on a track.
@@ -519,7 +562,7 @@ will not change just yet.
 * Rectangle Editor: shortens the labels, so it is possible to edit the values.
 
 * Rectangle Editor: in a few places, the rectangle editor will now display
-  'Edity Rectangle' and when pressed, it will show up an
+  'Edit Rectangle' and when pressed, it will show up an
   interactive view to select a region from the image (Discord, #1465).
 
 * SpriteSheetImport: will now remember the settings that you had when importing
