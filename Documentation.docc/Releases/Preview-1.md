@@ -23,6 +23,26 @@ Release notes for our preview release of Xogot to TestFlight.
 
 ### Improvements
 
+* By popular demand: New "Reload Current Project" option is now on the menus,
+  used when certain settings are changed.   I am not psyched about this extra
+  menu that replaces Close + Open, but it seems to be a common enough idiom in
+  Godot that seems important to bring
+
+* iPhone: The file picker dialog has been optimized for size by moving some
+  controls and making it match the OS picker when possible (#1600).
+
+* We are unifying our remote syncing capabilities, and rather than supporting
+  two systems (Godot and our Rsync-over-websockets one, we now just support the
+  Godot one) so our binary is slightly smaller.
+
+### Fixes
+
+* iPhone: Layout for the learning tab has been adjusted (#1646)
+
+## Build 2825
+
+### Improvements
+
 * Performance improvement to node selection - internally we stopped doing a lot
   fo work when scanning for plugins for a node (#1108).
 

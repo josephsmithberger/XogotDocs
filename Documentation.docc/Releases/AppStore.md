@@ -4,7 +4,7 @@ Release notes for public releases of Xogot to the App Store.
 
 # Releases 
 
-## 1.2.0 (Build 2757)
+## 1.2.0 (Build 2757), 1.2.2 (Build 2819)
 
 Two major themes.   Xogot comes to iPhone, and we now have a free tier edition,
 check our blog post for additional details.
