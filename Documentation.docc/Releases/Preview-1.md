@@ -19,6 +19,18 @@ Release notes for our preview release of Xogot to TestFlight.
 
 # Releases 
 
+## Build 2962
+
+### Improvements
+
+* iPhone: bottom bar pads now have a convenient "x" button to close the tab,
+  following Apple's guidelines (and a request on Discord).
+
+### Fixes
+
+* iPhone: Fix TileSet and TileMap not working properly on phone, this was a
+  recent regression as part of the new tabs
+
 ## Build 2858
 
 ### Improvements

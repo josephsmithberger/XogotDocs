@@ -42,6 +42,7 @@ jobs:
           find docs -name index.html -exec cp /tmp/docs/index.html {} \;
           mv Documentation.docc/Resources/favicon.* docs;
           echo "<script>window.location.href += \"/documentation/xogot\"</script>" > docs/index.html;
+	  (cd /tmp/docs; find . -name '*html' | sed -e 's,^.,https://docs.xogot.com,') > docs/sitemap.txt
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
