@@ -19,6 +19,50 @@ Release notes for our preview release of Xogot to TestFlight.
 
 # Releases 
 
+## Build
+
+### Improvements
+
+* Adjusted our slider-input to only be used when the values are intended to have
+  a slider - we were showing it for scenarios where they were not very useful
+  (like position).  Fixes #1665.
+
+* Adjsuted the UI for grouped numeric inputs to use the same style as the
+  inspector for suffix values.
+
+* iPhone: Group Numeric Editors will now compute their proper size when the
+  sheets comes up.
+
+* iPhone: ShaderEditor, Debugger, AnimationPlayer now all show close buttons on
+  the bottom bar for consistency.
+
+* iPhone: when the sidebar is open, a convenience button will close and open the
+  inspector (#1658, discord).
+
+### Fixes
+
+* iPhone: iPhone: Crash when rotating to landscape with any bottom panel open
+  (#1653, Discord)
+
+* AnimationPlayer: when we stop, it also clears the paused state.
+
+* iPhone: Double debugger view no longer happens, and as a bonus, we found a way
+  of bringing the ShaderEditor to the sheet-based system, so it looks and feels
+  nicer and better - that was the sole part that was not using the sheet system
+  yet.
+
+* Fixes a regression, the tapping on "Open Animation" on the animation bottom
+  bar will now open the animation (#1655).
+
+## Build 2865
+
+## Improvements
+
+* iPhone: the inspector now shows up as a slide-out view, rather than a system
+  sheet, this solves a number of interaction problems when you were already
+  using a sheet for another purpose.
+
+
 ## Build 2962
 
 ### Improvements
