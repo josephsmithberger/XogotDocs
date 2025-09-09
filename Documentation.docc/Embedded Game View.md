@@ -72,7 +72,8 @@ it in the game view.
 
 ## Limitations
 
-* **No Keyboard Input**: Games running in Embedded Game View cannot receive keyboard input.
+* **No Keyboard Input**: Games running in Embedded Game View can only receive
+  keyboard input if you close the sidebar and inspector.
 
   * To work around this, consider adding alternative action mappings in your **Input Map** 
 for any keyboard-bound actions you want to test from touch or gamepad input.
