@@ -68,10 +68,9 @@
                top of the app (1) and select **Save Scene** (2).  Alternatively, you can press 
                `Cmd + S` on an external keyboard.
                 
-               For this project, we will be following 
-               [Godot's GDScript naming conventions](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_styleguide.html). 
-               Classes (nodes) use PascalCase, variables and functions use snake_case, and constants 
-               use ALL_CAPS.  You can tap **Save** to accept the default proposed file name: `player.tscn`.
+               > Note: For this project, we will be following [Godot's GDScript naming conventions](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_styleguide.html).
+               > Classes (nodes) use PascalCase, variables and functions use snake_case, and constants 
+               > use ALL_CAPS.  You can tap **Save** to accept the default proposed file name: `player.tscn`.
                
                @Image(source: save_scene.png)
                
