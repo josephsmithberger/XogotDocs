@@ -2,12 +2,10 @@
 
 Bring sprites, textures, sounds, or 3D models into Xogot
 
-## Get your assets into Xogot
-
 Xogot makes it easy to import game assets directly on your iPad. Whether you're working with
 **sprites, textures, sounds, or 3D models** created in other iPad apps or downloaded from the 
 web (such as **TurboSquid** and other game asset repositories), this guide will help you bring 
-your assets into Xogot projects smoothly.
+your assets into Xogot projects smoothly.  
 
 ## Save to Files App
 
@@ -58,6 +56,15 @@ Xogot supports **drag and drop** for importing assets, allowing for an intuitive
 3. Select **“Split View”** from the options that appear.
 4. Choose the **Files App** (or another app containing the asset) from the list of available apps to open it side-by-side with Xogot.
 5. To ensure you have a target for dragging, tap the **Show sidebar button in the upper left** of the Xogot interface and ensure that the **Files Pad** is visible.
+
+## Share to Xogot
+
+Starting with Xogot 1.4.2, you can select the "Share" option in various content
+creation applications and select Xogot as a target for sharing.   This will send
+your asset to Xogot.
+
+Then, launch Xogot, or switch back to Xogot, and you will be prompted about the
+files that were shared and where you want to import them.
 
 ## Importing 3D Models
 
