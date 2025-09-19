@@ -19,6 +19,50 @@ Release notes for our preview release of Xogot to TestFlight.
 
 # Releases 
 
+## Build 2948
+
+This release introduces our new Command Palette, fixing our oldest bug that we
+have been tracking: 207. This is activated either with the Command-P shortcut,
+or from the "View" menu.
+
+Our command palette incorporates ideas from MacOS' Spotlight and from VSCode's
+Command Palette.   By default, it shows and searches your project files as you
+type doing fuzzy matching.   If you are picking a text file, you can also append
+':NUMBER' to directly go to a specific line on that file.   For other files,
+they are opened in Godot's preferred location (either a scene is opened, or the
+current object is displayed on the property editor).
+
+This file search also allows you to filter by kind (Scene, Script, Shader,
+Resource), and I hope to replace the existing "Quick Open" dialog with this one. 
+
+When editing a text file or a script the ":NUMBER" will take you directly to
+that line - and this will soon replace the existing "Go To Line" shortcut with
+this UI.
+
+On a text file, you can also navigate to a symbol location by typing '@SYMBOL',
+and you can also quickly select a node, by using the "$" prefix.
+
+Or you can run EditorScripts that your project has by typing ">" which will
+display all the available editor scripts in your project and you will be able to
+automate some of your work that way, without having to first select the script
+and then using the "Run Script" command.   This is also a feature present in
+Godot 4.5 that we are bringing early to Xogot (#1706).
+
+### Improvements
+
+* It is now possible to rename scene collections in TileSets (#1722, Discord).
+
+* Projects that are too large to load on Xogot light no longer display
+  "Unavailable", but show a lock icon.
+
+* Fuzzy text searching that is used on both the command palette and quick open
+  now allow the " character at the start to mean "Do whole string matches, do
+  nto use the fuzzy mode".
+
+### Fixes
+
+* Fix 2D Toolbar doesn't allow selecting select mode after switching (#1727, Discord)
+
 ## Build 2929
 
 ### Improvements
