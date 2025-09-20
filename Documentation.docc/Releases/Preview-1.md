@@ -19,6 +19,17 @@ Release notes for our preview release of Xogot to TestFlight.
 
 # Releases 
 
+## Build 2953
+
+### Fixes
+
+* Fixes one of our most reported crashes, we figured out that the issue was a
+  race condition when starting the game if you started a second instance too
+  quickly, we would start two games at the same time and crash.
+
+* Fixes a crash after trying to restart game after runtime error in game
+  (#1696).
+
 ## Build 2948
 
 This release introduces our new Command Palette, fixing our oldest bug that we
