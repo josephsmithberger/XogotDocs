@@ -17,7 +17,28 @@ Release notes for our preview release of Xogot to TestFlight.
 
 # Releases 
 
-## Build 2953
+## Build
+
+### Improvements
+
+* Additional icons for some menu items, so things align better on iOS 26.
+
+* We now show a small counter on the File menu when there is more than one scene
+  opened (#1726)
+
+* Go-to line command now uses the Command Palette instead of the old UI on iPad.
+
+### Fixes
+
+* Command Palette: fixes the search command feature (#1741)
+
+* Output pad now responds to the shortcuts (#1742, Discord)
+
+* Various fixes and touch ups to the numeric data intut on the inspector (Fixes
+  #1743 reported in Discord and three-four papercuts in the UI)
+
+
+## Build 2976
 
 ### Improvements
 
