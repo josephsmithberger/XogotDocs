@@ -203,11 +203,11 @@ def create_consolidated_toc(toc_collection, output_path):
             # Write each section with its entries
             for section_idx, (section_title, entries) in enumerate(sections):
                 # If there's only one section with the same title as base_name, don't repeat the header
-                if len(sections) == 1 and section_title == base_name:
-                    # Just write entries without a subheader
-                    for entry in entries:
-                        f.write(f"- <doc:{entry}>\n")
-                else:
+                # if len(sections) == 1 and section_title == base_name:
+                #     # Just write entries without a subheader
+                #     for entry in entries:
+                #         f.write(f"- <doc:{entry}>\n")
+                # else:
                     # Write section subheader
                     display_title = section_title
                     
