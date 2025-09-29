@@ -56,6 +56,16 @@ This script generates a consolidated table of contents by:
 
 **Important**: The generated `documentation.md` file should be integrated into the existing documentation.md file in the root of your DocC project. You may need to manually merge this file with any existing content to maintain your documentation structure.
 
+### 5. Remove the publish blocker from articles that are to be published
+
+```bash
+./remove-publish-blocker.sh <output_directory>
+```
+
+This script iterates the list of files in publish.csv and, if the first line of the file is 
+<!-- Remove this line to publish to docs.xogot.com -->
+It will remove that line.  This step is deferred to a separate script to simplify keeping Xogot docs in sync with the Godot manual.
+
 ## Requirements
 
 - Python 3.6+
@@ -77,6 +87,10 @@ python3 rst_to_docc.py ~/GitHub/godot-docs/tutorials ~/GitHub/XogotDocs/Document
 
 # 4. Generate table of contents
 python3 generate_docc_toc.py ~/GitHub/godot-docs/tutorials ~/GitHub/XogotDocs/Documentation.docc/documentation.md
+```
+
+# 5. Remove the publish blocker from articles that are to be published
+./remove-publish-blocker.sh ~/GitHub/XogotDocs/Documentation.docc/Manual                               
 ```
 
 After completing these steps, review and integrate the generated table of contents into your main DocC documentation.md file.
