@@ -4,7 +4,82 @@ Release notes for public releases of Xogot to the App Store.
 
 # Releases 
 
-## 1.4.0
+## 1.4.2 (2994)
+
+* New: Command Palette
+
+  This release introduces our new Command Palette.  This is activated either
+  with the Command-P shortcut, or from the "View" menu.
+
+  Our command palette incorporates ideas from MacOS' Spotlight and from VSCode's
+  Command Palette.   By default, it shows and searches your project files as you
+  type doing fuzzy matching.   If you are picking a text file, you can also
+  append ':NUMBER' to directly go to a specific line on that file.   For other
+  files, they are opened in Godot's preferred location (either a scene is
+  opened, or the current object is displayed on the property editor).
+
+  This file search also allows you to filter by kind (Scene, Script, Shader,
+  Resource), and I hope to replace the existing "Quick Open" dialog with this
+  one. 
+
+  When editing a text file or a script the ":NUMBER" will take you directly to
+  that line - and this will soon replace the existing "Go To Line" shortcut with
+  this UI.
+
+  On a text file, you can also navigate to a symbol location by typing
+  '@SYMBOL', and you can also quickly select a node, by using the "$" prefix.
+
+  Or you can run EditorScripts that your project has by typing ">" which will
+  display all the available editor scripts in your project and you will be able
+  to automate some of your work that way, without having to first select the
+  script and then using the "Run Script" command.
+
+  And you can search documentation by using the "?" prefix.
+
+* New: ShareSheet, it is now possible to share content to Xogot from various
+  creator apps by selecting Xogot from their share sheets.   Once this is done,
+  the file is tranferred to Xogot, and when you switch back to Xogot, or open
+  Xogot for the first time, you can place the file in their proper location.
+
+* It is now possible to rename scene collections in TileSets.
+
+* To better support iPadOS 26, when games are launched on a dedicated window, we
+  now have controls to allow you to Pause/Stop the game there.
+
+* Fuzzy text searching that is used on both the command palette and quick open
+  now allow the " character at the start to mean "Do whole string matches, do
+  nto use the fuzzy mode".
+
+* Hitting a breakpoint will no longer resize the bottom part of the screen if
+  you have the debugger pad open.
+
+* Code Editor tabs can now be rearranged.
+
+* It is now possible to use keyed animation that target resource properties in a
+  node.
+
+* The Output panel now has selectable text.
+
+* Connect Signal dialog now select first node with script.
+
+* Now also available in Italian, Czech and Dutch.
+
+* The accessory bar now also includes the equal sign.
+
+* We now show a small counter on the File menu when there is more than one scene
+  opened.
+
+* Improve UX for Dictionary/Array editing, will start pushing nested untyped
+  arrays in NavigationStack rather than displaying sheet one over another.
+  
+* The Shader File menu now has a "New Shader" convenience menu.
+
+* The iPadOS menu for Xogot settings now opens the app settings, instead of the
+  OS provided settings.
+
+* Many bug fixes and improvements.
+
+## 1.4.0 (2899)
 
 This version has been upgraded to use Liquid Glass on iOS 26 and iPadOS 26.
 

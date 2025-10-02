@@ -17,7 +17,104 @@ Release notes for our preview release of Xogot to TestFlight.
 
 # Releases 
 
-## Build
+## Build 3039
+
+### Improvements
+
+* When editing Path3D objects, a new option was added to the Path toolbar that
+  allows you to control the handles of a node - when you have a keyboard, the
+  regular node selection with shift would work, but this allows folks with only
+  touch input to use the feature effectively (#1551).
+
+* New command (Command-Shift-J shortcut) that will highlight the current item
+  being edited (the text file or scene) in the FilePad to quickly locate its
+  environment (#1332).
+
+* We no longer display the project name on the toolbar if you are editing a
+  scene, we only show the scene name, as this was taking too much space and
+  squeezing important icons.
+
+* Another fix for the double-start process that is being triggered in the wild
+  due to what we believe a UI layout issue triggering the run action twice.
+
+* The command palette is now also available from the menus for iPads running iOS
+  18 without a keyboard (#1765)
+
+* When opening files from the command palette, we no longer auto-open the
+  inspector for text files or scenes, as that is never likely the intended
+  action (#1769).
+
+* The help elements in the Command Palette are now tappable, and they inject the
+  text to trigger the action (#1765).
+
+### Fixes
+
+* iPhone: the Add Node button no longer vanishes if you have a node selected
+  (#1758), along those lines, preemptively provide proper labels and icons
+  across the toolbar, as we suspect SwiftUI was not showing some elements
+  because we only had icons.
+
+* Input is no longer routed to the ScenePad/FilePad if you were searching and
+  you triggered a dialog (#1760).
+
+* Fixed the remote sync login.
+
+* Fixes a crash caught in testflight in the AnimationPlayerEditor involving
+  color tracks (#1774)
+
+* Command Palette will now correctly jump to the line of a file if you specified
+  it, when the file had not been previously opened (#1770)
+
+* Command Palette will no longer use smart quotes by default when typing text
+  (#1766). 
+
+## Build 3016
+
+### Improvements
+
+* iPhone: when editing a single numeric value, if you tap the "return" key, this
+  dismisses the sheet.
+
+* Numeric input now will use "," as a decimal separator if you have chosen this,
+  and we updated the numeric input to also display arabic numerals if your
+  language is set to Arabic.
+
+* Delete node confirmation has been moved to a native dialog (#1550)
+
+* AnimationPlayerEditor: the track sizes are larger now, to ensure they are
+  easier to tap (#1355).   We had previously tried to cut some corners in terms
+  of size, but human fingers did not shrink fast enough for us to ship this interface.
+
+* More features to manage your uploaded games.
+
+### Fixes
+
+* Command Palette: tapping on an entry will actually trigger it, not trigger the
+  selected item (Discord report).
+
+* iPhone: The keyboard will hide when toggling the sidebar.
+
+* Fixes a crash when starting up a game (#1728)
+
+* UI glitch on the project launcher (#1756)
+
+
+## Build 2993
+
+### Improvements
+
+* Improve UX for Dictionary/Array editing, will start pushing nested untyped
+  arrays in NavigationStack rather than displaying sheet one over another
+  (#769).
+  
+* The Shader File menu now has a "New Shader" convenience menu (#1675)
+
+* The iPadOS menu for Xogot settings now opens the app settings, instead of the
+  OS provided settings.
+
+* Command Palette will now trigger the action on tap.
+
+## Build 2985
 
 ### Improvements
 
