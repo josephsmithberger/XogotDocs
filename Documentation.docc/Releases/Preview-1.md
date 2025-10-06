@@ -17,6 +17,37 @@ Release notes for our preview release of Xogot to TestFlight.
 
 # Releases 
 
+## Build 3055
+
+### Improvements
+
+* Animation Editor now has support for "Add Easing Keys" (#1076).
+
+* Animation Editor now has support for selecting multiple keys.
+
+### Fixes
+
+* StringName properties in array properties were not being shown on the
+  Inspector (telemetry).
+
+* Grid Visibility toggle will now correctly toggle (telemetry)
+
+* Add Track not working after scene pad node selection change (#1778, found
+  internally during testing).
+
+* Fixed a family of memory leaks that we discovered during testing on the
+  AnimationPlayer editor (#1779, #1782).
+
+* Some properites on the track editor were not updating (#1783, internal
+  testing). 
+
+* iPhone: play button missing in toolbar #1781
+
+* Node picker allows the selection of nodes from a subscene (#1787,
+  Discord)
+
+* XogotUI: lack of precision in editors that had large step values.
+
 ## Build 3039
 
 ### Improvements
