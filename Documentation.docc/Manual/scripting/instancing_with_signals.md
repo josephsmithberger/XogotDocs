@@ -1,4 +1,3 @@
-<!-- Remove this line to publish to docs.xogot.com -->
 # Instancing with signals
 
 Signals provide a way to decouple game objects, allowing you to avoid forcing a

@@ -1,4 +1,3 @@
-<!-- Remove this line to publish to docs.xogot.com -->
 # Interpolation
 
 Interpolation is a common operation in graphics programming, which is used to

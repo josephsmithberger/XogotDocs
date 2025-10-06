@@ -1,4 +1,3 @@
-<!-- Remove this line to publish to docs.xogot.com -->
 # WebRTC
 
 ## HTML5, WebSocket, WebRTC

@@ -1,4 +1,3 @@
-<!-- Remove this line to publish to docs.xogot.com -->
 # Support different actor types
 
 @Image(source: "nav_actor_sizes.png")

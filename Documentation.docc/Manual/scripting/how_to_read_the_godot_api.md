@@ -1,4 +1,3 @@
-<!-- Remove this line to publish to docs.xogot.com -->
 # How to read the Godot API
 
 On this page, you'll learn how to read the class reference for the Godot API.

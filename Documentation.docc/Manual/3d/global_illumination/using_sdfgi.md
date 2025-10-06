@@ -1,4 +1,3 @@
-<!-- Remove this line to publish to docs.xogot.com -->
 # Signed distance field global illumination (SDFGI)
 
 Signed distance field global illumination (SDFGI) is a novel technique available

@@ -1,4 +1,3 @@
-<!-- Remove this line to publish to docs.xogot.com -->
 # Available 3D formats
 
 When dealing with 3D assets, Godot has a flexible and configurable importer.

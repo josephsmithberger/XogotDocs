@@ -1,4 +1,3 @@
-<!-- Remove this line to publish to docs.xogot.com -->
 # Occlusion culling
 
 In a 3D rendering engine, **occlusion culling** is the process of performing

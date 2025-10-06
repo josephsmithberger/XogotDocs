@@ -1,4 +1,3 @@
-<!-- Remove this line to publish to docs.xogot.com -->
 # Variable rate shading
 
 ## What is variable rate shading?

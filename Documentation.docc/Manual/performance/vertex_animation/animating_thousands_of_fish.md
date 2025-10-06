@@ -1,4 +1,3 @@
-<!-- Remove this line to publish to docs.xogot.com -->
 # Animating thousands of fish with MultiMeshInstance3D
 
 This tutorial explores a technique used in the game ABZU

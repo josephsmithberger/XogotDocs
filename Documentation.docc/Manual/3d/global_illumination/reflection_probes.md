@@ -1,4 +1,3 @@
-<!-- Remove this line to publish to docs.xogot.com -->
 # Reflection probes
 
 As stated in the <doc:standard_material_3d>, objects can show reflected and/or

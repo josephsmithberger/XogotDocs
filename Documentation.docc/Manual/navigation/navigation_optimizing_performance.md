@@ -1,4 +1,3 @@
-<!-- Remove this line to publish to docs.xogot.com -->
 # Optimizing Navigation Performance
 
 @Image(source: "nav_optimization.png")

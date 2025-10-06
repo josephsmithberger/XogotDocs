@@ -1,4 +1,3 @@
-<!-- Remove this line to publish to docs.xogot.com -->
 # Using CharacterBody2D/3D
 
 ## Introduction

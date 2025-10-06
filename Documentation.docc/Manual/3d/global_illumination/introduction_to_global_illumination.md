@@ -1,4 +1,3 @@
-<!-- Remove this line to publish to docs.xogot.com -->
 # Introduction to global illumination
 
 ## What is global illumination?

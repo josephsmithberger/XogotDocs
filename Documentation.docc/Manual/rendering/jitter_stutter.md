@@ -1,4 +1,3 @@
-<!-- Remove this line to publish to docs.xogot.com -->
 # Fixing jitter, stutter and input lag
 
 ## What is jitter, stutter and input lag?

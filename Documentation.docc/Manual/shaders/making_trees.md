@@ -1,4 +1,3 @@
-<!-- Remove this line to publish to docs.xogot.com -->
 # Making trees
 
 This is a short tutorial on how to make trees and other types of vegetation from scratch.

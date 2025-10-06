@@ -1,4 +1,3 @@
-<!-- Remove this line to publish to docs.xogot.com -->
 # Physical light and camera units
 
 ## Why use physical light and camera units?

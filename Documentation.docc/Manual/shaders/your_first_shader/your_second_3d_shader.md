@@ -1,4 +1,3 @@
-<!-- Remove this line to publish to docs.xogot.com -->
 # Your second 3D shader
 
 From a high-level, what Godot does is give the user a bunch of parameters that

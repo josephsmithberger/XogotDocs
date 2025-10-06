@@ -1,4 +1,3 @@
-<!-- Remove this line to publish to docs.xogot.com -->
 # Customizing the mouse cursor
 
 You might want to change the appearance of the mouse cursor in your game in

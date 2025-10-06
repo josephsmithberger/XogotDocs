@@ -1,4 +1,3 @@
-<!-- Remove this line to publish to docs.xogot.com -->
 # Using Voxel global illumination
 
 VoxelGI is a form of fully real-time global illumination, intended to be used

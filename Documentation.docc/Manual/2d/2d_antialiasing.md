@@ -1,4 +1,3 @@
-<!-- Remove this line to publish to docs.xogot.com -->
 # 2D antialiasing
 
 > Seealso:

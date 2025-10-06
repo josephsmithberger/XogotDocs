@@ -1,4 +1,3 @@
-<!-- Remove this line to publish to docs.xogot.com -->
 # Canvas layers
 
 ## Viewport and Canvas items

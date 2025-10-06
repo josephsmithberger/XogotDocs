@@ -1,4 +1,3 @@
-<!-- Remove this line to publish to docs.xogot.com -->
 # Connecting navigation meshes
 
 Different NavigationMeshes are automatically merged by the NavigationServer
