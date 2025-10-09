@@ -2,20 +2,24 @@
 
 Release notes for our preview release of Xogot to TestFlight.
 
-## Known Limitations
-
-### Running
-
-- There is currently no support for Feature Tags when running your game (these
-  are like “ifdefs”)  (#614).
-
-### UI
-
-- A handful of confirmation dialogs that will be ported over to SwiftUI remain
-  written in Godot, let us know of any common ones, so we can prioritize them
-  (#540) 
-
 # Releases 
+
+## Build 
+
+### Improvements
+
+* Add 'Submit for Publishing' option to game upload.
+
+* Add support for exporting a scene to a mesh library (#1794, Discord).
+
+### Fixes
+
+* Fixes a text editor crash in the wild (Xcode crash)
+
+* Fixes a Sprite Sheet Importer crash when a user managed to trigger a scenario
+  with zero columns or zero rows (Xcode Crash)
+
+* Fix Output: Cannot scroll warnings or errors on output tab #1793
 
 ## Build 3055
 
