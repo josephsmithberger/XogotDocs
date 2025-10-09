@@ -71,9 +71,9 @@
                 You can drag the nodes to place them manually, but for more precise placement,
                 use "Anchor Presets".
                 
-                **Anchors:** `Control` nodes have a position and size,
-                but they also have anchors. Anchors define the origin -
-                the reference point for the edges of the node.
+                > Note: **Anchors:** `Control` nodes have a position and size,
+                > but they also have anchors. Anchors define the origin -
+                > the reference point for the edges of the node.
                 
                 @Image(source: ui_anchor.png)
             }
@@ -163,10 +163,10 @@
                 seconds, then return to the title screen and, after a brief pause, show the
                 "Start" button.
                 
-                Note: When you need to pause for a brief time, an alternative to using a
-                Timer node is to use the SceneTree's `create_timer()` function. This
-                can be very useful to add delays such as in the above code, where we
-                want to wait some time before showing the "Start" button.
+                > Note: When you need to pause for a brief time, an alternative to using a
+                > Timer node is to use the SceneTree's `create_timer()` function. This
+                > can be very useful to add delays such as in the above code, where we
+                > want to wait some time before showing the "Start" button.
                 
                 @Code(name: "hud.gd", file: hud-03.gd)
             }
@@ -244,9 +244,9 @@
                 @Code(name: "main.gd", file: main-12.gd)
             }
             @Step {
-                Remember to remove the call to `new_game()` from
-                `_ready()` if you haven't already, otherwise
-                your game will start automatically.
+                > Warning: Remember to remove the call to `new_game()` from
+                > `_ready()` if you haven't already, otherwise
+                > your game will start automatically.
                 
                 Now you're ready to play! Tap the "Play" button at the top of the app.
                 

@@ -76,8 +76,8 @@
                 **Right Stick Down** to `move_down`.   When you are done, you can tap **Close** 
                 to dismiss the **Input Map** dialog.
                 
-                Note: We only mapped one action to each input action, but you can map joystick buttons
-                or directions, multiple keys, or mouse buttons to the same input action.
+                > Note: We only mapped one action to each input action, but you can map joystick buttons
+                > or directions, multiple keys, or mouse buttons to the same input action.
                 
                 @Image(source: input_map_complete.png)
             }
@@ -106,9 +106,9 @@
                 Start by declaring the member variables this object will need. Insert these 
                 two variable definitions near the top of the script after `extends Area2D`.
                 
-                Note:  Everything after the `#` on each line is a comment.  These can be 
-                omitted, or you can include them as a note to help you, or anyone else who might
-                look at the code in the future, understand why the code is there. 
+                > Note:  Everything after the `#` on each line is a comment.  These can be 
+                > omitted, or you can include them as a note to help you, or anyone else who might
+                > look at the code in the future, understand why the code is there. 
                                 
                 @Code(name: "player.gd", file: player-01.gd, previousFile: player-00.gd)
             }
@@ -146,40 +146,40 @@
             }
             @Step {
                 Then we check each input and add/subtract from the
-                `velocity` to obtain a total direction.
+                `velocity` to obtain a total direction. You can detect whether a key is pressed 
+                using `Input.is_action_pressed()`, which returns `true` if it's pressed or `false` 
+                if it isn't.
                 
-                You can detect whether a key is pressed using `Input.is_action_pressed()`,
-                which returns `true` if it's pressed or `false` if it isn't.
+                For example, if you hold `right` and `down` at the same time, the resulting 
+                `velocity` vector will be `(1, 1)`.
                 
                 @Code(name: "player.gd", file: player-04.gd)
             }
             @Step {
-                 For example, if you hold `right` and `down` at the same time, the resulting 
-                 `velocity` vector will be `(1, 1)`.
-                
                 In this case, since we're adding a horizontal and a vertical movement, the
                 player would move *faster* diagonally than if it just moved horizontally.
                 We can prevent that if we *normalize* the velocity, which means we set its
                 *length* to `1`, then multiply by the desired speed. This means no more fast
                 diagonal movement.
+
+                > Tip: If you've never used vector math before, or need a refresher, you can
+                > see an explanation of vector usage in Godot at :ref:`doc_vector_math`.
+                > It's good to know but won't be necessary for the rest of this tutorial.
                 
                 @Code(name: "player.gd", file: player-05.gd)
             }
-            @Step {
-                @Comment {
-                .. tip:: If you've never used vector math before, or need a refresher, you can
-                see an explanation of vector usage in Godot at :ref:`doc_vector_math`.
-                It's good to know but won't be necessary for the rest of this tutorial.
-                }
-                We also check whether the player is moving so we can call `play()` or
-                `stop()` on the AnimatedSprite2D.
-                
-                Tip: `$` is shorthand for `get_node()`. So in this code,
-                `$AnimatedSprite2D.play()` is the same as
-                `get_node("AnimatedSprite2D").play()`. In GDScript, `$` returns 
-                the node at the relative path from the current node, or returns 
-                `null` if the node is not found. Since AnimatedSprite2D is a 
-                child of the current node, we can use `$AnimatedSprite2D`.
+            @Step { 
+               We also check whether the player is moving so we can call `play()` or
+               `stop()` on the AnimatedSprite2D.
+               
+                > Tip: `$` is shorthand for `get_node()`. So in this code,
+                > `$AnimatedSprite2D.play()` is the same as
+                > `get_node("AnimatedSprite2D").play()`. 
+                > 
+                > In GDScript, `$` returns 
+                > the node at the relative path from the current node, or returns 
+                > `null` if the node is not found. Since AnimatedSprite2D is a 
+                > child of the current node, we can use `$AnimatedSprite2D`.
                 
                 @Code(name: "player.gd", file: player-06.gd)
             }
@@ -189,10 +189,10 @@
                 value means restricting it to a given range. Add this code to the bottom of
                 the `_process` function (make sure it's not indented under the `else`).
                 
-                Tip: The `delta` parameter in the `_process()` function refers to the *frame
-                length* - the amount of time that the previous frame took to complete.
-                Using this value ensures that your movement will remain consistent even
-                if the frame rate changes.
+                > Tip: The `delta` parameter in the `_process()` function refers to the *frame
+                > length* - the amount of time that the previous frame took to complete.
+                > Using this value ensures that your movement will remain consistent even
+                > if the frame rate changes.
                 
                 @Code(name: "player.gd", file: player-07.gd)
             }
@@ -202,11 +202,11 @@
                 select **Run Current Scene** to test the `Player`. Confirm you can move 
                 the player around the screen in all directions.
                 
-                Warning: If you get an error in the "Debugger" panel that says
-                `Attempt to call function 'play' in base 'null instance' on a null
-                instance` this likely means you spelled the name of the AnimatedSprite2D node
-                wrong. Node names are case-sensitive and `$NodeName` must match the name you 
-                see in the scene tree.
+                > Warning: If you get an error in the "Debugger" panel that says
+                > `Attempt to call function 'play' in base 'null instance' on a null
+                > instance` this likely means you spelled the name of the AnimatedSprite2D node
+                > wrong. Node names are case-sensitive and `$NodeName` must match the name you 
+                > see in the scene tree.
                 
                 @Image(source: run_current_scene.png)
             }
@@ -229,25 +229,25 @@
                 @Code(name: "player.gd", file: player-08.gd, previousFile: player-07.gd)
                 
                 @Comment {
-                    Note: The boolean assignments in the code example are a common shorthand for
-                    programmers. Since we're doing a comparison test (boolean) and also
-                    *assigning* a boolean value, we can do both at the same time. Consider
-                    this code versus the one-line boolean assignment above:
-                    
-                    if velocity.x < 0:
-                        $AnimatedSprite2D.flip_h = true
-                    else:
-                        $AnimatedSprite2D.flip_h = false
+                    > Note: The boolean assignments in the code example are a common shorthand for
+                    > programmers. Since we're doing a comparison test (boolean) and also
+                    > *assigning* a boolean value, we can do both at the same time. Consider
+                    > this code versus the one-line boolean assignment above:
+                    > 
+                    > if velocity.x < 0:
+                    >     $AnimatedSprite2D.flip_h = true
+                    > else:
+                    >     $AnimatedSprite2D.flip_h = false
                 }
             }
             @Step {
                 Play the scene again and check that the animations are correct in each of the
                 directions.
                 
-                Tip: A common mistake here is to type the names of the animations wrong. The
-                animation names in the SpriteFrames panel must match what you type in
-                the code. If you named the animation `"Walk"`, you must also use a
-                capital "W" in the code.
+                > Tip: A common mistake here is to type the names of the animations wrong. The
+                > animation names in the SpriteFrames panel must match what you type in
+                > the code. If you named the animation `"Walk"`, you must also use a
+                > capital "W" in the code.
                 
                 @Image(source: player_flipped.png)
             }

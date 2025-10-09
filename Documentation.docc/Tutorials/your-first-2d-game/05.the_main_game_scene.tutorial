@@ -203,8 +203,8 @@
                 when the game launches. Press the "Play" button (1) in the upper right-hand 
                 corner of the app and select `main.tscn` when prompted.
                 
-                Tip: If you had already set another scene as the "Main Scene", you can long-press
-                `main.tscn` in the FileSystem dock and select "Set As Main Scene".
+                > Tip: If you had already set another scene as the "Main Scene", you can long-press
+                > `main.tscn` in the FileSystem dock and select "Set As Main Scene".
                 
                 @Image(source: main_scene_select.png)
             }
