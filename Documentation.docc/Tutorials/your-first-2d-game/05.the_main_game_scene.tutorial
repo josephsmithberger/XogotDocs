@@ -13,8 +13,9 @@
         }
         @Steps {
             @Step {
-                Create a new empty scene named "main" and tap **Create Other Node** to add a 
-                new `Node` named "Main".
+                Create a new empty scene named "main" and tap **Create Other Node** to add a new
+                [`Node`](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node)
+                named "Main".
                 
                 Tap the **Instantiate Child Scene** button at the top of the Scene Tree 
                 (represented by a chain link icon) and select your saved `player.tscn`.
@@ -22,13 +23,16 @@
                 @Image(source: instance_scene.png)
             }
             @Step {
-                Now, add three `Timer`s as children of **Main** and name them "MobTimer",
+                Now, add three 
+                [`Timer`](https://docs.godotengine.org/en/stable/classes/class_timer.html#class-timer)'s 
+                as children of **Main** and name them "MobTimer",
                 "ScoreTimer", and "StartTimer". These will be used to control how often mobs
                  spawn, to increment the score every second, and to give a delay before starting,
                  respectively.
                  
-                Additionally, add a `Marker2D` named "StartPosition" to indicate the player's 
-                start position.
+                Additionally, add a 
+                [`Marker2D`](https://docs.godotengine.org/en/stable/classes/class_marker2d.html#class-marker2d)
+                named "StartPosition" to indicate the player's start position.
                 
                 @Image(source: main_scene_tree.png)
             }
@@ -62,7 +66,8 @@
         }
         @Steps {
             @Step {
-                Add a `Path2D` node named `MobPath` as a child of `Main`.  When the `Path2D` node is selected, 
+                Add a [`Path2D`](https://docs.godotengine.org/en/stable/classes/class_path2d.html#class-path2d) 
+                node named `MobPath` as a child of `Main`.  When the `Path2D` node is selected, 
                 you will see a new **Path2D** toolbar at the top of the editor.
                 
                 Select the "Add a point" toolbar button in the **Path2D** toolbar - it's the circle button with 
@@ -92,7 +97,9 @@
                 @Image(source: draw_path2d.png)
             }
             @Step {
-                Now that the path is defined, add a `PathFollow2D` node as a child of `MobPath` 
+                Now that the path is defined, add a 
+                [`PathFollow2D`](https://docs.godotengine.org/en/stable/classes/class_pathfollow2d.html#class-pathfollow2d)
+                node as a child of `MobPath` 
                 and name it `MobSpawnLocation`. This node will automatically rotate and follow 
                 the path as it moves, so we can use it to select a random position and direction 
                 along the path.

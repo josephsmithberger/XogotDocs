@@ -163,7 +163,7 @@
                 diagonal movement.
 
                 > Tip: If you've never used vector math before, or need a refresher, you can
-                > see an explanation of vector usage in Godot at :ref:`doc_vector_math`.
+                > check out this explanation of <doc:vector_math> usage in Godot.
                 > It's good to know but won't be necessary for the rest of this tutorial.
                 
                 @Code(name: "player.gd", file: player-05.gd)

@@ -14,7 +14,9 @@
         }
         @Steps {
             @Step {
-                One way to change the background color is to use a `ColorRect` node. 
+                One way to change the background color is to use a
+                [`ColorRect`](https://docs.godotengine.org/en/stable/classes/class_colorrect.html#class-colorrect) 
+                node. 
                 
                 Make it the first node under `Main` so that it will be drawn behind the other nodes.
                 
@@ -31,7 +33,8 @@
                 under `Layout` so that it covers the screen.
                 
                 You could also add a background image, if you have one, by using a
-                `TextureRect` node instead.
+                [`TextureRect`](https://docs.godotengine.org/en/stable/classes/class_texturerect.html#class-texturerect) 
+                node instead.
                 
                 @Image(source: fin_fullrect.png)
             }
@@ -48,7 +51,9 @@
         }
         @Steps {
             @Step {
-                Add two `AudioStreamPlayer` nodes as children of `Main`. 
+                Add two 
+                [`AudioStreamPlayer`](https://docs.godotengine.org/en/stable/classes/class_audiostreamplayer.html#class-audiostreamplayer) 
+                nodes as children of `Main`. 
                 
                 Name one of them `Music` and the other `DeathSound`. 
                 
@@ -132,7 +137,9 @@
                 bottom of the `BaseButton` section in the Inspector.  
                 
                 Tap **Pick Resource** next to the **Shortcut** property and tap **New Shortcut** 
-                to create a new `Shortcut` resource.  
+                to create a new 
+                [`Shortcut`](https://docs.godotengine.org/en/stable/classes/class_shortcut.html#class-shortcut) 
+                resource.  
                 
                 @Image(source: start_button_shortcut.png)
             }
@@ -150,7 +157,8 @@
                 @Image(source: start_array.png)
             }
             @Step {
-                Tap **InputEventAction** in row [0] to edit the new `InputEventAction`.  
+                Tap **InputEventAction** in row [0] to edit the new 
+                [`InputEventAction`](https://docs.godotengine.org/en/stable/classes/class_inputeventaction.html#class-inputeventaction).  
                 
                 Set its action to "**start_game**".  Tap **Back** to return to the array and then
                 tap **Save**.

@@ -28,7 +28,9 @@
                 @Image(source: mob_empty_scene.png)
             }
             @Step {
-                Tap **Create Other Node** in the Scene Tree and choose `RigidBody2D` as the root node type.  
+                Tap **Create Other Node** in the Scene Tree and choose 
+                [`RigidBody2D`](https://docs.godotengine.org/en/stable/classes/class_rigidbody2d.html#class-rigidbody2d) 
+                as the root node type.  
                 
                 Long-press `RigidBody2D` (1) and rename (2) it to **Mob**.   
                 Don't forget to *Group Selected Nodes* (3) so that children can't be selected, like you did 
@@ -37,8 +39,11 @@
                 @Image(source: mob_rename.png)
             }
             @Step {
-                Add `**AnimatedSprite2D**` and `**CollisionShape2D**` nodes, and a new node
-                type - `**VisibleOnScreenNotifier2D**` - as children of the **Mob**.  
+                Add [`AnimatedSprite2D`](https://docs.godotengine.org/en/stable/classes/class_animatedsprite2d.html#class-animatedsprite2d) 
+                and [`CollisionShape2D`](https://docs.godotengine.org/en/stable/classes/class_collisionshape2d.html#class-collisionshape2d) 
+                nodes, and a new node type - 
+                [`VisibleOnScreenNotifier2D`](https://docs.godotengine.org/en/stable/classes/class_visibleonscreennotifier2d.html#class-visibleonscreennotifier2d)
+                - as children of the **Mob**.  
                 
                 Your scene tree for the new Scene should look like this. You can drag the nodes
                 to rearrange them if they are nested or not in the right order.
@@ -47,15 +52,16 @@
                 @Image(source: mob_scene_tree.png)
             }
             @Step {
-                Select the `Mob` node and set its `Gravity Scale`
-                property in the `RigidBody2D`
+                Select the `Mob` node and set its `Gravity Scale` property in the
+                [`RigidBody2D`](https://docs.godotengine.org/en/stable/classes/class_rigidbody2d.html#class-rigidbody2d)
                 section of the inspector to `0`.
                 This will prevent the mob from falling downwards.
                 
                 @Image(source: mob_gravity_scale.png)
             }
             @Step {
-                In addition, scroll to the **CollisionObject2D**
+                In addition, scroll to the 
+                [`CollisionObject2D`](https://docs.godotengine.org/en/stable/classes/class_collisionobject2d.html#class-collisionobject2d)
                 section just beneath the **RigidBody2D** section,
                 navigate into the **Collision** group. 
                 
@@ -65,9 +71,10 @@
                 @Image(source: mob_collision_mask.png)
             }
             @Step {
-                Create and set up `SpriteFrames` on the `AnimatedSprite2D` like you did for the
-                `Player`. This time, we have 3 animations: "fly", "swim", and "walk". There
-                are two images for each animation in the art folder.
+                Create and set up `SpriteFrames` on the 
+                [`AnimatedSprite2D`](https://docs.godotengine.org/en/stable/classes/class_animatedsprite2d.html#class-animatedsprite2d) 
+                like you did for the `Player`. This time, we have 3 animations: "fly", "swim", and 
+                "walk". There are two images for each animation in the art folder.
                 
                 The `Animation Speed` property has to be set for each individual animation. 
                 Adjust it to `3` for all 3 animations.

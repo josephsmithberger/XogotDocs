@@ -12,29 +12,37 @@
         }
         @Steps {
             @Step {
-                Create a new empty scene named "hud" and tap **Create Other Node** to add a 
-                new `CanvasLayer` named "**HUD**".
+                Create a new empty scene named "hud" and tap **Create Other Node** to add a new 
+                [`CanvasLayer`](https://docs.godotengine.org/en/stable/classes/class_canvaslayer.html#class-canvaslayer)
+                named "**HUD**".
                 
-                The `CanvasLayer` node lets us draw our UI elements on a layer above the rest of the game, 
+                The [`CanvasLayer`](https://docs.godotengine.org/en/stable/classes/class_canvaslayer.html#class-canvaslayer)
+                node lets us draw our UI elements on a layer above the rest of the game, 
                 so that the information it displays isn't covered up by any game elements like the player 
                 or mobs.
                 
                 @Image(source: hud_canvas.png)
             }
             @Step {
-                The basic node for UI elements is `Control`. To create our UI, we'll use two types 
-                of `Control` nodes: `Label` and `Button`.  
+                The basic node for UI elements is
+                [`Control`](https://docs.godotengine.org/en/stable/classes/class_control.html#class-control). 
+                To create our UI, we'll use two types of 
+                [`Control`](https://docs.godotengine.org/en/stable/classes/class_control.html#class-control)
+                nodes: 
+                [`Label`](https://docs.godotengine.org/en/stable/classes/class_label.html#class-label) and 
+                [`Button`](https://docs.godotengine.org/en/stable/classes/class_button.html#class-button).  
                 
-                First, let's add two `Label` nodes: 
+                First, let's add two [`Label`](https://docs.godotengine.org/en/stable/classes/class_label.html#class-label) nodes: 
                 **Score** will be changed by `ScoreTimer`, and **Message** will display messages 
                 such as "Game Over" or "Get Ready!"
                 
                 @Image(source: hud_labels.png)
             }
             @Step {
-                Let's also add a `Button` named **StartButton** that can be tapped to begin the game
-                and a `Timer` named **MessageTimer** to control how long messages are
-                displayed.  
+                Let's also add a [`Button`](https://docs.godotengine.org/en/stable/classes/class_button.html#class-button) 
+                named **StartButton** that can be tapped to begin the game and a 
+                [`Timer`](https://docs.godotengine.org/en/stable/classes/class_timer.html#class-timer) 
+                named **MessageTimer** to control how long messages are displayed.  
                 
                 Your HUD scene should now look like this:
                 
