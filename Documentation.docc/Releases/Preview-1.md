@@ -6,7 +6,40 @@ Release notes for our preview release of Xogot to TestFlight.
 
 ## Build
 
-## Build 3070
+### Improvements
+
+* BottomBar resizing should be faster, as it now tracks the finger, rather than
+  trying to animate the resizing as you drag (#1824)
+
+* When switching code editor tabs, we automatically focus the new tab (Public
+  bug #62)
+
+### Fixes
+
+* Controls in user extensions will show up on the inspector, this functionality
+  regressed recently as part of some performance improvement work on the
+  inspector.   This also fixes a long standing issue where every-other control
+  embedded would show up, not all of them (public bug #73, #1815)
+
+* Remote debugging fixes for cancelling sync when debugging, : Fixes #1797, Fixes #1801, Fixes #1800.
+
+* BottomBar panels will automatically open when they are triggered by Godot,
+  this might be slightly too much on iPhone, we are looking for your feedback
+  (#1819).
+
+* Xogot will remember the size of your bottom bar tabs (#1825).
+
+* Remote Debugging: Cleans up the state after a failed connection (#1823).
+
+* Inspector will now activate bottom bar items as the components change on the
+  inspector - this used to work, and it regressed during our performance
+  optimization work (Fixes #1820).
+
+### Internals
+
+* Removed some native Godot code we do not use (#1818).
+
+## Build 3087
 
 ### Improvements
 
@@ -31,12 +64,14 @@ Release notes for our preview release of Xogot to TestFlight.
 
 * The accessory bar now also includes the equal sign (#1711) - we had previously
   implemented this, but had not merged the change - apologies.
-  
+
 ### Fixes
 
 * Remote Debugging: fixes an issue when loading resources
 
 * Fixed a cropping issue on the multi-mesh instance configuration popup.
+
+## Build 3070
 
 ### Improvements
 
