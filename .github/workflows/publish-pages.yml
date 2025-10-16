@@ -49,10 +49,10 @@ jobs:
           done
 
           mv Documentation.docc/Resources/favicon.* docs;
-          cp Documentation.docc/Resources/*.css /tmp/docs/css;
-          cp Documentation.docc/Resources/*.js /tmp/docs/js;
-          cp Documentation.docc/Resources/xogot-logo-white.png /tmp/docs/img;
-          cp Documentation.docc/Resources/xogot-logo-black.png /tmp/docs/img;
+          cp Documentation.docc/Resources/*.css docs/css;
+          cp Documentation.docc/Resources/*.js docs/js;
+          cp Documentation.docc/Resources/xogot-logo-white.png docs/img;
+          cp Documentation.docc/Resources/xogot-logo-black.png docs/img;
           echo "<script>window.location.href += \"/documentation/xogot\"</script>" > docs/index.html;
           (cd docs; find . -name '*html' | sed -e 's,^.,https://docs.xogot.com,') > docs/sitemap.txt
       - name: Upload artifact
