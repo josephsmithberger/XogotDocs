@@ -4,6 +4,16 @@
 Godot supports in-game audio recording for Windows, macOS, Linux, Android and
 iOS.
 
+On iOS and iPadOS, it is important for your application to set the proper flags
+for the audio session.  Visit the Project Settings in Xogot, and then tap "Show
+Advanced", and then select Audio/General on the settings and look for "Session
+Category".   Make sure that you set the category to "Record" or "Play and
+Record", as this will inform the operating system of your intended use of the
+audio system.
+
+It is possible that you get an error like `AudioOutputUnitStart failed, code
+2003329396`, this indicates that your Audio Session Category is not correctly set.
+
 A simple demo is included in the official demo projects and will be used as
 support for this tutorial:
 https://github.com/godotengine/godot-demo-projects/tree/master/audio/mic_record.
