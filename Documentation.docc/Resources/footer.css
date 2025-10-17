@@ -1,8 +1,8 @@
 :host {
-  --color-footer-background-light: #333333;
+  --color-footer-background: #fafafa;
   --color-footer-text-light: #cccccc;
 
-  --color-footer-background: var(--color-footer-background-light);
+  --color-footer-background-dark: #333333;
   --color-footer-text: var(--color-footer-text-light);
 
   font-family: -apple-system, BlinkMacSystemFont, "SF Hello", "Helvetica Neue",
@@ -10,6 +10,10 @@
   font-size: 18px;
   font-weight: 300;
   line-height: 1.5;
+}
+
+:host([data-color-scheme="dark"]) {
+  --color-footer-background: var(--color-footer-background-dark);
 }
 
 p {
@@ -74,7 +78,6 @@ footer[role="contentinfo"] p span {
 
 footer[role="contentinfo"] p {
   font-size: 0.625em;
-  margin-bottom: 1em;
 }
 
 footer[role="contentinfo"] p.privacy a {
