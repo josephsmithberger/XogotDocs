@@ -4,6 +4,67 @@ Release notes for public releases of Xogot to the App Store.
 
 # Releases 
 
+## 1.4.4 ()
+
+### Improvements
+
+* Numeric input now will use "," as a decimal separator if you have chosen this,
+  and we updated the numeric input to also display arabic numerals if your
+  language is set to Arabic.
+
+* When editing Path3D objects, a new option was added to the Path toolbar that
+  allows you to control the handles of a node - when you have a keyboard, the
+  regular node selection with shift would work, but this allows folks with only
+  touch input to use the feature effectively
+
+* New command (Command-Shift-J shortcut) that will highlight the current item
+  being edited (the text file or scene) in the FilePad to quickly locate its
+  environment.
+
+* We no longer display the project name on the toolbar if you are editing a
+  scene, we only show the scene name, as this was taking too much space and
+  squeezing important icons.
+
+* The command palette is now also available from the menus for iPads running iOS
+  18 without a keyboard.
+
+* The help elements in the Command Palette are now tappable, and they inject the
+  text to trigger the action.
+
+* Animation Editor now has support for "Add Easing Keys".
+
+* Animation Editor now has support for selecting multiple keys.
+
+* Add support for exporting a scene to a mesh library.
+
+* iPhone: Shuffled the tabs in the phone to place more important items on the
+  display
+
+* iPhone: when editing a single numeric value, if you tap the "return" key, this
+  dismisses the sheet.
+
+* When importing files with the system File Picker, if you pick files across
+  directories, the hierarchy will be preserved, which will make it easy to
+  import 3D models that come often with a "Textures" directory and colormaps
+  along with models.
+
+* Tuned the BottomBar/Output View controls, so that the trash can is easier to
+  tap, but also aligns the text.
+
+* Clipboard operations will now be supported in embedded Godot controls
+
+* Improved our AnimationPlayer's Bezier editor - since this needs more space, we
+  zoom in when selected, so the users can more easily modify the values, and we
+  will now auto-adjust the values on the view.
+
+* The accessory bar now also includes the equal sign (#1711) - we had previously
+  implemented this, but had not merged the change - apologies.
+
+* BottomBar resizing should be faster, as it now tracks the finger, rather than
+  trying to animate the resizing as you drag (#1824)
+
+* Over 35 reported bugs and usability problems have been addressed.
+
 ## 1.4.2 (2994)
 
 * New: Command Palette
