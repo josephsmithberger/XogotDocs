@@ -4,6 +4,35 @@ Release notes for our preview release of Xogot to TestFlight.
 
 # Releases 
 
+## Build
+
+### Improvements
+
+* Bring BBCode rendering to the output view (implements feature #574)
+
+* Add support for showing remote objects on the inspector (#1224).
+
+* We no longer zoom into non-Bezier tracks on the animation player editor.
+
+* SpriteFrameEditor: add cut/copy/paste support for sprite frames (#1843).
+
+### Fixes
+
+* The user had to create a new animation twice, before the animation would be
+  created.
+
+* Bezier animation zoom out button: it was hard to tap, it is now easier to tap.
+
+* Bring back Command-O as the global open shortcut on all iOS versions (#1838).
+
+* iPhone: Fixes an annoying popup on the phone (#1780).
+
+* Remote Debugging: it will no longer require a refresh to start displaying the
+  game.
+
+* Remote Debugging: play button will now start on the remote device if active
+  (#1822).
+
 ## Build 3125
 
 ### Changes
