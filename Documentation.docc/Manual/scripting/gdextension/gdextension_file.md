@@ -1,3 +1,4 @@
+<!-- Remove this line to publish to docs.xogot.com -->
 # The .gdextension file
 
 ## Introduction

@@ -97,8 +97,6 @@
 ./scripting/cross_language_scripting.md
 ./scripting/evaluating_expressions.md
 ./scripting/filesystem.md
-./scripting/gdextension/gdextension_file.md
-./scripting/gdextension/what_is_gdextension.md
 ./scripting/gdscript/gdscript_advanced.md
 ./scripting/gdscript/gdscript_exports.md
 ./scripting/gdscript/gdscript_format_string.md
