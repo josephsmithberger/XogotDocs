@@ -4,7 +4,39 @@ Release notes for our preview release of Xogot to TestFlight.
 
 # Releases 
 
-## Build
+## Build 
+
+### Improvements
+
+* Remote Debugging: reduce the timeout that we have to wait for a connection
+
+* The command palette is no longer limited on the iPhone, as we can use the
+  entire sheet size (#1746).
+
+* Speed up running loading and running projects that happen to be hosted on a
+  remote server.   We did this by disabling a well-intentioned, but poorly
+  placed file system case detection piece of code.   I have filed     https://github.com/godotengine/godot/issues/112020
+
+* iPhone: new option to run a game in a dedicated window in the game tab
+  (#1834).
+  
+* When loading, we now pulse the icon for the folder, rather than have a
+  separate progress view indicator that I could not align.
+
+### Fixes
+
+* Fix a layout issue that happens sometimes on the project launcher.
+
+* Attempt to workaround a Swift bug on iOS 26 that would sometimes crash when
+  trying to detect the system.   This was originally limited to the iOS 26 beta
+  1 users, but we have found at least one crash that happened on 26.0.1.
+
+* Fixes the ScenePad not showing up to date information for new items (#1865).
+
+* We no longer poll deleted track objects (#1363), which reduces the warnings on
+  the console.   It was harmless, but wrong.
+
+## Build 3164
 
 ### Improvements
 
@@ -26,9 +58,6 @@ Release notes for our preview release of Xogot to TestFlight.
 
 * Remote debug: Enable "Search Peer Devices" will now activate as soon as you
   login (#1849)
-
-* Games that set the 'Keep Screen' on setting will now have that setting honored
-  (#1840).
 
 ## Build 3148
 
