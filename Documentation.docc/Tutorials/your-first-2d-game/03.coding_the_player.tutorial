@@ -10,9 +10,9 @@
         @ContentAndMedia {
             First, we need to check for input - is the player pressing a key or button?
             
-            Input actions are defined in the Project Settings under "Input Map". Here, 
+            > Note: Input actions are defined in the Project Settings under "Input Map". Here, 
             you can define custom events and assign different keys, mouse events, or 
-            other inputs to them. For this game, we will map a thumbstick to the four 
+            other inputs to them. For this game, we will map a thumbstick to the four cardinal
             directions.
             
         }
@@ -29,8 +29,8 @@
                 
                 @Image(source: settings_input_map.png)
             }
+            For this game, we have 4 direction inputs to check.
             @Step {
-                For this game, we have 4 direction inputs to check. 
                 
                 Tap the **+** button in the upper-left corner of the **Input Map**
                 dialog to create a new input action.
@@ -40,12 +40,13 @@
             @Step {
                 In the *Create New Input Action* dialog, type "move_right" and then tap **Add**.
                 
-                Repeat this to add `move_left`, `move_up`, and `move_down` actions.
+                > Important: Repeat this step three more times, to add **`move_left`**, **`move_up`**, and **`move_down`** actions.
                 
                 @Image(source: create_input_map.png)
             }
+            We need to assign input events to these new actions. 
             @Step {
-                We need to assign input events to these new actions.  Tap the `move_right` action (1)
+                Tap the `move_right` action (1)
                 on the left side of the dialog to select it.
                 
                 Then, tap the **+** icon (2) in the upper-right corner of the **Input Map** dialog
@@ -53,10 +54,9 @@
                 
                 @Image(source: add_input_event.png)
             }
+            >Note: We'll use the right thumbstick we enabled when we set up the project to control 
+            the `Player` direction.
             @Step {
-                We'll use the right thumbstick we enabled when we set up the project to control 
-                the `Player` direction.
-                
                 To configure thumbstick directions, tap **Keyboard Keys** and select **Joypad Axes** 
                 from the dropdown.
                 
@@ -70,13 +70,13 @@
                 
                 @Image(source: right_stick_right.png)
             }
+            We now have `move_right` configured as an action for the right thumbstick. 
             @Step {
-                We now have `move_right` configured as an action for the right thumbstick. Repeat these steps 
-                to map **Right Stick Left** to `move_left`, **Right Stick Up** to `move_up`, and 
+                Repeat these steps to map **Right Stick Left** to `move_left`, **Right Stick Up** to `move_up`, and 
                 **Right Stick Down** to `move_down`.   When you are done, you can tap **Close** 
                 to dismiss the **Input Map** dialog.
                 
-                > Note: We only mapped one action to each input action, but you can map joystick buttons
+                > Tip: We only mapped one action to each input action, but you can map joystick buttons
                 > or directions, multiple keys, or mouse buttons to the same input action.
                 
                 @Image(source: input_map_complete.png)
@@ -91,7 +91,9 @@
         @Steps {
             @Step {
                 Select the `Player` and tap the Script toolbar button at the top of the 
-                Scene Tree.  It's the one that looks like a scroll.
+                Scene Tree.  
+                
+                >Tip: It's the one that looks like a scroll.
                     
                 @Image(source: add_script.png)
             }
@@ -106,19 +108,24 @@
                 Start by declaring the member variables this object will need. Insert these 
                 two variable definitions near the top of the script after `extends Area2D`.
                 
-                > Note:  Everything after the `#` on each line is a comment.  These can be 
+                > Tip:  Everything after the **`#`** on each line is a comment.  These can be 
                 > omitted, or you can include them as a note to help you, or anyone else who might
                 > look at the code in the future, understand why the code is there. 
                                 
-                @Code(name: "player.gd", file: player-01.gd, previousFile: player-00.gd)
+                @Code(name: "player.gd", file: player-01.gd, previousFile: player-00.gd) {
+                    @Image(source: preview-player-01)
+                    }
             }
+
             @Step {
                 Using the `export` keyword on the first variable `speed` allows us to set
                 its value in the Inspector. This can be handy for values that you want to be
                 able to adjust just like a node's built-in properties. 
                 
-                Tap on the `Player` node and you'll see the property now appears in the 
-                Inspector in a new section with the name of the script. Remember, if you 
+                > Tap on the `Player` node and you'll see the property now appears in the 
+                Inspector in a new section with the name of the script. 
+                
+                > Important: Remember, if you 
                 change the value here, it will override the value written in the script.
                             
                 @Image(source: inspector_speed.png)
@@ -126,31 +133,37 @@
             @Step {
                 Your `player.gd` script should already contain
                 a `_ready()` and a `_process()` function.
-                If you didn't select the default template when you created the script,
+                
+                > Warning: If you didn't select the default template when you created the script,
                 be sure to define these functions while following the lesson.
                 
-                The `_ready()` function is called when a node enters the scene tree, which is
+                > Tip: The `_ready()` function is called when a node enters the scene tree, which is
                 a good time to find the size of the game window.
                 
                 @Code(name: "player.gd", file: player-02.gd)
             }
+            Now we can use the `_process()` function to define what the player will do.
+            `_process()` is called every frame, so we'll use it to update elements of our
+            game, which we expect will change often. 
+            
+            For the player, we need to (1) Check for input,
+            (2) Move in the given direction, and (3) Play the appropriate animation.
             @Step {
-                Now we can use the `_process()` function to define what the player will do.
-                `_process()` is called every frame, so we'll use it to update elements of our
-                game, which we expect will change often. For the player, we need to (1) Check for input,
-                (2) Move in the given direction, and (3) Play the appropriate animation.
+                We start by setting the `velocity` to `(0, 0)` 
                 
-                We start by setting the `velocity` to `(0, 0)` - by default, the player should not be moving. 
+                By default, the player should not be moving. 
                 
                 @Code(name: "player.gd", file: player-03.gd)
             }
             @Step {
                 Then we check each input and add/subtract from the
-                `velocity` to obtain a total direction. You can detect whether a key is pressed 
+                `velocity` to obtain a total direction. 
+                
+                You can detect whether a key is pressed 
                 using `Input.is_action_pressed()`, which returns `true` if it's pressed or `false` 
                 if it isn't.
                 
-                For example, if you hold `right` and `down` at the same time, the resulting 
+                > Tip: For example, if you hold `right` and `down` at the same time, the resulting 
                 `velocity` vector will be `(1, 1)`.
                 
                 @Code(name: "player.gd", file: player-04.gd)

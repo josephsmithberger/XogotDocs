@@ -26,10 +26,10 @@
                 @Image(source: new-project-dialog.png)
                 
             }
+            This game is designed for portrait mode, so we need to adjust the size of the
+            game window. 
+            
             @Step {                
-                This game is designed for portrait mode, so we need to adjust the size of the
-                game window. 
-                
                 Tap on the **...** toolbar button (1) in the upper-right corner
                 of Xogot and tap **Settings** (2) to open the *Project Settings* dialog.
                 
@@ -37,30 +37,30 @@
             }
             @Step {            
                 In the left column, tap *Window* under the **Display** section (1).
-                
+                @Image(source: project-settings-size.png)  
+            }
+            @Step {
                 In the panel on the right, set **Viewport Width** to `480` and 
                 **Viewport Height** to `720` (2).
-                
-                @Image(source: project-settings-size.png)  
+                @Image(source: project-settings-size.png) 
             }
             @Step {            
                 Scroll to **Stretch** options and set **Mode** to `canvas_items` and **Aspect** to `keep`.
-                This ensures that the game scales consistently on different sized screens.
+                Then, under **Handheld** options, set **Orientation** to `Portrait`.
                 
-                Under **Handheld** options, set **Orientation** to `Portrait`.
+                This ensures that the game scales consistently on different sized screens.
                 
                 @Image(source: project-settings-stretch.png)
             }
+            We will configure this game to support controlling the player with a wireless 
+            gamepad; however, we will also enable Xogot's support for displaying an [onscreen 
+            virtual controller](https://docs.xogot.com/documentation/xogot/onscreen-controls) 
+            when an external controller is not connected.
             @Step {            
-                We will configure this game to support controlling the player with a wireless 
-                gamepad; however, we will also enable Xogot's support for displaying an [onscreen 
-                virtual controller](https://docs.xogot.com/documentation/xogot/onscreen-controls) 
-                when an external controller is not connected.
-                
                 In the left column, scroll to **Input Devices** and tap *Virtual Controller*. 
-                Toggle **Enable Controller** on.  We will only use the Right Thumbstick, so
-                we can go ahead and toggle off all of the buttons, as well as the Left 
-                Thumbstick.
+                Toggle **Enable Controller** on.  Turn off all except the **Right Thumbstick**. 
+                
+                For this project we will only use the right virtual thumstick to control the player.
                 
                 @Image(source: project-settings-controller.png)
             }
@@ -77,17 +77,16 @@
                 @Image(source: files-app-icon.png)
             }
         @Steps {
+            We'll use the iPad's split view to import assets downloaded to the iPad.  
             @Step {
-                We'll use the iPad's split view to import assets downloaded to the iPad.  
-                
                 Split the view between Xogot and Files App by tapping the **"..."** (1) at the top of the 
                 screen and selecting **"Split View"** (2).
                 
                 @Image(source: split-view.png)
             }
+            Xogot will move to one side of the screen in order to reveal your iPad's homescreen. 
+            
             @Step {
-                Xogot will move to one side of the screen in order to reveal your iPad's homescreen. 
-                
                 Locate and tap the Files icon to open Files App on the other half of your screen.
                 
                 @Image(source: split-view-files.png)
@@ -98,8 +97,11 @@
                 @Image(source: split-view-download.png)
             }
             @Step {
-                Tap **`dodge_the_creeps_2d_assets.zip`** (1) to uncompress the zip file.
+                Tap **`dodge_the_creeps_2d_assets.zip`** (1) to uncompress the zip file
                 
+                @Image(source: split-view-dodge.png)
+            }
+            @Step {
                 Navigate into the **`dodge_the_creeps_2d_assets`** folder (2) by tapping it.
                 
                 @Image(source: split-view-dodge.png)
@@ -108,18 +110,19 @@
                 Drag the **`art`** folder (1) to **`res://`** in Xogot's File pad to import the art folder 
                 into the root of your project. 
                 
-                Next, drag the **`fonts`** folder to **`res://`** to import the fonts 
-                
                 @Image(source: split-view-drag.png)                
+            }
+            @Step {
+                Next, drag the **`fonts`** folder to **`res://`** to import the fonts
+                @Image(source: split-view-drag.png) 
             }
             @Step {                          
                 The File pad should now have `art` and `fonts` folders immediately under `res://`
                 
-                You can return Xogot to full screen by tapping the **...** at the top of Xogot
-                and selecting **"Full Screen"**.
-                
                 @Image(source: imported-folders.png)  
             }
+            You can return Xogot to full screen by tapping the **...** at the top of Xogot
+            and selecting **"Full Screen"**.
         }
     }
 }

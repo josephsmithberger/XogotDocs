@@ -15,19 +15,19 @@
         }
         
         @Steps {
+            To begin, we need to choose a **root node** for the player object.
+            
             @Step {
-                To begin, we need to choose a root node for the player object. 
-                
                 Tap **Create Other Node**.
                 
                 @Image(source: add_node.png)
             }
+            > As a general rule, a scene's root node should reflect the object's 
+            desired functionality - what the object *is*.  **With 
+            [`Area2D`](https://docs.godotengine.org/en/stable/classes/class_area2d.html#class-area2d) 
+            node, we can detect objects that overlap or run into the player.**
+            
             @Step {
-                As a general rule, a scene's root node should reflect the object's 
-                desired functionality - what the object *is*.  With 
-                [`Area2D`](https://docs.godotengine.org/en/stable/classes/class_area2d.html#class-area2d) 
-                node, we can detect objects that overlap or run into the player.
-                
                 In the Create New Node dialog, search for `Area2D` and tap **Add**
                 
                 @Image(source: add_area2d.png)
@@ -36,18 +36,22 @@
                 When you add the `Area2D` node, Godot will display a **warning icon** 
                 (1) next to it in the Scene Tree.
                 
-                This warning tells us that the `Area2D` node requires a shape to detect collisions or overlaps.
-                We can **ignore the warning temporarily** because we will first set up the player's visuals
-                (using an animated sprite). Once the visuals are ready, we will add a collision shape as a child
-                node. This will allow us to accurately size and position the shape based on the sprite’s appearance.
+                > Note: This warning tells us that the `Area2D` node requires a shape to detect collisions or overlaps.
+                
+                > Important: We can **ignore the warning temporarily** because we will first set up the player's visuals
+                (using an animated sprite).
                 
                 @Image(source: no_shape_warning.png)
             }
+            
+            Once the visuals are ready, we will add a collision shape as a child
+            node. This will allow us to accurately size and position the shape based on the sprite’s appearance.
+            
             @Step {
                 Let's change the node's name to `Player`.
                 
-                When you create a new node, the node's name will be editable so that you can give it a
-                new name immediately it; however, you can always rename it again by long-pressing the 
+                > Important: When you create a new node, the node's name will be editable so that you can give it a
+                new name immediately it; however, you can always rename it again by *long-pressing* the 
                 node name in the Scene Tree and selecting **Rename**. 
                 
                 @Image(source: rename_player.png)
@@ -57,9 +61,14 @@
                 it more functionality.  Before we add any children to the `Player` node, let's group them
                 to make sure we don't accidentally move or resize them by tapping on them. 
                 
+                @Image(source: lock_children.png)
+            }
+            @Step {
                 With the `Player` node selected (1), tap the Group Nodes icon to the right of the lock on 
                 the Viewport's toolbar (2). Whenever one of these toolbar buttons is tapped, a momentary tip 
-                will apper - in this case, "Groups selected nodes". Grouping nodes causes the parent to be 
+                will apper - in this case, "Groups selected nodes". 
+                
+                > Note: Grouping nodes causes the parent to be 
                 selected when any child node is tapped in the 2D or 3D view.
                 
                 @Image(source: lock_children.png)
@@ -68,13 +77,16 @@
                Let's save the scene.  Tap the dropdown arrow next to "[unsaved] ..." at the
                top of the app (1) and select **Save Scene** (2).  Alternatively, you can press 
                `Cmd + S` on an external keyboard.
-                
-               > Note: For this project, we will be following the <doc:gdscript_styleguide>.
-               > Classes (nodes) use PascalCase, variables and functions use snake_case, and constants 
-               > use ALL_CAPS.  You can tap **Save** to accept the default proposed file name: `player.tscn`.
                
                @Image(source: save_scene.png)
                
+            }
+            
+            > Important: For this project, we will be following the <doc:gdscript_styleguide>.
+            Classes (nodes) use PascalCase, variables and functions use snake_case, and constants use ALL_CAPS.  
+            
+            @Step {
+                You can tap **Save** to accept the default proposed file name: `player.tscn`.
             }
         }
     }
@@ -88,25 +100,23 @@
                 
                 @Image(source: new_node.png)
             }
+            An `AnimatedSprite2D` will handle the appearance and animations for our player.
             @Step {  
-                An `AnimatedSprite2D` will handle the appearance and animations for our player.
-                
                 Search for `AnimatedSprite2D` node and tap **Add**.
                 
                 @Image(source: animated_sprite_2d.png)
             }
+            >Important:  Notice that there is a **warning icon** next to the new node. An `AnimatedSprite2D` 
+            requires a `SpriteFrames` resource, which is a list of the animations it can
+            display. To create one, we'll need to open the `Inspector`. 
             @Step {  
-                Notice that there is a **warning icon** next to the new node. An `AnimatedSprite2D` 
-                requires a `SpriteFrames` resource, which is a list of the animations it can
-                display. To create one, we'll need to open the `Inspector`.  
-                
                 Tap the "scope" icon (1) in the upper-right corner of the app to show the Inspector.
                 
+                > The Inspector shows various properties and settings for the currently selected
+                node, with related settings grouped into sections. 
                 @Image(source: inspector.png)
             }
-            @Step {   
-                The Inspector shows various properties and settings for the currently selected
-                node, with related settings grouped into sections.  
+            @Step { 
                 
                 Tap **Animation** in the inspector to navigate into the new `AnimatedSprite2D` node's
                 Animation settings.
@@ -114,23 +124,24 @@
                 @Image(source: inspector_animation.png)
             }
             @Step {   
-                Find the **Sprite Frames** property under **Animation** and tap **Pick Resource**.
-                
-                Select **New SpriteFrames** from the popup menu.
+                Find the **Sprite Frames** property under **Animation** and tap **Pick Resource**. Select **New SpriteFrames** from the popup menu.
                 
                 @Image(source: new_spriteframes.png)
             }
+            > The **warning icon** has been removed, and there is a new **SpriteFrames** tab button
+            visible at the bottom of the screen.
             @Step {  
-                The **warning icon** has been removed, and there is a new **SpriteFrames** tab button
-                visible at the bottom of the screen.  We're done with the *Inspector* for now, so let's 
+                
+                We're done with the *Inspector* for now, so let's 
                 hide it by tapping the *scope* toolbar button.
                 
                 Expand the *SpriteFrames* panel by tapping **SpriteFrames** at the bottom of the app.
                 
                 @Image(source: spriteframes_button.png)
             }
+            
+            The new SpriteFrames starts out with an empty animation named "default".
             @Step {  
-                The new SpriteFrames starts out with an empty animation named "default".
                 
                 Tap **Animation** (1) in the SpriteFrames toolbar, then tap **`default`** (2) and 
                 select **Rename Animation** (3) to rename the animation to "`walk`". 
@@ -159,16 +170,18 @@
                 images (named `playerGrey_up1.png` and `playerGrey_up2.png`) into **SpriteFrames** 
                 panel for the 'up' animation.
                 
-                Your **SpriteFrames** should now look like this
+                > Important: Your **SpriteFrames** should now look like this:
                 
                 @Image(source: spriteframes_complete.png)
             }
+            The player images are a bit too large for the game window, so we need to scale
+            them down. 
             @Step {
-                The player images are a bit too large for the game window, so we need to scale
-                them down. 
                 
                 Tap on the `AnimatedSprite2D` node and set the **Scale** **X** and **Y** properties 
-                to `(0.5, 0.5)`. You can find `Scale` by navigating into the **Transform** section 
+                to `(0.5, 0.5)`. 
+                
+                > Tip: You can find `Scale` by navigating into the **Transform** section 
                 in the Inspector under the `Node2D` heading.
                 
                 @Image(source: player_scale.png)
@@ -186,16 +199,14 @@
                 to add a [`CollisionShape2D`](https://docs.godotengine.org/en/stable/classes/class_collisionshape2d.html#class-collisionshape2d)
                 as a child of `Player`. 
                 
-                This will determine the player's "hitbox", or the bounds of its
+                > Note: This will determine the player's "hitbox", or the bounds of its
                 collision area. 
                 
                 @Image(source: collision_shape_2d.png)
             }
+            For this character, a `CapsuleShape2D` node gives the best fit.  
             @Step {
-                For this character, a `CapsuleShape2D` node gives the best fit.  Open the 
-                Inspector and ensure that `CollisionShape2D` is selected in the Scene Tree.
-                
-                Next to **Shape** in the Inspector, tap **Pick Resource** -> **New** -> **New
+                Open the Inspector and ensure that `CollisionShape2D` is selected in the Scene Tree. Then, next to **Shape** in the Inspector, tap **Pick Resource** -> **New** -> **New
                 CapsuleShape2D**.                 
                 
                 @Image(source: player_new_capsule.png)
@@ -210,7 +221,7 @@
                 Once this is done, the warning on the `Area2D` node will disappear, as it now has
                 a shape assigned and can interact with other objects.
                 
-                When you're finished, your `Player` scene should look like this.
+                > Important: When you're finished, your `Player` scene should look like this:
                 
                 @Image(source: player_scene_complete.png)
             }
