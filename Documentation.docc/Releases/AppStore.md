@@ -4,7 +4,20 @@ Release notes for public releases of Xogot to the App Store.
 
 # Releases 
 
-## 1.4.6 ()
+## 1.4.8 (3269)
+
+* Faster loading of projects that do not come directly from the iPad or iPhone
+  storage (those that you pick from the Files app).
+
+* Animation Editor no longer slows down when you have too many tracks in your
+  animation.
+
+* TileMap editor an SpriteFrames editor will now zoom to crisp pixels instead of
+  interpolating values. 
+
+* And over a dozen reported bugs have been fixed.
+
+## 1.4.6 (3165)
 
 * New: bringing remote debugging to Xogot, you can now continue developing in
   your iPad or iPhone and deploy the game on another iPhone or iPad.   This
