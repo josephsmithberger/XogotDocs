@@ -4,7 +4,47 @@ Release notes for our preview release of Xogot to TestFlight.
 
 # Releases 
 
-## Build 
+## Build 3294
+
+### Improvements
+
+* Support for External Displays: while you can move windows manually into the
+  external display with Stage Manager, we now support explict support for
+  running your game on an external display, without having to manually manage
+  the windows yourself.   This pairs great with an external controller.
+
+  Addresses #1173, #1285, #1286 (Discord/Testflight feature requests).
+
+* Remote Scene View: you can now toggle on/off individual nodes and these will
+  show hide the nodes in the running game (#1868)
+
+* 2-taps on the surface will trigger an undo operation, and 3-taps on the
+  surface will trigger a redo operation (#1827, public request #44).
+
+* When running, Godot by default will open the "Output" panel, which works great
+  on iPad, but on iPhone it covers too much of the screen.   We exposed the
+  underlying setting now in the Xogot settings, so you can configure it to not
+  open the output pad at startup.
+
+* AnimationEditor now supports negative key values (#1074).
+
+### Fixes
+
+* Removed some animations from showing up the bottom panels as they were not
+  perfectly in sync (the contents, the undo/redo buttons and the bar).   We will
+  bring it back once we harmonize all three.
+
+* Small fix for properties that were defined with spaces in Godot and could
+  trigger a hang in Xogot.
+
+* Prevents a crash when closing a project in some rare conditions (the fix for
+  this long-standing issue had introduced a regression).  Fixed.
+
+* The AnimationPlayerEditor had some very large icons as part of making them
+  more tappable, we adjusted the sizes to be both tappable and good looking
+  (#1859). 
+
+## Build 3257
 
 ### Improvements
 
