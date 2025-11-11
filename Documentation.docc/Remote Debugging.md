@@ -1,9 +1,15 @@
 # Remote Debugging
 
-Remote Debugging in Xogot lets you develop and debug your project on one device
+Remote Debugging lets you develop and debug your project on one device
+while running it on another. 
+
+Remote Debugging lets you develop and debug your project on one device
 while running it on another. For example, you can edit and inspect your project
 on iPad while testing how it feels on iPhone — or connect any two devices in
-whichever configuration works best for you.
+whichever configuration works best for you.  
+
+If you’re using Godot on your desktop and want to debug your project on an iPad 
+or iPhone running Xogot, see <doc:Xogot-Connecct>.
 
 Remote Debugging uses Apple’s Multipeer Connectivity Framework to communicate
 between devices. The devices do not need to be on the same Wi-Fi network, but

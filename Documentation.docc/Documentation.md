@@ -22,6 +22,7 @@ To get started building games with Xogot, check out our <doc:Getting-Started> gu
 - <doc:Publishing-to-the-Web>
 - <doc:Remote-Debugging>
 - <doc:Working-with-Source-Control>
+- <doc:Xogot-Connecct>
 
 ### Tutorials
 - <doc:Xogot-Tutorials>
