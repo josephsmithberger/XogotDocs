@@ -9,7 +9,7 @@ on iPad while testing how it feels on iPhone — or connect any two devices in
 whichever configuration works best for you.  
 
 If you’re using Godot on your desktop and want to debug your project on an iPad 
-or iPhone running Xogot, see <doc:Xogot-Connecct>.
+or iPhone running Xogot, see <doc:Xogot-Connect>.
 
 Remote Debugging uses Apple’s Multipeer Connectivity Framework to communicate
 between devices. The devices do not need to be on the same Wi-Fi network, but
