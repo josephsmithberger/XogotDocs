@@ -1,7 +1,11 @@
 extends Node
 
+# Create and export the mob_scene to add later using the scope
 @export var mob_scene: PackedScene
+
+# Create a score variable for score tracking
 var score
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,5 +17,6 @@ func _process(delta: float) -> void:
 	pass
 
 
+# Called when the player dies, performs clean-up actions
 func game_over() -> void:
 	pass # Replace with function body.
