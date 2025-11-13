@@ -24,7 +24,13 @@ func game_over() -> void:
 	$MobTimer.stop()
 
 
+# This will be called when the player presses the start button
 func new_game():
+    # Give the score a default value
 	score = 0
+    
+    # Assign the player character the start position value
 	$Player.start($StartPosition.position)
+
+    # Start the timer we use trigger the game start after a 2.0s delay
 	$StartTimer.start()

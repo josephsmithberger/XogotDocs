@@ -24,12 +24,19 @@ func game_over() -> void:
 	$MobTimer.stop()
 
 
+# This will be called when the player presses the start button
 func new_game():
-	score = 0
-	$Player.start($StartPosition.position)
-	$StartTimer.start()
+    # Give the score a default value
+    score = 0
+    
+    # Assign the player character the start position value
+    $Player.start($StartPosition.position)
+
+    # Start the timer we use trigger the game start after a 2.0s delay
+    $StartTimer.start()
 
 
+# Called by the MobTimer timeout signal
 func _on_mob_timer_timeout() -> void:
 	# Create a new instance of the Mob scene.
 	var mob = mob_scene.instantiate()
@@ -56,10 +63,16 @@ func _on_mob_timer_timeout() -> void:
 	add_child(mob)
 
 
+# Called by the ScoreTimer timeout signal
 func _on_score_timer_timeout() -> void:
-	score += 1
+    # Increment the score by 1
+    score += 1
 
 
+# Called by the StartTimer timeout signal
 func _on_start_timer_timeout() -> void:
-	$MobTimer.start()
-	$ScoreTimer.start()
+    # Start the MobTimer
+    $MobTimer.start()
+
+    # Start the ScoreTimer
+    $ScoreTimer.start()

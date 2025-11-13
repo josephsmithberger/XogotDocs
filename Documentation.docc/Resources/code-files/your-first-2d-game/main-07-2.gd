@@ -7,6 +7,16 @@ extends Node
 var score
 
 
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+    pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
 # Called when the player dies, performs clean-up actions
 func game_over() -> void:
     # Stop the timers
@@ -28,30 +38,30 @@ func new_game():
 
 # Called by the MobTimer timeout signal
 func _on_mob_timer_timeout() -> void:
-    # Create a new instance of the Mob scene.
-    var mob = mob_scene.instantiate()
+	# Create a new instance of the Mob scene.
+	var mob = mob_scene.instantiate()
 
-    # Choose a random location on Path2D.
-    var mob_spawn_location = $MobPath/MobSpawnLocation
-    mob_spawn_location.progress_ratio = randf()
+	# Choose a random location on Path2D.
+	var mob_spawn_location = $MobPath/MobSpawnLocation
+	mob_spawn_location.progress_ratio = randf()
 
-    # Set the mob's direction perpendicular to the path direction.
-    var direction = mob_spawn_location.rotation + PI / 2
+	# Set the mob's direction perpendicular to the path direction.
+	var direction = mob_spawn_location.rotation + PI / 2
 
-    # Set the mob's position to a random location.
-    mob.position = mob_spawn_location.position
+	# Set the mob's position to a random location.
+	mob.position = mob_spawn_location.position
 
-    # Add some randomness to the direction.
-    direction += randf_range(-PI / 4, PI / 4)
-    mob.rotation = direction
+	# Add some randomness to the direction.
+	direction += randf_range(-PI / 4, PI / 4)
+	mob.rotation = direction
 
-    # Choose the velocity for the mob.
-    var velocity = Vector2(randf_range(150.0, 250.0), 0.0)
-    mob.linear_velocity = velocity.rotated(direction)
-
+	# Choose the velocity for the mob.
+	var velocity = Vector2(randf_range(150.0, 250.0), 0.0)
+	mob.linear_velocity = velocity.rotated(direction)
+    
     # Get the AnimatedSprite from the mob node
     var mob_sprite = mob.get_node("AnimatedSprite")
-
+    
     # Change the vertical flip of the sprite if the mob moves left
     # Note: You can flip horizontally by using `flip_h`
     if cos(direction) < 0:
@@ -59,8 +69,6 @@ func _on_mob_timer_timeout() -> void:
     else:
         mob_sprite.flip_v = false
 
-    # Spawn the mob by adding it to the Main scene.
-    add_child(mob)
 
 # Called by the ScoreTimer timeout signal
 func _on_score_timer_timeout() -> void:
