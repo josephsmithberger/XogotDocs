@@ -2,10 +2,32 @@
 
 Frequently Asked Questions
 
+## Is Xogot Compatible with Godot?
+
+Xogot provides an alternative user interface on top of the Godot and the Godot
+Editor that is suitable for iOS and iPadOS.  At its core, it is still a Godot
+4.4-based system.
+
+We have made many changes to the user interface to work in small screens, and to
+make it more closely aligned with Apple's Human Interface Guidelines, so the
+user interface is not always exactly the same, but we have worked to ensure that
+the capabilities that you need are always present.
+
+For example, we have removed many configuration options on the Editor - as these
+just affect the operation of the editor, and we have done so both to improve the
+UX, and to simplify the learning curve on iOS.   But we did not do this for the
+Project Settings - as these would have an impact on your code or how your game
+works.
+
+There are two important differences to keep in mind as well.  Xogot only
+supports the GDScript language (see below) and Xogot does not support native
+plugins, as these are not allowed on the AppStore (with the exception of
+Terrain3D that we now bundle with Xogot).
+
 ## What scripting languages are supported by Xogot?
 
-Xogot only support's Godot's GDScript language, plugins authored in other languages are not
-available on the iPad.
+Xogot only support's Godot's GDScript language, plugins authored in other
+languages are not available on the iPad.
 
 ## What kind of plugins does Xogot support?
 

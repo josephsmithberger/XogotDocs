@@ -4,6 +4,35 @@ Release notes for our preview release of Xogot to TestFlight.
 
 # Releases 
 
+## Build 3320
+
+### Improvements
+
+* Inspector: Remote debugger now supports fetching contents of a remote object
+  when tapped on (#1571)
+
+* BottomBar animation: it is back in its full glory, and the animation is smooth
+  and consistent, thank you for your patience during this rough period (#1784).
+
+* Autoloads are now part of the free edition.
+
+* New Color palette toolbar item in the code editor, to insert colors in the
+  code (Discord)
+
+### Fixes
+
+*  CodeEditor: tapping indent button in keyboard toolbar doesn't work
+   consistently (#1890, Discord).
+
+* Fixes an order condition that prevented certain file types on the FilePad to
+  default to the previous directory, rather than the highlighted directory
+  (Discord). 
+
+* iPhone: fixes a bug where suggestions were not displayed on the Command
+  Palette (#1892, Discord)
+
+* FilePad: it no longer stays dimmed after dragging to close (#1894, Discord).
+
 ## Build 3294
 
 ### Improvements
