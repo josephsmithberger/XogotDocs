@@ -246,7 +246,7 @@
                 
                 We can also take this opportunity to remove the `_ready()` and `_process(delta)` functions entirely. We won't need them for this script.
                 
-                @Code(name: "main.gd", file: main-09.gd) 
+                @Code(name: "main.gd", file: main-09.gd, previousFile: main-09.gd) 
             }
         }
     }

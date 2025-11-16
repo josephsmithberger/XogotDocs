@@ -106,7 +106,7 @@
             
             |   |  |
             | - | ------- |
-            |   | Set the `text` to "**Dodge the Creeps**". | 
+            |   | Set the `text` to "**Save the Axolotl**". | 
             |   | Set the "Horizontal Alignment" and "Vertical Alignment" to **Center**. |
             |   | Set "Autowrap Mode" to `Word`, otherwise the label will stay on one line. |
             | 1 | Under "Control - Layout" set "Size X"  to **480** to use the entire width of the screen. |

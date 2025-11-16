@@ -20,7 +20,7 @@ func game_over() -> void:
     $Music.stop()
     
     # Play the death sound
-	$DeathSound.play()
+    $DeathSound.play()
 
 
 # This will be called when the player presses the start button

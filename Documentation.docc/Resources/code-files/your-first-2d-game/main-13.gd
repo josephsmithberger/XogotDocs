@@ -35,7 +35,7 @@ func new_game():
     $HUD.show_message("Get Ready")
 
     # Clear any mobs that might still be on screen
-	get_tree().call_group("mobs", "queue_free")
+    get_tree().call_group("mobs", "queue_free")
 
 
 # Called by the MobTimer timeout signal

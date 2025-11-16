@@ -14,7 +14,7 @@
         }     
         @Steps {
             @Step {
-                Tap the Scene dropdown (1) at the top of the app.  It should currently say **Player - Dodge the Creeps**.
+                Tap the Scene dropdown (1) at the top of the app.  It should currently say **Player - Save the Axolotl**.
                 
                 Tap **New Scene** (2). 
                 

@@ -140,6 +140,11 @@
                 > Tip: The `_ready()` function is called when a node enters the scene tree, which is
                 a good time to find the size of the game window.
                 
+                @Code(name: "player.gd", file: player-01.gd)
+            }
+            @Step {
+                Inside the `_ready()` function set the `screen_size` variable to the viewport size via the get_viewport_rect().size function.
+                
                 @Code(name: "player.gd", file: player-02.gd)
             }
             Now we can use the `_process()` function to define what the player will do.
@@ -232,26 +237,20 @@
         }
         @Steps {
             @Step {
-                We have the "walk" animation, which shows the player walking to the right. 
-                This animation should be flipped horizontally using the `flip_h` property for 
-                left movement. We also have the "up" animation, which should be flipped 
-                vertically with `flip_v` for downward movement. 
+                We have the "walk" animation, which shows the player walking to the right or left. 
+                We also have the "up" animation, which we use when the player is moving up or down.
                 
                 Let's place this code at the end of the `_process()` function.
                 
                 @Code(name: "player.gd", file: player-08.gd, previousFile: player-07.gd)
                 
-                @Comment {
-                    > Note: The boolean assignments in the code example are a common shorthand for
-                    > programmers. Since we're doing a comparison test (boolean) and also
-                    > *assigning* a boolean value, we can do both at the same time. Consider
-                    > this code versus the one-line boolean assignment above:
-                    > 
-                    > if velocity.x < 0:
-                    >     $AnimatedSprite2D.flip_h = true
-                    > else:
-                    >     $AnimatedSprite2D.flip_h = false
-                }
+            }
+            At the moment the player only looks up. 
+            @Step {
+                We need to add the following code to make the player look where it's moving using the built-in `look_at()` function and we add `PI/2` (90 degrees) to the rotation to make sure the player aligns correctly.
+                
+                @Code(name: "player.gd", file: player-08-2.gd, previousFile: player-08.gd)
+                
             }
             @Step {
                 Play the scene again and check that the animations are correct in each of the

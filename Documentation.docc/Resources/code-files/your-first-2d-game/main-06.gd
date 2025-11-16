@@ -9,19 +9,19 @@ var score
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+    pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+    pass
 
 
 # Called when the player dies, performs clean-up actions
 func game_over() -> void:
     # Stop the timers
-	$ScoreTimer.stop()
-	$MobTimer.stop()
+    $ScoreTimer.stop()
+    $MobTimer.stop()
 
 
 # This will be called when the player presses the start button
@@ -38,18 +38,18 @@ func new_game():
 
 # Called by the MobTimer timeout signal
 func _on_mob_timer_timeout() -> void:
-	# Create a new instance of the Mob scene.
-	var mob = mob_scene.instantiate()
-	
-	# Choose a random location on Path2D.
-	var mob_spawn_location = $MobPath/MobSpawnLocation
-	mob_spawn_location.progress_ratio = randf()
-	
-	# Set the mob's direction perpendicular to the path direction.
-	var direction = mob_spawn_location.rotation + PI / 2
-	
-	# Set the mob's position to a random location.
-	mob.position = mob_spawn_location.position
+    # Create a new instance of the Mob scene.
+    var mob = mob_scene.instantiate()
+    
+    # Choose a random location on Path2D.
+    var mob_spawn_location = $MobPath/MobSpawnLocation
+    mob_spawn_location.progress_ratio = randf()
+    
+    # Set the mob's direction perpendicular to the path direction.
+    var direction = mob_spawn_location.rotation + PI / 2
+    
+    # Set the mob's position to a random location.
+    mob.position = mob_spawn_location.position
 
 
 # Called by the ScoreTimer timeout signal

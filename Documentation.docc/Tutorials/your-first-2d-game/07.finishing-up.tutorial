@@ -9,7 +9,7 @@
     }
     @Section(title: "Background") {
         @ContentAndMedia {
-            The default gray background is not very appealing, so let's change its color.
+            The default gray background is not very appealing, so let's change it to a fun background image!
             
         }
         @Steps {

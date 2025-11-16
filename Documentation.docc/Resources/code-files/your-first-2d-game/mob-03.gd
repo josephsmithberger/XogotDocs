@@ -1,4 +1,4 @@
-extends Area2D
+extends RigidBody2D
 
 
 # Called when the node enters the scene tree for the first time.
@@ -12,7 +12,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+    pass
 
 # Called when the signal that a mob has exited the screen occurs.
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:

@@ -10,11 +10,11 @@ var score
 # Called when the player dies, performs clean-up actions
 func game_over() -> void:
     # Stop the timers
-	$ScoreTimer.stop()
-	$MobTimer.stop()
+    $ScoreTimer.stop()
+    $MobTimer.stop()
 
     # Show the game over screen
-	$HUD.show_game_over()
+    $HUD.show_game_over()
 
 
 # This will be called when the player presses the start button

@@ -10,8 +10,8 @@ var score
 # Called when the player dies, performs clean-up actions
 func game_over() -> void:
     # Stop the timers
-	$ScoreTimer.stop()
-	$MobTimer.stop()
+    $ScoreTimer.stop()
+    $MobTimer.stop()
 
 
 # This will be called when the player presses the start button
@@ -61,6 +61,7 @@ func _on_mob_timer_timeout() -> void:
 
     # Spawn the mob by adding it to the Main scene.
     add_child(mob)
+
 
 # Called by the ScoreTimer timeout signal
 func _on_score_timer_timeout() -> void:

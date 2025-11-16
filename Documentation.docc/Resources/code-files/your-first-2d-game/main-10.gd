@@ -10,8 +10,8 @@ var score
 # Called when the player dies, performs clean-up actions
 func game_over() -> void:
     # Stop the timers
-	$ScoreTimer.stop()
-	$MobTimer.stop()
+    $ScoreTimer.stop()
+    $MobTimer.stop()
 
 
 # This will be called when the player presses the start button
@@ -26,10 +26,10 @@ func new_game():
     $StartTimer.start()
     
     # Set the score to 0
-	$HUD.update_score(score)
+    $HUD.update_score(score)
     
     # Show a temporary message of "Get Ready"
-	$HUD.show_message("Get Ready")
+    $HUD.show_message("Get Ready")
 
 
 # Called by the MobTimer timeout signal
