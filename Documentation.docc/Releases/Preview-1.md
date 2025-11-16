@@ -4,7 +4,26 @@ Release notes for our preview release of Xogot to TestFlight.
 
 # Releases 
 
-## Build
+## Build 
+
+### Improvements
+
+* iPhone: the sidebar and inspector will no longer cover the entire screen, but
+  leave some space that can be tapped to dismiss, like other apps on iOS do.
+  
+### Fixes
+
+* iPhone: in settings the search bar will no longer cover the editing input
+  (#1906)
+
+* Gesture-based undo fixes: zoom gesture should no longer trigger undo, and the
+  undo gestures on the code editor should no longer be undoing changes on the
+  scene editor.
+
+* Numeric Input: second attempt at fixing the display values from the last
+  release (#1903, Discord)
+
+## Build 3337
 
 ### Improvements
 
