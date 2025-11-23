@@ -8,9 +8,25 @@ Release notes for our preview release of Xogot to TestFlight.
 
 ### Improvements
 
+* iPhone: using a drag gesture from the edge of the screen should either open
+  the inspector or the scenepad/filepad - similar to what other apps on the
+  iPhone do, which should make it easier to access content.
+
+* iPhone: it is now possible to scroll the tabs without triggering a reodering
+  operation (#1907, Discord).
+
+* Script editing node should be visible in the inspector now for Nodes and
+  resources (#1912, Discord)
+
+* Adds more features to the free edition.
+
+## Build 3345
+
+### Improvements
+
 * iPhone: the sidebar and inspector will no longer cover the entire screen, but
   leave some space that can be tapped to dismiss, like other apps on iOS do.
-  
+
 ### Fixes
 
 * iPhone: in settings the search bar will no longer cover the editing input
