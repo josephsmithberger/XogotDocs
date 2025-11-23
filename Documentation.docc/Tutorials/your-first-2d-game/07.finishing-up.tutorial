@@ -13,9 +13,9 @@
             
         }
         @Steps {
-            One way to change the background color is to use a
+            One way to make the background more interesting is to use a
             [`TextureRect`](https://docs.godotengine.org/en/stable/classes/class_texturerect.html) 
-            node.
+            node to add an image texture. Let's use that to make this feel like a real game!
             @Step {
                 Make a new TextureRect and move it to be the first node under `Main` so that it will be drawn behind the other nodes. Rename it "Background".
                 

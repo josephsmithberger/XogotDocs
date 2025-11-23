@@ -74,6 +74,12 @@
                 @Image(source: custom_font_size.png)
             }
             @Step {
+                Also in "Theme Overrides" set the "Font Color" to `White` or Hex # `FFFFFF`. Repeat
+                this in the other nodes as well. 
+                
+                @Image(source: custom_font_color.png)
+            }
+            @Step {
                The image for this step shows the Anchor Presets pane; While you can drag the nodes to place them manually, for more precise placement, we will use "Anchor Presets".
                 
                 > Note: **Anchors:** `Control` nodes have a position and size,
