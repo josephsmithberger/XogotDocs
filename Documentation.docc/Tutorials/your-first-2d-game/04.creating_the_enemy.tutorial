@@ -14,7 +14,7 @@
         }     
         @Steps {
             @Step {
-                Tap the Scene dropdown (1) at the top of the app.  It should currently say **Player - Dodge the Creeps**.
+                Tap the Scene dropdown (1) at the top of the app.  It should currently say **Player - Save the Axolotl**.
                 
                 Tap **New Scene** (2). 
                 
@@ -32,8 +32,9 @@
                 [`RigidBody2D`](https://docs.godotengine.org/en/stable/classes/class_rigidbody2d.html#class-rigidbody2d) 
                 as the root node type.  
                 
-                Long-press `RigidBody2D` (1) and rename (2) it to **Mob**.   
-                Don't forget to *Group Selected Nodes* (3) so that children can't be selected, like you did 
+                Long-press `RigidBody2D` (1) and rename (2) it to **Mob**.
+                
+                > Important: Don't forget to *Group Selected Nodes* (3) so that children can't be selected, like you did 
                 with the Player scene.
                 
                 @Image(source: mob_rename.png)
@@ -41,11 +42,13 @@
             @Step {
                 Add [`AnimatedSprite2D`](https://docs.godotengine.org/en/stable/classes/class_animatedsprite2d.html#class-animatedsprite2d) 
                 and [`CollisionShape2D`](https://docs.godotengine.org/en/stable/classes/class_collisionshape2d.html#class-collisionshape2d) 
-                nodes, and a new node type - 
+                nodes, and a new node type  
                 [`VisibleOnScreenNotifier2D`](https://docs.godotengine.org/en/stable/classes/class_visibleonscreennotifier2d.html#class-visibleonscreennotifier2d)
-                - as children of the **Mob**.  
+                 as children of the **Mob**.  
                 
-                Your scene tree for the new Scene should look like this. You can drag the nodes
+                > Your scene tree for the new Scene should look like this. 
+                
+                > Tip: You can drag the nodes
                 to rearrange them if they are nested or not in the right order.
                 
                 
@@ -73,11 +76,15 @@
             @Step {
                 Create and set up `SpriteFrames` on the 
                 [`AnimatedSprite2D`](https://docs.godotengine.org/en/stable/classes/class_animatedsprite2d.html#class-animatedsprite2d) 
-                like you did for the `Player`. This time, we have 3 animations: "fly", "swim", and 
+                like you did for the `Player`. 
+                > Note: This time, we have 3 animations: "fly", "swim", and 
                 "walk". There are two images for each animation in the art folder.
                 
-                The `Animation Speed` property has to be set for each individual animation. 
+                > Important: The `Animation Speed` property has to be set for each individual animation. 
                 Adjust it to `3` for all 3 animations.
+                
+                > Warning:
+                Check that you don't have a `default` animation in your `SpriteFrames`. This will cause there to be invisible enemies in your scene later. Delete it, if present.
                 
                 @Image(source: mob_animation_speed.png)
             }
@@ -86,20 +93,22 @@
                 input field to preview your animations.  Use two-finger gestures to pan 
                 and zoom the 2D viewport to get a better view of your mob animating.                
                 
-                We'll select one of these animations randomly in code so that the mobs will have some
+                > We'll select one of these animations randomly in code so that the mobs will have some
                 variety.
                 
                 @Image(source: mob_animations.png)
             }
+            Like the `Player` images, these `Mob` images need to be scaled down.
             @Step {
-                Like the `Player` images, these `Mob` images need to be scaled down. Select the 
-                `AnimatedSprite2D` and navigate into the **Transform** section.  Set the `Scale` 
+                Select the `AnimatedSprite2D` and navigate into the **Transform** section.  Set the `Scale` 
                 property to `(0.75, 0.75)`.
                 
                 @Image(source: mob_transform.png)
             }
             @Step {
-                As in the `Player` scene, add a `CapsuleShape2D` for the collision. To align
+                As in the `Player` scene, add a `CapsuleShape2D` for the collision. 
+                
+                > Tip: To align
                 the shape with the image, you'll need to set the `Rotation` property
                 to `90` (under "Transform" in the Inspector).
                 
@@ -113,14 +122,13 @@
         }
         @Steps {
             @Step {
-                Select the `Mobe` and attach a new script like we did with the `Player`.
+                Select the `Mob` and attach a new script like we did with the `Player`.
                 
                 @Code(name: "mob.gd", file: mob-00.gd, reset: true)
             }
+            Now let's look at the rest of the script. In `_ready()` we play the animation
+            and randomly choose one of the three animation types.
             @Step {
-                Now let's look at the rest of the script. In `_ready()` we play the animation
-                and randomly choose one of the three animation types.
-                
                 First, we get the list of animation names from the AnimatedSprite2D's `sprite_frames`
                 property. This returns an Array containing all three animation names: `["walk",
                 "swim", "fly"]`.
@@ -129,15 +137,16 @@
             }
             @Step {
                 We then need to pick a random number between `0` and `2` to select one of
-                these names from the list (array indices start at `0`). 
+                these names from the list. 
                 
                 `randi() % n` selects a random integer between `0` and `n-1`.
                 
+                > Tip: Array numbering starts at 0. An Array with 3 numbers would be stored as `[0, 1, 2]`
+                
                 @Code(name: "mob.gd", file: mob-02.gd)
             }
+            The last piece is to make the mobs delete themselves when they leave the screen.
             @Step {
-                The last piece is to make the mobs delete themselves when they leave the screen.
-                
                 Select the `VisibleOnScreenNotifier2D` and open the Inspector to the Signals tab.  
                 Tap `screen_exited()`.   In the **Connect a Signal** dialog, select `Mob` so that
                 our new *Receiver Method* will be created in the `mob` script.
@@ -148,10 +157,9 @@
                 Replace the method body of `_on_visible_on_screen_notifier_2d_screen_exited`
                 with `queue_free()` to delete the mob
                 
-                This completes the `Mob` scene.
-                
-                @Code(name: "mob.gd", file: mob-02.gd, reset: true)
+                @Code(name: "mob.gd", file: mob-03.gd)
             }
+            This completes the `Mob` scene.
         }
     }
 }

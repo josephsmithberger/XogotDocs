@@ -22,13 +22,13 @@
                 
                 @Image(source: instance_scene.png)
             }
+            Now we need timers to control how often mobs
+            spawn, to increment the score every second, and to give a delay before starting; let's add those next.
             @Step {
-                Now, add three 
+                Select **Main** and add three 
                 [`Timer`](https://docs.godotengine.org/en/stable/classes/class_timer.html#class-timer)'s 
                 as children of **Main** and name them "MobTimer",
-                "ScoreTimer", and "StartTimer". These will be used to control how often mobs
-                 spawn, to increment the score every second, and to give a delay before starting,
-                 respectively.
+                "ScoreTimer", and "StartTimer". 
                  
                 Additionally, add a 
                 [`Marker2D`](https://docs.godotengine.org/en/stable/classes/class_marker2d.html#class-marker2d)
@@ -41,7 +41,7 @@
                 Set **MobTimer** to `0.5` seconds, **ScoreTimer** to `1.0` second, and 
                 **StartTimer** to `2.0` seconds.
                 
-                In addition, on **StartTimer** set the `One Shot` property to "On".
+                > Important: In addition, select **StartTimer** and set the `One Shot` property to "On" in the Scope.
                 
                 @Image(source: main_timers.png)
             }
@@ -49,7 +49,7 @@
                 On the **`StartPosition`** node, Navigate into **Transform** under **Node2D** 
                 and set **Position**  to **`(240, 450)`**.
                 
-                Note: When you navigate into any section, you can "pin" the section open so
+                >Tip: When you navigate into any section, you can "pin" the section open so
                 that those properties will be expanded whenever you open the Inspector for
                 that node.
                 
@@ -79,18 +79,20 @@
                 To have points snap to the grid, make sure "Show Snap Grid" (1) and "Smart 
                 Snap" (2) are both enabled. 
                 
-                These toolbar buttons can be found to the left of the "Lock" button, appearing as a 
+                > Tip: These toolbar buttons can be found to the left of the "Lock" button, appearing as a 
                 tic-tac-toe board and a waffle with square filled, respectively.
                 
                 @Image(source: grid_snap_button.png)
             }
+            > Warning: In the next step, draw the path in ***clockwise*** order, or your mobs will spawn pointing 
+            *outwards* instead of *inwards*!
             @Step {
-                Draw a path by tapping to add points at the corners of the viewport. 
-                Important: Draw the path in *clockwise* order, or your mobs will spawn pointing 
-                *outwards* instead of *inwards*!
+                Draw a path, in clockwise order, by tapping to add points at the corners of the viewport. 
                 
                 After placing point (4) in the image, tap **Close Curve** (5) under the *...* 
-                **Path2D** menu and your curve will be complete.  If you're not happy with where
+                **Path2D** menu and your curve will be complete.  
+                
+                > If you're not happy with where
                 some of your points ended up, you can tap the first button in the Path2D toolbar
                 to switch to "Select Points" mode and adjust the postion of your points.
                 
@@ -100,11 +102,13 @@
                 Now that the path is defined, add a 
                 [`PathFollow2D`](https://docs.godotengine.org/en/stable/classes/class_pathfollow2d.html#class-pathfollow2d)
                 node as a child of `MobPath` 
-                and name it `MobSpawnLocation`. This node will automatically rotate and follow 
+                and name it `MobSpawnLocation`. 
+                
+                > This node will automatically rotate and follow 
                 the path as it moves, so we can use it to select a random position and direction 
                 along the path.
                 
-                Your scene should look like this.
+                > Important: Your scene should look like this.
                 
                 @Image(source: main_scene.png)
             }
@@ -120,7 +124,7 @@
                 `@export var mob_scene: PackedScene` to allow us to choose the Mob scene we want
                 to instance.
                 
-                We also define a `score` variable to track the player's score.
+                We will also define a `score` variable to track the player's score.
                 
                 @Code(name: "main.gd", file: main-01.gd, previousFile: main-00.gd)
             }
@@ -129,7 +133,7 @@
                 under **Main.gd**.  Tap **Pick Resource** next to the **Mob Scene** property and 
                 select **Quick Load** to assign `mob.tscn`
                 
-                Alternatively, you could assign this property by dragging `mob.tscn` from the 
+                > Alternatively, you could assign this property by dragging `mob.tscn` from the 
                 File Pad and dropping it on the **Mob Scene** property.
                 
                 @Image(source: main_quick_load.png)
@@ -137,20 +141,25 @@
             @Step {
                 Next, select the instance of the `Player` scene under `Main` node in the Scene Tree.
                 Open the Inspector and switch to the Signals tab. You should see a list of the signals 
-                for the `Player` node. Find and tap the `hit()` signal in the list. This will open the 
-                "Connect a Signal to a Method" dialog. 
+                for the `Player` node. 
                 
-                We want to make a new function in `main.gd` named "game_over" which will handle what 
-                needs to happen when a game ends.  Select the **Main** node (1) at the top of the list
+                Find and tap the `hit()` signal in the list. This will open the 
+                "Connect a Signal to a Method" dialog. 
+                @Image(source: main_connect_hit.png)
+            }
+            We want to make a new function in `main.gd` named "game_over" which will handle what 
+            needs to happen when a game ends. 
+            @Step {     
+                Select the **Main** node (1) at the top of the list
                 of nodes in the dialog, and type "game_over" in the "Receiver Method" box (2) at the 
-                bottom of the dialog.  Tap **Connect**. This will have the `hit` signal emitted from 
+                bottom of the dialog.  Tap **Connect**. 
+                >This will cause the `hit` signal to be emitted from 
                 `Player` and handled in the `Main` script. 
                 
                 @Image(source: main_connect_hit.png)
             }
+            When the game ends, we need to stop the `MobTimer` and `ScoreTimer`.
             @Step {
-                When the game ends, we need to stop the `MobTimer` and `ScoreTimer`.
-                
                 Add the following code  to the `game_over` function that was just created.
                 
                 @Code(name: "main.gd", file: main-03.gd, previousFile: main-02.gd)
@@ -164,14 +173,16 @@
                 Now connect the `timeout()` signal of each of the Timer nodes (`StartTimer`,
                 `ScoreTimer`, and `MobTimer`) to the main script. 
                 
-                `ScoreTimer` will increment the score by 1 as the game progresses. 
+                > `ScoreTimer` will increment the score by 1 as the game progresses. 
                 `StartTimer` will start `ScoreTimer` and `MobTimer`.
                 
                 @Code(name: "main.gd", file: main-05.gd)
             }
             @Step {
                 In `_on_mob_timer_timeout()`, we will create a mob instance, pick a random
-                starting location along the `Path2D`, and set the mob in motion. The
+                starting location along the `Path2D`, and set the mob in motion. 
+                
+                The
                 `PathFollow2D` node will automatically rotate as it follows the path, so we
                 will use that to select the mob's direction as well as its position.
                 
@@ -184,14 +195,22 @@
                 all moving at the same speed).  Note that a new instance must be added 
                 to the scene using `add_child()`.
                 
-                *Important*: Why `PI`? In functions requiring angles, Godot uses *radians*,
+                > Important: Why `PI`? In functions requiring angles, Godot uses *radians*,
                 not degrees. Pi represents a half turn in radians, about
                 `3.1415` (there is also `TAU` which is equal to `2 * PI`).
                 If you're more comfortable working with degrees, you'll need to
                 use the `deg_to_rad()` and `rad_to_deg()` functions to
                 convert between the two.
                 
-                @Code(name: "main.gd", file: main-07.gd)
+                @Code(name: "main.gd", file: main-07.gd, previousFile: main-06.gd)
+            }
+            We also need to make sure we flip the mobs vertically so they look correct when moving from either direction.
+            @Step {
+                First access the AnimatedSprite of the mob instance, then set the `flip_v` to `true` when the cosine of the direction is less than 0. We also use an `else` statement to set the flip back to `false` if the direction were to change.
+                
+                > Tip: This is useful when flipping any character in 2D. Traditionally in platformers we might want the player character to flip horizontally when we move left. To do so we would access the node's `flip_h` attribute.
+                
+                @Code(name: "main.gd", file: main-07-2.gd, previousFile: main-07.gd)
             }
         }
     }
@@ -223,9 +242,11 @@
             }
             @Step {
                 When you're sure everything is working, remove the call to `new_game()` from
-                `_ready()` and replace it with `pass`.
+                `_ready()`. 
                 
-                @Code(name: "main.gd", file: main-09.gd) 
+                We can also take this opportunity to remove the `_ready()` and `_process(delta)` functions entirely. We won't need them for this script.
+                
+                @Code(name: "main.gd", file: main-09.gd, previousFile: main-09.gd) 
             }
         }
     }

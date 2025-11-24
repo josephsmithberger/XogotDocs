@@ -1,7 +1,7 @@
 @Tutorial(time: 30) {
     @Intro(title: "Heads up display") {
         The final piece our game needs is a User Interface (UI) to display things like
-        score, a "game over" message, and a restart button.  
+        the score, a "game over" message, and a restart button.  
                 
         @Image(source: hud_play_hero.png)
     }
@@ -16,21 +16,21 @@
                 [`CanvasLayer`](https://docs.godotengine.org/en/stable/classes/class_canvaslayer.html#class-canvaslayer)
                 named "**HUD**".
                 
-                The [`CanvasLayer`](https://docs.godotengine.org/en/stable/classes/class_canvaslayer.html#class-canvaslayer)
+                > Note: The [`CanvasLayer`](https://docs.godotengine.org/en/stable/classes/class_canvaslayer.html#class-canvaslayer)
                 node lets us draw our UI elements on a layer above the rest of the game, 
                 so that the information it displays isn't covered up by any game elements like the player 
                 or mobs.
                 
                 @Image(source: hud_canvas.png)
             }
+            The basic node for UI elements is
+            [`Control`](https://docs.godotengine.org/en/stable/classes/class_control.html#class-control). 
+            To create our UI, we'll use two types of 
+            [`Control`](https://docs.godotengine.org/en/stable/classes/class_control.html#class-control)
+            nodes: 
+            [`Label`](https://docs.godotengine.org/en/stable/classes/class_label.html#class-label) and 
+            [`Button`](https://docs.godotengine.org/en/stable/classes/class_button.html#class-button). 
             @Step {
-                The basic node for UI elements is
-                [`Control`](https://docs.godotengine.org/en/stable/classes/class_control.html#class-control). 
-                To create our UI, we'll use two types of 
-                [`Control`](https://docs.godotengine.org/en/stable/classes/class_control.html#class-control)
-                nodes: 
-                [`Label`](https://docs.godotengine.org/en/stable/classes/class_label.html#class-label) and 
-                [`Button`](https://docs.godotengine.org/en/stable/classes/class_button.html#class-button).  
                 
                 First, let's add two [`Label`](https://docs.godotengine.org/en/stable/classes/class_label.html#class-label) nodes: 
                 **Score** will be changed by `ScoreTimer`, and **Message** will display messages 
@@ -44,7 +44,7 @@
                 [`Timer`](https://docs.godotengine.org/en/stable/classes/class_timer.html#class-timer) 
                 named **MessageTimer** to control how long messages are displayed.  
                 
-                Your HUD scene should now look like this:
+                > IMportant: Your HUD scene should now look like this:
                 
                 @Image(source: hud_scene.png)
             }
@@ -52,15 +52,14 @@
                 Tap on the `Score` label and type a number into the `Text` field in the
                 Inspector. 
                 
-                The default font for `Control` nodes is small and doesn't scale
-                well. 
-                
                 @Image(source: hud_font_orig.png)
             }
+            > The default font for `Control` nodes is small and doesn't scale
+            well. 
+            
+            There is a font file included in the game assets called
+            *Xolonium-Regular.ttf*. To use this font, do the following:
             @Step {
-                There is a font file included in the game assets called
-                *Xolonium-Regular.ttf*. To use this font, do the following:
-                
                 Scroll the Inspector down to the **Control** section and tap **Theme Overrides**.
                 Tap **Pick Resource** (1) next to **Font** and choose **Load** (2).  Browse into the 
                 **fonts** folder and Select the *Xolonium-Regular.ttf* file.
@@ -68,16 +67,20 @@
                 @Image(source: custom_font_load_font.png)
             }
             @Step {
-                The font size is too small. Increase it to `64` under "Theme Overrides > Font Size".
-                
-                Once you've set the `Font` and `Font Size` with the `Score` label, repeat the changes for the `Message` and `StartButton` nodes.
+                In "Theme Overrides" set the "Font Size" to `64`. Repeat
+                these **Font** and **Font Size** changes with with the
+                `Message` and `StartButton` nodes.
                 
                 @Image(source: custom_font_size.png)
             }
             @Step {
-                We will now arrange the UI nodes. 
-                You can drag the nodes to place them manually, but for more precise placement,
-                use "Anchor Presets".
+                Also in "Theme Overrides" set the "Font Color" to `White` or Hex # `FFFFFF`. Repeat
+                this in the other nodes as well. 
+                
+                @Image(source: custom_font_color.png)
+            }
+            @Step {
+               The image for this step shows the Anchor Presets pane; While you can drag the nodes to place them manually, for more precise placement, we will use "Anchor Presets".
                 
                 > Note: **Anchors:** `Control` nodes have a position and size,
                 > but they also have anchors. Anchors define the origin -
@@ -85,6 +88,7 @@
                 
                 @Image(source: ui_anchor.png)
             }
+            Throughout the next four sections, we will arrange the UI nodes and set the `MessageTimer` properties.
         }
     }
     @Section(title: "Score") {
@@ -95,7 +99,7 @@
             | - | ------- |
             | 1 | Set the `text` to **0**.|
             | 2 | Set the `Horizontal Alignment` and `Vertical Alignment` to **Center**.|
-            | 3 | Set `Anchor Preset` **Center Top**.|
+            | 3 | Set `Anchor Preset` to **Center Top**.|
             
             @Image(source: hud_score.png)
         }
@@ -108,11 +112,11 @@
             
             |   |  |
             | - | ------- |
-            |   | Set the `text` to "**Dodge the Creeps**". | 
+            |   | Set the `text` to "**Save the Axolotl**". | 
             |   | Set the "Horizontal Alignment" and "Vertical Alignment" to **Center**. |
             |   | Set "Autowrap Mode" to `Word`, otherwise the label will stay on one line. |
             | 1 | Under "Control - Layout" set "Size X"  to **480** to use the entire width of the screen. |
-            | 2 | Set "Anchor Preset" **Center**. |
+            | 2 | Set "Anchor Preset" to **Center**. |
             
             @Image(source: hud_message.png)
         }
@@ -127,7 +131,7 @@
             |   | Set the `text` to **Start**. |
             | 1 | Under "Control - Transform", set "Size X" to **200** and "Size Y" to **100** to add a little bit more padding between the border and text. |
             | 2 | Under "Control - Layout - Transform", set "Position Y" to **580**. |
-            | 3 | Set "Anchor Preset" **Center Bottom**. |
+            | 3 | Set "Anchor Preset" to **Center Bottom**. |
             
             @Image(source: hud_button.png)
         }
@@ -139,8 +143,8 @@
             
             |    |  |
             | - | ----------- |
-            |   | Set the "Wait Time" to **2**. |
-            | 1 | Set the "One Shot" property to "On" |
+            | 1 | Set the "Wait Time" to **2**. |
+            | 2 | Set the "One Shot" property to "On" |
             
             @Image(source: hud_timer.png)
         }
@@ -153,17 +157,19 @@
         }
         @Steps {
             @Step {
-                Add a script to `HUD`.  This script will not include `_ready` or `_process`
+                Add a script to `HUD`.  This script will not need `_ready` or `_process`
                 methods, so we can toggle off the **Use Template** option.
-                
+                @Code(name: "hud.gd", file: hud-00.gd)
+            }
+            @Step {
                 Near the top of the script, define a new `signal` named `start_game`
                 to notify the `Main` node when the button has been pressed.
                 
                 @Code(name: "hud.gd", file: hud-01.gd, previousFile: hud-00.gd)
             }
+            Let's add a function to temporarily show a message like "Get Ready!"
             @Step {
-                We now want to display a message temporarily,
-                such as "Get Ready", so we add the following code
+                Add the following code to change `$Message.text` to be our `text` variable and then display it using `.show()`. We also start the timer.
                 @Code(name: "hud.gd", file: hud-02.gd)
             }
             @Step {
@@ -171,15 +177,17 @@
                 seconds, then return to the title screen and, after a brief pause, show the
                 "Start" button.
                 
-                > Note: When you need to pause for a brief time, an alternative to using a
+                > Tip: When you need to pause for a brief time, an alternative to using a
                 > Timer node is to use the SceneTree's `create_timer()` function. This
                 > can be very useful to add delays such as in the above code, where we
                 > want to wait some time before showing the "Start" button.
+                >
+                >In this example we don't need to define a new timer node in the tree in advance and instead make one at execution.
                 
                 @Code(name: "hud.gd", file: hud-03.gd)
             }
             @Step {
-                Add an `update_score` method to `HUD` that can be called to update the score.
+                Add an `update_score` method to `HUD` that can be called to update the score's `.text` attribute.
                 
                 @Code(name: "hud.gd", file: hud-04.gd)
             }
@@ -187,7 +195,7 @@
                 Connect the `pressed()` signal of `StartButton` and the `timeout()`
                 signal of `MessageTimer` to new Receiver Methods in the `HUD` node.
                 
-                Add this code to the new functions.
+                > Important: Once connected, add this code to the `_on_start_button_pressed()` and `_on_message_timer_timeout()` functions:
                 @Code(name: "hud.gd", file: hud-06.gd)
             }
         }
@@ -204,7 +212,7 @@
                 Switch back to the `Main` scene by tapping the Scene dropdown (1) 
                 at the top of the app, tapping **Select Scene** (2) and choosing **main** (3).
                 
-                If you have closed the `Main` scene, you can reopen it by double-tapping 
+                > Tip: If you have closed the `Main` scene, you can reopen it by double-tapping 
                 `main.tscn` in the File Pad. 
                 
                 @Image(source: hud_main.png)
@@ -212,7 +220,7 @@
             @Step {
                 Select the root node, `Main`, and Instantiate `HUD` as a child scene (1) like you did the `Player` scene. 
                 
-                When you have added the HUD, the scene tree should look like this. So,  make sure you didn't miss anything.
+                > Important: When you have added the HUD, the scene tree should look like this. Now would be a good time to make sure you didn't miss anything.
                 
                 @Image(source: hud_main_child.png)
             }
@@ -222,19 +230,16 @@
                 @Image(source: hud_start_signal.png)
             }
             @Step {
-                In the "Connect a Signal" dialog, tap the `Main` node to select it, then tap **Pick** 
+                Go to the "Connect a Signal" dialog, tap the `Main` node to select it, then tap **Pick** 
                 in the "Receiver Method" field and select the `new_game()` method.  Tap **Pick Method**
                 and then tap **Connect** to finish wiring up the signal.  
                 
                 The connected method name will now appear as `→..::new_game()` below the `start_game` 
                 signal in the Signals pad.
                 
-                @Coment {
-                    Verify that the signal connection icon now appears next to `func new_game()` in the script.   
-                }
-                
                 @Image(source: hud_start_connected.png)
             }
+            Verify that the signal connection icon now appears next to `func new_game()` in the script.
             @Step {
                 In `new_game()`, update the score display and show the "Get Ready" message:
                 
@@ -252,14 +257,14 @@
                 @Code(name: "main.gd", file: main-12.gd)
             }
             @Step {
-                > Warning: Remember to remove the call to `new_game()` from
-                > `_ready()` if you haven't already, otherwise
-                > your game will start automatically.
                 
-                Now you're ready to play! Tap the "Play" button at the top of the app.
+                Make sure you've removed the call to `new_game()` from
+                 `_ready()` if you haven't already, otherwise
+                 your game will start automatically.
                 
                 @Image(source: hud_play.png)
             }
+            Now you're ready to play! Tap the "Play" button at the top of the app.
         }
     }
     @Section(title: "Removing old creeps") {

@@ -5,23 +5,28 @@ var screen_size # Size of the game window.
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	screen_size = get_viewport_rect().size
+    screen_size = get_viewport_rect().size
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var velocity = Vector2.ZERO # The player's movement vector.
-	if Input.is_action_pressed("move_right"):
-		velocity.x += 1
-	if Input.is_action_pressed("move_left"):
-		velocity.x -= 1
-	if Input.is_action_pressed("move_down"):
-		velocity.y += 1
-	if Input.is_action_pressed("move_up"):
-		velocity.y -= 1
+    var velocity = Vector2.ZERO # The player's movement vector.
 
-	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed
-		$AnimatedSprite2D.play()
-	else:
-		$AnimatedSprite2D.stop()
+    # Check for button pressed signals and then set the velocity Vector2 accordingly.
+    if Input.is_action_pressed("move_right"):
+        velocity.x += 1
+    if Input.is_action_pressed("move_left"):
+        velocity.x -= 1
+    if Input.is_action_pressed("move_down"):
+        velocity.y += 1
+    if Input.is_action_pressed("move_up"):
+        velocity.y -= 1
+    
+    # If the player is moving, play the animation, else stop it.
+    if velocity.length() > 0:
+        # Normalize the velocity Vector2 (converting it to maintain direction and will equal "1").
+        # Multiply it against the speed variable we set and exported before.
+        velocity = velocity.normalized() * speed
+        $AnimatedSprite2D.play()
+    else:
+        $AnimatedSprite2D.stop()
