@@ -1,4 +1,3 @@
-<!-- Remove this line to publish to docs.xogot.com -->
 # Size and anchors
 
 If a game was always going to be run on the same device and at the same
@@ -63,7 +62,20 @@ the control will always cover it, leaving a 20 pixel offset:
 To center a control in its parent, set its anchors to 0.5 and each offset
 to half of its relevant dimension. For example, the code below shows how
 a TextureRect can be centered in its parent:
-
+```gdscript
+var rect = TextureRect.new()
+rect.texture = load("res://icon.png")
+rect.anchor_left = 0.5
+rect.anchor_right = 0.5
+rect.anchor_top = 0.5
+rect.anchor_bottom = 0.5
+var texture_size = rect.texture.get_size()
+rect.offset_left = -texture_size.x / 2
+rect.offset_right = texture_size.x / 2
+rect.offset_top = -texture_size.y / 2
+rect.offset_bottom = texture_size.y / 2
+add_child(rect)
+```
 Setting each anchor to 0.5 moves the reference point for the offsets to
 the center of its parent. From there, we set negative offsets so that
 the control gets its natural size.
