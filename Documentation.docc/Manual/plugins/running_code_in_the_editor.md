@@ -1,4 +1,3 @@
-<!-- Remove this line to publish to docs.xogot.com -->
 # Running code in the editor
 
 ## What is @tool?
@@ -39,14 +38,31 @@ To turn a script into a tool, add the @tool annotation at the top of your code.
 To check if you are currently in the editor, use: Engine.is_editor_hint().
 
 For example, if you want to execute some code only in the editor, use:
+```gdscript
+if Engine.is_editor_hint():
+	# Code to execute when in editor.
+```
 
 On the other hand, if you want to execute code only in game, simply negate the
 same statement:
-
+```gdscript
+if not Engine.is_editor_hint():
+	# Code to execute when in game.
+```
 Pieces of code that do not have either of the 2 conditions above will run both
 in-editor and in-game.
 
 Here is how a _process() function might look for you:
+```gdscript
+func _process(delta):
+	if Engine.is_editor_hint():
+		# Code to execute in editor.
+
+	if not Engine.is_editor_hint():
+		# Code to execute in game.
+
+	# Code to execute both in editor and in game.
+```
 
 ## Important information
 
@@ -82,6 +98,13 @@ instead.
 
 Add a Sprite2D node to your scene and set the texture to Godot icon. Attach
 and open a script, and change it to this:
+```gdscript
+@tool
+extends Sprite2D
+
+func _process(delta):
+	rotation += PI * delta
+```
 
 Save the script and return to the editor. You should now see your object rotate.
 If you run the game, it will also rotate.
@@ -100,6 +123,13 @@ If you run the game, it will also rotate.
 
 Now let's choose which code runs when. Modify your _process() function to
 look like this:
+```gdscript
+func _process(delta):
+	if Engine.is_editor_hint():
+		rotation += PI * delta
+	else:
+		rotation -= PI * delta
+```
 
 Save the script. Now the object will spin clockwise in the editor, but if you
 run the game, it will spin counter-clockwise.
@@ -109,6 +139,21 @@ run the game, it will spin counter-clockwise.
 Add and export a variable speed to the script. To update the speed and also reset the rotation
 angle add a setter set(new_speed) which is executed with the input from the inspector. Modify
 _process() to include the rotation speed.
+```gdscript
+@tool
+extends Sprite2D
+
+
+@export var speed = 1:
+	# Update speed and reset the rotation.
+	set(new_speed):
+		speed = new_speed
+		rotation = 0
+
+
+func _process(delta):
+	rotation += PI * delta * speed
+```
 
 > Note:
 >
@@ -123,22 +168,99 @@ _process() to include the rotation speed.
 Sometimes you want your tool to use a resource. However, when you change a
 property of that resource in the editor, the set() method of your tool will
 not be called.
+```gdscript
+@tool
+class_name MyTool
+extends Node
 
+@export var resource: MyResource:
+	set(new_resource):
+		resource = new_resource
+		_on_resource_set()
+
+# This will only be called when you create, delete, or paste a resource.
+# You will not get an update when tweaking properties of it.
+func _on_resource_set():
+	print("My resource was set!")
+```
 To get around this problem you first have to make your resource a tool and make it
 emit the changed signal whenever a property is set:
+```gdscript
+# Make Your Resource a tool.
+@tool
+class_name MyResource
+extends Resource
+
+@export var property = 1:
+	set(new_setting):
+		property = new_setting
+		# Emit a signal when the property is changed.
+		changed.emit()
+```
 
 You then want to connect the signal when a new resource is set:
+```gdscript
+@tool
+class_name MyTool
+extends Node
+
+@export var resource: MyResource:
+	set(new_resource):
+		resource = new_resource
+		# Connect the changed signal as soon as a new resource is being added.
+		if resource != null:
+			resource.changed.connect(_on_resource_changed)
+
+func _on_resource_changed():
+	print("My resource just changed!")
+```
 
 Lastly, remember to disconnect the signal as the old resource being used and changed somewhere else
 would cause unneeded updates.
-
+```gdscript
+@export var resource: MyResource:
+	set(new_resource):
+		# Disconnect the signal if the previous resource was not null.
+		if resource != null:
+			resource.changed.disconnect(_on_resource_changed)
+		resource = new_resource
+		if resource != null:
+			resource.changed.connect(_on_resource_changed)
+```
 ## Reporting node configuration warnings
 
 Godot uses a node configuration warning system to warn users about incorrectly
 configured nodes. When a node isn't configured correctly, a yellow warning sign
-appears next to the node's name in the Scene dock. When you hover or click on
+appears next to the node's name in the Scene dock. When you hover or tap on
 the icon, a warning message pops up. You can use this feature in your scripts to
 help you and your team avoid mistakes when setting up scenes.
+```gdscript
+# Use setters to update the configuration warning automatically.
+@export var title = "":
+	set(p_title):
+		if p_title != title:
+			title = p_title
+			update_configuration_warnings()
+
+@export var description = "":
+	set(p_description):
+		if p_description != description:
+			description = p_description
+			update_configuration_warnings()
+
+
+func _get_configuration_warnings():
+	var warnings = []
+
+	if title == "":
+		warnings.append("Please set `title` to a non-empty value.")
+
+	if description.length() >= 100:
+		warnings.append("`description` should be less than 100 characters long.")
+
+	# Returning an empty array means "no warning".
+	return warnings
+```
 
 When using node configuration warnings, when any value that should affect or
 remove the warning changes, you need to call
@@ -191,8 +313,8 @@ Scripts that extend EditorScript must be @tool scripts to function.
 
 > Note:
 >
-> EditorScripts can only be run from the Godot script editor. If you are using
-> an external editor, open the script inside the Godot script editor to run it.
+> EditorScripts can only be run from the Xogot script editor. If you are using
+> an external editor, open the script inside the Xogot script editor to run it.
 >
 
 !DANGER!
@@ -251,9 +373,28 @@ the scene, you need to set the child node's [owner](https://docs.godotengine.org
 property to the currently edited scene root.
 
 If you are using @tool:
+```gdscript
+func _ready():
+	var node = Node3D.new()
+	add_child(node) # Parent could be any node in the scene
+
+	# The line below is required to make the node visible in the Scene tree dock
+	# and persist changes made by the tool script to the saved scene file.
+	node.owner = get_tree().edited_scene_root
+```
 
 If you are using [EditorScript](https://docs.godotengine.org/en/stable/classes/class_editorscript.html#class-editorscript):
+```gdscript
+func _run():
+	# `parent` could be any node in the scene.
+	var parent = get_scene().get_node("Parent")
+	var node = Node3D.new()
+	parent.add_child(node)
 
+	# The line below is required to make the node visible in the Scene tree dock
+	# and persist changes made by the tool script to the saved scene file.
+	node.owner = get_scene()
+```
 > Warning:
 >
 > Using @tool improperly can yield many errors. It is advised to first
