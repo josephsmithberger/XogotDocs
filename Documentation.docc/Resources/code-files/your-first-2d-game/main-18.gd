@@ -3,19 +3,13 @@ extends Node
 # Create and export the mob_scene to add later using the scope
 @export var mob_scene: PackedScene
 
-# We use onready to assign the joystick var before _ready() is called
-@onready var virtual_joystick_left = $"UI/Virtual Joystick Left"
-
 # Create a score variable for score tracking
 var score
 
 
 func _ready() -> void:
-    # Set the Joystick input actions to use.
-    virtual_joystick_left.action_left = "move_left"
-    virtual_joystick_left.action_right = "move_right"
-    virtual_joystick_left.action_up = "move_up"
-    virtual_joystick_left.action_down = "move_down"
+    # Hide the UI by default
+    $UI.hide()
 
 
 # Called when the player dies, performs clean-up actions
@@ -32,6 +26,9 @@ func game_over() -> void:
     
     # Play the death sound
     $DeathSound.play()
+    
+    # Hide the joystick UI
+    $UI.hide()
 
 
 # This will be called when the player presses the start button

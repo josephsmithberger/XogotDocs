@@ -209,8 +209,6 @@
             }
             @Step {
                 Select the Joystick node and in the Scope set the `Joystick Mode` to "Following" (1) and the `Visibility Mode` to "When Touched" (2)
-                
-                We will leave the **Actions** as-is for now, we will set those next via code.
                 @Image(source: fin_joystick_settings.png)
             }
             @Step {
@@ -218,32 +216,28 @@
                 @Image(source: fin_full_rect.png)
             }
             @Step {
-                Open the Main script. Inside we will add a new variable `virtual_joystick_left` with a new type of annotation we haven't used yet: `@onready`. Set this new variable to reference the new Virtual Joystick node we added.
+                Next, with the Scope still open, change `action_left` through to `action_down` to equal the names of the custom input actions we added in the project settings.
                 
-                >Tip: For convenience GDScript has an @onready annotation, that defers initialization of a member variable until `_ready()` is called.
+                It should look like this.
                 
-                @Code(name: "main.gd", file: main-17.gd, previousFile: main-16.gd)
-            }
-            @Step {
-                Next add the built in `_ready()` function above `game_over()` and inside set the `virtual_joystick_left` `action_left` through to `action_down` to equal the names of the custom input actions we added in the project settings.
+                > Important: Make sure you keep track of capitalization as these variables are case-sensitive.
                 
-                Your script should look like this now.
-                @Code(name: "main.gd", file: main-18.gd, previousFile: main-17.gd)
+                @Image(source: fin_actions.png)
             }
             Finally, let's make sure the joystick is hidden when in the main menu, otherwise it would show whenever a player touched the screen. 
             
             To do this, we show() and hide() the parent CanvasLayer node in three spots throughout the main script.
             @Step {
-                Inside the `_ready()` add `$UI.hide()` to hide the UI CanvasLayer node and its children by default. 
-                @Code(name: "main.gd", file: main-19.gd, previousFile: main-18.gd)
+                Next add the built in `_ready()` function above `game_over()` and inside add `$UI.hide()` to hide the UI CanvasLayer node and its children by default. 
+                @Code(name: "main.gd", file: main-17.gd, previousFile: main-16.gd)
             }
             @Step {
                 Next, inside `game_over()` add `$UI.hide()` to hide it when the player dies.
-                @Code(name: "main.gd", file: main-20.gd, previousFile: main-19.gd)
+                @Code(name: "main.gd", file: main-18.gd, previousFile: main-17.gd)
             }
             @Step {
                 Lastly, add `$UI.show()` inside `new_game()` to reveal the joystick when the player starts playing the game.
-                @Code(name: "main.gd", file: main-21.gd, previousFile: main-20.gd)
+                @Code(name: "main.gd", file: main-19.gd, previousFile: main-18.gd)
             }
             We're done with the code, so go back to 2D mode.
             
