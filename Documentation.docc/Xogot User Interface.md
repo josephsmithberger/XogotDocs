@@ -183,3 +183,8 @@ of the 2D workspace.
 
 Refer to the screenshot above to better understand the numbered elements of
 these 2D Editor Toolbar.
+
+## Command Palette
+
+The <doc:Command-Palette> provides a convenient way of navigating your project
+as well as running commands for users that are more comfortable using a keyboard.

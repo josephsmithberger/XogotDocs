@@ -4,6 +4,76 @@ Release notes for public releases of Xogot to the App Store.
 
 # Releases 
 
+## 1.4.12 (3364)
+
+* Support for External Displays: while you can move windows manually into the
+  external display with Stage Manager, we now support explict support for
+  running your game on an external display, without having to manually manage
+  the windows yourself.   This pairs great with an external controller.
+
+* Remote Scene View: you can now toggle on/off individual nodes and these will
+  show hide the nodes in the running game.
+
+* 2-taps on the surface will trigger an undo operation, and 3-taps on the
+  surface will trigger a redo operation.
+
+* When running, Godot by default will open the "Output" panel, which works great
+  on iPad, but on iPhone it covers too much of the screen.   We exposed the
+  underlying setting now in the Xogot settings, so you can configure it to not
+  open the output pad at startup.
+
+* AnimationEditor now supports negative key values.
+
+* Inspector: the remote debugger now supports fetching contents of a remote 
+  object when tapped on.
+
+* BottomBar animation: it is back in its full glory, and the animation is smooth
+  and consistent, thank you for your patience during this rough period.
+
+* New Color palette toolbar item in the code editor, to insert colors in the
+  code (Discord)
+
+* Various improvements to the UI on the iPhone, sidebars will now appear when
+  pulling from the sides and dismiss as well, avoiding long trips to the
+  action buttons at the top.
+
+* Autoloads are now part of the free edition.
+
+* Quick Open and Command Palette: they will now show image previews for any
+  assets loaded.
+
+* Keyboard users: if you press the control or command key when you drop a scene
+  node into the code editor, it will insert an '@onready' variable declaration,
+  instead of just inserting the name.   Implements a long-standing feature
+  request.
+
+* Keyboard users: FilePad dragging gets new benefits as well, if you press the
+  control or command key when you drop a file into the editor, instead of just
+  inserting the path, it will insert either `preload("PATH")`, or if you drop on
+  an empty line `const VAR = preload("PATH")`.   Additionally, if you press
+  shift, on Xogot 4.4, it will insert the UID reference, on Xogot 4.5, shift
+  prevents the use of the UID.
+
+* XogotBeta (4.5 release): Adds support for Variants to be exported, so now you
+  can export a Variant and change the type on the inspector.
+
+* You can now sort the Animation Tracks.
+
+* iPhone: it is now possible to scroll the tabs without triggering a reodering
+  operation.
+
+* Script editing node should be visible in the inspector now for Nodes and
+  resources.
+
+* Inspector gained support for typed dictionaries from Godot 4.4.
+
+* It is now possible to pair a device for remote debugging using pairing
+  codes if you do not want to login.
+
+## 1.4.10 (3293)
+
+* Just a crash fix
+
 ## 1.4.8 (3269)
 
 * Faster loading of projects that do not come directly from the iPad or iPhone

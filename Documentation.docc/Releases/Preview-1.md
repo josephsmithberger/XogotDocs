@@ -4,7 +4,109 @@ Release notes for our preview release of Xogot to TestFlight.
 
 # Releases 
 
-## Build 
+## Build 3413
+
+### Improvements
+
+* Improved encoding of paths when dragging scene pad nodes into the text editor.
+
+* GLTF Exporter now uses our own numeric input pads, so that we do not get a
+  full keyboard popup.
+
+* Property inspectors for Ints and Floats now use the same infrastructure as
+  vectors, which should improve the input when running Xogot on MacOS.
+
+* Search in Files: The "Replace" button will now automatically navigate to the
+  next match after performing replace.
+
+* Command Palette: filtered some internal Godot scripts that are not available
+  on iPad, and added a new "Find in Files" command.
+
+* Command Palette: you can now access it as "Command-Shift-P" which defaults to
+  command search, similar to VSCode.   And the spaces after the ">" in the
+  Command Palette are ignored when searching for a command.
+
+
+### Fixes
+
+* 4.5.1 only: fixes a number of bugs in the port to 4.51, in particular the
+  identity of objects that would have mismatches in the user interface (#1932).
+  This did manifest in the 4.5.1 branch as the animation tab picking the wrong
+  object after opening and closing a scene.
+
+* Fixed automatic pairing for Godot Extension when logged into the same account.
+
+* Fixes crash when stopping remote debugging: Fixes #1927.
+
+* Remote Debugging: Fixes connections over TCP when there are multiple
+  interfaces available to choose from.
+
+* We no longer attempt to trigger an action when tapping on a directory
+  (avoiding a warning on the console output - #1941).
+  
+* Fixes dragging of a directory onto itself, #1942.
+
+## Build 3395
+
+### Improvements
+
+* Added support for Godot's dynamic path sections, used in the Bone editor, so
+  now the bone elements are visible (#876)
+
+* Added support for Godot's "Recovery Mode", if Godot crashes at startup, we now
+  offer the option of strating the game in recovery mode, where various plugins
+  and features are disabled to help you restore your project to a well know
+  state (#1915).
+
+* It is now possible to drag and drop multiple nodes into the editors (#1896)
+
+* Added support for gLTF 2.0 exporting (#1799).
+
+* All the multi-value numeric editors in the inspector (Vectors,
+  Transformations, Planes, Basis and so on) were refactored so that we can
+  support on MacOS in-line text editing, rather than the popups that we have
+  now.
+  
+  We are still pending the single-value editors for numbers.
+
+### Fixes
+
+* Fixes a crash in the wild where a confirmation request came while attempting
+  to open a file (#1922).
+
+* Prevents a crash that would happen if the Camera3D Preview was active, and the
+  ProjectSettings changed (also submitted a fix upstream to Godot).
+
+* Prevents a crash when an invalid terrain ID was passed to the terrain editor -
+  this would happen when you delete the last terrain (#1923).
+
+* The pairing code can be used if you are already logged in as well.
+
+* Skeleton3D plugin no longer adds additional toolbars over and over (#1881).
+
+* iPhone: fixes In 2d editor, settings has a visual bug where half the space
+  appears blank (#1925).
+
+* Inspector: it no longer capitalizes the first word on a text input field
+  (#1926, TestFlight feedback)
+
+## Build 3363
+
+### Improvements
+
+* Inspector gained support for typed dictionaries from Godot 4.4 (#1111).
+
+* The multi-finger gesture for undo and redo is now part of the release
+  build, not just testflight.
+
+* It is now possible to pair a device for remote debugging using pairing
+  codes, not just being logged in.
+
+### Fixes
+
+* Crash in the text editor in iPadOS 26.1+ (#1910).
+
+## Build 3352
 
 ### Improvements
 
