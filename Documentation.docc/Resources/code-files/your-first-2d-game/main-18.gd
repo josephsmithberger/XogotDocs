@@ -7,14 +7,9 @@ extends Node
 var score
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-    pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-    pass
+    # Hide the UI by default
+    $UI.hide()
 
 
 # Called when the player dies, performs clean-up actions
@@ -22,6 +17,18 @@ func game_over() -> void:
     # Stop the timers
     $ScoreTimer.stop()
     $MobTimer.stop()
+    
+    # Show the game over screen
+    $HUD.show_game_over()
+    
+    # Stop the music
+    $Music.stop()
+    
+    # Play the death sound
+    $DeathSound.play()
+    
+    # Hide the joystick UI
+    $UI.hide()
 
 
 # This will be called when the player presses the start button
@@ -34,6 +41,18 @@ func new_game():
     
     # Start the timer we use trigger the game start after a 2.0s delay
     $StartTimer.start()
+    
+    # Set the score to 0
+    $HUD.update_score(score)
+    
+    # Show a temporary message of "Get Ready"
+    $HUD.show_message("Get Ready")
+    
+    # Clear any mobs that might still be on screen
+    get_tree().call_group("mobs", "queue_free")
+    
+    # Start the game music
+    $Music.play()
 
 
 # Called by the MobTimer timeout signal
@@ -68,12 +87,18 @@ func _on_mob_timer_timeout() -> void:
         mob_sprite.flip_v = true
     else:
         mob_sprite.flip_v = false
+    
+    # Spawn the mob by adding it to the Main scene.
+    add_child(mob)
 
 
 # Called by the ScoreTimer timeout signal
 func _on_score_timer_timeout() -> void:
     # Increment the score by 1
     score += 1
+    
+    # Update the score with the incremented value
+    $HUD.update_score(score)
 
 
 # Called by the StartTimer timeout signal

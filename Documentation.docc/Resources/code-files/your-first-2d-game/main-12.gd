@@ -59,7 +59,7 @@ func _on_mob_timer_timeout() -> void:
     mob.linear_velocity = velocity.rotated(direction)
     
     # Get the AnimatedSprite from the mob node
-    var mob_sprite = mob.get_node("AnimatedSprite")
+    var mob_sprite = mob.get_node("AnimatedSprite2D")
     
     # Change the vertical flip of the sprite if the mob moves left
     # Note: You can flip horizontally by using `flip_h`

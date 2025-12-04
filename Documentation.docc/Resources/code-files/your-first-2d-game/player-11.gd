@@ -15,7 +15,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
     var velocity = Vector2.ZERO # The player's movement vector.
-
+    
     # Check for button pressed signals and then set the velocity Vector2 accordingly.
     if Input.is_action_pressed("move_right"):
         velocity.x += 1
@@ -34,7 +34,7 @@ func _process(delta: float) -> void:
         $AnimatedSprite2D.play()
     else:
         $AnimatedSprite2D.stop()
-
+    
     # Set player position to velocity Vector2 * frame rate delta.
     # Note: This helps make movement framerate agnostic.
     position += velocity * delta
@@ -58,5 +58,3 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body) :
     pass # Replace with function body.
-
-

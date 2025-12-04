@@ -12,7 +12,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
     var velocity = Vector2.ZERO # The player's movement vector.
-
+    
     # Check for button pressed signals and then set the velocity Vector2 accordingly.
     if Input.is_action_pressed("move_right"):
         velocity.x += 1
@@ -22,7 +22,7 @@ func _process(delta: float) -> void:
         velocity.y += 1
     if Input.is_action_pressed("move_up"):
         velocity.y -= 1
-
+    
     # If the player is moving, play the animation, else stop it.
     if velocity.length() > 0:
         # Normalize the velocity Vector2 (converting it to maintain direction and will equal "1").

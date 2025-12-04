@@ -14,6 +14,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
     pass
 
+
 # Called when the signal that a mob has exited the screen occurs.
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
     # Remove mobs from the game tree when they exit the screen.

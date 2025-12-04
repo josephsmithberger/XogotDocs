@@ -97,7 +97,7 @@
             }
         }
     }
-    @Section(title: "Joypad Buttons and Keybaord Shortcuts") {
+    @Section(title: "Joypad Buttons and Keyboard Shortcuts") {
         @ContentAndMedia {
             Since the game is played with a joypad, it would be convenient if we
             could also start the game by pressing a button on the joypad. We can do this with
@@ -172,6 +172,81 @@
                 @Image(source: start_action_done.png)
             }
             And with that, you have completed your first 2D game in Xogot.
+        }
+    }
+    @Section(title: "Making your game even more customizable") {
+        @ContentAndMedia {
+            For extra credit: Let's make the controller a better more customizable experience for players by using an add-on from the Asset Library!
+        }
+        @Steps {
+            We're going to use an add-on for Xogot called [*Virtual Joystick*](https://github.com/MarcoFazioRandom/Virtual-Joystick-Godot).
+            @Step {
+                Tap on the dropdown next to scope (1) and access the `Asset Library` (2)
+                @Image(source: fin_asset_library_menu.png)
+            }
+            @Step {
+                Find or search for Virtual Joystick (3) and once selected press **Import** (4).
+                > Tip: There are lots of other add-ons for Xogot, with more being added all the time; trying out the available add-ons is a great way to learn Xogot.
+                @Image(source: fin_asset_library_browser.png)
+            }
+            @Step {
+                Exit the **Asset Library** and you should now have a `addons` folder in your working directory.
+                Inside you'll find the `virtual_joystick` folder containing its scene.
+                
+                >Tip: You can also find example implementations inside the folder `test` if you'd like to dive deeper.
+                @Image(source: fin_assets.png)
+            }
+            @Step {
+                In the Main scene, with the Main node selected; Add a CanvasLayer node (1) and rename it to "UI" (2).
+                @Image(source: fin_rename_ui.png)
+            }
+            @Step {
+                With the new UI node selected; Instantiate a new child scene (1) and search for the Virtual Joystick scene: `virtual_joystick_scene.tscn` (2).
+                
+                Rename the node to "Virtual Joystick Left"
+                
+                @Image(source: fin_instantiate.png)
+            }
+            @Step {
+                Select the Joystick node and in the Scope set the `Joystick Mode` to "Following" (1) and the `Visibility Mode` to "When Touched" (2)
+                @Image(source: fin_joystick_settings.png)
+            }
+            @Step {
+                Next, with the Scope still open, change `action_left` through to `action_down` to equal the names of the custom input actions we added in the project settings.
+                
+                It should look like this.
+                
+                > Important: Make sure you keep track of capitalization as these variables are case-sensitive.
+                
+                @Image(source: fin_actions.png)
+            }
+            @Step {
+                With the Virtual Joystick Left node selected, inside the achors (1), set the anchor mode to `Full Rect` (2).
+                @Image(source: fin_full_rect.png)
+            }
+            Finally, let's make sure the joystick is hidden when in the main menu, otherwise it would show whenever a player touched the screen. 
+            
+            To do this, we show() and hide() the parent CanvasLayer node in three spots throughout the main script.
+            @Step {
+                Next add the built in `_ready()` function above `game_over()` and inside add `$UI.hide()` to hide the UI CanvasLayer node and its children by default. 
+                @Code(name: "main.gd", file: main-17.gd, previousFile: main-16.gd)
+            }
+            @Step {
+                Next, inside `game_over()` add `$UI.hide()` to hide it when the player dies.
+                @Code(name: "main.gd", file: main-18.gd, previousFile: main-17.gd)
+            }
+            @Step {
+                Lastly, add `$UI.show()` inside `new_game()` to reveal the joystick when the player starts playing the game.
+                @Code(name: "main.gd", file: main-19.gd, previousFile: main-18.gd)
+            }
+            We're done with the code, so go back to 2D mode.
+            
+            Now, we also need to disable the iOS virtual controller we enabled earlier in this tutorial. 
+            @Step {
+                Hit the dropdown next to scope, press Settings and then inside **Project Settings** go to **Input Devices > Virtual Controller** and set `Enable Controller` and `Enable Left Thumbstick` to **Disabled** by hitting the toggle switches.
+                @Image(source: fin_project_settings.png)
+            }
+            With that, we are finally done customizing the new Virtual Controller! Congrats!
         }
     }
     @Section(title: "Sharing your game with others") {

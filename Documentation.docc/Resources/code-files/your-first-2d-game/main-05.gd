@@ -31,7 +31,7 @@ func new_game():
     
     # Assign the player character the start position value
     $Player.start($StartPosition.position)
-
+    
     # Start the timer we use trigger the game start after a 2.0s delay
     $StartTimer.start()
 
@@ -51,6 +51,6 @@ func _on_score_timer_timeout() -> void:
 func _on_start_timer_timeout() -> void:
     # Start the MobTimer
     $MobTimer.start()
-
+    
     # Start the ScoreTimer
     $ScoreTimer.start()
