@@ -136,7 +136,7 @@ def process_code_tabs(rst_content):
                     break
                 
                 # Check for beginning of code-tab
-                code_tab_match = re.match(r"^\s*\.\.\s+code-tab::\s+(\w+)\s*$", line)
+                code_tab_match = re.match(r"^\s*\.\.\s+code-tab::\s+(\w+).*$", line)
                 if code_tab_match:
                     language = code_tab_match.group(1).lower()
                     
@@ -460,6 +460,12 @@ def rst_to_markdown(rst_content):
             # Replace the strong tag with a new string containing double-asterisks
             new_text = f"**{strong.string}**"
             strong.replace_with(new_text)
+    
+    # Process span tags with class "docutils literal" (inline code)
+    for span in soup.find_all('span', class_='docutils literal'):
+        if span.get_text():
+            new_text = f"`{span.get_text()}`"
+            span.replace_with(new_text)
     
     markdown = []
     # If we extracted a title, add it as the first line with a leading #
