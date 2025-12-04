@@ -5,13 +5,13 @@ When adding custom full screen effects to your XR application, one approach is
 using a full screen quad and applying effects to that quad's shader.
 Add a [MeshInstance3D](https://docs.godotengine.org/en/stable/classes/class_meshinstance3d.html#class-meshinstance3d) node
 to your scene as a child of your [XRCamera3D](https://docs.godotengine.org/en/stable/classes/class_xrcamera3d.html#class-xrcamera3d),
-and set the mesh property to a [QuadMesh](https://docs.godotengine.org/en/stable/classes/class_quadmesh.html#class-quadmesh).
-Set the width and height of the quad to 2.
+and set the `mesh` property to a [QuadMesh](https://docs.godotengine.org/en/stable/classes/class_quadmesh.html#class-quadmesh).
+Set the width and height of the quad to `2`.
 
 @Image(source: "xr_full_screen_effects_starting_quad.png")
 
 You can then add a shader to your quad to make it cover the screen. This is done by setting the
-vertex shader's POSITION built-in to vec4(VERTEX.xy, 1.0, 1.0).
+vertex shader's `POSITION` built-in to `vec4(VERTEX.xy, 1.0, 1.0)`.
 However, when creating an effect that is centered straight ahead in the user's view
 (such as a vignette effect), the end result may look incorrect in XR.
 
@@ -24,7 +24,7 @@ But, after applying the projection matrix, we see that the effect is centered in
 
 ## Applying the projection matrix
 
-To properly center the effect, the POSITION of the full screen quad
+To properly center the effect, the `POSITION` of the full screen quad
 needs to take the asymmetric field of view into account. To do this while also ensuring the quad
 has full coverage of the entire render target, we can subdivide the quad and apply the projection matrix
 to the inner vertices. Let's increase the subdivide width and depth of the quad.

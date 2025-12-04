@@ -58,7 +58,7 @@ Decals can represent temporary or persistent gameplay effects such as bullet
 impacts and explosion scorches.
 
 Using an AnimationPlayer node or a script, decals can be made to fade over time
-(and then be removed using queue_free()) to improve performance.
+(and then be removed using `queue_free()`) to improve performance.
 
 ### Blob shadows
 
@@ -141,15 +141,15 @@ randomizing each decal's modulation).
 
 - **Albedo Mix:** The opacity of the albedo texture. Unlike using an albedo
 texture with a more transparent alpha channel, decreasing this value below
-1.0 does not reduce the impact of the normal/ORM texture on the
-underlying surface. Set this to 0.0 when creating normal/ORM-only decals
+`1.0` does not reduce the impact of the normal/ORM texture on the
+underlying surface. Set this to `0.0` when creating normal/ORM-only decals
 such as footsteps or wet puddles.
 
 - **Normal Fade:** Fades the Decal if the angle between the Decal's
 :abbr:`AABB (Axis-Aligned Bounding Box)` and the target surface becomes too large.
-A value of 0.0 projects the decal regardless of angle, while a value of 0.999
+A value of `0.0` projects the decal regardless of angle, while a value of `0.999`
 limits the decal to surfaces that are nearly perpendicular. Setting **Normal
-Fade** to a value greater than 0.0 has a small performance cost due to the
+Fade** to a value greater than `0.0` has a small performance cost due to the
 added normal angle computations.
 
 ### Vertical Fade

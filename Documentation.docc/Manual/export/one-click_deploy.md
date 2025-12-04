@@ -72,7 +72,7 @@ the project should be exported to.
 on the remote computer via SSH.
 
 - **Web:** Starts a local web server and runs the exported project by opening
-the default web browser. This is only accessible on localhost by default.
+the default web browser. This is only accessible on `localhost` by default.
 See <doc:one-click_deploy#Troubleshooting-Web>
 for making the exported project accessible on remote devices.
 
@@ -254,12 +254,12 @@ export setting.
 ### Android
 
 If you can't see the device in the list of devices when running the
-adb devices command in a terminal, it will not be visible by Godot either.
+`adb devices` command in a terminal, it will not be visible by Godot either.
 To resolve this:
 
 - Check if USB debugging is enabled and authorized on the device.
 Try unlocking your device and accepting the authorization prompt if you see any.
-If you can't see this prompt, running adb devices on your PC should make
+If you can't see this prompt, running `adb devices` on your PC should make
 the authorization prompt appear on the device.
 
 - Try revoking the debugging authorization
@@ -275,23 +275,23 @@ for your device to be recognized.
 ### Web
 
 By default, the web server started by the editor is only accessible from
-localhost. This means the web server can't be reached by other devices on
+`localhost`. This means the web server can't be reached by other devices on
 the local network or the Internet (if port forwarding is set up on the router).
 This is done for security reasons, as you may not want other devices to be able
-to access the exported project while you're testing it. Binding to localhost
+to access the exported project while you're testing it. Binding to `localhost`
 also prevents a firewall popup from appearing when you use one-click deploy for
 the web platform.
 
 To make the local web server accessible over the local network, you'll need to
-change the **Export > Web > HTTP Host** editor setting to 0.0.0.0. You will
+change the **Export > Web > HTTP Host** editor setting to `0.0.0.0`. You will
 also need to enable **Export > Web > Use TLS** as SharedArrayBuffer requires the
-use of a secure connection to work, unless connecting to localhost.
+use of a secure connection to work, unless connecting to `localhost`.
 However, since other clients will be connecting to a remote device, the use of
 TLS is absolutely required here.
 
 To make the local web server accessible over the Internet, you'll also need to
 forward the **Export > Web > HTTP Port** port specified in the Editor Settings
-(8060 by default) in TCP on your router. This is usually done by accessing
+(`8060` by default) in TCP on your router. This is usually done by accessing
 your router's web interface then adding a NAT rule for the port in question. For
 IPv6 connections, you should allow the port in the router's IPv6 firewall
 instead. Like for local network devices, you will also need to enable **Export >

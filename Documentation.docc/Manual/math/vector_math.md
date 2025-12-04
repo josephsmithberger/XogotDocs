@@ -16,28 +16,28 @@ essential to becoming a strong game developer.
 
 ## Coordinate systems (2D)
 
-In 2D space, coordinates are defined using a horizontal axis (x) and a
-vertical axis (y). A particular position in 2D space is written as a pair of
-values such as (4, 3).
+In 2D space, coordinates are defined using a horizontal axis (`x`) and a
+vertical axis (`y`). A particular position in 2D space is written as a pair of
+values such as `(4, 3)`.
 
 @Image(source: "vector_axis1.png")
 
 > Note: If you're new to computer graphics, it might seem odd that the
-> positive y axis points **downwards** instead of upwards, as you
+> positive `y` axis points **downwards** instead of upwards, as you
 > probably learned in math class. However, this is common in most
 > computer graphics applications.
 >
 
 Any position in the 2D plane can be identified by a pair of numbers in this way.
-However, we can also think of the position (4, 3) as an **offset** from the
-(0, 0) point, or **origin**. Draw an arrow pointing from the origin to the
+However, we can also think of the position `(4, 3)` as an **offset** from the
+`(0, 0)` point, or **origin**. Draw an arrow pointing from the origin to the
 point:
 
 @Image(source: "vector_xy1.png")
 
 This is a **vector**. A vector represents a lot of useful information. As well
-as telling us that the point is at (4, 3), we can also think of it as an
-angle θ (theta) and a length (or magnitude) m. In this case, the arrow
+as telling us that the point is at `(4, 3)`, we can also think of it as an
+angle `θ` (theta) and a length (or magnitude) `m`. In this case, the arrow
 is a **position vector** - it denotes a position in space, relative to the
 origin.
 
@@ -56,28 +56,45 @@ always represents a relative direction and magnitude.
 You can use either method (x and y coordinates or angle and magnitude) to refer
 to a vector, but for convenience, programmers typically use the coordinate
 notation. For example, in Godot, the origin is the top-left corner of the
-screen, so to place a 2D node named Node2D 400 pixels to the right and 300
+screen, so to place a 2D node named `Node2D` 400 pixels to the right and 300
 pixels down, use the following code:
+
+```
+$Node2D.position = Vector2(400, 300)
+```
 
 Godot supports both [Vector2](https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2) and [Vector3](https://docs.godotengine.org/en/stable/classes/class_vector3.html#class-vector3) for 2D and 3D usage, respectively. The same mathematical rules
 discussed in this article apply to both types, and wherever we link to
-Vector2 methods in the class reference, you can also check out their
-Vector3 counterparts.
+`Vector2` methods in the class reference, you can also check out their
+`Vector3` counterparts.
 
 ### Member access
 
 The individual components of the vector can be accessed directly by name.
 
+```
+# Create a vector with coordinates (2, 5).
+var a = Vector2(2, 5)
+# Create a vector and assign x and y manually.
+var b = Vector2()
+b.x = 3
+b.y = 1
+```
+
 ### Adding vectors
 
 When adding or subtracting two vectors, the corresponding components are added:
+
+```
+var c = a + b  # (2, 5) + (3, 1) = (5, 6)
+```
 
 We can also see this visually by adding the second vector at the end of
 the first:
 
 @Image(source: "vector_add1.png")
 
-Note that adding a + b gives the same result as b + a.
+Note that adding `a + b` gives the same result as `b + a`.
 
 ### Scalar multiplication
 
@@ -87,6 +104,12 @@ Note that adding a + b gives the same result as b + a.
 >
 
 A vector can be multiplied by a **scalar**:
+
+```
+var c = a * 2  # (2, 5) * 2 = (4, 10)
+var d = b / 3  # (3, 6) / 3 = (1, 2)
+var e = d * -2 # (1, 2) * -2 = (-2, -4)
+```
 
 @Image(source: "vector_mult1.png")
 
@@ -103,8 +126,8 @@ Let's look at two common uses for vector addition and subtraction.
 
 A vector can represent **any** quantity with a magnitude and direction. Typical
 examples are: position, velocity, acceleration, and force. In this image, the
-spaceship at step 1 has a position vector of (1, 3) and a velocity vector of
-(2, 1). The velocity vector represents how far the ship moves each step. We
+spaceship at step 1 has a position vector of `(1, 3)` and a velocity vector of
+`(2, 1)`. The velocity vector represents how far the ship moves each step. We
 can find the position for step 2 by adding the velocity to the current position.
 
 @Image(source: "vector_movement1.png")
@@ -114,7 +137,7 @@ can find the position for step 2 by adding the velocity to the current position.
 > (here assumed to be one unit, e.g. 1 s) to the previous position.
 >
 > In a typical 2D game scenario, you would have a velocity in pixels per
-> second, and multiply it by the delta parameter (time elapsed since
+> second, and multiply it by the `delta` parameter (time elapsed since
 > the previous frame) from the [_process()](https://docs.godotengine.org/en/stable/classes/class_node_private_method__process.html#class-node_private_method__process)
 > or [_physics_process()](https://docs.godotengine.org/en/stable/classes/class_node_private_method__physics_process.html#class-node_private_method__physics_process)
 > callbacks.
@@ -128,26 +151,30 @@ pointing from the tank to the robot.
 
 @Image(source: "vector_subtract2.png")
 
-> Tip: To find a vector pointing from A to B, use B - A.
+> Tip: To find a vector pointing from `A` to `B`, use `B - A`.
 >
 
 ## Unit vectors
 
-A vector with **magnitude** of 1 is called a **unit vector**. They are also
+A vector with **magnitude** of `1` is called a **unit vector**. They are also
 sometimes referred to as **direction vectors** or **normals**. Unit vectors are
 helpful when you need to keep track of a direction.
 
 ### Normalization
 
-**Normalizing** a vector means reducing its length to 1 while preserving its
+**Normalizing** a vector means reducing its length to `1` while preserving its
 direction. This is done by dividing each of its components by its magnitude.
 Because this is such a common operation, Godot provides a dedicated
 [normalized()](https://docs.godotengine.org/en/stable/classes/class_vector2_method_normalized.html#class-vector2_method_normalized) method for this:
 
+```
+a = a.normalized()
+```
+
 > Warning: Because normalization involves dividing by the vector's length, you
-> cannot normalize a vector of length 0. Attempting to do so
+> cannot normalize a vector of length `0`. Attempting to do so
 > would normally result in an error. In GDScript though, trying to
-> call the normalized() method on a vector of length 0 leaves the
+> call the `normalized()` method on a vector of length 0 leaves the
 > value untouched and avoids the error for you.
 >
 
@@ -162,11 +189,19 @@ other object:
 
 @Image(source: "vector_reflect1.png")
 
-The surface normal has a value of (0, -1) because this is a horizontal
+The surface normal has a value of `(0, -1)` because this is a horizontal
 surface. When the ball collides, we take its remaining motion (the amount left
 over when it hits the surface) and reflect it using the normal. In Godot, there
 is a [bounce()](https://docs.godotengine.org/en/stable/classes/class_vector2_method_bounce.html#class-vector2_method_bounce) method to handle this.
 Here is a code example of the above diagram using a [CharacterBody2D](https://docs.godotengine.org/en/stable/classes/class_characterbody2d.html#class-characterbody2d):
+
+```
+var collision: KinematicCollision2D = move_and_collide(velocity * delta)
+if collision:
+    var reflect = collision.get_remainder().bounce(collision.get_normal())
+    velocity = velocity.bounce(collision.get_normal())
+    move_and_collide(reflect)
+```
 
 ## Dot product
 
@@ -183,38 +218,49 @@ and
 
 @Image(source: "vector_dot2.png")
 
-The mathematical notation ||A|| represents the magnitude of vector A, and
-Ax means the x component of vector A.
+The mathematical notation ||A|| represents the magnitude of vector `A`, and
+Ax means the `x` component of vector `A`.
 
 However, in most cases it is easiest to use the built-in [dot()](https://docs.godotengine.org/en/stable/classes/class_vector2_method_dot.html#class-vector2_method_dot) method. Note that the order of the two vectors does not matter:
 
+```
+var c = a.dot(b)
+var d = b.dot(a)  # These are equivalent.
+```
+
 The dot product is most useful when used with unit vectors, making the first
-formula reduce to just cos(θ). This means we can use the dot product to tell
+formula reduce to just `cos(θ)`. This means we can use the dot product to tell
 us something about the angle between two vectors:
 
 @Image(source: "vector_dot3.png")
 
-When using unit vectors, the result will always be between -1 (180°) and
-1 (0°).
+When using unit vectors, the result will always be between `-1` (180°) and
+`1` (0°).
 
 ### Facing
 
 We can use this fact to detect whether an object is facing toward another
-object. In the diagram below, the player P is trying to avoid the zombies
-A and B. Assuming a zombie's field of view is **180°**, can they see the
+object. In the diagram below, the player `P` is trying to avoid the zombies
+`A` and `B`. Assuming a zombie's field of view is **180°**, can they see the
 player?
 
 @Image(source: "vector_facing2.png")
 
-The green arrows fA and fB are **unit vectors** representing the
+The green arrows `fA` and `fB` are **unit vectors** representing the
 zombie's facing direction and the blue semicircle represents its field of view.
-For zombie A, we find the direction vector AP pointing to the player
-using P - A and normalize it, however, Godot has a helper method to do this
+For zombie `A`, we find the direction vector `AP` pointing to the player
+using `P - A` and normalize it, however, Godot has a helper method to do this
 called [direction_to()](https://docs.godotengine.org/en/stable/classes/class_vector2_method_direction_to.html#class-vector2_method_direction_to). If the angle
 between this vector and the facing vector is less than 90°, then the zombie can
 see the player.
 
 In code it would look like this:
+
+```
+var AP = A.direction_to(P)
+if AP.dot(fA) > 0:
+    print("A sees P!")
+```
 
 ## Cross product
 
@@ -229,25 +275,45 @@ vectors are parallel, the result of their cross product will be a null vector.
 
 The cross product is calculated like this:
 
+```
+var c = Vector3()
+c.x = (a.y * b.z) - (a.z * b.y)
+c.y = (a.z * b.x) - (a.x * b.z)
+c.z = (a.x * b.y) - (a.y * b.x)
+```
+
 With Godot, you can use the built-in [Vector3.cross()](https://docs.godotengine.org/en/stable/classes/class_vector3_method_cross.html#class-vector3_method_cross)
 method:
+
+```
+var c = a.cross(b)
+```
 
 The cross product is not mathematically defined in 2D. The [Vector2.cross()](https://docs.godotengine.org/en/stable/classes/class_vector2_method_cross.html#class-vector2_method_cross) method is a commonly used analog of the 3D cross
 product for 2D vectors.
 
-> Note: In the cross product, order matters. a.cross(b) does not give the
-> same result as b.cross(a). The resulting vectors point in
+> Note: In the cross product, order matters. `a.cross(b)` does not give the
+> same result as `b.cross(a)`. The resulting vectors point in
 > **opposite** directions.
 >
 
 ### Calculating normals
 
 One common use of cross products is to find the surface normal of a plane or
-surface in 3D space. If we have the triangle ABC we can use vector
-subtraction to find two edges AB and AC. Using the cross product,
-AB × AC produces a vector perpendicular to both: the surface normal.
+surface in 3D space. If we have the triangle `ABC` we can use vector
+subtraction to find two edges `AB` and `AC`. Using the cross product,
+`AB × AC` produces a vector perpendicular to both: the surface normal.
 
 Here is a function to calculate a triangle's normal:
+
+```
+func get_triangle_normal(a, b, c):
+    # Find the surface normal given 3 vertices.
+    var side1 = b - a
+    var side2 = c - a
+    var normal = side1.cross(side2)
+    return normal
+```
 
 ### Pointing to a target
 

@@ -13,15 +13,15 @@ var mySprite = GetNode("MySprite");
 mySprite.SetFrame(0);
 ```
 
-The method GetNode() returns a Node instance.
-You must explicitly convert it to the desired derived type, Sprite2D in this case.
+The method `GetNode()` returns a `Node` instance.
+You must explicitly convert it to the desired derived type, `Sprite2D` in this case.
 
 For this, you have various options in C#.
 
 **Casting and Type Checking**
 
-Throws InvalidCastException if the returned node cannot be cast to Sprite2D.
-You would use it instead of the as operator if you are pretty sure it won't fail.
+Throws `InvalidCastException` if the returned node cannot be cast to Sprite2D.
+You would use it instead of the `as` operator if you are pretty sure it won't fail.
 
 ```
 Sprite2D mySprite = (Sprite2D)GetNode("MySprite");
@@ -30,7 +30,7 @@ mySprite.SetFrame(0);
 
 **Using the AS operator**
 
-The as operator returns null if the node cannot be cast to Sprite2D,
+The `as` operator returns `null` if the node cannot be cast to Sprite2D,
 and for that reason, it cannot be used with value types.
 
 ```
@@ -43,14 +43,14 @@ mySprite?.SetFrame(0);
 
 Generic methods are also provided to make this type conversion transparent.
 
-GetNode<T>() casts the node before returning it. It will throw an InvalidCastException if the node cannot be cast to the desired type.
+`GetNode<T>()` casts the node before returning it. It will throw an `InvalidCastException` if the node cannot be cast to the desired type.
 
 ```
 Sprite2D mySprite = GetNode<Sprite2D>("MySprite");
 mySprite.SetFrame(0);
 ```
 
-GetNodeOrNull<T>() uses the as operator and will return null if the node cannot be cast to the desired type.
+`GetNodeOrNull<T>()` uses the `as` operator and will return `null` if the node cannot be cast to the desired type.
 
 ```
 Sprite2D mySprite = GetNodeOrNull<Sprite2D>("MySprite");
@@ -60,10 +60,10 @@ mySprite?.SetFrame(0);
 
 **Type checking using the IS operator**
 
-To check if the node can be cast to Sprite2D, you can use the is operator.
-The is operator returns false if the node cannot be cast to Sprite2D,
-otherwise it returns true. Note that when the is operator is used against null
-the result is always going to be false.
+To check if the node can be cast to Sprite2D, you can use the `is` operator.
+The `is` operator returns false if the node cannot be cast to Sprite2D,
+otherwise it returns true. Note that when the `is` operator is used against `null`
+the result is always going to be `false`.
 
 ```
 if (GetNode("MySprite") is Sprite2D)
@@ -78,7 +78,7 @@ if (null is Sprite2D)
 ```
 
 You can also declare a new variable to conditionally store the result of the cast
-if the is operator returns true.
+if the `is` operator returns `true`.
 
 ```
 if (GetNode("MySprite") is Sprite2D mySprite)
@@ -142,23 +142,23 @@ advantage of features that are only available on some of those versions:
 
 ### Full list of defines
 
-- GODOT is always defined for Godot projects.
+- `GODOT` is always defined for Godot projects.
 
-- TOOLS is defined when building with the Debug configuration (editor and editor player).
+- `TOOLS` is defined when building with the Debug configuration (editor and editor player).
 
-- GODOT_REAL_T_IS_DOUBLE is defined when the GodotFloat64 property is set to true.
+- `GODOT_REAL_T_IS_DOUBLE` is defined when the `GodotFloat64` property is set to `true`.
 
-- One of GODOT_LINUXBSD, GODOT_WINDOWS, GODOT_OSX,
-GODOT_ANDROID, GODOT_IOS, GODOT_WEB
+- One of `GODOT_LINUXBSD`, `GODOT_WINDOWS`, `GODOT_OSX`,
+`GODOT_ANDROID`, `GODOT_IOS`, `GODOT_WEB`
 depending on the OS. These names may change in the future.
-These are created from the get_name() method of the
+These are created from the `get_name()` method of the
 [OS](https://docs.godotengine.org/en/stable/classes/class_os.html#class-os) singleton, but not every possible OS
 the method returns is an OS that Godot with .NET runs on.
 
-- GODOTX, GODOTX_Y, GODOTX_Y_Z, GODOTx_OR_GREATER,
-GODOTX_y_OR_GREATER, and GODOTX_Y_z_OR_GREATER, where X, Y,
-and Z are replaced by the current major, minor and patch version of Godot.
-x, y, and z are replaced by all values from 0 to the current version number for that
+- `GODOTX`, `GODOTX_Y`, `GODOTX_Y_Z`, `GODOTx_OR_GREATER`,
+`GODOTX_y_OR_GREATER`, and `GODOTX_Y_z_OR_GREATER`, where `X`, `Y`,
+and `Z` are replaced by the current major, minor and patch version of Godot.
+`x`, `y`, and `z` are replaced by all values from 0 to the current version number for that
 component.
 
 > Note:
@@ -166,20 +166,20 @@ component.
 > These defines were first added in Godot 4.0.4 and 4.1. Version defines for
 > prior versions do not exist, regardless of the current Godot version.
 >
-> For example: Godot 4.0.5 defines GODOT4, GODOT4_OR_GREATER,
-> GODOT4_0, GODOT4_0_OR_GREATER, GODOT4_0_5,
-> GODOT4_0_4_OR_GREATER, and GODOT4_0_5_OR_GREATER. Godot 4.3.2 defines
-> GODOT4, GODOT4_OR_GREATER, GODOT4_3, GODOT4_0_OR_GREATER,
-> GODOT4_1_OR_GREATER, GODOT4_2_OR_GREATER, GODOT4_3_OR_GREATER,
-> GODOT4_3_2, GODOT4_3_0_OR_GREATER, GODOT4_3_1_OR_GREATER, and
-> GODOT4_3_2_OR_GREATER.
+> For example: Godot 4.0.5 defines `GODOT4`, `GODOT4_OR_GREATER`,
+> `GODOT4_0`, `GODOT4_0_OR_GREATER`, `GODOT4_0_5`,
+> `GODOT4_0_4_OR_GREATER`, and `GODOT4_0_5_OR_GREATER`. Godot 4.3.2 defines
+> `GODOT4`, `GODOT4_OR_GREATER`, `GODOT4_3`, `GODOT4_0_OR_GREATER`,
+> `GODOT4_1_OR_GREATER`, `GODOT4_2_OR_GREATER`, `GODOT4_3_OR_GREATER`,
+> `GODOT4_3_2`, `GODOT4_3_0_OR_GREATER`, `GODOT4_3_1_OR_GREATER`, and
+> `GODOT4_3_2_OR_GREATER`.
 >
 
 When **exporting**, the following may also be defined depending on the export features:
 
-- One of GODOT_PC, GODOT_MOBILE, or GODOT_WEB depending on the platform type.
+- One of `GODOT_PC`, `GODOT_MOBILE`, or `GODOT_WEB` depending on the platform type.
 
-- One of GODOT_WINDOWS, GODOT_LINUXBSD, GODOT_MACOS, GODOT_ANDROID, GODOT_IOS, or GODOT_WEB depending on the platform.
+- One of `GODOT_WINDOWS`, `GODOT_LINUXBSD`, `GODOT_MACOS`, `GODOT_ANDROID`, `GODOT_IOS`, or `GODOT_WEB` depending on the platform.
 
 To see an example project, see the OS testing demo:
 https://github.com/godotengine/godot-demo-projects/tree/master/misc/os_test

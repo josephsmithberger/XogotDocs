@@ -8,8 +8,8 @@ of Promises.
 
 ## Engine
 
-The Engine class provides methods for loading and starting exported projects on the Web. For default export
-settings, this is already part of the exported HTML page. To understand practical use of the Engine class,
+The `Engine` class provides methods for loading and starting exported projects on the Web. For default export
+settings, this is already part of the exported HTML page. To understand practical use of the `Engine` class,
 see <doc:customizing_html5_shell>.
 
 ### Static Methods

@@ -17,7 +17,7 @@ for more information.
 
 ## Import workflows
 
-Since Godot can only save its own scene format (.tscn/.scn), Godot
+Since Godot can only save its own scene format (`.tscn`/`.scn`), Godot
 cannot save over the original 3D scene file (which uses a different format).
 This is also a safer approach as it avoids making accidental changes to the
 source file.
@@ -104,7 +104,7 @@ and longer bake times.
 
 - **Use Named Skins:** If checked, use named [Skins](https://docs.godotengine.org/en/stable/classes/class_skin.html#class-skin) for animation.
 The [MeshInstance3D](https://docs.godotengine.org/en/stable/classes/class_meshinstance3d.html#class-meshinstance3d) node contains 3 properties of relevance here: a skeleton
-NodePath pointing to the Skeleton3D node (usually ..), a mesh, and a skin:
+NodePath pointing to the Skeleton3D node (usually `..`), a mesh, and a skin:
 
 The [Skeleton3D](https://docs.godotengine.org/en/stable/classes/class_skeleton3d.html#class-skeleton3d) node contains a list of bones with names, their pose and rest,
 a name and a parent bone.
@@ -206,7 +206,7 @@ imported scene, with and without VRAM compression respectively.
 
 **Blender-specific options**
 
-Only visible for .blend files.
+Only visible for `.blend` files.
 
 **Nodes**
 
@@ -261,14 +261,14 @@ from Blender.
 and uses them. This allows changing image import settings like VRAM compression.
 If unchecked, allows Blender to convert the original images, such as repacking
 roughness and metallic into one roughness + metallic texture. In most cases,
-this option should be left checked, but if the .blend file's images
+this option should be left checked, but if the `.blend` file's images
 aren't in the correct format, this must be disabled for correct behavior.
 
 - **Export Materials:** If set to **Placeholder**, does not import materials,
 but keeps surface slots so that separate materials can be assigned to different surfaces.
 If set to **Export**, imports materials as-is (note that procedural Blender materials
 may not work correctly). If set to **Named Placeholder**, imports materials,
-but doesn't import images that are packed into the .blend file.
+but doesn't import images that are packed into the `.blend` file.
 Textures will have to be reassigned manually in the imported materials.
 
 **Animation**
@@ -319,7 +319,7 @@ func iterate(node):
             iterate(child)
 ```
 
-The _post_import(scene: Node) function takes the imported scene as argument
+The `_post_import(scene: Node)` function takes the imported scene as argument
 (the parameter is actually the root node of the scene). The scene that will
 finally be used **must** be returned (even if the scene can be entirely different).
 
@@ -327,7 +327,7 @@ To use your script, locate the script in the import tab's "Path" option under th
 
 ### Using animation libraries
 
-As of Godot 4.0, you can choose to import **only** animations from a glTF file and
+You can also choose to import **only** animations from a glTF file and
 nothing else. This is used in some asset pipelines to distribute animations
 separately from models. For example, this allows you to use one set of
 animations for several characters, without having to duplicate animation data in
@@ -356,12 +356,12 @@ The filter script is executed against each imported animation. The syntax
 consists of two types of statements, the first for choosing which animations to
 filter, and the second for filtering individual tracks within the matched
 animation. All name patterns are performed using a case-insensitive expression
-match, with support for ? and * wildcards (using
+match, with support for `?` and `*` wildcards (using
 [String.matchn()](https://docs.godotengine.org/en/stable/classes/class_string_method_matchn.html#class-string_method_matchn) under the hood).
 
 The script must start with an animation filter statement (as denoted by the line
-beginning with an @). For example, if we would like to apply filters to all
-imported animations which have a name ending in "_Loop":
+beginning with an `@`). For example, if we would like to apply filters to all
+imported animations which have a name ending in `"_Loop"`:
 
 ```
 @+*_Loop
@@ -369,8 +369,8 @@ imported animations which have a name ending in "_Loop":
 
 Similarly, additional patterns can be added to the same line, separated by
 commas. Here is a modified example to additionally include all animations with
-names that begin with "Arm_Left", but also exclude all animations which
-have names ending in "Attack":
+names that begin with `"Arm_Left"`, but also exclude all animations which
+have names ending in `"Attack"`:
 
 ```
 @+*_Loop, +Arm_Left*, -*Attack
@@ -387,9 +387,9 @@ later rule can still discard it. Similarly, a track excluded by an early rule
 may then be re-included once again by a filter rule further down in the filter
 script.
 
-For example: include all tracks in animations with names ending in "_Loop",
-but discard any tracks affecting a "Skeleton" which end in "Control",
-unless they have "Arm" in their name:
+For example: include all tracks in animations with names ending in `"_Loop"`,
+but discard any tracks affecting a `"Skeleton"` which end in `"Control"`,
+unless they have `"Arm"` in their name:
 
 ```
 @+*_Loop
@@ -398,11 +398,11 @@ unless they have "Arm" in their name:
 +*Arm*
 ```
 
-In the above example, tracks like "Skeleton:Leg_Control" would be discarded,
-while tracks such as "Skeleton:Head" or "Skeleton:Arm_Left_Control"
+In the above example, tracks like `"Skeleton:Leg_Control"` would be discarded,
+while tracks such as `"Skeleton:Head"` or `"Skeleton:Arm_Left_Control"`
 would be retained.
 
-Any track filter lines that do not begin with a + or - are ignored.
+Any track filter lines that do not begin with a `+` or `-` are ignored.
 
 ## Scene inheritance
 

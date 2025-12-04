@@ -71,15 +71,15 @@ The run/window_placement/android_window editor setting can be used to specify wh
 We recommend the Termux terminal, an Android terminal emulator which provides access to common terminal utilities such Git and SSH.
 
 **Note:** To use Git with the Termux terminal, you'll need to grant WRITE permission to the terminal.
-This can be done by running the following command from within the terminal: termux-setup-storage
+This can be done by running the following command from within the terminal: `termux-setup-storage`
 
 
 
 - **Note:** To use Git with the Termux terminal, you'll need to grant WRITE permission to the terminal.
-This can be done by running the following command from within the terminal: termux-setup-storage
+This can be done by running the following command from within the terminal: `termux-setup-storage`
 
 - **Note:** To use Git with the Termux terminal, you'll need to grant WRITE permission to the terminal.
-This can be done by running the following command from within the terminal: termux-setup-storage
+This can be done by running the following command from within the terminal: `termux-setup-storage`
 
 **Plugins**
 
@@ -97,7 +97,7 @@ Here are the known limitations and issues of the Android editor:
 
 - No support for external script editors.
 
-- While available, the Vulkan Forward+ renderer is not recommended due to severe performance issues.
+- While available, the Forward+ renderer is not recommended due to severe performance issues.
 
 - UX not optimized for Android phones form-factor.
 

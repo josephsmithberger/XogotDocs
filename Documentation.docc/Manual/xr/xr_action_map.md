@@ -94,11 +94,11 @@ The concept here is that you could have different sets that provide bindings
 in different scenarios.
 You could have:
 
-- a Character control set for when you're walking around,
+- a `Character control` set for when you're walking around,
 
-- a Vehicle control set for when you're operating a vehicle,
+- a `Vehicle control` set for when you're operating a vehicle,
 
-- a Menu set for when a menu is open.
+- a `Menu` set for when a menu is open.
 
 Only the action set applicable to the current state of your game/application
 can then be enabled.
@@ -107,11 +107,11 @@ This is especially important if you wish to bind the same input on a controller
 to a different action.
 For instance:
 
-- in your Character control set you may have an action Jump,
+- in your `Character control` set you may have an action `Jump`,
 
-- in your Vehicle control set you may have an action Accelerate,
+- in your `Vehicle control` set you may have an action `Accelerate`,
 
-- in your Menu set you may have an action Select.
+- in your `Menu` set you may have an action `Select`.
 
 All are bound to the trigger on your controller.
 
@@ -124,7 +124,7 @@ For your first XR game/application we highly recommend starting with just
 a single action set and to not over-engineer things.
 
 For our walkthrough in this document we will thus create a single action set
-called my_first_action_set.
+called `my_first_action_set`.
 We do this by pressing the :button:`Add action set` button:
 
 @Image(source: "xr_my_first_action_set.png")
@@ -148,26 +148,26 @@ that is updated.
 
 In the XR action map, actions are the entities that your game/application will
 interact with.
-For instance, we can define an action Shoot and the input bound to that action will
-trigger the button_pressed signal on the relevant [XRController3D](https://docs.godotengine.org/en/stable/classes/class_xrcontroller3d.html#class-xrcontroller3d)
-node in your scene with Shoot as the name parameter of the signal.
+For instance, we can define an action `Shoot` and the input bound to that action will
+trigger the `button_pressed` signal on the relevant [XRController3D](https://docs.godotengine.org/en/stable/classes/class_xrcontroller3d.html#class-xrcontroller3d)
+node in your scene with `Shoot` as the `name` parameter of the signal.
 
 You can also poll the current state of an action.
 [XRController3D](https://docs.godotengine.org/en/stable/classes/class_xrcontroller3d.html#class-xrcontroller3d) for instance has
-an is_button_pressed method.
+an `is_button_pressed` method.
 
 Actions can be used for both input and output and each action has a type that defines
 its behavior.
 
-- The Bool type is used for discrete input like buttons.
+- The `Bool` type is used for discrete input like buttons.
 
-- The Float type is used for analogue input like triggers.
+- The `Float` type is used for analogue input like triggers.
 
 These two are special as they are the only ones that are interchangeable.
-OpenXR will handle conversions between Bool and Float inputs and actions.
-You can get the value of a Float type action by calling the method get_float on
+OpenXR will handle conversions between `Bool` and `Float` inputs and actions.
+You can get the value of a `Float` type action by calling the method `get_float` on
 your [XRController3D](https://docs.godotengine.org/en/stable/classes/class_xrcontroller3d.html#class-xrcontroller3d) node.
-It emits the input_float_changed signal when changed.
+It emits the `input_float_changed` signal when changed.
 
 > Note:
 > Where analogue inputs are queried as buttons a threshold is applied.
@@ -176,33 +176,33 @@ It emits the input_float_changed signal when changed.
 > in the future.
 >
 
-The Vector2 type defines the input as an axis input.
+The `Vector2` type defines the input as an axis input.
 Touchpads, thumbsticks and similar inputs are exposed as vectors.
-You can get the value of a Vector2 type action by calling the method get_vector2
+You can get the value of a `Vector2` type action by calling the method `get_vector2`
 on your [XRController3D](https://docs.godotengine.org/en/stable/classes/class_xrcontroller3d.html#class-xrcontroller3d) node.
-It emits the input_vector2_changed signal when changed.
+It emits the `input_vector2_changed` signal when changed.
 
-The Pose type defines a spatially tracked input.
-Multiple "pose" inputs are available in OpenXR: aim, grip and palm.
+The `Pose` type defines a spatially tracked input.
+Multiple "pose" inputs are available in OpenXR: `aim`, `grip` and `palm`.
 Your [XRController3D](https://docs.godotengine.org/en/stable/classes/class_xrcontroller3d.html#class-xrcontroller3d) node is automatically positioned based
-on the pose action assigned to pose property of this node.
+on the pose action assigned to `pose` property of this node.
 More about poses later.
 
 > Note:
-> The OpenXR implementation in Godot also exposes a special pose called Skeleton.
+> The OpenXR implementation in Godot also exposes a special pose called `Skeleton`.
 > This is part of the hand tracking implementation.
-> This pose is exposed through the skeleton action that is supported outside of the
+> This pose is exposed through the `skeleton` action that is supported outside of the
 > action map system.
 > It is thus always present if hand tracking is supported.
 > You don't need to bind actions to this pose to use it.
 >
 
-Finally, the only output type is Haptic and it allows us to set the intensity of
+Finally, the only output type is `Haptic` and it allows us to set the intensity of
 haptic feedback, such as controller vibration.
 Controllers can have multiple haptic outputs and support for haptic vests is coming
 to OpenXR.
 
-So lets add an action for our aim pose, we do this by clicking on the + button for
+So lets add an action for our aim pose, we do this by clicking on the `+` button for
 our action set:
 
 @Image(source: "xr_aim_pose.png")
@@ -266,14 +266,14 @@ to both hands.
 The appropriate [XRController3D](https://docs.godotengine.org/en/stable/classes/class_xrcontroller3d.html#class-xrcontroller3d) node will emit the signal.
 
 > Warning:
-> For both grab and shoot we've used the Bool type.
+> For both grab and shoot we've used the `Bool` type.
 > As mentioned before, OpenXR does automatic conversions from an analogue controls
 > however not all XR Runtimes currently apply sensible thresholds.
 >
-> We recommend as a workaround to use the Float type when interacting with triggers
+> We recommend as a workaround to use the `Float` type when interacting with triggers
 > and grip buttons and apply your own threshold.
 >
-> For buttons like A/B/X/Y and similar where there is no analogue option, the Bool
+> For buttons like A/B/X/Y and similar where there is no analogue option, the `Bool`
 > type works fine.
 >
 
@@ -282,9 +282,9 @@ The appropriate [XRController3D](https://docs.godotengine.org/en/stable/classes/
 > profile.
 > In this case the XR runtime will attempt to combine the inputs.
 >
-> * For Bool inputs, this will perform an OR operation between the buttons.
-> * For Float inputs, this will take the highest value of the bound inputs.
-> * The behavior for Pose inputs is undefined, but the first bound input is likely to
+> * For `Bool` inputs, this will perform an `OR` operation between the buttons.
+> * For `Float` inputs, this will take the highest value of the bound inputs.
+> * The behavior for `Pose` inputs is undefined, but the first bound input is likely to
 > be used.
 >
 > You shouldn't bind multiple actions of the same action set to the same controller input.
@@ -389,7 +389,7 @@ If it is not in the list, then it may already have been added.
 
 Our UI now shows panels for both the left and right controllers.
 The panels contain all of the possible inputs and outputs for each controller.
-We can use the + next to each entry to bind it to an action:
+We can use the `+` next to each entry to bind it to an action:
 
 @Image(source: "xr_select_action.png")
 
@@ -406,25 +406,25 @@ say a teleport function.
 In developing your game/application you have to account for the possibility that
 the user changes the binding and binds the movement to the left hand thumbstick.
 
-Also note that our shoot and grab boolean actions are linked to inputs of type Float.
+Also note that our shoot and grab boolean actions are linked to inputs of type `Float`.
 As mentioned before OpenXR will do conversions between the two, but do read the warning
 given on that subject earlier in this document.
 
 > Note:
 > Some of the inputs seem to appear in our list multiple times.
 >
-> For instance we can find the X button twice, once as X click and then
-> as X touch.
+> For instance we can find the `X` button twice, once as `X click` and then
+> as `X touch`.
 > This is due to the Touch controller having a capacitive sensor.
 >
-> * X touch will be true if the user is merely touching the X button.
-> * X click will be true when the user is actually pressing down on the button.
+> * `X touch` will be true if the user is merely touching the X button.
+> * `X click` will be true when the user is actually pressing down on the button.
 >
 > Similarly for the thumbstick we have:
 >
-> * Thumbstick touch which will be true if the user is touching the thumbstick.
-> * Thumbstick which gives a value for the direction the thumbstick is pushed to.
-> * Thumbstick click which is true when the user is pressing down on the thumbstick.
+> * `Thumbstick touch` which will be true if the user is touching the thumbstick.
+> * `Thumbstick` which gives a value for the direction the thumbstick is pushed to.
+> * `Thumbstick click` which is true when the user is pressing down on the thumbstick.
 >
 > It is important to note that only a select number of XR controllers support
 > touch sensors or have click features on thumbsticks.
@@ -533,35 +533,35 @@ You can add the modifier multiple times to set different settings for different 
 
 These settings are used as follows:
 
-- Action Set defines the action set to which these settings are applied.
+- `Action Set` defines the action set to which these settings are applied.
 
-- Input Path defines the original input that is mapped to the new dpad inputs.
+- `Input Path` defines the original input that is mapped to the new dpad inputs.
 
-- Threshold specifies the threshold value that will enable a dpad action,
-e.g. a value of 0.6 means that if the distance from center goes above 0.6
+- `Threshold` specifies the threshold value that will enable a dpad action,
+e.g. a value of `0.6` means that if the distance from center goes above `0.6`
 the dpad action is pressed.
 
-- Threshold Released specifies the threshold value that will disable a dpad action,
-e.g. a value of 0.4 means that if the distance from center goes below 0.4
+- `Threshold Released` specifies the threshold value that will disable a dpad action,
+e.g. a value of `0.4` means that if the distance from center goes below `0.4`
 the dpad action is released.
 
-- Center Region specifies the distance from center that enabled the center action,
+- `Center Region` specifies the distance from center that enabled the center action,
 this is only supported for trackpads.
 
-- Wedge Angle specifies the angle of each wedge.
-A value of 90 degrees or lower means that up, down, left and right each have
+- `Wedge Angle` specifies the angle of each wedge.
+A value of `90 degrees` or lower means that up, down, left and right each have
 a separate slice in which they are in the pressed state.
-A value above 90 degrees means that the slices overlap and that multiple
+A value above `90 degrees` means that the slices overlap and that multiple
 actions can be in the pressed state.
 
-- Is Sticky, when enabled means that an action stays in the pressed state until
+- `Is Sticky`, when enabled means that an action stays in the pressed state until
 the thumbstick or trackpad moves into another wedge even if it has left the wedge
 for that action.
 
-- On Haptic lets us define a haptic output that is automatically activated
+- `On Haptic` lets us define a haptic output that is automatically activated
 when an action becomes pressed.
 
-- Off Haptic lets us define a haptic output that is automatically activated
+- `Off Haptic` lets us define a haptic output that is automatically activated
 when an action is released.
 
 ### Binding modifiers on individual bindings
@@ -598,18 +598,18 @@ The analog threshold modifier has the following settings:
 
 These are defined as follows:
 
-- On Threshold specifies the threshold value that will enable the action,
-e.g. a value of 0.6 means that when the analog value gets above 0.6
+- `On Threshold` specifies the threshold value that will enable the action,
+e.g. a value of `0.6` means that when the analog value gets above `0.6`
 the action is set to the pressed state.
 
-- Off Threshold specifies the threshold value that will disable the action,
-e.g. a value of 0.4 means that when the analog value goes below 0.4
+- `Off Threshold` specifies the threshold value that will disable the action,
+e.g. a value of `0.4` means that when the analog value goes below `0.4`
 the action is set in to the released state.
 
-- On Haptic lets us define a haptic output that is automatically activated
+- `On Haptic` lets us define a haptic output that is automatically activated
 when the input is pressed.
 
-- Off Haptic lets us define a haptic output that is automatically activated
+- `Off Haptic` lets us define a haptic output that is automatically activated
 when the input is released.
 
 ### Haptics on modifiers
@@ -630,10 +630,10 @@ The haptic vibration allows us to specify a simple haptic pulse:
 
 It has the following options:
 
-- Duration is the duration of the pulse in nanoseconds. -1 lets the runtime
+- `Duration` is the duration of the pulse in nanoseconds. `-1` lets the runtime
 choose an optimal value for a short pulse suitable for the current hardware.
 
-- Frequency is the frequency of the pulse in Hz. 0 lets the runtime choose
+- `Frequency` is the frequency of the pulse in Hz. `0` lets the runtime choose
 an optimal frequency for a short pulse suitable for the current hardware.
 
-- Amplitude is the amplitude of the pulse.
+- `Amplitude` is the amplitude of the pulse.

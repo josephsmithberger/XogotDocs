@@ -44,14 +44,14 @@ after selecting a RichTextLabel node.
 
 @Image(source: "bbcode_in_richtextlabel_inspector.png")
 
-For example, BBCode [color=green]test[/color] would render the word "test" with
+For example, `BBCode [color=green]test[/color]` would render the word "test" with
 a green color.
 
 @Image(source: "bbcode_in_richtextlabel_basic_example.png")
 
 Most BBCodes consist of 3 parts: the opening tag, the content and the closing
 tag. The opening tag delimits the start of the formatted part, and can also
-carry some configuration options. Some opening tags, like the color one
+carry some configuration options. Some opening tags, like the `color` one
 shown above, also require a value to work. Other opening tags may accept
 multiple options (separated by spaces within the opening tag). The closing tag
 delimits the end of the formatted part. In some cases, both the closing tag and
@@ -91,10 +91,10 @@ you don't need to use a preformatted text tag.
 In a scenario where users may freely input text (such as chat in a multiplayer
 game), you should make sure users cannot use arbitrary BBCode tags that will be
 parsed by RichTextLabel. This is to avoid inappropriate use of formatting, which
-can be problematic if [url] tags are handled by your RichTextLabel (as players
+can be problematic if `[url]` tags are handled by your RichTextLabel (as players
 may be able to create clickable links to phishing sites or similar).
 
-Using RichTextLabel's [lb] and/or [rb] tags, we can replace the opening and/or
+Using RichTextLabel's `[lb]` and/or `[rb]` tags, we can replace the opening and/or
 closing brackets of any BBCode tag in a message with those escaped tags. This
 prevents users from using BBCode that will be parsed as tags – instead, the
 BBCode will be displayed as text.
@@ -163,11 +163,11 @@ when the RichTextLabel's text is updated.
 
 There are several ways to alleviate this:
 
-- Use the append_text() function instead of appending to the text
+- Use the `append_text()` function instead of appending to the `text`
 property. This function will only parse BBCode for the added text, rather than
-parsing BBCode from the entire text property.
+parsing BBCode from the entire `text` property.
 
-- Use push_[tag]() and pop() functions to add tags to RichTextLabel instead of
+- Use `push_[tag]()` and `pop()` functions to add tags to RichTextLabel instead of
 using BBCode.
 
 - Enable the **Threading > Threaded** property in RichTextLabel. This won't
@@ -181,18 +181,18 @@ If you don't want to use BBCode for performance reasons, you can use functions
 provided by RichTextLabel to create formatting tags without writing BBCode in
 the text.
 
-Every BBCode tag (including effects) has a push_[tag]() function (where
-[tag] is the tag's name). There are also a few convenience functions
-available, such as push_bold_italics() that combines both push_bold()
-and push_italics() into a single tag. See the
+Every BBCode tag (including effects) has a `push_[tag]()` function (where
+`[tag]` is the tag's name). There are also a few convenience functions
+available, such as `push_bold_italics()` that combines both `push_bold()`
+and `push_italics()` into a single tag. See the
 [RichTextLabel class reference](https://docs.godotengine.org/en/stable/classes/class_richtextlabel.html#class-richtextlabel) for a complete list of
-push_[tag]() functions.
+`push_[tag]()` functions.
 
-The pop() function is used to end any tag. Since BBCode is a tag stack,
-using pop() will close the most recently started tags first.
+The `pop()` function is used to end any tag. Since BBCode is a tag stack,
+using `pop()` will close the most recently started tags first.
 
 The following script will result in the same visual output as using
-BBCode [color=green]test [i]example[/i][/color]:
+`BBCode [color=green]test [i]example[/i][/color]`:
 
 ```
 extends RichTextLabel
@@ -209,9 +209,9 @@ func _ready():
 
 > Warning:
 >
-> Do **not** set the text property directly when using formatting functions.
-> Appending to the text property will erase all modifications made to the
-> RichTextLabel using the append_text(), push_[tag]() and pop()
+> Do **not** set the `text` property directly when using formatting functions.
+> Appending to the `text` property will erase all modifications made to the
+> RichTextLabel using the `append_text()`, `push_[tag]()` and `pop()`
 > functions.
 >
 
@@ -219,95 +219,95 @@ func _ready():
 
 > Seealso:
 >
-> Some of these BBCode tags can be used in tooltips for @export script
+> Some of these BBCode tags can be used in tooltips for `@export` script
 > variables as well as in the XML source of the class reference. For more
 > information, see <doc:index#Bbcode>.
 >
 
 Tag | Example
 --- | -------
-**b**Makes{text}use the bold (or bold italics) font ofRichTextLabel. | [b]{text}[/b]
-**i**Makes{text}use the italics (or bold italics) font ofRichTextLabel. | [i]{text}[/i]
-**u**Makes{text}underlined. | [u]{text}[/u]
-**s**Makes{text}strikethrough. | [s]{text}[/s]
-**code**Makes{text}use the mono font ofRichTextLabel. | [code]{text}[/code]
-**char**Adds Unicode character with hexadecimal UTF-32{codepoint}. | [char={codepoint}]
-**p**Adds new paragraph with{text}. Supports configuration options,
-see <doc:bbcode_in_richtextlabel#Paragraph-Options>. | [p]{text}[/p][p{options}]{text}[/p]
+**b**Makes`{text}`use the bold (or bold italics) font of`RichTextLabel`. | `[b]{text}[/b]`
+**i**Makes`{text}`use the italics (or bold italics) font of`RichTextLabel`. | `[i]{text}[/i]`
+**u**Makes`{text}`underlined. | `[u]{text}[/u]`
+**s**Makes`{text}`strikethrough. | `[s]{text}[/s]`
+**code**Makes`{text}`use the mono font of`RichTextLabel`. | `[code]{text}[/code]`
+**char**Adds Unicode character with hexadecimal UTF-32`{codepoint}`. | `[char={codepoint}]`
+**p**Adds new paragraph with`{text}`. Supports configuration options,
+see <doc:bbcode_in_richtextlabel#Paragraph-Options>. | `[p]{text}[/p]``[p {options}]{text}[/p]`
 **br**Adds line break in a text, without adding a new paragraph.
 If used within a list, this won't create a new list item,
-but will add a line break within the current item instead. | [br]
+but will add a line break within the current item instead. | `[br]`
 **hr**Adds new a horizontal rule to separate content. Supports configuration options,
-see <doc:bbcode_in_richtextlabel#Hr-Options>. | [hr][hr {options}]
-**center**Makes{text}horizontally centered.Same as[p align=center]. | [center]{text}[/center]
-**left**Makes{text}horizontally left-aligned.Same as[p align=left]. | [left]{text}[/left]
-**right**Makes{text}horizontally right-aligned.Same as[p align=right]. | [right]{text}[/right]
-**fill**Makes{text}fill the full width ofRichTextLabel.Same as[p align=fill]. | [fill]{text}[/fill]
-**indent**Indents{text}once.
-The indentation width is the same as with[ul]or[ol], but without a bullet point. | [indent]{text}[/indent]
-**url**Creates a hyperlink (underlined and clickable text). Can contain optional{text}or display{link}as is.**Must be handled with the "meta_clicked" signal to have an effect,**see <doc:bbcode_in_richtextlabel#Handling-Url-Tag-Clicks>. | [url]{link}[/url][url={link}]{text}[/url]
+see <doc:bbcode_in_richtextlabel#Hr-Options>. | `[hr]``[hr {options}]`
+**center**Makes`{text}`horizontally centered.Same as`[p align=center]`. | `[center]{text}[/center]`
+**left**Makes`{text}`horizontally left-aligned.Same as`[p align=left]`. | `[left]{text}[/left]`
+**right**Makes`{text}`horizontally right-aligned.Same as`[p align=right]`. | `[right]{text}[/right]`
+**fill**Makes`{text}`fill the full width of`RichTextLabel`.Same as`[p align=fill]`. | `[fill]{text}[/fill]`
+**indent**Indents`{text}`once.
+The indentation width is the same as with`[ul]`or`[ol]`, but without a bullet point. | `[indent]{text}[/indent]`
+**url**Creates a hyperlink (underlined and clickable text). Can contain optional`{text}`or display`{link}`as is.**Must be handled with the "meta_clicked" signal to have an effect,**see <doc:bbcode_in_richtextlabel#Handling-Url-Tag-Clicks>. | `[url]{link}[/url]``[url={link}]{text}[/url]`
 **hint**Creates a tooltip hint that is displayed when hovering the text with the mouse.
 While not required, it's recommended to put tooltip text between double or single quotes.
-Note that it is not possible to escape quotes using\"or\'. To use
+Note that it is not possible to escape quotes using`\"`or`\'`. To use
 single quotes for apostrophes in the hint string, you must use double quotes
-to surround the string. | [hint="{tooltiptext displayed onhover}"]{text}[/hint]
-**img**Inserts an image from the{path}(can be any valid [Texture2D](https://docs.godotengine.org/en/stable/classes/class_texture2d.html#class-texture2d) resource).If{width}is provided, the image will try to fit that width maintaining
-the aspect ratio.If both{width}and{height}are provided, the image will be scaled
-to that size.Add%to the end of{width}or{height}value to specify it as percentages of the control width instead of pixels.If{valign}configuration is provided, the image will try to align to the
-surrounding text, see <doc:bbcode_in_richtextlabel#Image-And-Table-Alignment>.Supports configuration options, see <doc:bbcode_in_richtextlabel#Image-Options>. | [img]{path}[/img][img={width}]{path}[/img][img={width}x{height}]{path}[/img][img={valign}]{path}[/img][img{options}]{path}[/img]
-**font**Makes{text}use a font resource from the{path}.Supports configuration options, see <doc:bbcode_in_richtextlabel#Font-Options>. | [font={path}]{text}[/font][font{options}]{text}[/font]
-**font_size**Use custom font size for{text}. | [font_size={size}]{text}[/font_size]
-**dropcap**Use a different font size and color for{text}, while making the tag's contents
+to surround the string. | `[hint="{tooltip text displayed on hover}"]{text}[/hint]`
+**img**Inserts an image from the`{path}`(can be any valid [Texture2D](https://docs.godotengine.org/en/stable/classes/class_texture2d.html#class-texture2d) resource).If`{width}`is provided, the image will try to fit that width maintaining
+the aspect ratio.If both`{width}`and`{height}`are provided, the image will be scaled
+to that size.Add`%`to the end of`{width}`or`{height}`value to specify it as percentages of the control width instead of pixels.If`{valign}`configuration is provided, the image will try to align to the
+surrounding text, see <doc:bbcode_in_richtextlabel#Image-And-Table-Alignment>.Supports configuration options, see <doc:bbcode_in_richtextlabel#Image-Options>. | `[img]{path}[/img]``[img={width}]{path}[/img]``[img={width}x{height}]{path}[/img]``[img={valign}]{path}[/img]``[img {options}]{path}[/img]`
+**font**Makes`{text}`use a font resource from the`{path}`.Supports configuration options, see <doc:bbcode_in_richtextlabel#Font-Options>. | `[font={path}]{text}[/font]``[font {options}]{text}[/font]`
+**font_size**Use custom font size for`{text}`. | `[font_size={size}]{text}[/font_size]`
+**dropcap**Use a different font size and color for`{text}`, while making the tag's contents
 span multiple lines if it's large enough.Adrop capis typically one
-uppercase character, but[dropcap]supports containing multiple characters.marginsvalues are comma-separated and can be positive, zero or negative.
+uppercase character, but`[dropcap]`supports containing multiple characters.`margins`values are comma-separated and can be positive, zero or negative.
 Values must**not**be separated by spaces; otherwise, the values won't be parsed correctly.
 Negative top and bottom margins are particularly useful to allow the rest of
-the paragraph to display below the dropcap. | [dropcapfont={font}font_size={size}color={color}outline_size={size}outline_color={color}margins={left},{top},{right},{bottom}]{text}[/dropcap]
-**opentype_features**Enables custom OpenType font features for{text}. Features must be provided as
-a comma-separated{list}. Values must**not**be separated by spaces;
-otherwise, the list won't be parsed correctly. | [opentype_features={list}]{text}[/opentype_features]
-**lang**Overrides the language for{text}that is set by the**BiDi > Language**property
-in [RichTextLabel](https://docs.godotengine.org/en/stable/classes/class_richtextlabel.html#class-richtextlabel).{code}must be an ISO <doc:locales>.
+the paragraph to display below the dropcap. | `[dropcap font={font} font_size={size} color={color} outline_size={size} outline_color={color} margins={left},{top},{right},{bottom}]{text}[/dropcap]`
+**opentype_features**Enables custom OpenType font features for`{text}`. Features must be provided as
+a comma-separated`{list}`. Values must**not**be separated by spaces;
+otherwise, the list won't be parsed correctly. | `[opentype_features={list}]``{text}``[/opentype_features]`
+**lang**Overrides the language for`{text}`that is set by the**BiDi > Language**property
+in [RichTextLabel](https://docs.godotengine.org/en/stable/classes/class_richtextlabel.html#class-richtextlabel).`{code}`must be an ISO <doc:locales>.
 This can be used to enforce the use of a specific script for a language without
 starting a new paragraph. Some font files may contain script-specific substitutes,
-in which case they will be used. | [lang={code}]{text}[/lang]
-**color**Changes the color of{text}. Color must be provided by a common name (see
-<doc:bbcode_in_richtextlabel#Named-Colors>) or using the HEX format (e.g.#ff00ff, see <doc:bbcode_in_richtextlabel#Hex-Colors>). | [color={code/name}]{text}[/color]
-**bgcolor**Draws the color behind{text}. This can be used to highlight text.
-Accepts same values as thecolortag.
-By default, there is a slight padding which is controlled by thetext_highlight_h_paddingandtext_highlight_v_paddingtheme items
-in the RichTextLabel node. Set padding to0to avoid potential overlapping
-issues when there are background colors on neighboring lines/columns. | [bgcolor={code/name}]{text}[/bgcolor]
-**fgcolor**Draws the color in front of{text}. This can be used to "redact" text by using
-an opaque foreground color. Accepts same values as thecolortag.
-By default, there is a slight padding which is controlled by thetext_highlight_h_paddingandtext_highlight_v_paddingtheme items
-in the RichTextLabel node. Set padding to0to avoid potential overlapping
-issues when there are foreground colors on neighboring lines/columns. | [fgcolor={code/name}]{text}[/fgcolor]
-**outline_size**Use custom font outline size for{text}. | [outline_size={size}]{text}[/outline_size]
-**outline_color**Use custom outline color for{text}. Accepts same values as thecolortag. | [outline_color={code/name}]{text}[/outline_color]
-**table**Creates a table with the{number}of columns. Use thecelltag to define
-table cells.If{valign}configuration is provided, the table will try to align to the
-surrounding text, see <doc:bbcode_in_richtextlabel#Image-And-Table-Alignment>.If baseline alignment is used, the table is aligned to the baseline of the row with index{alignment_row}(zero-based). | [table={number}]{cells}[/table][table={number},{valign}]{cells}[/table][table={number},{valign},{alignment_row}]{cells}[/table]
-**cell**Adds a cell with{text}to the table.If{ratio}is provided, the cell will try to expand to that value proportionally
-to other cells and their ratio values.Supports configuration options, see <doc:bbcode_in_richtextlabel#Cell-Options>. | [cell]{text}[/cell][cell={ratio}]{text}[/cell][cell{options}]{text}[/cell]
-**ul**Adds an unordered list. List{items}must be provided by putting one item per
-line of text.The bullet point can be customized using the{bullet}parameter,
-see <doc:bbcode_in_richtextlabel#Unordered-List-Bullet>. | [ul]{items}[/ul][ulbullet={bullet}]{items}[/ul]
-**ol**Adds an ordered (numbered) list of the given{type}(see <doc:bbcode_in_richtextlabel#List-Types>).
-List{items}must be provided by putting one item per line of text. | [oltype={type}]{items}[/ol]
-**lb**,**rb**Adds[and]respectively. Allows escaping BBCode markup.These are self-closing tags, which means you do not need to close them
-(and there is no[/lb]or[/rb]closing tag). | [lb]b[rb]text[lb]/b[rb]will display as[b]text[/b].
-Several Unicode control characters can be added using their own self-closing tags.This can result in easier maintenance compared to pasting thosecontrol characters directly in the text. | [lrm](left-to-right mark),[rlm](right-to-left mark),[lre](left-to-right embedding),[rle](right-to-left embedding),[lro](left-to-right override),[rlo](right-to-left override),[pdf](pop directional formatting),[alm](Arabic letter mark),[lri](left-to-right isolate),[rli](right-to-left isolate),[fsi](first strong isolate),[pdi](pop directional isolate),[zwj](zero-width joiner),[zwnj](zero-width non-joiner),[wj](word joiner),[shy](soft hyphen)
+in which case they will be used. | `[lang={code}]{text}[/lang]`
+**color**Changes the color of`{text}`. Color must be provided by a common name (see
+<doc:bbcode_in_richtextlabel#Named-Colors>) or using the HEX format (e.g.`#ff00ff`, see <doc:bbcode_in_richtextlabel#Hex-Colors>). | `[color={code/name}]{text}[/color]`
+**bgcolor**Draws the color behind`{text}`. This can be used to highlight text.
+Accepts same values as the`color`tag.
+By default, there is a slight padding which is controlled by the`text_highlight_h_padding`and`text_highlight_v_padding`theme items
+in the RichTextLabel node. Set padding to`0`to avoid potential overlapping
+issues when there are background colors on neighboring lines/columns. | `[bgcolor={code/name}]{text}[/bgcolor]`
+**fgcolor**Draws the color in front of`{text}`. This can be used to "redact" text by using
+an opaque foreground color. Accepts same values as the`color`tag.
+By default, there is a slight padding which is controlled by the`text_highlight_h_padding`and`text_highlight_v_padding`theme items
+in the RichTextLabel node. Set padding to`0`to avoid potential overlapping
+issues when there are foreground colors on neighboring lines/columns. | `[fgcolor={code/name}]{text}[/fgcolor]`
+**outline_size**Use custom font outline size for`{text}`. | `[outline_size={size}]``{text}``[/outline_size]`
+**outline_color**Use custom outline color for`{text}`. Accepts same values as the`color`tag. | `[outline_color={code/name}]``{text}``[/outline_color]`
+**table**Creates a table with the`{number}`of columns. Use the`cell`tag to define
+table cells.If`{valign}`configuration is provided, the table will try to align to the
+surrounding text, see <doc:bbcode_in_richtextlabel#Image-And-Table-Alignment>.If baseline alignment is used, the table is aligned to the baseline of the row with index`{alignment_row}`(zero-based). | `[table={number}]{cells}[/table]``[table={number},{valign}]{cells}[/table]``[table={number},{valign},{alignment_row}]{cells}[/table]`
+**cell**Adds a cell with`{text}`to the table.If`{ratio}`is provided, the cell will try to expand to that value proportionally
+to other cells and their ratio values.Supports configuration options, see <doc:bbcode_in_richtextlabel#Cell-Options>. | `[cell]{text}[/cell]``[cell={ratio}]{text}[/cell]``[cell {options}]{text}[/cell]`
+**ul**Adds an unordered list. List`{items}`must be provided by putting one item per
+line of text.The bullet point can be customized using the`{bullet}`parameter,
+see <doc:bbcode_in_richtextlabel#Unordered-List-Bullet>. | `[ul]{items}[/ul]``[ul bullet={bullet}]{items}[/ul]`
+**ol**Adds an ordered (numbered) list of the given`{type}`(see <doc:bbcode_in_richtextlabel#List-Types>).
+List`{items}`must be provided by putting one item per line of text. | `[ol type={type}]{items}[/ol]`
+**lb**,**rb**Adds`[`and`]`respectively. Allows escaping BBCode markup.These are self-closing tags, which means you do not need to close them
+(and there is no`[/lb]`or`[/rb]`closing tag). | `[lb]b[rb]text[lb]/b[rb]`will display as`[b]text[/b]`.
+Several Unicode control characters can be added using their own self-closing tags.This can result in easier maintenance compared to pasting thosecontrol characters directly in the text. | `[lrm]`(left-to-right mark),`[rlm]`(right-to-left mark),`[lre]`(left-to-right embedding),`[rle]`(right-to-left embedding),`[lro]`(left-to-right override),`[rlo]`(right-to-left override),`[pdf]`(pop directional formatting),`[alm]`(Arabic letter mark),`[lri]`(left-to-right isolate),`[rli]`(right-to-left isolate),`[fsi]`(first strong isolate),`[pdi]`(pop directional isolate),`[zwj]`(zero-width joiner),`[zwnj]`(zero-width non-joiner),`[wj]`(word joiner),`[shy]`(soft hyphen)
 
 > Note:
 >
-> Tags for bold ([b]) and italics ([i]) formatting work best if the
+> Tags for bold (`[b]`) and italics (`[i]`) formatting work best if the
 > appropriate custom fonts are set up in the RichTextLabelNode's theme
 > overrides. If no custom bold or italic fonts are defined,
 > faux bold and italic fonts
 > will be generated by Godot. These fonts rarely look good in comparison to hand-made bold/italic font variants.
 >
-> The monospaced ([code]) tag **only** works if a custom font is set up in
+> The monospaced (`[code]`) tag **only** works if a custom font is set up in
 > the RichTextLabel node's theme overrides. Otherwise, monospaced text will use the regular font.
 >
 > There are no BBCode tags to control vertical centering of text yet.
@@ -321,10 +321,10 @@ Several Unicode control characters can be added using their own self-closing tag
 
 
 `Values`
-left (or l), center (or c), right (or r), fill (or f)
+`left` (or `l`), `center` (or `c`), `right` (or `r`), `fill` (or `f`)
 
 `Default`
-left
+`left`
 
 
 
@@ -335,11 +335,11 @@ Text horizontal alignment.
 
 
 `Values`
-default (of d), uri (or u), file (or f), email (or e), list (or l),
-none (or n), custom (or c)
+`default` (of `d`), `uri` (or `u`), `file` (or `f`), `email` (or `e`), `list` (or `l`),
+`none` (or `n`), `custom` (or `c`)
 
 `Default`
-default
+`default`
 
 
 
@@ -351,11 +351,11 @@ Structured text override.
 
 `Values`
 Comma-separated list of the following values (no space after each comma):
-kashida (or k), word (or w), trim (or tr), after_last_tab (or lt),
-skip_last (or sl), skip_last_with_chars (or sv),  do_not_skip_single (or ns).
+`kashida` (or `k`), `word` (or `w`), `trim` (or `tr`), `after_last_tab` (or `lt`),
+`skip_last` (or `sl`), `skip_last_with_chars` (or `sv`),  `do_not_skip_single` (or `ns`).
 
 `Default`
-word,kashida,skip_last,do_not_skip_single
+`word,kashida,skip_last,do_not_skip_single`
 
 
 
@@ -366,7 +366,7 @@ Justification (fill alignment) option. See [TextServer](https://docs.godotengine
 
 
 `Values`
-ltr (or l), rtl (or r), auto (or a)
+`ltr` (or `l`), `rtl` (or `r`), `auto` (or `a`)
 
 `Default`
 Inherit
@@ -394,7 +394,7 @@ Locale override. Some font files may contain script-specific substitutes, in whi
 
 
 `Values`
-List of floating-point numbers, e.g. 10.0,30.0
+List of floating-point numbers, e.g. `10.0,30.0`
 
 `Default`
 Width of the space character in the font
@@ -403,44 +403,44 @@ Width of the space character in the font
 
 Overrides the horizontal offsets for each tab character. When the end of the
 list is reached, the tab stops will loop over. For example, if you set
-tab_stops to 10.0,30.0, the first tab will be at 10 pixels, the
-second tab will be at 10 + 30 = 40 pixels, and the third tab will be at
-10 + 30 + 10 = 50 pixels from the origin of the RichTextLabel.
+`tab_stops` to `10.0,30.0`, the first tab will be at `10` pixels, the
+second tab will be at `10 + 30 = 40` pixels, and the third tab will be at
+`10 + 30 + 10 = 50` pixels from the origin of the RichTextLabel.
 
 
-`Values` | left(orl),center(orc),right(orr),fill(orf)
--------- | ------------------------------------------
-`Default` | left
+`Values` | `left`(or`l`),`center`(or`c`),`right`(or`r`),`fill`(or`f`)
+-------- | ----------------------------------------------------------
+`Default` | `left`
 
-`Values` | default(ofd),uri(oru),file(orf),email(ore),list(orl),none(orn),custom(orc)
--------- | --------------------------------------------------------------------------
-`Default` | default
+`Values` | `default`(of`d`),`uri`(or`u`),`file`(or`f`),`email`(or`e`),`list`(or`l`),`none`(or`n`),`custom`(or`c`)
+-------- | ------------------------------------------------------------------------------------------------------
+`Default` | `default`
 
-`Values` | Comma-separated list of the following values (no space after each comma):kashida(ork),word(orw),trim(ortr),after_last_tab(orlt),skip_last(orsl),skip_last_with_chars(orsv),do_not_skip_single(orns).
--------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-`Default` | word,kashida,skip_last,do_not_skip_single
+`Values` | Comma-separated list of the following values (no space after each comma):`kashida`(or`k`),`word`(or`w`),`trim`(or`tr`),`after_last_tab`(or`lt`),`skip_last`(or`sl`),`skip_last_with_chars`(or`sv`),`do_not_skip_single`(or`ns`).
+-------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+`Default` | `word,kashida,skip_last,do_not_skip_single`
 
-`Values` | ltr(orl),rtl(orr),auto(ora)
--------- | ---------------------------
+`Values` | `ltr`(or`l`),`rtl`(or`r`),`auto`(or`a`)
+-------- | ---------------------------------------
 `Default` | Inherit
 
 `Values` | ISO language codes. See <doc:locales>
 -------- | ------------------------------------------
 `Default` | Inherit
 
-`Values` | List of floating-point numbers, e.g.10.0,30.0
--------- | ---------------------------------------------
+`Values` | List of floating-point numbers, e.g.`10.0,30.0`
+-------- | -----------------------------------------------
 `Default` | Width of the space character in the font
 
-### Handling [url] tag clicks
+### Handling `[url]` tag clicks
 
-By default, [url] tags do nothing when clicked. This is to allow flexible use
-of [url] tags rather than limiting them to opening URLs in a web browser.
+By default, `[url]` tags do nothing when clicked. This is to allow flexible use
+of `[url]` tags rather than limiting them to opening URLs in a web browser.
 
-To handle clicked [url] tags, connect the RichTextLabel node's
+To handle clicked `[url]` tags, connect the `RichTextLabel` node's
 [meta_clicked](https://docs.godotengine.org/en/stable/classes/class_richtextlabel_signal_meta_clicked.html#class-richtextlabel_signal_meta_clicked) signal to a script function.
 
-For example, the following method can be connected to meta_clicked to open
+For example, the following method can be connected to `meta_clicked` to open
 clicked URLs using the user's default web browser:
 
 ```
@@ -452,8 +452,8 @@ func _richtextlabel_on_meta_clicked(meta):
     OS.shell_open(str(meta))
 ```
 
-For more advanced use cases, it's also possible to store JSON in a [url]
-tag's option and parse it in the function that handles the meta_clicked signal.
+For more advanced use cases, it's also possible to store JSON in a `[url]`
+tag's option and parse it in the function that handles the `meta_clicked` signal.
 For example:
 
 ```
@@ -469,7 +469,7 @@ For example:
 Color name or color in HEX format
 
 `Default`
-Color(1, 1, 1, 1)
+`Color(1, 1, 1, 1)`
 
 
 
@@ -483,11 +483,11 @@ Color tint of the rule (modulation).
 Integer number
 
 `Default`
-2
+`2`
 
 
 
-Target height of the rule in pixels, add % to the end of value to specify it as percentages of the control width instead of pixels.
+Target height of the rule in pixels, add `%` to the end of value to specify it as percentages of the control width instead of pixels.
 
 
 - **width**
@@ -497,21 +497,21 @@ Target height of the rule in pixels, add % to the end of value to specify it as 
 Integer number
 
 `Default`
-90%
+`90%`
 
 
 
-Target width of the rule in pixels, add % to the end of value to specify it as percentages of the control width instead of pixels.
+Target width of the rule in pixels, add `%` to the end of value to specify it as percentages of the control width instead of pixels.
 
 
 - **align**
 
 
 `Values`
-left (or l), center (or c), right (or r)
+`left` (or `l`), `center` (or `c`), `right` (or `r`)
 
 `Default`
-left
+`left`
 
 
 
@@ -520,19 +520,19 @@ Horizontal alignment.
 
 `Values` | Color name or color in HEX format
 -------- | ---------------------------------
-`Default` | Color(1, 1, 1, 1)
+`Default` | `Color(1, 1, 1, 1)`
 
 `Values` | Integer number
 -------- | --------------
-`Default` | 2
+`Default` | `2`
 
 `Values` | Integer number
 -------- | --------------
-`Default` | 90%
+`Default` | `90%`
 
-`Values` | left(orl),center(orc),right(orr)
--------- | --------------------------------
-`Default` | left
+`Values` | `left`(or`l`),`center`(or`c`),`right`(or`r`)
+-------- | --------------------------------------------
+`Default` | `left`
 
 ### Image options
 
@@ -561,7 +561,7 @@ Inherit
 
 
 
-Target height of the image in pixels, add % to the end of value to specify it as percentages of the control width instead of pixels.
+Target height of the image in pixels, add `%` to the end of value to specify it as percentages of the control width instead of pixels.
 
 
 - **width**
@@ -575,7 +575,7 @@ Inherit
 
 
 
-Target width of the image in pixels, add % to the end of value to specify it as percentages of the control width instead of pixels.
+Target width of the image in pixels, add `%` to the end of value to specify it as percentages of the control width instead of pixels.
 
 
 - **region**
@@ -596,14 +596,14 @@ Region rect of the image. This can be used to display a single image from a spri
 
 
 `Values`
-false, true
+`false`, `true`
 
 `Default`
-false
+`false`
 
 
 
-If set to true, and the image is smaller than the size specified by width and height, the image padding is added to match the size instead of upscaling.
+If set to `true`, and the image is smaller than the size specified by `width` and `height`, the image padding is added to match the size instead of upscaling.
 
 
 - **tooltip**
@@ -636,9 +636,9 @@ Image tooltip.
 -------- | --------------------------
 `Default` | Inherit
 
-`Values` | false,true
--------- | ----------
-`Default` | false
+`Values` | `false`,`true`
+-------- | --------------
+`Default` | `false`
 
 `Values` | String
 -------- | ------
@@ -646,11 +646,11 @@ Image tooltip.
 
 ### Image and table vertical alignment
 
-When a vertical alignment value is provided with the [img] or [table] tag
+When a vertical alignment value is provided with the `[img]` or `[table]` tag
 the image/table will try to align itself against the surrounding text. Alignment is
 performed using a vertical point of the image and a vertical point of the text.
-There are 3 possible points on the image (top, center, and bottom) and 4
-possible points on the text and table (top, center, baseline, and bottom),
+There are 3 possible points on the image (`top`, `center`, and `bottom`) and 4
+possible points on the text and table (`top`, `center`, `baseline`, and `bottom`),
 which can be used in any combination.
 
 To specify both points, use their full or short names as a value of the image/table tag:
@@ -670,12 +670,12 @@ text [table=3,baseline,baseline,1]...[/table] text # Baseline of the second row 
 
 @Image(source: "bbcode_in_richtextlabel_table_align.png")
 
-You can also specify just one value (top, center, or bottom) to make
-use of a corresponding preset (top-top, center-center, and bottom-bottom
+You can also specify just one value (`top`, `center`, or `bottom`) to make
+use of a corresponding preset (`top-top`, `center-center`, and `bottom-bottom`
 respectively).
 
-Short names for the values are t (top), c (center), l (baseline),
-and b (bottom).
+Short names for the values are `t` (`top`), `c` (`center`), `l` (`baseline`),
+and `b` (`bottom`).
 
 ### Font options
 
@@ -770,7 +770,7 @@ Extra spacing at the bottom of the line.
 Floating-point number.
 
 `Default`
-0.0
+`0.0`
 
 
 
@@ -784,7 +784,7 @@ Font embolden strength, if it is not equal to zero, emboldens the font outlines.
 Integer number.
 
 `Default`
-0
+`0`
 
 
 
@@ -798,7 +798,7 @@ An active face index in the TrueType / OpenType collection.
 Floating-point number.
 
 `Default`
-0.0
+`0.0`
 
 
 
@@ -817,7 +817,7 @@ Comma-separated list of the OpenType variation tags (no space after each comma).
 
 
 Font OpenType variation coordinates. See OpenType variation tags.
-Note: The value should be enclosed in " to allow using = inside it:
+Note: The value should be enclosed in `"` to allow using `=` inside it:
 
 
 `Values` | A valid Font resource path.
@@ -846,15 +846,15 @@ Note: The value should be enclosed in " to allow using = inside it:
 
 `Values` | Floating-point number.
 -------- | ----------------------
-`Default` | 0.0
+`Default` | `0.0`
 
 `Values` | Integer number.
 -------- | ---------------
-`Default` | 0
+`Default` | `0`
 
 `Values` | Floating-point number.
 -------- | ----------------------
-`Default` | 0.0
+`Default` | `0.0`
 
 `Values` | Comma-separated list of the OpenType variation tags (no space after each comma).
 -------- | --------------------------------------------------------------------------------
@@ -876,7 +876,7 @@ Comma-separated list of the OpenType feature tags (no space after each comma).
 
 
 Font OpenType features. See OpenType features tags.
-Note: The value should be enclosed in " to allow using = inside it:
+Note: The value should be enclosed in `"` to allow using `=` inside it:
 
 
 `Values` | Comma-separated list of the OpenType feature tags (no space after each comma).
@@ -891,7 +891,7 @@ Note: The value should be enclosed in " to allow using = inside it:
 
 For tags that allow specifying a color by name, you can use names of the constants from
 the built-in [Color](https://docs.godotengine.org/en/stable/classes/class_color.html#class-color) class. Named classes can be specified in a number of
-styles using different casings: DARK_RED, DarkRed, and darkred will give
+styles using different casings: `DARK_RED`, `DarkRed`, and `darkred` will give
 the same exact result.
 
 See this image for a list of color constants:
@@ -903,13 +903,13 @@ View at full size
 ### Hexadecimal color codes
 
 For opaque RGB colors, any valid 6-digit hexadecimal code is supported, e.g.
-[color=#ffffff]white[/color]. Shorthand RGB color codes such as #6f2
-(equivalent to #66ff22) are also supported.
+`[color=#ffffff]white[/color]`. Shorthand RGB color codes such as `#6f2`
+(equivalent to `#66ff22`) are also supported.
 
 For transparent RGB colors, any RGBA 8-digit hexadecimal code can be used,
-e.g. [color=#ffffff88]translucent white[/color]. Note that the alpha channel
+e.g. `[color=#ffffff88]translucent white[/color]`. Note that the alpha channel
 is the **last** component of the color code, not the first one. Short RGBA
-color codes such as #6f28 (equivalent to #66ff2288) are supported as well.
+color codes such as `#6f28` (equivalent to `#66ff2288`) are supported as well.
 
 ### Cell options
 
@@ -954,7 +954,7 @@ Inherit
 
 
 Cell background color. For alternating odd/even row backgrounds,
-you can use bg=odd_color,even_color.
+you can use `bg=odd_color,even_color`.
 
 
 - **padding**
@@ -964,7 +964,7 @@ you can use bg=odd_color,even_color.
 4 comma-separated floating-point numbers (no space after each comma)
 
 `Default`
-0,0,0,0
+`0,0,0,0`
 
 
 
@@ -985,19 +985,19 @@ Left, top, right, and bottom cell padding.
 
 `Values` | 4 comma-separated floating-point numbers (no space after each comma)
 -------- | --------------------------------------------------------------------
-`Default` | 0,0,0,0
+`Default` | `0,0,0,0`
 
 ### Unordered list bullet
 
-By default, the [ul] tag uses the U+2022 "Bullet" Unicode glyph as the
+By default, the `[ul]` tag uses the `U+2022` "Bullet" Unicode glyph as the
 bullet character. This behavior is similar to web browsers. The bullet character
-can be customized using [ul bullet={bullet}]. If provided, this {bullet}
+can be customized using `[ul bullet={bullet}]`. If provided, this `{bullet}`
 parameter must be a string with no enclosing quotes (for example,
-[bullet=*]). You can add trailing spaces after the bullet character
+`[bullet=*]`). You can add trailing spaces after the bullet character
 to increase the spacing between the bullet and the list item text.
 
 See Bullet (typography) on Wikipedia
-for a list of common bullet characters that you can paste directly in the bullet parameter.
+for a list of common bullet characters that you can paste directly in the `bullet` parameter.
 
 ### Ordered list types
 
@@ -1005,11 +1005,11 @@ Ordered lists can be used to automatically mark items with numbers
 or letters in ascending order. This tag supports the following
 type options:
 
-- 1 - Numbers, using language specific numbering system if possible.
+- `1` - Numbers, using language specific numbering system if possible.
 
-- a, A - Lower and upper case Latin letters.
+- `a`, `A` - Lower and upper case Latin letters.
 
-- i, I - Lower and upper case Roman numerals.
+- `i`, `I` - Lower and upper case Roman numerals.
 
 ## Text effects
 
@@ -1038,26 +1038,26 @@ All examples below mention the default values for options in the listed tag form
 
 Pulse creates an animated pulsing effect that multiplies each character's
 opacity and color. It can be used to bring attention to specific text. Its tag
-format is [pulse freq=1.0 color=#ffffff40 ease=-2.0]{text}[/pulse].
+format is `[pulse freq=1.0 color=#ffffff40 ease=-2.0]{text}[/pulse]`.
 
-freq controls the frequency of the half-pulsing cycle (higher is faster). A
-full pulsing cycle takes 2 * (1.0 / freq) seconds. color is the target
+`freq` controls the frequency of the half-pulsing cycle (higher is faster). A
+full pulsing cycle takes `2 * (1.0 / freq)` seconds. `color` is the target
 color multiplier for blinking. The default mostly fades out text, but not
-entirely. ease is the easing function exponent to use. Negative values
-provide in-out easing, which is why the default is -2.0.
+entirely. `ease` is the easing function exponent to use. Negative values
+provide in-out easing, which is why the default is `-2.0`.
 
 ### Wave
 
 @Image(source: "bbcode_in_richtextlabel_effect_wave.png")
 
 Wave makes the text go up and down. Its tag format is
-[wave amp=50.0 freq=5.0 connected=1]{text}[/wave].
+`[wave amp=50.0 freq=5.0 connected=1]{text}[/wave]`.
 
-amp controls how high and low the effect goes, and freq controls how
-fast the text goes up and down. A freq value of 0 will result in no
-visible waves, and negative freq values won't display any waves either. If
-connected is 1 (default), glyphs with ligatures will be moved together.
-If connected is 0, each glyph is moved individually even if they are
+`amp` controls how high and low the effect goes, and `freq` controls how
+fast the text goes up and down. A `freq` value of `0` will result in no
+visible waves, and negative `freq` values won't display any waves either. If
+`connected` is `1` (default), glyphs with ligatures will be moved together.
+If `connected` is `0`, each glyph is moved individually even if they are
 joined by ligatures. This can work around certain rendering issues with font
 ligatures.
 
@@ -1066,13 +1066,13 @@ ligatures.
 @Image(source: "bbcode_in_richtextlabel_effect_tornado.png")
 
 Tornado makes the text move around in a circle. Its tag format is
-[tornado radius=10.0 freq=1.0 connected=1]{text}[/tornado].
+`[tornado radius=10.0 freq=1.0 connected=1]{text}[/tornado]`.
 
-radius is the radius of the circle that controls the offset, freq is how
-fast the text moves in a circle. A freq value of 0 will pause the
-animation, while negative freq will play the animation backwards. If
-connected is 1 (default), glyphs with ligatures will be moved together.
-If connected is 0, each glyph is moved individually even if they are
+`radius` is the radius of the circle that controls the offset, `freq` is how
+fast the text moves in a circle. A `freq` value of `0` will pause the
+animation, while negative `freq` will play the animation backwards. If
+`connected` is `1` (default), glyphs with ligatures will be moved together.
+If `connected` is `0`, each glyph is moved individually even if they are
 joined by ligatures. This can work around certain rendering issues with font
 ligatures.
 
@@ -1081,11 +1081,11 @@ ligatures.
 @Image(source: "bbcode_in_richtextlabel_effect_shake.png")
 
 Shake makes the text shake. Its tag format is
-[shake rate=20.0 level=5 connected=1]{text}[/shake].
+`[shake rate=20.0 level=5 connected=1]{text}[/shake]`.
 
-rate controls how fast the text shakes, level controls how far the text
-is offset from the origin. If connected is 1 (default), glyphs with
-ligatures will be moved together. If connected is 0, each glyph is moved
+`rate` controls how fast the text shakes, `level` controls how far the text
+is offset from the origin. If `connected` is `1` (default), glyphs with
+ligatures will be moved together. If `connected` is `0`, each glyph is moved
 individually even if they are joined by ligatures. This can work around certain
 rendering issues with font ligatures.
 
@@ -1094,10 +1094,10 @@ rendering issues with font ligatures.
 @Image(source: "bbcode_in_richtextlabel_effect_fade.png")
 
 Fade creates a static fade effect that multiplies each character's opacity.
-Its tag format is [fade start=4 length=14]{text}[/fade].
+Its tag format is `[fade start=4 length=14]{text}[/fade]`.
 
-start controls the starting position of the falloff relative to where the fade
-command is inserted, length controls over how many characters should the fade
+`start` controls the starting position of the falloff relative to where the fade
+command is inserted, `length` controls over how many characters should the fade
 out take place.
 
 ### Rainbow
@@ -1105,13 +1105,13 @@ out take place.
 @Image(source: "bbcode_in_richtextlabel_effect_rainbow.png")
 
 Rainbow gives the text a rainbow color that changes over time. Its tag format is
-[rainbow freq=1.0 sat=0.8 val=0.8 speed=1.0]{text}[/rainbow].
+`[rainbow freq=1.0 sat=0.8 val=0.8 speed=1.0]{text}[/rainbow]`.
 
-freq determines how many letters the rainbow extends over before it repeats itself,
-sat is the saturation of the rainbow, val is the value of the rainbow. speed
-is the number of full rainbow cycles per second. A positive speed value will play
-the animation forwards, a value of 0 will pause the animation, and a negative
-speed value will play the animation backwards.
+`freq` determines how many letters the rainbow extends over before it repeats itself,
+`sat` is the saturation of the rainbow, `val` is the value of the rainbow. `speed`
+is the number of full rainbow cycles per second. A positive `speed` value will play
+the animation forwards, a value of `0` will pause the animation, and a negative
+`speed` value will play the animation backwards.
 
 Font outlines are not affected by the rainbow effect (they keep their original color).
 Existing font colors are overridden by the rainbow effect. However, CanvasItem's
@@ -1122,14 +1122,14 @@ looks, as modulation multiplies its final colors.
 
 You can extend the [RichTextEffect](https://docs.godotengine.org/en/stable/classes/class_richtexteffect.html#class-richtexteffect) resource type to create your own custom
 BBCode tags. Create a new script file that extends the [RichTextEffect](https://docs.godotengine.org/en/stable/classes/class_richtexteffect.html#class-richtexteffect) resource type
-and give the script a class_name so that the effect can be selected in the inspector.
-Add the @tool annotation to your GDScript file if you wish to have these custom effects
+and give the script a `class_name` so that the effect can be selected in the inspector.
+Add the `@tool` annotation to your GDScript file if you wish to have these custom effects
 run within the editor itself. The RichTextLabel does not need to have a script attached,
-nor does it need to be running in tool mode. The new effect can be registered in
+nor does it need to be running in `tool` mode. The new effect can be registered in
 the Inspector by adding it to the **Markup > Custom Effects** array, or in code with the
 [install_effect()](https://docs.godotengine.org/en/stable/classes/class_richtextlabel_method_install_effect.html#class-richtextlabel_method_install_effect) method:
 
-@Image(source: "bbcode_in_richtextlabel_selecting_custom_richtexteffect.png", alt: "Selecting a custom RichTextEffect after saving a script that extends RichTextEffect with a class_name") {Selecting a custom RichTextEffect after saving a script that extends RichTextEffect with a class_name}
+@Image(source: "bbcode_in_richtextlabel_selecting_custom_richtexteffect.png", alt: "Selecting a custom RichTextEffect after saving a script that extends RichTextEffect with a `class_name`") {Selecting a custom RichTextEffect after saving a script that extends RichTextEffect with a `class_name`}
 
 > Warning:
 >
@@ -1138,41 +1138,41 @@ the Inspector by adding it to the **Markup > Custom Effects** array, or in code 
 > tag will be left as-is.
 >
 
-There is only one function that you need to extend: _process_custom_fx(char_fx).
+There is only one function that you need to extend: `_process_custom_fx(char_fx)`.
 Optionally, you can also provide a custom BBCode identifier by adding a member
-name bbcode. The code will check the bbcode property automatically or will
+name `bbcode`. The code will check the `bbcode` property automatically or will
 use the name of the file to determine what the BBCode tag should be.
 
-### _process_custom_fx
+### `_process_custom_fx`
 
 This is where the logic of each effect takes place and is called once per glyph
 during the draw phase of text rendering. This passes in a [CharFXTransform](https://docs.godotengine.org/en/stable/classes/class_charfxtransform.html#class-charfxtransform)
 object, which holds a few variables to control how the associated glyph is rendered:
 
-- outline is true if effect is called for drawing text outline.
+- `outline` is `true` if effect is called for drawing text outline.
 
-- range tells you how far into a given custom effect block you are in as an
+- `range` tells you how far into a given custom effect block you are in as an
 index.
 
-- elapsed_time is the total amount of time the text effect has been running.
+- `elapsed_time` is the total amount of time the text effect has been running.
 
-- visible will tell you whether the glyph is visible or not and will also allow you
+- `visible` will tell you whether the glyph is visible or not and will also allow you
 to hide a given portion of text.
 
-- offset is an offset position relative to where the given glyph should render under
+- `offset` is an offset position relative to where the given glyph should render under
 normal circumstances.
 
-- color is the color of a given glyph.
+- `color` is the color of a given glyph.
 
-- glyph_index and font is glyph being drawn and font data resource used to draw it.
+- `glyph_index` and `font` is glyph being drawn and font data resource used to draw it.
 
-- Finally, env is a [Dictionary](https://docs.godotengine.org/en/stable/classes/class_dictionary.html#class-dictionary) of parameters assigned to a given custom
+- Finally, `env` is a [Dictionary](https://docs.godotengine.org/en/stable/classes/class_dictionary.html#class-dictionary) of parameters assigned to a given custom
 effect. You can use [get()](https://docs.godotengine.org/en/stable/classes/class_dictionary_method_get.html#class-dictionary_method_get) with an optional default value
-to retrieve each parameter, if specified by the user. For example [custom_fx spread=0.5 color=#FFFF00]test[/custom_fx] would have a float spread and Color color
-parameters in its env Dictionary. See below for more usage examples.
+to retrieve each parameter, if specified by the user. For example `[custom_fx spread=0.5 color=#FFFF00]test[/custom_fx]` would have a float `spread` and Color `color`
+parameters in its `env` Dictionary. See below for more usage examples.
 
 The last thing to note about this function is that it is necessary to return a boolean
-true value to verify that the effect processed correctly. This way, if there's a problem
+`true` value to verify that the effect processed correctly. This way, if there's a problem
 with rendering a given glyph, it will back out of rendering custom effects entirely until
 the user fixes whatever error cropped up in their custom effect logic.
 

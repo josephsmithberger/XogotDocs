@@ -5,32 +5,32 @@
 
 Godot can import the following image formats:
 
-- BMP (.bmp)
+- BMP (`.bmp`)
 - No support for 16-bit per pixel images. Only 1-bit, 4-bit, 8-bit, 24-bit, and 32-bit per pixel images are supported.
 
-- DirectDraw Surface (.dds)
+- DirectDraw Surface (`.dds`)
 - If mipmaps are present in the texture, they will be loaded directly.
 This can be used to achieve effects using custom mipmaps.
 
-- Khronos Texture (.ktx)
+- Khronos Texture (`.ktx`)
 - Decoding is done using libktx.
 Only supports 2D images. Cubemaps, texture arrays and de-padding are not supported.
 
-- OpenEXR (.exr)
+- OpenEXR (`.exr`)
 - Supports HDR (highly recommended for panorama skies).
 
-- Radiance HDR (.hdr)
+- Radiance HDR (`.hdr`)
 - Supports HDR (highly recommended for panorama skies).
 
-- JPEG (.jpg, .jpeg)
+- JPEG (`.jpg`, `.jpeg`)
 - Doesn't support transparency per the format's limitations.
 
-- PNG (.png)
+- PNG (`.png`)
 - Precision is limited to 8 bits per channel upon importing (no HDR images).
 
-- Truevision Targa (.tga)
+- Truevision Targa (`.tga`)
 
-- SVG (.svg)
+- SVG (`.svg`)
 - SVGs are rasterized using ThorVG
 when importing them. Support is limited;
 complex vectors may not render correctly. <doc:importing_images#Svg-Text>;
@@ -41,7 +41,7 @@ For complex vectors, rendering them to PNGs using Inkscape
 is often a better solution. This can be automated thanks to its
 command-line interface.
 
-- WebP (.webp)
+- WebP (`.webp`)
 - WebP files support transparency and can be compressed lossily or losslessly.
 The precision is limited to 8 bits per channel.
 
@@ -145,13 +145,10 @@ looking grainy at a distance.
 
 > Seealso:
 >
-> In Godot 4.0, changing the texture filter and repeat mode is no longer done
-> in the import options.
->
-> Instead, texture filter and repeat modes are changed in the CanvasItem
+> Since Godot 4.0, texture filter and repeat modes are set in the CanvasItem
 > properties in 2D (with a project setting acting as a default), and in a
 > <doc:standard_material_3d#Sampling>.
-> In custom shaders, filter and repeat mode is changed on the sampler2D
+> In custom shaders, filter and repeat mode is changed on the `sampler2D`
 > uniform using hints described in the <doc:shading_language>
 > documentation.
 >
@@ -269,7 +266,7 @@ not (see **HDR Compression** below).
 > Note:
 >
 > This option only has an effect on textures that are imported as HDR formats in Godot
-> (.hdr and .exr files).
+> (`.hdr` and `.exr` files).
 >
 
 If set to **Disabled**, never uses VRAM compression for HDR textures, regardless
@@ -362,7 +359,7 @@ mipmaps but memory usage will increase.
 > **Mipmaps > Limit** is currently not implemented and has no effect when changed.
 >
 
-If set to a value greater than -1, limits the maximum number of mipmaps that
+If set to a value greater than `-1`, limits the maximum number of mipmaps that
 can be generated. This can be decreased if you don't want textures to become too
 low-resolution at extreme distances, at the cost of some graininess.
 
@@ -399,12 +396,12 @@ displayed correctly:
 - In 2D, a [CanvasItemMaterial](https://docs.godotengine.org/en/stable/classes/class_canvasitemmaterial.html#class-canvasitemmaterial) will need to be created and
 configured to use the **Premul Alpha** blend mode on CanvasItems that use this
 texture. In <doc:canvas_item_shader>,
-render_mode blend_premul_alpha; should be used.
+`render_mode blend_premul_alpha;` should be used.
 
 - In 3D, a [BaseMaterial3D](https://docs.godotengine.org/en/stable/classes/class_basematerial3d.html#class-basematerial3d) will need to be created and configured
 to use the **Premul Alpha** blend mode on materials that use this texture.
 In <doc:spatial_shader>,
-render_mode blend_premul_alpha; should be used.
+`render_mode blend_premul_alpha;` should be used.
 
 ### Process > Normal Map Invert Y
 
@@ -443,7 +440,7 @@ working when looking at the background sky.
 
 ### Process > Size Limit
 
-If set to a value greater than 0, the size of the texture is limited on
+If set to a value greater than `0`, the size of the texture is limited on
 import to a value smaller than or equal to the value specified here. For
 non-square textures, the size limit affects the longer dimension, with the
 shorter dimension scaled to preserve aspect ratio. Resizing is performed using
@@ -467,7 +464,7 @@ choosing **VRAM Compressed** or **Basis Universal** will.
 
 This is only available for SVG images.
 
-The scale the SVG should be rendered at, with 1.0 being the original design
+The scale the SVG should be rendered at, with `1.0` being the original design
 size. Higher values result in a larger image. Note that unlike font
 oversampling, this affects the physical size the SVG is rendered at in 2D. See
 also **Editor > Scale With Editor Scale** below.
@@ -500,7 +497,7 @@ There are two ways to achieve this in a non-destructive manner, so you can keep
 editing the original text afterwards:
 
 - Select your text object in Inkscape, then duplicate it in place by pressing
-`Ctrl + D` and use **Path > Object to Path**. Hide the original text
+``Ctrl + D`` and use **Path > Object to Path**. Hide the original text
 object afterwards using the **Layers and Objects** dock.
 
 - Use the Inkscape command line to export an SVG from another SVG file with text

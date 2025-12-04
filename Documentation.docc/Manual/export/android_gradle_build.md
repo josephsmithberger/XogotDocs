@@ -25,7 +25,7 @@ Go to the Project menu, and install the Gradle Build template:
 Make sure export templates are downloaded. If not, this menu will help you
 download them.
 
-A Gradle-based Android project will be created under res://android/build.
+A Gradle-based Android project will be created under `res://android/build`.
 Editing these files is not needed unless you really need to modify the project.
 
 ## Enabling the gradle build and exporting
@@ -51,5 +51,5 @@ configuration is needed.
 > generated APK. This does not apply to assets whose file name begins with
 > an underscore.
 >
-> For example, _example/image.png will **not** be included as an asset,
-> but _image.png will.
+> For example, `_example/image.png` will **not** be included as an asset,
+> but `_image.png` will.

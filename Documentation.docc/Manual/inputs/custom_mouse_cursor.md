@@ -11,7 +11,7 @@ cursor:
 > Note:
 >
 > You could display a "software" mouse cursor by hiding the mouse cursor and
-> moving a Sprite2D to the cursor position in a _process() method, but
+> moving a Sprite2D to the cursor position in a `_process()` method, but
 > this will add at least one frame of latency compared to a "hardware" mouse
 > cursor. Therefore, it's recommended to use the approach described here
 > whenever possible.
@@ -43,6 +43,24 @@ and [Tooltip Position Offset](https://docs.godotengine.org/en/stable/classes/cla
 ## Using a script
 
 Create a Node and attach the following script.
+
+```
+extends Node
+
+
+# Load the custom images for the mouse cursor.
+var arrow = load("res://arrow.png")
+var beam = load("res://beam.png")
+
+
+func _ready():
+    # Changes only the arrow shape of the cursor.
+    # This is similar to changing it in the project settings.
+    Input.set_custom_mouse_cursor(arrow)
+
+    # Changes a specific shape of the cursor (here, the I-beam shape).
+    Input.set_custom_mouse_cursor(beam, Input.CURSOR_IBEAM)
+```
 
 > Seealso:
 >

@@ -7,11 +7,6 @@ physics engine in 4.4. Jolt is developed by Jorrit Rouwe with a focus on games a
 VR applications. Previously it was available as an extension but is now built into
 Godot.
 
-It is important to note that the built-in Jolt Physics module is considered
-**not finished**, **experimental**, and **lacks feature parity** with both
-Godot Physics and the Godot Jolt extension. Behavior may change as it is developed
-further. Please keep that in mind when choosing what to use for your project.
-
 The existing extension is now considered in maintenance mode. That means bug fixes
 will be merged, and it will be kept compatible with new versions of Godot until
 the built-in module has feature parity with the extension. The extension can be
@@ -20,7 +15,7 @@ library.
 
 To change the 3D physics engine to be Jolt Physics, set
 [Project Settings > Physics > 3D > Physics Engine](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_physics/3d/physics_engine.html#class-projectsettings_property_physics/3d/physics_engine)
-to Jolt Physics. Once you've done that, click the **Save & Restart** button.
+to `Jolt Physics`. Once you've done that, click the **Save & Restart** button.
 When the editor opens again, 3D scenes should now be using Jolt for physics.
 
 ## Notable differences to Godot Physics
@@ -35,15 +30,15 @@ supported, mainly ones related to configuring the joint's soft limits.
 
 The unsupported properties are:
 
-- PinJoint3D: bias, damping, impulse_clamp
+- PinJoint3D: `bias`, `damping`, `impulse_clamp`
 
-- HingeJoint3D: bias, softness, relaxation
+- HingeJoint3D: `bias`, `softness`, `relaxation`
 
-- SliderJoint3D: angular_\*, \*_limit/softness, \*_limit/restitution, \*_limit/damping
+- SliderJoint3D: `angular_\*`, `\*_limit/softness`, `\*_limit/restitution`, `\*_limit/damping`
 
-- ConeTwistJoint3D: bias, relaxation, softness
+- ConeTwistJoint3D: `bias`, `relaxation`, `softness`
 
-- Generic6DOFJoint3D: *_limit_*/softness, *_limit_*/restitution, *_limit_*/damping, *_limit_*/erp
+- Generic6DOFJoint3D: `*_limit_*/softness`, `*_limit_*/restitution`, `*_limit_*/damping`, `*_limit_*/erp`
 
 Currently a warning is emitted if you set these properties to anything but their
 default values.
@@ -54,12 +49,12 @@ You can, in Godot, omit one of the joint bodies for a two-body joint and effecti
 have "the world" be the other body. However, the node path that you assign your body
 to ([node_a](https://docs.godotengine.org/en/stable/classes/class_joint3d_property_node_a.html#class-joint3d_property_node_a) vs [node_b](https://docs.godotengine.org/en/stable/classes/class_joint3d_property_node_b.html#class-joint3d_property_node_b))
 is ignored. Godot Physics will always behave as if you
-assigned it to node_a, and since node_a is also what defines the frame of reference
+assigned it to `node_a`, and since `node_a` is also what defines the frame of reference
 for the joint limits, you end up with inverted limits and a potentially strange
 limit shape, especially if your limits allow both linear and angular degrees of
 freedom.
 
-Jolt will behave as if you assigned the body to node_b instead, with node_a
+Jolt will behave as if you assigned the body to `node_b` instead, with `node_a`
 representing "the world". There is a project setting called [Physics > Jolt Physics 3D > Joints > World Node](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_physics/jolt_physics_3d/joints/world_node.html#class-projectsettings_property_physics/jolt_physics_3d/joints/world_node)
 that lets you toggle this behavior, if you need compatibility for an existing project.
 
@@ -69,7 +64,7 @@ Jolt (and other similar physics engines) uses something that Jolt refers to as
 "convex radius" to help improve the performance and behavior of the types of
 collision detection that Jolt relies on for convex shapes. Other physics engines
 (Godot included) might refer to these as "collision margins" instead. Godot exposes
-these as the margin property on every Shape3D-derived class, but Godot Physics
+these as the `margin` property on every Shape3D-derived class, but Godot Physics
 itself does not use them for anything.
 
 What these collision margins sometimes do in other engines (as described in Godot's
@@ -89,7 +84,7 @@ bound.
 These margins should, for most use-cases, be more or less transparent, but can
 sometimes result in odd collision normals when performing shape queries. You can
 lower the above mentioned project setting to mitigate some of this, including
-setting it to 0.0, but too small of a margin can also cause odd collision results,
+setting it to `0.0`, but too small of a margin can also cause odd collision results,
 so is generally not recommended.
 
 ### Baumgarte stabilization
@@ -103,8 +98,8 @@ resolve the penetration.
 
 The strength of this stabilization can be tweaked using the project setting
 [Physics > Jolt Physics 3D > Simulation > Baumgarte Stabilization Factor](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_physics/jolt_physics_3d/simulation/baumgarte_stabilization_factor.html#class-projectsettings_property_physics/jolt_physics_3d/simulation/baumgarte_stabilization_factor).
-Setting this project setting to 0.0 will turn Baumgarte stabilization off.
-Setting it to 1.0 will resolve penetration in 1 simulation step. This is fast
+Setting this project setting to `0.0` will turn Baumgarte stabilization off.
+Setting it to `1.0` will resolve penetration in 1 simulation step. This is fast
 but often also unstable.
 
 ### Ghost collisions
@@ -145,8 +140,8 @@ project setting.
 
 ### Ray-cast face index
 
-The face_index property returned in the results of [intersect_ray()](https://docs.godotengine.org/en/stable/classes/class_physicsdirectspacestate3d_method_intersect_ray.html#class-physicsdirectspacestate3d_method_intersect_ray)
-and RayCast3D will by default always be -1 with Jolt. The project setting [Physics > Jolt Physics 3D > Queries > Enable Ray Cast Face Index](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_physics/jolt_physics_3d/queries/enable_ray_cast_face_index.html#class-projectsettings_property_physics/jolt_physics_3d/queries/enable_ray_cast_face_index)
+The `face_index` property returned in the results of [intersect_ray()](https://docs.godotengine.org/en/stable/classes/class_physicsdirectspacestate3d_method_intersect_ray.html#class-physicsdirectspacestate3d_method_intersect_ray)
+and RayCast3D will by default always be `-1` with Jolt. The project setting [Physics > Jolt Physics 3D > Queries > Enable Ray Cast Face Index](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_physics/jolt_physics_3d/queries/enable_ray_cast_face_index.html#class-projectsettings_property_physics/jolt_physics_3d/queries/enable_ray_cast_face_index)
 will enable them.
 
 Note that enabling this setting will increase the memory requirement of [ConcavePolygonShape3D](https://docs.godotengine.org/en/stable/classes/class_concavepolygonshape3d.html#class-concavepolygonshape3d)
@@ -175,7 +170,7 @@ in cases where the two bodies in question are not colliding with any other bodie
 ### Area3D and SoftBody3D
 
 Jolt does not currently support any interactions between [SoftBody3D](https://docs.godotengine.org/en/stable/classes/class_softbody3d.html#class-softbody3d)
-and [Area3D](https://docs.godotengine.org/en/stable/classes/class_area3d.html#class-area3d), such as overlap events, or the wind properties found on
+and [Area3D](https://docs.godotengine.org/en/stable/classes/class_area3d.html#class-area3d), such as the wind and gravity properties found on
 [Area3D](https://docs.godotengine.org/en/stable/classes/class_area3d.html#class-area3d).
 
 ### WorldBoundaryShape3D
@@ -195,68 +190,68 @@ extension, there are a few things that are different.
 
 ### Project settings
 
-All project settings have been moved from the physics/jolt_3d category to
-physics/jolt_physics_3d.
+All project settings have been moved from the `physics/jolt_3d` category to
+`physics/jolt_physics_3d`.
 
 On top of that, there's been some renaming and refactoring of the individual project
 settings as well. These include:
 
-- sleep/enabled is now simulation/allow_sleep.
+- `sleep/enabled` is now `simulation/allow_sleep.`
 
-- sleep/velocity_threshold is now simulation/sleep_velocity_threshold.
+- `sleep/velocity_threshold` is now `simulation/sleep_velocity_threshold.`
 
-- sleep/time_threshold is now simulation/sleep_time_threshold.
+- `sleep/time_threshold` is now `simulation/sleep_time_threshold.`
 
-- collisions/use_shape_margins is now collisions/collision_margin_fraction,
+- `collisions/use_shape_margins` is now `collisions/collision_margin_fraction`,
 where a value of 0 is equivalent to disabling it.
 
-- collisions/use_enhanced_internal_edge_removal is now simulation/use_enhanced_internal_edge_removal.
+- `collisions/use_enhanced_internal_edge_removal` is now `simulation/use_enhanced_internal_edge_removal.`
 
-- collisions/areas_detect_static_bodies is now simulation/areas_detect_static_bodies.
+- `collisions/areas_detect_static_bodies` is now `simulation/areas_detect_static_bodies.`
 
-- collisions/report_all_kinematic_contacts is now simulation/generate_all_kinematic_contacts.
+- `collisions/report_all_kinematic_contacts` is now `simulation/generate_all_kinematic_contacts.`
 
-- collisions/soft_body_point_margin is now simulation/soft_body_point_radius.
+- `collisions/soft_body_point_margin` is now `simulation/soft_body_point_radius.`
 
-- collisions/body_pair_cache_enabled is now simulation/body_pair_contact_cache_enabled.
+- `collisions/body_pair_cache_enabled is now simulation/body_pair_contact_cache_enabled.`
 
-- collisions/body_pair_cache_distance_threshold is now simulation/body_pair_contact_cache_distance_threshold.
+- `collisions/body_pair_cache_distance_threshold` is `now simulation/body_pair_contact_cache_distance_threshold.`
 
-- collisions/body_pair_cache_angle_threshold is now simulation/body_pair_contact_cache_angle_threshold.
+- `collisions/body_pair_cache_angle_threshold is now simulation/body_pair_contact_cache_angle_threshold.`
 
-- continuous_cd/movement_threshold is now simulation/continuous_cd_movement_threshold,
+- `continuous_cd/movement_threshold` is now `simulation/continuous_cd_movement_threshold`,
 but expressed as a fraction instead of a percentage.
 
-- continuous_cd/max_penetration is now simulation/continuous_cd_max_penetration,
+- `continuous_cd/max_penetration` is now `simulation/continuous_cd_max_penetration`,
 but expressed as a fraction instead of a percentage.
 
-- kinematics/use_enhanced_internal_edge_removal is now motion_queries/use_enhanced_internal_edge_removal.
+- `kinematics/use_enhanced_internal_edge_removal` is now `motion_queries/use_enhanced_internal_edge_removal.`
 
-- kinematics/recovery_iterations is now motion_queries/recovery_iterations,
+- `kinematics/recovery_iterations` is now `motion_queries/recovery_iterations`,
 but expressed as a fraction instead of a percentage.
 
-- kinematics/recovery_amount is now motion_queries/recovery_amount.
+- `kinematics/recovery_amount` is now `motion_queries/recovery_amount.`
 
-- queries/use_legacy_ray_casting has been removed.
+- `queries/use_legacy_ray_casting` has been removed.
 
-- solver/position_iterations is now simulation/position_steps.
+- `solver/position_iterations` is now `simulation/position_steps.`
 
-- solver/velocity_iterations is now simulation/velocity_steps.
+- `solver/velocity_iterations` is now `simulation/velocity_steps.`
 
-- solver/position_correction is now simulation/baumgarte_stabilization_factor,
+- `solver/position_correction` is now `simulation/baumgarte_stabilization_factor`,
 but expressed as a fraction instead of a percentage.
 
-- solver/active_edge_threshold is now collisions/active_edge_threshold.
+- `solver/active_edge_threshold` is now `collisions/active_edge_threshold.`
 
-- solver/bounce_velocity_threshold is now simulation/bounce_velocity_threshold.
+- `solver/bounce_velocity_threshold` is now `simulation/bounce_velocity_threshold.`
 
-- solver/contact_speculative_distance is now simulation/speculative_contact_distance.
+- `solver/contact_speculative_distance` is now `simulation/speculative_contact_distance.`
 
-- solver/contact_allowed_penetration is now simulation/penetration_slop.
+- `solver/contact_allowed_penetration` is now `simulation/penetration_slop.`
 
-- limits/max_angular_velocity is now stored as radians instead.
+- `limits/max_angular_velocity` is now stored as radians instead.
 
-- limits/max_temporary_memory is now limits/temporary_memory_buffer_size.
+- `limits/max_temporary_memory` is now `limits/temporary_memory_buffer_size.`
 
 ### Joint nodes
 

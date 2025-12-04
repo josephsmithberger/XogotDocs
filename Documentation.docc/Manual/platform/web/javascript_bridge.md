@@ -10,7 +10,7 @@ Sometimes, when exporting Godot for the Web, it might be necessary to interface
 with external JavaScript code like third-party SDKs, libraries, or
 simply to access browser features that are not directly exposed by Godot.
 
-The JavaScriptBridge singleton provides methods to wrap a native JavaScript object into
+The `JavaScriptBridge` singleton provides methods to wrap a native JavaScript object into
 a Godot [JavaScriptObject](https://docs.godotengine.org/en/stable/classes/class_javascriptobject.html#class-javascriptobject) that tries to feel
 natural in the context of Godot scripting (e.g. GDScript and C#).
 
@@ -28,7 +28,7 @@ func _ready():
 ```
 
 The [JavaScriptBridge.create_object()](https://docs.godotengine.org/en/stable/classes/class_javascriptbridge_method_create_object.html#class-javascriptbridge_method_create_object)
-creates a new object via the JavaScript new constructor.
+creates a new object via the JavaScript `new` constructor.
 
 ```
 extends Node
@@ -46,13 +46,13 @@ func _ready():
     print(arr.length)
 ```
 
-As you can see, by wrapping JavaScript objects into JavaScriptObject you can
+As you can see, by wrapping JavaScript objects into `JavaScriptObject` you can
 interact with them like they were native Godot objects, calling their methods,
 and retrieving (or even setting) their properties.
 
 Base types (int, floats, strings, booleans) are automatically converted (floats
 might lose precision when converted from Godot to JavaScript). Anything else
-(i.e. objects, arrays, functions) are seen as JavaScriptObjects themselves.
+(i.e. objects, arrays, functions) are seen as `JavaScriptObjects` themselves.
 
 ## Callbacks
 
@@ -61,11 +61,11 @@ Godot function from JavaScript instead.
 
 This case is a bit more complicated. JavaScript relies on garbage collection,
 while Godot uses reference counting for memory management. This means you have
-to explicitly create callbacks (which are returned as JavaScriptObjects
+to explicitly create callbacks (which are returned as `JavaScriptObjects`
 themselves) and you have to keep their reference.
 
 Arguments passed by JavaScript to the callback will be passed as a single Godot
-Array.
+`Array`.
 
 ```
 extends Node
@@ -91,7 +91,7 @@ func _my_callback(args):
 > Warning:
 >
 > Callback methods created via [JavaScriptBridge.get_interface()](https://docs.godotengine.org/en/stable/classes/class_javascriptbridge_method_get_interface.html#class-javascriptbridge_method_get_interface)
-> (_my_callback in the above example) **must** take exactly one [Array](https://docs.godotengine.org/en/stable/classes/class_array.html#class-array)
+> (`_my_callback` in the above example) **must** take exactly one [Array](https://docs.godotengine.org/en/stable/classes/class_array.html#class-array)
 > argument, which is going to be the JavaScript arguments object
 > converted to an array. Otherwise, the callback method will not be called.
 >
@@ -136,9 +136,9 @@ include your library in the page. You can customize the
 <doc:javascript_export_options> during export (see below),
 or even <doc:customizing_html5_shell>.
 
-In the example below, we customize the Head Include to add an external library
+In the example below, we customize the `Head Include` to add an external library
 (axios) from a content delivery network, and a
-second <script> tag to define our own custom function:
+second `<script>` tag to define our own custom function:
 
 ```
 <!-- Axios -->
@@ -177,7 +177,7 @@ func _on_get(args):
 
 ## The eval interface
 
-The eval method works similarly to the JavaScript function of the same
+The `eval` method works similarly to the JavaScript function of the same
 name. It takes a string as an argument and executes it as JavaScript code.
 This allows interacting with the browser in ways not possible with script
 languages integrated into Godot.
@@ -188,15 +188,15 @@ func my_func():
 ```
 
 The value of the last JavaScript statement is converted to a GDScript value and
-returned by eval() under certain circumstances:
+returned by `eval()` under certain circumstances:
 
-- JavaScript number is returned as [float](https://docs.godotengine.org/en/stable/classes/class_float.html#class-float)
+- JavaScript `number` is returned as [float](https://docs.godotengine.org/en/stable/classes/class_float.html#class-float)
 
-- JavaScript boolean is returned as [bool](https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool)
+- JavaScript `boolean` is returned as [bool](https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool)
 
-- JavaScript string is returned as [String](https://docs.godotengine.org/en/stable/classes/class_string.html#class-string)
+- JavaScript `string` is returned as [String](https://docs.godotengine.org/en/stable/classes/class_string.html#class-string)
 
-- JavaScript ArrayBuffer, TypedArray, and DataView are returned as [PackedByteArray](https://docs.godotengine.org/en/stable/classes/class_packedbytearray.html#class-packedbytearray)
+- JavaScript `ArrayBuffer`, `TypedArray`, and `DataView` are returned as [PackedByteArray](https://docs.godotengine.org/en/stable/classes/class_packedbytearray.html#class-packedbytearray)
 
 ```
 func my_func2():
@@ -204,13 +204,13 @@ func my_func2():
     print(js_return) # prints '3.0'
 ```
 
-Any other JavaScript value is returned as null.
+Any other JavaScript value is returned as `null`.
 
 HTML5 export templates may be <doc:compiling_for_web> without
 support for the singleton to improve security. With such templates, and on
-platforms other than HTML5, calling JavaScriptBridge.eval will also return
-null. The availability of the singleton can be checked with the
-web <doc:feature_tags>:
+platforms other than HTML5, calling `JavaScriptBridge.eval` will also return
+`null`. The availability of the singleton can be checked with the
+`web` <doc:feature_tags>:
 
 ```
 func my_func3():
@@ -222,13 +222,13 @@ func my_func3():
         print("The JavaScriptBridge singleton is NOT available")
 ```
 
-> Tip: GDScript's multi-line strings, surrounded by 3 quotes """ as in
-> my_func3() above, are useful to keep JavaScript code readable.
+> Tip: GDScript's multi-line strings, surrounded by 3 quotes `"""` as in
+> `my_func3()` above, are useful to keep JavaScript code readable.
 >
 
-The eval method also accepts a second, optional Boolean argument, which
+The `eval` method also accepts a second, optional Boolean argument, which
 specifies whether to execute the code in the global execution context,
-defaulting to false to prevent polluting the global namespace:
+defaulting to `false` to prevent polluting the global namespace:
 
 ```
 func my_func4():

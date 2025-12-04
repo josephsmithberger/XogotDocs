@@ -24,7 +24,7 @@ Compatibility rendering methods. However, unneeded objects are still reducing
 performance.
 
 One way we can potentially reduce the amount to be rendered is to **take advantage
-of occlusion**. Godot 4.0 and later offers a new approach to occlusion culling
+of occlusion**. Godot offers an approach to occlusion culling
 using occluder nodes. See <doc:occlusion_culling> for instructions on
 setting up occlusion culling in your scene.
 
@@ -166,4 +166,4 @@ large worlds. This can be resolved using <doc:large_world_coordinates>.
 If using large world coordinates is not an option, you may be able to use techniques
 such as orienting the world around the player (rather than the other way
 around), or shifting the origin periodically to keep things centred around
-Vector3(0, 0, 0).
+`Vector3(0, 0, 0)`.

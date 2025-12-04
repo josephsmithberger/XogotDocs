@@ -9,12 +9,12 @@ At the core sits the [XRServer](https://docs.godotengine.org/en/stable/classes/c
 Each supported XR platform is implemented as an [XRInterface](https://docs.godotengine.org/en/stable/classes/class_xrinterface.html#class-xrinterface).
 A list of supported platforms can be found on the list of features page <doc:xr_support>.
 Supported interfaces register themselves with the [XRServer](https://docs.godotengine.org/en/stable/classes/class_xrserver.html#class-xrserver)
-and can be queried with the find_interface method on the [XRServer](https://docs.godotengine.org/en/stable/classes/class_xrserver.html#class-xrserver).
-When the desired interface is found it can be initialized by calling initialize
+and can be queried with the `find_interface` method on the [XRServer](https://docs.godotengine.org/en/stable/classes/class_xrserver.html#class-xrserver).
+When the desired interface is found it can be initialized by calling `initialize`
 on the interface.
 
 > Warning:
-> A registered interface means nothing more than that the interface is available, if the interface is not supported by the host system, initialization may fail and return false. This can have many reasons and sadly the reasons differ from platform to platform. It can be because the user hasn't installed the required software, or that the user simply hasn't plugged in their headset. You as a developer must thus react properly on an interface failing to initialize.
+> A registered interface means nothing more than that the interface is available, if the interface is not supported by the host system, initialization may fail and return `false`. This can have many reasons and sadly the reasons differ from platform to platform. It can be because the user hasn't installed the required software, or that the user simply hasn't plugged in their headset. You as a developer must thus react properly on an interface failing to initialize.
 >
 
 Due to the special requirements for output in XR, especially for head mounted devices that supply different images to each eye, the [XRServer](https://docs.godotengine.org/en/stable/classes/class_xrserver.html#class-xrserver) in Godot will override various features in the rendering system. For stand-alone devices this means the final output is handled by the [XRInterface](https://docs.godotengine.org/en/stable/classes/class_xrinterface.html#class-xrinterface) and Godot's usual output system is disabled. For desktop XR devices that work as a second screen it is possible to dedicate a separate [Viewport](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport) to handle the XR output, leaving the main Godot window available for displaying alternative content.
@@ -71,7 +71,7 @@ box to enable them. Once you've done that click the **Save & Restart** button.
 
 ## Setting up the XR scene
 
-Every XR application needs at least an [XROrigin3D](https://docs.godotengine.org/en/stable/classes/class_xrorigin3d.html#class-xrorigin3d) and an [XRCamera3D](https://docs.godotengine.org/en/stable/classes/class_xrcamera3d.html#class-xrcamera3d) node. Most will have two [XRController3D](https://docs.godotengine.org/en/stable/classes/class_xrcontroller3d.html#class-xrcontroller3d), one for the left hand and one for the right. Keep in mind that the camera and controller nodes should be children of the origin node. Add these nodes to a new scene and rename the controller nodes to LeftHand and RightHand, your scene should look something like this:
+Every XR application needs at least an [XROrigin3D](https://docs.godotengine.org/en/stable/classes/class_xrorigin3d.html#class-xrorigin3d) and an [XRCamera3D](https://docs.godotengine.org/en/stable/classes/class_xrcamera3d.html#class-xrcamera3d) node. Most will have two [XRController3D](https://docs.godotengine.org/en/stable/classes/class_xrcontroller3d.html#class-xrcontroller3d), one for the left hand and one for the right. Keep in mind that the camera and controller nodes should be children of the origin node. Add these nodes to a new scene and rename the controller nodes to `LeftHand` and `RightHand`, your scene should look something like this:
 
 @Image(source: "xr_basic_scene.png")
 
@@ -84,11 +84,30 @@ And the right hand:
 
 @Image(source: "xr_right_hand.png")
 
-Right now all these nodes are on the floor, they will be positioned correctly in runtime. To help during development, it can be helpful to move the camera upwards so its y is set to 1.7, and move the controller nodes to -0.5, 1.0, -0.5 and 0.5, 1.0, -0.5 for respectively the left and right hand.
+Right now all these nodes are on the floor, they will be positioned correctly in runtime. To help during development, it can be helpful to move the camera upwards so its `y` is set to `1.7`, and move the controller nodes to `-0.5, 1.0, -0.5` and `0.5, 1.0, -0.5` for respectively the left and right hand.
 
 Next we need to add a script to our root node. Add the following code into this script:
 
-This code fragment assumes we are using OpenXR, if you wish to use any of the other interfaces you can change the find_interface call.
+```
+extends Node3D
+
+var xr_interface: XRInterface
+
+func _ready():
+    xr_interface = XRServer.find_interface("OpenXR")
+    if xr_interface and xr_interface.is_initialized():
+        print("OpenXR initialized successfully")
+
+        # Turn off v-sync!
+        DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+
+        # Change our main viewport to output to the HMD
+        get_viewport().use_xr = true
+    else:
+        print("OpenXR not initialized, please check if your headset is connected")
+```
+
+This code fragment assumes we are using OpenXR, if you wish to use any of the other interfaces you can change the `find_interface` call.
 
 > Warning:
 >
@@ -99,7 +118,7 @@ This code fragment assumes we are using OpenXR, if you wish to use any of the ot
 > XR interfaces like OpenXR perform their own sync.
 >
 > Also note that by default the physics engine runs at 60Hz as well and this can result in choppy physics.
-> You should set Engine.physics_ticks_per_second to a higher value.
+> You should set `Engine.physics_ticks_per_second` to a higher value.
 >
 
 If you run your project at this point in time, everything will work but you will be in a dark world. So to finish off our starting point add a [DirectionalLight3D](https://docs.godotengine.org/en/stable/classes/class_directionallight3d.html#class-directionallight3d) and a [WorldEnvironment](https://docs.godotengine.org/en/stable/classes/class_worldenvironment.html#class-worldenvironment) node to your scene.
@@ -110,6 +129,6 @@ Now run your project, you should be floating somewhere in space and be able to l
 
 > Note:
 >
-> While traditional level switching can definitely be used with XR applications, where this scene setup is repeated in each level, most find it easier to set this up once and loading levels as a subscene. If you do switch scenes and replicate the XR setup in each one, do make sure you do not run initialize multiple times. The effect can be unpredictable depending on the XR interface used.
+> While traditional level switching can definitely be used with XR applications, where this scene setup is repeated in each level, most find it easier to set this up once and loading levels as a subscene. If you do switch scenes and replicate the XR setup in each one, do make sure you do not run `initialize` multiple times. The effect can be unpredictable depending on the XR interface used.
 >
 > For the rest of this basic tutorial series we will create a game that uses a single scene.

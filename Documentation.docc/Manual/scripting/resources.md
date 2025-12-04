@@ -13,8 +13,8 @@ Nodes give you functionality: they draw sprites, 3D models, simulate physics,
 arrange user interfaces, etc. **Resources** are **data containers**. They don't
 do anything on their own: instead, nodes use the data contained in resources.
 
-Anything Godot saves or loads from disk is a resource. Be it a scene (a .tscn
-or a .scn file), an image, a script... Here are some [Resource](https://docs.godotengine.org/en/stable/classes/class_resource.html#class-resource) examples:
+Anything Godot saves or loads from disk is a resource. Be it a scene (a `.tscn`
+or a `.scn` file), an image, a script... Here are some [Resource](https://docs.godotengine.org/en/stable/classes/class_resource.html#class-resource) examples:
 
 - [Texture](https://docs.godotengine.org/en/stable/classes/class_texture.html#class-texture)
 
@@ -48,7 +48,7 @@ There are two ways to save resources. They can be:
 
 1. **External** to a scene, saved on the disk as individual files.
 
-1. **Built-in**, saved inside the .tscn or the .scn file they're attached to.
+1. **Built-in**, saved inside the `.tscn` or the `.scn` file they're attached to.
 
 To be more specific, here's a [Texture2D](https://docs.godotengine.org/en/stable/classes/class_texture2d.html#class-texture2d)
 in a [Sprite2D](https://docs.godotengine.org/en/stable/classes/class_sprite2d.html#class-sprite2d) node:
@@ -60,13 +60,13 @@ Clicking the resource preview allows us to view the resource's properties.
 @Image(source: "resourcerobi.png")
 
 The path property tells us where the resource comes from. In this case, it comes
-from a PNG image called robi.png. When the resource comes from a file like
+from a PNG image called `robi.png`. When the resource comes from a file like
 this, it is an external resource. If you erase the path or this path is empty,
 it becomes a built-in resource.
 
 The switch between built-in and external resources happens when you save the
-scene. In the example above, if you erase the path "res://robi.png" and
-save, Godot will save the image inside the .tscn scene file.
+scene. In the example above, if you erase the path `"res://robi.png"` and
+save, Godot will save the image inside the `.tscn` scene file.
 
 > Note:
 >
@@ -76,11 +76,25 @@ save, Godot will save the image inside the .tscn scene file.
 
 ## Loading resources from code
 
-There are two ways to load resources from code. First, you can use the load() function anytime:
+There are two ways to load resources from code. First, you can use the `load()` function anytime:
 
-You can also preload resources. Unlike load, this function will read the
-file from disk and load it at compile-time. As a result, you cannot call preload
+```
+func _ready():
+    # Godot loads the Resource when it reads this very line.
+    var imported_resource = load("res://robi.png")
+    $sprite.texture = imported_resource
+```
+
+You can also `preload` resources. Unlike `load`, this function will read the
+file from disk and load it at compile-time. As a result, you cannot call `preload`
 with a variable path: you need to use a constant string.
+
+```
+func _ready():
+    # Godot loads the resource at compile-time
+    var imported_resource = preload("res://robi.png")
+    get_node("sprite").texture = imported_resource
+```
 
 ## Loading scenes
 
@@ -90,6 +104,12 @@ scene is packed inside a [Resource](https://docs.godotengine.org/en/stable/class
 
 To get an instance of the scene, you have to use the
 [PackedScene.instantiate()](https://docs.godotengine.org/en/stable/classes/class_packedscene_method_instantiate.html#class-packedscene_method_instantiate) method.
+
+```
+func _on_shoot():
+        var bullet = preload("res://bullet.tscn").instantiate()
+        add_child(bullet)
+```
 
 This method creates the nodes in the scene's hierarchy, configures them, and
 returns the root node of the scene. You can then add it as a child of any other
@@ -142,7 +162,7 @@ Godot makes it easy to create custom Resources in the Inspector.
 
 1. Create a new Resource object in the Inspector. This can even be a type that derives Resource, so long as your script is extending that type.
 
-1. Set the script property in the Inspector to be your script.
+1. Set the `script` property in the Inspector to be your script.
 
 The Inspector will now display your Resource script's custom properties. If one edits
 those values and saves the resource, the Inspector serializes the custom properties
@@ -155,18 +175,48 @@ the Inspector's creation dialog. This will auto-add your script to the Resource
 object you create.
 
 Let's see some examples.
-Create a [Resource](https://docs.godotengine.org/en/stable/classes/class_resource.html#class-resource) and name it bot_stats.
-It should appear in your file tab with the full name bot_stats.tres.
+Create a [Resource](https://docs.godotengine.org/en/stable/classes/class_resource.html#class-resource) and name it `bot_stats`.
+It should appear in your file tab with the full name `bot_stats.tres`.
 Without a script, it's useless, so let's add some data and logic!
-Attach a script to it named bot_stats.gd (or just create a new script, and then drag it to it).
+Attach a script to it named `bot_stats.gd` (or just create a new script, and then drag it to it).
 
 > Note:
 > To make the new resource class appear in the Create Resource GUI you need to provide a class name for GDScript, or use the [GlobalClass] attribute in C#.
 >
 
-Now, create a [CharacterBody3D](https://docs.godotengine.org/en/stable/classes/class_characterbody3d.html#class-characterbody3d), name it Bot, and add the following script to it:
+```
+class_name BotStats
+extends Resource
 
-Now, select the [CharacterBody3D](https://docs.godotengine.org/en/stable/classes/class_characterbody3d.html#class-characterbody3d) node which we named bot, and drag&drop the bot_stats.tres resource onto the Inspector. It should print 10! Obviously, this setup can be used for more advanced features than this, but as long you really understand how it all worked, you should figure out everything else related to Resources.
+@export var health: int
+@export var sub_resource: Resource
+@export var strings: PackedStringArray
+
+# Make sure that every parameter has a default value.
+# Otherwise, there will be problems with creating and editing
+# your resource via the inspector.
+func _init(p_health = 0, p_sub_resource = null, p_strings = []):
+    health = p_health
+    sub_resource = p_sub_resource
+    strings = p_strings
+```
+
+Now, create a [CharacterBody3D](https://docs.godotengine.org/en/stable/classes/class_characterbody3d.html#class-characterbody3d), name it `Bot`, and add the following script to it:
+
+```
+extends CharacterBody3D
+
+@export var stats: Resource
+
+func _ready():
+    # Uses an implicit, duck-typed interface for any 'health'-compatible resources.
+    if stats:
+        stats.health = 10
+        print(stats.health)
+        # Prints "10"
+```
+
+Now, select the [CharacterBody3D](https://docs.godotengine.org/en/stable/classes/class_characterbody3d.html#class-characterbody3d) node which we named `bot`, and drag&drop the `bot_stats.tres` resource onto the Inspector. It should print 10! Obviously, this setup can be used for more advanced features than this, but as long you really understand how it all worked, you should figure out everything else related to Resources.
 
 > Note:
 >
@@ -228,11 +278,11 @@ Now, select the [CharacterBody3D](https://docs.godotengine.org/en/stable/classes
 > Beware that resource files (*.tres/*.res) will store the path of the script
 > they use in the file. When loaded, they will fetch and load this script as an
 > extension of their type. This means that trying to assign an
-> inner class of a script (i.e. using the class keyword in GDScript) won't
+> inner class of a script (i.e. using the `class` keyword in GDScript) won't
 > work. Godot will not serialize the custom properties on the script inner class properly.
 >
-> In the example below, Godot would load the Node script, see that it doesn't
-> extend Resource, and then determine that the script failed to load for the
+> In the example below, Godot would load the `Node` script, see that it doesn't
+> extend `Resource`, and then determine that the script failed to load for the
 > Resource object since the types are incompatible.
 >
 > .. tabs::

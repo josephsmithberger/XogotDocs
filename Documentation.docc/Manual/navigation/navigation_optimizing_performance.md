@@ -41,9 +41,9 @@ If the rendering runs single-threaded, the framerate impact might be even worse 
 >
 > At runtime, always prefer to use a background thread for baking navigation meshes.
 >
-> Increase NavigationMesh cell_size and cell_height to create less voxels.
+> Increase NavigationMesh `cell_size` and `cell_height` to create less voxels.
 >
-> Change the SamplePartitionType from watershed to monotone or layers to gain baking performance.
+> Change the `SamplePartitionType` from watershed to monotone or layers to gain baking performance.
 >
 
 > Warning:

@@ -5,7 +5,7 @@
 >
 > Adding documentation for GDExtensions is only possible for Godot 4.3 and later. The support can be integrated into your project
 > regardless because the snippet will check if you use the appropriate godot-cpp version.
-> If you set the compatibility_minimum to 4.2 and you load a project with the extension through a 4.2 editor, the
+> If you set the `compatibility_minimum` to 4.2 and you load a project with the extension through a 4.2 editor, the
 > documentation page for that class will be empty. The extension itself will still work.
 >
 
@@ -47,9 +47,9 @@ Inside the Godot demo project directory of your GDExtension directory, run the f
 godot --doctool ../ --gdextension-docs
 ```
 
-This command calls upon the Godot editor binary to generate documentation via the --doctool
-and --gdextension-docs commands. The ../ addition is to let Godot know where the GDExtension
-SConstruct file is located. By calling this command, Godot generates a doc_classes directory inside the
+This command calls upon the Godot editor binary to generate documentation via the `--doctool`
+and `--gdextension-docs` commands. The `../` addition is to let Godot know where the GDExtension
+SConstruct file is located. By calling this command, Godot generates a `doc_classes` directory inside the
 project directory in which it generates XML files for the GDExtension classes. Those files
 can then be edited to add information about member variables, methods, signals, and more.
 
@@ -65,13 +65,13 @@ if env["target"] in ["editor", "template_debug"]:
         print("Not including class reference as we're targeting a pre-4.3 baseline.")
 ```
 
-The if-statement checks if we are compiling the GDExtension library with the editor and template_debug
-flags. SCons then tries to load all the XML files inside the doc_classes directory and appends them
-to the sources variable which already includes all the source files of your extension. If it fails
-it means we are currently trying to compile the library when the godot_cpp is set to a version before 4.3.
+The if-statement checks if we are compiling the GDExtension library with the `editor` and `template_debug`
+flags. SCons then tries to load all the XML files inside the `doc_classes` directory and appends them
+to the `sources` variable which already includes all the source files of your extension. If it fails
+it means we are currently trying to compile the library when the `godot_cpp` is set to a version before 4.3.
 
 After loading the extension in a 4.3 Godot editor or later and open the documentation of your extension class
-either by `Ctrl + Click` in the script editor or the Editor help dialog you will see something like this:
+either by ``Ctrl + Click`` in the script editor or the Editor help dialog you will see something like this:
 
 @Image(source: "gdextension_docs_generation.png")
 
@@ -88,26 +88,26 @@ Currently, the supported tags for the GDExtension documentation system are:
 
 Tag | Example
 --- | -------
-**b**Makes{text}use the bold (or bold italics) font ofRichTextLabel. | [b]{text}[/b]
-**i**Makes{text}use the italics (or bold italics) font ofRichTextLabel. | [i]{text}[/i]
-**u**Makes{text}underlined. | [u]{text}[/u]
-**s**Makes{text}strikethrough. | [s]{text}[/s]
-**kbd**Makes{text}use a grey beveled background, indicating a keyboard shortcut. | [kbd]{text}[/kbd]
-**code**Makes inline{text}use the mono font and styles the text color and background like code. | [code]{text}[/code]
-**codeblocks**Makes multiline{text}use the mono font and styles the text color and background like code.The addition of the[gdscript]tag highlights the GDScript specific syntax. | [codeblocks][gdscript]{text}[/gdscript][/codeblocks]
-**center**Makes{text}horizontally centered.Same as[p align=center]. | [center]{text}[/center]
-**url**Creates a hyperlink (underlined and clickable text). Can contain optional{text}or display{link}as is. | [url]{link}[/url][url={link}]{text}[/url]
-**img**Inserts an image from the{path}(can be any valid [Texture2D](https://docs.godotengine.org/en/stable/classes/class_texture2d.html#class-texture2d) resource).If{width}is provided, the image will try to fit that width maintaining
-the aspect ratio.If both{width}and{height}are provided, the image will be scaled
-to that size.Add%to the end of{width}or{height}value to specify it as percentages of the control width instead of pixels.If{valign}configuration is provided, the image will try to align to the
-surrounding text, see <doc:bbcode_in_richtextlabel#Image-And-Table-Alignment>.Supports configuration options, see <doc:bbcode_in_richtextlabel#Image-Options>. | [img]{path}[/img][img={width}]{path}[/img][img={width}x{height}]{path}[/img][img={valign}]{path}[/img][img{options}]{path}[/img]
-**color**Changes the color of{text}. Color must be provided by a common name (see
-<doc:bbcode_in_richtextlabel#Named-Colors>) or using the HEX format (e.g.#ff00ff, see <doc:bbcode_in_richtextlabel#Hex-Colors>). | [color={code/name}]{text}[/color]
+**b**Makes`{text}`use the bold (or bold italics) font of`RichTextLabel`. | `[b]{text}[/b]`
+**i**Makes`{text}`use the italics (or bold italics) font of`RichTextLabel`. | `[i]{text}[/i]`
+**u**Makes`{text}`underlined. | `[u]{text}[/u]`
+**s**Makes`{text}`strikethrough. | `[s]{text}[/s]`
+**kbd**Makes`{text}`use a grey beveled background, indicating a keyboard shortcut. | `[kbd]{text}[/kbd]`
+**code**Makes inline`{text}`use the mono font and styles the text color and background like code. | `[code]{text}[/code]`
+**codeblocks**Makes multiline`{text}`use the mono font and styles the text color and background like code.The addition of the`[gdscript]`tag highlights the GDScript specific syntax. | `[codeblocks]``[gdscript]``{text}``[/gdscript]``[/codeblocks]`
+**center**Makes`{text}`horizontally centered.Same as`[p align=center]`. | `[center]{text}[/center]`
+**url**Creates a hyperlink (underlined and clickable text). Can contain optional`{text}`or display`{link}`as is. | `[url]{link}[/url]``[url={link}]{text}[/url]`
+**img**Inserts an image from the`{path}`(can be any valid [Texture2D](https://docs.godotengine.org/en/stable/classes/class_texture2d.html#class-texture2d) resource).If`{width}`is provided, the image will try to fit that width maintaining
+the aspect ratio.If both`{width}`and`{height}`are provided, the image will be scaled
+to that size.Add`%`to the end of`{width}`or`{height}`value to specify it as percentages of the control width instead of pixels.If`{valign}`configuration is provided, the image will try to align to the
+surrounding text, see <doc:bbcode_in_richtextlabel#Image-And-Table-Alignment>.Supports configuration options, see <doc:bbcode_in_richtextlabel#Image-Options>. | `[img]{path}[/img]``[img={width}]{path}[/img]``[img={width}x{height}]{path}[/img]``[img={valign}]{path}[/img]``[img {options}]{path}[/img]`
+**color**Changes the color of`{text}`. Color must be provided by a common name (see
+<doc:bbcode_in_richtextlabel#Named-Colors>) or using the HEX format (e.g.`#ff00ff`, see <doc:bbcode_in_richtextlabel#Hex-Colors>). | `[color={code/name}]{text}[/color]`
 
 ## Publishing documentation online
 
 You may want to publish an online reference for your GDExtension, similar to this website.
-The most important step is to build reStructuredText (.rst) files from your XML class reference:
+The most important step is to build reStructuredText (`.rst`) files from your XML class reference:
 
 ```
 # You need a version.py file, so download it first.
@@ -118,17 +118,17 @@ curl -sSLO https://raw.githubusercontent.com/godotengine/godot/refs/heads/master
 curl -sSL https://raw.githubusercontent.com/godotengine/godot/master/doc/tools/make_rst.py | python3 - -o "docs/classes" -l "en" doc_classes
 ```
 
-Your .rst files will now be available in docs/classes/. From here, you can use
+Your `.rst` files will now be available in `docs/classes/`. From here, you can use
 any documentation builder that supports reStructuredText syntax to create a website from them.
 
 godot-docs uses Sphinx. You can use the repository as a basis to build your own documentation system. The following guide describes the basic steps, but they are not exhaustive: You will need a bit of personal insight to make it work.
 
-1. Add godot-docs as a submodule to your docs/ folder.
+1. Add godot-docs as a submodule to your `docs/` folder.
 
-1. Copy over its conf.py, index.rst, .readthedocs.yaml files into /docs/. You may later decide to copy over and edit more of godot-docs' files, like _templates/layout.html.
+1. Copy over its `conf.py`, `index.rst`, `.readthedocs.yaml` files into `/docs/`. You may later decide to copy over and edit more of godot-docs' files, like `_templates/layout.html`.
 
-1. Modify these files according to your project. This mostly involves adjusting paths to point to the godot-docs subfolder, as well as strings to reflect it's your project rather than Godot you're building the docs for.
+1. Modify these files according to your project. This mostly involves adjusting paths to point to the `godot-docs` subfolder, as well as strings to reflect it's your project rather than Godot you're building the docs for.
 
-1. Create an account on readthedocs.org. Import your project, and modify its base .readthedocs.yaml file path to /docs/.readthedocs.yaml.
+1. Create an account on readthedocs.org. Import your project, and modify its base `.readthedocs.yaml` file path to `/docs/.readthedocs.yaml`.
 
-Once you have completed all these steps, your documentation should be available at <repo-name>.readthedocs.io.
+Once you have completed all these steps, your documentation should be available at `<repo-name>.readthedocs.io`.

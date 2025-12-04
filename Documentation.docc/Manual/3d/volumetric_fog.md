@@ -37,12 +37,12 @@ resource, you can edit the following properties:
 
 - **Density:** The base exponential density of the volumetric fog. Set this to
 the lowest density you want to have globally. FogVolumes can be used to add to
-or subtract from this density in specific areas. A value of 0.0 disables
+or subtract from this density in specific areas. A value of `0.0` disables
 global volumetric fog while allowing FogVolumes to display volumetric fog in
 specific areas. Fog rendering is exponential as in real life.
 
 - **Albedo:** The Color of the volumetric fog when interacting with lights. Mist
-and fog have an albedo close to white (Color(1, 1, 1, 1)) while smoke
+and fog have an albedo close to white (`Color(1, 1, 1, 1)`) while smoke
 has a darker albedo.
 
 - **Emission:** The emitted light from the volumetric fog. Even with emission,
@@ -55,14 +55,14 @@ the harsh shadows.
 fog.
 
 - **GI Inject:** Scales the strength of Global Illumination used in the
-volumetric fog's albedo color. A value of 0.0 means that Global
+volumetric fog's albedo color. A value of `0.0` means that Global
 Illumination will not impact the volumetric fog. This has a small performance
-cost when set above 0.0.
+cost when set above `0.0`.
 
 - **Anisotropy:** The direction of scattered light as it goes through the
-volumetric fog. A value close to 1.0 means almost all light is scattered
-forward. A value close to 0.0 means light is scattered equally in all
-directions. A value close to -1.0 means light is scattered mostly
+volumetric fog. A value close to `1.0` means almost all light is scattered
+forward. A value close to `0.0` means light is scattered equally in all
+directions. A value close to `-1.0` means light is scattered mostly
 backward. Fog and mist scatter light slightly forward, while smoke scatters
 light equally in all directions.
 
@@ -75,11 +75,11 @@ buffer. A higher value compresses the froxels closer to the camera and places
 more detail closer to the camera.
 
 - **Ambient Inject:** Scales the strength of ambient light used in the
-volumetric fog. A value of 0.0 means that ambient light will not impact
-the volumetric fog. This has a small performance cost when set above 0.0.
+volumetric fog. A value of `0.0` means that ambient light will not impact
+the volumetric fog. This has a small performance cost when set above `0.0`.
 
 - **Sky Affect:** Controls how much volumetric fog should be drawn onto the
-background sky. If set to 0.0, volumetric fog won't affect sky rendering
+background sky. If set to `0.0`, volumetric fog won't affect sky rendering
 at all (including FogVolumes).
 
 Two additional properties are offered in the **Temporal Reprojection** section:
@@ -91,7 +91,7 @@ performance cost is minimal, however it does lead to moving FogVolumes and
 Light3Ds "ghosting" and leaving a trail behind them. When temporal
 reprojection is enabled, try to avoid moving FogVolumes or Light3Ds too fast.
 Short-lived dynamic lighting effects should have **Volumetric Fog Energy** set
-to 0.0 to avoid ghosting.
+to `0.0` to avoid ghosting.
 
 - **Temporal Reprojection > Amount:** The amount by which to blend the last
 frame with the current frame. A higher number results in smoother volumetric
@@ -119,7 +119,7 @@ shadows on a light will also make those shadows visible on volumetric fog.
 If fog light interaction is not desired for artistic reasons, this can be
 globally disabled by setting **Volumetric Fog > Albedo** to a pure black color
 in the Environment resource. Fog light interaction can also be disabled for
-specific lights by setting its **Volumetric Fog Energy** to 0. Doing so will
+specific lights by setting its **Volumetric Fog Energy** to `0`. Doing so will
 also improve performance slightly by excluding the light from volumetric fog
 computations.
 
@@ -131,9 +131,9 @@ environment will not be darkened anymore by fog, but light will still be able to
 make fog brighter in specific areas.
 
 This can be done by setting volumetric fog density to the lowest permitted value
-greater than zero (0.0001), then increasing the **Volumetric Fog Energy**
+greater than zero (`0.0001`), then increasing the **Volumetric Fog Energy**
 property on lights to much higher values than the default to compensate. Values
-between 10000 and 100000 usually work well for this.
+between `200.0` and `5000.0` usually work well for this.
 
 @Image(source: "volumetric_fog_lighting.png")
 
@@ -174,7 +174,7 @@ areas. Both approaches can be followed using FogVolume nodes.
 Here's a quick start guide to using FogVolumes:
 
 - Make sure **Volumetric Fog** is enabled in the Environment properties. If
-global volumetric fog is undesired, set its **Density** to 0.0.
+global volumetric fog is undesired, set its **Density** to `0.0`.
 
 - Create a FogVolume node.
 
@@ -230,7 +230,7 @@ modulating the Color of the FogVolume independently from light sources.
 - **Height Falloff:** The rate by which the height-based fog decreases in
 density as height increases in world space. A high falloff will result in a
 sharp transition, while a low falloff will result in a smoother transition.
-A value of 0.0 results in uniform-density fog. The height threshold is
+A value of `0.0` results in uniform-density fog. The height threshold is
 determined by the height of the associated FogVolume.
 
 - **Edge Fade:** The hardness of the edges of the FogVolume. A higher value will

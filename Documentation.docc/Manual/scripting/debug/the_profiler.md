@@ -139,6 +139,23 @@ If you wrap a piece of code with a start and end count of microseconds, the
 difference between the two is the amount of time it took to run that piece of
 code.
 
+```
+# Measuring the time it takes for worker_function() to run
+var start = Time.get_ticks_usec()
+worker_function()
+var end = Time.get_ticks_usec()
+var worker_time = (end-start)/1000000.0
+
+# Measuring the time spent running a calculation over each element of an array
+start = Time.get_ticks_usec()
+for calc in calculations:
+    result = pow(2, calc.power) * calc.product
+end = Time.get_ticks_usec()
+var loop_time = (end-start)/1000000.0
+
+print("Worker time: %s\nLoop time: %s" % [worker_time, loop_time])
+```
+
 As you become a more experienced programmer, this technique becomes less
 necessary. You begin to learn what parts of a running program are slow. Knowing
 that loops and branches can be slow comes from experience, and you gain

@@ -16,29 +16,50 @@ Below we will detail out the script used in our demos and explain the parts that
 
 We are introducing 3 signals to our script so that our game can add further logic:
 
-- focus_lost is emitted when the player takes off their headset or when the player enters the menu system of the headset.
+- `focus_lost` is emitted when the player takes off their headset or when the player enters the menu system of the headset.
 
-- focus_gained is emitted when the player puts their headset back on or exits the menu system and returns to the game.
+- `focus_gained` is emitted when the player puts their headset back on or exits the menu system and returns to the game.
 
-- pose_recentered is emitted when the headset requests the player's position to be reset.
+- `pose_recentered` is emitted when the headset requests the player's position to be reset.
 
 Our game should react accordingly to these signals.
+
+```
+extends Node3D
+
+signal focus_lost
+signal focus_gained
+signal pose_recentered
+
+...
+```
 
 ## Variables for our script
 
 We introduce a few new variables to our script as well:
 
-- maximum_refresh_rate will control the headsets refresh rate if this is supported by the headset.
+- `maximum_refresh_rate` will control the headsets refresh rate if this is supported by the headset.
 
-- xr_interface holds a reference to our XR interface, this already existed but we now type it to get full access to our [XRInterface](https://docs.godotengine.org/en/stable/classes/class_xrinterface.html#class-xrinterface) API.
+- `xr_interface` holds a reference to our XR interface, this already existed but we now type it to get full access to our [XRInterface](https://docs.godotengine.org/en/stable/classes/class_xrinterface.html#class-xrinterface) API.
 
-- xr_is_focussed will be set to true whenever our game has focus.
+- `xr_is_focussed` will be set to true whenever our game has focus.
+
+```
+...
+
+@export var maximum_refresh_rate : int = 90
+
+var xr_interface : OpenXRInterface
+var xr_is_focussed = false
+
+...
+```
 
 ## Our updated ready function
 
 We add a few things to the ready function.
 
-If we're using the mobile or forward+ renderer we set the viewport's vrs_mode to VRS_XR.
+If we're using the mobile or forward+ renderer we set the viewport's `vrs_mode` to `VRS_XR`.
 On platforms that support this, this will enable foveated rendering.
 
 If we're using the compatibility renderer, we check if the OpenXR foveated rendering settings
@@ -55,6 +76,42 @@ and setup the non-VR mode of your game on failure.
 However, when running a VR only application on a standalone headset,
 it is nicer to exit on failure than to hang the system.
 
+```
+...
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+    xr_interface = XRServer.find_interface("OpenXR")
+    if xr_interface and xr_interface.is_initialized():
+        print("OpenXR instantiated successfully.")
+        var vp : Viewport = get_viewport()
+
+        # Enable XR on our viewport
+        vp.use_xr = true
+
+        # Make sure v-sync is off, v-sync is handled by OpenXR
+        DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+
+        # Enable VRS
+        if RenderingServer.get_rendering_device():
+            vp.vrs_mode = Viewport.VRS_XR
+        elif int(ProjectSettings.get_setting("xr/openxr/foveation_level")) == 0:
+            push_warning("OpenXR: Recommend setting Foveation level to High in Project Settings")
+
+        # Connect the OpenXR events
+        xr_interface.session_begun.connect(_on_openxr_session_begun)
+        xr_interface.session_visible.connect(_on_openxr_visible_state)
+        xr_interface.session_focussed.connect(_on_openxr_focused_state)
+        xr_interface.session_stopping.connect(_on_openxr_stopping)
+        xr_interface.pose_recentered.connect(_on_openxr_pose_recentered)
+    else:
+        # We couldn't start OpenXR.
+        print("OpenXR not instantiated!")
+        get_tree().quit()
+
+...
+```
+
 ## On session begun
 
 This signal is emitted by OpenXR when our session is setup.
@@ -69,6 +126,43 @@ Godot runs at a physics update rate of 60 updates per second by default while he
 and for modern headsets often up to 144 frames per second.
 Not matching the physics update rate will cause stuttering as frames are rendered without objects moving.
 
+```
+...
+
+# Handle OpenXR session ready
+func _on_openxr_session_begun() -> void:
+    # Get the reported refresh rate
+    var current_refresh_rate = xr_interface.get_display_refresh_rate()
+    if current_refresh_rate > 0:
+        print("OpenXR: Refresh rate reported as ", str(current_refresh_rate))
+    else:
+        print("OpenXR: No refresh rate given by XR runtime")
+
+    # See if we have a better refresh rate available
+    var new_rate = current_refresh_rate
+    var available_rates : Array = xr_interface.get_available_display_refresh_rates()
+    if available_rates.size() == 0:
+        print("OpenXR: Target does not support refresh rate extension")
+    elif available_rates.size() == 1:
+        # Only one available, so use it
+        new_rate = available_rates[0]
+    else:
+        for rate in available_rates:
+            if rate > new_rate and rate <= maximum_refresh_rate:
+                new_rate = rate
+
+    # Did we find a better rate?
+    if current_refresh_rate != new_rate:
+        print("OpenXR: Setting refresh rate to ", str(new_rate))
+        xr_interface.set_display_refresh_rate(new_rate)
+        current_refresh_rate = new_rate
+
+    # Now match our physics rate
+    Engine.physics_ticks_per_second = current_refresh_rate
+
+...
+```
+
 ## On visible state
 
 This signal is emitted by OpenXR when our game becomes visible but is not focused.
@@ -78,7 +172,7 @@ that the user has opened a system menu or the user has just took their headset o
 
 On receiving this signal we'll update our focused state,
 we'll change the process mode of our node to disabled which will pause processing on this node and its children,
-and emit our focus_lost signal.
+and emit our `focus_lost` signal.
 
 If you've added this script to your root node,
 this means your game will automatically pause when required.
@@ -90,6 +184,26 @@ If you haven't, you can connect a method to the signal that performs additional 
 > Godot will keep rendering frames and head tracking will remain active so your game will remain visible in the background.
 > However controller and hand tracking will be disabled until the user exits the system menu.
 >
+
+```
+...
+
+# Handle OpenXR visible state
+func _on_openxr_visible_state() -> void:
+    # We always pass this state at startup,
+    # but the second time we get this it means our player took off their headset
+    if xr_is_focussed:
+        print("OpenXR lost focus")
+
+        xr_is_focussed = false
+
+        # pause our game
+        get_tree().paused = true
+
+        emit_signal("focus_lost")
+
+...
+```
 
 ## On focussed state
 
@@ -110,7 +224,23 @@ the game stays in 'visible' state until the user puts their headset on.
 > Be sure to test this behavior in your game!
 >
 
-While handling our signal we will update the focuses state, unpause our node and emit our focus_gained signal.
+While handling our signal we will update the focuses state, unpause our node and emit our `focus_gained` signal.
+
+```
+...
+
+# Handle OpenXR focused state
+func _on_openxr_focused_state() -> void:
+    print("OpenXR gained focus")
+    xr_is_focussed = true
+
+    # unpause our game
+    get_tree().paused = false
+
+    emit_signal("focus_gained")
+
+...
+```
 
 ## On stopping state
 
@@ -121,6 +251,17 @@ But on other platforms this will also be emitted every time the player takes off
 
 For now this method is only a place holder.
 
+```
+...
+
+# Handle OpenXR stopping state
+func _on_openxr_stopping() -> void:
+    # Our session is being stopped.
+    print("OpenXR is stopping")
+
+...
+```
+
 ## On pose recentered
 
 This signal is emitted by OpenXR when the user requests their view to be recentered.
@@ -129,9 +270,19 @@ and you should re-orient the player so they are facing forward in the virtual wo
 
 As doing so is dependent on your game, your game needs to react accordingly.
 
-All we do here is emit the pose_recentered signal.
+All we do here is emit the `pose_recentered` signal.
 You can connect to this signal and implement the actual recenter code.
 Often it is enough to call [center_on_hmd()](https://docs.godotengine.org/en/stable/classes/class_xrserver_method_center_on_hmd.html#class-xrserver_method_center_on_hmd).
+
+```
+...
+
+# Handle OpenXR pose recentered signal
+func _on_openxr_pose_recentered() -> void:
+    # User recentered view, we have to react to this by recentering the view.
+    # This is game implementation dependent.
+    emit_signal("pose_recentered")
+```
 
 And that finished our script. It was written so that it can be re-used over multiple projects.
 Just add it as the script on your main node (and extend it if needed)

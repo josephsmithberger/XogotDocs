@@ -15,7 +15,7 @@ properties, fold and unfold areas, use the search bar, and more.
 If the inspector dock is visible, clicking on a node in the scene tree will automatically
 display its properties.
 If it is not visible, you can show it by navigating to
-**Editor > Editor Settings > Editor Docks > Inspector**.
+**Editor > Editor Docks > Inspector**.
 
 At the top of the dock are the file and navigation buttons.
 
@@ -66,7 +66,7 @@ Clicking on the node's name itself will list the sub-resources of this node if t
 Then comes the search bar. Type anything in it to filter displayed properties.
 Delete the text to clear the search.
 This search is case insensitive and also searches letter by letter as you type.
-For instance, if you type vsb, one of the results you see will be
+For instance, if you type `vsb`, one of the results you see will be
 Visibility property as this property contains all of these letters.
 
 Before discussing the tool button next to the filter bar, it is worth mentioning
@@ -123,9 +123,9 @@ various view and edit options.
 than the current value (the properties with a revert icon ()).
 
 - **Property Name Style**: This section determines how the properties' text is displayed in
-the inspector. Raw uses the property's own naming, Capitalized uses title
+the inspector. `Raw` uses the property's own naming, `Capitalized` uses title
 case by changing the initial letters of each word to uppercase and removing underscores,
-Localized displays the translation of the properties if you are using the Editor
+`Localized` displays the translation of the properties if you are using the Editor
 in a language other than English.
 
 - **Copy Properties**: Copies all properties of the current node with their current values.

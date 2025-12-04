@@ -4,7 +4,7 @@
 In GDScript, comments can be used to document your code and add descriptions to the
 members of a script. There are two differences between a normal comment and a documentation
 comment. Firstly, a documentation comment should start with double hash symbols
-##. Secondly, it must immediately precede a script member, or for script descriptions,
+`##`. Secondly, it must immediately precede a script member, or for script descriptions,
 be placed at the top of the script. If an exported variable is documented,
 its description is used as a tooltip in the editor. This documentation can be
 generated as XML files by the editor.
@@ -22,7 +22,7 @@ suggested format for script documentation can be divided into three parts.
 
 To separate these from each other, the documentation comments use special tags.
 The tag must be at the beginning of a line (ignoring preceding white space)
-and must have the format @, followed by the keyword.
+and must have the format `@`, followed by the keyword.
 
 ### Tags
 
@@ -31,9 +31,9 @@ the documentation section.
 ----------------- | -----------------------------------------------------------------
 Description | No tag. Use one blank line to separate the description
 from the brief.
-Tutorial | @tutorial:https://example.com@tutorial(The Title Here):https://example.com
-Deprecated | @deprecated@deprecated: Use [AnotherClass] instead.
-Experimental | @experimental@experimental: This class is unstable.
+Tutorial | `@tutorial: https://example.com``@tutorial(The Title Here): https://example.com`
+Deprecated | `@deprecated``@deprecated: Use [AnotherClass] instead.`
+Experimental | `@experimental``@experimental: This class is unstable.`
 
 For example:
 
@@ -52,14 +52,14 @@ extends Node2D
 > Warning:
 >
 > If there is any space in between the tag name and colon, for example
-> @tutorial  :, it won't be treated as a valid tag and will be ignored.
+> `@tutorial  :`, it won't be treated as a valid tag and will be ignored.
 >
 
 > Note:
 >
 > When the description spans multiple lines, the preceding and trailing white
 > spaces will be stripped and joined with a single space. To preserve the line
-> break use [br]. See also BBCode and class reference below.
+> break use `[br]`. See also BBCode and class reference below.
 >
 
 ## Documenting script members
@@ -82,14 +82,14 @@ Members that are applicable for documentation:
 
 Documentation of a script member must immediately precede the member or its annotations
 if it has any. The description can have more than one line but every line must start with
-the double hash symbol ## to be considered as part of the documentation.
+the double hash symbol `##` to be considered as part of the documentation.
 
 ### Tags
 
 Description | No tag.
 ----------- | -------
-Deprecated | @deprecated@deprecated: Use [member another] instead.
-Experimental | @experimental@experimental: This method is incomplete.
+Deprecated | `@deprecated``@deprecated: Use [member another] instead.`
+Experimental | `@experimental``@experimental: This method is incomplete.`
 
 For example:
 
@@ -199,7 +199,7 @@ class Inner:
     func fn(): pass
 ```
 
-## @deprecated and @experimental tags
+## `@deprecated` and `@experimental` tags
 
 You can mark a class or any of its members as deprecated or experimental.
 This will add the corresponding indicator in the built-in documentation viewer.
@@ -216,7 +216,7 @@ major branch. Using this API is not recommended in production code.
 
 > Note:
 >
-> While technically you can use both @deprecated and @experimental tags on the same
+> While technically you can use both `@deprecated` and `@experimental` tags on the same
 > class/member, this is not recommended as it is against common conventions.
 >
 
@@ -224,7 +224,7 @@ major branch. Using this API is not recommended in production code.
 
 Godot's class reference supports BBCode-like tags. They add nice formatting to the text which could also
 be used in the documentation. See also <doc:index#Bbcode>.
-Note that this is slightly different from the RichTextLabel <doc:bbcode_in_richtextlabel>.
+Note that this is slightly different from the `RichTextLabel` <doc:bbcode_in_richtextlabel>.
 
 Whenever you link to a member of another class, you need to specify the class name.
 For links to the same class, the class name is optional and can be omitted.
@@ -234,14 +234,14 @@ Here's the list of available tags:
 > Note:
 >
 > 1. Currently only [@GDScript](https://docs.godotengine.org/en/stable/classes/class_@gdscript.html#class-@gdscript) has annotations.
-> 2. [kbd] disables BBCode until the parser encounters [/kbd].
-> 3. [code] disables BBCode until the parser encounters [/code].
-> 4. [codeblock] disables BBCode until the parser encounters [/codeblock].
+> 2. `[kbd]` disables BBCode until the parser encounters `[/kbd]`.
+> 3. `[code]` disables BBCode until the parser encounters `[/code]`.
+> 4. `[codeblock]` disables BBCode until the parser encounters `[/codeblock]`.
 >
 
 > Warning:
 >
-> Use [codeblock] for pre-formatted code blocks. Inside [codeblock],
+> Use `[codeblock]` for pre-formatted code blocks. Inside `[codeblock]`,
 > always use **four spaces** for indentation (the parser will delete tabs).
 >
 
@@ -260,11 +260,11 @@ func do_something():
     pass
 ```
 
-By default, [codeblock] highlights GDScript syntax. You can change it using
-the lang attribute. Currently supported options are:
+By default, `[codeblock]` highlights GDScript syntax. You can change it using
+the `lang` attribute. Currently supported options are:
 
-- [codeblock lang=text] disables syntax highlighting;
+- `[codeblock lang=text]` disables syntax highlighting;
 
-- [codeblock lang=gdscript] highlights GDScript syntax;
+- `[codeblock lang=gdscript]` highlights GDScript syntax;
 
-- [codeblock lang=csharp] highlights C# syntax (only in .NET version).
+- `[codeblock lang=csharp]` highlights C# syntax (only in .NET version).

@@ -14,6 +14,26 @@ crouching or crawling, query the appropriate map for a path.
 If the avoidance behavior should also change with the locomotion e.g. only avoid while standing or only avoid
 other agents in the same locomotion state, switch the actor's avoidance agent to another avoidance map with each locomotion change.
 
+```
+func update_path():
+
+    if actor_standing:
+        path = NavigationServer3D.map_get_path(standing_navigation_map_rid, start_position, target_position, true)
+    elif actor_crouching:
+        path = NavigationServer3D.map_get_path(crouched_navigation_map_rid, start_position, target_position, true)
+    elif actor_crawling:
+        path = NavigationServer3D.map_get_path(crawling_navigation_map_rid, start_position, target_position, true)
+
+func change_agent_avoidance_state():
+
+    if actor_standing:
+        NavigationServer3D.agent_set_map(avoidance_agent_rid, standing_navigation_map_rid)
+    elif actor_crouching:
+        NavigationServer3D.agent_set_map(avoidance_agent_rid, crouched_navigation_map_rid)
+    elif actor_crawling:
+        NavigationServer3D.agent_set_map(avoidance_agent_rid, crawling_navigation_map_rid)
+```
+
 > Note:
 >
 > While a path query can be execute immediately for multiple maps, the avoidance agent map switch will only take effect after the next server synchronization.

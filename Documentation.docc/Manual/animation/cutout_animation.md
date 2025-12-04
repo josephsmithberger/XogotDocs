@@ -80,8 +80,8 @@ create a child sprite and load the torso texture, later accommodate it properly:
 @Image(source: "tuto_cutout3.png")
 
 This looks good. Let's see if our hierarchy works as a skeleton by
-rotating the torso. We can do this be pressing `E` to enter rotate mode,
-and dragging with the left mouse button. To exit rotate mode hit `ESC`.
+rotating the torso. We can do this be pressing ``E`` to enter rotate mode,
+and dragging with the left mouse button. To exit rotate mode hit ``ESC``.
 
 @Image(source: "tutovec_torso1.gif")
 
@@ -100,7 +100,7 @@ Sprite2D:
 @Image(source: "tuto_cutout5.png")
 
 The pivot can also be adjusted visually. While hovering over the
-desired pivot point,  press `V` to move the pivot there for the
+desired pivot point,  press ``V`` to move the pivot there for the
 selected Sprite2D. There is also a tool in the tool bar that has a
 similar function.
 
@@ -121,7 +121,7 @@ We want the left arm to appear behind
 the hip and the torso. We could move the left arm nodes behind the hip (above
 the hip node in the scene hierarchy), but then the left arm is no longer in its
 proper place in the hierarchy. This means it wouldn't be affected by the movement
-of the torso. We'll fix this problem with RemoteTransform2D nodes.
+of the torso. We'll fix this problem with `RemoteTransform2D` nodes.
 
 > Note: You can also fix depth ordering problems by adjusting the Z property
 > of any node inheriting from Node2D.
@@ -136,15 +136,15 @@ any transformation it inherits from its parents) to the remote node it targets.
 This allows us to correct the visibility order of our elements, independently of
 the locations of those parts in the cutout hierarchy.
 
-Create a RemoteTransform2D node as a child of the torso. Call it remote_arm_l.
-Create another RemoteTransform2D node inside the first and call it remote_hand_l.
-Use the Remote Path property of the two new nodes to target the arm_l and
-hand_l sprites respectively:
+Create a `RemoteTransform2D` node as a child of the torso. Call it `remote_arm_l`.
+Create another RemoteTransform2D node inside the first and call it `remote_hand_l`.
+Use the `Remote Path` property of the two new nodes to target the `arm_l` and
+`hand_l` sprites respectively:
 
 @Image(source: "tuto_cutout9.png")
 
-Moving the RemoteTransform2D nodes now moves the sprites. So we can create
-animations by adjusting the RemoteTransform2D transforms:
+Moving the `RemoteTransform2D` nodes now moves the sprites. So we can create
+animations by adjusting the `RemoteTransform2D` transforms:
 
 @Image(source: "tutovec_torso4.gif")
 
@@ -178,7 +178,7 @@ a skeleton, a chain of nodes must be selected from top to bottom:
 
 @Image(source: "tuto_cutout11.png")
 
-Then, click on the Skeleton menu and select Make Bones.
+Then, click on the Skeleton menu and select `Make Bones`.
 
 @Image(source: "tuto_cutout12.png")
 
@@ -212,7 +212,7 @@ between all of them.
 You may notice that an extra bone is created when connecting the hip and torso.
 Godot has connected the hip node to the scene root with a bone, and we don't
 want that. To fix this, select the root and hip node, open the Skeleton menu,
-click clear bones.
+click `clear bones`.
 
 @Image(source: "tuto_cutout15_2.png")
 

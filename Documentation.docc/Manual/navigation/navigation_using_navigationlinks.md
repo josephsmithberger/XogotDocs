@@ -14,7 +14,7 @@ interacting with gameplay objects e.g. ladders, jump pads or teleports.
 [NavigationLink3D](https://docs.godotengine.org/en/stable/classes/class_navigationlink3d.html#class-navigationlink3d) respectively.
 
 Different NavigationRegions can connect their navigation meshes without the need for a NavigationLink
-as long as they have overlapping edges or edges that are within navigation map edge_connection_margin.
+as long as they have overlapping edges or edges that are within navigation map `edge_connection_margin`.
 As soon as the distance becomes too large, building valid connections becomes a problem - a problem that NavigationLinks can solve.
 
 See <doc:navigation_using_navigationregions> to learn more about the use of navigation regions.
@@ -22,17 +22,17 @@ See <doc:navigation_connecting_navmesh> to learn more about how to connect navig
 
 @Image(source: "nav_link_properties.png")
 
-NavigationLinks share many properties with NavigationRegions like navigation_layers.
+NavigationLinks share many properties with NavigationRegions like `navigation_layers`.
 NavigationLinks add a single connection between two positions over an arbitrary distance
 compared to NavigationRegions that add a more local traversable area with a navigation mesh resource.
 
-NavigationLinks have a start_position and end_position and can go in both directions when bidirectional is enabled.
-When placed a navigationlink connects the navigation mesh polygons closest to its start_position and end_position within search radius for pathfinding.
+NavigationLinks have a `start_position` and `end_position` and can go in both directions when `bidirectional` is enabled.
+When placed a navigationlink connects the navigation mesh polygons closest to its `start_position` and `end_position` within search radius for pathfinding.
 
-The polygon search radius can be configured globally in the ProjectSettings under navigation/2d_or_3d/default_link_connection_radius
-or set for each navigation **map** individually using the NavigationServer.map_set_link_connection_radius() function.
+The polygon search radius can be configured globally in the ProjectSettings under `navigation/2d_or_3d/default_link_connection_radius`
+or set for each navigation **map** individually using the `NavigationServer.map_set_link_connection_radius()` function.
 
-Both start_position and end_position have debug markers in the Editor.
+Both `start_position` and `end_position` have debug markers in the Editor.
 The arrows indicate which direction the link can be travelled across, and the visible radius of
 a position shows the polygon search radius. All navigation mesh polygons inside are compared and
 the closest is picked for the edge connection. If no valid polygon is found within the search
@@ -40,7 +40,7 @@ radius the navigation link gets disabled.
 
 @Image(source: "nav_link_debug_visuals.png")
 
-The link debug visuals can be changed in the Editor [ProjectSettings](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings) under debug/shapes/navigation.
+The link debug visuals can be changed in the Editor [ProjectSettings](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings) under `debug/shapes/navigation`.
 The visibility of the debug can also be controlled in the Editor 3D Viewport gizmo menu.
 
 A navigation link does not provide any specialized movement through the link. Instead, when
@@ -53,3 +53,65 @@ waiting for a moving platform, or walking through a teleporter and proceeding th
 ## Navigation link script templates
 
 The following script uses the NavigationServer to create a new navigation link.
+
+```
+extends Node2D
+
+var link_rid: RID
+var link_start_position: Vector2
+var link_end_position: Vector2
+
+func _ready() -> void:
+    link_rid = NavigationServer2D.link_create()
+
+    var link_owner_id: int = get_instance_id()
+    var link_enter_cost: float = 1.0
+    var link_travel_cost: float = 1.0
+    var link_navigation_layers: int = 1
+    var link_bidirectional: bool = true
+
+    NavigationServer2D.link_set_owner_id(link_rid, link_owner_id)
+    NavigationServer2D.link_set_enter_cost(link_rid, link_enter_cost)
+    NavigationServer2D.link_set_travel_cost(link_rid, link_travel_cost)
+    NavigationServer2D.link_set_navigation_layers(link_rid, link_navigation_layers)
+    NavigationServer2D.link_set_bidirectional(link_rid, link_bidirectional)
+
+    # Enable the link and set it to the default navigation map.
+    NavigationServer2D.link_set_enabled(link_rid, true)
+    NavigationServer2D.link_set_map(link_rid, get_world_2d().get_navigation_map())
+
+    # Move the 2 link positions to their intended global positions.
+    NavigationServer2D.link_set_start_position(link_rid, link_start_position)
+    NavigationServer2D.link_set_end_position(link_rid, link_end_position)
+```
+
+```
+extends Node3D
+
+var link_rid: RID
+var link_start_position: Vector3
+var link_end_position: Vector3
+
+func _ready() -> void:
+    link_rid = NavigationServer3D.link_create()
+
+    var link_owner_id: int = get_instance_id()
+    var link_enter_cost: float = 1.0
+    var link_travel_cost: float = 1.0
+    var link_navigation_layers: int = 1
+    var link_bidirectional: bool = true
+
+    NavigationServer3D.link_set_owner_id(link_rid, link_owner_id)
+    NavigationServer3D.link_set_enter_cost(link_rid, link_enter_cost)
+    NavigationServer3D.link_set_travel_cost(link_rid, link_travel_cost)
+    NavigationServer3D.link_set_navigation_layers(link_rid, link_navigation_layers)
+    NavigationServer3D.link_set_bidirectional(link_rid, link_bidirectional)
+
+    # Enable the link and set it to the default navigation map.
+    NavigationServer3D.link_set_enabled(link_rid, true)
+    NavigationServer3D.link_set_map(link_rid, get_world_3d().get_navigation_map())
+
+    # Move the 2 link positions to their intended global positions.
+    NavigationServer3D.link_set_start_position(link_rid, link_start_position)
+    NavigationServer3D.link_set_end_position(link_rid, link_end_position)
+```

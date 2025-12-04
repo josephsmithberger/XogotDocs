@@ -57,12 +57,12 @@ itself, excluding child functions (Self), the number of times the function is
 called, the function name, and the file or module.
 
 In this example, we can see nearly all time is spent under the
-Main::iteration() function. This is the master function in the Godot source
+`Main::iteration()` function. This is the master function in the Godot source
 code that is called repeatedly. It causes frames to be drawn, physics ticks to
 be simulated, and nodes and scripts to be updated. A large proportion of the
 time is spent in the functions to render a canvas (66%), because this example
 uses a 2D benchmark. Below this, we see that almost 50% of the time is spent
-outside Godot code in libglapi and i965_dri (the graphics driver).
+outside Godot code in `libglapi` and `i965_dri` (the graphics driver).
 This tells us the a large proportion of CPU time is being spent in the
 graphics driver.
 
@@ -79,6 +79,16 @@ Another handy technique, especially once you have identified the bottleneck
 using a profiler, is to manually time the function or area under test.
 The specifics vary depending on the language, but in GDScript, you would do
 the following:
+
+```
+var time_start = Time.get_ticks_usec()
+
+# Your function you want to time
+update_enemies()
+
+var time_end = Time.get_ticks_usec()
+print("update_enemies() took %d microseconds" % (time_end - time_start))
+```
 
 When manually timing functions, it is usually a good idea to run the function
 many times (1,000 or more times), instead of just once (unless it is a very slow
@@ -179,8 +189,8 @@ For more information on threads, see <doc:using_multiple_threads>.
 ## SceneTree
 
 Although Nodes are an incredibly powerful and versatile concept, be aware that
-every node has a cost. Built-in functions such as _process() and
-_physics_process() propagate through the tree. This housekeeping can reduce
+every node has a cost. Built-in functions such as `_process()` and
+`_physics_process()` propagate through the tree. This housekeeping can reduce
 performance when you have a very large numbers of nodes (how many exactly
 depends on the target platform and can range from thousands to tens of
 thousands so ensure that you profile performance on all target platforms

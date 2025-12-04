@@ -58,7 +58,7 @@ tick rate that works for that hardware, or even vary the duration of each physic
 tick to match a particular frame duration.
 
 This works, but there is a problem. Physics (and game logic, which is often also
-run in the _physics_process) work best and most consistently when run at a
+run in the `_physics_process`) work best and most consistently when run at a
 **fixed**, predetermined tick rate. If you attempt to run a racing game physics
 that has been designed for 60 TPS (ticks per second) at e.g. 10 TPS, the physics
 will behave completely differently. Controls may be less responsive, collisions /
@@ -139,7 +139,7 @@ interpolation equation. The X coordinate would thus be:
 x_interpolated = x_prev + ((x_curr - x_prev) * 0.2)
 ```
 
-So substituting our x_prev as 10, and x_curr as 30:
+So substituting our `x_prev` as 10, and `x_curr` as 30:
 
 ```
 x_interpolated = 10 + ((30 - 10) * 0.2)
@@ -149,11 +149,11 @@ x_interpolated = 14
 
 Let's break that down:
 
-- We know the X starts from the coordinate on the previous tick (x_prev) which
+- We know the X starts from the coordinate on the previous tick (`x_prev`) which
 is 10 units.
 
 - We know that after the full tick, the difference between the current tick and the
-previous tick will have been added (x_curr - x_prev) (which is 20 units).
+previous tick will have been added (`x_curr - x_prev`) (which is 20 units).
 
 - The only thing we need to vary is the proportion of this difference we add,
 according to how far we are through the physics tick.

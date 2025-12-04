@@ -7,13 +7,13 @@
 
 Navigation obstacles are dual purpose in that they can affect both the navigation mesh baking, and the agent avoidance.
 
-- With affect_navigation_mesh enabled the obstacle will affect navigation mesh when baked.
+- With `affect_navigation_mesh` enabled the obstacle will affect navigation mesh when baked.
 
-- With avoidance_enabled the obstacle will affect avoidance agents.
+- With `avoidance_enabled` the obstacle will affect avoidance agents.
 
 > Tip:
 >
-> Avoidance is enabled by default. If the obstacle is not used for avoidance disable enabled_avoidance to save performance.
+> Avoidance is enabled by default. If the obstacle is not used for avoidance disable `enabled_avoidance` to save performance.
 >
 
 ## Obstacles and navigation mesh
@@ -35,19 +35,61 @@ For more details on the navigation mesh baking see <doc:navigation_using_navigat
 
 @Image(source: "nav_mesh_obstacles_properties.png")
 
-The property affect_navigation_mesh makes the obstacle contribute to the navigation mesh baking.
+The property `affect_navigation_mesh` makes the obstacle contribute to the navigation mesh baking.
 It will be parsed or unparsed like all other node objects in a navigation mesh baking process.
 
-The carve_navigation_mesh property makes the shape unaffected by offsets of the baking,
-e.g. the offset added by the navigation mesh agent_radius.
+The `carve_navigation_mesh` property makes the shape unaffected by offsets of the baking,
+e.g. the offset added by the navigation mesh `agent_radius`.
 It will basically act as a stencil and cut into the already offset navigation mesh surface.
 It will still be affected by further postprocessing of the baking process like edge simplification.
 
-The obstacle shape and placement is defined with the height and vertices properties, and the global_position of the obstacle.
+The obstacle shape and placement is defined with the `height` and `vertices` properties, and the `global_position` of the obstacle.
 The y-axis value of any Vector3 used for the vertices is ignored as the obstacle is projected on a flat horizontal plane.
 
 When baking navigation meshes in scripts obstacles can be added procedurally as a projected obstruction.
 Obstacles are not involved in the source geometry parsing so adding them just before baking is enough.
+
+```
+var obstacle_outline = PackedVector2Array([
+    Vector2(-50, -50),
+    Vector2(50, -50),
+    Vector2(50, 50),
+    Vector2(-50, 50)
+])
+
+var navigation_mesh = NavigationPolygon.new()
+var source_geometry = NavigationMeshSourceGeometryData2D.new()
+
+NavigationServer2D.parse_source_geometry_data(navigation_mesh, source_geometry, $MyTestRootNode)
+
+var obstacle_carve: bool = true
+
+source_geometry.add_projected_obstruction(obstacle_outline, obstacle_carve)
+
+NavigationServer2D.bake_from_source_geometry_data(navigation_mesh, source_geometry)
+```
+
+```
+var obstacle_outline = PackedVector3Array([
+    Vector3(-5, 0, -5),
+    Vector3(5, 0, -5),
+    Vector3(5, 0, 5),
+    Vector3(-5, 0, 5)
+])
+
+var navigation_mesh = NavigationMesh.new()
+var source_geometry = NavigationMeshSourceGeometryData3D.new()
+
+NavigationServer3D.parse_source_geometry_data(navigation_mesh, source_geometry, $MyTestRootNode)
+
+var obstacle_elevation: float = $MyTestObstacleNode.global_position.y
+var obstacle_height: float = 50.0
+var obstacle_carve: bool = true
+
+source_geometry.add_projected_obstruction(obstacle_outline, obstacle_elevation, obstacle_height, obstacle_carve)
+
+NavigationServer3D.bake_from_source_geometry_data(navigation_mesh, source_geometry)
+```
 
 ## Obstacles and agent avoidance
 
@@ -59,13 +101,13 @@ For avoidance navigation obstacles can be used either as static or dynamic obsta
 
 ### Static avoidance obstacles
 
-An avoidance obstacle is considered static when its vertices property is populated with an outline array of positions to form a polygon.
+An avoidance obstacle is considered static when its `vertices` property is populated with an outline array of positions to form a polygon.
 
 @Image(source: "nav_static_obstacle_build.gif", alt: "Static obstacle drawn in the editor to block or contain navigation agents") {Static obstacle drawn in the editor to block or contain navigation agents.}
 
 - Static obstacles act as hard do-not-cross boundaries for avoidance using agents, e.g. similar to physics collision but for avoidance.
 
-- Static obstacles define their boundaries with an array of outline vertices (positions), and in case of 3D with an additional height property.
+- Static obstacles define their boundaries with an array of outline `vertices` (positions), and in case of 3D with an additional `height` property.
 
 - Static obstacles only work for agents that use the 2D avoidance mode.
 
@@ -80,11 +122,11 @@ When the 2D avoidance is used in 3D the y-axis of Vector3 vertices is ignored. I
 
 ### Dynamic avoidance obstacles
 
-An avoidance obstacle is considered dynamic when its radius property is greater than zero.
+An avoidance obstacle is considered dynamic when its `radius` property is greater than zero.
 
 - Dynamic obstacles act as a soft please-move-away-from-me object for avoidance using agents, e.g. similar to how they avoid other agents.
 
-- Dynamic obstacles define their boundaries with a single radius for a 2D circle, or in case of 3D avoidance a sphere shape.
+- Dynamic obstacles define their boundaries with a single `radius` for a 2D circle, or in case of 3D avoidance a sphere shape.
 
 - Dynamic obstacles can change their position every frame without additional performance cost.
 
@@ -98,13 +140,53 @@ When the obstacle reaches the new final position it should gradually enlarge its
 With enough created safe space around the obstacle it should add the static vertices again and remove the radius.
 This helps avoid getting agents stuck in the suddenly appearing static obstacle when the rebuilt static boundary is finished.
 
-Similar to agents the obstacles can make use of the avoidance_layers bitmask.
+Similar to agents the obstacles can make use of the `avoidance_layers` bitmask.
 All agents with a matching bit on their own avoidance mask will avoid the obstacle.
 
 ## Procedural obstacles
 
 New obstacles can be created in a script without a Node by using the NavigationServer directly.
 
-Obstacles created with scripts require at least a map and a position.
-For dynamic use a radius is required.
-For static use an array of vertices is required.
+Obstacles created with scripts require at least a `map` and a `position`.
+For dynamic use a `radius` is required.
+For static use an array of `vertices` is required.
+
+```
+# create a new "obstacle" and place it on the default navigation map.
+var new_obstacle_rid: RID = NavigationServer2D.obstacle_create()
+var default_map_rid: RID = get_world_2d().get_navigation_map()
+
+NavigationServer2D.obstacle_set_map(new_obstacle_rid, default_map_rid)
+NavigationServer2D.obstacle_set_position(new_obstacle_rid, global_position)
+
+# Use obstacle dynamic by increasing radius above zero.
+NavigationServer2D.obstacle_set_radius(new_obstacle_rid, 5.0)
+
+# Use obstacle static by adding a square that pushes agents out.
+var outline = PackedVector2Array([Vector2(-100, -100), Vector2(100, -100), Vector2(100, 100), Vector2(-100, 100)])
+NavigationServer2D.obstacle_set_vertices(new_obstacle_rid, outline)
+
+# Enable the obstacle.
+NavigationServer2D.obstacle_set_avoidance_enabled(new_obstacle_rid, true)
+```
+
+```
+# Create a new "obstacle" and place it on the default navigation map.
+var new_obstacle_rid: RID = NavigationServer3D.obstacle_create()
+var default_map_rid: RID = get_world_3d().get_navigation_map()
+
+NavigationServer3D.obstacle_set_map(new_obstacle_rid, default_map_rid)
+NavigationServer3D.obstacle_set_position(new_obstacle_rid, global_position)
+
+# Use obstacle dynamic by increasing radius above zero.
+NavigationServer3D.obstacle_set_radius(new_obstacle_rid, 0.5)
+
+# Use obstacle static by adding a square that pushes agents out.
+var outline = PackedVector3Array([Vector3(-5, 0, -5), Vector3(5, 0, -5), Vector3(5, 0, 5), Vector3(-5, 0, 5)])
+NavigationServer3D.obstacle_set_vertices(new_obstacle_rid, outline)
+# Set the obstacle height on the y-axis.
+NavigationServer3D.obstacle_set_height(new_obstacle_rid, 1.0)
+
+# Enable the obstacle.
+NavigationServer3D.obstacle_set_avoidance_enabled(new_obstacle_rid, true)
+```

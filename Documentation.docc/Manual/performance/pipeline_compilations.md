@@ -154,7 +154,7 @@ the screen.
 compositor effect that requires motion vectors (such as motion blur).
 
 - **Normal and Roughness**: Enabled when using SDFGI, VoxelGI, screen-space
-reflections, SSAO, SSIL, or using the normal_roughness_buffer in a custom
+reflections, SSAO, SSIL, or using the `normal_roughness_buffer` in a custom
 shader or [CompositorEffect](https://docs.godotengine.org/en/stable/classes/class_compositoreffect.html#class-compositoreffect).
 
 - **Lightmaps**: Enabled when a LightmapGI node is placed on the scene and a
@@ -249,7 +249,7 @@ by the platform the editor is currently running on:
 - The editor running on Android can export shaders for Vulkan only.
 
 The shader baker will only export shaders that match the
-rendering/rendering_device/driver project setting for the target platform.
+`rendering/rendering_device/driver` project setting for the target platform.
 
 > Note:
 >

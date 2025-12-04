@@ -111,14 +111,14 @@ resulting in the hand mesh and finger tracking being localized elsewhere.
 
 We'll concentrate on the first use case only.
 
-For this you need to add an [XRNode3D](https://docs.godotengine.org/en/stable/classes/class_xrnode3d.html#class-xrnode3d) node to your XROrigin3D node.
+For this you need to add an [XRNode3D](https://docs.godotengine.org/en/stable/classes/class_xrnode3d.html#class-xrnode3d) node to your `XROrigin3D` node.
 
-- On this node the tracker should be set to /user/hand_tracker/left or /user/hand_tracker/right
+- On this node the `tracker` should be set to `/user/hand_tracker/left` or `/user/hand_tracker/right`
 for the left or right hand respectively.
 
-- The pose should remain set to default, no other option will work here.
+- The `pose` should remain set to `default`, no other option will work here.
 
-- The checkbox Show When Tracked will automatically hide this node if no tracking data is available,
+- The checkbox `Show When Tracked` will automatically hide this node if no tracking data is available,
 or make this node visible if tracking data is available.
 
 ### Rigged hand mesh
@@ -130,25 +130,25 @@ but optionally supporting an extra tip bone for each finger.
 The OpenXR hand tracking demo
 contains example glTF files of properly rigged hands.
 
-We will be using those here and add them as a child to our XRNode3D node.
+We will be using those here and add them as a child to our `XRNode3D` node.
 We also need to enable editable children to gain access to our [Skeleton3D](https://docs.godotengine.org/en/stable/classes/class_skeleton3d.html#class-skeleton3d) node.
 
 ### The hand skeleton modifier
 
-Finally we need to add an [XRHandModifier3D](https://docs.godotengine.org/en/stable/classes/class_xrhandmodifier3d.html#class-xrhandmodifier3d) node as a child to our Skeleton3D node.
+Finally we need to add an [XRHandModifier3D](https://docs.godotengine.org/en/stable/classes/class_xrhandmodifier3d.html#class-xrhandmodifier3d) node as a child to our `Skeleton3D` node.
 This node will obtain the finger tracking data from OpenXR and apply it the hand model.
 
-You need to set the Hand Tracker property to either /user/hand_tracker/left or /user/hand_tracker/right
+You need to set the `Hand Tracker` property to either `/user/hand_tracker/left` or `/user/hand_tracker/right`
 depending on whether we are apply the tracking data of respectively the left or right hand.
 
-You can also set the Bone Update mode on this node.
+You can also set the `Bone Update` mode on this node.
 
-- Full applies the hand tracking data fully.
+- `Full` applies the hand tracking data fully.
 This does mean that the skeleton positioning will potentially reflect the size of the actual hand of the user.
 This can lead to scrunching effect if meshes aren't weighted properly to account for this.
 Make sure you test your game with players of all sizes when optical hand tracking is used!
 
-- Rotation Only will only apply rotation to the bones of the hands and keep the bone length as is.
+- `Rotation Only` will only apply rotation to the bones of the hands and keep the bone length as is.
 In this mode the size of the hand mesh doesn't change.
 
 With this added, when we run the project we should see the hand correctly displayed if hand tracking is supported.
@@ -189,7 +189,7 @@ else:
 
 This example logs the state for the left hand.
 
-If in this example no hand tracker is returned by get_tracker,
+If in this example no hand tracker is returned by `get_tracker`,
 this means the hand tracking API is not supported on the XR runtime at all.
 
 If there is a tracker but `has_tracking_data` is false, the user's hand is currently not being tracked.
@@ -231,30 +231,30 @@ The pinch gesture is triggered by pinching your thumb and index finger together.
 This is often used as a select gesture for menu systems, similar to using your controller
 to point at an object and press the trigger to select and is thus often mapped as such.
 
-- The pinch pose is a pose positioned in the middle between the tip of the thumb and
+- The `pinch pose` is a pose positioned in the middle between the tip of the thumb and
 the tip of the index finger and oriented such that a ray cast can be used to identify a target.
 
-- The pinch float input is a value between 0.0 (the tip of the thumb and index finger are apart)
+- The `pinch` float input is a value between 0.0 (the tip of the thumb and index finger are apart)
 and 1.0 (the tip of the thumb and index finger are touching).
 
-- The pinch ready input is true when the tips of the fingers are (close to) touching.
+- The `pinch ready` input is true when the tips of the fingers are (close to) touching.
 
 The grasp gesture is triggered by making a fist and is often used to pick items up,
 similar to engaging the squeeze input on controllers.
 
-- The grasp float input is a value between 0.0 (open hand) and 1.0 (fist).
+- The `grasp` float input is a value between 0.0 (open hand) and 1.0 (fist).
 
-- The grasp ready input is true when the user made a fist.
+- The `grasp ready` input is true when the user made a fist.
 
 The poke gesture is triggered by extending your index finger, this one is a bit
 of an exception as the pose at the tip of your index finger is often used to poke
-an interactable object. The poke pose is a pose positioned on the tip of the index finger.
+an interactable object. The `poke pose` is a pose positioned on the tip of the index finger.
 
-Finally the aim activate (ready) input is defined as an input that is 1.0/true
+Finally the `aim activate (ready)` input is defined as an input that is 1.0/true
 when the index finger is extended and pointing at a target that can be activated.
 How runtimes interpret this, is not clear.
 
-With this setup the normal left_hand and right_hand trackers are used and you can
+With this setup the normal `left_hand` and `right_hand` trackers are used and you can
 thus seamlessly switch between controller and hand tracking input.
 
 > Note:
@@ -271,17 +271,17 @@ it is currently not available over Meta Link.
 
 @Image(source: "openxr_msft_hand_interaction_profile.png")
 
-Pinch support is exposed through the select input, the value of which
+Pinch support is exposed through the `select` input, the value of which
 is 0.0 when the tip of the thumb and index finger are apart
 and 1.0 when they are together.
 
-Note that in this profile the aim pose is redefined as a pose between thumb
+Note that in this profile the `aim pose` is redefined as a pose between thumb
 and index finger, oriented so a ray cast can be used to identify a target.
 
-Grasp support is exposed through the squeeze input, the value of which
+Grasp support is exposed through the `squeeze` input, the value of which
 is 0.0 when the hand is open, and 1.0 when a fist is made.
 
-With this setup the normal left_hand and right_hand trackers are used and you can
+With this setup the normal `left_hand` and `right_hand` trackers are used and you can
 thus seamlessly switch between controller and hand tracking input.
 
 ### HTC hand interaction profile
@@ -295,7 +295,7 @@ It is only supported by HTC for the Focus 3 and Elite XR headsets.
 See the Microsoft hand interaction profile for the gesture support.
 
 The defining difference is that this extension introduces two new trackers,
-/user/hand_htc/left and /user/hand_htc/right.
+`/user/hand_htc/left` and `/user/hand_htc/right`.
 This means that extra logic needs to be implemented to switch between the default trackers
 and the HTC specific trackers when the user puts down, or picks up, their controller.
 
@@ -315,13 +315,13 @@ or whether hand tracking is emulating a controller through this profile.
 XR runtimes are free to define how the simple controller profile operates,
 so there is also no certainty to how this profile is mapped to gestures.
 
-The most common mapping seems to be that select click is true
+The most common mapping seems to be that `select click` is true
 when the tip of the thumb and index fingers are touching while the
 user's palm is facing away from the user.
-menu click will be true when tip of the thumb and index fingers
+`menu click` will be true when tip of the thumb and index fingers
 are touching while the user's palm is facing towards the user.
 
-With this setup the normal left_hand and right_hand trackers are used and you can
+With this setup the normal `left_hand` and `right_hand` trackers are used and you can
 thus seamlessly switch between controller and hand tracking input.
 
 > Note:
@@ -347,8 +347,8 @@ or if you're building an application where you need more complicated gesture sup
 you're going to need to build your own gesture recognition system.
 
 You can obtain the full hand tracking data through the [XRHandTracker](https://docs.godotengine.org/en/stable/classes/class_xrhandtracker.html#class-xrhandtracker)
-resource for each hand. You can obtain the hand tracker by calling XRServer.get_tracker
-and using either /user/hand_tracker/left or /user/hand_tracker/left as the tracker.
+resource for each hand. You can obtain the hand tracker by calling `XRServer.get_tracker`
+and using either `/user/hand_tracker/left` or `/user/hand_tracker/left` as the tracker.
 This resource provides access to all the joint information for the given hand.
 
 Detailing out a full gesture recognition algorithm goes beyond the scope of this manual

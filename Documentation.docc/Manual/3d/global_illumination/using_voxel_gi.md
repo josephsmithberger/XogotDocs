@@ -50,8 +50,8 @@ within the scene.
 >
 > To avoid bloating text-based scene files with large amounts of binary data,
 > make sure the VoxelGIData resource is always saved to an external binary file.
-> This file must be saved with a .res (binary resource) extension instead of
-> .tres (text-based resource).
+> This file must be saved with a `.res` (binary resource) extension instead of
+> `.tres` (text-based resource).
 > Using an external binary resource for VoxelGIData will keep your text-based
 > scene small while ensuring it loads and saves quickly.
 >
@@ -86,7 +86,7 @@ by the surface normal. This also helps avoid self-occlusion artifacts. Higher
 values reduce self-reflections visible in non-rough materials, at the cost of
 more visible light leaking and flatter-looking indirect lighting. To
 prioritize hiding self-reflections over lighting quality, set **Bias** to
-0.0 and **Normal Bias** to a value between 1.0 and 2.0.
+`0.0` and **Normal Bias** to a value between `1.0` and `2.0`.
 
 - **Propagation:** The energy factor to use for bounced indirect lighting.
 Higher values will result in brighter, more diffuse lighting
@@ -122,6 +122,24 @@ Otherwise, indirect lighting will look incorrect.
 still receive and contribute indirect lighting to the scene in real-time.
 This option is much slower compared to **Static**. Only use the **Dynamic**
 global illumination mode on large meshes that will change significantly during gameplay.
+
+> Note:
+>
+> For meshes with the **Static** bake mode, the VoxelGI baking system is not able
+> to make use of custom shaders ([ShaderMaterial](https://docs.godotengine.org/en/stable/classes/class_shadermaterial.html#class-shadermaterial)). These meshes will be
+> considered to be pure black, only acting as light blockers. You can make
+> VoxelGI take custom shaders into account by using the **Dynamic** bake mode
+> for these objects, but this has a performance cost.
+>
+> For [BaseMaterial3D](https://docs.godotengine.org/en/stable/classes/class_basematerial3d.html#class-basematerial3d), some properties are currently ignored during baking.
+> This can impact visuals if the material's albedo or emission texture was designed
+> around using certain UV mappings:
+>
+> - **UV1 > Offset**
+> - **UV1 > Scale**
+> - **UV1 > Triplanar**
+> - **Emission > On UV2**
+>
 
 Additionally, there are 3 bake modes available for lights
 (DirectionalLight3D, OmniLight3D and SpotLight3D):

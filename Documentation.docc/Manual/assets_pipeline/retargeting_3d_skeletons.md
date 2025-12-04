@@ -15,9 +15,11 @@ have different Transform values.
 The Skeleton stores the Transform values necessary for the default pose as Bone Rest.
 If Bone Pose is equal to Bone Rest, it means that the Skeleton is in the default pose.
 
-> Note: Godot 3.x and Godot 4.0+ have different Bone Pose behaviors.
-> In Godot 3.x, Bone Pose is relative to Bone Rest, but in Godot 4.0+,
-> it includes Bone Rest. See this article.
+> Note: Godot 3 and Godot 4 have different Bone Pose behaviors.
+> In Godot 3, Bone Pose is relative to Bone Rest, but in Godot 4,
+> it includes Bone Rest. See this
+> article
+> for more information.
 >
 
 Skeletal models have different Bone Rests depending on the environment from
@@ -26,8 +28,7 @@ have "Edit Bone Orientation" as the Bone Rest rotation. However, there are skele
 models without any Bone Rest rotations, such as the glTF model output from Maya.
 
 To share animations in Godot, it is necessary to match Bone Rests as well as Bone Names
-to remove unwanted tracks in some cases. In Godot 4.0+, you can do that using the scene
-importer.
+to remove unwanted tracks in some cases. You can do that using the scene importer.
 
 ## Options for Retargeting
 
@@ -35,7 +36,7 @@ importer.
 
 When you select the Skeleton3D node in the advanced scene import menu, a menu will appear
 on the right-hand side containing the "Retarget" section. The Retarget section has a single
-property bone_map.
+property `bone_map`.
 
 @Image(source: "retargeting1.png")
 
@@ -60,7 +61,7 @@ but it warns that animations may not be shared correctly.
 > to use common English names for bones.
 >
 
-After you set up the bone_map, several options are available in the sections below.
+After you set up the `bone_map`, several options are available in the sections below.
 
 @Image(source: "retargeting3.png")
 
@@ -73,10 +74,10 @@ these options may cause the accessories to not animate.
 
 Removes any tracks except the bone Transform track from the animations.
 
-Removes Position tracks other than root_bone and scale_base_bone
+Removes Position tracks other than `root_bone` and `scale_base_bone`
 defined in [skeletonprofile](https://docs.godotengine.org/en/stable/classes/class_skeletonprofile.html#class-skeletonprofile) from the animations. In [skeletonprofilehumanoid](https://docs.godotengine.org/en/stable/classes/class_skeletonprofilehumanoid.html#class-skeletonprofilehumanoid),
 this means that to remove Position tracks other than "Root" and "Hips".
-Since Godot 4.0+, animations include Bone Rest in the Transform value. If you disable this option,
+Since Godot 4, animations include Bone Rest in the Transform value. If you disable this option,
 the animation may change the body shape unpredictably.
 
 Removes unmapped bone Transform tracks from the animations.
@@ -85,7 +86,7 @@ Removes unmapped bone Transform tracks from the animations.
 
 Rename the mapped bones.
 
-Makes Skeleton a unique node with the name specified in the skeleton_name.
+Makes Skeleton a unique node with the name specified in the `skeleton_name`.
 This allows the animation track paths to be unified independent of the scene hierarchy.
 
 ### Rest Fixer
@@ -117,16 +118,16 @@ This option fixes such models by applying Transforms on import.
 Position track is used mostly for model movement, but sharing the moving animation
 between models with different heights may cause the appearance of slipping
 due to the difference in stride length. This option normalizes the Position track values
-based on the scale_base_bone height. The scale_base_bone height is stored
-in the Skeleton as the motion_scale, and the normalized Position track values is
+based on the `scale_base_bone` height. The `scale_base_bone` height is stored
+in the Skeleton as the `motion_scale`, and the normalized Position track values is
 multiplied by that value on playback. If this option is disabled, the Position tracks
-is not normalized and the Skeleton's motion_scale is always imported as 1.0.
+is not normalized and the Skeleton's `motion_scale` is always imported as `1.0`.
 
-With [skeletonprofilehumanoid](https://docs.godotengine.org/en/stable/classes/class_skeletonprofilehumanoid.html#class-skeletonprofilehumanoid), scale_base_bone is "Hips", therefore the Hips' height is used as the motion_scale.
+With [skeletonprofilehumanoid](https://docs.godotengine.org/en/stable/classes/class_skeletonprofilehumanoid.html#class-skeletonprofilehumanoid), `scale_base_bone` is "Hips", therefore the Hips' height is used as the `motion_scale`.
 
 Unifies the models' Bone Rests by overwriting it to match the reference poses defined in the [skeletonprofile](https://docs.godotengine.org/en/stable/classes/class_skeletonprofile.html#class-skeletonprofile).
 
-> Note: This is the most important option for sharing animations in Godot 4.0+,
+> Note: This is the most important option for sharing animations in Godot 4,
 > but be aware that this option can produce horrible results **if the original Bone Rest set externally is important**.
 > If you want to share animations with keeping the original Bone Rest,
 > consider to use the Realtime Retarget Module.
@@ -138,9 +139,9 @@ such as T-Pose. This cannot fix silhouettes which are too different, and it may 
 With [skeletonprofilehumanoid](https://docs.godotengine.org/en/stable/classes/class_skeletonprofilehumanoid.html#class-skeletonprofilehumanoid), this option does not need to be enabled for T-pose models,
 but should be enabled for A-pose models. However in that case, the fixed foot results
 may be bad depending on the heel height of the model, so it may be necessary to add
-the [skeletonprofile](https://docs.godotengine.org/en/stable/classes/class_skeletonprofile.html#class-skeletonprofile) bone names you do not want fixed in the filter array, as in the below example.
+the [skeletonprofile](https://docs.godotengine.org/en/stable/classes/class_skeletonprofile.html#class-skeletonprofile) bone names you do not want fixed in the `filter` array, as in the below example.
 
 @Image(source: "retargeting4.png")
 
-Also, for models with bent knees or feet, it may be necessary to adjust the scale_base_bone height.
-For that, you can use base_height_adjustment option.
+Also, for models with bent knees or feet, it may be necessary to adjust the `scale_base_bone` height.
+For that, you can use `base_height_adjustment` option.

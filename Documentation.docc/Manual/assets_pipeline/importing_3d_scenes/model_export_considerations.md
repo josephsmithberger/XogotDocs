@@ -19,8 +19,8 @@ the +Z axis is the direction of the front, so -Z is the rear,
 +X is the left side, and -X is the right side for a 3D asset.
 In Blender, this means that +Y is rear and -Y is front for an asset.
 
-When rotating an oriented 3D asset in Godot, use the use_model_front
-option on the look_at functions, and use the Vector3.MODEL_*
+When rotating an oriented 3D asset in Godot, use the `use_model_front`
+option on the `look_at` functions, and use the `Vector3.MODEL_*`
 constants to perform calculations in the oriented asset's local space.
 
 For assets without an intrinsic front side or forward direction, such as
@@ -70,7 +70,7 @@ object transform in the 3D modeling software before exporting the scene.
 
 ## Lighting considerations
 
-While it's possible to import lights from a 3D scene using the glTF, .blend
+While it's possible to import lights from a 3D scene using the glTF, `.blend`
 or Collada formats, it's generally advised to design the scene's lighting in the
 Godot editor after importing the scene.
 

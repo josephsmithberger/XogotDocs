@@ -47,7 +47,7 @@ save it somewhere in your project folder and add it to version control to be abl
 to go back to it later when needed. This also allows using version control
 to track changes to the build profile.
 
-The build profile is a JSON file (and .gdbuild extension) that looks like this
+The build profile is a JSON file (and `.gdbuild` extension) that looks like this
 after detection in the above example:
 
 ```

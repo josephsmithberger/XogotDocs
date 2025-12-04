@@ -26,7 +26,7 @@ navigation region edge connections on the NavigationServer and should be avoided
 
 Alternatively navigation meshes are not merged but still considered as **connected** by
 the NavigationServer when their edges are nearly parallel and within distance
-to each other. The connection distance is defined by the  edge_connection_margin for each
+to each other. The connection distance is defined by the  `edge_connection_margin` for each
 navigation map. In many cases navigation mesh edges cannot properly connect when they partly overlap.
 Better avoid any navigation mesh overlap at all time for a consistent merge behavior.
 
@@ -35,11 +35,29 @@ Better avoid any navigation mesh overlap at all time for a consistent merge beha
 If navigation debug is enabled and the NavigationServer active the established navigation mesh connections will be visualized.
 See <doc:navigation_debug_tools> for more info about navigation debug options.
 
-The default 2D edge_connection_margin can be changed in the ProjectSettings under navigation/2d/default_edge_connection_margin.
+The default 2D `edge_connection_margin` can be changed in the ProjectSettings under `navigation/2d/default_edge_connection_margin`.
 
-The default 3D edge_connection_margin can be changed in the ProjectSettings under navigation/3d/default_edge_connection_margin.
+The default 3D `edge_connection_margin` can be changed in the ProjectSettings under `navigation/3d/default_edge_connection_margin`.
 
 The edge connection margin value of any navigation map can also be changed at runtime with the NavigationServer API.
+
+```
+extends Node2D
+
+func _ready() -> void:
+    # 2D margins are designed to work with 2D "pixel" values.
+    var default_map_rid: RID = get_world_2d().get_navigation_map()
+    NavigationServer2D.map_set_edge_connection_margin(default_map_rid, 50.0)
+```
+
+```
+extends Node3D
+
+func _ready() -> void:
+    # 3D margins are designed to work with 3D world unit values.
+    var default_map_rid: RID = get_world_3d().get_navigation_map()
+    NavigationServer3D.map_set_edge_connection_margin(default_map_rid, 0.5)
+```
 
 > Note:
 >

@@ -49,16 +49,16 @@ that render model being displayed.
 This node must have an [XROrigin3D](https://docs.godotengine.org/en/stable/classes/class_xrorigin3d.html#class-xrorigin3d) node as an
 ancestor.
 
-If tracker is set to Any our node will show all render models
+If `tracker` is set to `Any` our node will show all render models
 currently being tracked. In this scenario this node must be a direct
 child of our [XROrigin3D](https://docs.godotengine.org/en/stable/classes/class_xrorigin3d.html#class-xrorigin3d) node.
 
-If tracker is set to None set our node will only show render
+If `tracker` is set to `None set` our node will only show render
 models for which no tracker has been identified. In this scenario this
 node must also be a direct child of our
 [XROrigin3D](https://docs.godotengine.org/en/stable/classes/class_xrorigin3d.html#class-xrorigin3d) node.
 
-If tracker is set to Left Hand or Right Hand our node will
+If `tracker` is set to `Left Hand` or `Right Hand` our node will
 only show render models related to our left or right hand respectively.
 In this scenario, our node can be placed deeper in the scene tree.
 
@@ -72,7 +72,7 @@ In this scenario, our node can be placed deeper in the scene tree.
 >
 
 In this scenario we can also specify an action for a pose in the action map
-by setting the make_local_to_pose property to the pose action.
+by setting the `make_local_to_pose` property to the pose action.
 Use this in combination with an [XRController3D](https://docs.godotengine.org/en/stable/classes/class_xrcontroller3d.html#class-xrcontroller3d)
 node that is using the same pose and you can now add a layer that allows
 you to deviate from the tracked position of both your controller and the
@@ -97,7 +97,7 @@ which implements the setup described below.
 
 In this setup we find an [OpenXRRenderModelManager](https://docs.godotengine.org/en/stable/classes/class_openxrrendermodelmanager.html#class-openxrrendermodelmanager)
 node directly underneath our [XROrigin3D](https://docs.godotengine.org/en/stable/classes/class_xrorigin3d.html#class-xrorigin3d) node.
-On this node our target property is set to None set and will handle
+On this node our `target` property is set to `None set` and will handle
 showing all render models that are currently not related to our left or
 right hand controllers.
 
@@ -109,7 +109,7 @@ location of our hand.
 
 > Note:
 >
-> We are using the grip pose in this example. The palm pose is
+> We are using the `grip` pose in this example. The `palm` pose is
 > arguably more suitable and predictable however it is not supported
 > by all XR runtimes. See the hand tracking demo project for a
 > solution to switching between these poses based on what is supported.
@@ -152,8 +152,8 @@ func _physics_process(_delta):
 ```
 
 Finally we see another [OpenXRRenderModelManager](https://docs.godotengine.org/en/stable/classes/class_openxrrendermodelmanager.html#class-openxrrendermodelmanager)
-node, this one with target set to the appropriate hand and
-make_local_to_pose set to the correct pose.
+node, this one with `target` set to the appropriate hand and
+`make_local_to_pose` set to the correct pose.
 This will ensure that the render models related to this hand are properly
 shown and offset if our collision handler has altered the location.
 
@@ -169,16 +169,16 @@ above but you can interact with these directly if you wish.
 Whenever Godot obtains information about a new render model an RID is
 created to reference that render model.
 
-By assigning that RID to the render_model property on this node,
+By assigning that RID to the `render_model` property on this node,
 the node will start displaying the render model and manage both the
 transform that places the render model in the correct place and
 animates all the sub objects.
 
-The get_top_level_path function will return the top level path
+The `get_top_level_path` function will return the top level path
 associated with this render model. This will point to either the
 left or right hand. As the top level path can be set or cleared
 depending on whether the user picks up, or puts down, the controller
-you can connect to the render_model_top_level_path_changes signal
+you can connect to the `render_model_top_level_path_changes` signal
 and react to these changes.
 
 Depending on your setup of the
@@ -197,7 +197,7 @@ singleton.
 
 This object also lets you query whether render models are
 supported and enabled on the device currently being used by
-calling the is_active function on this object.
+calling the `is_active` function on this object.
 
 The built-in logic implements the
 interaction render model API
@@ -208,14 +208,14 @@ that are exposed through this API.
 
 As other extensions become available these can be implemented
 in a GDExtension plugin. Such a plugin can call
-render_model_create and render_model_destroy to
+`render_model_create` and `render_model_destroy` to
 create the object that will provide access to that render
 model through the core render models API.
 
 You should not destroy a render model outside of this logic.
 
-You can connect to the render_model_added and
-render_model_removed signals to be informed when new render
+You can connect to the `render_model_added` and
+`render_model_removed` signals to be informed when new render
 models are added or removed.
 
 The core methods for working with this API are listed
@@ -231,7 +231,7 @@ render_model_get_subaction_paths | Provides a list of subaction paths from your
 action map related to this render mode.
 render_model_get_top_level_path | Returns the top level path associated with this
 render model (if any).
-Use therender_model_top_level_path_changedsignal to react to this changing.
+Use the`render_model_top_level_path_changed`signal to react to this changing.
 render_model_get_confidence | Returns the tracking confidence for the tracking
 data for this render model.
 render_model_get_root_transform | Returns the root transform for this render model

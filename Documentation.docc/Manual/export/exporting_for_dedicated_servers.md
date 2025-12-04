@@ -2,11 +2,11 @@
 # Exporting for dedicated servers
 
 If you want to run a dedicated server for your project on a machine that doesn't
-have a GPU or display server available, you'll need to run Godot with the headless
-display server and Dummy [audio driver](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_audio/driver/driver.html#class-projectsettings_property_audio/driver/driver).
+have a GPU or display server available, you'll need to run Godot with the `headless`
+display server and `Dummy` [audio driver](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_audio/driver/driver.html#class-projectsettings_property_audio/driver/driver).
 
 Since Godot 4.0, this can be done by running a Godot binary on any platform with
-the --headless command line argument, or running a project exported as
+the `--headless` command line argument, or running a project exported as
 dedicated server. You do not need to use a specialized server binary anymore,
 unlike Godot 3.x.
 
@@ -45,7 +45,7 @@ If you export a project as usual when targeting a server, you will notice that
 the PCK file is just as large as for the client. This is because it includes all
 resources, including those the server doesn't need (such as texture data).
 Additionally, headless mode won't be automatically used; the user will have to
-specify --headless to make sure no window spawns.
+specify `--headless` to make sure no window spawns.
 
 Many resources such as textures can be stripped from the PCK file to greatly
 reduce its size. Godot offers a way to do this for textures and materials in a way
@@ -56,15 +56,15 @@ then select it, go to its **Resources** tab and change its export mode:
 
 @Image(source: "exporting_for_dedicated_servers_export_mode.png", alt: "Choosing the **Export as dedicated server** export mode in the export preset") {Choosing the **Export as dedicated server** export mode in the export preset}
 
-When this export mode is chosen, the dedicated_server feature tag is
+When this export mode is chosen, the `dedicated_server` feature tag is
 automatically added to the exported project.
 
 > Note:
 >
 > If you do not wish to use this
 > export mode but still want the feature tag, you can write the name
-> dedicated_server in the **Features** tab of the export preset.
-> This will also force --headless when running the exported project.
+> `dedicated_server` in the **Features** tab of the export preset.
+> This will also force `--headless` when running the exported project.
 >
 
 After selecting this export mode, you will be presented with a list of resources
@@ -99,7 +99,7 @@ use **Keep** for that particular image.
 > Tip:
 >
 > To check the file structure of your exported PCK, use the **Export
-> PCK/ZIP...** button with a .zip file extension, then open the resulting
+> PCK/ZIP...** button with a `.zip` file extension, then open the resulting
 > ZIP file in a file manager.
 >
 
@@ -110,7 +110,7 @@ use **Keep** for that particular image.
 >
 > If you wish to remove specific resources but make the scenes still be able
 > to load without them, you'll have to remove the reference in the scene file
-> and load the files to the nodes' properties using load() in a script.
+> and load the files to the nodes' properties using `load()` in a script.
 > This approach can be used to strip resources that Godot doesn't support
 > replacing with placeholders yet, such as audio.
 >
@@ -178,7 +178,7 @@ to add a way to start the server directly using a command-line argument.
 
 If you <doc:exporting_for_dedicated_servers#Exporting-Project>
 using the **Export as dedicated server** export mode (or have added
-dedicated_server as a custom feature tag), you can use the dedicated_server
+`dedicated_server` as a custom feature tag), you can use the `dedicated_server`
 feature tag to detect whether a dedicated server PCK is being used:
 
 ```
@@ -188,9 +188,9 @@ if OS.has_feature("dedicated_server"):
     pass
 ```
 
-If you also wish to host a server when using the built-in --headless command
+If you also wish to host a server when using the built-in `--headless` command
 line argument, this can be done by adding the following code snippet in your
-main scene (or an autoload)'s _ready() method:
+main scene (or an autoload)'s `_ready()` method:
 
 ```
 if DisplayServer.get_name() == "headless":
@@ -203,7 +203,7 @@ if DisplayServer.get_name() == "headless":
 ```
 
 If you wish to use a custom command line argument, this can be done by adding
-the following code snippet in your main scene (or an autoload)'s _ready()
+the following code snippet in your main scene (or an autoload)'s `_ready()`
 method:
 
 ```
@@ -231,7 +231,7 @@ you can
 create a systemd service.
 This also lets you view server logs in a more convenient fashion, with automatic
 log rotation provided by systemd. When making your project hostable as a systemd service,
-you should also enable the application/run/flush_stdout_on_print
+you should also enable the `application/run/flush_stdout_on_print`
 project setting. This way, journald (the systemd logging service) can collect
 logs while the process is running.
 

@@ -66,14 +66,14 @@ together.
 - Add a first MeshInstance3D node as a child of the Node3D. Assign a new
 SphereMesh to its Mesh property.
 
-- Set the first MeshInstance3D's visibility range **End** to 10.0 and **End
-Margin** to 1.0.
+- Set the first MeshInstance3D's visibility range **End** to `10.0` and **End
+Margin** to `1.0`.
 
 - Add a second MeshInstance3D node as a child of the Node3D. Assign a new
 BoxMesh to its Mesh property.
 
-- Set the second MeshInstance3D's visibility range **Begin** to 10.0 and
-**Begin Margin** to 1.0.
+- Set the second MeshInstance3D's visibility range **Begin** to `10.0` and
+**Begin Margin** to `1.0`.
 
 - Move the camera away and back towards the object. Notice how the object will
 transition from a sphere to a box as the camera moves away.
@@ -106,7 +106,7 @@ See below for details.
 >
 > The fade mode chosen only has a visible impact if either
 > **Visibility Range > Begin Margin** or **Visibility Range > End Margin** is
-> greater than 0.0.
+> greater than `0.0`.
 >
 
 In the inspector's **Visibility Range** section, there are 3 fade modes to
@@ -191,7 +191,7 @@ This is done to minimize visible pop-in. Depending on your :abbr:`HLOD
 > node or its ancestors into account.
 >
 > In practice, this means that if the target of the **Visibility Parent** node
-> is hidden by setting its **Visible** property to false, the node will
+> is hidden by setting its **Visible** property to `false`, the node will
 > not be hidden according to the **Visibility Range Begin** value specified in
 > the visibility parent.
 >
@@ -257,7 +257,7 @@ Also, as distance fade in BaseMaterial3D only supports fading up close or
 fading when far away, this setup is best used with only two LODs as part of the
 setup.
 
-- Ensure **Begin Margin** and **End Margin** is set to 0.0 on both
+- Ensure **Begin Margin** and **End Margin** is set to `0.0` on both
 MeshInstance3D nodes, as hysteresis or alpha fade are not desired here.
 
 - On both MeshInstance3D nodes, decrease **Begin** by the desired fade transition

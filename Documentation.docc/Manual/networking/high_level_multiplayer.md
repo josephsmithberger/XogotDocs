@@ -59,7 +59,7 @@ This object extends from [PacketPeer](https://docs.godotengine.org/en/stable/cla
 This class interface can abstract most types of network layers, topologies and libraries. By default, Godot
 provides an implementation based on ENet ([ENetMultiplayerPeer](https://docs.godotengine.org/en/stable/classes/class_enetmultiplayerpeer.html#class-enetmultiplayerpeer)),
 one based on WebRTC ([WebRTCMultiplayerPeer](https://docs.godotengine.org/en/stable/classes/class_webrtcmultiplayerpeer.html#class-webrtcmultiplayerpeer)), and one based on WebSocket
-([WebSocketPeer](https://docs.godotengine.org/en/stable/classes/class_websocketpeer.html#class-websocketpeer)), but this could be used to implement
+([WebSocketMultiplayerPeer](https://docs.godotengine.org/en/stable/classes/class_websocketmultiplayerpeer.html#class-websocketmultiplayerpeer)), but this could be used to implement
 mobile APIs (for ad hoc WiFi, Bluetooth) or custom device/console-specific networking APIs.
 
 For most common cases, using this object directly is discouraged, as Godot provides even higher level networking facilities.
@@ -69,12 +69,12 @@ This object is still made available in case a game has specific needs for a lowe
 
 When hosting a server, clients on your :abbr:`LAN (Local Area Network)` can
 connect using the internal IP address which is usually of the form
-192.168.*.*. This internal IP address is **not** reachable by
+`192.168.*.*`. This internal IP address is **not** reachable by
 non-LAN/Internet clients.
 
 On Windows, you can find your internal IP address by opening a command prompt
-and entering ipconfig. On macOS, open a Terminal and enter ifconfig. On
-Linux, open a terminal and enter ip addr.
+and entering `ipconfig`. On macOS, open a Terminal and enter `ifconfig`. On
+Linux, open a terminal and enter `ip addr`.
 
 If you're hosting a server on your own machine and want non-LAN clients to
 connect to it, you'll probably have to forward the server port on your router.
@@ -95,22 +95,44 @@ for full IPv6 support.
 
 High-level networking in Godot is managed by the [SceneTree](https://docs.godotengine.org/en/stable/classes/class_scenetree.html#class-scenetree).
 
-Each node has a multiplayer property, which is a reference to the MultiplayerAPI instance configured for it
-by the scene tree. Initially, every node is configured with the same default MultiplayerAPI object.
+Each node has a `multiplayer` property, which is a reference to the `MultiplayerAPI` instance configured for it
+by the scene tree. Initially, every node is configured with the same default `MultiplayerAPI` object.
 
-It is possible to create a new MultiplayerAPI object and assign it to a NodePath in the scene tree,
-which will override multiplayer for the node at that path and all of its descendants.
+It is possible to create a new `MultiplayerAPI` object and assign it to a `NodePath` in the scene tree,
+which will override `multiplayer` for the node at that path and all of its descendants.
 This allows sibling nodes to be configured with different peers, which makes it possible to run a server
 and a client simultaneously in one instance of Godot.
 
-To initialize networking, a MultiplayerPeer object must be created, initialized as a server or client,
-and passed to the MultiplayerAPI.
+```
+# By default, these expressions are interchangeable.
+multiplayer # Get the MultiplayerAPI object configured for this node.
+get_tree().get_multiplayer() # Get the default MultiplayerAPI object.
+```
+
+To initialize networking, a `MultiplayerPeer` object must be created, initialized as a server or client,
+and passed to the `MultiplayerAPI`.
+
+```
+# Create client.
+var peer = ENetMultiplayerPeer.new()
+peer.create_client(IP_ADDRESS, PORT)
+multiplayer.multiplayer_peer = peer
+
+# Create server.
+var peer = ENetMultiplayerPeer.new()
+peer.create_server(PORT, MAX_CLIENTS)
+multiplayer.multiplayer_peer = peer
+```
 
 To terminate networking:
 
+```
+multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
+```
+
 > Warning:
 >
-> When exporting to Android, make sure to enable the INTERNET
+> When exporting to Android, make sure to enable the `INTERNET`
 > permission in the Android export preset before exporting the project or
 > using one-click deploy. Otherwise, network communication of any kind will be
 > blocked by Android.
@@ -120,49 +142,67 @@ To terminate networking:
 
 Every peer is assigned a unique ID. The server's ID is always 1, and clients are assigned a random positive integer.
 
-Responding to connections or disconnections is possible by connecting to MultiplayerAPI's signals:
+Responding to connections or disconnections is possible by connecting to `MultiplayerAPI`'s signals:
 
-- peer_connected(id: int) This signal is emitted with the newly connected peer's ID on each other peer, and on the new peer multiple times, once with each other peer's ID.
+- `peer_connected(id: int)` This signal is emitted with the newly connected peer's ID on each other peer, and on the new peer multiple times, once with each other peer's ID.
 
-- peer_disconnected(id: int) This signal is emitted on every remaining peer when one disconnects.
+- `peer_disconnected(id: int)` This signal is emitted on every remaining peer when one disconnects.
 
 The rest are only emitted on clients:
 
-- connected_to_server()
+- `connected_to_server()`
 
-- connection_failed()
+- `connection_failed()`
 
-- server_disconnected()
+- `server_disconnected()`
 
 To get the unique ID of the associated peer:
 
+```
+multiplayer.get_unique_id()
+```
+
 To check whether the peer is server or client:
+
+```
+multiplayer.is_server()
+```
 
 ## Remote procedure calls
 
-Remote procedure calls, or RPCs, are functions that can be called on other peers. To create one, use the @rpc annotation
-before a function definition. To call an RPC, use Callable's method rpc() to call in every peer, or rpc_id() to
+Remote procedure calls, or RPCs, are functions that can be called on other peers. To create one, use the `@rpc` annotation
+before a function definition. To call an RPC, use `Callable`'s method `rpc()` to call in every peer, or `rpc_id()` to
 call in a specific peer.
+
+```
+func _ready():
+    if multiplayer.is_server():
+        print_once_per_client.rpc()
+
+@rpc
+func print_once_per_client():
+    print("I will be printed to the console once per each connected client.")
+```
 
 RPCs will not serialize objects or callables.
 
-For a remote call to be successful, the sending and receiving node need to have the same NodePath, which means they
-must have the same name. When using add_child() for nodes which are expected to use RPCs, set the argument
-force_readable_name to true.
+For a remote call to be successful, the sending and receiving node need to have the same `NodePath`, which means they
+must have the same name. When using `add_child()` for nodes which are expected to use RPCs, set the argument
+`force_readable_name` to `true`.
 
 > Warning:
 >
-> If a function is annotated with @rpc on the client script (resp. server script),
+> If a function is annotated with `@rpc` on the client script (resp. server script),
 > then this function must also be declared on the server script (resp. client script).
 > Both RPCs must have the same signature which is evaluated with a checksum of **all RPCs**.
 > All RPCs in a script are checked at once, and all RPCs must be declared on both the client
 > scripts and the server scripts, **even functions that are currently not in use**.
 >
-> The signature of the RPC includes the @rpc() declaration, the function, return type,
-> **and** the NodePath. If an RPC resides in a script attached to /root/Main/Node1, then it
+> The signature of the RPC includes the `@rpc()` declaration, the function, return type,
+> **and** the NodePath. If an RPC resides in a script attached to `/root/Main/Node1`, then it
 > must reside in precisely the same path and node on both the client script and the server
 > script. Function arguments are not checked for matching between the server and client code
-> (example: func sendstuff(): and func sendstuff(arg1, arg2): **will pass** signature
+> (example: `func sendstuff():` and `func sendstuff(arg1, arg2):` **will pass** signature
 > matching).
 >
 > If these conditions are not met (if all RPCs do not pass signature matching), the script may print an
@@ -172,37 +212,54 @@ force_readable_name to true.
 > See further explanation and troubleshooting on this post.
 >
 
-The annotation can take a number of arguments, which have default values. @rpc is equivalent to:
+The annotation can take a number of arguments, which have default values. `@rpc` is equivalent to:
+
+```
+@rpc("authority", "call_remote", "unreliable", 0)
+```
 
 The parameters and their functions are as follows:
 
-mode:
+`mode`:
 
-- "authority": Only the multiplayer authority can call remotely.
+- `"authority"`: Only the multiplayer authority can call remotely.
 The authority is the server by default, but can be changed per-node using
 [Node.set_multiplayer_authority](https://docs.godotengine.org/en/stable/classes/class_node_method_set_multiplayer_authority.html#class-node_method_set_multiplayer_authority).
 
-- "any_peer": Clients are allowed to call remotely. Useful for transferring user input.
+- `"any_peer"`: Clients are allowed to call remotely. Useful for transferring user input.
 
-sync:
+`sync`:
 
-- "call_remote": The function will not be called on the local peer.
+- `"call_remote"`: The function will not be called on the local peer.
 
-- "call_local": The function can be called on the local peer. Useful when the server is also a player.
+- `"call_local"`: The function can be called on the local peer. Useful when the server is also a player.
 
-transfer_mode:
+`transfer_mode`:
 
-- "unreliable" Packets are not acknowledged, can be lost, and can arrive at any order.
+- `"unreliable"` Packets are not acknowledged, can be lost, and can arrive at any order.
 
-- "unreliable_ordered" Packets are received in the order they were sent in. This is achieved by ignoring packets that arrive later if another that was sent after them has already been received. Can cause packet loss if used incorrectly.
+- `"unreliable_ordered"` Packets are received in the order they were sent in. This is achieved by ignoring packets that arrive later if another that was sent after them has already been received. Can cause packet loss if used incorrectly.
 
-- "reliable" Resend attempts are sent until packets are acknowledged, and their order is preserved. Has a significant performance penalty.
+- `"reliable"` Resend attempts are sent until packets are acknowledged, and their order is preserved. Has a significant performance penalty.
 
-transfer_channel is the channel index.
+`transfer_channel` is the channel index.
 
-The first 3 can be passed in any order, but transfer_channel must always be last.
+The first 3 can be passed in any order, but `transfer_channel` must always be last.
 
-The function multiplayer.get_remote_sender_id() can be used to get the unique id of an rpc sender, when used within the function called by rpc.
+The function `multiplayer.get_remote_sender_id()` can be used to get the unique id of an rpc sender, when used within the function called by rpc.
+
+```
+func _on_some_input(): # Connected to some input.
+    transfer_some_input.rpc_id(1) # Send the input only to the server.
+
+
+# Call local is required if the server is also a player.
+@rpc("any_peer", "call_local", "reliable")
+func transfer_some_input():
+    # The server knows who sent the input.
+    var sender_id = multiplayer.get_remote_sender_id()
+    # Process the input and affect game logic.
+```
 
 ## Channels
 
@@ -223,7 +280,136 @@ The default channel with index 0 is actually three different channels - one for 
 This is an example lobby that can handle peers joining and leaving, notify UI scenes through signals, and start the game after all clients
 have loaded the game scene.
 
+```
+extends Node
+
+# Autoload named Lobby
+
+# These signals can be connected to by a UI lobby scene or the game scene.
+signal player_connected(peer_id, player_info)
+signal player_disconnected(peer_id)
+signal server_disconnected
+
+const PORT = 7000
+const DEFAULT_SERVER_IP = "127.0.0.1" # IPv4 localhost
+const MAX_CONNECTIONS = 20
+
+# This will contain player info for every player,
+# with the keys being each player's unique IDs.
+var players = {}
+
+# This is the local player info. This should be modified locally
+# before the connection is made. It will be passed to every other peer.
+# For example, the value of "name" can be set to something the player
+# entered in a UI scene.
+var player_info = {"name": "Name"}
+
+var players_loaded = 0
+
+
+
+func _ready():
+    multiplayer.peer_connected.connect(_on_player_connected)
+    multiplayer.peer_disconnected.connect(_on_player_disconnected)
+    multiplayer.connected_to_server.connect(_on_connected_ok)
+    multiplayer.connection_failed.connect(_on_connected_fail)
+    multiplayer.server_disconnected.connect(_on_server_disconnected)
+
+
+func join_game(address = ""):
+    if address.is_empty():
+        address = DEFAULT_SERVER_IP
+    var peer = ENetMultiplayerPeer.new()
+    var error = peer.create_client(address, PORT)
+    if error:
+        return error
+    multiplayer.multiplayer_peer = peer
+
+
+func create_game():
+    var peer = ENetMultiplayerPeer.new()
+    var error = peer.create_server(PORT, MAX_CONNECTIONS)
+    if error:
+        return error
+    multiplayer.multiplayer_peer = peer
+
+    players[1] = player_info
+    player_connected.emit(1, player_info)
+
+
+func remove_multiplayer_peer():
+    multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
+    players.clear()
+
+
+# When the server decides to start the game from a UI scene,
+# do Lobby.load_game.rpc(filepath)
+@rpc("call_local", "reliable")
+func load_game(game_scene_path):
+    get_tree().change_scene_to_file(game_scene_path)
+
+
+# Every peer will call this when they have loaded the game scene.
+@rpc("any_peer", "call_local", "reliable")
+func player_loaded():
+    if multiplayer.is_server():
+        players_loaded += 1
+        if players_loaded == players.size():
+            $/root/Game.start_game()
+            players_loaded = 0
+
+
+# When a peer connects, send them my player info.
+# This allows transfer of all desired data for each player, not only the unique ID.
+func _on_player_connected(id):
+    _register_player.rpc_id(id, player_info)
+
+
+@rpc("any_peer", "reliable")
+func _register_player(new_player_info):
+    var new_player_id = multiplayer.get_remote_sender_id()
+    players[new_player_id] = new_player_info
+    player_connected.emit(new_player_id, new_player_info)
+
+
+func _on_player_disconnected(id):
+    players.erase(id)
+    player_disconnected.emit(id)
+
+
+func _on_connected_ok():
+    var peer_id = multiplayer.get_unique_id()
+    players[peer_id] = player_info
+    player_connected.emit(peer_id, player_info)
+
+
+func _on_connected_fail():
+    remove_multiplayer_peer()
+
+
+func _on_server_disconnected():
+    remove_multiplayer_peer()
+    players.clear()
+    server_disconnected.emit()
+```
+
 The game scene's root node should be named Game. In the script attached to it:
+
+```
+extends Node3D # Or Node2D.
+
+
+
+func _ready():
+    # Preconfigure game.
+
+    Lobby.player_loaded.rpc_id(1) # Tell the server that this peer has loaded.
+
+
+# Called only on the server.
+func start_game():
+    # All peers are ready to receive RPCs in this scene.
+```
 
 ## Exporting for dedicated servers
 

@@ -48,14 +48,54 @@ initialize it:
 behavior, not start it. By convention, signal names are usually past-tense verbs
 like "entered", "skill_activated", or "item_collected".
 
+```
+# Parent
+$Child.signal_name.connect(method_on_the_object)
+
+# Child
+signal_name.emit() # Triggers parent-defined behavior.
+```
+
 1. Call a method. Used to start behavior.
+
+```
+# Parent
+$Child.method_name = "do"
+
+# Child, assuming it has String property 'method_name' and method 'do'.
+call(method_name) # Call parent-defined method (which child must own).
+```
 
 1. Initialize a [Callable](https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable) property. Safer than a method
 as ownership of the method is unnecessary. Used to start behavior.
 
+```
+# Parent
+$Child.func_property = object_with_method.method_on_the_object
+
+# Child
+func_property.call() # Call parent-defined method (can come from anywhere).
+```
+
 1. Initialize a Node or other Object reference.
 
+```
+# Parent
+$Child.target = self
+
+# Child
+print(target) # Use parent-defined node.
+```
+
 1. Initialize a NodePath.
+
+```
+# Parent
+$Child.target_path = ".."
+
+# Child
+get_node(target_path) # Use parent-defined NodePath.
+```
 
 These options hide the points of access from the child node. This in turn
 keeps the child **loosely coupled** to its environment. You can reuse it
@@ -164,7 +204,7 @@ in another context without any extra changes to its API.
 >
 > To avoid creating and maintaining such documentation, you convert the
 > dependent node ("child" above) into a tool script that implements
-> _get_configuration_warnings().
+> `_get_configuration_warnings()`.
 > Returning a non-empty PackedStringArray from it will make the Scene dock generate a
 > warning icon with the string(s) as a tooltip by the node. This is the same icon
 > that appears for nodes such as the
@@ -216,7 +256,7 @@ function. In Godot, it's a Main node.
 
 - Node "Main" (main.gd)
 
-The main.gd script will serve as the primary controller of your game.
+The `main.gd` script will serve as the primary controller of your game.
 
 Then you have an in-game "World" (a 2D or 3D one). This can be a child
 of Main. In addition, you will need a primary GUI for your game that manages
@@ -285,7 +325,7 @@ own place in the hierarchy as a sibling or some other relation.
 > [RemoteTransform](https://docs.godotengine.org/en/stable/classes/class_remotetransform3d.html#class-remotetransform3d) /
 > [RemoteTransform2D](https://docs.godotengine.org/en/stable/classes/class_remotetransform2d.html#class-remotetransform2d) nodes for this purpose.
 > They will allow a target node to conditionally inherit selected transform
-> elements from the Remote* node. To assign the target
+> elements from the Remote* node. To assign the `target`
 > [NodePath](https://docs.godotengine.org/en/stable/classes/class_nodepath.html#class-nodepath), use one of the following:
 >
 > 1. A reliable third party, likely a parent node, to mediate the assignment.
@@ -334,7 +374,7 @@ own place in the hierarchy as a sibling or some other relation.
 > 1. The **declarative** solution: place a [Node](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node) in between
 > them. Since it doesn't have a transform, they won't pass this information
 > to its children.
-> 2. The **imperative** solution: Use the top_level property for the
+> 2. The **imperative** solution: Use the `top_level` property for the
 > [CanvasItem](https://docs.godotengine.org/en/stable/classes/class_canvasitem_property_top_level.html#class-canvasitem_property_top_level) or
 > [Node3D](https://docs.godotengine.org/en/stable/classes/class_node3d_property_top_level.html#class-node3d_property_top_level) node. This will make
 > the node ignore its inherited transform.

@@ -46,17 +46,17 @@ This architecture allows Android plugins to extend the functionality of the engi
 Each plugin has an init class extending from the GodotPlugin class
 which is provided by the <doc:android_library>.
 
-The GodotPlugin class provides APIs to access the running Godot instance and hook into its lifecycle. It is loaded at runtime by the Godot engine.
+The `GodotPlugin` class provides APIs to access the running Godot instance and hook into its lifecycle. It is loaded at runtime by the Godot engine.
 
 ### v2 Packaging format
 
-v1 Android plugins required a custom gdap configuration file that was used by the Godot Editor to detect and load them.
+v1 Android plugins required a custom `gdap` configuration file that was used by the Godot Editor to detect and load them.
 However this approach had several drawbacks, primary ones being that it lacked flexibility and departed from the existing
 Godot EditorExportPlugin format, delivery and installation flow.
 
-This has been resolved for v2 Android plugins by deprecating the gdap packaging and configuration mechanism in favor of
-the existing Godot EditorExportPlugin packaging format.
-The EditorExportPlugin API in turn has been extended to properly support Android plugins.
+This has been resolved for v2 Android plugins by deprecating the `gdap` packaging and configuration mechanism in favor of
+the existing Godot `EditorExportPlugin` packaging format.
+The `EditorExportPlugin` API in turn has been extended to properly support Android plugins.
 
 ## Building a v2 Android plugin
 
@@ -69,7 +69,7 @@ To provide further understanding, here is a break-down of the steps used to crea
 
 1. Create an Android library module using these instructions
 
-1. Add the Godot Android library as a dependency by updating the module's gradle build file:
+1. Add the Godot Android library as a dependency by updating the module's `gradle` build file:
 
 dependencies {
     implementation("org.godotengine:godot:4.2.0.stable")
@@ -88,7 +88,7 @@ The Godot Android library is hosted on MavenCentral, and updated for each releas
 1. Create GodotAndroidPlugin, an init class for the plugin extending GodotPlugin.
 
 
-If the plugin exposes Kotlin or Java methods to be called from GDScript, they must be annotated with @UsedByGodot. The name called from GDScript **must match the method name exactly**. There is **no** coercing snake_case to camelCase. For example, from GDScript:
+If the plugin exposes Kotlin or Java methods to be called from GDScript, they must be annotated with @UsedByGodot. The name called from GDScript **must match the method name exactly**. There is **no** coercing `snake_case` to `camelCase`. For example, from GDScript:
 
 if Engine.has_singleton("MyPlugin"):
     var singleton = Engine.get_singleton("MyPlugin")
@@ -100,7 +100,7 @@ If the plugin uses signals, the init class must return the set of signals used b
 
 
 
-1. If the plugin exposes Kotlin or Java methods to be called from GDScript, they must be annotated with @UsedByGodot. The name called from GDScript **must match the method name exactly**. There is **no** coercing snake_case to camelCase. For example, from GDScript:
+1. If the plugin exposes Kotlin or Java methods to be called from GDScript, they must be annotated with @UsedByGodot. The name called from GDScript **must match the method name exactly**. There is **no** coercing `snake_case` to `camelCase`. For example, from GDScript:
 
 if Engine.has_singleton("MyPlugin"):
     var singleton = Engine.get_singleton("MyPlugin")
@@ -110,7 +110,7 @@ if Engine.has_singleton("MyPlugin"):
 
 1. If the plugin uses signals, the init class must return the set of signals used by overriding GodotPlugin::getPluginSignals(). To emit signals, the plugin can use the GodotPlugin::emitSignal(...) method.
 
-1. Update the plugin AndroidManifest.xml file with the following meta-data:
+1. Update the plugin `AndroidManifest.xml` file with the following meta-data:
 
 <meta-data
     android:name="org.godotengine.plugin.v2.[PluginName]"
@@ -118,7 +118,7 @@ if Engine.has_singleton("MyPlugin"):
 
 
 
-- If the plugin exposes Kotlin or Java methods to be called from GDScript, they must be annotated with @UsedByGodot. The name called from GDScript **must match the method name exactly**. There is **no** coercing snake_case to camelCase. For example, from GDScript:
+- If the plugin exposes Kotlin or Java methods to be called from GDScript, they must be annotated with @UsedByGodot. The name called from GDScript **must match the method name exactly**. There is **no** coercing `snake_case` to `camelCase`. For example, from GDScript:
 
 if Engine.has_singleton("MyPlugin"):
     var singleton = Engine.get_singleton("MyPlugin")
@@ -142,9 +142,9 @@ if Engine.has_singleton("MyPlugin"):
 
 Where:
 
-- PluginName is the name of the plugin
+- `PluginName` is the name of the plugin
 
-- plugin.init.ClassFullName is the full component name (package + class name) of the plugin init class (e.g: org.godotengine.plugin.android.template.GodotAndroidPlugin).
+- `plugin.init.ClassFullName` is the full component name (package + class name) of the plugin init class (e.g: `org.godotengine.plugin.android.template.GodotAndroidPlugin`).
 
 1. Create the EditorExportPlugin configuration to package the plugin. The steps used to create the configuration can be seen in the Packaging a v2 Android plugin section.
 
@@ -164,29 +164,29 @@ Use the following steps if you have a v1 Android plugin you want to migrate to v
 1. Update the plugin's manifest file:
 
 
-Change the org.godotengine.plugin.v1 prefix to org.godotengine.plugin.v2
+Change the `org.godotengine.plugin.v1` prefix to `org.godotengine.plugin.v2`
 
 
 
 
-1. Change the org.godotengine.plugin.v1 prefix to org.godotengine.plugin.v2
+1. Change the `org.godotengine.plugin.v1` prefix to `org.godotengine.plugin.v2`
 
 1. Update the Godot Android library build dependency:
 
 
-You can continue using the godot-lib.<version>.<status>.aar binary from Godot's download page if that's your preference. Make sure it's updated to the latest stable version.
+You can continue using the `godot-lib.<version>.<status>.aar` binary from Godot's download page if that's your preference. Make sure it's updated to the latest stable version.
 Or you can switch to the MavenCentral provided dependency:
 
 
 
 
-1. You can continue using the godot-lib.<version>.<status>.aar binary from Godot's download page if that's your preference. Make sure it's updated to the latest stable version.
+1. You can continue using the `godot-lib.<version>.<status>.aar` binary from Godot's download page if that's your preference. Make sure it's updated to the latest stable version.
 
 1. Or you can switch to the MavenCentral provided dependency:
 
-- Change the org.godotengine.plugin.v1 prefix to org.godotengine.plugin.v2
+- Change the `org.godotengine.plugin.v1` prefix to `org.godotengine.plugin.v2`
 
-- You can continue using the godot-lib.<version>.<status>.aar binary from Godot's download page if that's your preference. Make sure it's updated to the latest stable version.
+- You can continue using the `godot-lib.<version>.<status>.aar` binary from Godot's download page if that's your preference. Make sure it's updated to the latest stable version.
 
 - Or you can switch to the MavenCentral provided dependency:
 
@@ -199,37 +199,37 @@ dependencies {
 1. After updating the Godot Android library dependency, sync or build the plugin and resolve any compile errors:
 
 
-The Godot instance provided by GodotPlugin::getGodot() no longer has access to an android.content.Context reference. Use GodotPlugin::getActivity() instead.
+The `Godot` instance provided by `GodotPlugin::getGodot()` no longer has access to an `android.content.Context` reference. Use `GodotPlugin::getActivity()` instead.
 
 
 
 
-1. The Godot instance provided by GodotPlugin::getGodot() no longer has access to an android.content.Context reference. Use GodotPlugin::getActivity() instead.
+1. The `Godot` instance provided by `GodotPlugin::getGodot()` no longer has access to an `android.content.Context` reference. Use `GodotPlugin::getActivity()` instead.
 
-1. Delete the gdap configuration file(s) and follow the instructions in the Packaging a v2 Android plugin section to set up the plugin configuration.
+1. Delete the `gdap` configuration file(s) and follow the instructions in the Packaging a v2 Android plugin section to set up the plugin configuration.
 
-- The Godot instance provided by GodotPlugin::getGodot() no longer has access to an android.content.Context reference. Use GodotPlugin::getActivity() instead.
+- The `Godot` instance provided by `GodotPlugin::getGodot()` no longer has access to an `android.content.Context` reference. Use `GodotPlugin::getActivity()` instead.
 
 ## Packaging a v2 Android plugin
 
-As mentioned, a v2 Android plugin is now provided to the Godot Editor as an EditorExportPlugin plugin, so it shares a lot of the same packaging steps.
+As mentioned, a v2 Android plugin is now provided to the Godot Editor as an `EditorExportPlugin` plugin, so it shares a lot of the same packaging steps.
 
-1. Add the plugin output binaries within the plugin directory (e.g: in addons/<plugin_name>/)
+1. Add the plugin output binaries within the plugin directory (e.g: in `addons/<plugin_name>/`)
 
-1. Add the tool script for the export functionality within the plugin directory (e.g: in addons/<plugin_name>/)
+1. Add the tool script for the export functionality within the plugin directory (e.g: in `addons/<plugin_name>/`)
 
 
-The created script must be a @tool script, or else it will not work properly
+The created script must be a `@tool` script, or else it will not work properly
 The export tool script is used to configure the Android plugin and hook it within the Godot Editor's export process. It should look something like this:
 
 
 
 
-1. The created script must be a @tool script, or else it will not work properly
+1. The created script must be a `@tool` script, or else it will not work properly
 
 1. The export tool script is used to configure the Android plugin and hook it within the Godot Editor's export process. It should look something like this:
 
-- The created script must be a @tool script, or else it will not work properly
+- The created script must be a `@tool` script, or else it will not work properly
 
 - The export tool script is used to configure the Android plugin and hook it within the Godot Editor's export process. It should look something like this:
 
@@ -288,7 +288,7 @@ class AndroidExportPlugin extends EditorExportPlugin:
     to the app's manifest which are preserved when the Godot Editor is updated, resolving a long standing issue with v1 Android plugins.
 ```
 
-1. Create a plugin.cfg. This is an INI file with metadata about your plugin:
+1. Create a `plugin.cfg`. This is an INI file with metadata about your plugin:
 
 ```
 [plugin]
@@ -301,7 +301,7 @@ script="<relative_path_to_the_export_tool_script>"
 ```
 
 For reference, here is the folder structure for the Godot Android plugin project template.
-At build time, the contents of the export_scripts_template directory as well as the generated plugin binaries are copied to the addons/<plugin_name> directory:
+At build time, the contents of the `export_scripts_template` directory as well as the generated plugin binaries are copied to the `addons/<plugin_name>` directory:
 
 ```
 export_scripts_template/
@@ -314,10 +314,10 @@ export_scripts_template/
 ### Packaging a v2 Android plugin with GDExtension capabilities
 
 For GDExtension, we follow the same steps as for Packaging a v2 Android plugin and add the GDExtension config file in
-the same location as plugin.cfg.
+the same location as `plugin.cfg`.
 
 For reference, here is the folder structure for the GDExtension Android plugin project template.
-At build time, the contents of the export_scripts_template directory as well as the generated plugin binaries are copied to the addons/<plugin_name> directory:
+At build time, the contents of the `export_scripts_template` directory as well as the generated plugin binaries are copied to the `addons/<plugin_name>` directory:
 
 ```
 export_scripts_template/
@@ -329,7 +329,7 @@ export_scripts_template/
 +--plugin.gdextension       # GDExtension config file
 ```
 
-Here is what the plugin.gdextension config file should look like:
+Here is what the `plugin.gdextension` config file should look like:
 
 ```
 [configuration]
@@ -345,13 +345,13 @@ android.release.arm64 = "res://addons/GDExtensionAndroidPluginTemplate/bin/relea
 ...
 ```
 
-Of note is the android_aar_plugin field that specifies this GDExtension module is provided as part of a v2 Android plugin.
+Of note is the `android_aar_plugin` field that specifies this GDExtension module is provided as part of a v2 Android plugin.
 During the export process, this will indicate to the Godot Editor that the GDExtension native shared libraries are exported by the Android plugin AAR binaries.
 
 For GDExtension Android plugins, the plugin init class must override GodotPlugin::getPluginGDExtensionLibrariesPaths(),
-and return the paths to the bundled GDExtension libraries config files (*.gdextension).
+and return the paths to the bundled GDExtension libraries config files (`*.gdextension`).
 
-The paths must be relative to the Android library's assets directory.
+The paths must be relative to the Android library's `assets` directory.
 At runtime, the plugin will provide these paths to the Godot engine which will use them to load and initialize the bundled GDExtension libraries.
 
 ## Using a v2 Android plugin
@@ -366,19 +366,19 @@ At runtime, the plugin will provide these paths to the Godot engine which will u
 >
 >
 
-1. Copy the plugin's output directory (addons/<plugin_name>) to the target Godot project's directory
+1. Copy the plugin's output directory (`addons/<plugin_name>`) to the target Godot project's directory
 
 1. Open the project in the Godot Editor; the Editor should detect the plugin
 
-1. Navigate to Project -> Project Settings... -> Plugins, and ensure the plugin is enabled
+1. Navigate to `Project` -> `Project Settings...` -> `Plugins`, and ensure the plugin is enabled
 
-1. Install the Godot Android build template by clicking on Project -> Install Android Build Template...
+1. Install the Godot Android build template by clicking on `Project` -> `Install Android Build Template...`
 
-1. Navigate to Project -> Export...
+1. Navigate to `Project` -> `Export...`
 
-1. In the Export window, create an Android export preset
+1. In the `Export` window, create an `Android export preset`
 
-1. In the Android export preset, scroll to Gradle Build and set Use Gradle Build to true
+1. In the `Android export preset`, scroll to `Gradle Build` and set `Use Gradle Build` to `true`
 
 1. Update the project's scripts as needed to access the plugin's functionality. For example:
 
@@ -392,9 +392,9 @@ if Engine.has_singleton("MyPlugin"):
 
 ### Using a v2 Android plugin as an Android library
 
-Since they are also Android libraries, Godot v2 Android plugins can be stripped from their EditorExportPlugin packaging and provided as raw AAR binaries for use as libraries alongside the <doc:android_library> by Android apps.
+Since they are also Android libraries, Godot v2 Android plugins can be stripped from their `EditorExportPlugin` packaging and provided as raw `AAR` binaries for use as libraries alongside the <doc:android_library> by Android apps.
 
-If targeting this use-case, make sure to include additional instructions for how the AAR binaries should be included (e.g: custom additions to the Android app's manifest).
+If targeting this use-case, make sure to include additional instructions for how the `AAR` binaries should be included (e.g: custom additions to the Android app's manifest).
 
 ## Reference implementations
 
@@ -450,8 +450,8 @@ github template for reference on how to do so.
 
 ### Godot crashes upon load
 
-Check adb logcat for possible problems, then:
+Check `adb logcat` for possible problems, then:
 
-- Check that the methods exposed by the plugin used the following Java types: void, boolean, int, float, java.lang.String, org.godotengine.godot.Dictionary, int[], byte[], float[], java.lang.String[].
+- Check that the methods exposed by the plugin used the following Java types: `void`, `boolean`, `int`, `float`, `java.lang.String`, `org.godotengine.godot.Dictionary`, `int[]`, `byte[]`, `float[]`, `java.lang.String[]`.
 
 - More complex datatypes are not supported for now.

@@ -14,7 +14,7 @@ own limitations:
 its children. However, this means you can no longer run those scenes
 individually and expect them to work correctly.
 
-- Information can be stored to disk in user:// and then loaded by scenes
+- Information can be stored to disk in `user://` and then loaded by scenes
 that require it, but frequently saving and loading data is cumbersome and
 may be slow.
 
@@ -69,7 +69,7 @@ To autoload a scene or script, start from the menu and navigate to
 @Image(source: "autoload_tab.png")
 
 Here you can add any number of scenes or scripts. Each entry in the list
-requires a name, which is assigned as the node's name property. The order of
+requires a name, which is assigned as the node's `name` property. The order of
 the entries as they are added to the global scene tree can be manipulated using
 the up/down arrow keys. Like regular scenes, the engine will read these nodes
 in top-to-bottom order.
@@ -79,11 +79,15 @@ in top-to-bottom order.
 If the **Enable** column is checked (which is the default), then the singleton can
 be accessed directly in GDScript:
 
+```
+PlayerVariables.health -= 10
+```
+
 The **Enable** column has no effect in C# code. However, if the singleton is a
 C# script, a similar effect can be achieved by including a static property
-called Instance and assigning it in _Ready():
+called `Instance` and assigning it in `_Ready()`:
 
-This allows the singleton to be accessed from C# code without GetNode() and
+This allows the singleton to be accessed from C# code without `GetNode()` and
 without a typecast:
 
 Note that autoload objects (scripts and/or scenes) are accessed just like any
@@ -94,7 +98,7 @@ you'll see the autoloaded nodes appear:
 
 > Warning:
 >
-> Autoloads must **not** be removed using free() or queue_free() at
+> Autoloads must **not** be removed using `free()` or `queue_free()` at
 > runtime, or the engine will crash.
 >
 
@@ -113,23 +117,23 @@ and open it in Godot.
 A window notifying you that the project was last opened in an older Godot version
 may appear, that's not an issue. Click Ok to open the project.
 
-The project contains two scenes: scene_1.tscn and scene_2.tscn. Each
+The project contains two scenes: `scene_1.tscn` and `scene_2.tscn`. Each
 scene contains a label displaying the scene name and a button with its
-pressed() signal connected. When you run the project, it starts in
-scene_1.tscn. However, pressing the button does nothing.
+`pressed()` signal connected. When you run the project, it starts in
+`scene_1.tscn`. However, pressing the button does nothing.
 
 ### Creating the script
 
-Open the **Script** window and create a new script called global.gd.
-Make sure it inherits from Node:
+Open the **Script** window and create a new script called `global.gd`.
+Make sure it inherits from `Node`:
 
 @Image(source: "autoload_script.png")
 
-The next step is to add this script to the autoLoad list.
+The next step is to add this script to the autoload list.
 Starting from the menu, open
 **Project > Project Settings > Globals > Autoload** and
 select the script by clicking the browse button or typing its path:
-res://global.gd. Press **Add** to add it to the autoload list
+`res://global.gd`. Press **Add** to add it to the autoload list
 and name it "Global", which is required for scripts to access it
 by the name "Global":
 
@@ -139,11 +143,53 @@ Now whenever we run any scene in the project, this script will always be loaded.
 
 Returning to the script, it needs to fetch the current scene in the
 `_ready()` function. Both the current scene (the one with the button) and
-global.gd are children of root, but autoloaded nodes are always first. This
+`global.gd` are children of root, but autoloaded nodes are always first. This
 means that the last child of root is always the loaded scene.
+
+```
+extends Node
+
+var current_scene = null
+
+func _ready():
+    var root = get_tree().root
+    # Using a negative index counts from the end, so this gets the last child node of `root`.
+    current_scene = root.get_child(-1)
+```
 
 Now we need a function for changing the scene. This function needs to free the
 current scene and replace it with the requested one.
+
+```
+func goto_scene(path):
+    # This function will usually be called from a signal callback,
+    # or some other function in the current scene.
+    # Deleting the current scene at this point is
+    # a bad idea, because it may still be executing code.
+    # This will result in a crash or unexpected behavior.
+
+    # The solution is to defer the load to a later time, when
+    # we can be sure that no code from the current scene is running:
+
+    _deferred_goto_scene.call_deferred(path)
+
+
+func _deferred_goto_scene(path):
+    # It is now safe to remove the current scene.
+    current_scene.free()
+
+    # Load the new scene.
+    var s = ResourceLoader.load(path)
+
+    # Instance the new scene.
+    current_scene = s.instantiate()
+
+    # Add it to the active scene, as child of root.
+    get_tree().root.add_child(current_scene)
+
+    # Optionally, to make it compatible with the SceneTree.change_scene_to_file() API.
+    get_tree().current_scene = current_scene
+```
 
 Using [Object.call_deferred()](https://docs.godotengine.org/en/stable/classes/class_object_method_call_deferred.html#class-object_method_call_deferred),
 the second function will only run once all code from the current scene has
@@ -152,7 +198,21 @@ still being used (i.e. its code is still running).
 
 Finally, we need to fill the empty callback functions in the two scenes:
 
+```
+# Add to 'scene_1.gd'.
+
+func _on_button_pressed():
+    Global.goto_scene("res://scene_2.tscn")
+```
+
 and
+
+```
+# Add to 'scene_2.gd'.
+
+func _on_button_pressed():
+    Global.goto_scene("res://scene_1.tscn")
+```
 
 Run the project and test that you can switch between scenes by pressing
 the button.

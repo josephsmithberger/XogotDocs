@@ -131,7 +131,7 @@ with face-culling inverted.
 
 - **Blur:** Multiplies the shadow blur radius for this light. This works with
 both traditional shadow mapping and contact-hardening shadows (lights with
-**Angular Distance** or **Size** greater than 0.0). Higher values result
+**Angular Distance** or **Size** greater than `0.0`). Higher values result
 in softer shadows, which will also appear to be more temporally stable for
 moving objects. The downside of increasing shadow blur is that it will make
 the grainy pattern used for filtering more noticeable.
@@ -202,15 +202,15 @@ stay dark. Unlike most other light types, directional lights don't have specific
 parameters.
 
 The directional light also offers an **Angular Distance** property, which
-determines the light's angular size in degrees. Increasing this above 0.0
+determines the light's angular size in degrees. Increasing this above `0.0`
 will make shadows softer at greater distances from the caster, while also
 affecting the sun's appearance in procedural sky materials. This is called a
 contact-hardening shadow (also known as PCSS).
 
 For reference, the angular distance of the Sun viewed from the Earth is
-approximately 0.5. This kind of shadow is expensive, so check the
+approximately `0.5`. This kind of shadow is expensive, so check the
 recommendations in <doc:lights_and_shadows#Pcss-Recommendations> if setting
-this value above 0.0 on lights with shadows enabled.
+this value above `0.0` on lights with shadows enabled.
 
 ### Directional shadow mapping
 
@@ -240,8 +240,8 @@ To control PSSM, a number of parameters are exposed:
 @Image(source: "lights_and_shadows_directional_shadow_params.png")
 
 Each split distance is controlled relative to the camera far (or shadow
-**Max Distance** if greater than 0.0). 0.0 is the eye position and
-1.0 is where the shadow ends at a distance. Splits are in-between.
+**Max Distance** if greater than `0.0`). `0.0` is the eye position and
+`1.0` is where the shadow ends at a distance. Splits are in-between.
 Default values generally work well, but tweaking the first split a bit is common
 to give more detail to close objects (like a character in a third-person game).
 
@@ -250,7 +250,7 @@ needs. A lower maximum distance will result in better-looking shadows and better
 performance, as fewer objects will need to be included in shadow rendering. You
 can also adjust **Fade Start** to control how aggressive the shadow fade-out
 should be at a distance. For scenes where the **Max Distance** fully covers the
-scene at any given camera position, you can increase **Fade Start** to 1.0
+scene at any given camera position, you can increase **Fade Start** to `1.0`
 to prevent the shadow from fading at a distance. This should not be done in
 scenes where **Max Distance** doesn't fully cover the scene, as the shadow will
 appear to be suddenly cut off at a distance.
@@ -295,7 +295,7 @@ from the caster. This can be used to simulate area lights to an extent. This is
 called a contact-hardening shadow (also known as PCSS). This kind of shadow is
 expensive, so check the recommendations in
 <doc:lights_and_shadows#Pcss-Recommendations> if setting this value above
-0.0 on lights with shadows enabled.
+`0.0` on lights with shadows enabled.
 
 @Image(source: "lights_and_shadows_pcss.png")
 
@@ -453,7 +453,7 @@ root [Viewport](https://docs.godotengine.org/en/stable/classes/class_viewport.ht
 High shadow resolutions result in sharper shadows, but at a significant
 performance cost. It should also be noted that sharper shadows are not always
 more realistic. In most cases, this should be kept at its default value of
-4096 or decreased to 2048 for low-end GPUs.
+`4096` or decreased to `2048` for low-end GPUs.
 
 If positional shadows become too blurry after decreasing the shadow map size,
 you can counteract this by adjusting the
@@ -529,9 +529,9 @@ shadows.
 
 - Provide a setting for users to disable PCSS shadows. On directional lights,
 this can be done by setting the DirectionalLight3D's
-light_angular_distance property to 0.0 in a script. On positional
+`light_angular_distance` property to `0.0` in a script. On positional
 lights, this can be done by setting the OmniLight3D or SpotLight3D's
-light_size property to 0.0 in a script.
+`light_size` property to `0.0` in a script.
 
 ### Projector filter mode
 

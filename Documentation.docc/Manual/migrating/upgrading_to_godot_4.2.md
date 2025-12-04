@@ -52,154 +52,154 @@ upgrading Godot.
 Change | GDScript Compatible | C# Binary Compatible | C# Source Compatible | Introduced
 ------ | ------------------- | -------------------- | -------------------- | ----------
 **Node** |  |  |  | 
-ConstantNOTIFICATION_NODE_RECACHE_REQUESTEDremoved | |❌| | |✔️| | |❌| | GH-84419
+Constant`NOTIFICATION_NODE_RECACHE_REQUESTED`removed | |❌| | |✔️| | |❌| | GH-84419
 
 ### Animation
 
 Change | GDScript Compatible | C# Binary Compatible | C# Source Compatible | Introduced
 ------ | ------------------- | -------------------- | -------------------- | ----------
 **AnimationPlayer** |  |  |  | 
-Method_post_process_key_valuemoved to base classAnimationMixer | |✔️| | |✔️| | |✔️| | GH-80813
-Methodadd_animation_librarymoved to base classAnimationMixer | |✔️| | |✔️| | |✔️| | GH-80813
-Methodadvancemoved to base classAnimationMixer | |✔️| | |✔️| | |✔️| | GH-80813
-Signalanimation_finishedmoved to base classAnimationMixer | |✔️| | |❌| | |❌| | GH-80813
-Signalanimation_startedmoved to base classAnimationMixer | |✔️| | |❌| | |❌| | GH-80813
-Signalanimation_libraries_updatedmoved to base classAnimationMixer | |✔️| | |✔️| | |✔️| | GH-80813
-Signalanimation_list_changedmoved to base classAnimationMixer | |✔️| | |✔️| | |✔️| | GH-80813
-Propertyaudio_max_polyphonymoved to base classAnimationMixer | |✔️| | |✔️| | |✔️| | GH-80813
-Signalcaches_clearedmoved to base classAnimationMixer | |✔️| | |✔️| | |✔️| | GH-80813
-Methodclear_cachesmoved to base classAnimationMixer | |✔️| | |✔️| | |✔️| | GH-80813
-Methodfind_animationmoved to base classAnimationMixer | |✔️| | |✔️| | |✔️| | GH-80813
-Methodfind_animation_librarymoved to base classAnimationMixer | |✔️| | |✔️| | |✔️| | GH-80813
-Methodget_animationmoved to base classAnimationMixer | |✔️| | |✔️| | |✔️| | GH-80813
-Methodget_animation_librarymoved to base classAnimationMixer | |✔️| | |✔️| | |✔️| | GH-80813
-Methodget_animation_library_listmoved to base classAnimationMixer | |✔️| | |✔️| | |✔️| | GH-80813
-Methodget_animation_listmoved to base classAnimationMixer | |✔️| | |✔️| | |✔️| | GH-80813
-Methodhas_animationmoved to base classAnimationMixer | |✔️| | |✔️| | |✔️| | GH-80813
-Methodhas_animation_librarymoved to base classAnimationMixer | |✔️| | |✔️| | |✔️| | GH-80813
-Propertymethod_call_moderenamed tocallback_mode_methodand moved to base classAnimationMixer | |✔️| | |✔️ with compat| | |✔️ with compat| | GH-80813
-Propertyplayback_activerenamed toactiveand moved to base classAnimationMixer | |✔️| | |✔️ with compat| | |✔️ with compat| | GH-80813
-Propertyplayback_process_moderenamed tocallback_mode_processand moved to base classAnimationMixer | |✔️| | |✔️ with compat| | |✔️ with compat| | GH-80813
-Methodremove_animation_librarymoved to base classAnimationMixer | |✔️| | |✔️| | |✔️| | GH-80813
-Methodrename_animation_librarymoved to base classAnimationMixer | |✔️| | |✔️| | |✔️| | GH-80813
-Propertyreset_on_savemoved to base classAnimationMixer | |✔️| | |✔️| | |✔️| | GH-80813
-Propertyroot_nodemoved to base classAnimationMixer | |✔️| | |✔️| | |✔️| | GH-80813
-Methodset_reset_on_save_enabledmoved to base classAnimationMixer | |✔️| | |✔️| | |✔️| | GH-80813
-Methodseekadds a newupdate_onlyoptional parameter | |✔️| | |✔️ with compat| | |✔️| | GH-80813
+Method`_post_process_key_value`moved to base class`AnimationMixer` | |✔️| | |✔️| | |✔️| | GH-80813
+Method`add_animation_library`moved to base class`AnimationMixer` | |✔️| | |✔️| | |✔️| | GH-80813
+Method`advance`moved to base class`AnimationMixer` | |✔️| | |✔️| | |✔️| | GH-80813
+Signal`animation_finished`moved to base class`AnimationMixer` | |✔️| | |❌| | |❌| | GH-80813
+Signal`animation_started`moved to base class`AnimationMixer` | |✔️| | |❌| | |❌| | GH-80813
+Signal`animation_libraries_updated`moved to base class`AnimationMixer` | |✔️| | |✔️| | |✔️| | GH-80813
+Signal`animation_list_changed`moved to base class`AnimationMixer` | |✔️| | |✔️| | |✔️| | GH-80813
+Property`audio_max_polyphony`moved to base class`AnimationMixer` | |✔️| | |✔️| | |✔️| | GH-80813
+Signal`caches_cleared`moved to base class`AnimationMixer` | |✔️| | |✔️| | |✔️| | GH-80813
+Method`clear_caches`moved to base class`AnimationMixer` | |✔️| | |✔️| | |✔️| | GH-80813
+Method`find_animation`moved to base class`AnimationMixer` | |✔️| | |✔️| | |✔️| | GH-80813
+Method`find_animation_library`moved to base class`AnimationMixer` | |✔️| | |✔️| | |✔️| | GH-80813
+Method`get_animation`moved to base class`AnimationMixer` | |✔️| | |✔️| | |✔️| | GH-80813
+Method`get_animation_library`moved to base class`AnimationMixer` | |✔️| | |✔️| | |✔️| | GH-80813
+Method`get_animation_library_list`moved to base class`AnimationMixer` | |✔️| | |✔️| | |✔️| | GH-80813
+Method`get_animation_list`moved to base class`AnimationMixer` | |✔️| | |✔️| | |✔️| | GH-80813
+Method`has_animation`moved to base class`AnimationMixer` | |✔️| | |✔️| | |✔️| | GH-80813
+Method`has_animation_library`moved to base class`AnimationMixer` | |✔️| | |✔️| | |✔️| | GH-80813
+Property`method_call_mode`renamed to`callback_mode_method`and moved to base class`AnimationMixer` | |✔️| | |✔️ with compat| | |✔️ with compat| | GH-80813
+Property`playback_active`renamed to`active`and moved to base class`AnimationMixer` | |✔️| | |✔️ with compat| | |✔️ with compat| | GH-80813
+Property`playback_process_mode`renamed to`callback_mode_process`and moved to base class`AnimationMixer` | |✔️| | |✔️ with compat| | |✔️ with compat| | GH-80813
+Method`remove_animation_library`moved to base class`AnimationMixer` | |✔️| | |✔️| | |✔️| | GH-80813
+Method`rename_animation_library`moved to base class`AnimationMixer` | |✔️| | |✔️| | |✔️| | GH-80813
+Property`reset_on_save`moved to base class`AnimationMixer` | |✔️| | |✔️| | |✔️| | GH-80813
+Property`root_node`moved to base class`AnimationMixer` | |✔️| | |✔️| | |✔️| | GH-80813
+Method`set_reset_on_save_enabled`moved to base class`AnimationMixer` | |✔️| | |✔️| | |✔️| | GH-80813
+Method`seek`adds a new`update_only`optional parameter | |✔️| | |✔️ with compat| | |✔️| | GH-80813
 **AnimationTree** |  |  |  | 
-Method_post_process_key_valuemoved to base classAnimationMixer | |✔️| | |✔️| | |✔️| | GH-80813
-Propertyactivemoved to base classAnimationMixer | |✔️| | |✔️| | |✔️| | GH-80813
-Methodadvancemoved to base classAnimationMixer | |✔️| | |✔️| | |✔️| | GH-80813
-Signalanimation_finishedmoved to base classAnimationMixer | |✔️| | |❌| | |❌| | GH-80813
-Signalanimation_startedmoved to base classAnimationMixer | |✔️| | |❌| | |❌| | GH-80813
-Propertyaudio_max_polyphonymoved to base classAnimationMixer | |✔️| | |✔️| | |✔️| | GH-80813
-Methodget_root_motion_positionmoved to base classAnimationMixer | |✔️| | |✔️| | |✔️| | GH-80813
-Methodget_root_motion_position_accumulatormoved to base classAnimationMixer | |✔️| | |✔️| | |✔️| | GH-80813
-Methodget_root_motion_rotationmoved to base classAnimationMixer | |✔️| | |✔️| | |✔️| | GH-80813
-Methodget_root_motion_rotation_accumulatormoved to base classAnimationMixer | |✔️| | |✔️| | |✔️| | GH-80813
-Methodget_root_motion_scalemoved to base classAnimationMixer | |✔️| | |✔️| | |✔️| | GH-80813
-Methodget_root_motion_scale_accumulatormoved to base classAnimationMixer | |✔️| | |✔️| | |✔️| | GH-80813
-Propertyprocess_callbackrenamed tocallback_mode_processand moved to base classAnimationMixer | |✔️| | |✔️ with compat| | |✔️ with compat| | GH-80813
-Propertyroot_motion_trackmoved to base classAnimationMixer | |✔️| | |✔️| | |✔️| | GH-80813
-Propertytree_rootchanges type fromAnimationNodetoAnimationRootNode | |✔️| | |❌| | |❌| | GH-80813
+Method`_post_process_key_value`moved to base class`AnimationMixer` | |✔️| | |✔️| | |✔️| | GH-80813
+Property`active`moved to base class`AnimationMixer` | |✔️| | |✔️| | |✔️| | GH-80813
+Method`advance`moved to base class`AnimationMixer` | |✔️| | |✔️| | |✔️| | GH-80813
+Signal`animation_finished`moved to base class`AnimationMixer` | |✔️| | |❌| | |❌| | GH-80813
+Signal`animation_started`moved to base class`AnimationMixer` | |✔️| | |❌| | |❌| | GH-80813
+Property`audio_max_polyphony`moved to base class`AnimationMixer` | |✔️| | |✔️| | |✔️| | GH-80813
+Method`get_root_motion_position`moved to base class`AnimationMixer` | |✔️| | |✔️| | |✔️| | GH-80813
+Method`get_root_motion_position_accumulator`moved to base class`AnimationMixer` | |✔️| | |✔️| | |✔️| | GH-80813
+Method`get_root_motion_rotation`moved to base class`AnimationMixer` | |✔️| | |✔️| | |✔️| | GH-80813
+Method`get_root_motion_rotation_accumulator`moved to base class`AnimationMixer` | |✔️| | |✔️| | |✔️| | GH-80813
+Method`get_root_motion_scale`moved to base class`AnimationMixer` | |✔️| | |✔️| | |✔️| | GH-80813
+Method`get_root_motion_scale_accumulator`moved to base class`AnimationMixer` | |✔️| | |✔️| | |✔️| | GH-80813
+Property`process_callback`renamed to`callback_mode_process`and moved to base class`AnimationMixer` | |✔️| | |✔️ with compat| | |✔️ with compat| | GH-80813
+Property`root_motion_track`moved to base class`AnimationMixer` | |✔️| | |✔️| | |✔️| | GH-80813
+Property`tree_root`changes type from`AnimationNode`to`AnimationRootNode` | |✔️| | |❌| | |❌| | GH-80813
 
 ### GUI nodes
 
 Change | GDScript Compatible | C# Binary Compatible | C# Source Compatible | Introduced
 ------ | ------------------- | -------------------- | -------------------- | ----------
 **PopupMenu** |  |  |  | 
-Methodadd_icon_shortcutadds a newallow_echooptional parameter | |✔️| | |✔️ with compat| | |✔️ with compat| | GH-36493
-Methodadd_shortcutadds a newallow_echooptional parameter | |✔️| | |✔️ with compat| | |✔️ with compat| | GH-36493
-Methodclearadds a newfree_submenusoptional parameter | |✔️| | |✔️ with compat| | |✔️ with compat| | GH-79965
+Method`add_icon_shortcut`adds a new`allow_echo`optional parameter | |✔️| | |✔️ with compat| | |✔️ with compat| | GH-36493
+Method`add_shortcut`adds a new`allow_echo`optional parameter | |✔️| | |✔️ with compat| | |✔️ with compat| | GH-36493
+Method`clear`adds a new`free_submenus`optional parameter | |✔️| | |✔️ with compat| | |✔️ with compat| | GH-79965
 **RichTextLabel** |  |  |  | 
-Methodadd_imageadds newkey,pad,tooltip, andsize_in_percentoptional parameters | |✔️| | |✔️ with compat| | |✔️| | GH-80410
+Method`add_image`adds new`key`,`pad`,`tooltip`, and`size_in_percent`optional parameters | |✔️| | |✔️ with compat| | |✔️| | GH-80410
 
 ### Rendering
 
 Change | GDScript Compatible | C# Binary Compatible | C# Source Compatible | Introduced
 ------ | ------------------- | -------------------- | -------------------- | ----------
 **ImporterMesh** |  |  |  | 
-Methodadd_surfacechangesflagsparameter type fromuint32touint64 | |✔️| | |✔️ with compat| | |✔️ with compat| | GH-81138
-Methodget_surface_formatchanges return type fromuint32touint64 | |✔️| | |❌| | |❌| | GH-81138
+Method`add_surface`changes`flags`parameter type from`uint32`to`uint64` | |✔️| | |✔️ with compat| | |✔️ with compat| | GH-81138
+Method`get_surface_format`changes return type from`uint32`to`uint64` | |✔️| | |❌| | |❌| | GH-81138
 **MeshDataTool** |  |  |  | 
-Methodcommit_to_surfaceadds a newcompression_flagsoptional parameter | |✔️| | |✔️ with compat| | |✔️| | GH-81138
-Methodget_formatchanges return type fromuint32touint64 | |✔️| | |❌| | |❌| | GH-81138
+Method`commit_to_surface`adds a new`compression_flags`optional parameter | |✔️| | |✔️ with compat| | |✔️| | GH-81138
+Method`get_format`changes return type from`uint32`to`uint64` | |✔️| | |❌| | |❌| | GH-81138
 **RenderingDevice** |  |  |  | 
-Enum fieldBarrierMask.BARRIER_MASK_RASTERchanges value from1to9 | |✔️| | |✔️| | |✔️| | GH-79911
-Enum fieldBarrierMask.BARRIER_MASK_ALL_BARRIERSchanges value from7to32767 | |✔️| | |✔️| | |✔️| | GH-79911
-Enum fieldBarrierMask.BARRIER_MASK_NO_BARRIERchanges value from8to32768 | |✔️| | |✔️| | |✔️| | GH-79911
-Methodshader_create_from_bytecodeadds a newplaceholder_ridoptional parameter | |✔️| | |✔️ with compat| | |✔️| | GH-79606
-Methodshader_get_vertex_input_attribute_askchanges return type fromuint32touint64 | |✔️| | |❌| | |❌| | GH-81138
+Enum field`BarrierMask.BARRIER_MASK_RASTER`changes value from`1`to`9` | |✔️| | |✔️| | |✔️| | GH-79911
+Enum field`BarrierMask.BARRIER_MASK_ALL_BARRIERS`changes value from`7`to`32767` | |✔️| | |✔️| | |✔️| | GH-79911
+Enum field`BarrierMask.BARRIER_MASK_NO_BARRIER`changes value from`8`to`32768` | |✔️| | |✔️| | |✔️| | GH-79911
+Method`shader_create_from_bytecode`adds a new`placeholder_rid`optional parameter | |✔️| | |✔️ with compat| | |✔️| | GH-79606
+Method`shader_get_vertex_input_attribute_ask`changes return type from`uint32`to`uint64` | |✔️| | |❌| | |❌| | GH-81138
 **SurfaceTool** |  |  |  | 
-Methodcommitchangesflagsparameter type fromuint32touint64 | |✔️| | |✔️ with compat| | |✔️ with compat| | GH-81138
+Method`commit`changes`flags`parameter type from`uint32`to`uint64` | |✔️| | |✔️ with compat| | |✔️ with compat| | GH-81138
 
 ### Text
 
 Change | GDScript Compatible | C# Binary Compatible | C# Source Compatible | Introduced
 ------ | ------------------- | -------------------- | -------------------- | ----------
 **Font** |  |  |  | 
-Methodset_fallbacksreplaced withfallbacksproperty | |✔️| | |❌| | |❌| | GH-78266
-Methodget_fallbacksreplaced withfallbacksproperty | |✔️| | |❌| | |❌| | GH-78266
-Methodfind_variationadds newspacing_top,spacing_bottom,spacing_space, andspacing_glyphoptional parameters | |✔️| | |✔️ with compat| | |✔️| | GH-80954
+Method`set_fallbacks`replaced with`fallbacks`property | |✔️| | |❌| | |❌| | GH-78266
+Method`get_fallbacks`replaced with`fallbacks`property | |✔️| | |❌| | |❌| | GH-78266
+Method`find_variation`adds new`spacing_top`,`spacing_bottom`,`spacing_space`, and`spacing_glyph`optional parameters | |✔️| | |✔️ with compat| | |✔️| | GH-80954
 
 ### GraphEdit
 
 Change | GDScript Compatible | C# Binary Compatible | C# Source Compatible | Introduced
 ------ | ------------------- | -------------------- | -------------------- | ----------
 **GraphEdit** |  |  |  | 
-Propertyarrange_nodes_button_hiddenrenamed toshow_arrange_button | |❌| | |✔️ with compat| | |✔️ with compat| | GH-81582
-Methodget_zoom_hboxrenamed toget_menu_hbox | |❌| | |✔️ with compat| | |✔️ with compat| | GH-79308
-Propertysnap_distancerenamed tosnapping_distance | |❌| | |✔️ with compat| | |✔️ with compat| | GH-79308
-Propertyuse_snaprenamed tosnapping_enabled | |❌| | |✔️ with compat| | |✔️ with compat| | GH-79308
+Property`arrange_nodes_button_hidden`renamed to`show_arrange_button` | |❌| | |✔️ with compat| | |✔️ with compat| | GH-81582
+Method`get_zoom_hbox`renamed to`get_menu_hbox` | |❌| | |✔️ with compat| | |✔️ with compat| | GH-79308
+Property`snap_distance`renamed to`snapping_distance` | |❌| | |✔️ with compat| | |✔️ with compat| | GH-79308
+Property`use_snap`renamed to`snapping_enabled` | |❌| | |✔️ with compat| | |✔️ with compat| | GH-79308
 **GraphNode** |  |  |  | 
-Propertycommentremoved | |❌| | |❌| | |❌| | GH-79307
-Signalclose_requestrenamed todelete_requestand moved to base classGraphElement | |❌| | |✔️ with compat| | |✔️ with compat| | GH-79311
-Propertydraggablemoved to base classGraphElement | |✔️| | |✔️| | |✔️| | GH-79311
-Propertydraggablemoved to base classGraphElement | |✔️| | |✔️| | |✔️| | GH-79311
-Signaldraggedmoved to base classGraphElement | |✔️| | |❌| | |❌| | GH-79311
-Methodget_connection_input_colorremoved | |❌| | |❌| | |❌| | GH-79311
-Methodget_connection_input_countremoved | |❌| | |❌| | |❌| | GH-79311
-Methodget_connection_input_heightremoved | |❌| | |❌| | |❌| | GH-79311
-Methodget_connection_input_positionremoved | |❌| | |❌| | |❌| | GH-79311
-Methodget_connection_input_slotremoved | |❌| | |❌| | |❌| | GH-79311
-Methodget_connection_input_typeremoved | |❌| | |❌| | |❌| | GH-79311
-Methodget_connection_output_colorremoved | |❌| | |❌| | |❌| | GH-79311
-Methodget_connection_output_countremoved | |❌| | |❌| | |❌| | GH-79311
-Methodget_connection_output_heightremoved | |❌| | |❌| | |❌| | GH-79311
-Methodget_connection_output_positionremoved | |❌| | |❌| | |❌| | GH-79311
-Methodget_connection_output_slotremoved | |❌| | |❌| | |❌| | GH-79311
-Methodget_connection_output_typeremoved | |❌| | |❌| | |❌| | GH-79311
-Propertylanguageremoved | |❌| | |❌| | |❌| | GH-79311
-Signalnode_deselectedmoved to base classGraphElement | |✔️| | |✔️| | |✔️| | GH-79311
-Signalnode_selectedmoved to base classGraphElement | |✔️| | |✔️| | |✔️| | GH-79311
-Propertyoverlayremoved | |❌| | |❌| | |❌| | GH-79311
-Propertyposition_offsetmoved to base classGraphElement | |✔️| | |✔️| | |✔️| | GH-79311
-Signalposition_offset_changedmoved to base classGraphElement | |✔️| | |✔️| | |✔️| | GH-79311
-Signalraise_requestmoved to base classGraphElement | |✔️| | |✔️| | |✔️| | GH-79311
-Propertyresizablemoved to base classGraphElement | |✔️| | |✔️| | |✔️| | GH-79311
-Signalresize_requestmoved to base classGraphElement | |✔️| | |❌| | |❌| | GH-79311
-Propertyselectablemoved to base classGraphElement | |✔️| | |✔️| | |✔️| | GH-79311
-Propertyselectedmoved to base classGraphElement | |✔️| | |✔️| | |✔️| | GH-79311
-Propertyshow_closeremoved | |❌| | |❌| | |❌| | GH-79311
-Propertytext_directionremoved | |❌| | |❌| | |❌| | GH-79311
+Property`comment`removed | |❌| | |❌| | |❌| | GH-79307
+Signal`close_request`renamed to`delete_request`and moved to base class`GraphElement` | |❌| | |✔️ with compat| | |✔️ with compat| | GH-79311
+Property`draggable`moved to base class`GraphElement` | |✔️| | |✔️| | |✔️| | GH-79311
+Property`draggable`moved to base class`GraphElement` | |✔️| | |✔️| | |✔️| | GH-79311
+Signal`dragged`moved to base class`GraphElement` | |✔️| | |❌| | |❌| | GH-79311
+Method`get_connection_input_color`removed | |❌| | |❌| | |❌| | GH-79311
+Method`get_connection_input_count`removed | |❌| | |❌| | |❌| | GH-79311
+Method`get_connection_input_height`removed | |❌| | |❌| | |❌| | GH-79311
+Method`get_connection_input_position`removed | |❌| | |❌| | |❌| | GH-79311
+Method`get_connection_input_slot`removed | |❌| | |❌| | |❌| | GH-79311
+Method`get_connection_input_type`removed | |❌| | |❌| | |❌| | GH-79311
+Method`get_connection_output_color`removed | |❌| | |❌| | |❌| | GH-79311
+Method`get_connection_output_count`removed | |❌| | |❌| | |❌| | GH-79311
+Method`get_connection_output_height`removed | |❌| | |❌| | |❌| | GH-79311
+Method`get_connection_output_position`removed | |❌| | |❌| | |❌| | GH-79311
+Method`get_connection_output_slot`removed | |❌| | |❌| | |❌| | GH-79311
+Method`get_connection_output_type`removed | |❌| | |❌| | |❌| | GH-79311
+Property`language`removed | |❌| | |❌| | |❌| | GH-79311
+Signal`node_deselected`moved to base class`GraphElement` | |✔️| | |✔️| | |✔️| | GH-79311
+Signal`node_selected`moved to base class`GraphElement` | |✔️| | |✔️| | |✔️| | GH-79311
+Property`overlay`removed | |❌| | |❌| | |❌| | GH-79311
+Property`position_offset`moved to base class`GraphElement` | |✔️| | |✔️| | |✔️| | GH-79311
+Signal`position_offset_changed`moved to base class`GraphElement` | |✔️| | |✔️| | |✔️| | GH-79311
+Signal`raise_request`moved to base class`GraphElement` | |✔️| | |✔️| | |✔️| | GH-79311
+Property`resizable`moved to base class`GraphElement` | |✔️| | |✔️| | |✔️| | GH-79311
+Signal`resize_request`moved to base class`GraphElement` | |✔️| | |❌| | |❌| | GH-79311
+Property`selectable`moved to base class`GraphElement` | |✔️| | |✔️| | |✔️| | GH-79311
+Property`selected`moved to base class`GraphElement` | |✔️| | |✔️| | |✔️| | GH-79311
+Property`show_close`removed | |❌| | |❌| | |❌| | GH-79311
+Property`text_direction`removed | |❌| | |❌| | |❌| | GH-79311
 
 ### TileMap
 
 Change | GDScript Compatible | C# Binary Compatible | C# Source Compatible | Introduced
 ------ | ------------------- | -------------------- | -------------------- | ----------
 **TileMap** |  |  |  | 
-Propertycell_quadrant_sizerenamed torendering_quadrant_size | |❌| | |✔️ with compat| | |✔️ with compat| | GH-81070
+Property`cell_quadrant_size`renamed to`rendering_quadrant_size` | |❌| | |✔️ with compat| | |✔️ with compat| | GH-81070
 
 ### XR
 
 Change | GDScript Compatible | C# Binary Compatible | C# Source Compatible | Introduced
 ------ | ------------------- | -------------------- | -------------------- | ----------
 **XRInterface** |  |  |  | 
-Propertyenvironment_blend_modeadded | |✔️| | |❌| | |❌| | GH-81561
+Property`environment_blend_mode`added | |✔️| | |❌| | |❌| | GH-81561
 
 > Note:
 >
 > This change breaks compatibility in C# because the new property conflicts with the name of an existing enum
 > and the C# bindings generator gives priority to properties, so the enum type was renamed from
-> EnvironmentBlendMode to EnvironmentBlendModeEnum.
+> `EnvironmentBlendMode` to `EnvironmentBlendModeEnum`.
 >

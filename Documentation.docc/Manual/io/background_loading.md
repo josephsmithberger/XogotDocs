@@ -11,7 +11,7 @@ The standard load method
 [load](https://docs.godotengine.org/en/stable/classes/class_@gdscript_method_load.html#class-@gdscript_method_load)) blocks your
 thread, making your game appear unresponsive while the resource is being loaded.
 
-One way around this is using ResourceLoader to load resources asynchronously
+One way around this is using `ResourceLoader` to load resources asynchronously
 in background threads.
 
 ## Using ResourceLoader
@@ -28,9 +28,9 @@ a one element array containing the percentage.
 Finally, you retrieve loaded resources by calling
 [ResourceLoader.load_threaded_get](https://docs.godotengine.org/en/stable/classes/class_resourceloader_method_load_threaded_get.html#class-resourceloader_method_load_threaded_get).
 
-Once you call load_threaded_get(), either the resource finished loading in
+Once you call `load_threaded_get()`, either the resource finished loading in
 the background and will be returned instantly or the load will block at this point like
-load() would. If you want to guarantee this does not block,
+`load()` would. If you want to guarantee this does not block,
 you either need to ensure there is enough time between requesting the load and
 retrieving the resource or you need to check the status manually.
 
@@ -38,8 +38,8 @@ retrieving the resource or you need to check the status manually.
 
 This example demonstrates how to load a scene in the background.
 We will have a button spawn an enemy when pressed.
-The enemy will be Enemy.tscn which we will load on _ready and instantiate when pressed.
-The path will be "Enemy.tscn" which is located at res://Enemy.tscn.
+The enemy will be `Enemy.tscn` which we will load on `_ready` and instantiate when pressed.
+The path will be `"Enemy.tscn"` which is located at `res://Enemy.tscn`.
 
 First, we will start a request to load the resource and connect the button:
 
@@ -51,7 +51,7 @@ func _ready():
     self.pressed.connect(_on_button_pressed)
 ```
 
-Now _on_button_pressed will be called when the button is pressed.
+Now `_on_button_pressed` will be called when the button is pressed.
 This method will be used to spawn an enemy.
 
 ```

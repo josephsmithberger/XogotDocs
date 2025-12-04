@@ -12,7 +12,7 @@ First create a Particles node. Then, under "Draw Passes" set the Particle's "Dra
 [Mesh](https://docs.godotengine.org/en/stable/classes/class_mesh.html#class-mesh). Then under "Process Material" create a new
 [ShaderMaterial](https://docs.godotengine.org/en/stable/classes/class_shadermaterial.html#class-shadermaterial).
 
-Set the shader_type to particles.
+Set the `shader_type` to `particles`.
 
 ```
 shader_type particles
@@ -43,22 +43,22 @@ uint hash(uint x) {
 ```
 
 These functions come from the default [ParticleProcessMaterial](https://docs.godotengine.org/en/stable/classes/class_particleprocessmaterial.html#class-particleprocessmaterial).
-They are used to generate a random number from each particle's RANDOM_SEED.
+They are used to generate a random number from each particle's `RANDOM_SEED`.
 
 A unique thing about particle shaders is that some built-in variables are saved across frames.
-TRANSFORM, COLOR, and CUSTOM can all be accessed in the shader of the mesh, and
+`TRANSFORM`, `COLOR`, and `CUSTOM` can all be accessed in the shader of the mesh, and
 also in the particle shader the next time it is run.
 
-Next, setup your start() function. Particles shaders contain a start() function and a
-process() function.
+Next, setup your `start()` function. Particles shaders contain a `start()` function and a
+`process()` function.
 
-The code in the start() function only runs when the particle system starts.
-The code in the process() function will always run.
+The code in the `start()` function only runs when the particle system starts.
+The code in the `process()` function will always run.
 
 We need to generate 4 random numbers: 3 to create a random position and one for the random
 offset of the swim cycle.
 
-First, generate 4 seeds inside the start() function using the hash() function provided above:
+First, generate 4 seeds inside the `start()` function using the `hash()` function provided above:
 
 ```
 uint alt_seed1 = hash(NUMBER + uint(1) + RANDOM_SEED);
@@ -67,7 +67,7 @@ uint alt_seed3 = hash(NUMBER + uint(43) + RANDOM_SEED);
 uint alt_seed4 = hash(NUMBER + uint(111) + RANDOM_SEED);
 ```
 
-Then, use those seeds to generate random numbers using rand_from_seed:
+Then, use those seeds to generate random numbers using `rand_from_seed`:
 
 ```
 CUSTOM.x = rand_from_seed(alt_seed1);
@@ -76,42 +76,42 @@ vec3 position = vec3(rand_from_seed(alt_seed2) * 2.0 - 1.0,
                      rand_from_seed(alt_seed4) * 2.0 - 1.0);
 ```
 
-Finally, assign position to TRANSFORM[3].xyz, which is the part of the transform that holds
+Finally, assign `position` to `TRANSFORM[3].xyz`, which is the part of the transform that holds
 the position information.
 
 ```
 TRANSFORM[3].xyz = position * 20.0;
 ```
 
-Remember, all this code so far goes inside the start() function.
+Remember, all this code so far goes inside the `start()` function.
 
 The vertex shader for your mesh can stay the exact same as it was in the previous tutorial.
 
-Now you can move each fish individually each frame, either by adding to the TRANSFORM directly
-or by writing to VELOCITY.
+Now you can move each fish individually each frame, either by adding to the `TRANSFORM` directly
+or by writing to `VELOCITY`.
 
-Let's transform the fish by setting their VELOCITY in the start() function.
+Let's transform the fish by setting their `VELOCITY` in the `start()` function.
 
 ```
 VELOCITY.z = 10.0;
 ```
 
-This is the most basic way to set VELOCITY every particle (or fish) will have the same velocity.
+This is the most basic way to set `VELOCITY` every particle (or fish) will have the same velocity.
 
-Just by setting VELOCITY you can make the fish swim however you want. For example, try the code
+Just by setting `VELOCITY` you can make the fish swim however you want. For example, try the code
 below.
 
 ```
 VELOCITY.z = cos(TIME + CUSTOM.x * 6.28) * 4.0 + 6.0;
 ```
 
-This will give each fish a unique speed between 2 and 10.
+This will give each fish a unique speed between `2` and `10`.
 
-You can also let each fish change its velocity over time if you set the velocity in the process()
+You can also let each fish change its velocity over time if you set the velocity in the `process()`
 function.
 
-If you used CUSTOM.y in the last tutorial, you can also set the speed of the swim animation based
-on the VELOCITY. Just use CUSTOM.y.
+If you used `CUSTOM.y` in the last tutorial, you can also set the speed of the swim animation based
+on the `VELOCITY`. Just use `CUSTOM.y`.
 
 ```
 CUSTOM.y = VELOCITY.z * 0.1;
@@ -122,6 +122,6 @@ This code gives you the following behavior:
 @Image(source: "scene.gif")
 
 Using a ParticleProcessMaterial you can make the fish behavior as simple or complex as you like. In this
-tutorial we only set Velocity, but in your own Shaders you can also set COLOR, rotation, scale
-(through TRANSFORM). Please refer to the <doc:particle_shader>
+tutorial we only set Velocity, but in your own Shaders you can also set `COLOR`, rotation, scale
+(through `TRANSFORM`). Please refer to the <doc:particle_shader>
 for more information on particle shaders.

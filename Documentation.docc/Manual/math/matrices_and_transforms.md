@@ -47,10 +47,10 @@ You should not worry about manipulating rows directly, as we usually
 work with columns. However, you can think of the rows of the matrix
 as showing which vectors contribute to moving in a given direction.
 
-When we refer to a value such as t.x.y, that's the Y component of
+When we refer to a value such as `t.x.y`, that's the Y component of
 the X column vector. In other words, the bottom-left of the matrix.
-Similarly, t.x.x is top-left, t.y.x is top-right, and t.y.y
-is bottom-right, where t is the Transform2D.
+Similarly, `t.x.x` is top-left, `t.y.x` is top-right, and `t.y.y`
+is bottom-right, where `t` is the Transform2D.
 
 ### Scaling the transformation matrix
 
@@ -68,14 +68,22 @@ becomes 2, and 0 times 2 becomes 0, so we end up with this:
 
 To do this in code, we multiply each of the vectors:
 
+```
+var t = Transform2D()
+# Scale
+t.x *= 2
+t.y *= 2
+transform = t # Change the node's transform to what we calculated.
+```
+
 If we wanted to return it to its original scale, we can multiply
 each component by 0.5. That's pretty much all there is to scaling
 a transformation matrix.
 
 To calculate the object's scale from an existing transformation
-matrix, you can use length() on each of the column vectors.
+matrix, you can use `length()` on each of the column vectors.
 
-> Note: In actual projects, you can use the scaled()
+> Note: In actual projects, you can use the `scaled()`
 > method to perform scaling.
 >
 
@@ -98,7 +106,7 @@ the orientation of the vectors determines what the matrix is.
 
 We need to represent "down" and "left" in normal coordinates,
 so means we'll set X to (0, 1) and Y to (-1, 0). These are
-also the values of Vector2.DOWN and Vector2.LEFT.
+also the values of `Vector2.DOWN` and `Vector2.LEFT`.
 When we do this, we get the desired result of rotating the object:
 
 @Image(source: "rotate1.png")
@@ -136,24 +144,34 @@ to find what the actual values should be:
 
 Here's how that would be done in code (place the script on a Node2D):
 
-To calculate the object's rotation from an existing transformation
-matrix, you can use atan2(t.x.y, t.x.x), where t is the Transform2D.
+```
+var rot = 0.5 # The rotation to apply.
+var t = Transform2D()
+t.x.x = cos(rot)
+t.y.y = cos(rot)
+t.x.y = sin(rot)
+t.y.x = -sin(rot)
+transform = t # Change the node's transform to what we calculated.
+```
 
-> Note: In actual projects, you can use the rotated()
+To calculate the object's rotation from an existing transformation
+matrix, you can use `atan2(t.x.y, t.x.x)`, where t is the Transform2D.
+
+> Note: In actual projects, you can use the `rotated()`
 > method to perform rotations.
 >
 
 ### Basis of the transformation matrix
 
-So far we have only been working with the x and y, vectors, which
+So far we have only been working with the `x` and `y`, vectors, which
 are in charge of representing rotation, scale, and/or shearing
 (advanced, covered at the end). The X and Y vectors are together
 called the basis of the transformation matrix. The terms "basis"
 and "basis vectors" are important to know.
 
 You might have noticed that [Transform2D](https://docs.godotengine.org/en/stable/classes/class_transform2d.html#class-transform2d) actually
-has three [Vector2](https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2) values: x, y, and origin.
-The origin value is not part of the basis, but it is part of the
+has three [Vector2](https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2) values: `x`, `y`, and `origin`.
+The `origin` value is not part of the basis, but it is part of the
 transform, and we need it to represent position. From now on we'll
 keep track of the origin vector in all examples. You can think of
 origin as another column, but it's often better to think of it as
@@ -167,7 +185,7 @@ it from [Transform3D](https://docs.godotengine.org/en/stable/classes/class_trans
 
 ### Translating the transformation matrix
 
-Changing the origin vector is called translating the transformation
+Changing the `origin` vector is called translating the transformation
 matrix. Translating is basically a technical term for "moving" the
 object, but it explicitly does not involve any rotation.
 
@@ -178,16 +196,16 @@ of the origin vector this time.
 @Image(source: "identity-origin.png")
 
 If we want to move the object to a position of (1, 2), we need
-to set its origin vector to (1, 2):
+to set its `origin` vector to (1, 2):
 
 @Image(source: "translate.png")
 
-There is also a translated_local() method, which performs a different
-operation to adding or changing origin directly. The translated_local()
+There is also a `translated_local()` method, which performs a different
+operation to adding or changing `origin` directly. The `translated_local()`
 method will translate the object relative to its own rotation.
 For example, an object rotated 90 degrees clockwise will move to
-the right when translated_local() with Vector2.UP. To translate
-relative to the global/parent frame use translated() instead.
+the right when `translated_local()` with `Vector2.UP`. To translate
+relative to the global/parent frame use `translated()` instead.
 
 > Note: Godot's 2D uses coordinates based on pixels, so in actual
 > projects you will want to translate by hundreds of units.
@@ -204,6 +222,22 @@ I've posted a screenshot, and the code to reproduce it, but I encourage
 you to try and reproduce the screenshot without looking at the code!
 
 @Image(source: "putting-all-together.png")
+
+```
+var t = Transform2D()
+# Translation
+t.origin = Vector2(350, 150)
+# Rotation
+var rot = -0.5 # The rotation to apply.
+t.x.x = cos(rot)
+t.y.y = cos(rot)
+t.x.y = sin(rot)
+t.y.x = -sin(rot)
+# Scale
+t.x *= 3
+t.y *= 3
+transform = t # Change the node's transform to what we calculated.
+```
 
 ### Shearing the transformation matrix (advanced)
 
@@ -240,6 +274,13 @@ the basis vectors.
 As an example, let's set Y to (1, 1):
 
 @Image(source: "shear.png")
+
+```
+var t = Transform2D()
+# Shear by setting Y to (1, 1)
+t.y = Vector2.ONE
+transform = t # Change the node's transform to what we calculated.
+```
 
 > Note: You can't set the raw values of a Transform2D in the editor,
 > so you must use code if you want to shear the object.
@@ -297,10 +338,20 @@ and would like to find the world (parent-relative) position, or if you
 have a world position and want to know where it is relative to the player.
 
 We can find what a vector relative to the player would be defined in
-world space as using the * operator:
+world space as using the `*` operator:
 
-And we can use the * operator in the opposite order to find a what world
+```
+# World space vector 100 units below the player.
+print(transform * Vector2(0, 100))
+```
+
+And we can use the `*` operator in the opposite order to find a what world
 space position would be if it was defined relative to the player:
+
+```
+# Where is (0, 100) relative to the player?
+print(Vector2(0, 100) * transform)
+```
 
 > Note: If you know in advance that the transform is positioned at
 > (0, 0), you can use the "basis_xform" or "basis_xform_inv"
@@ -311,7 +362,7 @@ space position would be if it was defined relative to the player:
 
 A common operation, especially in 3D games, is to move an object relative
 to itself. For example, in first-person shooter games, you would want the
-character to move forward (-Z axis) when you press `W`.
+character to move forward (-Z axis) when you press ``W``.
 
 Since the basis vectors are the orientation relative to the parent,
 and the origin vector is the position relative to the parent, we can
@@ -319,10 +370,14 @@ add multiples of the basis vectors to move an object relative to itself.
 
 This code moves an object 100 units to its own right:
 
+```
+transform.origin += transform.x * 100
+```
+
 For moving in 3D, you would need to replace "x" with "basis.x".
 
-> Note: In actual projects, you can use translate_object_local in 3D
-> or move_local_x and move_local_y in 2D to do this.
+> Note: In actual projects, you can use `translate_object_local` in 3D
+> or `move_local_x` and `move_local_y` in 2D to do this.
 >
 
 ### Applying transforms onto transforms
@@ -348,15 +403,41 @@ The child has a scale of (0.5, 0.5), so you would expect it to be
 a 1:1 ratio square, and it is, but only relative to the parent.
 The child's X vector ends up being (1, 0) in world space, because
 it is scaled by the parent's basis vectors.
-Similarly, the child node's origin vector is set to (1, 1), but this
+Similarly, the child node's `origin` vector is set to (1, 1), but this
 actually moves it (2, 1) in world space, due to the parent node's
 basis vectors.
 
 To calculate a child transform's world space transform manually, this is
 the code we would use:
 
+```
+# Set up transforms like in the image, except make positions be 100 times bigger.
+var parent = Transform2D(Vector2(2, 0), Vector2(0, 1), Vector2(100, 200))
+var child = Transform2D(Vector2(0.5, 0), Vector2(0, 0.5), Vector2(100, 100))
+
+# Calculate the child's world space transform
+# origin = (2, 0) * 100 + (0, 1) * 100 + (100, 200)
+var origin = parent.x * child.origin.x + parent.y * child.origin.y + parent.origin
+# basis_x = (2, 0) * 0.5 + (0, 1) * 0
+var basis_x = parent.x * child.x.x + parent.y * child.x.y
+# basis_y = (2, 0) * 0 + (0, 1) * 0.5
+var basis_y = parent.x * child.y.x + parent.y * child.y.y
+
+# Change the node's transform to what we calculated.
+transform = Transform2D(basis_x, basis_y, origin)
+```
+
 In actual projects, we can find the world transform of the child by
-applying one transform onto another using the * operator:
+applying one transform onto another using the `*` operator:
+
+```
+# Set up transforms like in the image, except make positions be 100 times bigger.
+var parent = Transform2D(Vector2(2, 0), Vector2(0, 1), Vector2(100, 200))
+var child = Transform2D(Vector2(0.5, 0), Vector2(0, 0.5), Vector2(100, 100))
+
+# Change the node's transform to what would be the child's world transform.
+transform = parent * child
+```
 
 > Note: When multiplying matrices, order matters! Don't mix them up.
 >
@@ -376,8 +457,21 @@ Let's take a look at a few examples.
 Multiplying an inverse transform by the normal transform undoes all
 transformations:
 
+```
+var ti = transform.affine_inverse()
+var t = ti * transform
+# The transform is the identity transform.
+```
+
 Transforming a position by a transform and its inverse results in the
 same position:
+
+```
+var ti = transform.affine_inverse()
+position = transform * position
+position = ti * position
+# The position is the same as before.
+```
 
 ## How does it all work in 3D?
 

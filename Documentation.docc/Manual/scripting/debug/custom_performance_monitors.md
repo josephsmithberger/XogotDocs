@@ -8,8 +8,8 @@ As explained in the <doc:debugger_panel> documentation, Godot features a
 graphs showing their evolution over time. The data for those graphs is sourced
 from the engine's [Performance](https://docs.godotengine.org/en/stable/classes/class_performance.html#class-performance) singleton.
 
-Since Godot 4.0, you can declare custom values to be displayed in the Monitors
-tab. Example use cases for custom performance monitors include:
+Godot lets you declare custom values to be displayed in the Monitors tab.
+Example use cases for custom performance monitors include:
 
 - Displaying performance metrics that are specific to your project. For
 instance, in a voxel game, you could create a performance monitor to track the
@@ -58,7 +58,7 @@ The second parameter of
 [Performance.add_custom_monitor](https://docs.godotengine.org/en/stable/classes/class_performance_method_add_custom_monitor.html#class-performance_method_add_custom_monitor)
 is a [Callable](https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable).
 
-enemy.tscn is a scene with a Node2D root node and Timer child node. The
+`enemy.tscn` is a scene with a Node2D root node and Timer child node. The
 Node2D has the following script attached:
 
 ```
@@ -100,7 +100,7 @@ appearing as follows:
 
 If you wish to display the value of the performance monitor in the running
 project's window (rather than the editor), use
-Performance.get_custom_monitor("category/name") to fetch the value of the
+`Performance.get_custom_monitor("category/name")` to fetch the value of the
 custom monitor. You can display the value using a [Label](https://docs.godotengine.org/en/stable/classes/class_label.html#class-label),
 [RichTextLabel](https://docs.godotengine.org/en/stable/classes/class_richtextlabel.html#class-richtextlabel), <doc:custom_drawing_in_2d>, <doc:3d_text>,
 etc.

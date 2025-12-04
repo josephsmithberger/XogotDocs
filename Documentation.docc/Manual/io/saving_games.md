@@ -36,6 +36,12 @@ GUI:
 Once this is done, when we need to save the game, we can get all objects
 to save them and then tell them all to save with this script:
 
+```
+var save_nodes = get_tree().get_nodes_in_group("Persist")
+for node in save_nodes:
+    # Now, we can call our save function on each node.
+```
+
 ## Serializing
 
 The next step is to serialize the data. This makes it much easier to
@@ -45,8 +51,33 @@ has the helper class [JSON](https://docs.godotengine.org/en/stable/classes/class
 Our node needs to contain a save function that returns this data.
 The save function will look like this:
 
+```
+func save():
+    var save_dict = {
+        "filename" : get_scene_file_path(),
+        "parent" : get_parent().get_path(),
+        "pos_x" : position.x, # Vector2 is not supported by JSON
+        "pos_y" : position.y,
+        "attack" : attack,
+        "defense" : defense,
+        "current_health" : current_health,
+        "max_health" : max_health,
+        "damage" : damage,
+        "regen" : regen,
+        "experience" : experience,
+        "tnl" : tnl,
+        "level" : level,
+        "attack_growth" : attack_growth,
+        "defense_growth" : defense_growth,
+        "health_growth" : health_growth,
+        "is_alive" : is_alive,
+        "last_attack" : last_attack
+    }
+    return save_dict
+```
+
 This gives us a dictionary with the style
-{ "variable_name":value_of_variable }, which will be useful when
+`{ "variable_name":value_of_variable }`, which will be useful when
 loading.
 
 ## Saving and reading data
@@ -58,12 +89,86 @@ convert it into an easily stored string and store them in a file. Doing
 it this way ensures that each line is its own object, so we have an easy
 way to pull the data out of the file as well.
 
+```
+# Note: This can be called from anywhere inside the tree. This function is
+# path independent.
+# Go through everything in the persist category and ask them to return a
+# dict of relevant variables.
+func save_game():
+    var save_file = FileAccess.open("user://savegame.save", FileAccess.WRITE)
+    var save_nodes = get_tree().get_nodes_in_group("Persist")
+    for node in save_nodes:
+        # Check the node is an instanced scene so it can be instanced again during load.
+        if node.scene_file_path.is_empty():
+            print("persistent node '%s' is not an instanced scene, skipped" % node.name)
+            continue
+
+        # Check the node has a save function.
+        if !node.has_method("save"):
+            print("persistent node '%s' is missing a save() function, skipped" % node.name)
+            continue
+
+        # Call the node's save function.
+        var node_data = node.call("save")
+
+        # JSON provides a static method to serialized JSON string.
+        var json_string = JSON.stringify(node_data)
+
+        # Store the save dictionary as a new line in the save file.
+        save_file.store_line(json_string)
+```
+
 Game saved! Now, to load, we'll read each
 line. Use the [parse](https://docs.godotengine.org/en/stable/classes/class_json_method_parse.html#class-json_method_parse) method to read the
 JSON string back to a dictionary, and then iterate over
 the dict to read our values. But we'll need to first create the object
 and we can use the filename and parent values to achieve that. Here is our
 load function:
+
+```
+# Note: This can be called from anywhere inside the tree. This function
+# is path independent.
+func load_game():
+    if not FileAccess.file_exists("user://savegame.save"):
+        return # Error! We don't have a save to load.
+
+    # We need to revert the game state so we're not cloning objects
+    # during loading. This will vary wildly depending on the needs of a
+    # project, so take care with this step.
+    # For our example, we will accomplish this by deleting saveable objects.
+    var save_nodes = get_tree().get_nodes_in_group("Persist")
+    for i in save_nodes:
+        i.queue_free()
+
+    # Load the file line by line and process that dictionary to restore
+    # the object it represents.
+    var save_file = FileAccess.open("user://savegame.save", FileAccess.READ)
+    while save_file.get_position() < save_file.get_length():
+        var json_string = save_file.get_line()
+
+        # Creates the helper class to interact with JSON.
+        var json = JSON.new()
+
+        # Check if there is any error while parsing the JSON string, skip in case of failure.
+        var parse_result = json.parse(json_string)
+        if not parse_result == OK:
+            print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
+            continue
+
+        # Get the data from the JSON object.
+        var node_data = json.data
+
+        # Firstly, we need to create the object and add it to the tree and set its position.
+        var new_object = load(node_data["filename"]).instantiate()
+        get_node(node_data["parent"]).add_child(new_object)
+        new_object.position = Vector2(node_data["pos_x"], node_data["pos_y"])
+
+        # Now we set the remaining variables.
+        for i in node_data.keys():
+            if i == "filename" or i == "parent" or i == "pos_x" or i == "pos_y":
+                continue
+            new_object.set(i, node_data[i])
+```
 
 Now we can save and load an arbitrary number of objects laid out
 almost anywhere across the scene tree! Each object can store different
@@ -102,7 +207,7 @@ JSON stores data in text format, which is much larger than binary formats.
 JSON only offers a limited set of data types. If you have data types
 that JSON doesn't have, you will need to translate your data to and
 from types that JSON can handle. For example, some important types that JSON
-can't parse are: Vector2, Vector3, Color, Rect2, and Quaternion.
+can't parse are: `Vector2`, `Vector3`, `Color`, `Rect2`, and `Quaternion`.
 
 - **Custom logic needed for encoding/decoding:**
 If you have any custom classes that you want to store with JSON, you will
@@ -112,7 +217,7 @@ need to write your own logic for encoding and decoding those classes.
 
 <doc:binary_serialization_api> is an alternative
 approach for storing game state, and you can use it with the functions
-get_var and store_var of [FileAccess](https://docs.godotengine.org/en/stable/classes/class_fileaccess.html#class-fileaccess).
+`get_var` and `store_var` of [FileAccess](https://docs.godotengine.org/en/stable/classes/class_fileaccess.html#class-fileaccess).
 
 - Binary serialization should produce smaller files than JSON.
 
@@ -126,6 +231,6 @@ with the [PROPERTY_USAGE_STORAGE](https://docs.godotengine.org/en/stable/classes
 flag set will be serialized. You can add a new usage flag to a property by overriding the
 [_get_property_list](https://docs.godotengine.org/en/stable/classes/class_object_private_method__get_property_list.html#class-object_private_method__get_property_list)
 method in your class. You can also check how property usage is configured by
-calling Object._get_property_list.
+calling `Object._get_property_list`.
 See :ref:`PropertyUsageFlags<enum_@GlobalScope_PropertyUsageFlags>` for the
 possible usage flags.

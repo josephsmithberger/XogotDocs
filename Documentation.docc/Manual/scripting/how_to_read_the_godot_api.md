@@ -13,10 +13,10 @@ related to each other, what features they have, and how to use them.
 At the top of each file, you will see the name of the class.
 
 The "Inherits" section lists each class the current one inherits.
-Here CanvasItem inherits Node and Node inherits Object.
+Here `CanvasItem` inherits `Node` and `Node` inherits `Object`.
 
 The "Inherited By" section lists each class which directly inherits the
-current class. Here Control and Node2D both inherit CanvasItem.
+current class. Here `Control` and `Node2D` both inherit `CanvasItem`.
 
 ## Brief Description
 
@@ -86,11 +86,11 @@ if any.
 
 Possible qualifiers include...
 
-- const: the method does not change any data in the class instance.
+- `const`: the method does not change any data in the class instance.
 
-- virtual: the method does nothing but wait for a script to override it.
+- `virtual`: the method does nothing but wait for a script to override it.
 
-- vararg: the method can accept an arbitrary number of arguments.
+- `vararg`: the method can accept an arbitrary number of arguments.
 
 ## Signals
 
@@ -125,7 +125,7 @@ The Constants list details named integer constants in the current class.
 For each constant, the page states its name, its integer value, and an
 explanation of its use case(s) and/or affects.
 
-NOTIFICATION_* constants' descriptions will state which engine event
+`NOTIFICATION_*` constants' descriptions will state which engine event
 triggers the notification.
 
 ## Property Descriptions

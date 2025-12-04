@@ -18,7 +18,7 @@ this, you should read the
 Post-processing effects are shaders applied to a frame after Godot has rendered
 it. To apply a shader to a frame, create a [CanvasLayer](https://docs.godotengine.org/en/stable/classes/class_canvaslayer.html#class-canvaslayer), and give it a [ColorRect](https://docs.godotengine.org/en/stable/classes/class_colorrect.html#class-colorrect). Assign a
 new [ShaderMaterial](https://docs.godotengine.org/en/stable/classes/class_shadermaterial.html#class-shadermaterial) to the newly created
-ColorRect, and set the ColorRect's anchor preset to Full Rect:
+`ColorRect`, and set the `ColorRect`'s anchor preset to Full Rect:
 
 @Image(source: "custom_postprocessing_anchors_preset_full_rect.png", alt: "Setting the anchor preset to Full Rect on the ColorRect node") {Setting the anchor preset to Full Rect on the ColorRect node}
 
@@ -30,8 +30,8 @@ Your scene tree will look something like this:
 >
 > Another more efficient method is to use a [BackBufferCopy
 >](https://docs.godotengine.org/en/stable/classes/class_backbuffercopy.html#class-backbuffercopy) to copy a region of the screen to a buffer and to
-> access it in a shader script through a sampler2D using
-> hint_screen_texture.
+> access it in a shader script through a `sampler2D` using
+> `hint_screen_texture`.
 >
 
 > Note:
@@ -47,9 +47,9 @@ For this demo, we will use this [Sprite](https://docs.godotengine.org/en/stable/
 
 @Image(source: "post_example1.png")
 
-Assign a new [Shader](https://docs.godotengine.org/en/stable/classes/class_shader.html#class-shader) to the ColorRect's
-ShaderMaterial. You can access the frame's texture and UV with a
-sampler2D using hint_screen_texture and the built-in SCREEN_UV
+Assign a new [Shader](https://docs.godotengine.org/en/stable/classes/class_shader.html#class-shader) to the `ColorRect`'s
+`ShaderMaterial`. You can access the frame's texture and UV with a
+`sampler2D` using `hint_screen_texture` and the built-in `SCREEN_UV`
 uniforms.
 
 Copy the following code to your shader. The code below is a hex pixelization
@@ -94,8 +94,8 @@ them run a lot faster if you break them down in multiple passes. In a multipass
 material, each pass takes the result from the previous pass as an input and
 processes it.
 
-To produce a multi-pass post-processing shader, you stack CanvasLayer and
-ColorRect nodes. In the example above, you use a CanvasLayer object to
+To produce a multi-pass post-processing shader, you stack `CanvasLayer` and
+`ColorRect` nodes. In the example above, you use a `CanvasLayer` object to
 render a shader using the frame on the layer below. Apart from the node
 structure, the steps are the same as with the single-pass post-processing
 shader.
@@ -105,8 +105,8 @@ Your scene tree will look something like this:
 @Image(source: "post_tree2.png")
 
 As an example, you could write a full screen Gaussian blur effect by attaching
-the following pieces of code to each of the ColorRect nodes. The order in
-which you apply the shaders depends on the position of the CanvasLayer in
+the following pieces of code to each of the `ColorRect` nodes. The order in
+which you apply the shaders depends on the position of the `CanvasLayer` in
 the scene tree, higher means sooner. For this blur shader, the order does not
 matter.
 

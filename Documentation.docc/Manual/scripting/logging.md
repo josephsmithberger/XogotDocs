@@ -37,23 +37,23 @@ as well as the V-Sync status on startup (as it can effectively cap the maximum f
 every second, using the same data source as the <doc:debugger_panel#Visual-Profiler>.
 
 Some of these project settings can also be overridden using
-<doc:command_line_tutorial> such as --quiet,
---verbose, and --print-fps.
+<doc:command_line_tutorial> such as `--quiet`,
+`--verbose`, and `--print-fps`.
 
 The engine's own file logging is also configurable, as described in the section below.
 
 ## Built-in file logging
 
-By default, Godot writes log files in user://logs/godot.log on desktop
+By default, Godot writes log files in `user://logs/godot.log` on desktop
 platforms. You can change this location by modifying the
-debug/file_logging/log_path project setting. Logs are rotated to keep older
+`debug/file_logging/log_path` project setting. Logs are rotated to keep older
 files available for inspection. Each session creates a new log file, with the
 old file renamed to contain the date at which it was rotated. Up to 5 log files
 are kept by default, which can be adjusted using the
-debug/file_logging/max_log_files project setting.
+`debug/file_logging/max_log_files` project setting.
 
 File logging can also be disabled completely using the
-debug/file_logging/enable_file_logging project setting.
+`debug/file_logging/enable_file_logging` project setting.
 
 When the project crashes, crash logs are written to the same file as the log
 file. The crash log will only contain a usable backtrace if the binary that was
@@ -81,7 +81,7 @@ for guidance on compiling binaries with debugging symbols enabled.
 > For some use cases like dedicated servers, it can be preferred to have release
 > builds always flush stdout on print, so that logging services like journald can
 > collect logs while the process is running. This can be done by enabling
-> application/run/flush_stdout_on_print in the Project Settings.
+> `application/run/flush_stdout_on_print` in the Project Settings.
 >
 
 ## Script backtraces
@@ -165,7 +165,7 @@ visible in the editor Output panel. Since the engine's scripting system is not r
 anymore when the engine is crashing, it is not possible to access it from scripting in
 the same session. However, you can still read the crash backtrace on the next session
 by loading log files and searching for the crash backtrace string
-(Program crashed with signal) using [FileAccess](https://docs.godotengine.org/en/stable/classes/class_fileaccess.html#class-fileaccess). This allows you to access
+(`Program crashed with signal`) using [FileAccess](https://docs.godotengine.org/en/stable/classes/class_fileaccess.html#class-fileaccess). This allows you to access
 the backtrace information even after a crash, as long as the user restarts the project
 and file logging is enabled:
 
@@ -225,6 +225,8 @@ class CustomLogger extends Logger:
     func _log_message(message: String, error: bool) -> void:
         # Do something with `message`.
         # `error` is `true` for messages printed to the standard error stream (stderr) with `print_error()`.
+        # Note that this method will be called from threads other than the main thread, possibly at the same
+        # time, so you will need to have some kind of thread-safety as part of it, like a Mutex.
         pass
 
     func _log_error(
@@ -239,6 +241,8 @@ class CustomLogger extends Logger:
     ) -> void:
         # Do something with the error. The error text is in `rationale`.
         # See the Logger class reference for details on other parameters.
+        # Note that this method will be called from threads other than the main thread, possibly at the same
+        # time, so you will need to have some kind of thread-safety as part of it, like a Mutex.
         pass
 
 # Use `_init()` to initialize the logger as early as possible, which ensures that messages
@@ -250,10 +254,10 @@ func _init() -> void:
 
 Note that to avoid infinite recursion, you cannot effectively use
 [print()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_print.html#class-@globalscope_method_print) and its related methods in
-_log_message(). You also can't effectively use
+`_log_message()`. You also can't effectively use
 [push_error()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_push_error.html#class-@globalscope_method_push_error)
 or [push_warning()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_push_warning.html#class-@globalscope_method_push_warning) in
-_log_error(). Attempting to do so will print a message to the same stream
+`_log_error()`. Attempting to do so will print a message to the same stream
 as the original message. This message is not available in the custom logger,
 which is what prevents infinite recursion from occurring:
 

@@ -23,7 +23,7 @@ will take the concepts from this tutorial and set up
 custom materials in a fragment shader by writing an ocean water shader.
 
 > Note: This tutorial assumes some basic shader knowledge such as types
-> (vec2, float, sampler2D), and functions. If you are
+> (`vec2`, `float`, `sampler2D`), and functions. If you are
 > uncomfortable with these concepts it is best to get a gentle
 > introduction from The Book of Shaders
 > before completing this tutorial.
@@ -59,7 +59,7 @@ advantage of the MeshInstance3D's ability to override materials.
 Add a new [MeshInstance3D](https://docs.godotengine.org/en/stable/classes/class_meshinstance3d.html#class-meshinstance3d) node to your scene.
 
 In the inspector tab, set the MeshInstance3D's **Mesh** property to a new
-[PlaneMesh](https://docs.godotengine.org/en/stable/classes/class_planemesh.html#class-planemesh) resource, by clicking on <empty> and
+[PlaneMesh](https://docs.godotengine.org/en/stable/classes/class_planemesh.html#class-planemesh) resource, by clicking on `<empty>` and
 choosing **New PlaneMesh**. Then expand the resource by clicking on the image of
 a plane that appears.
 
@@ -72,7 +72,7 @@ This will allow you to see the triangles making up the plane.
 
 @Image(source: "plane.png")
 
-Now set **Subdivide Width** and **Subdivide Depth** of the [PlaneMesh](https://docs.godotengine.org/en/stable/classes/class_planemesh.html#class-planemesh) to 32.
+Now set **Subdivide Width** and **Subdivide Depth** of the [PlaneMesh](https://docs.godotengine.org/en/stable/classes/class_planemesh.html#class-planemesh) to `32`.
 
 @Image(source: "plane-sub-set.png")
 
@@ -95,7 +95,7 @@ the sphere that appears.
 > property holding a reference to the material in the inspector.
 >
 
-Now set the material's **Shader** to a new Shader by clicking <empty> and
+Now set the material's **Shader** to a new Shader by clicking `<empty>` and
 select **New Shader...**. Leave the default settings, give your shader a name,
 and click **Create**.
 
@@ -106,20 +106,20 @@ are ready to begin writing your first Spatial shader!
 
 @Image(source: "shader-editor.png")
 
-The new shader is already generated with a shader_type variable, the
-vertex() function, and the fragment() function. The first thing Godot
+The new shader is already generated with a `shader_type` variable, the
+`vertex()` function, and the `fragment()` function. The first thing Godot
 shaders need is a declaration of what type of shader they are. In this case the
-shader_type is set to spatial because this is a spatial shader.
+`shader_type` is set to `spatial` because this is a spatial shader.
 
 ```
 shader_type spatial;
 ```
 
-The vertex() function determines where the vertices of your [MeshInstance3D](https://docs.godotengine.org/en/stable/classes/class_meshinstance3d.html#class-meshinstance3d)
+The `vertex()` function determines where the vertices of your [MeshInstance3D](https://docs.godotengine.org/en/stable/classes/class_meshinstance3d.html#class-meshinstance3d)
 appear in the final scene. We will be using it to offset the height of each vertex
 and make our flat plane appear like a little terrain.
 
-With nothing in the vertex() function, Godot will use its default vertex
+With nothing in the `vertex()` function, Godot will use its default vertex
 shader. We can start to make changes by adding a single line:
 
 ```
@@ -132,14 +132,14 @@ Adding this line, you should get an image like the one below.
 
 @Image(source: "cos.png")
 
-Okay, let's unpack this. The y value of the VERTEX is being increased.
-And we are passing the x and z components of the VERTEX as arguments
+Okay, let's unpack this. The `y` value of the `VERTEX` is being increased.
+And we are passing the `x` and `z` components of the `VERTEX` as arguments
 to :ref:`cos() <shader_func_cos>` and :ref:`sin() <shader_func_sin>`; that gives
-us a wave-like appearance across the x and z axes.
+us a wave-like appearance across the `x` and `z` axes.
 
-What we want to achieve is the look of little hills; after all. cos() and
-sin() already look kind of like hills. We do so by scaling the inputs to the
-cos() and sin() functions.
+What we want to achieve is the look of little hills; after all. `cos()` and
+`sin()` already look kind of like hills. We do so by scaling the inputs to the
+`cos()` and `sin()` functions.
 
 ```
 void vertex() {
@@ -162,7 +162,7 @@ Godot provides the [NoiseTexture2D](https://docs.godotengine.org/en/stable/class
 generating a noise texture that can be accessed from a shader.
 
 To access a texture in a shader add the following code near the top of your
-shader, outside the vertex() function.
+shader, outside the `vertex()` function.
 
 ```
 uniform sampler2D noise;
@@ -181,7 +181,7 @@ Once you set it up and should look like this.
 
 @Image(source: "noise-set.png")
 
-Now, access the noise texture using the texture() function:
+Now, access the noise texture using the `texture()` function:
 
 ```
 void vertex() {
@@ -191,24 +191,24 @@ void vertex() {
 ```
 
 :ref:`texture() <shader_func_texture>` takes a texture as the first argument and
-a vec2 for the position on the texture as the second argument. We use the
-x and z channels of VERTEX to determine where on the texture to look
+a `vec2` for the position on the texture as the second argument. We use the
+`x` and `z` channels of `VERTEX` to determine where on the texture to look
 up.
 
-Since the PlaneMesh coordinates are within the [-1.0, 1.0] range (for a size
-of 2.0), while the texture coordinates are within [0.0, 1.0], to remap
-the coordinates we divide by the size of the PlaneMesh by 2.0 and add
-0.5 .
+Since the PlaneMesh coordinates are within the `[-1.0, 1.0]` range (for a size
+of `2.0`), while the texture coordinates are within `[0.0, 1.0]`, to remap
+the coordinates we divide by the size of the PlaneMesh by `2.0` and add
+`0.5` .
 
-texture() returns a vec4 of the r, g, b, a channels at the position.
+`texture()` returns a `vec4` of the `r, g, b, a` channels at the position.
 Since the noise texture is grayscale, all of the values are the same, so we can
-use any one of the channels as the height. In this case we'll use the r, or
-x channel.
+use any one of the channels as the height. In this case we'll use the `r`, or
+`x` channel.
 
 > Note:
 >
-> xyzw is the same as rgba in GLSL, so instead of texture().x
-> above, we could use texture().r. See the OpenGL documentation
+> `xyzw` is the same as `rgba` in GLSL, so instead of `texture().x`
+> above, we could use `texture().r`. See the OpenGL documentation
 > for more
 > details.
 >
@@ -227,7 +227,7 @@ texture, now let's learn how they work.
 from the game into the shader. They are
 very useful for controlling shader effects. Uniforms can be almost any datatype
 that can be used in the shader. To use a uniform, you declare it in your
-[Shader](https://docs.godotengine.org/en/stable/classes/class_shader.html#class-shader) using the keyword uniform.
+[Shader](https://docs.godotengine.org/en/stable/classes/class_shader.html#class-shader) using the keyword `uniform`.
 
 Let's make a uniform that changes the height of the terrain.
 
@@ -235,8 +235,8 @@ Let's make a uniform that changes the height of the terrain.
 uniform float height_scale = 0.5;
 ```
 
-Godot lets you initialize a uniform with a value; here, height_scale is set
-to 0.5. You can set uniforms from GDScript by calling the function
+Godot lets you initialize a uniform with a value; here, `height_scale` is set
+to `0.5`. You can set uniforms from GDScript by calling the function
 [set_shader_parameter()](https://docs.godotengine.org/en/stable/classes/class_shadermaterial_method_set_shader_parameter.html#class-shadermaterial_method_set_shader_parameter)
 on the material corresponding to the shader. The value passed from GDScript
 takes precedence over the value used to initialize it in the shader.
@@ -249,15 +249,15 @@ mesh.material.set_shader_parameter("height_scale", 0.5)
 > Note: Changing uniforms in Spatial-based nodes is different from
 > CanvasItem-based nodes. Here, we set the material inside the PlaneMesh
 > resource. In other mesh resources you may need to first access the
-> material by calling surface_get_material(). While in the
+> material by calling `surface_get_material()`. While in the
 > MeshInstance3D you would access the material using
-> get_surface_material() or material_override.
+> `get_surface_material()` or `material_override`.
 >
 
-Remember that the string passed into set_shader_parameter() must match the name
+Remember that the string passed into `set_shader_parameter()` must match the name
 of the uniform variable in the shader. You can use the
 uniform variable anywhere inside your shader. Here, we will
-use it to set the height value instead of arbitrarily multiplying by 0.5.
+use it to set the height value instead of arbitrarily multiplying by `0.5`.
 
 ```
 VERTEX.y += height * height_scale;
@@ -298,7 +298,7 @@ recalculate the normals in the shader or use a normal texture that corresponds
 to our noise. Godot makes both easy for us.
 
 You can calculate the new normal manually in the vertex function and then just
-set NORMAL. With NORMAL set, Godot will do all the difficult lighting
+set `NORMAL`. With `NORMAL` set, Godot will do all the difficult lighting
 calculations for us. We will cover this method in the next part of this
 tutorial, for now we will read normals from a texture.
 
@@ -314,18 +314,18 @@ Set this second uniform texture to another [NoiseTexture2D](https://docs.godoten
 
 @Image(source: "normal-set.png")
 
-When we have normals that correspond to a specific vertex we set NORMAL, but
+When we have normals that correspond to a specific vertex we set `NORMAL`, but
 if you have a normalmap that comes from a texture, set the normal using
-NORMAL_MAP in the fragment() function. This way Godot will handle
+`NORMAL_MAP` in the `fragment()` function. This way Godot will handle
 wrapping the texture around the mesh automatically.
 
 Lastly, in order to ensure that we are reading from the same places on the noise
-texture and the normalmap texture, we are going to pass the VERTEX.xz
-position from the vertex() function to the fragment() function. We do
+texture and the normalmap texture, we are going to pass the `VERTEX.xz`
+position from the `vertex()` function to the `fragment()` function. We do
 that using a <doc:shading_language#Varyings>.
 
-Above the vertex() define a varying vec2 called tex_position. And
-inside the vertex() function assign VERTEX.xz to tex_position.
+Above the `vertex()` define a `varying vec2` called `tex_position`. And
+inside the `vertex()` function assign `VERTEX.xz` to `tex_position`.
 
 ```
 varying vec2 tex_position;
@@ -337,7 +337,7 @@ void vertex() {
 }
 ```
 
-And now we can access tex_position from the fragment() function.
+And now we can access `tex_position` from the `fragment()` function.
 
 ```
 void fragment() {

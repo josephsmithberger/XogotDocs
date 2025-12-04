@@ -23,8 +23,8 @@ to make the quad cover the screen at all times so that the post-processing
 effect will be applied at all times, including in the editor.
 
 First, create a new MeshInstance3D and set its mesh to a QuadMesh. This creates
-a quad centered at position (0, 0, 0) with a width and height of 1. Set
-the width and height to 2 and enable **Flip Faces**. Right now, the quad
+a quad centered at position `(0, 0, 0)` with a width and height of `1`. Set
+the width and height to `2` and enable **Flip Faces**. Right now, the quad
 occupies a position in world space at the origin. However, we want it to move
 with the camera so that it always covers the entire screen. To do this, we will
 bypass the coordinate transforms that translate the vertex positions through the
@@ -32,11 +32,11 @@ difference coordinate spaces and treat the vertices as if they were already in
 clip space.
 
 The vertex shader expects coordinates to be output in clip space, which are coordinates
-ranging from -1 at the left and bottom of the screen to 1 at the top and right
-of the screen. This is why the QuadMesh needs to have height and width of 2.
+ranging from `-1` at the left and bottom of the screen to `1` at the top and right
+of the screen. This is why the QuadMesh needs to have height and width of `2`.
 Godot handles the transform from model to view space to clip space behind the scenes,
 so we need to nullify the effects of Godot's transformations. We do this by setting the
-POSITION built-in to our desired position. POSITION bypasses the built-in transformations
+`POSITION` built-in to our desired position. `POSITION` bypasses the built-in transformations
 and sets the vertex position in clip space directly.
 
 ```
@@ -49,10 +49,10 @@ void vertex() {
 }
 ```
 
-> Note: In versions of Godot earlier than 4.3, this code recommended using POSITION = vec4(VERTEX, 1.0);
-> which implicitly assumed the clip-space near plane was at 0.0.
+> Note: In versions of Godot earlier than 4.3, this code recommended using `POSITION = vec4(VERTEX, 1.0);`
+> which implicitly assumed the clip-space near plane was at `0.0`.
 > That code is now incorrect and will not work in versions 4.3+ as we
-> use a "reversed-z" depth buffer now where the near plane is at 1.0.
+> use a "reversed-z" depth buffer now where the near plane is at `1.0`.
 >
 
 Even with this vertex shader, the quad keeps disappearing. This is due to frustum
@@ -65,7 +65,7 @@ order to keep the quad from being culled, there are a few options:
 
 1. Add the QuadMesh as a child to the camera, so the camera is always pointed at it
 
-1. Set the Geometry property extra_cull_margin as large as possible in the QuadMesh
+1. Set the Geometry property `extra_cull_margin` as large as possible in the QuadMesh
 
 The second option ensures that the quad is visible in the editor, while the first
 option guarantees that it will still be visible even if the camera moves outside the cull margin.
@@ -74,13 +74,13 @@ You can also use both options.
 ## Depth texture
 
 To read from the depth texture, we first need to create a texture uniform set to the depth buffer
-by using hint_depth_texture.
+by using `hint_depth_texture`.
 
 ```
 uniform sampler2D depth_texture : hint_depth_texture;
 ```
 
-Once defined, the depth texture can be read with the texture() function.
+Once defined, the depth texture can be read with the `texture()` function.
 
 ```
 float depth = texture(depth_texture, SCREEN_UV).x;
@@ -91,20 +91,20 @@ float depth = texture(depth_texture, SCREEN_UV).x;
 > accessed from another viewport to which you have rendered.
 >
 
-The values returned by depth_texture are between 1.0 and 0.0 (corresponding to
+The values returned by `depth_texture` are between `1.0` and `0.0` (corresponding to
 the near and far plane, respectively, because of using a "reverse-z" depth buffer) and are nonlinear.
-When displaying depth directly from the depth_texture, everything will look almost
+When displaying depth directly from the `depth_texture`, everything will look almost
 black unless it is very close due to that nonlinearity. In order to make the depth value align with world or
 model coordinates, we need to linearize the value. When we apply the projection matrix to the
 vertex position, the z value is made nonlinear, so to linearize it, we multiply it by the
 inverse of the projection matrix, which in Godot, is accessible with the variable
-INV_PROJECTION_MATRIX.
+`INV_PROJECTION_MATRIX`.
 
 Firstly, take the screen space coordinates and transform them into normalized device
-coordinates (NDC). NDC run -1.0 to 1.0 in x and y directions and
-from 0.0 to 1.0 in the z direction when using the Vulkan backend.
-Reconstruct the NDC using SCREEN_UV for the x and y axis, and
-the depth value for z.
+coordinates (NDC). NDC run `-1.0` to `1.0` in `x` and `y` directions and
+from `0.0` to `1.0` in the `z` direction when using the Vulkan backend.
+Reconstruct the NDC using `SCREEN_UV` for the `x` and `y` axis, and
+the depth value for `z`.
 
 ```
 void fragment() {
@@ -116,15 +116,15 @@ void fragment() {
 > Note:
 >
 > This tutorial assumes the use of the Forward+ or Mobile renderers, which both
-> use Vulkan NDCs with a Z-range of [0.0, 1.0]. In contrast, the Compatibility
-> renderer uses OpenGL NDCs with a Z-range of [-1.0, 1.0]. For the Compatibility
+> use Vulkan NDCs with a Z-range of `[0.0, 1.0]`. In contrast, the Compatibility
+> renderer uses OpenGL NDCs with a Z-range of `[-1.0, 1.0]`. For the Compatibility
 > renderer, replace the NDC calculation with this instead:
 >
 > .. code-block:: glsl
 >
 > vec3 ndc = vec3(SCREEN_UV, depth) * 2.0 - 1.0;
 >
-> You can also use the CURRENT_RENDERER and RENDERER_COMPATIBILITY
+> You can also use the `CURRENT_RENDERER` and `RENDERER_COMPATIBILITY`
 > built-in defines for a shader that will work in all renderers:
 >
 > .. code-block:: glsl
@@ -136,8 +136,8 @@ void fragment() {
 > #endif
 >
 
-Convert NDC to view space by multiplying the NDC by INV_PROJECTION_MATRIX.
-Recall that view space gives positions relative to the camera, so the z value will give us
+Convert NDC to view space by multiplying the NDC by `INV_PROJECTION_MATRIX`.
+Recall that view space gives positions relative to the camera, so the `z` value will give us
 the distance to the point.
 
 ```
@@ -149,11 +149,11 @@ void fragment() {
 }
 ```
 
-Because the camera is facing the negative z direction, the position will have a negative z value.
-In order to get a usable depth value, we have to negate view.z.
+Because the camera is facing the negative `z` direction, the position will have a negative `z` value.
+In order to get a usable depth value, we have to negate `view.z`.
 
 The world position can be constructed from the depth buffer using the following code, using the
-INV_VIEW_MATRIX to transform the position from view space into world space.
+`INV_VIEW_MATRIX` to transform the position from view space into world space.
 
 ```
 void fragment() {
@@ -165,7 +165,7 @@ void fragment() {
 
 ## Example shader
 
-Once we add a line to output to ALBEDO, we have a complete shader that looks something like this.
+Once we add a line to output to `ALBEDO`, we have a complete shader that looks something like this.
 This shader lets you visualize the linear depth or world space coordinates, depending on which
 line is commented out.
 
@@ -218,8 +218,8 @@ func _ready():
   # Create a single triangle out of vertices:
   var verts = PackedVector3Array()
   verts.append(Vector3(-1.0, -1.0, 0.0))
-  verts.append(Vector3(-1.0, 3.0, 0.0))
   verts.append(Vector3(3.0, -1.0, 0.0))
+  verts.append(Vector3(-1.0, 3.0, 0.0))
 
   # Create an array of arrays.
   # This could contain normals, colors, UVs, etc.
@@ -232,10 +232,10 @@ func _ready():
 ```
 
 > Note: The triangle is specified in normalized device coordinates.
-> Recall, NDC run from -1.0 to 1.0 in both the x and y
-> directions. This makes the screen 2 units wide and 2 units
+> Recall, NDC run from `-1.0` to `1.0` in both the `x` and `y`
+> directions. This makes the screen `2` units wide and `2` units
 > tall. In order to cover the entire screen with a single triangle, use
-> a triangle that is 4 units wide and 4 units tall, double its
+> a triangle that is `4` units wide and `4` units tall, double its
 > height and width.
 >
 

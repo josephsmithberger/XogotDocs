@@ -30,10 +30,10 @@ KEYN | string | string | string
 
 The "lang" tags must represent a language, which must be one of the <doc:locales> supported by the engine, or they must start with an underscore (`_`),
 which means the related column is served as comment and won't be imported.
-The "KEY" tags must be unique and represent a string universally (they are usually in
-uppercase, to differentiate from other strings). These keys will be replaced at
-runtime by the matching translated string. Note that the case is important,
-"KEY1" and "Key1" will be different keys.
+The `KEY` tags must be unique and represent a string universally. By convention, these are
+usually in uppercase to differentiate them from other strings. These keys will be replaced at
+runtime by the matching translated string. Note that the case is important:
+`KEY1` and `Key1` will be different keys.
 The top-left cell is ignored and can be left empty or having any content.
 Here's an example:
 
@@ -62,6 +62,58 @@ BYE,Goodbye,Adiós,さようなら
 QUOTE,"""Hello"" said the man.","""Hola"" dijo el hombre.",「こんにちは」男は言いました
 ```
 
+### Specifying plural forms
+
+Since Godot 4.6, it is possible to specify
+<doc:internationalizing_games#Pluralization> in CSV files.
+
+This is done by adding a column named `?plural` anywhere in the table
+(except on the first column, which is reserved for translation keys).
+By convention, it's recommended to place it on the second column.
+Note that in the example below, the key column is the one that contains English
+localization.
+
+```
+en,?plural,fr,ru,ja,zh
+?pluralrule,,nplurals=2; plural=(n >= 2);,,
+There is %d apple,There are %d apples,Il y a %d pomme,Есть %d яблоко,リンゴが%d個あります,那里有%d个苹果
+,,Il y a %d pommes,Есть %d яблока,,
+,,,Есть %d яблок,,
+```
+
+> Note:
+>
+> Automatic Control translation is not supported when using plural forms. You must
+> translate the string manually using [tr_n()](https://docs.godotengine.org/en/stable/classes/class_object_method_tr_n.html#class-object_method_tr_n).
+>
+
+### Specifying translation contexts
+
+Since Godot 4.6, it is possible to specify
+<doc:internationalizing_games#Translation-Contexts>
+in CSV files. This can be used to disambiguate identical source strings that
+have different meanings. While this is generally not needed when using translation
+keys `LIKE_THIS`, it's useful when using plain English text as translation keys.
+
+This is done by adding a column named `?context` column anywhere in the table
+(except on the first column, which is reserved for translation keys).
+By convention, it's recommended to place it on the second column, or after
+`?plural` if it's also used. Note that in the example below, the key column
+is the one that contains English localization.
+
+```
+en,?context,fr,ru,ja,zh
+Letter,Alphabet,Lettre,Буква,字母,字母
+Letter,Message,Courrier,Письмо,手紙,信件
+```
+
+> Note:
+>
+> Automatic Control translation is not supported when using context. You must
+> translate the string manually using [tr()](https://docs.godotengine.org/en/stable/classes/class_object_method_tr.html#class-object_method_tr)
+> or [tr_n()](https://docs.godotengine.org/en/stable/classes/class_object_method_tr_n.html#class-object_method_tr_n).
+>
+
 ## CSV importer
 
 Godot will treat CSV files as translations by default. It will import them
@@ -72,10 +124,17 @@ translations to load when the game runs, specified in project.godot (or the
 project settings). Godot allows loading and removing translations at
 runtime as well.
 
-Select the .csv file and access the **Import** dock to define import
+Select the `.csv` file and access the **Import** dock to define import
 options. You can toggle the compression of the imported translations, and
 select the delimiter to use when parsing the CSV file.
 
 @Image(source: "import_csv.png")
 
 Be sure to click **Reimport** after any change to these options.
+
+## Loading the CSV file as a translation
+
+Once a CSV file is imported, it is **not** automatically registered as a translation
+source for the project. Remember to follow the steps described in
+<doc:internationalizing_games#Configuring-Imported-Translation> so that the
+translation is actually used when running the project.

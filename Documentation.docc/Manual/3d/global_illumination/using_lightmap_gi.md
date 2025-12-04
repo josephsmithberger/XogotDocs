@@ -18,9 +18,9 @@ light bleeding, and indirect light will often look better. The downside is that
 baking lightmaps takes longer compared to baking VoxelGI. While baking VoxelGI
 can be done in a matter of seconds, baking lightmaps can take several minutes if
 not more. This can slow down iteration speed significantly, so it is recommended
-to bake lightmaps only when you actually need to see changes in lighting. Since
-Godot 4.0, lightmaps are baked on the GPU, making light baking faster if you
-have a mid-range or high-end dedicated GPU.
+to bake lightmaps only when you actually need to see changes in lighting.
+Lightmaps are baked on the GPU, making light baking faster if you have a
+mid-range or high-end dedicated GPU.
 
 Baking lightmaps will also reserve baked materials' UV2 slot, which means you can
 no longer use it for other purposes in materials (either in the built-in
@@ -102,8 +102,8 @@ The **Meshes > Light Baking** option must be set to **Static Lightmaps (VoxelGI/
 When unwrapping on import, you can adjust the texture size using the **Meshes > Lightmap
 Texel Size** option. Lower values will result in more detailed lightmaps,
 possibly resulting in higher visual quality at the cost of longer bake times and
-larger lightmap file sizes. The default value of 0.2 is suited for
-small/medium-sized scenes, but you may want to increase it to 0.5 or even
+larger lightmap file sizes. The default value of `0.2` is suited for
+small/medium-sized scenes, but you may want to increase it to `0.5` or even
 more for larger scenes. This is especially the case if you're baking indirect
 lighting only, as indirect light is low-frequency data (which means it doesn't
 need high-resolution textures to be accurately represented).
@@ -121,7 +121,7 @@ their UV2 maps properly generated.
 > This lets you increase the level of lightmap detail for specific
 > MeshInstance3D nodes (but not decrease it).
 >
-> Also, the *.unwrap_cache files should not be ignored in version control
+> Also, the `*.unwrap_cache` files should not be ignored in version control
 > as these files guarantee that UV2 reimports are consistent across platforms
 > and engine versions.
 >
@@ -348,14 +348,14 @@ memory usage during lightmap baking. The **Supersampling Factor** changes the si
 the lightmap is rendered at before downsampling.
 
 - **Bounces:** The number of bounces to use for indirect lighting. The default
-value (3) is a good compromise between bake times and quality. Higher
+value (`3`) is a good compromise between bake times and quality. Higher
 values will make light bounce around more times before it stops, which makes
 indirect lighting look smoother (but also possibly brighter depending on
 materials and geometry).
 
 - **Bounce Indirect Energy:** The global multiplier to use when baking lights'
 indirect energy. This multiplies each light's own **Indirect Energy** value.
-Values different from 1.0 are not physically accurate, but can be used for
+Values different from `1.0` are not physically accurate, but can be used for
 artistic effect.
 
 - **Directional:** If enabled, stores directional information for lightmaps.
@@ -399,7 +399,7 @@ shadows casted on baked surfaces (for lights with **Dynamic** bake mode).
 - **Max Texture Size:** The maximum texture size for the generated texture
 atlas. Higher values will result in fewer slices being generated, but may not
 work on all hardware as a result of hardware limitations on texture sizes.
-Leave this at its default value of 16384 if unsure.
+Leave this at its default value of `16384` if unsure.
 
 - **Environment > Mode:** Controls how environment lighting is sourced when
 baking lightmaps. The default value of **Scene** is suited for levels with
@@ -509,7 +509,7 @@ Godot offers two denoising algorithms:
 JNLM is the default denoising method and is included in Godot. It uses a simple
 but efficient denoising algorithm known as non-local means. JNLM runs on the
 GPU using a compute shader, and is compatible with any GPU that can run Godot
-4's Vulkan-based rendering methods. No additional setup is required.
+4's RenderingDevice-based renderers. No additional setup is required.
 
 JNLM's denoising can be adjusted using the **Denoiser Strength** property that
 is visible when **Use Denoiser** enabled. Higher values can be more effective at
@@ -539,14 +539,14 @@ If hardware acceleration is not available, OIDN will fall back to multithreaded
 CPU-based denoising. To confirm whether GPU-based denoising is working, use a
 GPU utilization monitor while baking lightmaps and look at the GPU utilization
 percentage and VRAM utilization while the denoising step is shown in the Godot
-editor. The nvidia-smi command line tool can be useful for this.
+editor. The `nvidia-smi` command line tool can be useful for this.
 
 OIDN is not included with Godot due to its relatively large download size. You
 can download precompiled OIDN binary packages from its
 website.
 Extract the package to a location on your PC, then specify the path to the
-oidnDenoise executable in the Editor Settings (**FileSystem > Tools > OIDN >
-OIDN Denoise Path**). This executable is located within the bin folder of
+`oidnDenoise` executable in the Editor Settings (**FileSystem > Tools > OIDN >
+OIDN Denoise Path**). This executable is located within the `bin` folder of
 the binary package you extracted.
 
 After specifying the path to the OIDN denoising executable, change the denoising
@@ -581,7 +581,7 @@ real-time).
 There are 2 ways to add light probes to a scene:
 
 - **Automatic:** Set **Gen Probes > Subdiv** to a value other than **Disabled**,
-then bake lightmaps. The default is 8, but you can choose a greater value
+then bake lightmaps. The default is `8`, but you can choose a greater value
 to improve precision at the cost of longer bake times and larger output file
 size.
 
@@ -607,8 +607,8 @@ you must bake lightmaps again for them to be effective.
 The **Data > Light Data** property in the LightmapGI node contains the lightmap
 data after baking. Textures are saved to disk, but this also contains the
 capture data for dynamic objects, which can be heavy. If you are using a scene
-in .tscn format, you should save this resource to an external binary
-.lmbake file to avoid bloating the .tscn scene with binary data encoded
+in `.tscn` format, you should save this resource to an external binary
+`.lmbake` file to avoid bloating the `.tscn` scene with binary data encoded
 in Base64.
 
 > Tip:

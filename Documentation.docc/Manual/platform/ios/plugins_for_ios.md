@@ -76,17 +76,17 @@ don't behave this way it should be treated as a bug.
 
 The pending event interface consists of two methods:
 
-- get_pending_event_count()
+- `get_pending_event_count()`
 Returns the number of pending events on the queue.
 
-- Variant pop_pending_event()
+- `Variant pop_pending_event()`
 Pops the first event from the queue and returns it.
 
 ## Store Kit
 
 Implemented in Godot iOS InAppStore plugin.
 
-The Store Kit API is accessible through the InAppStore singleton.
+The Store Kit API is accessible through the `InAppStore` singleton.
 It is initialized automatically.
 
 The following methods are available and documented below:
@@ -106,13 +106,13 @@ and the pending events interface:
    Variant pop_pending_event()
 ```
 
-### purchase
+### `purchase`
 
-Purchases a product ID through the Store Kit API. You have to call finish_transaction(product_id) once you
-receive a successful response or call set_auto_finish_transaction(true) prior to calling purchase().
+Purchases a product ID through the Store Kit API. You have to call `finish_transaction(product_id)` once you
+receive a successful response or call `set_auto_finish_transaction(true)` prior to calling `purchase()`.
 These two methods ensure the transaction is completed.
 
-Takes a dictionary as a parameter, with one field, product_id, a
+Takes a dictionary as a parameter, with one field, `product_id`, a
 string with your product ID. Example:
 
 ```
@@ -141,11 +141,11 @@ On success:
 }
 ```
 
-### request_product_info
+### `request_product_info`
 
 Requests the product info on a list of product IDs.
 
-Takes a dictionary as a parameter, with a single product_ids key to which a
+Takes a dictionary as a parameter, with a single `product_ids` key to which a
 string array of product IDs is assigned. Example:
 
 ```
@@ -167,7 +167,7 @@ The response event will be a dictionary with the following fields:
 }
 ```
 
-### restore_purchases
+### `restore_purchases`
 
 Restores previously made purchases on user's account. This will create
 response events for each previously purchased product ID.
@@ -182,10 +182,10 @@ The response events will be dictionaries with the following fields:
 }
 ```
 
-### set_auto_finish_transaction
+### `set_auto_finish_transaction`
 
-If set to true, once a purchase is successful, your purchase will be
-finalized automatically. Call this method prior to calling purchase().
+If set to `true`, once a purchase is successful, your purchase will be
+finalized automatically. Call this method prior to calling `purchase()`.
 
 Takes a boolean as a parameter which specifies if purchases should be
 automatically finalized. Example:
@@ -194,12 +194,12 @@ automatically finalized. Example:
 in_app_store.set_auto_finish_transaction(true)
 ```
 
-### finish_transaction
+### `finish_transaction`
 
 If you don't want transactions to be automatically finalized, call this
 method after you receive a successful purchase response.
 
-Takes a string product_id as an argument. product_id specifies what product to
+Takes a string `product_id` as an argument. `product_id` specifies what product to
 finalize the purchase on. Example:
 
 ```
@@ -210,7 +210,7 @@ in_app_store.finish_transaction("my_product1")
 
 Implemented in Godot iOS GameCenter plugin.
 
-The Game Center API is available through the GameCenter singleton. It
+The Game Center API is available through the `GameCenter` singleton. It
 has the following methods:
 
 ```
@@ -232,7 +232,7 @@ int get_pending_event_count()
 Variant pop_pending_event()
 ```
 
-### authenticate
+### `authenticate`
 
 Authenticates a user in Game Center.
 
@@ -259,15 +259,15 @@ On success:
 }
 ```
 
-### post_score
+### `post_score`
 
 Posts a score to a Game Center leaderboard.
 
 Takes a dictionary as a parameter, with two fields:
 
-- score a float number
+- `score` a float number
 
-- category a string with the category name
+- `category` a string with the category name
 
 Example:
 
@@ -297,18 +297,18 @@ On success:
 }
 ```
 
-### award_achievement
+### `award_achievement`
 
 Modifies the progress of a Game Center achievement.
 
 Takes a Dictionary as a parameter, with 3 fields:
 
-- name (string) the achievement name
+- `name` (string) the achievement name
 
-- progress (float) the achievement progress from 0.0 to 100.0
-(passed to GKAchievement::percentComplete)
+- `progress` (float) the achievement progress from 0.0 to 100.0
+(passed to `GKAchievement::percentComplete`)
 
-- show_completion_banner (bool) whether Game Center should display
+- `show_completion_banner` (bool) whether Game Center should display
 an achievement banner at the top of the screen
 
 Example:
@@ -338,7 +338,7 @@ On success:
 }
 ```
 
-### reset_achievements
+### `reset_achievements`
 
 Clears all Game Center achievements. The function takes no parameters.
 
@@ -363,7 +363,7 @@ On success:
 }
 ```
 
-### request_achievements
+### `request_achievements`
 
 Request all the Game Center achievements the player has made progress
 on. The function takes no parameters.
@@ -391,7 +391,7 @@ On success:
 }
 ```
 
-### request_achievement_descriptions
+### `request_achievement_descriptions`
 
 Request the descriptions of all existing Game Center achievements
 regardless of progress. The function takes no parameters.
@@ -424,18 +424,18 @@ On success:
 }
 ```
 
-### show_game_center
+### `show_game_center`
 
 Displays the built-in Game Center overlay showing leaderboards,
 achievements, and challenges.
 
 Takes a Dictionary as a parameter, with two fields:
 
-- view (string) (optional) the name of the view to present. Accepts
+- `view` (string) (optional) the name of the view to present. Accepts
 "default", "leaderboards", "achievements", or "challenges". Defaults
 to "default".
 
-- leaderboard_name (string) (optional) the name of the leaderboard
+- `leaderboard_name` (string) (optional) the name of the leaderboard
 to present. Only used when "view" is "leaderboards" (or "default" is
 configured to show leaderboards). If not specified, Game Center will
 display the aggregate leaderboard.

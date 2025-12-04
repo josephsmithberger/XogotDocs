@@ -27,13 +27,13 @@ using a .NET collection would be more performant.
 > The Godot collections contain constructors from generic .NET collection interfaces
 > that copy their elements, and the Godot collections can be used with the
 > LINQ
-> ToList, ToArray and ToDictionary methods. But keep in mind this conversion
+> `ToList`, `ToArray` and `ToDictionary` methods. But keep in mind this conversion
 > requires marshaling every element in the collection and copies it to a new collection
 > so it can be expensive.
 >
 
 Despite this, the Godot collections are optimized to try and avoid unnecessary
-marshaling, so methods like Sort or Reverse are implemented with a single
+marshaling, so methods like `Sort` or `Reverse` are implemented with a single
 interop call and don't need to marshal every element. Keep an eye out for generic APIs
 that take collection interfaces like LINQ
 because every method requires iterating the collection and, therefore, marshaling
@@ -60,17 +60,17 @@ use a Godot collection.
 - Do you need a Godot collection that represents a list or sequential set of data?
 
 
-Godot <doc:c_sharp_collections#Array> are similar to the C# collection List<T>.
+Godot <doc:c_sharp_collections#Array> are similar to the C# collection `List<T>`.
 Godot <doc:c_sharp_collections#Packedarray> are more memory-efficient arrays,
-in C# use one of the supported System.Array types.
+in C# use one of the supported `System.Array` types.
 
 
 
 
-- Godot <doc:c_sharp_collections#Array> are similar to the C# collection List<T>.
+- Godot <doc:c_sharp_collections#Array> are similar to the C# collection `List<T>`.
 
 - Godot <doc:c_sharp_collections#Packedarray> are more memory-efficient arrays,
-in C# use one of the supported System.Array types.
+in C# use one of the supported `System.Array` types.
 
 - Do you need a Godot collection that maps a set of keys to a set of values?
 
@@ -89,10 +89,10 @@ use a Godot collection.
 
 - If not, consider choosing an appropriate .NET collection.
 
-- Godot <doc:c_sharp_collections#Array> are similar to the C# collection List<T>.
+- Godot <doc:c_sharp_collections#Array> are similar to the C# collection `List<T>`.
 
 - Godot <doc:c_sharp_collections#Packedarray> are more memory-efficient arrays,
-in C# use one of the supported System.Array types.
+in C# use one of the supported `System.Array` types.
 
 - Godot <doc:c_sharp_collections#Dictionary> store pairs of keys and values
 and allow easy access to the values by their associated key.
@@ -102,41 +102,41 @@ and allow easy access to the values by their associated key.
 ### PackedArray
 
 Godot packed arrays are implemented as an array of a specific type, allowing it to be
-more tightly packed as each element has the size of the specific type, not Variant.
+more tightly packed as each element has the size of the specific type, not `Variant`.
 
-In C#, packed arrays are replaced by System.Array:
+In C#, packed arrays are replaced by `System.Array`:
 
 GDScript | C#
 -------- | ---
-PackedByteArray | byte[]
-PackedInt32Array | int[]
-PackedInt64Array | long[]
-PackedFloat32Array | float[]
-PackedFloat64Array | double[]
-PackedStringArray | string[]
-PackedVector2Array | Vector2[]
-PackedVector3Array | Vector3[]
-PackedVector4Array | Vector4[]
-PackedColorArray | Color[]
+`PackedByteArray` | `byte[]`
+`PackedInt32Array` | `int[]`
+`PackedInt64Array` | `long[]`
+`PackedFloat32Array` | `float[]`
+`PackedFloat64Array` | `double[]`
+`PackedStringArray` | `string[]`
+`PackedVector2Array` | `Vector2[]`
+`PackedVector3Array` | `Vector3[]`
+`PackedVector4Array` | `Vector4[]`
+`PackedColorArray` | `Color[]`
 
 Other C# arrays are not supported by the Godot C# API since a packed array equivalent
 does not exist. See the list of :ref:`c_sharp_variant_compatible_types`.
 
 ### Array
 
-Godot arrays are implemented as an array of Variant and can contain several elements
-of any type. In C#, the equivalent type is Godot.Collections.Array.
+Godot arrays are implemented as an array of `Variant` and can contain several elements
+of any type. In C#, the equivalent type is `Godot.Collections.Array`.
 
-The generic Godot.Collections.Array<T> type allows restricting the element type to
+The generic `Godot.Collections.Array<T>` type allows restricting the element type to
 a :ref:`Variant-compatible type <c_sharp_variant_compatible_types>`.
 
-An untyped Godot.Collections.Array can be converted to a typed array using the
-Godot.Collections.Array<T>(Godot.Collections.Array) constructor.
+An untyped `Godot.Collections.Array` can be converted to a typed array using the
+`Godot.Collections.Array<T>(Godot.Collections.Array)` constructor.
 
 > Note:
 >
 > Despite the name, Godot arrays are more similar to the C# collection
-> List<T> than System.Array. Their size is not fixed and can grow
+> `List<T>` than `System.Array`. Their size is not fixed and can grow
 > or shrink as elements are added/removed from the collection.
 >
 
@@ -149,7 +149,7 @@ any | System.Linq.Enumerable.Any
 append | Add
 append_array | AddRange
 assign | Clear and AddRange
-back | Array[^1]orSystem.Linq.Enumerable.LastorSystem.Linq.Enumerable.LastOrDefault
+back | `Array[^1]`orSystem.Linq.Enumerable.LastorSystem.Linq.Enumerable.LastOrDefault
 bsearch | BinarySearch
 bsearch_custom | N/A
 clear | Clear
@@ -159,14 +159,14 @@ erase | Remove
 fill | Fill
 filter | UseSystem.Linq.Enumerable.Where
 find | IndexOf
-front | Array[0]orSystem.Linq.Enumerable.FirstorSystem.Linq.Enumerable.FirstOrDefault
+front | `Array[0]`orSystem.Linq.Enumerable.FirstorSystem.Linq.Enumerable.FirstOrDefault
 get_typed_builtin | N/A
 get_typed_class_name | N/A
 get_typed_script | N/A
 has | Contains
 hash | GD.Hash
 insert | Insert
-is_empty | UseCount == 0
+is_empty | Use`Count == 0`
 is_read_only | IsReadOnly
 is_same_typed | N/A
 is_typed | N/A
@@ -175,11 +175,11 @@ map | System.Linq.Enumerable.Select
 max | Max
 min | Min
 pick_random | PickRandom (Consider usingSystem.Random)
-pop_at | Array[i]withRemoveAt(i)
-pop_back | Array[^1]withRemoveAt(Count - 1)
-pop_front | Array[0]withRemoveAt(0)
-push_back | Insert(Count, item)
-push_front | Insert(0, item)
+pop_at | `Array[i]`with`RemoveAt(i)`
+pop_back | `Array[^1]`with`RemoveAt(Count - 1)`
+pop_front | `Array[0]`with`RemoveAt(0)`
+push_back | `Insert(Count, item)`
+push_front | `Insert(0, item)`
 reduce | System.Linq.Enumerable.Aggregate
 remove_at | RemoveAt
 resize | Resize
@@ -201,19 +201,19 @@ operator [] | Array[int] indexer
 
 ### Dictionary
 
-Godot dictionaries are implemented as a dictionary with Variant keys and values.
-In C#, the equivalent type is Godot.Collections.Dictionary.
+Godot dictionaries are implemented as a dictionary with `Variant` keys and values.
+In C#, the equivalent type is `Godot.Collections.Dictionary`.
 
-The generic Godot.Collections.Dictionary<TKey, TValue> type allows restricting the key
+The generic `Godot.Collections.Dictionary<TKey, TValue>` type allows restricting the key
 and value types to a :ref:`Variant-compatible type <c_sharp_variant_compatible_types>`.
 
-An untyped Godot.Collections.Dictionary can be converted to a typed dictionary using the
-Godot.Collections.Dictionary<TKey, TValue>(Godot.Collections.Dictionary) constructor.
+An untyped `Godot.Collections.Dictionary` can be converted to a typed dictionary using the
+`Godot.Collections.Dictionary<TKey, TValue>(Godot.Collections.Dictionary)` constructor.
 
 > Tip:
 >
 > If you need a dictionary where the key is typed but not the value, use
-> Variant as the TValue generic parameter of the typed dictionary.
+> `Variant` as the `TValue` generic parameter of the typed dictionary.
 >
 > .. code-block:: csharp
 >
@@ -233,7 +233,7 @@ get | Dictionary[Variant] indexer or TryGetValue
 has | ContainsKey
 has_all | N/A
 hash | GD.Hash
-is_empty | UseCount == 0
+is_empty | Use`Count == 0`
 is_read_only | IsReadOnly
 keys | Keys
 make_read_only | MakeReadOnly

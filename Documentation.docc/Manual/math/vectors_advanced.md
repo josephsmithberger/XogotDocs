@@ -32,6 +32,10 @@ The dot product between a **unit vector** and any **point in space**
 (yes, this time we do dot product between vector and position), returns
 the **distance from the point to the plane**:
 
+```
+var distance = normal.dot(point)
+```
+
 But not just the absolute distance, if the point is in the negative half
 space the distance will be negative, too:
 
@@ -64,12 +68,24 @@ for both. It's the same as before, but D is the distance from the origin
 to the plane, travelling in N direction. As an example, imagine you want
 to reach a point in the plane, you will just do:
 
+```
+var point_in_plane = N*D
+```
+
 This will stretch (resize) the normal vector and make it touch the
 plane. This math might seem confusing, but it's actually much simpler
 than it seems. If we want to tell, again, the distance from the point to
 the plane, we do the same but adjusting for distance:
 
+```
+var distance = N.dot(point) - D
+```
+
 The same thing, using a built-in function:
+
+```
+var distance = plane.distance_to(point)
+```
 
 This will, again, return either a positive or negative distance.
 
@@ -77,8 +93,17 @@ Flipping the polarity of the plane can be done by negating both
 N and D. This will result in a plane in the same position, but with
 inverted negative and positive half spaces:
 
+```
+N = -N
+D = -D
+```
+
 Godot also implements this operator in [Plane](https://docs.godotengine.org/en/stable/classes/class_plane.html#class-plane).
 So, using the format below will work as expected:
+
+```
+var inverted_plane = -plane
+```
 
 So, remember, the plane's main practical use is that we can
 calculate the distance to it. So, when is it useful to calculate the
@@ -94,14 +119,35 @@ In the case of a normal and a point, most of the work is done, as the
 normal is already computed, so calculate D from the dot product of
 the normal and the point.
 
+```
+var N = normal
+var D = normal.dot(point)
+```
+
 For two points in space, there are actually two planes that pass through
 them, sharing the same space but with normal pointing to the opposite
 directions. To compute the normal from the two points, the direction
 vector must be obtained first, and then it needs to be rotated 90
 degrees to either side:
 
+```
+# Calculate vector from `a` to `b`.
+var dvec = point_a.direction_to(point_b)
+# Rotate 90 degrees.
+var normal = Vector2(dvec.y, -dvec.x)
+# Alternatively (depending the desired side of the normal):
+# var normal = Vector2(-dvec.y, dvec.x)
+```
+
 The rest is the same as the previous example. Either point_a or
 point_b will work, as they are in the same plane:
+
+```
+var N = normal
+var D = normal.dot(point_a)
+# this works the same
+# var D = normal.dot(point_b)
+```
 
 Doing the same in 3D is a little more complex and is explained
 further down.
@@ -125,6 +171,15 @@ can't, then the point is inside.
 
 Code should be something like this:
 
+```
+var inside = true
+for p in planes:
+    # check if distance to plane is positive
+    if (p.distance_to(point) > 0):
+        inside = false
+        break # with one that fails, it's enough
+```
+
 Pretty cool, huh? But this gets much better! With a little more effort,
 similar logic will let us know when two convex polygons are overlapping
 too. This is called the Separating Axis Theorem (or SAT) and most
@@ -140,6 +195,40 @@ the planes of B against the points of A:
 @Image(source: "tutovec14.png")
 
 Code should be something like this:
+
+```
+var overlapping = true
+
+for p in planes_of_A:
+    var all_out = true
+    for v in points_of_B:
+        if (p.distance_to(v) < 0):
+            all_out = false
+            break
+
+    if (all_out):
+        # a separating plane was found
+        # do not continue testing
+        overlapping = false
+        break
+
+if (overlapping):
+    # only do this check if no separating plane
+    # was found in planes of A
+    for p in planes_of_B:
+        var all_out = true
+        for v in points_of_A:
+            if (p.distance_to(v) < 0):
+                all_out = false
+                break
+
+        if (all_out):
+            overlapping = false
+            break
+
+if (overlapping):
+    print("Polygons Collided!")
+```
 
 As you can see, planes are quite useful, and this is the tip of the
 iceberg. You might be wondering what happens with non convex polygons.
@@ -181,6 +270,76 @@ edges of polygon B
 @Image(source: "tutovec23.png")
 
 So the final algorithm is something like:
+
+```
+var overlapping = true
+
+for p in planes_of_A:
+    var all_out = true
+    for v in points_of_B:
+        if (p.distance_to(v) < 0):
+            all_out = false
+            break
+
+    if (all_out):
+        # a separating plane was found
+        # do not continue testing
+        overlapping = false
+        break
+
+if (overlapping):
+    # only do this check if no separating plane
+    # was found in planes of A
+    for p in planes_of_B:
+        var all_out = true
+        for v in points_of_A:
+            if (p.distance_to(v) < 0):
+                all_out = false
+                break
+
+        if (all_out):
+            overlapping = false
+            break
+
+if (overlapping):
+    for ea in edges_of_A:
+        for eb in edges_of_B:
+            var n = ea.cross(eb)
+            if (n.length() == 0):
+                continue
+
+            var max_A = -1e20 # tiny number
+            var min_A = 1e20 # huge number
+
+            # we are using the dot product directly
+            # so we can map a maximum and minimum range
+            # for each polygon, then check if they
+            # overlap.
+
+            for v in points_of_A:
+                var d = n.dot(v)
+                max_A = max(max_A, d)
+                min_A = min(min_A, d)
+
+            var max_B = -1e20 # tiny number
+            var min_B = 1e20 # huge number
+
+            for v in points_of_B:
+                var d = n.dot(v)
+                max_B = max(max_B, d)
+                min_B = min(min_B, d)
+
+            if (min_A > max_B or min_B > max_A):
+                # not overlapping!
+                overlapping = false
+                break
+
+        if (not overlapping):
+            break
+
+if (overlapping):
+   print("Polygons collided!")
+```
 
 ## More information
 

@@ -69,7 +69,7 @@ at various points, and change their timing.
 Each line in the Animation Panel is an animation track that references a
 Normal or Transform property of a node. Each track stores a path to
 a node and its affected property. For example, the position track
-in the illustration refers to the position property of the Sprite2D
+in the illustration refers to the `position` property of the Sprite2D
 node.
 
 @Image(source: "animation_normal_track.png", alt: "Example of Normal animation tracks") {Example of Normal animation tracks}
@@ -79,7 +79,7 @@ node.
 > If you animate the wrong property, you can edit a track's path at any time
 > by double-clicking on it and typing the new path. Play the animation using the
 > "Play from beginning" button  (or pressing
-> `Shift + D` on keyboard) to see the changes instantly.
+> ``Shift + D`` on keyboard) to see the changes instantly.
 >
 
 ## Tutorial: Creating a simple animation
@@ -209,7 +209,7 @@ values. This can be:
 
 - **Discrete:** Only update the property on keyframes
 
-- **Capture:** if the first keyframe's time is greater than 0.0, the
+- **Capture:** if the first keyframe's time is greater than `0.0`, the
 current value of the property will be remembered and
 will be blended with the first animation key. For example, you
 could use the Capture mode to move a node that's located anywhere
@@ -291,9 +291,9 @@ then add tracks for each property that you want to reset.
 The only keyframe should be at time 0, and give it the desired default value
 for each track.
 
-If AnimationPlayer's **Reset On Save** property is set to true,
+If AnimationPlayer's **Reset On Save** property is set to `true`,
 the scene will be saved with the effects of the reset animation applied
-(as if it had been seeked to time 0.0).
+(as if it had been seeked to time `0.0`).
 This only affects the saved file – the property tracks in the editor stay
 where they were.
 
@@ -342,10 +342,10 @@ and [play_section_with_markers_backwards()](https://docs.godotengine.org/en/stab
 methods. If no start marker is specified then the beginning of the animation is
 used, and if no end marker is specified, then the end of the animation is used.
 
-If the end marker is after the end of the animation then the AnimationPlayer will
+If the end marker is after the end of the animation then the `AnimationPlayer` will
 clamp the end of the section so it does not go past the end of the animation.
 
-To preview the animation between two markers use `Shift + Click` to
+To preview the animation between two markers use ``Shift + Click`` to
 select the markers. When two are selected the space between them should be
 highlighted in red.
 

@@ -71,8 +71,8 @@ Leave this property on **Once** (default) unless you need the reflection probe
 to update every frame.
 
 - **Intensity:** The brightness of the reflections and ambient lighting. This
-usually doesn't need to be changed from its default value of 1.0, but you
-can decrease it 1.0 if you find that reflections look too strong.
+usually doesn't need to be changed from its default value of `1.0`, but you
+can decrease it `1.0` if you find that reflections look too strong.
 
 - **Max Distance:** Controls the maximum distance used by the ReflectionProbe's
 internal camera. The distance is always at least equal to the **Extents**, but

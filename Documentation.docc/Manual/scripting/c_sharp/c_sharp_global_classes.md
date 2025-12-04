@@ -4,7 +4,7 @@
 Global classes (also known as named scripts) are types registered in Godot's
 editor so they can be used more conveniently.
 <doc:index#Basics-Class-Name>, this is achieved
-using the class_name keyword at the top of a script. This page describes how
+using the `class_name` keyword at the top of a script. This page describes how
 to achieve the same effect in C#.
 
 - Global classes show up in the Add Node and Create Resource dialogs.
@@ -13,7 +13,7 @@ to achieve the same effect in C#.
 inspector restricts assignment, allowing only instances of that global class
 or any derived classes.
 
-Global classes are registered with the [GlobalClass] attribute.
+Global classes are registered with the `[GlobalClass]` attribute.
 
 ```
 using Godot;
@@ -28,14 +28,14 @@ public partial class MyNode : Node
 >
 > The file name must match the class name in **case-sensitive** fashion.
 > For example, a global class named "MyNode" must have a file name of
-> MyNode.cs, not myNode.cs.
+> `MyNode.cs`, not `myNode.cs`.
 >
 
-The MyNode type will be registered as a global class with the same name as the type's name.
+The `MyNode` type will be registered as a global class with the same name as the type's name.
 
 @Image(source: "globalclasses_addnode.png")
 
-The Select a Node window for the MyNode exported property filters the list
+The Select a Node window for the `MyNode` exported property filters the list
 of nodes in the scene to match the assignment restriction.
 
 ```
@@ -50,8 +50,8 @@ public partial class Main : Node
 
 If a custom type isn't registered as a global class, the assignment is
 restricted to the Godot type the custom type is based on. For example, inspector
-assignments to an export of the type MySimpleSprite2D are restricted to
-Sprite2D and derived types.
+assignments to an export of the type `MySimpleSprite2D` are restricted to
+`Sprite2D` and derived types.
 
 ```
 public partial class MySimpleSprite2D : Sprite2D
@@ -59,7 +59,7 @@ public partial class MySimpleSprite2D : Sprite2D
 }
 ```
 
-When combined with the [GlobalClass] attribute, the [Icon] attribute
+When combined with the `[GlobalClass]` attribute, the `[Icon]` attribute
 allows providing a path to an icon to show when the class is displayed in the
 editor.
 
@@ -82,8 +82,8 @@ public partial class Stats : Resource
 
 @Image(source: "globalclasses_createresource.png")
 
-The Stats class is a custom resource registered as a global class. <doc:c_sharp_exports> of the
-type Stats will only allow instances of this resource type to be assigned, and the inspector
+The `Stats` class is a custom resource registered as a global class. <doc:c_sharp_exports> of the
+type `Stats` will only allow instances of this resource type to be assigned, and the inspector
 will let you create and load instances of this type easily.
 
 @Image(source: "globalclasses_exportedproperty1.png")

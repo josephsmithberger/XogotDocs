@@ -18,12 +18,12 @@ In that case XR tools can help in providing inspiration.
 Continuing on from our project we started in <doc:setting_up_xr> we want to add in the Godot XR Tools library.
 This can be downloaded from the Godot XR Tools releases page.
 Find the latest release for Godot 4, and under **Assets**, download the
-godot-xr-tools.zip file. You can also find it in the asset library with the
+`godot-xr-tools.zip` file. You can also find it in the asset library with the
 title "Godot XR Tools for Godot 4".
 
 If you're using the zip file, once it's downloaded unzip it.
-You will notice the files are held within a godot-xr-tools subfolder.
-Inside of this folder you will find an addons folder.
+You will notice the files are held within a `godot-xr-tools` subfolder.
+Inside of this folder you will find an `addons` folder.
 It is this folder that you want to copy in its entirety to your Godot project folder. Your project should now look something like this:
 
 @Image(source: "godot_xr_tools_root_folder.png")
@@ -37,8 +37,8 @@ After the import finishes you may notice that several "failed to load script"
 messages popped up, that's normal, the plugin just needs to be enabled in the
 project settings.
 
-Next open the Project menu and select Project Settings...
-Now go to the Plugins tab and enable the plugin.
+Next open the `Project` menu and select `Project Settings..`.
+Now go to the `Plugins` tab and enable the plugin.
 
 @Image(source: "godot_xr_tools_enable.png")
 
@@ -56,10 +56,10 @@ These hands come in low and high poly versions, come in a few configurations, a 
 
 In your scene tree select your left hand [XRController3D](https://docs.godotengine.org/en/stable/classes/class_xrcontroller3d.html#class-xrcontroller3d) node.
 Now click on the **instantiate Child Scene** button to add a child scene. Click the
-**addons** toggle so the addons folder can be searched. Then search for left_hand_low.tscn,
+**addons** toggle so the addons folder can be searched. Then search for `left_hand_low.tscn`,
 and select it.
 
-As you can see from the path of this scene, low poly models are in the lowpoly subfolder while high poly models are in the highpoly subfolder.
+As you can see from the path of this scene, low poly models are in the `lowpoly` subfolder while high poly models are in the `highpoly` subfolder.
 You will want to use the low poly versions if you plan to release your game on mobile devices.
 
 The default hand we chose is just a hand. The other options are:
@@ -68,7 +68,7 @@ The default hand we chose is just a hand. The other options are:
 
 - full_glove - the hand is wearing a glove that covers the entire hand
 
-Finally each hand comes in a physics version.
+Finally each hand comes in a `physics` version.
 This exposes all the bones.
 We'll look at how that can be used in another tutorial.
 

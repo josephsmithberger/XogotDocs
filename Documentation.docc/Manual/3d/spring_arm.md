@@ -95,26 +95,26 @@ In general, for a third-person camera setup, you will have three nodes as childr
 
 - `Camera3D`
 
-Open the player/player.tscn scene. Set these up as children of our player and give them unique names so we can find them in our script. **Make sure to delete the existing camera node!**
+Open the `player/player.tscn` scene. Set these up as children of our player and give them unique names so we can find them in our script. **Make sure to delete the existing camera node!**
 
 @Image(source: "spring_arm_editor_setup.png")
 
-Let's move the pivot point up by 2 on the Y-axis so that it's not on the ground:
+Let's move the pivot point up by `2` on the Y-axis so that it's not on the ground:
 
 @Image(source: "spring_arm_pivot_setup.png")
 
-Give the spring arm a length of 3 so that it is placed behind the character:
+Give the spring arm a length of `3` so that it is placed behind the character:
 
 @Image(source: "spring_arm_length_setup.png")
 
-> Note: Leave the **Shape** of the spring arm as <empty>. This way, it will use the camera's pyramid shape.
+> Note: Leave the **Shape** of the spring arm as `<empty>`. This way, it will use the camera's pyramid shape.
 >
 > If you want, you can also try other shapes - a sphere is a common choice since it slides smoothly along edges.
 >
 
-Update the top of player/player.gd to grab the camera and the pivot points by their unique names:
+Update the top of `player/player.gd` to grab the camera and the pivot points by their unique names:
 
-Add an _unhandled_input function to check for camera movement and then rotate the pivot point accordingly:
+Add an `_unhandled_input` function to check for camera movement and then rotate the pivot point accordingly:
 
 By rotating the pivot point, the spring arm will also be rotated and it will change where the camera is positioned.
 Run the game and notice that mouse movement now rotates the camera around the character. If the camera moves into a wall, it collides with it.

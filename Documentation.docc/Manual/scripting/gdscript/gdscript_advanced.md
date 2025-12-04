@@ -413,7 +413,7 @@ while i < strings.size():
 ## Custom iterators
 
 You can create custom iterators in case the default ones don't quite meet your
-needs by overriding the Variant class's _iter_init, _iter_next, and _iter_get
+needs by overriding the Variant class's `_iter_init`, `_iter_next`, and `_iter_get`
 functions in your script. An example implementation of a forward iterator follows:
 
 ```
@@ -452,7 +452,7 @@ for i in itr:
     print(i) # Will print 0, 2, and 4.
 ```
 
-Make sure to reset the state of the iterator in _iter_init, otherwise nested
+Make sure to reset the state of the iterator in `_iter_init`, otherwise nested
 for-loops that use custom iterators will not work as expected.
 
 ## Duck typing
@@ -478,11 +478,11 @@ inherit Smashable. If a character, enemy, piece of furniture, small rock
 were all smashable, they would need to inherit from the class Smashable,
 possibly requiring multiple inheritance. If multiple inheritance was
 undesired, then they would have to inherit a common class like Entity.
-Yet, it would not be very elegant to add a virtual method smash() to
+Yet, it would not be very elegant to add a virtual method `smash()` to
 Entity only if a few of them can be smashed.
 
 With dynamically typed languages, this is not a problem. Duck typing
-makes sure you only have to define a smash() function where required
+makes sure you only have to define a `smash()` function where required
 and that's it. No need to consider inheritance, base classes, etc.
 
 ```

@@ -43,31 +43,39 @@ The camera actually rotated the opposite direction!
 
 There are a few reasons this may happen:
 
-- Rotations don't map linearly to orientation, so interpolating them does not always result in the shortest path (i.e., to go from 270 to 0 degrees is not the same as going from 270 to 360, even though the angles are equivalent).
+- Rotations don't map linearly to orientation, so interpolating them does not always result in the shortest path (i.e., to go from `270` to `0` degrees is not the same as going from `270` to `360`, even though the angles are equivalent).
 
 - Gimbal lock is at play (first and last rotated axis align, so a degree of freedom is lost). See Wikipedia's page on Gimbal Lock for a detailed explanation of this problem.
 
 ## Say no to Euler angles
 
-The result of all this is that you should **not use** the rotation property of [Node3D](https://docs.godotengine.org/en/stable/classes/class_node3d.html#class-node3d) nodes in Godot for games. It's there to be used mainly in the editor, for coherence with the 2D engine, and for simple rotations (generally just one axis, or even two in limited cases). As much as you may be tempted, don't use it.
+The result of all this is that you should **not use** the `rotation` property of [Node3D](https://docs.godotengine.org/en/stable/classes/class_node3d.html#class-node3d) nodes in Godot for games. It's there to be used mainly in the editor, for coherence with the 2D engine, and for simple rotations (generally just one axis, or even two in limited cases). As much as you may be tempted, don't use it.
 
 Instead, there is a better way to solve your rotation problems.
 
 ### Introducing transforms
 
-Godot uses the [Transform3D](https://docs.godotengine.org/en/stable/classes/class_transform3d.html#class-transform3d) datatype for orientations. Each [Node3D](https://docs.godotengine.org/en/stable/classes/class_node3d.html#class-node3d) node contains a transform property which is relative to the parent's transform, if the parent is a Node3D-derived type.
+Godot uses the [Transform3D](https://docs.godotengine.org/en/stable/classes/class_transform3d.html#class-transform3d) datatype for orientations. Each [Node3D](https://docs.godotengine.org/en/stable/classes/class_node3d.html#class-node3d) node contains a `transform` property which is relative to the parent's transform, if the parent is a Node3D-derived type.
 
-It is also possible to access the world coordinate transform via the global_transform property.
+It is also possible to access the world coordinate transform via the `global_transform` property.
 
-A transform has a [Basis](https://docs.godotengine.org/en/stable/classes/class_basis.html#class-basis) (transform.basis sub-property), which consists of three [Vector3](https://docs.godotengine.org/en/stable/classes/class_vector3.html#class-vector3) vectors. These are accessed via the transform.basis property and can be accessed directly by transform.basis.x, transform.basis.y, and transform.basis.z. Each vector points in the direction its axis has been rotated, so they effectively describe the node's total rotation. The scale (as long as it's uniform) can also be inferred from the length of the axes. A basis can also be interpreted as a 3x3 matrix and used as transform.basis[x][y].
+A transform has a [Basis](https://docs.godotengine.org/en/stable/classes/class_basis.html#class-basis) (transform.basis sub-property), which consists of three [Vector3](https://docs.godotengine.org/en/stable/classes/class_vector3.html#class-vector3) vectors. These are accessed via the `transform.basis` property and can be accessed directly by `transform.basis.x`, `transform.basis.y`, and `transform.basis.z`. Each vector points in the direction its axis has been rotated, so they effectively describe the node's total rotation. The scale (as long as it's uniform) can also be inferred from the length of the axes. A basis can also be interpreted as a 3x3 matrix and used as `transform.basis[x][y]`.
 
 A default basis (unmodified) is akin to:
 
+```
+var basis = Basis()
+# Contains the following default values:
+basis.x = Vector3(1, 0, 0) # Vector pointing along the X axis
+basis.y = Vector3(0, 1, 0) # Vector pointing along the Y axis
+basis.z = Vector3(0, 0, 1) # Vector pointing along the Z axis
+```
+
 This is also an analog of a 3x3 identity matrix.
 
-Following the OpenGL convention, X is the Right axis, Y is the Up axis and Z is the Forward axis.
+Following the OpenGL convention, `X` is the Right axis, `Y` is the Up axis and `Z` is the Forward axis.
 
-Together with the basis, a transform also has an origin. This is a Vector3 specifying how far away from the actual origin (0, 0, 0) this transform is. Combining the basis with the origin, a transform efficiently represents a unique translation, rotation, and scale in space.
+Together with the basis, a transform also has an origin. This is a Vector3 specifying how far away from the actual origin `(0, 0, 0)` this transform is. Combining the basis with the origin, a transform efficiently represents a unique translation, rotation, and scale in space.
 
 @Image(source: "transforms_camera.png")
 
@@ -75,7 +83,7 @@ One way to visualize a transform is to look at an object's 3D gizmo while in "lo
 
 @Image(source: "transforms_local_space.png")
 
-The gizmo's arrows show the X, Y, and Z axes (in red, green, and blue respectively) of the basis, while the gizmo's center is at the object's origin.
+The gizmo's arrows show the `X`, `Y`, and `Z` axes (in red, green, and blue respectively) of the basis, while the gizmo's center is at the object's origin.
 
 @Image(source: "transforms_gizmo.png")
 
@@ -87,37 +95,102 @@ Of course, transforms are not as straightforward to manipulate as angles and hav
 
 It is possible to rotate a transform, either by multiplying its basis by another (this is called accumulation), or by using the rotation methods.
 
+```
+var axis = Vector3(1, 0, 0) # Or Vector3.RIGHT
+var rotation_amount = 0.1
+# Rotate the transform around the X axis by 0.1 radians.
+transform.basis = Basis(axis, rotation_amount) * transform.basis
+# shortened
+transform.basis = transform.basis.rotated(axis, rotation_amount)
+```
+
 A method in Node3D simplifies this:
+
+```
+# Rotate the transform around the X axis by 0.1 radians.
+rotate(Vector3(1, 0, 0), 0.1)
+# shortened
+rotate_x(0.1)
+```
 
 This rotates the node relative to the parent node.
 
 To rotate relative to object space (the node's own transform), use the following:
 
-The axis should be defined in the local coordinate system of the object. For example, to rotate around the object's local X, Y, or Z axes, use Vector3.RIGHT for the X-axis, Vector3.UP for the Y-axis, and Vector3.FORWARD for the Z-axis.
+```
+# Rotate around the object's local X axis by 0.1 radians.
+rotate_object_local(Vector3(1, 0, 0), 0.1)
+```
+
+The axis should be defined in the local coordinate system of the object. For example, to rotate around the object's local X, Y, or Z axes, use `Vector3.RIGHT` for the X-axis, `Vector3.UP` for the Y-axis, and `Vector3.FORWARD` for the Z-axis.
 
 ## Precision errors
 
-Doing successive operations on transforms will result in a loss of precision due to floating-point error. This means the scale of each axis may no longer be exactly 1.0, and they may not be exactly 90 degrees from each other.
+Doing successive operations on transforms will result in a loss of precision due to floating-point error. This means the scale of each axis may no longer be exactly `1.0`, and they may not be exactly `90` degrees from each other.
 
 If a transform is rotated every frame, it will eventually start deforming over time. This is unavoidable.
 
 There are two different ways to handle this. The first is to orthonormalize the transform after some time (maybe once per frame if you modify it every frame):
 
-This will make all axes have 1.0 length again and be 90 degrees from each other. However, any scale applied to the transform will be lost.
+```
+transform = transform.orthonormalized()
+```
+
+This will make all axes have `1.0` length again and be `90` degrees from each other. However, any scale applied to the transform will be lost.
 
 It is recommended you not scale nodes that are going to be manipulated; scale their children nodes instead (such as MeshInstance3D). If you absolutely must scale the node, then re-apply it at the end:
+
+```
+transform = transform.orthonormalized()
+transform = transform.scaled(scale)
+```
 
 ## Obtaining information
 
 You might be thinking at this point: **"Ok, but how do I get angles from a transform?"**. The answer again is: you don't. You must do your best to stop thinking in angles.
 
-Imagine you need to shoot a bullet in the direction your player is facing. Just use the forward axis (commonly Z or -Z).
+Imagine you need to shoot a bullet in the direction your player is facing. Just use the forward axis.
+
+```
+# On RigidBody3D.
+
+# Keep in mind that -Z is forward.
+bullet.transform = transform
+bullet.linear_velocity = -transform.basis.z * BULLET_SPEED
+```
 
 Is the enemy looking at the player? Use the dot product for this (see the <doc:vector_math> tutorial for an explanation of the dot product):
 
+```
+# Get the direction vector from player to enemy
+var direction = enemy.transform.origin - player.transform.origin
+if direction.dot(enemy.transform.basis.z) > 0:
+    enemy.im_watching_you(player)
+```
+
 Strafe left:
 
+```
+# On CharacterBody3D.
+
+# Keep in mind that -X is left.
+if Input.is_action_pressed("strafe_left"):
+    velocity = -transform.basis.x * MOVE_SPEED
+
+move_and_slide()
+```
+
 Jump:
+
+```
+# On CharacterBody3D.
+
+# Keep in mind that +Y is up.
+if Input.is_action_just_pressed("jump"):
+    velocity.y = JUMP_SPEED
+
+move_and_slide()
+```
 
 All common behaviors and logic can be done with just vectors.
 
@@ -129,6 +202,21 @@ For such cases, keep the angles and rotations outside the transform and set them
 
 Example of looking around, FPS style:
 
+```
+# accumulators
+var rot_x = 0
+var rot_y = 0
+
+func _input(event):
+    if event is InputEventMouseMotion and event.button_mask & 1:
+        # modify accumulated mouse rotation
+        rot_x -= event.relative.x * LOOKAROUND_SPEED
+        rot_y -= event.relative.y * LOOKAROUND_SPEED
+        transform.basis = Basis() # reset rotation
+        rotate_object_local(Vector3(0, 1, 0), rot_x) # first rotate in Y
+        rotate_object_local(Vector3(1, 0, 0), rot_y) # then rotate in X
+```
+
 As you can see, in such cases it's even simpler to keep the rotation outside, then use the transform as the final orientation.
 
 ## Interpolating with quaternions
@@ -136,6 +224,16 @@ As you can see, in such cases it's even simpler to keep the rotation outside, th
 Interpolating between two transforms can efficiently be done with quaternions. More information about how quaternions work can be found in other places around the Internet. For practical use, it's enough to understand that pretty much their main use is doing a closest path interpolation. As in, if you have two rotations, a quaternion will smoothly allow interpolation between them using the closest axis.
 
 Converting a rotation to quaternion is straightforward.
+
+```
+# Convert basis to quaternion, keep in mind scale is lost
+var a = Quaternion(transform.basis)
+var b = Quaternion(transform2.basis)
+# Interpolate using spherical-linear interpolation (SLERP).
+var c = a.slerp(b,0.5) # find halfway point between a and b
+# Apply back
+transform.basis = Basis(c)
+```
 
 The [Quaternion](https://docs.godotengine.org/en/stable/classes/class_quaternion.html#class-quaternion) type reference has more information on the datatype (it
 can also do transform accumulation, transform points, etc., though this is used

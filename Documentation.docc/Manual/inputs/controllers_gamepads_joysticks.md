@@ -53,26 +53,59 @@ Input actions are explained in detail on the <doc:inputevent> page.
 There are 3 ways to get input in an analog-aware way:
 
 - When you have two axes (such as joystick or WASD movement) and want both
-axes to behave as a single input, use Input.get_vector():
+axes to behave as a single input, use `Input.get_vector()`:
+
+```
+# `velocity` will be a Vector2 between `Vector2(-1.0, -1.0)` and `Vector2(1.0, 1.0)`.
+# This handles deadzone in a correct way for most use cases.
+# The resulting deadzone will have a circular shape as it generally should.
+var velocity = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
+
+# The line below is similar to `get_vector()`, except that it handles
+# the deadzone in a less optimal way. The resulting deadzone will have
+# a square-ish shape when it should ideally have a circular shape.
+var velocity = Vector2(
+        Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
+        Input.get_action_strength("move_back") - Input.get_action_strength("move_forward")
+).limit_length(1.0)
+```
 
 - When you have one axis that can go both ways (such as a throttle on a
 flight stick), or when you want to handle separate axes individually,
-use Input.get_axis():
+use `Input.get_axis()`:
+
+```
+# `walk` will be a floating-point number between `-1.0` and `1.0`.
+var walk = Input.get_axis("move_left", "move_right")
+
+# The line above is a shorter form of:
+var walk = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+```
 
 - For other types of analog input, such as handling a trigger or handling
-one direction at a time, use Input.get_action_strength():
+one direction at a time, use `Input.get_action_strength()`:
+
+```
+# `strength` will be a floating-point number between `0.0` and `1.0`.
+var strength = Input.get_action_strength("accelerate")
+```
 
 For non-analog digital/boolean input (only "pressed" or "not pressed" values),
 such as controller buttons, mouse buttons or keyboard keys,
-use Input.is_action_pressed():
+use `Input.is_action_pressed()`:
+
+```
+# `jumping` will be a boolean with a value of `true` or `false`.
+var jumping = Input.is_action_pressed("jump")
+```
 
 > Note:
 >
 > If you need to know whether an input was just pressed in the previous
-> frame, use Input.is_action_just_pressed() instead of
-> Input.is_action_pressed(). Unlike Input.is_action_pressed() which
-> returns true as long as the input is
-> held, Input.is_action_just_pressed() will only return true for one
+> frame, use `Input.is_action_just_pressed()` instead of
+> `Input.is_action_pressed()`. Unlike `Input.is_action_pressed()` which
+> returns `true` as long as the input is
+> held, `Input.is_action_just_pressed()` will only return `true` for one
 > frame after the button has been pressed.
 >
 
@@ -91,7 +124,7 @@ vibration early (useful if no duration was specified when starting).
 On mobile devices, you can also use
 [vibrate_handheld](https://docs.godotengine.org/en/stable/classes/class_input_method_vibrate_handheld.html#class-input_method_vibrate_handheld) to vibrate the
 device itself (independently from the gamepad). On Android, this requires the
-VIBRATE permission to be enabled in the Android export preset before
+`VIBRATE` permission to be enabled in the Android export preset before
 exporting the project.
 
 > Note:
@@ -109,26 +142,26 @@ controllers handle specific situations.
 
 Unlike keyboards and mice, controllers offer axes with analog inputs. The
 upside of analog inputs is that they offer additional flexibility for actions.
-Unlike digital inputs which can only provide strengths of 0.0 and 1.0,
-an analog input can provide any strength between 0.0 and 1.0. The
+Unlike digital inputs which can only provide strengths of `0.0` and `1.0`,
+an analog input can provide any strength between `0.0` and `1.0`. The
 downside is that without a deadzone system, an analog axis' strength will never
-be equal to 0.0 due to how the controller is physically built. Instead, it
-will linger at a low value such as 0.062. This phenomenon is known as
+be equal to `0.0` due to how the controller is physically built. Instead, it
+will linger at a low value such as `0.062`. This phenomenon is known as
 drifting and can be more noticeable on old or faulty controllers.
 
 Let's take a racing game as a real-world example. Thanks to analog inputs, we
 can steer the car slowly in one direction or another. However, without a
 deadzone system, the car would slowly steer by itself even if the player isn't
 touching the joystick. This is because the directional axis strength won't be
-equal to 0.0 when we expect it to. Since we don't want our car to steer by
-itself in this case, we define a "dead zone" value of 0.2 which will ignore
-all input whose strength is lower than 0.2. An ideal dead zone value is high
+equal to `0.0` when we expect it to. Since we don't want our car to steer by
+itself in this case, we define a "dead zone" value of `0.2` which will ignore
+all input whose strength is lower than `0.2`. An ideal dead zone value is high
 enough to ignore the input caused by joystick drifting, but is low enough to not
 ignore actual input from the player.
 
 Godot features a built-in deadzone system to tackle this problem. The default
-value is 0.5, but you can adjust it on a per-action basis in the Project
-Settings' Input Map tab. For Input.get_vector(), the deadzone can be
+value is `0.5`, but you can adjust it on a per-action basis in the Project
+Settings' Input Map tab. For `Input.get_vector()`, the deadzone can be
 specified as an optional 5th parameter. If not specified, it will calculate the
 average deadzone value from all of the actions in the vector.
 
@@ -156,7 +189,7 @@ it can also have adverse effects. Players may accidentally send controller input
 to the running project while interacting with another window.
 
 If you wish to ignore events when the project window isn't focused, you will
-need to create an <doc:singletons_autoload> called Focus
+need to create an <doc:singletons_autoload> called `Focus`
 with the following script and use it to check all your inputs:
 
 ```
@@ -187,11 +220,11 @@ func event_is_action_pressed(event: InputEvent, action: StringName) -> bool:
     return false
 ```
 
-Then, instead of using Input.is_action_pressed(action), use
-Focus.input_is_action_pressed(action) where action is the name of
-the input action. Also, instead of using event.is_action_pressed(action),
-use Focus.event_is_action_pressed(event, action) where event is an
-InputEvent reference and action is the name of the input action.
+Then, instead of using `Input.is_action_pressed(action)`, use
+`Focus.input_is_action_pressed(action)` where `action` is the name of
+the input action. Also, instead of using `event.is_action_pressed(action)`,
+use `Focus.event_is_action_pressed(event, action)` where `event` is an
+InputEvent reference and `action` is the name of the input action.
 
 ### Power saving prevention
 
@@ -246,12 +279,12 @@ In this case, you will need to create a custom mapping for your controller.
 There are many ways to create mappings. One option is to use the mapping wizard
 in the official Joypads demo.
 Once you have a working mapping for your controller, you can test it by defining
-the SDL_GAMECONTROLLERCONFIG environment variable before running Godot:
+the `SDL_GAMECONTROLLERCONFIG` environment variable before running Godot:
 
 To test mappings on non-desktop platforms or to distribute your project with
 additional controller mappings, you can add them by calling
 [Input.add_joy_mapping()](https://docs.godotengine.org/en/stable/classes/class_input_method_add_joy_mapping.html#class-input_method_add_joy_mapping)
-as early as possible in a script's _ready() function.
+as early as possible in a script's `_ready()` function.
 
 Once you are satisfied with the custom mapping, you can contribute it for
 the next Godot version by opening a pull request on the
@@ -261,7 +294,7 @@ Godot game controller database.
 
 If you're using a self-compiled engine binary, make sure it was compiled with
 udev support. This is enabled by default, but it is possible to disable udev
-support by specifying udev=no on the SCons command line. If you're using an
+support by specifying `udev=no` on the SCons command line. If you're using an
 engine binary supplied by a Linux distribution, double-check whether it was
 compiled with udev support.
 

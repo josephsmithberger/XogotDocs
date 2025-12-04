@@ -21,13 +21,13 @@ Before starting, create a new empty project wherever you want. This will serve
 as a base to develop and test the plugins.
 
 The first thing you need for the editor to identify a new plugin is to
-create two files: a plugin.cfg for configuration and a tool script with the
-functionality. Plugins have a standard path like addons/plugin_name inside
+create two files: a `plugin.cfg` for configuration and a tool script with the
+functionality. Plugins have a standard path like `addons/plugin_name` inside
 the project folder. Godot provides a dialog for generating those files and
 placing them where they need to be.
 
-In the main toolbar, click the Project dropdown. Then click
-Project Settings.... Go to the Plugins tab and then click
+In the main toolbar, click the `Project` dropdown. Then click
+`Project Settings...`. Go to the `Plugins` tab and then click
 on the :button:`Create New Plugin` button in the top-right.
 
 You will see the dialog appear, like so:
@@ -41,17 +41,16 @@ To continue with the example, use the following values:
 
 > Warning:
 >
-> Unchecking the Activate now? option in C# is always required because,
-> like every other C# script, the EditorPlugin script needs to be compiled which
+> In C#, the EditorPlugin script needs to be compiled, which
 > requires building the project. After building the project the plugin can be
-> enabled in the Plugins tab of Project Settings.
+> enabled in the `Plugins` tab of `Project Settings`.
 >
 
 You should end up with a directory structure like this:
 
 @Image(source: "making_plugins-my_custom_mode_folder.png")
 
-plugin.cfg is an INI file with metadata about your plugin.
+`plugin.cfg` is an INI file with metadata about your plugin.
 The name and description help people understand what it does.
 Your name helps you get properly credited for your work.
 The version number helps others know if they have an outdated version;
@@ -63,13 +62,13 @@ once it is active.
 
 Upon creation of the plugin, the dialog will automatically open the
 EditorPlugin script for you. The script has two requirements that you cannot
-change: it must be a @tool script, or else it will not load properly in the
+change: it must be a `@tool` script, or else it will not load properly in the
 editor, and it must inherit from [EditorPlugin](https://docs.godotengine.org/en/stable/classes/class_editorplugin.html#class-editorplugin).
 
 > Warning:
 >
 > In addition to the EditorPlugin script, any other GDScript that your plugin uses
-> must also be a tool. Any GDScript without @tool used by the editor
+> must also be a tool. Any GDScript without `@tool` used by the editor
 > will act like an empty file!
 >
 
@@ -79,6 +78,21 @@ A good practice is to use the virtual function
 [_exit_tree()](https://docs.godotengine.org/en/stable/classes/class_node_private_method__exit_tree.html#class-node_private_method__exit_tree) to clean it up. Thankfully,
 the dialog generates these callbacks for you. Your script should look something
 like this:
+
+```
+@tool
+extends EditorPlugin
+
+
+func _enter_tree():
+    # Initialization of the plugin goes here.
+    pass
+
+
+func _exit_tree():
+    # Clean-up of the plugin goes here.
+    pass
+```
 
 This is a good template to use when creating new plugins.
 
@@ -103,14 +117,27 @@ To create a new node type, you can use the function
 [EditorPlugin](https://docs.godotengine.org/en/stable/classes/class_editorplugin.html#class-editorplugin) class. This function can add new types to the editor
 (nodes or resources). However, before you can create the type, you need a script
 that will act as the logic for the type. While that script doesn't have to use
-the @tool annotation, it can be added so the script runs in the editor.
+the `@tool` annotation, it can be added so the script runs in the editor.
 
 For this tutorial, we'll create a button that prints a message when
 clicked. For that, we'll need a script that extends from
 [Button](https://docs.godotengine.org/en/stable/classes/class_button.html#class-button). It could also extend
 [BaseButton](https://docs.godotengine.org/en/stable/classes/class_basebutton.html#class-basebutton) if you prefer:
 
-That's it for our basic button. You can save this as my_button.gd inside the
+```
+@tool
+extends Button
+
+
+func _enter_tree():
+    pressed.connect(clicked)
+
+
+func clicked():
+    print("You clicked me!")
+```
+
+That's it for our basic button. You can save this as `my_button.gd` inside the
 plugin folder. You'll also need a 16×16 icon to show in the scene tree. If you
 don't have one, you can grab the default one from the engine and save it in your
 `addons/my_custom_node` folder as `icon.png`, or use the default Godot logo
@@ -128,7 +155,24 @@ don't have one, you can grab the default one from the engine and save it in your
 @Image(source: "making_plugins-custom_node_icon.png")
 
 Now, we need to add it as a custom type so it shows on the **Create New Node**
-dialog. For that, change the custom_node.gd script to the following:
+dialog. For that, change the `custom_node.gd` script to the following:
+
+```
+@tool
+extends EditorPlugin
+
+
+func _enter_tree():
+    # Initialization of the plugin goes here.
+    # Add the new type with a name, a parent type, a script and an icon.
+    add_custom_type("MyButton", "Button", preload("my_button.gd"), preload("icon.png"))
+
+
+func _exit_tree():
+    # Clean-up of the plugin goes here.
+    # Always remember to remove it from the engine when deactivated.
+    remove_custom_type("MyButton")
+```
 
 With that done, the plugin should already be available in the plugin list in the
 **Project Settings**, so activate it as explained in Checking the results.
@@ -150,10 +194,20 @@ An easy way to do it is to add a new dock with a plugin. Docks are just scenes
 based on Control, so they are created in a way similar to usual GUI scenes.
 
 Creating a custom dock is done just like a custom node. Create a new
-plugin.cfg file in the addons/my_custom_dock folder, then
+`plugin.cfg` file in the `addons/my_custom_dock` folder, then
 add the following content to it:
 
-Then create the script custom_dock.gd in the same folder. Fill it with the
+```
+[plugin]
+
+name="My Custom Dock"
+description="A custom dock made so I can learn how to make plugins."
+author="Your Name Here"
+version="1.0"
+script="custom_dock.gd"
+```
+
+Then create the script `custom_dock.gd` in the same folder. Fill it with the
 <doc:making_plugins#Template-Code> to get a
 good start.
 
@@ -169,7 +223,7 @@ Also, don't forget to add some text to your button.
 
 @Image(source: "making_plugins-my_custom_dock_scene.png")
 
-Save this scene as my_dock.tscn. Now, we need to grab the scene we created
+Save this scene as `my_dock.tscn`. Now, we need to grab the scene we created
 then add it as a dock in the editor. For this, you can rely on the function
 [add_control_to_dock()](https://docs.godotengine.org/en/stable/classes/class_editorplugin_method_add_control_to_dock.html#class-editorplugin_method_add_control_to_dock) from the
 [EditorPlugin](https://docs.godotengine.org/en/stable/classes/class_editorplugin.html#class-editorplugin) class.
@@ -178,6 +232,33 @@ You need to select a dock position and define the control to add
 (which is the scene you just created). Don't forget to
 **remove the dock** when the plugin is deactivated.
 The script could look like this:
+
+```
+@tool
+extends EditorPlugin
+
+
+# A class member to hold the dock during the plugin life cycle.
+var dock
+
+
+func _enter_tree():
+    # Initialization of the plugin goes here.
+    # Load the dock scene and instantiate it.
+    dock = preload("res://addons/my_custom_dock/my_dock.tscn").instantiate()
+
+    # Add the loaded scene to the docks.
+    add_control_to_dock(DOCK_SLOT_LEFT_UL, dock)
+    # Note that LEFT_UL means the left of the editor, upper-left dock.
+
+
+func _exit_tree():
+    # Clean-up of the plugin goes here.
+    # Remove the dock.
+    remove_control_from_docks(dock)
+    # Erase the control from the memory.
+    dock.free()
+```
 
 Note that, while the dock will initially appear at its specified position,
 the user can freely change its position and save the resulting layout.
@@ -209,6 +290,23 @@ an autoload.
 
 Use the following code to register a singleton from an editor plugin:
 
+```
+@tool
+extends EditorPlugin
+
+# Replace this value with a PascalCase autoload name, as per the GDScript style guide.
+const AUTOLOAD_NAME = "SomeAutoload"
+
+
+func _enable_plugin():
+    # The autoload can be a scene or script file.
+    add_autoload_singleton(AUTOLOAD_NAME, "res://addons/my_addon/some_autoload.tscn")
+
+
+func _disable_plugin():
+    remove_autoload_singleton(AUTOLOAD_NAME)
+```
+
 ## Using sub-plugins
 
 Often a plugin adds multiple things, for example a custom node and a panel.
@@ -225,6 +323,22 @@ Then move the sub plugins into the main plugin folder:
 
 Godot will hide sub-plugins from the plugin list, so that a user can't enable or disable them.
 Instead the main plugin script should enable and disable sub-plugins like this:
+
+```
+@tool
+extends EditorPlugin
+
+# The main plugin is located at res://addons/my_plugin/
+const PLUGIN_NAME = "my_plugin"
+
+func _enable_plugin():
+    EditorInterface.set_plugin_enabled(PLUGIN_NAME + "/node", true)
+    EditorInterface.set_plugin_enabled(PLUGIN_NAME + "/panel", true)
+
+func _disable_plugin():
+    EditorInterface.set_plugin_enabled(PLUGIN_NAME + "/node", false)
+    EditorInterface.set_plugin_enabled(PLUGIN_NAME + "/panel", false)
+```
 
 ## Going beyond
 

@@ -22,8 +22,8 @@ If the objects are simple enough (just a couple of vertices), this is generally 
 as most modern GPUs are optimized for this use case. A workaround is to create several MultiMeshes
 for different areas of the world.
 
-It is also possible to execute some logic inside the vertex shader (using the INSTANCE_ID or
-INSTANCE_CUSTOM built-in constants). For an example of animating thousands of objects in a MultiMesh,
+It is also possible to execute some logic inside the vertex shader (using the `INSTANCE_ID` or
+`INSTANCE_CUSTOM` built-in constants). For an example of animating thousands of objects in a MultiMesh,
 see the <doc:animating_thousands_of_fish> tutorial. Information
 to the shader can be provided via textures (there are floating-point [Image](https://docs.godotengine.org/en/stable/classes/class_image.html#class-image) formats
 which are ideal for this).
@@ -43,3 +43,22 @@ then change the amount visible depending on how many are currently needed.
 
 Here is an example of using a MultiMesh from code. Languages other than GDScript may be more
 efficient for millions of objects, but for a few thousands, GDScript should be fine.
+
+```
+extends MultiMeshInstance3D
+
+
+func _ready():
+    # Create the multimesh.
+    multimesh = MultiMesh.new()
+    # Set the format first.
+    multimesh.transform_format = MultiMesh.TRANSFORM_3D
+    # Then resize (otherwise, changing the format is not allowed).
+    multimesh.instance_count = 10000
+    # Maybe not all of them should be visible at first.
+    multimesh.visible_instance_count = 1000
+
+    # Set the transform of the instances.
+    for i in multimesh.visible_instance_count:
+        multimesh.set_instance_transform(i, Transform3D(Basis(), Vector3(i * 20, 0, 0)))
+```

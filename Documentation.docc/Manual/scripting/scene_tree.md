@@ -62,6 +62,11 @@ The root [Viewport](https://docs.godotengine.org/en/stable/classes/class_viewpor
 is always at the top of the scene. From a node, it can be obtained in
 two different ways:
 
+```
+get_tree().root # Access via scene main loop.
+get_node("/root") # Access via absolute path.
+```
+
 This node contains the main viewport. Anything that is a child of a
 [Viewport](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport)
 is drawn inside of it by default, so it makes sense that the top of all
@@ -77,7 +82,7 @@ When a node is connected, directly or indirectly, to the root
 viewport, it becomes part of the scene tree.
 
 This means that as explained in previous tutorials, it will get the
-_enter_tree() and _ready() callbacks (as well as _exit_tree()).
+`_enter_tree()` and `_ready()` callbacks (as well as `_exit_tree()`).
 
 @Image(source: "activescene.png")
 
@@ -94,19 +99,19 @@ editor (also known as pre-order traversal):
 
 @Image(source: "toptobottom.png")
 
-For example, the top node in a scene has its _process() function
-called first, then the node below it has its _process() function called,
+For example, the top node in a scene has its `_process()` function
+called first, then the node below it has its `_process()` function called,
 then the node below that and so on.
 
-An important exception is the _ready() function: each parent node has its
-_ready() function called only after all its child nodes have their
-_ready() functions called, so that the parent knows its children are
+An important exception is the `_ready()` function: each parent node has its
+`_ready()` function called only after all its child nodes have their
+`_ready()` functions called, so that the parent knows its children are
 completely ready to be accessed. This is also known as post-order traversal.
-In the above image, NameLabel would be notified first (but only after its
-children, if it had any!), followed by Name, etc., and Panel would be
+In the above image, `NameLabel` would be notified first (but only after its
+children, if it had any!), followed by `Name`, etc., and `Panel` would be
 notified last.
 
-The order of operations can also be overridden using the process_priority
+The order of operations can also be overridden using the `process_priority`
 node property. Nodes with a lower number are called first. For example, nodes
 with the priorities "0, 1, 2, 3" would be called in that order from left to right.
 
@@ -119,15 +124,15 @@ either a child of the "root" Viewport (from SceneTree), or to any
 of its descendants.
 
 1. Every node of the newly added scene will receive the "enter_tree"
-notification ( _enter_tree() callback in GDScript) in
+notification ( `_enter_tree()` callback in GDScript) in
 top-to-bottom order (pre-order traversal).
 
-1. Every node will receive the "ready" notification ( _ready()
+1. Every node will receive the "ready" notification ( `_ready()`
 callback in GDScript) for convenience, once all its children have
 received the "ready" notification (post-order traversal).
 
 1. When a scene (or part of it) is removed, they receive the "exit
-scene" notification ( _exit_tree() callback in GDScript) in
+scene" notification ( `_exit_tree()` callback in GDScript) in
 bottom-to-top order (the exact reverse of top-to-bottom order).
 
 ## Changing current scene
@@ -137,10 +142,22 @@ another one. One way to do this is to use the
 [SceneTree.change_scene_to_file()](https://docs.godotengine.org/en/stable/classes/class_scenetree_method_change_scene_to_file.html#class-scenetree_method_change_scene_to_file)
 function:
 
+```
+func _my_level_was_completed():
+    get_tree().change_scene_to_file("res://levels/level2.tscn")
+```
+
 Rather than using file paths, one can also use ready-made
 [PackedScene](https://docs.godotengine.org/en/stable/classes/class_packedscene.html#class-packedscene) resources using the equivalent
 function
 [SceneTree.change_scene_to_packed(PackedScene scene)](https://docs.godotengine.org/en/stable/classes/class_scenetree_method_change_scene_to_packed.html#class-scenetree_method_change_scene_to_packed):
+
+```
+var next_scene = preload("res://levels/level2.tscn")
+
+func _my_level_was_completed():
+    get_tree().change_scene_to_packed(next_scene)
+```
 
 These are quick and useful ways to switch scenes but have the drawback
 that the game will stall until the new scene is loaded and running. At

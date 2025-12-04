@@ -7,6 +7,36 @@ in different languages.
 
 The following two scripts will be used as references throughout this page.
 
+```
+extends Node
+
+var my_property: String = "my gdscript value":
+    get:
+        return my_property
+    set(value):
+        my_property = value
+
+signal my_signal
+signal my_signal_with_params(msg: String, n: int)
+
+func print_node_name(node: Node) -> void:
+    print(node.get_name())
+
+func print_array(arr: Array) -> void:
+    for element in arr:
+        print(element)
+
+func print_n_times(msg: String, n: int) -> void:
+    for i in range(n):
+        print(msg)
+
+func my_signal_handler():
+    print("The signal handler was called!")
+
+func my_signal_with_params_handler(msg: String, n: int):
+    print_n_times(msg, n)
+```
+
 ## Instantiating nodes
 
 If you're not using nodes from the scene tree, you'll probably want to
@@ -25,18 +55,18 @@ var my_csharp_node = MyCSharpScript.new()
 
 > Warning:
 >
-> When creating .cs scripts, you should always keep in mind that the class
-> Godot will use is the one named like the .cs file itself. If that class
+> When creating `.cs` scripts, you should always keep in mind that the class
+> Godot will use is the one named like the `.cs` file itself. If that class
 > does not exist in the file, you'll see the following error:
-> Invalid call. Nonexistent function `new` in base.
+> `Invalid call. Nonexistent function `new` in base`.
 >
 > For example, MyCoolNode.cs should contain a class named MyCoolNode.
 >
-> The C# class needs to derive a Godot class, for example GodotObject.
+> The C# class needs to derive a Godot class, for example `GodotObject`.
 > Otherwise, the same error will occur.
 >
-> You also need to check your .cs file is referenced in the project's
-> .csproj file. Otherwise, the same error will occur.
+> You also need to check your `.cs` file is referenced in the project's
+> `.csproj` file. Otherwise, the same error will occur.
 >
 
 ### Instantiating GDScript nodes from C#
@@ -93,7 +123,7 @@ Essentially, you want to work with built-in types as described in
 Again, calling C# methods from GDScript should be straightforward. The
 marshalling process will do its best to cast the arguments to match
 function signatures.
-If that's impossible, you'll see the following error: Invalid call. Nonexistent function `FunctionName`.
+If that's impossible, you'll see the following error: `Invalid call. Nonexistent function `FunctionName``.
 
 ```
 # Output: "my_gd_script_node" (or name of node where this code is placed).
@@ -150,7 +180,7 @@ my_csharp_node.MySignalWithParams.connect(my_signal_with_params_handler)
 
 ### Connecting to GDScript signals from C#
 
-Connecting to a GDScript signal from C# only works with the Connect method
+Connecting to a GDScript signal from C# only works with the `Connect` method
 because no C# static types exist for signals defined by GDScript:
 
 ```

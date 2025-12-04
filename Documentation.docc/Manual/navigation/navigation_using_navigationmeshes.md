@@ -37,7 +37,7 @@ The nodes are available in 2D and 3D as [NavigationRegion2D](https://docs.godote
 
 > Tip:
 >
-> The navigation mesh source_geometry_mode can be switched to parse specific node group names so nodes that should be baked can be placed anywhere in the scene.
+> The navigation mesh `source_geometry_mode` can be switched to parse specific node group names so nodes that should be baked can be placed anywhere in the scene.
 >
 
 @Image(source: "nav_region_baking_01.png") {In order for the region to work a [NavigationPolygon](https://docs.godotengine.org/en/stable/classes/class_navigationpolygon.html#class-navigationpolygon) resource needs to be added.
@@ -46,18 +46,18 @@ The properties to parse and bake a navigation mesh are then part of the used res
 
 The result of the source geometry parsing can be influenced with the following properties.
 
-- The parsed_geometry_type that filters if visual objects or physics objects or both should be parsed from the [SceneTree](https://docs.godotengine.org/en/stable/classes/class_scenetree.html#class-scenetree).
+- The `parsed_geometry_type` that filters if visual objects or physics objects or both should be parsed from the [SceneTree](https://docs.godotengine.org/en/stable/classes/class_scenetree.html#class-scenetree).
 
 For more details on what objects are parsed and how, see the section about parsing source geometry below.
-- The collision_mask filters which physics collision objects are included when the parsed_geometry_type includes static colliders.
-- The source_geometry_mode that defines on which node(s) to start the parsing, and how to traverse the [SceneTree](https://docs.godotengine.org/en/stable/classes/class_scenetree.html#class-scenetree).
-- The source_geometry_group_name is used when only a certain node group should be parsed. Depends on the selected source_geometry_mode.
+- The `collision_mask` filters which physics collision objects are included when the `parsed_geometry_type` includes static colliders.
+- The `source_geometry_mode` that defines on which node(s) to start the parsing, and how to traverse the [SceneTree](https://docs.godotengine.org/en/stable/classes/class_scenetree.html#class-scenetree).
+- The `source_geometry_group_name` is used when only a certain node group should be parsed. Depends on the selected `source_geometry_mode`.
 
 With the source geometry added, the result of the baking can be controlled with the following properties.
 
-- The cell_size sets the rasterization grid size and should match the navigation map size.
+- The `cell_size` sets the rasterization grid size and should match the navigation map size.
 
-- The agent_radius shrinks the baked navigation mesh to have enough margin for the agent (collision) size.
+- The `agent_radius` shrinks the baked navigation mesh to have enough margin for the agent (collision) size.
 
 The NavigationRegion2D baking can also be used at runtime with scripts.
 
@@ -89,27 +89,27 @@ The properties to parse and bake a navigation mesh are then part of the used res
 
 The result of the source geometry parsing can be influenced with the following properties.
 
-- The parsed_geometry_type that filters if visual objects or physics objects or both should be parsed from the [SceneTree](https://docs.godotengine.org/en/stable/classes/class_scenetree.html#class-scenetree).
+- The `parsed_geometry_type` that filters if visual objects or physics objects or both should be parsed from the [SceneTree](https://docs.godotengine.org/en/stable/classes/class_scenetree.html#class-scenetree).
 
 For more details on what objects are parsed and how, see the section about parsing source geometry below.
-- The collision_mask filters which physics collision objects are included when the parsed_geometry_type includes static colliders.
-- The source_geometry_mode that defines on which node(s) to start the parsing, and how to traverse the [SceneTree](https://docs.godotengine.org/en/stable/classes/class_scenetree.html#class-scenetree).
-- The source_geometry_group_name is used when only a certain node group should be parsed. Depends on the selected source_geometry_mode.
+- The `collision_mask` filters which physics collision objects are included when the `parsed_geometry_type` includes static colliders.
+- The `source_geometry_mode` that defines on which node(s) to start the parsing, and how to traverse the [SceneTree](https://docs.godotengine.org/en/stable/classes/class_scenetree.html#class-scenetree).
+- The `source_geometry_group_name` is used when only a certain node group should be parsed. Depends on the selected `source_geometry_mode`.
 
 With the source geometry added, the result of the baking can be controlled with the following properties.
 
-- The cell_size and cell_height sets the rasterization voxel grid size and should match the navigation map size.
+- The `cell_size` and `cell_height` sets the rasterization voxel grid size and should match the navigation map size.
 
-- The agent_radius shrinks the baked navigation mesh to have enough margin for the agent (collision) size.
+- The `agent_radius` shrinks the baked navigation mesh to have enough margin for the agent (collision) size.
 
-- The agent_height excludes areas from the navigation mesh where the agent is too tall to fit in.
+- The `agent_height` excludes areas from the navigation mesh where the agent is too tall to fit in.
 
-- The agent_max_climb and agent_max_slope removes areas where the height difference between neighboring voxels is too large, or where their surface is too steep.
+- The `agent_max_climb` and `agent_max_slope` removes areas where the height difference between neighboring voxels is too large, or where their surface is too steep.
 
 > Warning:
 >
 
-A too small cell_size or cell_height can create so many voxels that it has the potential to freeze the game or even crash.
+A too small `cell_size` or `cell_height` can create so many voxels that it has the potential to freeze the game or even crash.
 
 The NavigationRegion3D baking can also be used at runtime with scripts.
 
@@ -135,11 +135,11 @@ To quickly test the 3D baking with default settings:
 
 The [NavigationServer2D](https://docs.godotengine.org/en/stable/classes/class_navigationserver2d.html#class-navigationserver2d) and [NavigationServer3D](https://docs.godotengine.org/en/stable/classes/class_navigationserver3d.html#class-navigationserver3d) have API functions to call each step of the navigation mesh baking process individually.
 
-- parse_source_geometry_data() can be used to parse source geometry to a reusable and serializable resource.
+- `parse_source_geometry_data()` can be used to parse source geometry to a reusable and serializable resource.
 
-- bake_from_source_geometry_data() can be used to bake a navigation mesh from already parsed data e.g. to avoid runtime performance issues with (redundant) parsing.
+- `bake_from_source_geometry_data()` can be used to bake a navigation mesh from already parsed data e.g. to avoid runtime performance issues with (redundant) parsing.
 
-- bake_from_source_geometry_data_async() is the same but bakes the navigation mesh deferred with threads, not blocking the main thread.
+- `bake_from_source_geometry_data_async()` is the same but bakes the navigation mesh deferred with threads, not blocking the main thread.
 
 Compared to a NavigationRegion, the NavigationServer offers finer control over the navigation mesh baking process.
 In turn it is more complex to use but also provides more advanced options.
@@ -207,20 +207,20 @@ Together they can be used to ensure perfectly aligned edges between region chunk
 The baking bound, which is an axis-aligned [Rect2](https://docs.godotengine.org/en/stable/classes/class_rect2.html#class-rect2) for 2D and [AABB](https://docs.godotengine.org/en/stable/classes/class_aabb.html#class-aabb) for 3D,
 limits the used source geometry by discarding all the geometry that is outside of the bounds.
 
-The [NavigationPolygon](https://docs.godotengine.org/en/stable/classes/class_navigationpolygon.html#class-navigationpolygon) properties baking_rect and baking_rect_offset
+The [NavigationPolygon](https://docs.godotengine.org/en/stable/classes/class_navigationpolygon.html#class-navigationpolygon) properties `baking_rect` and `baking_rect_offset`
 can be used to create and place the 2D baking bound.
 
-The [NavigationMesh](https://docs.godotengine.org/en/stable/classes/class_navigationmesh.html#class-navigationmesh) properties filter_baking_aabb and filter_baking_aabb_offset
+The [NavigationMesh](https://docs.godotengine.org/en/stable/classes/class_navigationmesh.html#class-navigationmesh) properties `filter_baking_aabb` and `filter_baking_aabb_offset`
 can be used to create and place the 3D baking bound.
 
 With only the baking bound set another problem still exists. The resulting navigation mesh will
-inevitably be affected by necessary offsets like the agent_radius which makes the edges not align properly.
+inevitably be affected by necessary offsets like the `agent_radius` which makes the edges not align properly.
 
 @Image(source: "navmesh_chunk_gaps.png", alt: "Navigation mesh chunks with gaps") {Navigation mesh chunks with noticeable gaps due to baked agent radius offset.}
 
-This is where the border_size property for navigation mesh comes in. The border size is an inward margin
+This is where the `border_size` property for navigation mesh comes in. The border size is an inward margin
 from the baking bound. The important characteristic of the border size is that it is unaffected by most
-offsets and postprocessing like the agent_radius.
+offsets and postprocessing like the `agent_radius`.
 
 Instead of discarding source geometry, the border size discards parts of the final surface of the baked navigation mesh.
 If the baking bound is large enough the border size can remove the problematic surface
@@ -305,4 +305,176 @@ A [NavigationObstacle3D](https://docs.godotengine.org/en/stable/classes/class_na
 
 The following script uses the NavigationServer to parse source geometry from the scene tree, bakes a navigation mesh, and updates a navigation region with the updated navigation mesh.
 
+```
+extends Node2D
+
+var navigation_mesh: NavigationPolygon
+var source_geometry : NavigationMeshSourceGeometryData2D
+var callback_parsing : Callable
+var callback_baking : Callable
+var region_rid: RID
+
+func _ready() -> void:
+    navigation_mesh = NavigationPolygon.new()
+    navigation_mesh.agent_radius = 10.0
+    source_geometry = NavigationMeshSourceGeometryData2D.new()
+    callback_parsing = on_parsing_done
+    callback_baking = on_baking_done
+    region_rid = NavigationServer2D.region_create()
+
+    # Enable the region and set it to the default navigation map.
+    NavigationServer2D.region_set_enabled(region_rid, true)
+    NavigationServer2D.region_set_map(region_rid, get_world_2d().get_navigation_map())
+
+    # Some mega-nodes like TileMap are often not ready on the first frame.
+    # Also the parsing needs to happen on the main-thread.
+    # So do a deferred call to avoid common parsing issues.
+    parse_source_geometry.call_deferred()
+
+func parse_source_geometry() -> void:
+    source_geometry.clear()
+    var root_node: Node2D = self
+
+    # Parse the obstruction outlines from all child nodes of the root node by default.
+    NavigationServer2D.parse_source_geometry_data(
+        navigation_mesh,
+        source_geometry,
+        root_node,
+        callback_parsing
+    )
+
+func on_parsing_done() -> void:
+    # If we did not parse a TileMap with navigation mesh cells we may now only
+    # have obstruction outlines so add at least one traversable outline
+    # so the obstructions outlines have something to "cut" into.
+    source_geometry.add_traversable_outline(PackedVector2Array([
+        Vector2(0.0, 0.0),
+        Vector2(500.0, 0.0),
+        Vector2(500.0, 500.0),
+        Vector2(0.0, 500.0)
+    ]))
+
+    # Bake the navigation mesh on a thread with the source geometry data.
+    NavigationServer2D.bake_from_source_geometry_data_async(
+        navigation_mesh,
+        source_geometry,
+        callback_baking
+    )
+
+func on_baking_done() -> void:
+    # Update the region with the updated navigation mesh.
+    NavigationServer2D.region_set_navigation_polygon(region_rid, navigation_mesh)
+```
+
+```
+extends Node3D
+
+var navigation_mesh: NavigationMesh
+var source_geometry : NavigationMeshSourceGeometryData3D
+var callback_parsing : Callable
+var callback_baking : Callable
+var region_rid: RID
+
+func _ready() -> void:
+    navigation_mesh = NavigationMesh.new()
+    navigation_mesh.agent_radius = 0.5
+    source_geometry = NavigationMeshSourceGeometryData3D.new()
+    callback_parsing = on_parsing_done
+    callback_baking = on_baking_done
+    region_rid = NavigationServer3D.region_create()
+
+    # Enable the region and set it to the default navigation map.
+    NavigationServer3D.region_set_enabled(region_rid, true)
+    NavigationServer3D.region_set_map(region_rid, get_world_3d().get_navigation_map())
+
+    # Some mega-nodes like GridMap are often not ready on the first frame.
+    # Also the parsing needs to happen on the main-thread.
+    # So do a deferred call to avoid common parsing issues.
+    parse_source_geometry.call_deferred()
+
+func parse_source_geometry() -> void:
+    source_geometry.clear()
+    var root_node: Node3D = self
+
+    # Parse the geometry from all mesh child nodes of the root node by default.
+    NavigationServer3D.parse_source_geometry_data(
+        navigation_mesh,
+        source_geometry,
+        root_node,
+        callback_parsing
+    )
+
+func on_parsing_done() -> void:
+    # Bake the navigation mesh on a thread with the source geometry data.
+    NavigationServer3D.bake_from_source_geometry_data_async(
+        navigation_mesh,
+        source_geometry,
+        callback_baking
+    )
+
+func on_baking_done() -> void:
+    # Update the region with the updated navigation mesh.
+    NavigationServer3D.region_set_navigation_mesh(region_rid, navigation_mesh)
+```
+
 The following script uses the NavigationServer to update a navigation region with procedurally generated navigation mesh data.
+
+```
+extends Node2D
+
+var navigation_mesh: NavigationPolygon
+var region_rid: RID
+
+func _ready() -> void:
+    navigation_mesh = NavigationPolygon.new()
+    region_rid = NavigationServer2D.region_create()
+
+    # Enable the region and set it to the default navigation map.
+    NavigationServer2D.region_set_enabled(region_rid, true)
+    NavigationServer2D.region_set_map(region_rid, get_world_2d().get_navigation_map())
+
+    # Add vertices for a convex polygon.
+    navigation_mesh.vertices = PackedVector2Array([
+        Vector2(0.0, 0.0),
+        Vector2(100.0, 0.0),
+        Vector2(100.0, 100.0),
+        Vector2(0.0, 100.0),
+    ])
+
+    # Add indices for the polygon.
+    navigation_mesh.add_polygon(
+        PackedInt32Array([0, 1, 2, 3])
+    )
+
+    NavigationServer2D.region_set_navigation_polygon(region_rid, navigation_mesh)
+```
+
+```
+extends Node3D
+
+var navigation_mesh: NavigationMesh
+var region_rid: RID
+
+func _ready() -> void:
+    navigation_mesh = NavigationMesh.new()
+    region_rid = NavigationServer3D.region_create()
+
+    # Enable the region and set it to the default navigation map.
+    NavigationServer3D.region_set_enabled(region_rid, true)
+    NavigationServer3D.region_set_map(region_rid, get_world_3d().get_navigation_map())
+
+    # Add vertices for a convex polygon.
+    navigation_mesh.vertices = PackedVector3Array([
+        Vector3(-1.0, 0.0, 1.0),
+        Vector3(1.0, 0.0, 1.0),
+        Vector3(1.0, 0.0, -1.0),
+        Vector3(-1.0, 0.0, -1.0),
+    ])
+
+    # Add indices for the polygon.
+    navigation_mesh.add_polygon(
+        PackedInt32Array([0, 1, 2, 3])
+    )
+
+    NavigationServer3D.region_set_navigation_mesh(region_rid, navigation_mesh)
+```

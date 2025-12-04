@@ -19,6 +19,22 @@ several options (see <doc:multiple_resolutions> tutorial). Use, then, the
 functions in nodes to obtain the mouse coordinates and viewport size,
 for example:
 
+```
+func _input(event):
+    # Mouse in viewport coordinates.
+    if event is InputEventMouseButton:
+        print("Mouse Click/Unclick at: ", event.position)
+    elif event is InputEventMouseMotion:
+        print("Mouse Motion at: ", event.position)
+
+    # Print the size of the viewport.
+    print("Viewport Resolution is: ", get_viewport().get_visible_rect().size)
+```
+
 Alternatively, it's possible to ask the viewport for the mouse position:
 
-> Note: When the mouse mode is set to Input.MOUSE_MODE_CAPTURED, the event.position value from InputEventMouseMotion is the center of the screen. Use event.relative instead of event.position and event.velocity to process mouse movement and position changes.
+```
+get_viewport().get_mouse_position()
+```
+
+> Note: When the mouse mode is set to `Input.MOUSE_MODE_CAPTURED`, the `event.position` value from `InputEventMouseMotion` is the center of the screen. Use `event.relative` instead of `event.position` and `event.velocity` to process mouse movement and position changes.

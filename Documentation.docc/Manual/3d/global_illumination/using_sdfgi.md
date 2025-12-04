@@ -1,7 +1,7 @@
 # Signed distance field global illumination (SDFGI)
 
 Signed distance field global illumination (SDFGI) is a novel technique available
-in Godot 4.0. It provides semi-real-time global illumination that scales to any
+in Godot. It provides semi-real-time global illumination that scales to any
 world size and works with procedurally generated levels.
 
 SDFGI supports dynamic lights, but not dynamic occluders or dynamic emissive surfaces.
@@ -64,20 +64,20 @@ global illumination. This should be enabled in outdoor scenes and disabled in
 fully indoor scenes.
 
 - **Bounce Feedback:** By default, indirect lighting only bounces once when
-using SDFGI. Setting this value above 0.0 will cause SDFGI to bounce more
+using SDFGI. Setting this value above `0.0` will cause SDFGI to bounce more
 than once, which provides more realistic indirect lighting at a small
-performance cost. Sensible values are usually between 0.3 and 1.0
-depending on the scene. Note that in some scenes, values above 0.5 can
+performance cost. Sensible values are usually between `0.3` and `1.0`
+depending on the scene. Note that in some scenes, values above `0.5` can
 cause infinite feedback loops to happen, causing the scene to become extremely
 bright in a few seconds' time.
 If your indirect lighting looks "splotchy", consider increasing this value above
-0.0 to get more uniform-looking lighting. If your lighting ends up looking
+`0.0` to get more uniform-looking lighting. If your lighting ends up looking
 too bright as a result, decrease **Energy** to compensate.
 
 - **Cascades:** Higher values result in more detailed GI information
 (and/or greater maximum distance), but are significantly more expensive on the
 CPU and GPU. The performance cost of having more cascades especially increases
-when the camera moves fast, so consider decreasing this to 4 or lower
+when the camera moves fast, so consider decreasing this to `4` or lower
 if your camera moves fast.
 
 - **Min Cell Size:** The minimum SDFGI cell size to use for the nearest, most detailed
@@ -99,7 +99,7 @@ Adjusting this setting also affects **Min Cell Size** and **Cascade 0 Distance**
 - **Y Scale:** Controls how far apart SDFGI probes are spread vertically.
 By default, vertical spread is the same as horizontal. However, since most
 game scenes aren't highly vertical, setting the Y Scale to
-75% or even 50% can provide better quality and reduce light leaks
+`75%` or even `50%` can provide better quality and reduce light leaks
 without impacting performance.
 
 - **Energy:** The brightness multiplier for SDFGI's indirect lighting.
@@ -193,12 +193,12 @@ loading a scene, or when lights with a bake mode other than **Disabled** are mov
 If this value is set too low, this can cause surfaces to have visible "splotches"
 of indirect lighting on them due to the number of rays thrown being very low.
 If your scene's lighting doesn't have fast-moving lights that contribute to GI,
-consider setting this to 30 to improve quality without impacting performance.
+consider setting this to `30` to improve quality without impacting performance.
 
 - **Sdfgi > Frames To Update Light:** Lower values result in moving lights being
 reflected faster, at the cost of higher GPU usage. If your scene's lighting
 doesn't have fast-moving lights that contribute to GI, consider setting this
-to 16 to improve performance.
+to `16` to improve performance.
 
 - **Gi > Use Half Resolution:** If enabled, both SDFGI and VoxelGI will have
 their GI buffer rendering at halved resolution. For instance, when rendering

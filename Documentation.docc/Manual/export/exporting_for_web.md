@@ -24,7 +24,7 @@ in the user's browser.
 > Tip:
 >
 > Use the browser-integrated developer console, usually opened
-> with `F12` or `Ctrl + Shift + I` (`Cmd + Option + I` on macOS), to view
+> with ``F12`` or ``Ctrl + Shift + I`` (``Cmd + Option + I`` on macOS), to view
 > **debug information** like JavaScript, engine, and WebGL errors.
 >
 > If the shortcut doesn't work, it's because Godot actually captures the input.
@@ -33,7 +33,7 @@ in the user's browser.
 
 > Note:
 >
-> Due to security concerns with SharedArrayBuffer due to various exploits,
+> Due to security concerns with `SharedArrayBuffer` due to various exploits,
 > the use of multiple threads for the Web platform has multiple drawbacks,
 > including requiring specific server-side headers and complete cross-origin isolation
 > (meaning no ads, nor third-party integrations on the website hosting your game).
@@ -61,8 +61,8 @@ in the user's browser.
 
 ## Export file name
 
-We suggest users to export their Web projects with index.html as the file name.
-index.html is usually the default file loaded by web servers when accessing the
+We suggest users to export their Web projects with `index.html` as the file name.
+`index.html` is usually the default file loaded by web servers when accessing the
 parent directory, usually hiding the name of that file.
 
 > Attention:
@@ -74,7 +74,7 @@ parent directory, usually hiding the name of that file.
 
 ## WebGL version
 
-Godot 4.0 and later can only target WebGL 2.0 (using the Compatibility rendering
+Godot 4 can only target WebGL 2.0 (using the Compatibility rendering
 method). Forward+/Mobile are not supported on the web platform, as these
 rendering methods are designed around modern low-level graphics APIs. Godot
 currently does not support WebGPU, which is a prerequisite for allowing
@@ -143,7 +143,7 @@ compatible export).
 If a path to a **Custom HTML shell** file is given, it will be used instead of
 the default HTML page. See <doc:customizing_html5_shell>.
 
-**Head Include** is appended into the <head> element of the generated
+**Head Include** is appended into the `<head>` element of the generated
 HTML page. This allows to, for example, load webfonts and third-party
 JavaScript APIs, include CSS, or run JavaScript code.
 
@@ -256,19 +256,19 @@ of limitations you should be aware of when porting a Godot game to the web.
 ### Using cookies for data persistence
 
 Users must **allow cookies** (specifically IndexedDB) if persistence of the
-user:// file system is desired. When playing a game presented in an
-iframe, **third-party** cookies must also be enabled. Incognito/private
+`user://` file system is desired. When playing a game presented in an
+`iframe`, **third-party** cookies must also be enabled. Incognito/private
 browsing mode also prevents persistence.
 
-The method OS.is_userfs_persistent() can be used to check if the
-user:// file system is persistent, but can give false positives in some
+The method `OS.is_userfs_persistent()` can be used to check if the
+`user://` file system is persistent, but can give false positives in some
 cases.
 
 ### Background processing
 
 The project will be paused by the browser when the tab is no longer the active
-tab in the user's browser. This means functions such as _process() and
-_physics_process() will no longer run until the tab is made active again by
+tab in the user's browser. This means functions such as `_process()` and
+`_physics_process()` will no longer run until the tab is made active again by
 the user (by switching back to the tab). This can cause networked games to
 disconnect if the user switches tabs for a long duration.
 
@@ -281,7 +281,7 @@ window instead of a separate tab.
 Browsers do not allow arbitrarily **entering full screen**. The same goes for
 **capturing the cursor**. Instead, these actions have to occur as a response to
 a JavaScript input event. In Godot, this means entering full screen from within
-a pressed input event callback such as _input or _unhandled_input.
+a pressed input event callback such as `_input` or `_unhandled_input`.
 Querying the [Input](https://docs.godotengine.org/en/stable/classes/class_input.html#class-input) singleton is not sufficient, the relevant
 input event must currently be active.
 
@@ -328,7 +328,7 @@ supported.
 
 The HTTP classes also have several restrictions on the HTML5 platform:
 
-- Accessing or changing the StreamPeer is not possible
+- Accessing or changing the `StreamPeer` is not possible
 
 - Threaded/Blocking mode is not available
 
@@ -390,33 +390,33 @@ used, see <doc:customizing_html5_shell>.
 > worker-based workaround is not applied, **the project will not run**.
 >
 
-The generated .html file can be used as DirectoryIndex in Apache
-servers and can be renamed to e.g. index.html at any time. Its name is
+The generated `.html` file can be used as `DirectoryIndex` in Apache
+servers and can be renamed to e.g. `index.html` at any time. Its name is
 never depended on by default.
 
 The HTML page draws the game at maximum size within the browser window.
-This way, it can be inserted into an <iframe> with the game's size, as is
+This way, it can be inserted into an `<iframe>` with the game's size, as is
 common on most web game hosting sites.
 
-The other exported files are served as they are, next to the .html file,
-names unchanged. The .wasm file is a binary WebAssembly module implementing
-the engine. The .pck file is the Godot main pack containing your game. The
-.js file contains start-up code and is used by the .html file to access
-the engine. The .png file contains the boot splash image.
+The other exported files are served as they are, next to the `.html` file,
+names unchanged. The `.wasm` file is a binary WebAssembly module implementing
+the engine. The `.pck` file is the Godot main pack containing your game. The
+`.js` file contains start-up code and is used by the `.html` file to access
+the engine. The `.png` file contains the boot splash image.
 
-The .pck file is binary, usually delivered with the MIME-type
-:mimetype:`application/octet-stream`. The .wasm file is delivered as
+The `.pck` file is binary, usually delivered with the MIME-type
+:mimetype:`application/octet-stream`. The `.wasm` file is delivered as
 :mimetype:`application/wasm`.
 
 > Warning:
 >
-> Delivering the WebAssembly module (.wasm) with a MIME-type
+> Delivering the WebAssembly module (`.wasm`) with a MIME-type
 > other than :mimetype:`application/wasm` can prevent some start-up
 > optimizations.
 >
 
 Delivering the files with server-side compression is recommended especially for
-the .pck and .wasm files, which are usually large in size. The
+the `.pck` and `.wasm` files, which are usually large in size. The
 WebAssembly module compresses particularly well, down to around a quarter of its
 original size with gzip compression. Consider using Brotli precompression if
 supported on your web server for further file size savings.
@@ -432,8 +432,8 @@ supported on your web server for further file size savings.
 > Python script to host a local web server.
 > This script is intended for testing the web editor, but it can also be used to test exported projects.
 >
-> Save the linked script to a file called serve.py, move this file to the
-> folder containing the exported project's index.html, then run the
+> Save the linked script to a file called `serve.py`, move this file to the
+> folder containing the exported project's `index.html`, then run the
 > following command in a command prompt within the same folder:
 >
 > ::
@@ -442,7 +442,7 @@ supported on your web server for further file size savings.
 > python serve.py --root .
 >
 > On Windows, you can open a command prompt in the current folder by holding
-> `Shift` and right-clicking on empty space in Windows Explorer, then
+> ``Shift`` and right-clicking on empty space in Windows Explorer, then
 > choosing **Open PowerShell window here**.
 >
 > This will serve the contents of the current folder and open the default web
@@ -466,7 +466,7 @@ the export menu.
 
 Export option | Environment variable
 ------------- | --------------------
-Encryption / Encryption Key | GODOT_SCRIPT_ENCRYPTION_KEY
+Encryption / Encryption Key | `GODOT_SCRIPT_ENCRYPTION_KEY`
 
 ## Troubleshooting
 
@@ -480,7 +480,7 @@ currently lacks an automated cache busting mechanism.
 As a workaround, you can manually unregister the current service worker
 so that the cache is reset. This also allows a new service worker to be registered.
 In Chromium-based browsers, open the Developer Tools by pressing
-`F12` or `Ctrl + Shift + I` (`Cmd + Option + I` on macOS),
+``F12`` or ``Ctrl + Shift + I`` (``Cmd + Option + I`` on macOS),
 then click on the Application tab in DevTools (it may be hidden behind a chevron
 icon if the devtools pane is narrow). You can either check
 :button:`Update on reload` and reload the page, or click :button:`Unregister`
@@ -489,7 +489,7 @@ next to the service worker that is currently registered, then reload the page.
 @Image(source: "exporting_for_web_reset_unregister_service_worker_chromium.png", alt: "Unregistering the service worker in Chromium-based browsers' DevTools") {Unregistering the service worker in Chromium-based browsers' DevTools}
 
 The procedure is similar in Firefox. Open developer tools by pressing
-`F12` or `Ctrl + Shift + I` (`Cmd + Option + I` on macOS),
+``F12`` or ``Ctrl + Shift + I`` (``Cmd + Option + I`` on macOS),
 click on the Application tab in DevTools (it may be hidden behind a chevron
 icon if the devtools pane is narrow). Click :button:`Unregister` next to the
 service worker that is currently registered, then reload the page.

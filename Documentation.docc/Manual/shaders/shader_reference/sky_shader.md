@@ -2,7 +2,7 @@
 
 Sky shaders are a special type of shader used for drawing sky backgrounds
 and for updating radiance cubemaps which are used for image-based lighting
-(IBL). Sky shaders only have one processing function, the sky()
+(IBL). Sky shaders only have one processing function, the `sky()`
 function.
 
 There are three places the sky shader is used.
@@ -20,7 +20,7 @@ In total, this means the sky shader can run up
 to six times per frame, however, in practice it will be much less than that
 because the radiance cubemap does not need to be updated every frame, and
 not all subpasses will be used. You can change the behavior of the shader
-based on where it is called by checking the AT_*_PASS booleans. For
+based on where it is called by checking the `AT_*_PASS` booleans. For
 example:
 
 ```
@@ -46,15 +46,15 @@ When using the sky shader to update the radiance cubemap, the sky shader
 will be called for every pixel in the cubemap. On the other hand, the shader
 will only be called when the radiance cubemap needs to be updated. The radiance
 cubemap needs to be updated when any of the shader parameters are updated.
-For example, if TIME is used in the shader, then the radiance cubemap
+For example, if `TIME` is used in the shader, then the radiance cubemap
 will update every frame. The following list of changes force an update of
 the radiance cubemap:
 
-- TIME is used.
+- `TIME` is used.
 
-- POSITION is used and the camera position changes.
+- `POSITION` is used and the camera position changes.
 
-- If any LIGHTX_* properties are used and any
+- If any `LIGHTX_*` properties are used and any
 [DirectionalLight3D](https://docs.godotengine.org/en/stable/classes/class_directionallight3d.html#class-directionallight3d) changes.
 
 - If any uniform is changed in the shader.
@@ -135,7 +135,7 @@ Render mode | Description
 
 ## Built-ins
 
-Values marked as in are read-only. Values marked as out can optionally
+Values marked as `in` are read-only. Values marked as `out` can optionally
 be written to and will not necessarily contain sensible values. Samplers cannot
 be written to so they are not marked.
 
@@ -143,42 +143,42 @@ be written to so they are not marked.
 
 Global built-ins are available everywhere, including in custom functions.
 
-There are 4 LIGHTX lights, accessed as LIGHT0, LIGHT1, LIGHT2, and LIGHT3.
+There are 4 `LIGHTX` lights, accessed as `LIGHT0`, `LIGHT1`, `LIGHT2`, and `LIGHT3`.
 
 Built-in | Description
 -------- | -----------
-in float**TIME** | Global time since the engine has started, in seconds. It repeats after every3,600seconds (which can  be changed with the
+in float**TIME** | Global time since the engine has started, in seconds. It repeats after every`3,600`seconds (which can be changed with the
 [rollover](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_rendering/limits/time/time_rollover_secs.html#class-projectsettings_property_rendering/limits/time/time_rollover_secs)
-setting). It's affected by [time_scale](https://docs.godotengine.org/en/stable/classes/class_engine_property_time_scale.html#class-engine_property_time_scale) but not by pausing. If you need aTIMEvariable that is not affected by time scale, add your own
+setting). It's affected by [time_scale](https://docs.godotengine.org/en/stable/classes/class_engine_property_time_scale.html#class-engine_property_time_scale) but not by pausing. If you need a`TIME`variable that is not affected by time scale, add your own
 <doc:shading_language#Global-Uniforms> and update it each
 frame.
 in vec3**POSITION** | Camera position, in world space.
-samplerCube**RADIANCE** | Radiance cubemap. Can only be read from during background pass. Check!AT_CUBEMAP_PASSbefore using.
-in bool**AT_HALF_RES_PASS** | truewhen rendering to half resolution pass.
-in bool**AT_QUARTER_RES_PASS** | truewhen rendering to quarter resolution pass.
-in bool**AT_CUBEMAP_PASS** | truewhen rendering to radiance cubemap.
-in bool**LIGHTX_ENABLED** | trueifLIGHTXis visible and in the scene. Iffalse, other light properties may be garbage.
-in float**LIGHTX_ENERGY** | Energy multiplier forLIGHTX.
-in vec3**LIGHTX_DIRECTION** | Direction thatLIGHTXis facing.
-in vec3**LIGHTX_COLOR** | Color ofLIGHTX.
-in float**LIGHTX_SIZE** | Angular diameter ofLIGHTXin the sky. Expressed in radians. For reference, the sun from earth is about .0087 radians
+samplerCube**RADIANCE** | Radiance cubemap. Can only be read from during the background pass. Check`!AT_CUBEMAP_PASS`before using.
+in bool**AT_HALF_RES_PASS** | `true`when rendering to the half resolution pass.
+in bool**AT_QUARTER_RES_PASS** | `true`when rendering to the quarter resolution pass.
+in bool**AT_CUBEMAP_PASS** | `true`when rendering to the radiance cubemap.
+in bool**LIGHTX_ENABLED** | `true`if`LIGHTX`is visible and in the scene. If`false`, other light properties may be garbage.
+in float**LIGHTX_ENERGY** | Energy multiplier for`LIGHTX`.
+in vec3**LIGHTX_DIRECTION** | Direction that`LIGHTX`is facing.
+in vec3**LIGHTX_COLOR** | Color of`LIGHTX`.
+in float**LIGHTX_SIZE** | Angular diameter of`LIGHTX`in the sky. Expressed in radians. For reference, the sun from earth is about .0087 radians
 (0.5 degrees).
-in float**PI** | APIconstant (3.141592).
-A ratio of a circle's circumference to its diameter and amount of radians in half turn.
-in float**TAU** | ATAUconstant (6.283185).
-An equivalent ofPI * 2and amount of radians in full turn.
-in float**E** | AnEconstant (2.718281).
-Euler's number and a base of the natural logarithm.
+in float**PI** | A`PI`constant (`3.141592`).
+The ratio of a circle's circumference to its diameter and the number of radians in a half turn.
+in float**TAU** | A`TAU`constant (`6.283185`).
+Equivalent to`PI * 2`and the number of radians in a full turn.
+in float**E** | An`E`constant (`2.718281`).
+Euler's number, the base of the natural logarithm.
 
 ## Sky built-ins
 
 Built-in | Description
 -------- | -----------
-in vec3**EYEDIR** | Normalized direction of current pixel. Use this as your basic direction for procedural effects.
-in vec2**SCREEN_UV** | Screen UV coordinate for current pixel. Used to map a texture to the full screen.
+in vec3**EYEDIR** | Normalized direction of the current pixel. Use this as your basic direction for procedural effects.
+in vec2**SCREEN_UV** | Screen UV coordinate for the current pixel. Used to map a texture to the full screen.
 in vec2**SKY_COORDS** | Sphere UV. Used to map a panorama texture to the sky.
-in vec4**HALF_RES_COLOR** | Color value of corresponding pixel from half resolution pass. Uses linear filter.
-in vec4**QUARTER_RES_COLOR** | Color value of corresponding pixel from quarter resolution pass. Uses linear filter.
+in vec4**HALF_RES_COLOR** | Color value of the corresponding pixel from the half resolution pass. Uses linear filter.
+in vec4**QUARTER_RES_COLOR** | Color value of the corresponding pixel from the quarter resolution pass. Uses linear filter.
 out vec3**COLOR** | Output color.
 out float**ALPHA** | Output alpha value, can only be used in subpasses.
 out vec4**FOG** | 

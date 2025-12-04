@@ -23,9 +23,9 @@ as the arguments' types show up when you call a method. Static typing improves
 editor autocompletion and <doc:gdscript_documentation_comments>
 of your scripts.
 
-Imagine you're programming an inventory system. You code an Item class,
-then an Inventory. To add items to the inventory, the people who work with
-your code should always pass an Item to the Inventory.add() method.
+Imagine you're programming an inventory system. You code an `Item` class,
+then an `Inventory`. To add items to the inventory, the people who work with
+your code should always pass an `Item` to the `Inventory.add()` method.
 With types, you can enforce this:
 
 ```
@@ -74,7 +74,7 @@ faster it is to understand, the faster you can move forward.
 ## How to use static typing
 
 To define the type of a variable, parameter, or constant, write a colon after the name,
-followed by its type. E.g. var health: int. This forces the variable's type
+followed by its type. E.g. `var health: int`. This forces the variable's type
 to always stay the same:
 
 ```
@@ -95,10 +95,10 @@ func sum(a := 0.0, b := 0.0) -> float:
 
 > Note:
 >
-> 1. There is no difference between = and := for constants.
+> 1. There is no difference between `=` and `:=` for constants.
 > 2. You don't need to write type hints for constants, as Godot sets it automatically
 > from the assigned value. But you can still do so to make the intent of your code clearer.
-> Also, this is useful for typed arrays (like const A: Array[int] = [1, 2, 3]),
+> Also, this is useful for typed arrays (like `const A: Array[int] = [1, 2, 3]`),
 > since untyped arrays are used by default.
 >
 
@@ -106,21 +106,21 @@ func sum(a := 0.0, b := 0.0) -> float:
 
 Here is a complete list of what can be used as a type hint:
 
-1. Variant. Any type. In most cases this is not much different from an untyped
+1. `Variant`. Any type. In most cases this is not much different from an untyped
 declaration, but increases readability. As a return type, forces the function
 to explicitly return some value.
 
-1. (Only return type) void. Indicates that the function does not return any value.
+1. (Only return type) `void`. Indicates that the function does not return any value.
 
 1. <doc:index#Builtin-Types>.
 
-1. Native classes (Object, Node, Area2D, Camera2D, etc.).
+1. Native classes (`Object`, `Node`, `Area2D`, `Camera2D`, etc.).
 
 1. <doc:index#Basics-Class-Name>.
 
 1. <doc:index#Basics-Inner-Classes>.
 
-1. Global, native and custom named enums. Note that an enum type is just an int,
+1. Global, native and custom named enums. Note that an enum type is just an `int`,
 there is no guarantee that the value belongs to the set of enum values.
 
 1. Constants (including local ones) if they contain a preloaded class or enum.
@@ -134,24 +134,24 @@ const Rifle = preload("res://player/weapons/rifle.gd")
 var my_rifle: Rifle
 ```
 
-The second method is to use the class_name keyword when you create.
-For the example above, your rifle.gd would look like this:
+The second method is to use the `class_name` keyword when you create.
+For the example above, your `rifle.gd` would look like this:
 
 ```
 class_name Rifle
 extends Node2D
 ```
 
-If you use class_name, Godot registers the Rifle type globally in the editor,
+If you use `class_name`, Godot registers the `Rifle` type globally in the editor,
 and you can use it anywhere, without having to preload it into a constant:
 
 ```
 var my_rifle: Rifle
 ```
 
-### Specify the return type of a function with the arrow ->
+### Specify the return type of a function with the arrow `->`
 
-To define the return type of a function, write a dash and a right angle bracket ->
+To define the return type of a function, write a dash and a right angle bracket `->`
 after its declaration, followed by the return type:
 
 ```
@@ -159,7 +159,7 @@ func _process(delta: float) -> void:
     pass
 ```
 
-The type void means the function does not return anything. You can use any type,
+The type `void` means the function does not return anything. You can use any type,
 as with variables:
 
 ```
@@ -212,15 +212,15 @@ func get_property(param: Control) -> Node2D:
     # ...
 ```
 
-### Specify the element type of an Array
+### Specify the element type of an `Array`
 
-To define the type of an Array, enclose the type name in [].
+To define the type of an `Array`, enclose the type name in `[]`.
 
-An array's type applies to for loop variables, as well as some operators like
-[], [...] = (assignment), and +. Array methods
-(such as push_back) and other operators (such as ==)
+An array's type applies to `for` loop variables, as well as some operators like
+`[]`, `[...] =` (assignment), and `+`. Array methods
+(such as `push_back`) and other operators (such as `==`)
 are still untyped. Built-in types, native and custom classes,
-and enums may be used as element types. Nested array types (like Array[Array[int]])
+and enums may be used as element types. Nested array types (like `Array[Array[int]]`)
 are not supported.
 
 ```
@@ -239,7 +239,7 @@ var s: String = scores[0]
 scores[0] = "lots"
 ```
 
-Since Godot 4.2, you can also specify a type for the loop variable in a for loop.
+Since Godot 4.2, you can also specify a type for the loop variable in a `for` loop.
 For instance, you can write:
 
 ```
@@ -248,19 +248,19 @@ for name: String in names:
     pass
 ```
 
-The array will remain untyped, but the name variable within the for loop
-will always be of String type.
+The array will remain untyped, but the `name` variable within the `for` loop
+will always be of `String` type.
 
-### Specify the element type of a Dictionary
+### Specify the element type of a `Dictionary`
 
-To define the type of a Dictionary's keys and values, enclose the type name in []
+To define the type of a `Dictionary`'s keys and values, enclose the type name in `[]`
 and separate the key and value type with a comma.
 
-A dictionary's value type applies to for loop variables, as well as some operators like
-[] and [...] = (assignment). Dictionary methods that return values
-and other operators (such as ==) are still untyped. Built-in types, native
+A dictionary's value type applies to `for` loop variables, as well as some operators like
+`[]` and `[...] =` (assignment). Dictionary methods that return values
+and other operators (such as `==`) are still untyped. Built-in types, native
 and custom classes, and enums may be used as element types. Nested typed collections
-(like Dictionary[String, Dictionary[String, int]]) are not supported.
+(like `Dictionary[String, Dictionary[String, int]]`) are not supported.
 
 ```
 var fruit_costs: Dictionary[String, int] = { "apple": 5, "orange": 10 }
@@ -283,15 +283,15 @@ fruit_costs["orange"] = "lots"
 Type casting is an important concept in typed languages.
 Casting is the conversion of a value from one type to another.
 
-Imagine an Enemy in your game, that extends Area2D. You want it to collide
-with the Player, a CharacterBody2D with a script called PlayerController
-attached to it. You use the body_entered signal to detect the collision.
-With typed code, the body you detect is going to be a generic PhysicsBody2D,
-and not your PlayerController on the _on_body_entered callback.
+Imagine an `Enemy` in your game, that `extends Area2D`. You want it to collide
+with the `Player`, a `CharacterBody2D` with a script called `PlayerController`
+attached to it. You use the `body_entered` signal to detect the collision.
+With typed code, the body you detect is going to be a generic `PhysicsBody2D`,
+and not your `PlayerController` on the `_on_body_entered` callback.
 
-You can check if this PhysicsBody2D is your Player with the as keyword,
-and using the colon : again to force the variable to use this type.
-This forces the variable to stick to the PlayerController type:
+You can check if this `PhysicsBody2D` is your `Player` with the `as` keyword,
+and using the colon `:` again to force the variable to use this type.
+This forces the variable to stick to the `PlayerController` type:
 
 ```
 func _on_body_entered(body: PhysicsBody2D) -> void:
@@ -302,17 +302,17 @@ func _on_body_entered(body: PhysicsBody2D) -> void:
     player.damage()
 ```
 
-As we're dealing with a custom type, if the body doesn't extend
-PlayerController, the player variable will be set to null.
+As we're dealing with a custom type, if the `body` doesn't extend
+`PlayerController`, the `player` variable will be set to `null`.
 We can use this to check if the body is the player or not. We will also
 get full autocompletion on the player variable thanks to that cast.
 
 > Note:
 >
-> The as keyword silently casts the variable to null in case of a type
+> The `as` keyword silently casts the variable to `null` in case of a type
 > mismatch at runtime, without an error/warning. While this may be convenient
-> in some cases, it can also lead to bugs. Use the as keyword only if this
-> behavior is intended. A safer alternative is to use the is keyword:
+> in some cases, it can also lead to bugs. Use the `as` keyword only if this
+> behavior is intended. A safer alternative is to use the `is` keyword:
 >
 > ::
 >
@@ -325,14 +325,14 @@ get full autocompletion on the player variable thanks to that cast.
 >
 > player.damage()
 >
-> You can also simplify the code by using the is not operator:
+> You can also simplify the code by using the `is not` operator:
 >
 > ::
 >
 > if body is not PlayerController:
 > push_error("Bug: body is not PlayerController")
 >
-> Alternatively, you can use the assert() statement:
+> Alternatively, you can use the `assert()` statement:
 >
 > ::
 >
@@ -357,14 +357,14 @@ and dynamic code, at times, Godot doesn't have enough information to know if
 an instruction will trigger an error or not at runtime.
 
 This happens when you get a child node. Let's take a timer for example:
-with dynamic code, you can get the node with $Timer. GDScript supports
+with dynamic code, you can get the node with `$Timer`. GDScript supports
 duck-typing,
-so even if your timer is of type Timer, it is also a Node and
-an Object, two classes it extends. With dynamic GDScript, you also don't
+so even if your timer is of type `Timer`, it is also a `Node` and
+an `Object`, two classes it extends. With dynamic GDScript, you also don't
 care about the node's type as long as it has the methods you need to call.
 
 You can use casting to tell Godot the type you expect when you get a node:
-($Timer as Timer), ($Player as CharacterBody2D), etc.
+`($Timer as Timer)`, `($Player as CharacterBody2D)`, etc.
 Godot will ensure the type works and if so, the line number will turn
 green at the left of the script editor.
 
@@ -373,18 +373,18 @@ green at the left of the script editor.
 > Note:
 >
 > Safe lines do not always mean better or more reliable code. See the note above
-> about the as keyword. For example:
+> about the `as` keyword. For example:
 >
 > ::
 >
 > @onready var node_1 := $Node1 as Type1 # Safe line.
 > @onready var node_2: Type2 = $Node2 # Unsafe line.
 >
-> Even though node_2 declaration is marked as an unsafe line, it is more
-> reliable than node_1 declaration. Because if you change the node type
+> Even though `node_2` declaration is marked as an unsafe line, it is more
+> reliable than `node_1` declaration. Because if you change the node type
 > in the scene and accidentally forget to change it in the script, the error
-> will be detected immediately when the scene is loaded. Unlike node_1,
-> which will be silently cast to null and the error will be detected later.
+> will be detected immediately when the scene is loaded. Unlike `node_1`,
+> which will be silently cast to `null` and the error will be detected later.
 >
 
 > Note:
@@ -429,7 +429,7 @@ func _process(delta: float) -> void:
 ```
 
 As you can see, you can also use types with the engine's virtual methods.
-Signal callbacks, like any methods, can also use types. Here's a body_entered
+Signal callbacks, like any methods, can also use types. Here's a `body_entered`
 signal in a dynamic style:
 
 ```
@@ -439,7 +439,10 @@ func _on_area_2d_body_entered(body):
 
 And the same callback, with type hints:
 
-pass
+```
+func _on_area_2d_body_entered(body: PhysicsBody2D) -> void:
+    pass
+```
 
 ## Warning system
 
@@ -457,12 +460,12 @@ We have a number of warnings aimed specifically at users of typed GDScript.
 By default, these warnings are disabled, you can enable them in Project Settings
 (**Debug > GDScript**, make sure **Advanced Settings** is enabled).
 
-You can enable the UNTYPED_DECLARATION warning if you want to always use
-static types. Additionally, you can enable the INFERRED_DECLARATION warning
+You can enable the `UNTYPED_DECLARATION` warning if you want to always use
+static types. Additionally, you can enable the `INFERRED_DECLARATION` warning
 if you prefer a more readable and reliable, but more verbose syntax.
 
-UNSAFE_* warnings make unsafe operations more noticeable, than unsafe lines.
-Currently, UNSAFE_* warnings do not cover all cases that unsafe lines cover.
+`UNSAFE_*` warnings make unsafe operations more noticeable, than unsafe lines.
+Currently, `UNSAFE_*` warnings do not cover all cases that unsafe lines cover.
 
 ## Common unsafe operations and their safe counterparts
 
@@ -484,7 +487,7 @@ Method | Statically typed equivalents
 [clampi()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_clampi.html#class-@globalscope_method_clampi)[Vector2.clamp()](https://docs.godotengine.org/en/stable/classes/class_vector2_method_clamp.html#class-vector2_method_clamp),
 [Vector2i.clamp()](https://docs.godotengine.org/en/stable/classes/class_vector2i_method_clamp.html#class-vector2i_method_clamp)[Vector3.clamp()](https://docs.godotengine.org/en/stable/classes/class_vector3_method_clamp.html#class-vector3_method_clamp),
 [Vector3i.clamp()](https://docs.godotengine.org/en/stable/classes/class_vector3i_method_clamp.html#class-vector3i_method_clamp)[Vector4.clamp()](https://docs.godotengine.org/en/stable/classes/class_vector4_method_clamp.html#class-vector4_method_clamp),
-[Vector4i.clamp()](https://docs.godotengine.org/en/stable/classes/class_vector4i_method_clamp.html#class-vector4i_method_clamp)[Color.clamp()](https://docs.godotengine.org/en/stable/classes/class_color_method_clamp.html#class-color_method_clamp)(untypedclamp()does not work on Color)
+[Vector4i.clamp()](https://docs.godotengine.org/en/stable/classes/class_vector4i_method_clamp.html#class-vector4i_method_clamp)[Color.clamp()](https://docs.godotengine.org/en/stable/classes/class_color_method_clamp.html#class-color_method_clamp)(untyped`clamp()`does not work on Color)
 [floor()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_floor.html#class-@globalscope_method_floor) | [floorf()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_floorf.html#class-@globalscope_method_floorf),
 [floori()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_floori.html#class-@globalscope_method_floori)[Vector2.floor()](https://docs.godotengine.org/en/stable/classes/class_vector2_method_floor.html#class-vector2_method_floor)[Vector3.floor()](https://docs.godotengine.org/en/stable/classes/class_vector3_method_floor.html#class-vector3_method_floor)[Vector4.floor()](https://docs.godotengine.org/en/stable/classes/class_vector4_method_floor.html#class-vector4_method_floor)
 [lerp()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_lerp.html#class-@globalscope_method_lerp) | [lerpf()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_lerpf.html#class-@globalscope_method_lerpf)[Vector2.lerp()](https://docs.godotengine.org/en/stable/classes/class_vector2_method_lerp.html#class-vector2_method_lerp)[Vector3.lerp()](https://docs.godotengine.org/en/stable/classes/class_vector3_method_lerp.html#class-vector3_method_lerp)[Vector4.lerp()](https://docs.godotengine.org/en/stable/classes/class_vector4_method_lerp.html#class-vector4_method_lerp)[Color.lerp()](https://docs.godotengine.org/en/stable/classes/class_color_method_lerp.html#class-color_method_lerp)[Quaternion.slerp()](https://docs.godotengine.org/en/stable/classes/class_quaternion_method_slerp.html#class-quaternion_method_slerp)[Basis.slerp()](https://docs.godotengine.org/en/stable/classes/class_basis_method_slerp.html#class-basis_method_slerp)[Transform2D.interpolate_with()](https://docs.godotengine.org/en/stable/classes/class_transform2d_method_interpolate_with.html#class-transform2d_method_interpolate_with)[Transform3D.interpolate_with()](https://docs.godotengine.org/en/stable/classes/class_transform3d_method_interpolate_with.html#class-transform3d_method_interpolate_with)
@@ -503,10 +506,10 @@ When using static typing, use the typed global scope methods whenever possible.
 This ensures you have safe lines and benefit from typed instructions for
 better performance.
 
-### UNSAFE_PROPERTY_ACCESS and UNSAFE_METHOD_ACCESS warnings
+### `UNSAFE_PROPERTY_ACCESS` and `UNSAFE_METHOD_ACCESS` warnings
 
 In this example, we aim to set a property and call a method on an object
-that has a script attached with class_name MyScript and that extends Node2D. If we have a reference to the object as a Node2D (for instance,
+that has a script attached with `class_name MyScript` and that `extends Node2D`. If we have a reference to the object as a `Node2D` (for instance,
 as it was passed to us by the physics system), we can first check if the
 property and method exist and then set and call them if they do:
 
@@ -518,11 +521,11 @@ if node_2d.has_method("some_function"):
     node_2d.some_function()  # Produces UNSAFE_METHOD_ACCESS warning.
 ```
 
-However, this code will produce UNSAFE_PROPERTY_ACCESS and
-UNSAFE_METHOD_ACCESS warnings as the property and method are not present
-in the referenced type - in this case a Node2D. To make these operations
-safe, you can first check if the object is of type MyScript using the
-is keyword and then declare a variable with the type MyScript on
+However, this code will produce `UNSAFE_PROPERTY_ACCESS` and
+`UNSAFE_METHOD_ACCESS` warnings as the property and method are not present
+in the referenced type - in this case a `Node2D`. To make these operations
+safe, you can first check if the object is of type `MyScript` using the
+`is` keyword and then declare a variable with the type `MyScript` on
 which you can set its properties and call its methods:
 
 ```
@@ -532,7 +535,7 @@ if node_2d is MyScript:
     my_script.some_function()
 ```
 
-Alternatively, you can declare a variable and use the as operator to try
+Alternatively, you can declare a variable and use the `as` operator to try
 to cast the object. You'll then want to check whether the cast was successful
 by confirming that the variable was assigned:
 
@@ -543,11 +546,11 @@ if my_script != null:
     my_script.some_function()
 ```
 
-### UNSAFE_CAST warning
+### `UNSAFE_CAST` warning
 
 In this example, we would like the label connected to an object entering our
 collision area to show the area's name. Once the object enters the collision
-area, the physics system sends a signal with a Node2D object, and the most
+area, the physics system sends a signal with a `Node2D` object, and the most
 straightforward (but not statically typed) solution to do what we want could
 be achieved like this:
 
@@ -556,9 +559,9 @@ func _on_body_entered(body: Node2D) -> void:
     body.label.text = name  # Produces UNSAFE_PROPERTY_ACCESS warning.
 ```
 
-This piece of code produces an UNSAFE_PROPERTY_ACCESS warning because
-label is not defined in Node2D. To solve this, we could first check if the
-label property exist and cast it to type Label before settings its text
+This piece of code produces an `UNSAFE_PROPERTY_ACCESS` warning because
+`label` is not defined in `Node2D`. To solve this, we could first check if the
+`label` property exist and cast it to type `Label` before settings its text
 property like so:
 
 ```
@@ -567,11 +570,11 @@ func _on_body_entered(body: Node2D) -> void:
         (body.label as Label).text = name  # Produces UNSAFE_CAST warning.
 ```
 
-However, this produces an UNSAFE_CAST warning because body.label is of a
-Variant type. To safely get the property in the type you want, you can use the
-Object.get() method which returns the object as a Variant value or returns
-null if the property doesn't exist. You can then determine whether the
-property contains an object of the right type using the is keyword, and
+However, this produces an `UNSAFE_CAST` warning because `body.label` is of a
+`Variant` type. To safely get the property in the type you want, you can use the
+`Object.get()` method which returns the object as a `Variant` value or returns
+`null` if the property doesn't exist. You can then determine whether the
+property contains an object of the right type using the `is` keyword, and
 finally declare a statically typed variable with the object:
 
 ```

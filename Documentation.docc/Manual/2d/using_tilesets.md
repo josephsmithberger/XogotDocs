@@ -126,7 +126,7 @@ three vertical dots menu button at the top of the TileSet editor and choose
 
 ### Using a collection of scenes
 
-Since Godot 4.0, you can place actual scenes as tiles. This allows you to use
+You can also place actual scenes as tiles. This allows you to use
 any collection of nodes as a tile. For example, you could use scene tiles to
 place gameplay elements, such as shops the player may be able to interact with.
 You could also use scene tiles to place AudioStreamPlayer2Ds (for ambient
@@ -178,7 +178,7 @@ atlases, then choose **Open Atlas Merging Tool**:
 @Image(source: "using_tilesets_open_atlas_merging_tool.png", alt: "Opening the atlas merging tool after creating multiple atlases") {Opening the atlas merging tool after creating multiple atlases}
 
 This will open a dialog, in which you can select several atlases by holding
-`Shift` or `Ctrl` then clicking on multiple elements:
+``Shift`` or ``Ctrl`` then clicking on multiple elements:
 
 @Image(source: "using_tilesets_atlas_merging_tool_dialog.png", alt: "Using the atlas merging tool dialog") {Using the atlas merging tool dialog}
 
@@ -252,11 +252,11 @@ in the TileSet atlas inspector:
 
 @Image(source: "using_tilesets_selecting_collision_editor.png", alt: "Opening the collision editor while in Select mode") {Opening the collision editor while in Select mode}
 
-You can quickly create a rectangle collision shape by pressing `F` while
+You can quickly create a rectangle collision shape by pressing ``F`` while
 the TileSet editor is focused. If the keyboard shortcut doesn't work, try
 clicking in the empty area around the polygon editor to focus it:
 
-@Image(source: "using_tilesets_using_default_rectangle_collision.png", alt: "Using default rectangle collision shape by pressing `F`") {Using default rectangle collision shape by pressing `F`}
+@Image(source: "using_tilesets_using_default_rectangle_collision.png", alt: "Using default rectangle collision shape by pressing ``F``") {Using default rectangle collision shape by pressing ``F``}
 
 In this tile collision editor, you have access to all the 2D polygon editing tools:
 
@@ -311,8 +311,8 @@ You can reorder custom data without breaking existing metadata: the TileSet
 editor will update automatically after reordering custom data properties.
 
 With the custom data layers example shown above, we're assigning a tile to have the
-damage_per_second metadata set to 25 and the destructible metadata
-to false:
+`damage_per_second` metadata set to `25` and the `destructible` metadata
+to `false`:
 
 @Image(source: "using_tilesets_edit_custom_data.png", alt: "Editing custom data in the TileSet editor while in Select mode") {Editing custom data in the TileSet editor while in Select mode}
 
@@ -366,27 +366,27 @@ After creating a terrain set, you **must** create one or more terrains within th
 
 In the TileSet editor, switch to Select mode and click a tile. In the middle
 column, unfold the **Terrains** section then assign a terrain set ID and a
-terrain ID for the tile. -1 means "no terrain set" or "no terrain", which
-means you must set **Terrain Set** to 0 or greater before you can set
-**Terrain** to 0 or greater.
+terrain ID for the tile. `-1` means "no terrain set" or "no terrain", which
+means you must set **Terrain Set** to `0` or greater before you can set
+**Terrain** to `0` or greater.
 
 > Note:
 >
 > Terrain set IDs and terrain IDs are independent from each other. They also
-> start from 0, not 1.
+> start from `0`, not `1`.
 >
 
 @Image(source: "using_tilesets_configure_terrain_on_tile.png", alt: "Configuring terrain on a single tile in the TileSet editor's Select mode") {Configuring terrain on a single tile in the TileSet editor's Select mode}
 
 After doing so, you can now configure the **Terrain Peering Bits** section which
 becomes visible in the middle column. The peering bits determine which tile will
-be placed depending on neighboring tiles. -1 is a special value which refers
+be placed depending on neighboring tiles. `-1` is a special value which refers
 to empty space.
 
-For example, if a tile has all its bits set to 0 or greater, it will only
+For example, if a tile has all its bits set to `0` or greater, it will only
 appear if all 8 neighboring tiles are using a tile with the same terrain ID.
-If a tile has its bits set to 0 or greater,
-but the top-left, top and top-right bits are set to -1, it will only appear
+If a tile has its bits set to `0` or greater,
+but the top-left, top and top-right bits are set to `-1`, it will only appear
 if there is empty space on top of it (including diagonally).
 
 @Image(source: "using_tilesets_configure_terrain_peering_bits.png", alt: "Configuring terrain peering bits on a single tile in the TileSet editor's Select mode") {Configuring terrain peering bits on a single tile in the TileSet editor's Select mode}
@@ -408,10 +408,10 @@ If you wish to configure various properties on several tiles at once,
 choose the **Select** mode at the top of the TileSet editor:
 
 After doing this, you can select multiple tiles on the right column by holding
-`Shift` then clicking on tiles. You can also perform rectangle selection by
+``Shift`` then clicking on tiles. You can also perform rectangle selection by
 holding down the left mouse button then dragging the mouse. Lastly, you can
 deselect tiles that were already selected (without affecting the rest of the
-selection) by holding `Shift` then clicking on a selected tile.
+selection) by holding ``Shift`` then clicking on a selected tile.
 
 You can then assign properties using the inspector in the middle column of the
 TileSet editor. Only properties that you change here will be applied to all
@@ -478,11 +478,11 @@ properties is different compared to base tiles:
 Changing it will break existing TileMaps, so be careful! This ID also controls
 the sorting in the list of alternative tiles displayed in the editor.
 
-- **Rendering > Flip H:** If true, the tile is horizontally flipped.
+- **Rendering > Flip H:** If `true`, the tile is horizontally flipped.
 
-- **Rendering > Flip V:** If true, the tile is vertically flipped.
+- **Rendering > Flip V:** If `true`, the tile is vertically flipped.
 
-- **Rendering > Transpose:** If true, the tile is rotated 90 degrees
+- **Rendering > Transpose:** If `true`, the tile is rotated 90 degrees
 counter-clockwise and then flipped vertically. In practice, this means that
 to rotate a tile by 90 degrees clockwise without flipping it, you should
 enable **Flip H** and **Transpose**. To rotate a tile by 180 degrees
@@ -503,7 +503,7 @@ render in front of others on the same layer.
 - **Y Sort Origin:** The vertical offset to use for tile sorting based on its Y
 coordinate (in pixels). This allows using layers as if they were on different
 height for top-down games. Adjusting this can help alleviate issues with
-sorting certain tiles. Only effective if **Y Sort Enabled** is true on
+sorting certain tiles. Only effective if **Y Sort Enabled** is `true` on
 the TileMapLayer node under **CanvasItem > Ordering**
 
 You can create an additional alternative tile variant by clicking the large "+"

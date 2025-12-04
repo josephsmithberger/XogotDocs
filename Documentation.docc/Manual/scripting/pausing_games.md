@@ -12,14 +12,18 @@ Godot.
 ## How pausing works
 
 To pause the game the pause state must be set. This is done by assigning
-true to the [SceneTree.paused](https://docs.godotengine.org/en/stable/classes/class_scenetree_property_paused.html#class-scenetree_property_paused) property:
+`true` to the [SceneTree.paused](https://docs.godotengine.org/en/stable/classes/class_scenetree_property_paused.html#class-scenetree_property_paused) property:
+
+```
+get_tree().paused = true
+```
 
 Doing this will cause two things. First, 2D and 3D physics will be stopped
 for all nodes. Second, the behavior of certain nodes will stop or start
 depending on their process mode.
 
 > Note: The physics servers can be made active while the game is
-> paused by using their set_active methods.
+> paused by using their `set_active` methods.
 >
 
 ## Process Modes
@@ -30,6 +34,11 @@ be found and changed under a node's [Node](https://docs.godotengine.org/en/stabl
 @Image(source: "pausemode.png")
 
 You can also alter the property with code:
+
+```
+func _ready():
+    process_mode = Node.PROCESS_MODE_PAUSABLE
+```
 
 This is what each mode tells a node to do:
 
@@ -54,7 +63,7 @@ on. If a state can't be found in any of the grandparents, the pause state
 in SceneTree is used. This means that, by default, when the game is paused
 every node will be paused. Several things happen when a node stops processing.
 
-The _process, _physics_process, _input, and _input_event functions
+The `_process`, `_physics_process`, `_input`, and `_input_event` functions
 will not be called. However signals still work and cause their connected function to
 run, even if that function's script is attached to a node that is not currently being processed.
 
@@ -65,7 +74,7 @@ automatically when the game is no longer paused.
 It is important to note that even if a node is processing while the game is
 paused physics will **NOT** work for it by default. As stated earlier this is
 because the physics servers are turned off. The physics servers can be made
-active while the game is paused by using their set_active methods.
+active while the game is paused by using their `set_active` methods.
 
 ## Pause menu example
 
@@ -79,7 +88,19 @@ This way, all the nodes in the menu will start processing when the game is pause
 Attach a script to the menu's root node, connect the pause button created earlier to a new method in
 the script, and inside that method pause the game and show the pause menu.
 
+```
+func _on_pause_button_pressed():
+    get_tree().paused = true
+    show()
+```
+
 Finally, connect the menu's close button to a new method in the script. Inside that method,
 unpause the game and hide the pause menu.
+
+```
+func _on_close_button_pressed():
+    hide()
+    get_tree().paused = false
+```
 
 You should now have a working pause menu.

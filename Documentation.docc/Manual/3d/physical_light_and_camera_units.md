@@ -97,7 +97,7 @@ results in a wide aperture which lets in more light resulting in a brighter,
 less-focused image.
 
 - **Shutter Speed:** The time for shutter to open and close, measured in
-inverse seconds (1/N). A lower value will let in more light leading to a
+inverse seconds (`1/N`). A lower value will let in more light leading to a
 brighter image, while a higher value will let in less light leading to a
 darker image. When getting or setting this property with a script, the unit
 is in seconds instead of inverse seconds.

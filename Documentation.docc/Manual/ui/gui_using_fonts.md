@@ -24,7 +24,7 @@ is used as the default project font.
 >
 
 There are 2 kinds of font files: dynamic (TTF/OTF/WOFF/WOFF2 formats) and
-bitmap (BMFont .fnt format or monospaced image). Dynamic fonts are the
+bitmap (BMFont `.fnt` format or monospaced image). Dynamic fonts are the
 most commonly used option, as they can be resized and still look crisp at higher
 sizes. Thanks to their vector-based nature, they can also contain a lot more
 glyphs while keeping a reasonable file size compared to bitmap fonts. Dynamic
@@ -51,22 +51,22 @@ as ligatures (several characters transforming into a single different design).
 
 Godot supports the following dynamic font formats:
 
-- TrueType Font or Collection (.ttf, .ttc)
+- TrueType Font or Collection (`.ttf`, `.ttc`)
 
-- OpenType Font or Collection (.otf, .otc)
+- OpenType Font or Collection (`.otf`, `.otc`)
 
-- Web Open Font Format 1 (.woff)
+- Web Open Font Format 1 (`.woff`)
 
-- Web Open Font Format 2 (.woff2, since Godot 3.5)
+- Web Open Font Format 2 (`.woff2`)
 
-While .woff and especially .woff2 tend to result in smaller file sizes,
+While `.woff` and especially `.woff2` tend to result in smaller file sizes,
 there is no universally "better" font format. In most situations, it's
 recommended to use the font format that was shipped on the font developer's
 website.
 
 ## Bitmap fonts
 
-Godot supports the BMFont (.fnt) bitmap font format. This is a format created
+Godot supports the BMFont (`.fnt`) bitmap font format. This is a format created
 by the BMFont program. Many
 BMFont-compatible programs also exist, like BMGlyph or web-based fontcutter.
 
@@ -93,11 +93,11 @@ successfully:
 The **Character Ranges** option is an array that maps each position on the image
 (in tile coordinates, not pixels). The font atlas is traversed from left to
 right and top to bottom. Characters can be specified with decimal numbers
-(127), hexadecimal numbers (0x007f) or between single quotes
-('~'). Ranges can be specified with a hyphen between characters.
+(`127`), hexadecimal numbers (`0x007f`) or between single quotes
+(`'~'`). Ranges can be specified with a hyphen between characters.
 
-For instance, 0-127 (or 0x0000-0x007f) denotes the full ASCII range.
-As another example, ' '-'~' is equivalent to 32-127 and denotes the range
+For instance, `0-127` (or `0x0000-0x007f`) denotes the full ASCII range.
+As another example, `' '-'~'` is equivalent to `32-127` and denotes the range
 of printable (visible) ASCII characters.
 
 Make sure the **Character Ranges** option doesn't exceed the number of
@@ -132,7 +132,7 @@ space those two sets of characters when placed next to each other.
 @Image(source: "using_fonts_bitmap_kerning_pairs_example.png")
 
 If needed, your kerning pair characters can be specified by Unicode character code
-by entering \uXXXX where XXXX is the hexadecimal value of the Unicode character.
+by entering `\uXXXX` where XXXX is the hexadecimal value of the Unicode character.
 
 ## Loading a font file
 
@@ -292,7 +292,7 @@ up rasterization. However, this can cause downscaled fonts to become grainy. Thi
 can be especially noticeable with <doc:3d_text> that doesn't have **Fixed
 Size** enabled. This can also occur when displaying text with a traditional rasterized
 (non-<doc:using_fonts_msdf>) font in a Control node that has its scale
-lower than (1, 1).
+lower than `(1, 1)`.
 
 After selecting a font in the FileSystem dock, you can enable the **Mipmaps** in
 the Import dock to improve downscaled font rendering appearance.
@@ -400,14 +400,14 @@ with <doc:3d_text> and TextMesh.
 >
 
 Depending on your use cases, this may lead to better results compared to using
-the img tag in <doc:bbcode_in_richtextlabel>. Unlike
+the `img` tag in <doc:bbcode_in_richtextlabel>. Unlike
 bitmap images (including SVGs which are rasterized on import by Godot),
 true vector data can be resized to any size without losing quality.
 
 After downloading the generated font file, load it in your Godot project then
 specify it as a custom font for a Label, RichTextLabel or Label3D node. Switch
 over to the Fontello web interface, then copy the character by selecting it then
-pressing `Ctrl + C` (`Cmd + C` on macOS). Paste the character in the
+pressing ``Ctrl + C`` (``Cmd + C`` on macOS). Paste the character in the
 **Text** property of your Label node. The character will appear as a placeholder
 glyph in the inspector, but it should appear correctly in the 2D/3D viewport.
 
@@ -422,7 +422,7 @@ reserved for use by custom fonts and doesn't contain standard glyphs by design.
 > have a desktop variant that uses ligatures to specify icons. This allows you to
 > specify icons by entering their name directly in the **Text** property of any
 > node that can display fonts. Once the icon's name is fully entered as text
-> (such as house), it will be replaced by the icon.
+> (such as `house`), it will be replaced by the icon.
 >
 > While easier to use, this approach cannot be used with font fallbacks as the main
 > font's characters will take priority over the fallback font's ligatures.
@@ -490,7 +490,7 @@ only support one axis of adjustment (typically weight or slant), while
 others may support multiple axes of adjustment.
 
 For example, here's the Inter V font with a
-weight of 900 and a slant of -10:
+weight of `900` and a slant of `-10`:
 
 @Image(source: "using_fonts_font_variation_variable_font_example.png") {Variable font example (Inter V)}
 
@@ -503,29 +503,29 @@ weight of 900 and a slant of -10:
 > +------------+--------------------------------+
 > | Axis value | Effective font weight          |
 > +============+================================+
-> | 100    | Thin (Hairline)                |
+> | `100`    | Thin (Hairline)                |
 > +------------+--------------------------------+
-> | 200    | Extra Light (Ultra Light)      |
+> | `200`    | Extra Light (Ultra Light)      |
 > +------------+--------------------------------+
-> | 300    | Light                          |
+> | `300`    | Light                          |
 > +------------+--------------------------------+
-> | 400    | **Regular (Normal)**           |
+> | `400`    | **Regular (Normal)**           |
 > +------------+--------------------------------+
-> | 500    | Medium                         |
+> | `500`    | Medium                         |
 > +------------+--------------------------------+
-> | 600    | Semi-Bold (Demi-Bold)          |
+> | `600`    | Semi-Bold (Demi-Bold)          |
 > +------------+--------------------------------+
-> | 700    | **Bold**                       |
+> | `700`    | **Bold**                       |
 > +------------+--------------------------------+
-> | 800    | Extra Bold (Ultra Bold)        |
+> | `800`    | Extra Bold (Ultra Bold)        |
 > +------------+--------------------------------+
-> | 900    | Black (Heavy)                  |
+> | `900`    | Black (Heavy)                  |
 > +------------+--------------------------------+
-> | 950    | Extra Black (Ultra Black)      |
+> | `950`    | Extra Black (Ultra Black)      |
 > +------------+--------------------------------+
 >
 
-You can save the FontVariation to a .tres resource file to reuse it in other
+You can save the FontVariation to a `.tres` resource file to reuse it in other
 places:
 
 @Image(source: "using_fonts_font_variation_save_to_file.png") {Saving FontVariation to an external resource file}
@@ -555,13 +555,13 @@ and italic tags if no custom fonts are provided for bold and/or italic.
 To use faux bold, create a FontVariation resource in a property where a Font
 resource is expected. Set **Variation > Embolden** to a positive value to make a
 font bolder, or to a negative value to make it less bold. Recommended values are
-between 0.5 and 1.2 depending on the font.
+between `0.5` and `1.2` depending on the font.
 
 Faux italic is created by skewing the text, which is done by modifying the
 per-character transform. This is also provided in FontVariation using the
-**Variation > Transform** property. Setting the yx component of the
+**Variation > Transform** property. Setting the `yx` component of the
 character transform to a positive value will italicize the text. Recommended
-values are between 0.2 and 0.4 depending on the font.
+values are between `0.2` and `0.4` depending on the font.
 
 ### Adjusting font spacing
 
@@ -586,7 +586,7 @@ and [Button](https://docs.godotengine.org/en/stable/classes/class_button.html#cl
 
 The **Variation > Transform** property can also be adjusted to stretch
 characters horizontally or vertically. This is specifically done by adjusting
-the xx (horizontal scale) and yy (vertical scale) components. Remember
+the `xx` (horizontal scale) and `yy` (vertical scale) components. Remember
 to adjust glyph spacing to account for any changes, as glyph transform doesn't
 affect how much space each glyph takes in the text. Non-uniform scaling of this
 kind should be used sparingly, as fonts are generally not designed to be
@@ -597,7 +597,7 @@ displayed with stretching.
 Godot supports enabling OpenType font features, which are a standardized way to
 define alternate characters that can be toggled without having to swap font
 files entirely. Despite being named OpenType font features, these are also
-supported in TrueType (.ttf) and WOFF/WOFF2 font files.
+supported in TrueType (`.ttf`) and WOFF/WOFF2 font files.
 
 Support for OpenType features highly depends on the font used. Some fonts don't
 support any OpenType features, while other fonts can support dozens of
@@ -682,17 +682,17 @@ use the system font:
 
 @Image(source: "using_fonts_system_font_specify.png") {Specifying a font name to use in a SystemFont resource}
 
-You can either specify one or more font names explicitly (such as Arial), or
+You can either specify one or more font names explicitly (such as `Arial`), or
 specify the name of a font alias that maps to a "standard" default font for
 the system:
 
 Font alias | Windows | macOS/iOS | Linux | Android
 ---------- | ------- | --------- | ----- | -------
-sans-serif | Arial | Helvetica | Handled by fontconfig | Roboto / Noto Sans
-serif | Times New Roman | Times | Handled by fontconfig | Noto Serif
-monospace | Courier New | Courier | Handled by fontconfig | Droid Sans Mono
-cursive | Comic Sans MS | Apple Chancery | Handled by fontconfig | Dancing Script
-fantasy | Gabriola | Papyrus | Handled by fontconfig | Droid Sans Mono
+`sans-serif` | Arial | Helvetica | Handled by fontconfig | Roboto / Noto Sans
+`serif` | Times New Roman | Times | Handled by fontconfig | Noto Serif
+`monospace` | Courier New | Courier | Handled by fontconfig | Droid Sans Mono
+`cursive` | Comic Sans MS | Apple Chancery | Handled by fontconfig | Dancing Script
+`fantasy` | Gabriola | Papyrus | Handled by fontconfig | Droid Sans Mono
 
 On Android, Roboto is used for Latin/Cyrillic text and Noto Sans is used for
 other languages' glyphs such as CJK. On third-party Android distributions, the
@@ -844,11 +844,11 @@ the default project font.
 <doc:using_fonts_subpixel_positioning>
 method for the default project font.
 
-- **Default Font Multichannel Signed Distance Field:** If true, makes the
+- **Default Font Multichannel Signed Distance Field:** If `true`, makes the
 default project font use <doc:using_fonts_msdf> instead
 of traditional rasterization.
 
-- **Default Font Generate Mipmaps:** If true, enables
+- **Default Font Generate Mipmaps:** If `true`, enables
 <doc:using_fonts_mipmaps> generation and
 usage for the default project font.
 

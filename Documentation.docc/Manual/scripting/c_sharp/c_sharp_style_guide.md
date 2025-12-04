@@ -89,7 +89,7 @@ public class MyClass : ParentClass
 
 Insert a blank line:
 
-- After a list of using statements.
+- After a list of `using` statements.
 
 - Between method, properties, and inner type declarations.
 
@@ -100,9 +100,9 @@ inserting a blank line between the groups for easier reading.
 
 Avoid inserting a blank line:
 
-- After {, the opening brace.
+- After `{`, the opening brace.
 
-- Before }, the closing brace.
+- Before `}`, the closing brace.
 
 - After a comment block or a single-line comment.
 
@@ -149,7 +149,7 @@ Insert a space:
 
 - Around a binary and ternary operator.
 
-- Between an opening parenthesis and if, for, foreach, catch, while, lock or using keywords.
+- Between an opening parenthesis and `if`, `for`, `foreach`, `catch`, `while`, `lock` or `using` keywords.
 
 - Before and within a single line accessor block.
 
@@ -157,15 +157,15 @@ Insert a space:
 
 - After a comma which is not at the end of a line.
 
-- After a semicolon in a for statement.
+- After a semicolon in a `for` statement.
 
-- After a colon in a single line case statement.
+- After a colon in a single line `case` statement.
 
 - Around a colon in a type declaration.
 
 - Around a lambda arrow.
 
-- After a single-line comment symbol (//), and before it if used at the end of a line.
+- After a single-line comment symbol (`//`), and before it if used at the end of a line.
 
 - After the opening brace, and before the closing brace in a single line initializer.
 
@@ -231,7 +231,7 @@ namespace ExampleProject
 ```
 
 Use **camelCase** for all other identifiers (i.e. local variables, method arguments), and use
-an underscore (_) as a prefix for private fields (but not for methods or properties, as explained above):
+an underscore (`_`) as a prefix for private fields (but not for methods or properties, as explained above):
 
 ```
 private Vector3 _aimingAt; // Use an `_` prefix for private fields.
@@ -244,10 +244,10 @@ private void Attack(float attackStrength)
 }
 ```
 
-There's an exception with acronyms which consist of two letters, like UI, which should be written in
+There's an exception with acronyms which consist of two letters, like `UI`, which should be written in
 uppercase letters where PascalCase would be expected, and in lowercase letters otherwise.
 
-Note that id is **not** an acronym, so it should be treated as a normal identifier:
+Note that `id` is **not** an acronym, so it should be treated as a normal identifier:
 
 ```
 public string Id { get; }
@@ -258,9 +258,9 @@ public UIManager UI
 }
 ```
 
-It is generally discouraged to use a type name as a prefix of an identifier, like string strText
-or float fPower, for example. An exception is made, however, for interfaces, which
-**should**, in fact, have an uppercase letter I prefixed to their names, like IInventoryHolder or IDamageable.
+It is generally discouraged to use a type name as a prefix of an identifier, like `string strText`
+or `float fPower`, for example. An exception is made, however, for interfaces, which
+**should**, in fact, have an uppercase letter `I` prefixed to their names, like `IInventoryHolder` or `IDamageable`.
 
 Lastly, consider choosing descriptive names and do not try to shorten them too much if it affects
 readability.
@@ -291,7 +291,7 @@ variable was declared.
 
 ## Implicitly typed local variables
 
-Consider using implicitly typing (var) for declaration of a local variable, but do so
+Consider using implicitly typing (`var`) for declaration of a local variable, but do so
 **only when the type is evident** from the right side of the assignment:
 
 ```
@@ -327,11 +327,11 @@ var value = 1.5;
 - Use properties instead of non-private fields.
 
 - Use modifiers in this order:
-public/protected/private/internal/virtual/override/abstract/new/static/readonly.
+`public`/`protected`/`private`/`internal`/`virtual`/`override`/`abstract`/`new`/`static`/`readonly`.
 
-- Avoid using fully-qualified names or this. prefix for members when it's not necessary.
+- Avoid using fully-qualified names or `this.` prefix for members when it's not necessary.
 
-- Remove unused using statements and unnecessary parentheses.
+- Remove unused `using` statements and unnecessary parentheses.
 
 - Consider omitting the default initial value for a type.
 

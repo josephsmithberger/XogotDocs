@@ -4,13 +4,13 @@ In Godot, class members can be exported. This means their value gets saved along
 with the resource (such as the [scene](https://docs.godotengine.org/en/stable/classes/class_packedscene.html#class-packedscene)) they're
 attached to, and get transferred over when using <doc:high_level_multiplayer#Rpcs>.
 They will also be available for editing in the property editor. Exporting is done by using
-the @export annotation.
+the `@export` annotation.
 
 ```
 @export var number: int = 5
 ```
 
-In that example the value 5 will be saved and visible in the property editor.
+In that example the value `5` will be saved and visible in the property editor.
 
 An exported variable must be initialized to a constant expression or have a type specifier
 in the variable. Some of the export annotations have a specific type and don't need the variable to be typed (see the
@@ -59,7 +59,7 @@ if the script is in <doc:index#Tool-Mode>.
 It is possible to group your exported properties inside the Inspector
 with the [@export_group](https://docs.godotengine.org/en/stable/classes/class_@gdscript_annotation_@export_group.html#class-@gdscript_annotation_@export_group)
 annotation. Every exported property after this annotation will be added to
-the group. Start a new group or use @export_group("") to break out.
+the group. Start a new group or use `@export_group("")` to break out.
 
 ```
 @export_group("My Properties")
@@ -162,8 +162,8 @@ Allow floats from -10 to 20 and snap the value to multiples of 0.2.
 @export_range(-10, 20, 0.2) var k: float
 ```
 
-The limits can be made to affect only the slider if you add the hints "or_less"
-and/or "or_greater". If either these hints are used, it will be possible for
+The limits can be made to affect only the slider if you add the hints `"or_less"`
+and/or `"or_greater"`. If either these hints are used, it will be possible for
 the user to enter any value or drag the value with the mouse when not using
 the slider, even if outside the specified range.
 
@@ -171,7 +171,7 @@ the slider, even if outside the specified range.
 @export_range(0, 100, 1, "or_less", "or_greater") var l: int
 ```
 
-The "exp" hint can be used to make a value have an exponential slider
+The `"exp"` hint can be used to make a value have an exponential slider
 instead of a linear slider. This means that when dragging the slider towards
 the right, changes will become progressively faster when dragging the mouse.
 This is useful to make editing values that can be either very small or very large
@@ -184,9 +184,9 @@ easier, at the cost of being less intuitive.
 For values that are meant to represent an easing factor, use
 <doc:gdscript_exports#Floats-With-Easing-Hint> instead.
 
-The "hide_slider" hint can be used to hide the horizontal bar that
-appears below float properties, or the up/down arrows that appear besides
-int properties:
+The `"hide_slider"` hint can be used to hide the horizontal bar that
+appears below `float` properties, or the up/down arrows that appear besides
+`int` properties:
 
 ```
 @export_range(0, 1000, 0.01, "hide_slider") var no_slider: float
@@ -196,7 +196,7 @@ int properties:
 
 A suffix can also be defined to make the value more self-explanatory in the
 inspector. For example, to define a value that is meant to be configured as
-"meters" (m) by the user:
+"meters" (`m`) by the user:
 
 ```
 @export_range(0, 100, 1, "suffix:m") var m: int
@@ -210,7 +210,7 @@ the `"radians_as_degrees"` hint:
 ```
 
 This performs automatic conversion when the value is displayed or modified in
-the inspector and also displays a degree (°) suffix. This approach is used
+the inspector and also displays a degree (`°`) suffix. This approach is used
 by Godot's own `rotation` properties throughout the editor.
 
 If the angle is stored in degrees instead, use the `"degrees"` hint to display
@@ -219,7 +219,7 @@ when the value is modified from the inspector.
 
 ## Floats with easing hint
 
-Display a visual representation of the ease() function
+Display a visual representation of the `ease()` function
 when editing. See [@export_exp_easing](https://docs.godotengine.org/en/stable/classes/class_@gdscript_annotation_@export_exp_easing.html#class-@gdscript_annotation_@export_exp_easing).
 
 ```
@@ -242,8 +242,8 @@ Color given as red-green-blue value (alpha will always be 1). See [@export_color
 
 ## Nodes
 
-Since Godot 4.0, nodes can be directly exported as properties in a script
-without having to use NodePaths:
+Nodes can also be directly exported as properties in a script without
+having to use NodePaths:
 
 ```
 # Allows any node.
@@ -293,8 +293,8 @@ its derived classes.
 
 See [@export_flags](https://docs.godotengine.org/en/stable/classes/class_@gdscript_annotation_@export_flags.html#class-@gdscript_annotation_@export_flags).
 
-Integers used as bit flags can store multiple true/false (boolean)
-values in one property. By using the @export_flags annotation, they
+Integers used as bit flags can store multiple `true`/`false` (boolean)
+values in one property. By using the `@export_flags` annotation, they
 can be set from the editor:
 
 ```
@@ -302,10 +302,10 @@ can be set from the editor:
 @export_flags("Fire", "Water", "Earth", "Wind") var spell_elements = 0
 ```
 
-You must provide a string description for each flag. In this example, Fire
-has value 1, Water has value 2, Earth has value 4 and Wind
+You must provide a string description for each flag. In this example, `Fire`
+has value 1, `Water` has value 2, `Earth` has value 4 and `Wind`
 corresponds to value 8. Usually, constants should be defined accordingly (e.g.
-const ELEMENT_WIND = 8 and so on).
+`const ELEMENT_WIND = 8` and so on).
 
 You can add explicit values using a colon:
 
@@ -353,7 +353,7 @@ Integer and string properties can also be limited to a specific list of values u
 the [@export_enum](https://docs.godotengine.org/en/stable/classes/class_@gdscript_annotation_@export_enum.html#class-@gdscript_annotation_@export_enum) annotation.
 The editor will create a widget in the Inspector, enumerating the following as Warrior,
 Magician, Thief. The value will be stored as an integer, corresponding to the index
-of the selected option (i.e. 0, 1,  or 2).
+of the selected option (i.e. `0`, `1`,  or `2`).
 
 ```
 @export_enum("Warrior", "Magician", "Thief") var character_class: int
@@ -400,7 +400,7 @@ Exported arrays can specify type (using the same hints as before).
 @export var two_dimensional: Array[Array] = [[1.0, 2.0], [3.0, 4.0]]
 ```
 
-You can omit the default value, but it would then be null if not assigned.
+You can omit the default value, but it would then be `null` if not assigned.
 
 ```
 @export var b: Array
@@ -431,7 +431,7 @@ Other export variants can also be used when exporting arrays:
 @export_enum("Espresso", "Mocha", "Latte", "Capuccino") var barista_suggestions: Array[String] = []
 ```
 
-## @export_storage
+## `@export_storage`
 
 See [@export_storage](https://docs.godotengine.org/en/stable/classes/class_@gdscript_annotation_@export_storage.html#class-@gdscript_annotation_@export_storage).
 
@@ -455,21 +455,21 @@ var a # Not stored in the file, not displayed in the editor.
 @export var c: int # Stored in the file, displayed in the editor.
 ```
 
-## @export_custom
+## `@export_custom`
 
-If you need more control than what's exposed with the built-in @export
-annotations, you can use @export_custom instead. This allows defining any
+If you need more control than what's exposed with the built-in `@export`
+annotations, you can use `@export_custom` instead. This allows defining any
 property hint, hint string and usage flags, with a syntax similar to the one
 used by the editor for built-in nodes.
 
-For example, this exposes the altitude property with no range limits but an
-m (meter) suffix defined:
+For example, this exposes the `altitude` property with no range limits but an
+`m` (meter) suffix defined:
 
 ```
 @export_custom(PROPERTY_HINT_NONE, "suffix:m") var altitude: float
 ```
 
-The above is normally not feasible with the standard @export_range syntax,
+The above is normally not feasible with the standard `@export_range` syntax,
 since it requires defining a range.
 
 See the [class reference](https://docs.godotengine.org/en/stable/classes/class_@gdscript_annotation_@export_custom.html#class-@gdscript_annotation_@export_custom)
@@ -477,14 +477,14 @@ for a list of parameters and their allowed values.
 
 > Warning:
 >
-> When using @export_custom, GDScript does not perform any validation on
+> When using `@export_custom`, GDScript does not perform any validation on
 > the syntax. Invalid syntax may have unexpected behavior in the inspector.
 >
 
-## @export_tool_button
+## `@export_tool_button`
 
-If you need to create a clickable inspector button, you can use @export_tool_button.
-This exports a Callable property as a clickable button. When the button is pressed, the callable is called.
+If you need to create a clickable inspector button, you can use `@export_tool_button`.
+This exports a `Callable` property as a clickable button. When the button is pressed, the callable is called.
 
 You can specify a custom icon name, which must match one of the icon
 file names from the
@@ -493,13 +493,13 @@ folder of the Godot source repository (case-sensitive).
 You can also browse the editor icons using the
 Godot editor icons website.
 
-For example, if you wish to use Node2D.svg from that folder, you must
-specify "Node2D" as the second parameter of @export_tool_button. It is
+For example, if you wish to use `Node2D.svg` from that folder, you must
+specify `"Node2D"` as the second parameter of `@export_tool_button`. It is
 not currently possible to use custom icons from the project folder; only
 built-in editor icons can be used.
 
-This exports a button with label "Hello" and icon "Callable" (which is the
-default if no icon is specified). When you press it, it will print "Hello world!".
+This exports a button with label `"Hello"` and icon `"Callable"` (which is the
+default if no icon is specified). When you press it, it will print `"Hello world!"`.
 
 ```
 @tool
@@ -519,6 +519,37 @@ automatically. To update it, call
 [notify_property_list_changed()](https://docs.godotengine.org/en/stable/classes/class_object_method_notify_property_list_changed.html#class-object_method_notify_property_list_changed)
 after setting the exported variable's value.
 
+## Reading an exported variable's value early on
+
+If you read an exported variable's value in [_init()](https://docs.godotengine.org/en/stable/classes/class_object_private_method__init.html#class-object_private_method__init),
+it will return the default value specified in the export annotation instead of the value
+that was set in the inspector. This is because assigning values from the saved scene/resource
+file occurs after object initialization; until then, the default value is used.
+
+To get the value that was set in the inspector (and therefore saved in the scene/resource file),
+you need to read it after the object is constructed, such as in
+[Node._ready()](https://docs.godotengine.org/en/stable/classes/class_node_private_method__ready.html#class-node_private_method__ready). You can also read the value
+in a setter that's defined on the exported property, which is useful in
+custom resources where `_ready()` is not available:
+
+```
+# Set this property to 3 in the inspector.
+@export var exported_variable = 2:
+    set(value):
+        exported_variable = value
+        print("Inspector-set value: ", exported_variable)
+
+func _init():
+    print("Initial value: ", exported_variable)
+```
+
+Results in:
+
+```
+Initial value: 2
+Inspector-set value: 3
+```
+
 ## Advanced exports
 
 Not every type of export can be provided on the level of the language itself to
@@ -536,5 +567,5 @@ described in <doc:accessing_data_or_logic_from_object>.
 > <doc:binding_properties_using_set_get_property_list>.
 >
 
-> Warning: The script must operate in the @tool mode so the above methods
+> Warning: The script must operate in the `@tool` mode so the above methods
 > can work from within the editor.

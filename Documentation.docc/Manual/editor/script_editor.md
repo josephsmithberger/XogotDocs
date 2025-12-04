@@ -35,11 +35,11 @@ Some of the key features of the text editor are listed below:
 
 - Customizable theme.
 
-- Multiple carets, which can be enabled using `Alt + Left Click`.
+- Multiple carets, which can be enabled using ``Alt + Left Click``.
 
 - Auto-completion of variables, functions, constants, etc.
 
-- Inline refactoring of symbols by selecting them and using `Ctrl + D`.
+- Inline refactoring of symbols by selecting them and using ``Ctrl + D``.
 
 - Mass find and replace across project files.
 
@@ -66,7 +66,7 @@ the user interface can also be modified directly through code.
 You can open the Script Editor using the **Script** button in the workspace selector,
 located at the top center of Godot's interface.
 Alternatively, you can use the **Open Script** button next to a node in the
-Scene Tree dock, or double-click on a .gd file or a recognized text file in
+Scene Tree dock, or double-click on a `.gd` file or a recognized text file in
 the FileSystem dock to open it directly in the Script Editor.
 
 @Image(source: "editor_ui_script_editor_menu.png")
@@ -85,10 +85,10 @@ status bar, which displays the error and warning count in the code.
 Clicking on the error or warning icons will show the list of errors with
 the line numbers. Clicking on one will jump to that line.
 You can also choose to ignore warnings by opening the list and
-clicking Ignore.
+clicking `Ignore`.
 The status bar also lets you change the zoom level of the code by clicking
-the percentage value. You can also use `Ctrl + Mouse Wheel`
-(`Cmd + Mouse Wheel` on Mac) to achieve the same effect.
+the percentage value. You can also use ``Ctrl + Mouse Wheel``
+(``Cmd + Mouse Wheel`` on Mac) to achieve the same effect.
 The status bar also shows the current position of the caret in terms of line and
 column, and whether the indentation is done using tabs, or spaces.
 
@@ -128,7 +128,7 @@ properties in the **Text Editor** section.
 The filter bar above the file names introduces a handy case-insensitive search to
 find a specific file. Even if you just type the letters of a file name into the
 bar, files containing these letters in order will also appear. Assume that there
-is a file named button.gd in the list. If you type btn into the filter bar,
+is a file named `button.gd` in the list. If you type `btn` into the filter bar,
 this file will appear in the results. To reset the filter, clear the filter bar.
 
 An asterisk (*) next to a file name indicates that the file has unsaved changes.
@@ -176,10 +176,10 @@ The **File** menu provides the following options:
 - **New Script...**: Opens the new script dialog to create and add the script to
 the project. If creation is successful, it will directly open it in the
 text editor. Depending on the version of Godot (with C# support or not), you
-can choose .gd or .cs as the extension.
+can choose `.gd` or `.cs` as the extension.
 
 - **New Text File...**: Opens the file dialog to create a plain text file with
-one of the recognized formats. Godot can also highlight json files.
+one of the recognized formats. Godot can also highlight `json` files.
 
 - **Open...**: Opens the file dialog to let you browse inside your computer and
 choose any recognized text file to open it.
@@ -202,7 +202,7 @@ unsaved changes will have an asterisk (*) next to their names in the script list
 <doc:running_code_in_the_editor>, reloads the script to execute it again.
 
 - **Copy Script Path**: Copies the currently selected script's relative path in
-the project using the res:// prefix.
+the project using the `res://` prefix.
 
 - **Show in FileSystem**: Finds and highlights the selected file in the FileSystem
 dock.
@@ -262,7 +262,7 @@ redoing the last action that was reversed by the Undo function.
 current line.
 
 - **Evaluate Selection***: Computes the values of the selected text if it contains `only`
-a mathematical expression, such as 83 * 3 or pow(2,3).
+a mathematical expression, such as `83 * 3` or `pow(2,3)`.
 
 - **Toggle Word Wrap**: Disables the horizontal scrollbar by wrapping the long lines to
 the next line. Note that this is just a visual change and no new linebreaks are added.
@@ -326,8 +326,8 @@ or clicking on the ellipsis "..." icon at the end of the folded line.
 the readability of larger scripts. See <doc:index#Builtin-Types> for more.
 
 - **Completion Query**: Suggests from built-in or user created symbols to auto-complete the
-partially written code. `Up` and `Down` arrows navigate up and down, pressing
-`Enter` or `Tab` accepts and adds the highlighted symbol to the code. `Tab` will also replace existing text to the right of the caret.
+partially written code. ``Up`` and ``Down`` arrows navigate up and down, pressing
+``Enter`` or ``Tab`` accepts and adds the highlighted symbol to the code. ``Tab`` will also replace existing text to the right of the caret.
 
 - **Trim Trailing Whitespaces**: Removes extra spacing at the end of each line in the file.
 
@@ -427,7 +427,7 @@ file. You can navigate to the next match and previous match using the up and dow
 
 - **Replace...**: Opens the find and replace bar under the status bar to find text and replace it in the open file.  You can choose to replace them one
 at a time or all at once. Additionally, you can limit the replacement to the selected
-text by checking the **Selection Only** checkbox in the find and replace bar. You can also use `Ctrl + D` to
+text by checking the **Selection Only** checkbox in the find and replace bar. You can also use ``Ctrl + D`` to
 additionally select the next instance of the currently selected text, allowing you to perform an in-line replacement on multiple occurrences.
 
 - **Find in Files...**: Opens a window to search for text within the files in the project
@@ -456,7 +456,7 @@ replace using the **Search Results** tab in the bottom panel by (un)checking the
 
 @Image(source: "editor_ui_script_editor_replace_all.png")
 
-- **Contextual Help***: Opens the list of built-in class reference similar to pressing `F1`
+- **Contextual Help***: Opens the list of built-in class reference similar to pressing ``F1``
 on a symbol, or choosing **Lookup Symbol** from the context menu.
 
 The **Go To** menu lets you navigate within the code at ease with these options:

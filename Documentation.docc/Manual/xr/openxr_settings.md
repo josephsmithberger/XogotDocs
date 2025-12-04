@@ -13,11 +13,11 @@ we will only discuss the settings in the core of Godot here.
 
 This setting enables the OpenXR module when Godot starts.
 This is required when the Vulkan backend is used.
-For other backends you can enable OpenXR at any time by calling initialize on the [OpenXRInterface](https://docs.godotengine.org/en/stable/classes/class_openxrinterface.html#class-openxrinterface).
+For other backends you can enable OpenXR at any time by calling `initialize` on the [OpenXRInterface](https://docs.godotengine.org/en/stable/classes/class_openxrinterface.html#class-openxrinterface).
 
 This also needs to be enabled to get access to the action map editor.
 
-You can use the --xr-mode on command line switch to force this to on.
+You can use the `--xr-mode on` command line switch to force this to on.
 
 ### Default Action Map
 
@@ -27,9 +27,9 @@ This specifies the path of the action map file that OpenXR will load and communi
 
 This specifies whether your game is designed for:
 
-- Head Mounted devices such as a Meta Quest, Valve Index, or Magic Leap,
+- `Head Mounted` devices such as a Meta Quest, Valve Index, or Magic Leap,
 
-- Handheld devices such as phones.
+- `Handheld` devices such as phones.
 
 If the device on which you run your game does not match the selection here, OpenXR will fail to initialise.
 
@@ -37,9 +37,9 @@ If the device on which you run your game does not match the selection here, Open
 
 This specifies the view configuration your game is designed for:
 
-- Mono, your game provides a single image output. E.g. phone based AR;
+- `Mono`, your game provides a single image output. E.g. phone based AR;
 
-- Stereo, your game provides stereo image output. E.g. head mounted devices.
+- `Stereo`, your game provides stereo image output. E.g. head mounted devices.
 
 If the device on which you run your game does not match the selection here, OpenXR will fail to initialise.
 
@@ -68,7 +68,7 @@ where we want to place the [XROrigin3D](https://docs.godotengine.org/en/stable/c
 
 When the user enacts the recenter option on their headset, the method of which is different per XR runtime,
 the XR runtime will move the [XRCamera3D](https://docs.godotengine.org/en/stable/classes/class_xrcamera3d.html#class-xrcamera3d) to the [XROrigin3D](https://docs.godotengine.org/en/stable/classes/class_xrorigin3d.html#class-xrorigin3d) node.
-The [OpenXRInterface](https://docs.godotengine.org/en/stable/classes/class_openxrinterface.html#class-openxrinterface) will also emit the pose_recentered signal
+The [OpenXRInterface](https://docs.godotengine.org/en/stable/classes/class_openxrinterface.html#class-openxrinterface) will also emit the `pose_recentered` signal
 so your game can react accordingly.
 
 > Note:
@@ -76,7 +76,7 @@ so your game can react accordingly.
 >
 
 > Warning:
-> You should **not** call center_on_hmd when using this reference space.
+> You should **not** call `center_on_hmd` when using this reference space.
 >
 
 The stage reference space is our default reference space and places our origin point at the center of our play space.
@@ -90,17 +90,17 @@ See <doc:xr_room_scale> for more information.
 
 When the user enacts the recenter option on their headset, the method of which is different per XR runtime,
 the XR runtime will not change the origin point.
-The [OpenXRInterface](https://docs.godotengine.org/en/stable/classes/class_openxrinterface.html#class-openxrinterface) will emit the pose_recentered signal
+The [OpenXRInterface](https://docs.godotengine.org/en/stable/classes/class_openxrinterface.html#class-openxrinterface) will emit the `pose_recentered` signal
 and it is up to the game to react appropriately.
 Not doing so will prevent your game from being accepted on various stores.
 
-In Godot you can do this by calling the center_on_hmd function on the [XRServer](https://docs.godotengine.org/en/stable/classes/class_xrserver.html#class-xrserver):
+In Godot you can do this by calling the `center_on_hmd` function on the [XRServer](https://docs.godotengine.org/en/stable/classes/class_xrserver.html#class-xrserver):
 
-- Calling XRServer.center_on_hmd(XRServer.RESET_BUT_KEEP_TILT, false) will move the [XRCamera3D](https://docs.godotengine.org/en/stable/classes/class_xrcamera3d.html#class-xrcamera3d) node
-to the [XROrigin3D](https://docs.godotengine.org/en/stable/classes/class_xrorigin3d.html#class-xrorigin3d) node similar to the Local reference space.
+- Calling `XRServer.center_on_hmd(XRServer.RESET_BUT_KEEP_TILT, false)` will move the [XRCamera3D](https://docs.godotengine.org/en/stable/classes/class_xrcamera3d.html#class-xrcamera3d) node
+to the [XROrigin3D](https://docs.godotengine.org/en/stable/classes/class_xrorigin3d.html#class-xrorigin3d) node similar to the `Local` reference space.
 
-- Calling XRServer.center_on_hmd(XRServer.RESET_BUT_KEEP_TILT, true) will move the [XRCamera3D](https://docs.godotengine.org/en/stable/classes/class_xrcamera3d.html#class-xrcamera3d) node
-above the [XROrigin3D](https://docs.godotengine.org/en/stable/classes/class_xrorigin3d.html#class-xrorigin3d) node keeping the player's height, similar to the Local Floor reference space.
+- Calling `XRServer.center_on_hmd(XRServer.RESET_BUT_KEEP_TILT, true)` will move the [XRCamera3D](https://docs.godotengine.org/en/stable/classes/class_xrcamera3d.html#class-xrcamera3d) node
+above the [XROrigin3D](https://docs.godotengine.org/en/stable/classes/class_xrorigin3d.html#class-xrorigin3d) node keeping the player's height, similar to the `Local Floor` reference space.
 
 > Note:
 > Any other XR tracked elements such as controllers or anchors will also be adjusted accordingly.
@@ -121,7 +121,7 @@ and are quickly placed at the player's location on recenter.
 When the user enacts the recenter option on their headset, the method of which is different per XR runtime,
 the XR runtime will move the [XRCamera3D](https://docs.godotengine.org/en/stable/classes/class_xrcamera3d.html#class-xrcamera3d) above the [XROrigin3D](https://docs.godotengine.org/en/stable/classes/class_xrorigin3d.html#class-xrorigin3d) node
 but keeping the player's height.
-The [OpenXRInterface](https://docs.godotengine.org/en/stable/classes/class_openxrinterface.html#class-openxrinterface) will also emit the pose_recentered signal
+The [OpenXRInterface](https://docs.godotengine.org/en/stable/classes/class_openxrinterface.html#class-openxrinterface) will also emit the `pose_recentered` signal
 so your game can react accordingly.
 
 > Warning:
@@ -130,7 +130,7 @@ so your game can react accordingly.
 > This can even be game breaking as the effect in this scenario would be the player teleporting to whatever abstract location
 > the origin point was placed at during virtual movement, including the ability for players teleporting into
 > locations that should be off limits.
-> It is better to use the Stage mode in this scenario and limit resetting to orientation only when a pose_recentered signal is received.
+> It is better to use the Stage mode in this scenario and limit resetting to orientation only when a `pose_recentered` signal is received.
 >
 
 > Note:
@@ -138,19 +138,19 @@ so your game can react accordingly.
 >
 
 > Warning:
-> You should **not** call center_on_hmd when using this reference space.
+> You should **not** call `center_on_hmd` when using this reference space.
 >
 
 ### Environment Blend Mode
 
 The environment blend mode defines how our rendered output is blended into "the real world" provided this is supported by the headset.
 
-- Opaque means our output obscures the real world, we are in VR mode.
+- `Opaque` means our output obscures the real world, we are in VR mode.
 
-- Additive means our output is added to the real world,
+- `Additive` means our output is added to the real world,
 this is an AR mode where optics do not allow us to fully obscure the real world (e.g. Hololens),
 
-- Alpha means our output is blended with the real world using the alpha output (viewport should have transparent background enabled),
+- `Alpha` means our output is blended with the real world using the alpha output (viewport should have transparent background enabled),
 this is an AR mode where optics can fully obscure the real world (Magic Leap, all pass through devices, etc.).
 
 If a mode is selected that is not supported by the headset, the first available mode will be selected.
@@ -171,7 +171,7 @@ The higher the level, the better the performance gains, but also the more reduct
 
 > Note:
 > **Compatibility renderer only**,
-> for Mobile and Forward+ renderer, set the vrs_mode property on [Viewport](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport) to VRS_XR.
+> for Mobile and Forward+ renderer, set the `vrs_mode` property on [Viewport](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport) to `VRS_XR`.
 >
 
 > Warning:
@@ -212,7 +212,7 @@ Common failure reasons are:
 - SteamVR is used but no headset is connected/turned on.
 
 Disable this if you support a fallback mode in your game so it can be played in desktop mode when no VR headset is connected,
-or if you're handling the failure condition yourself by checking OpenXRInterface.is_initialized().
+or if you're handling the failure condition yourself by checking `OpenXRInterface.is_initialized()`.
 
 ## Extensions
 
@@ -273,16 +273,16 @@ When enabled we will get feedback from eye tracking through a pose situated betw
 orientated in the direction the user is looking. This will be a unified orientation.
 
 In order to use this functionality you need to edit your action map and add a new pose action,
-say eye_pose.
-Now add a new interaction profile for the eye gaze interaction and map the eye_pose:
+say `eye_pose`.
+Now add a new interaction profile for the eye gaze interaction and map the `eye_pose`:
 
 @Image(source: "openxr_eye_gaze_interaction.png")
 
 Don't forget to save!
 
 Next add a new [XRController3D](https://docs.godotengine.org/en/stable/classes/class_xrcontroller3d.html#class-xrcontroller3d) node to your origin node
-and set its tracker property to /user/eyes_ext
-and set its pose property to eye_pose.
+and set its `tracker` property to `/user/eyes_ext`
+and set its `pose` property to `eye_pose`.
 
 Now you can add things to this controller node such as a raycast, and control things with your eyes.
 

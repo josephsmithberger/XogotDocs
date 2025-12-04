@@ -123,5 +123,5 @@ process than renaming them.
 ## Default bus layout
 
 The default bus layout is automatically saved to the
-res://default_bus_layout.tres file. Custom bus arrangements can be saved
+`res://default_bus_layout.tres` file. Custom bus arrangements can be saved
 and loaded from disk.

@@ -112,9 +112,9 @@ However, having direct access to the Mesh resource is useful for specific
 nodes, such as [MeshInstance3D](https://docs.godotengine.org/en/stable/classes/class_meshinstance3d.html#class-meshinstance3d), [MultiMeshInstance3D](https://docs.godotengine.org/en/stable/classes/class_multimeshinstance3d.html#class-multimeshinstance3d),
 [GPUParticles3D](https://docs.godotengine.org/en/stable/classes/class_gpuparticles3d.html#class-gpuparticles3d) or [CPUParticles3D](https://docs.godotengine.org/en/stable/classes/class_cpuparticles3d.html#class-cpuparticles3d).
 - You will also need to specify an output file path using the option that
-appears after enabling **Save to File**. It's recommended to use the .res
+appears after enabling **Save to File**. It's recommended to use the `.res`
 output file extension for smaller file sizes and faster loading speeds, as
-.tres is inefficient for writing large amounts of data.
+`.tres` is inefficient for writing large amounts of data.
 
 - **Generate > Shadow Meshes:** Per-mesh override for the **Meshes > Create
 Shadow Meshes** scene-wide import option described in
@@ -159,7 +159,7 @@ configuration may not be suitable for your needs. For example:
 - You want to configure material features not supported by your 3D application.
 
 - You want to use a different texture filtering mode, as this option is
-configured in the material since Godot 4.0 (and not in the image).
+configured in the material (and not in the image).
 
 - You want to replace one of the materials with an entirely different material,
 such as a custom shader.
@@ -172,7 +172,7 @@ In the top-left corner of the Advanced Import Settings dialog, choose
 
 @Image(source: "importing_3d_scenes_advanced_import_settings_extract_materials.png", alt: "Extracting all built-in materials to external resources in the Advanced Import Settings dialog") {Extracting all built-in materials to external resources in the Advanced Import Settings dialog}
 
-After choosing this option, select a folder to extract material .tres files
+After choosing this option, select a folder to extract material `.tres` files
 to, then confirm the extraction:
 
 @Image(source: "importing_3d_scenes_advanced_import_settings_extract_materials_confirm.png", alt: "Confirming material extraction in the Advanced Import Settings subdialog") {Confirming material extraction in the Advanced Import Settings subdialog}
@@ -181,7 +181,7 @@ to, then confirm the extraction:
 >
 > After extracting materials, the 3D scene will automatically be configured to
 > use external material references. As a result, you don't need to manually
-> enable **Use External** on every material to make the external .tres
+> enable **Use External** on every material to make the external `.tres`
 > material effective.
 >
 
@@ -223,6 +223,6 @@ them after a reimport.
 
 It is possible to specify multiple animations from a single timeline as slices.
 For this to work, the model must have only one animation that is named
-default. To create slices, change the slice amount to something greater than
+`default`. To create slices, change the slice amount to something greater than
 zero. You can then name a slice, specify which frames it starts and stops on, and
 choose whether the animation loops or not.

@@ -33,9 +33,9 @@ The **App Store Team ID** and (Bundle) **Identifier** options in the **Applicati
 are required. Leaving them blank will cause the exporter to throw an error.
 
 > Note: | If you encounter an error during export similar to
-> | JSON text did not start with array or object and option to allow fragments not set
+> | `JSON text did not start with array or object and option to allow fragments not set`
 > | then it might be due to a malformated **App Store Team ID**!
-> | The exporter expects a (10 characters long) code like ABCDE12XYZ and not, e.g., your name as Xcode likes to display in the Signing & Capabilities tab.
+> | The exporter expects a (10 characters long) code like `ABCDE12XYZ` and not, e.g., your name as Xcode likes to display in the Signing & Capabilities tab.
 > | You can find the code over at developer.apple.com next to your name in the top right corner.
 >
 
@@ -59,6 +59,15 @@ After you click **Export Project**, there are still two important options left:
 When the export completes, the output folder should look like this:
 
 @Image(source: "ios_export_output.png")
+
+> Warning:
+>
+> Exporting for the iOS simulator is currently not supported as per
+> GH-102149.
+>
+> Apple Silicon Macs can run iOS apps natively, so you can run exported iOS projects
+> directly on an Apple Silicon Mac without needing the iOS simulator.
+>
 
 Opening **exported_xcode_project_name.xcodeproj** lets you build and deploy
 like any other iOS app.
@@ -133,9 +142,9 @@ the export menu.
 
 Export option | Environment variable
 ------------- | --------------------
-Encryption / Encryption Key | GODOT_SCRIPT_ENCRYPTION_KEY
-Options / Application / Provisioning Profile UUID Debug | GODOT_IOS_PROVISIONING_PROFILE_UUID_DEBUG
-Options / Application / Provisioning Profile UUID Release | GODOT_IOS_PROVISIONING_PROFILE_UUID_RELEASE
+Encryption / Encryption Key | `GODOT_SCRIPT_ENCRYPTION_KEY`
+Options / Application / Provisioning Profile UUID Debug | `GODOT_IOS_PROVISIONING_PROFILE_UUID_DEBUG`
+Options / Application / Provisioning Profile UUID Release | `GODOT_IOS_PROVISIONING_PROFILE_UUID_RELEASE`
 
 ## Troubleshooting
 
@@ -151,9 +160,9 @@ MSB3073: The command ""clang" <LOTS OF PATHS AND COMMAND LINE ARGUMENTS HERE>
 "/Library/Developer/CommandLineTools/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk"" exited with code 1.
 ```
 
-In this case, Godot is trying to find the Platforms folder containing the iPhone SDK inside the
-/Library/Developer/CommandLineTools/ folder, but the Platforms folder with the iPhone SDK is
-actually located under /Applications/Xcode.app/Contents/Developer. To verify this, you can open
+In this case, Godot is trying to find the `Platforms` folder containing the iPhone SDK inside the
+`/Library/Developer/CommandLineTools/` folder, but the `Platforms` folder with the iPhone SDK is
+actually located under `/Applications/Xcode.app/Contents/Developer`. To verify this, you can open
 up Terminal and run the following command to see what xcode-select points at:
 
 ```

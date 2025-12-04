@@ -2,8 +2,8 @@
 
 - Turn on physics interpolation: [Project Settings > Physics > Common > Physics Interpolation](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_physics/common/physics_interpolation.html#class-projectsettings_property_physics/common/physics_interpolation)
 
-- Make sure you move objects and run your game logic in _physics_process()
-rather than _process(). This includes moving objects directly and
+- Make sure you move objects and run your game logic in `_physics_process()`
+rather than `_process()`. This includes moving objects directly and
 indirectly (by e.g. moving a parent, or using another mechanism to automatically
 move nodes).
 

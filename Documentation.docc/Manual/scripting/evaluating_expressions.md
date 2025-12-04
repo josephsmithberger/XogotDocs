@@ -4,14 +4,14 @@ Godot provides an [Expression](https://docs.godotengine.org/en/stable/classes/cl
 
 An expression can be:
 
-- A mathematical expression such as (2 + 4) * 16/4.0.
+- A mathematical expression such as `(2 + 4) * 16/4.0`.
 
-- A boolean expression such as true && false.
+- A boolean expression such as `true && false`.
 
-- A built-in method call like deg_to_rad(90).
+- A built-in method call like `deg_to_rad(90)`.
 
-- A method call on a user-provided script like update_health(),
-if base_instance is set to a value other than null when calling
+- A method call on a user-provided script like `update_health()`,
+if `base_instance` is set to a value other than `null` when calling
 [Expression.execute()](https://docs.godotengine.org/en/stable/classes/class_expression_method_execute.html#class-expression_method_execute).
 
 > Note:
@@ -35,17 +35,17 @@ The following operators are available:
 
 Operator | Notes
 -------- | -----
-Addition+ | Can also be used to concatenate strings and arrays:
--"hello" + " world"=hello world-[1, 2] + [3, 4]=[1, 2, 3, 4]
-Subtraction (-) | 
-Multiplication (*) | 
-Division (/) | Performs and integer division if both operands are integers.
+Addition`+` | Can also be used to concatenate strings and arrays:
+-`"hello" + " world"`=`hello world`-`[1, 2] + [3, 4]`=`[1, 2, 3, 4]`
+Subtraction (`-`) | 
+Multiplication (`*`) | 
+Division (`/`) | Performs and integer division if both operands are integers.
 If at least one of them is a floating-point number, returns a floating-point value.
-Remainder (%) | Returns the remainder of an integer division (modulo).
+Remainder (`%`) | Returns the remainder of an integer division (modulo).
 The result will always have the sign of the dividend.
-Conjunction (&&) | Returns the result of a boolean AND.
-Disjunction (||) | Returns the result of a boolean OR.
-Negation (!) | Returns the result of a boolean NOT.
+Conjunction (`&&`) | Returns the result of a boolean AND.
+Disjunction (`||`) | Returns the result of a boolean OR.
+Negation (`!`) | Returns the result of a boolean NOT.
 
 Spaces around operators are optional. Also, keep in mind the usual
 order of operations
@@ -94,12 +94,12 @@ even if you only define one variable. Also, variable names are **case-sensitive*
 
 ## Setting a base instance for the expression
 
-By default, an expression has a base instance of null. This means the
+By default, an expression has a base instance of `null`. This means the
 expression has no base instance associated to it.
 
 When calling [Expression.execute()](https://docs.godotengine.org/en/stable/classes/class_expression_method_execute.html#class-expression_method_execute),
-you can set the value of the base_instance parameter to a specific object
-instance such as self, another script instance or even a singleton:
+you can set the value of the `base_instance` parameter to a specific object
+instance such as `self`, another script instance or even a singleton:
 
 ```
 func double(number):
@@ -122,15 +122,15 @@ func _ready():
 
 Associating a base instance allows doing the following:
 
-- Reference the instance's constants (const) in the expression.
+- Reference the instance's constants (`const`) in the expression.
 
-- Reference the instance's member variables (var) in the expression.
+- Reference the instance's member variables (`var`) in the expression.
 
 - Call methods defined in the instance and use their return values in the expression.
 
 > Warning:
 >
-> Setting a base instance to a value other than null allows referencing
+> Setting a base instance to a value other than `null` allows referencing
 > constants, member variables, and calling all methods defined in the script
 > attached to the instance. Allowing users to enter expressions may allow
 > cheating in your game, or may even introduce security vulnerabilities if you

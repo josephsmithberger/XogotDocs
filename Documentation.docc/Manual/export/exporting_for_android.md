@@ -36,7 +36,7 @@ Run it once to complete the SDK setup using these instructions.
 Ensure that the required packages are installed as well.
 
 Android SDK Platform-Tools version 35.0.0 or later
-Android SDK Build-Tools version 35.0.0
+Android SDK Build-Tools version 35.0.1
 Android SDK Platform 35
 Android SDK Command-line Tools (latest)
 
@@ -55,7 +55,7 @@ NDK version r28b (28.1.13356709)
 - Ensure that the required packages are installed as well.
 
 Android SDK Platform-Tools version 35.0.0 or later
-Android SDK Build-Tools version 35.0.0
+Android SDK Build-Tools version 35.0.1
 Android SDK Platform 35
 Android SDK Command-line Tools (latest)
 
@@ -63,7 +63,7 @@ Android SDK Command-line Tools (latest)
 
 - Android SDK Platform-Tools version 35.0.0 or later
 
-- Android SDK Build-Tools version 35.0.0
+- Android SDK Build-Tools version 35.0.1
 
 - Android SDK Platform 35
 
@@ -96,7 +96,7 @@ Once the command line tools are installed, run the following `sdkmanager` comman
 - Ensure that the required packages are installed as well.
 
 Android SDK Platform-Tools version 35.0.0 or later
-Android SDK Build-Tools version 35.0.0
+Android SDK Build-Tools version 35.0.1
 Android SDK Platform 35
 Android SDK Command-line Tools (latest)
 
@@ -104,7 +104,7 @@ Android SDK Command-line Tools (latest)
 
 - Android SDK Platform-Tools version 35.0.0 or later
 
-- Android SDK Build-Tools version 35.0.0
+- Android SDK Build-Tools version 35.0.1
 
 - Android SDK Platform 35
 
@@ -123,7 +123,7 @@ NDK version r28b (28.1.13356709)
 
 - Android SDK Platform-Tools version 35.0.0 or later
 
-- Android SDK Build-Tools version 35.0.0
+- Android SDK Build-Tools version 35.0.1
 
 - Android SDK Platform 35
 
@@ -138,7 +138,7 @@ NDK version r28b (28.1.13356709)
 - Once the command line tools are installed, run the following `sdkmanager` command to complete the setup process:
 
 ```
-sdkmanager --sdk_root=<android_sdk_path> "platform-tools" "build-tools;35.0.0" "platforms;android-35" "cmdline-tools;latest" "cmake;3.10.2.4988404" "ndk;28.1.13356709"
+sdkmanager --sdk_root=<android_sdk_path> "platform-tools" "build-tools;35.0.1" "platforms;android-35" "cmdline-tools;latest" "cmake;3.10.2.4988404" "ndk;28.1.13356709"
 ```
 
 > Note:
@@ -162,10 +162,10 @@ Scroll down to the section where the Android settings are located:
 
 In that screen, 2 paths need to be set:
 
-- Java SDK Path should be the location where OpenJDK 17 was installed.
+- `Java SDK Path` should be the location where OpenJDK 17 was installed.
 
-- Android Sdk Path should be the location where the Android SDK was installed.
-- For example %LOCALAPPDATA%\Android\Sdk\ on Windows or /Users/$USER/Library/Android/sdk/ on macOS.
+- `Android Sdk Path` should be the location where the Android SDK was installed.
+- For example `%LOCALAPPDATA%\Android\Sdk\` on Windows or `/Users/$USER/Library/Android/sdk/` on macOS.
 
 Once that is configured, everything is ready to export to Android!
 
@@ -183,7 +183,7 @@ Once that is configured, everything is ready to export to Android!
 
 ## Providing launcher icons
 
-Launcher icons are used by Android launcher apps to represent your application to users. Godot only requires high-resolution icons (for xxxhdpi density screens) and will automatically generate lower-resolution variants.
+Launcher icons are used by Android launcher apps to represent your application to users. Godot only requires high-resolution icons (for `xxxhdpi` density screens) and will automatically generate lower-resolution variants.
 
 There are three types of icons:
 
@@ -196,7 +196,7 @@ There are three types of icons:
 > Seealso: It's important to adhere to some rules when designing adaptive icons. Google Design has provided a nice article that helps to understand those rules and some of the capabilities of adaptive icons.
 >
 
-> Caution: The most important adaptive icon design rule is to have your icon critical elements inside the safe zone: a centered circle with a diameter of 66dp (264 pixels on xxxhdpi) to avoid being clipped by the launcher.
+> Caution: The most important adaptive icon design rule is to have your icon critical elements inside the safe zone: a centered circle with a diameter of 66dp (264 pixels on `xxxhdpi`) to avoid being clipped by the launcher.
 >
 
 If you don't provide the requested icons (except for Monochrome), Godot will replace them using a fallback chain, trying the next in line when the current one fails:
@@ -263,13 +263,13 @@ the export menu.
 
 Export option | Environment variable
 ------------- | --------------------
-Encryption / Encryption Key | GODOT_SCRIPT_ENCRYPTION_KEY
-Options / Keystore / Debug | GODOT_ANDROID_KEYSTORE_DEBUG_PATH
-Options / Keystore / Debug User | GODOT_ANDROID_KEYSTORE_DEBUG_USER
-Options / Keystore / Debug Password | GODOT_ANDROID_KEYSTORE_DEBUG_PASSWORD
-Options / Keystore / Release | GODOT_ANDROID_KEYSTORE_RELEASE_PATH
-Options / Keystore / Release User | GODOT_ANDROID_KEYSTORE_RELEASE_USER
-Options / Keystore / Release Password | GODOT_ANDROID_KEYSTORE_RELEASE_PASSWORD
+Encryption / Encryption Key | `GODOT_SCRIPT_ENCRYPTION_KEY`
+Options / Keystore / Debug | `GODOT_ANDROID_KEYSTORE_DEBUG_PATH`
+Options / Keystore / Debug User | `GODOT_ANDROID_KEYSTORE_DEBUG_USER`
+Options / Keystore / Debug Password | `GODOT_ANDROID_KEYSTORE_DEBUG_PASSWORD`
+Options / Keystore / Release | `GODOT_ANDROID_KEYSTORE_RELEASE_PATH`
+Options / Keystore / Release User | `GODOT_ANDROID_KEYSTORE_RELEASE_USER`
+Options / Keystore / Release Password | `GODOT_ANDROID_KEYSTORE_RELEASE_PASSWORD`
 
 ## Export options
 

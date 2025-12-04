@@ -9,12 +9,12 @@ and [NavigationRegion3D](https://docs.godotengine.org/en/stable/classes/class_na
 Individual NavigationRegions upload their 2D NavigationPolygon or 3D NavigationMesh resource data to the NavigationServer.
 The NavigationServer map turns this information into a combined navigation map for pathfinding.
 
-To create a navigation region using the scene tree add a NavigationRegion2D or NavigationRegion3D node to the scene.
+To create a navigation region using the scene tree add a `NavigationRegion2D` or `NavigationRegion3D` node to the scene.
 All regions require a navigation mesh resource to function. See <doc:navigation_using_navigationmeshes> to learn how to create and apply navigation meshes.
 
-NavigationRegions will automatically push global_transform changes to the region on the NavigationServer which makes them suitable for moving platforms.
+NavigationRegions will automatically push `global_transform` changes to the region on the NavigationServer which makes them suitable for moving platforms.
 The NavigationServer will attempt to connect the navigation meshes of individual regions when they are close enough. For more details see <doc:navigation_connecting_navmesh>.
-To connect NavigationRegions over arbitrary distances see <doc:navigation_using_navigationlinks> to learn how to create and use NavigationLinks.
+To connect NavigationRegions over arbitrary distances see <doc:navigation_using_navigationlinks> to learn how to create and use `NavigationLinks`.
 
 > Warning:
 >
@@ -34,11 +34,41 @@ Regions can be enabled / disabled and if disabled will not contribute to future 
 
 New NavigationRegion nodes will automatically register to the default world navigation map for their 2D/3D dimension.
 
-The region RID can then be obtained from NavigationRegion Nodes with get_rid().
+The region RID can then be obtained from NavigationRegion Nodes with `get_rid()`.
+
+```
+extends NavigationRegion2D
+
+var navigationserver_region_rid: RID = get_rid()
+```
+
+```
+extends NavigationRegion3D
+
+var navigationserver_region_rid: RID = get_rid()
+```
 
 New regions can also be created with the NavigationServer API and added to any existing map.
 
 If regions are created with the NavigationServer API directly they need to be assigned a navigation map manually.
+
+```
+extends Node2D
+
+func _ready() -> void:
+    var new_region_rid: RID = NavigationServer2D.region_create()
+    var default_map_rid: RID = get_world_2d().get_navigation_map()
+    NavigationServer2D.region_set_map(new_region_rid, default_map_rid)
+```
+
+```
+extends Node3D
+
+func _ready() -> void:
+    var new_region_rid: RID = NavigationServer3D.region_create()
+    var default_map_rid: RID = get_world_3d().get_navigation_map()
+    NavigationServer3D.region_set_map(new_region_rid, default_map_rid)
+```
 
 > Note:
 >

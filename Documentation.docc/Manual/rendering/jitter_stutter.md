@@ -190,7 +190,7 @@ When using the Forward+ or Mobile rendering methods, another way to reduce
 visual latency when V-Sync is enabled is to use double-buffered V-Sync instead
 of the default triple-buffered V-Sync. Since Godot 4.3, this can be achieved by
 reducing the **Display > Window > V-Sync > Swapchain Image Count** project
-setting to 2.  The downside of using double buffering is that framerate will
+setting to `2`.  The downside of using double buffering is that framerate will
 be less stable if the display refresh rate can't be reached due to a CPU or GPU
 bottleneck. For instance, on a 60 Hz display, if the framerate would normally
 drop to 55 FPS during gameplay with triple buffering, it will have to drop down
@@ -202,10 +202,10 @@ Increasing the number of physics iterations per second can also reduce
 physics-induced input latency. This is especially noticeable when using physics
 interpolation (which improves smoothness but increases latency). To do so, set
 **Physics > Common > Physics Ticks Per Second** to a value higher than the
-default 60, or set Engine.physics_ticks_per_second at runtime in a
+default `60`, or set `Engine.physics_ticks_per_second` at runtime in a
 script. Values that are a multiple of the monitor refresh rate (typically
-60) work best when physics interpolation is disabled, as they will avoid
-jitter. This means values such as 120, 180 and 240 are good starting
+`60`) work best when physics interpolation is disabled, as they will avoid
+jitter. This means values such as `120`, `180` and `240` are good starting
 points. As a bonus, higher physics FPSes make tunneling and physics instability
 issues less likely to occur.
 
@@ -214,24 +214,24 @@ can lead to performance bottlenecks in games that have heavy physics simulation
 code. This can be alleviated by increasing physics FPS only in situations where
 low latency is critical, or by letting players adjust physics FPS to match their
 hardware. However, different physics FPS will lead to different outcomes in
-physics simulation, even when delta is consistently used in your game logic.
+physics simulation, even when `delta` is consistently used in your game logic.
 This can give certain players an advantage over others. Therefore, allowing the
 player to change the physics FPS themselves should be avoided for competitive
 multiplayer games.
 
 Lastly, you can disable input buffering on a per-rendered frame basis by calling
-Input.set_use_accumulated_input(false) in a script. This will make it so the
-_input() and _unhandled_input() functions in your scripts are called on
+`Input.set_use_accumulated_input(false)` in a script. This will make it so the
+`_input()` and `_unhandled_input()` functions in your scripts are called on
 every input, rather than accumulating inputs and waiting for a frame to be
 rendered. Disabling input accumulation will increase CPU usage, so it should be
 done with caution.
 
 > Tip:
 >
-> On any Godot project, you can use the --disable-vsync
+> On any Godot project, you can use the `--disable-vsync`
 > <doc:command_line_tutorial> to forcibly disable V-Sync.
-> Since Godot 4.2, --max-fps <fps> can also be used to set an FPS limit
-> (0 is unlimited). These arguments can be used at the same time.
+> Since Godot 4.2, `--max-fps <fps>` can also be used to set an FPS limit
+> (`0` is unlimited). These arguments can be used at the same time.
 >
 
 ### Hardware/OS-specific
@@ -241,14 +241,14 @@ If your monitor supports it, consider enabling variable refresh rate
 project settings to a slightly lower value than your monitor's maximum refresh
 rate as per this page.
 For example, on a 144 Hz monitor, you can set the project's framerate cap to
-141. This may be counterintuitive at first, but capping the FPS below the
+`141`. This may be counterintuitive at first, but capping the FPS below the
 maximum refresh rate range ensures that the OS never has to wait for vertical
 blanking to finish. This leads to similar input lag as V-Sync disabled with
 the same framerate cap (usually less than 1 ms greater), but without any
 tearing.
 
 This can be done by changing the **Application > Run > Max FPS** project
-setting or assigning Engine.max_fps at runtime in a script.
+setting or assigning `Engine.max_fps` at runtime in a script.
 
 On some platforms, you can also opt into a low-latency mode in the graphics
 driver options (such as the NVIDIA Control Panel on Windows). The **Ultra**

@@ -306,7 +306,7 @@ next_state = "idle" if is_on_floor() else "fall"
 
 ### Format multiline statements for readability
 
-When you have particularly long if statements or nested ternary expressions,
+When you have particularly long `if` statements or nested ternary expressions,
 wrapping them over multiple lines improves readability. Since continuation lines
 are still part of the same expression, 2 indent levels should be used instead of one.
 
@@ -316,7 +316,7 @@ easier refactoring. With backslashes, you have to ensure that the last line
 never contains a backslash at the end. With parentheses, you don't have to
 worry about the last line having a backslash at the end.
 
-When wrapping a conditional expression over multiple lines, the and/or
+When wrapping a conditional expression over multiple lines, the `and`/`or`
 keywords should be placed at the beginning of the line continuation, not at the
 end of the previous line.
 
@@ -374,11 +374,11 @@ if (is_colliding()):
 
 Prefer the plain English versions of boolean operators, as they are the most accessible:
 
-- Use and instead of &&.
+- Use `and` instead of `&&`.
 
-- Use or instead of ||.
+- Use `or` instead of `||`.
 
-- Use not instead of !.
+- Use `not` instead of `!`.
 
 You may also use parentheses around boolean operators to clear any ambiguity.
 This can make long expressions easier to read.
@@ -399,9 +399,9 @@ if foo && bar || !baz:
 
 ### Comment spacing
 
-Regular comments (#) and documentation comments (##) should start with a
+Regular comments (`#`) and documentation comments (`##`) should start with a
 space, but not code that you comment out. Additionally, code region comments
-(#region/#endregion) must follow that precise syntax, so they should not
+(`#region`/`#endregion`) must follow that precise syntax, so they should not
 start with a space.
 
 Using a space for regular and documentation comments helps differentiate text
@@ -424,7 +424,7 @@ comments from disabled code.
 > Note:
 >
 > In the script editor, to toggle commenting of the selected code, press
-> `Ctrl + K`. This feature adds/removes a single # sign before any
+> ``Ctrl + K``. This feature adds/removes a single `#` sign before any
 > code on the selected lines.
 >
 
@@ -451,8 +451,8 @@ Always use one space around operators and after commas. Also, avoid extra spaces
 in dictionary references and function calls. One exception to this is for
 single-line dictionary declarations, where a space should be added after the
 opening brace and before the closing brace. This makes the dictionary easier to
-visually distinguish from an array, as the [] characters look close to
-{} with most fonts.
+visually distinguish from an array, as the `[]` characters look close to
+`{}` with most fonts.
 
 **Good**:
 
@@ -569,15 +569,15 @@ code. As a summary table:
 
 Type | Convention | Example
 ---- | ---------- | -------
-File names | snake_case | yaml_parser.gd
-Class names | PascalCase | class_name YAMLParser
-Node names | PascalCase | Camera3D,Player
-Functions | snake_case | funcload_level():
-Variables | snake_case | var particle_effect
-Signals | snake_case | signal door_opened
-Constants | CONSTANT_CASE | const MAX_SPEED = 200
-Enum names | PascalCase | enum Element
-Enum members | CONSTANT_CASE | {EARTH, WATER, AIR, FIRE}
+File names | snake_case | `yaml_parser.gd`
+Class names | PascalCase | `class_name YAMLParser`
+Node names | PascalCase | `Camera3D`,`Player`
+Functions | snake_case | `func load_level():`
+Variables | snake_case | `var particle_effect`
+Signals | snake_case | `signal door_opened`
+Constants | CONSTANT_CASE | `const MAX_SPEED = 200`
+Enum names | PascalCase | `enum Element`
+Enum members | CONSTANT_CASE | `{EARTH, WATER, AIR, FIRE}`
 
 ### File names
 
@@ -713,7 +713,7 @@ We suggest to organize GDScript code this way:
     6. remaining virtual methods
 15. overridden custom methods
 16. remaining methods
-17. subclasses
+17. inner classes
 ```
 
 And put the class methods and variables in the following order depending on their access modifiers:
@@ -735,21 +735,21 @@ This code order follows four rules of thumb:
 
 1. Virtual callbacks come before the class's interface.
 
-1. The object's construction and initialization functions, _init and
-_ready, come before functions that modify the object at runtime.
+1. The object's construction and initialization functions, `_init` and
+`_ready`, come before functions that modify the object at runtime.
 
 ### Class declaration
 
-If the code is meant to run in the editor, place the @tool annotation on the
+If the code is meant to run in the editor, place the `@tool` annotation on the
 first line of the script.
 
-Follow with the optional @icon then the class_name if necessary. You can turn a
-GDScript file into a global type in your project using class_name. For more
+Follow with the optional `@icon` then the `class_name` if necessary. You can turn a
+GDScript file into a global type in your project using `class_name`. For more
 information, see <doc:index#Basics-Class-Name>. If the class is meant
 to be an <doc:index#Basics-Abstract-Class>,
-add @abstract before the class_name keyword.
+add `@abstract` before the `class_name` keyword.
 
-Then, add the extends keyword if the class extends a built-in type.
+Then, add the `extends` keyword if the class extends a built-in type.
 
 Following that, you should have the class's optional
 <doc:gdscript_documentation_comments>.
@@ -817,7 +817,7 @@ var _speed = 300.0
 
 > Note:
 >
-> GDScript evaluates @onready variables right before the _ready
+> GDScript evaluates `@onready` variables right before the `_ready`
 > callback. You can use that to cache node dependencies, that is to say, to get
 > child nodes in the scene that your class relies on. This is what the example
 > above shows.
@@ -839,15 +839,15 @@ variable was declared.
 
 After the class's properties come the methods.
 
-Start with the _init() callback method, that the engine will call upon
-creating the object in memory. Follow with the _ready() callback, that Godot
+Start with the `_init()` callback method, that the engine will call upon
+creating the object in memory. Follow with the `_ready()` callback, that Godot
 calls when it adds a node to the scene tree.
 
 These functions should come first because they show how the object is
 initialized.
 
-Other built-in virtual callbacks, like _unhandled_input() and
-_physics_process, should come next. These control the object's main loop and
+Other built-in virtual callbacks, like `_unhandled_input()` and
+`_physics_process`, should come next. These control the object's main loop and
 interactions with the game engine.
 
 The rest of the class's interface, public and private methods, come after that,
@@ -891,13 +891,13 @@ GDScript supports <doc:static_typing>.
 
 ### Declared types
 
-To declare a variable's type, use <variable>: <type>:
+To declare a variable's type, use `<variable>: <type>`:
 
 ```
 var health: int = 0
 ```
 
-To declare the return type of a function, use -> <type>:
+To declare the return type of a function, use `-> <type>`:
 
 ```
 func heal(amount: int) -> void:
@@ -905,8 +905,8 @@ func heal(amount: int) -> void:
 
 ### Inferred types
 
-In most cases, you can let the compiler infer the type using :=.
-Prefer := when the type is written on the same line as the assignment,
+In most cases, you can let the compiler infer the type using `:=`.
+Prefer `:=` when the type is written on the same line as the assignment,
 otherwise prefer writing the type explicitly.
 
 **Good**:
@@ -937,7 +937,7 @@ var value := complex_function()
 
 In some cases, the type must be stated explicitly, otherwise the behavior
 will not be as expected because the compiler will only be able to use
-the function's return type. For example, get_node() cannot infer a type
+the function's return type. For example, `get_node()` cannot infer a type
 unless the scene or file of the node is loaded in memory. In this case, you
 should set the type explicitly.
 
@@ -955,7 +955,7 @@ should set the type explicitly.
 @onready var health_bar := get_node("UI/LifeBar")
 ```
 
-Alternatively, you can use the as keyword to cast the return type, and
+Alternatively, you can use the `as` keyword to cast the return type, and
 that type will be used to infer the type of the var.
 
 ```
@@ -966,5 +966,5 @@ that type will be used to infer the type of the var.
 > Note:
 >
 > This option is considered more <doc:static_typing#Safe-Lines> than type hints,
-> but also less null-safe as it silently casts the variable to null in case of a type mismatch at runtime,
+> but also less null-safe as it silently casts the variable to `null` in case of a type mismatch at runtime,
 > without an error/warning.

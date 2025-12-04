@@ -46,17 +46,17 @@ of the optics.
 On video-passthrough devices alpha blending is applied with the video image.
 passthrough will also be enabled if applicable.
 
-You can set the environment blend mode for your application through the environment_blend_mode
+You can set the environment blend mode for your application through the `environment_blend_mode`
 property of the [XRInterface](https://docs.godotengine.org/en/stable/classes/class_xrinterface.html#class-xrinterface) instance.
 
 You can query the supported blend modes on the hardware using the
-get_supported_environment_blend_modes property on the same instance.
+`get_supported_environment_blend_modes` property on the same instance.
 
 ## Configuring your background
 
-When setting the blend mode to XR_ENV_BLEND_MODE_ALPHA_BLEND you must set
-the transparent_bg property on [Viewport](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport) to true.
-When using the XR_ENV_BLEND_MODE_ADDITIVE blend mode you should set your
+When setting the blend mode to `XR_ENV_BLEND_MODE_ALPHA_BLEND` you must set
+the `transparent_bg` property on [Viewport](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport) to true.
+When using the `XR_ENV_BLEND_MODE_ADDITIVE` blend mode you should set your
 background color to black.
 
 Either solution will result in the background rendering not contributing to lighting.
@@ -87,9 +87,9 @@ For example, these are the settings required on Meta Quest:
 
 @Image(source: "openxr_export_passthrough.png")
 
-The Passthrough setting defines whether passthrough is supported or even required.
+The `Passthrough` setting defines whether passthrough is supported or even required.
 
-The Boundary Mode allows you to define whether the guardian is needed,
+The `Boundary Mode` allows you to define whether the guardian is needed,
 disabling this fully requires passthrough to be enabled at all times.
 
 ## Putting it together

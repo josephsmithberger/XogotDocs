@@ -17,33 +17,33 @@ will detect suffixes in object names and will perform actions automatically.
 
 > Warning:
 >
-> All the suffixes described below can be used with -, $, and _ and are
+> All the suffixes described below can be used with `-`, `$`, and `_` and are
 > **case-insensitive**.
 >
 
 ## Opting out
 
 If you do not want Godot to perform any of the actions described below, you
-can set the nodes/use_node_type_suffixes import option to false.
+can set the `nodes/use_node_type_suffixes` import option to `false`.
 This will disable all node type suffixes, which keeps nodes the same type
-as the original file indicated. However, the -noimp suffix will still
-be respected, as well as non-node suffixes like -vcol or -loop.
+as the original file indicated. However, the `-noimp` suffix will still
+be respected, as well as non-node suffixes like `-vcol` or `-loop`.
 
 Alternatively, you can completely opt out of all name suffixes by setting
-the nodes/use_name_suffixes import option to false. This will
+the `nodes/use_name_suffixes` import option to `false`. This will
 completely stop the general scene import code from looking at name suffixes.
 However, the format-specific import code may still look at name suffixes,
-such as the glTF importer checking for the -loop suffix.
+such as the glTF importer checking for the `-loop` suffix.
 
 Disabling these options makes editor-imported files more similar to the
 original files, and more similar to importing files at runtime.
 For an import workflow that works at runtime, gives more predictable
 results, and only has explicitly defined behavior, consider setting these
-options to false and using [GLTFDocumentExtension](https://docs.godotengine.org/en/stable/classes/class_gltfdocumentextension.html#class-gltfdocumentextension) instead.
+options to `false` and using [GLTFDocumentExtension](https://docs.godotengine.org/en/stable/classes/class_gltfdocumentextension.html#class-gltfdocumentextension) instead.
 
 ## Remove nodes and animations (-noimp)
 
-Nodes and animations that have the -noimp suffix will be removed at
+Nodes and animations that have the `-noimp` suffix will be removed at
 import time no matter what their type is. They will not appear in the
 imported scene.
 
@@ -52,13 +52,13 @@ Settings dialog.
 
 ## Create collisions (-col, -convcol, -colonly, -convcolonly)
 
-The option -col will work only for Mesh objects. If it is detected, a child
+The option `-col` will work only for Mesh objects. If it is detected, a child
 static collision node will be added, using the same geometry as the mesh. This
 will create a triangle mesh collision shape, which is a slow, but accurate
 option for collision detection. This option is usually what you want for level
-geometry (but see also -colonly below).
+geometry (but see also `-colonly` below).
 
-The option -convcol will create a [ConvexPolygonShape3D](https://docs.godotengine.org/en/stable/classes/class_convexpolygonshape3d.html#class-convexpolygonshape3d) instead of
+The option `-convcol` will create a [ConvexPolygonShape3D](https://docs.godotengine.org/en/stable/classes/class_convexpolygonshape3d.html#class-convexpolygonshape3d) instead of
 a [ConcavePolygonShape3D](https://docs.godotengine.org/en/stable/classes/class_concavepolygonshape3d.html#class-concavepolygonshape3d). Unlike triangle meshes which can be concave,
 a convex shape can only accurately represent a shape that doesn't have any
 concave angles (a pyramid is convex, but a hollow box is concave). Due to this,
@@ -71,14 +71,14 @@ However, in both cases, the visual geometry may be too complex or not smooth
 enough for collisions. This can create physics glitches and slow down the engine
 unnecessarily.
 
-To solve this, the -colonly modifier exists. It will remove the mesh upon
+To solve this, the `-colonly` modifier exists. It will remove the mesh upon
 importing and will create a [StaticBody3D](https://docs.godotengine.org/en/stable/classes/class_staticbody3d.html#class-staticbody3d) collision instead.
 This helps the visual mesh and actual collision to be separated.
 
-The option -convcolonly works in a similar way, but will create a
+The option `-convcolonly` works in a similar way, but will create a
 [ConvexPolygonShape3D](https://docs.godotengine.org/en/stable/classes/class_convexpolygonshape3d.html#class-convexpolygonshape3d) instead using convex decomposition.
 
-With Collada files, the option -colonly can also be used with Blender's
+With Collada files, the option `-colonly` can also be used with Blender's
 empty objects. On import, it will create a [StaticBody3D](https://docs.godotengine.org/en/stable/classes/class_staticbody3d.html#class-staticbody3d) with a
 collision node as a child. The collision node will have one of a number of
 predefined shapes, depending on Blender's empty draw type:
@@ -115,46 +115,46 @@ reliability.
 
 ## Create Occluder (-occ, -occonly)
 
-If a mesh is imported with the -occ suffix an [occluder3D](https://docs.godotengine.org/en/stable/classes/class_occluder3d.html#class-occluder3d) node
+If a mesh is imported with the `-occ` suffix an [occluder3D](https://docs.godotengine.org/en/stable/classes/class_occluder3d.html#class-occluder3d) node
 will be created based on the geometry of the mesh, it does not replace the mesh.
-A mesh node with the -occonly suffix will be converted to an
+A mesh node with the `-occonly` suffix will be converted to an
 [occluder3D](https://docs.godotengine.org/en/stable/classes/class_occluder3d.html#class-occluder3d) on import.
 
 ## Create navigation (-navmesh)
 
-A mesh node with the -navmesh suffix will be converted to a navigation mesh.
+A mesh node with the `-navmesh` suffix will be converted to a navigation mesh.
 The original Mesh object will be removed at import-time.
 
 ## Create a VehicleBody (-vehicle)
 
-A mesh node with the -vehicle suffix will be imported as a child to a
+A mesh node with the `-vehicle` suffix will be imported as a child to a
 [VehicleBody3D](https://docs.godotengine.org/en/stable/classes/class_vehiclebody3d.html#class-vehiclebody3d) node.
 
 ## Create a VehicleWheel (-wheel)
 
-A mesh node with the -wheel suffix will be imported as a child to a
+A mesh node with the `-wheel` suffix will be imported as a child to a
 [VehicleWheel3D](https://docs.godotengine.org/en/stable/classes/class_vehiclewheel3d.html#class-vehiclewheel3d) node.
 
 ## Rigid Body (-rigid)
 
-A mesh node with the -rigid suffix will be imported as a [RigidBody3D](https://docs.godotengine.org/en/stable/classes/class_rigidbody3d.html#class-rigidbody3d).
+A mesh node with the `-rigid` suffix will be imported as a [RigidBody3D](https://docs.godotengine.org/en/stable/classes/class_rigidbody3d.html#class-rigidbody3d).
 
 ## Animation loop (-loop, -cycle)
 
-Animation clips in the source 3D file that start or end with the token loop or cycle
+Animation clips in the source 3D file that start or end with the token `loop` or `cycle`
 will be imported as a Godot [Animation](https://docs.godotengine.org/en/stable/classes/class_animation.html#class-animation) with the loop flag set.
 **Unlike the other suffixes described above, this does not require a hyphen.**
 
-In Blender, this requires using the NLA Editor and naming the Action with the loop or
-cycle prefix or suffix.
+In Blender, this requires using the NLA Editor and naming the Action with the `loop` or
+`cycle` prefix or suffix.
 
 ## Material alpha (-alpha)
 
-A material with the -alpha suffix will be imported with the
+A material with the `-alpha` suffix will be imported with the
 [TRANSPARENCY_ALPHA](https://docs.godotengine.org/en/stable/classes/class_basematerial3d_constant_transparency_alpha.html#class-basematerial3d_constant_transparency_alpha) transparency mode.
 
 ## Material vertex color (-vcol)
 
-A material with the -vcol suffix will be imported with the
+A material with the `-vcol` suffix will be imported with the
 [FLAG_ALBEDO_FROM_VERTEX_COLOR](https://docs.godotengine.org/en/stable/classes/class_basematerial3d_constant_flag_albedo_from_vertex_color.html#class-basematerial3d_constant_flag_albedo_from_vertex_color) and
 [FLAG_SRGB_VERTEX_COLOR](https://docs.godotengine.org/en/stable/classes/class_basematerial3d_constant_flag_srgb_vertex_color.html#class-basematerial3d_constant_flag_srgb_vertex_color) flags set.

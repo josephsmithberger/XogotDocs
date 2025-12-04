@@ -104,8 +104,8 @@ This way, you won't be relying on the deprecated Tween node and OS time
 functions, both of which are removed in Godot 4.0.
 
 It's also a good idea to rename external shaders so that their extension is
-.gdshader instead of .shader. Godot 3.x supports both extensions, but
-only .gdshader is supported in Godot 4.0.
+`.gdshader` instead of `.shader`. Godot 3.x supports both extensions, but
+only `.gdshader` is supported in Godot 4.0.
 
 ## Running the project upgrade tool
 
@@ -165,7 +165,7 @@ the Godot editor binary to upgrade project files:
 path/to/godot.binary --path /path/to/project/folder --convert-3to4 [<max_file_kb>] [<max_line_size>]
 ```
 
-[<max_file_kb>] and [<max_line_size>] are optional arguments to specify
+`[<max_file_kb>]` and `[<max_line_size>]` are optional arguments to specify
 the maximum size of files to be converted (in kilobytes and lines). The default
 limits are 4 MB and 100,000 lines respectively. If a file hits either of those
 limits, it will not be upgraded by the project converter. This is useful to
@@ -203,12 +203,12 @@ The list below refers to nodes which were simply renamed for consistency or
 clarity in Godot 4.0. The project upgrade tool renames them automatically in
 your scripts.
 
-One noteworthy set of renames is 3D nodes, which all got a 3D suffix added for
-consistency with their 2D counterparts. For example, Area is now Area3D.
+One noteworthy set of renames is 3D nodes, which all got a `3D` suffix added for
+consistency with their 2D counterparts. For example, `Area` is now `Area3D`.
 
 For ease of searching, this table lists all nodes and resources that were renamed
 and are automatically converted, excluding the ones which only involved adding
-a 3D suffix to the old name:
+a `3D` suffix to the old name:
 
 Old name (Godot 3.x) | New name (Godot 4)
 -------------------- | ------------------
@@ -305,7 +305,7 @@ table to find its new name.
 > Tip:
 >
 > You can use the **Replace in Files** dialog to speed up replacement by pressing
-> `Ctrl + Shift + R` while the script editor is open. However, be careful
+> ``Ctrl + Shift + R`` while the script editor is open. However, be careful
 > as the Replace in Files dialog doesn't offer any way to undo a replacement.
 > Use version control to commit your upgrade work regularly.
 > Command line tools such as sd can also be used
@@ -324,119 +324,119 @@ are now static, which means you can call them directly on FileAccess or
 DirAccess without having to create an instance of that class.
 
 - Screen and window-related methods from the [OS](https://docs.godotengine.org/en/stable/classes/class_os.html#class-os) singleton (such as
-OS.get_screen_size()) were moved to the [DisplayServer](https://docs.godotengine.org/en/stable/classes/class_displayserver.html#class-displayserver) singleton.
+`OS.get_screen_size()`) were moved to the [DisplayServer](https://docs.godotengine.org/en/stable/classes/class_displayserver.html#class-displayserver) singleton.
 Method naming was also changed to use the
-DisplayServer.<object>_<get/set>_property() form instead. For example,
-OS.get_screen_size() becomes DisplayServer.screen_get_size().
+`DisplayServer.<object>_<get/set>_property()` form instead. For example,
+`OS.get_screen_size()` becomes `DisplayServer.screen_get_size()`.
 
 - Time and date methods from the [OS](https://docs.godotengine.org/en/stable/classes/class_os.html#class-os) singleton were moved to the
 [Time](https://docs.godotengine.org/en/stable/classes/class_time.html#class-time) singleton.
 (The Time singleton is also available in Godot 3.5 and later.)
 
-- You may have to replace some instance() calls with instantiate(). The
+- You may have to replace some `instance()` calls with `instantiate()`. The
 converter should handle this automatically, but this relies on custom code that
 may not work in 100% of situations.
 
-- AcceptDialog's set_autowrap() is now set_autowrap_mode().
+- AcceptDialog's `set_autowrap()` is now `set_autowrap_mode()`.
 
-- AnimationNode's process() is now _process()
+- AnimationNode's `process()` is now `_process()`
 (note the leading underscore, which denotes a virtual method).
 
-- AnimationPlayer's add_animation() is now add_animation_library() and now uses an [AnimationLibrary](https://docs.godotengine.org/en/stable/classes/class_animationlibrary.html#class-animationlibrary).
+- AnimationPlayer's `add_animation()` is now `add_animation_library()` and now uses an [AnimationLibrary](https://docs.godotengine.org/en/stable/classes/class_animationlibrary.html#class-animationlibrary).
 
-- AnimationTree's set_process_mode() is now set_process_callback().
+- AnimationTree's `set_process_mode()` is now `set_process_callback()`.
 
-- Array's empty() is now is_empty().
+- Array's `empty()` is now `is_empty()`.
 
-- Array's invert() is now reverse().
+- Array's `invert()` is now `reverse()`.
 
-- Array's remove() is now remove_at().
+- Array's `remove()` is now `remove_at()`.
 
-- AStar2D and AStar3D's get_points() is now get_points_id().
+- AStar2D and AStar3D's `get_points()` is now `get_points_id()`.
 
-- BaseButton's set_event() is now set_shortcut().
+- BaseButton's `set_event()` is now `set_shortcut()`.
 
-- Camera2D's get_h_offset() is now get_drag_horizontal_offset().
+- Camera2D's `get_h_offset()` is now `get_drag_horizontal_offset()`.
 
-- Camera2D's get_v_offset() is now get_drag_vertical_offset().
+- Camera2D's `get_v_offset()` is now `get_drag_vertical_offset()`.
 
-- Camera2D's set_h_offset() is now set_drag_horizontal_offset().
+- Camera2D's `set_h_offset()` is now `set_drag_horizontal_offset()`.
 
-- Camera2D's set_v_offset() is now set_drag_vertical_offset().
+- Camera2D's `set_v_offset()` is now `set_drag_vertical_offset()`.
 
-- CanvasItem's raise() is now move_to_front().
+- CanvasItem's `raise()` is now `move_to_front()`.
 
-- CanvasItem's update() is now queue_redraw().
+- CanvasItem's `update()` is now `queue_redraw()`.
 
-- Control's get_stylebox() is now get_theme_stylebox().
+- Control's `get_stylebox()` is now `get_theme_stylebox()`.
 
-- Control's set_tooltip() is now set_tooltip_text().
+- Control's `set_tooltip()` is now `set_tooltip_text()`.
 
-- EditorNode3DGizmoPlugin's create_gizmo() is now _create_gizmo()
+- EditorNode3DGizmoPlugin's `create_gizmo()` is now `_create_gizmo()`
 (note the leading underscore, which denotes a virtual method).
 
-- ENetMultiplayerPeer's get_peer_port() is now get_peer().
+- ENetMultiplayerPeer's `get_peer_port()` is now `get_peer()`.
 
-- FileDialog's get_mode() is now get_file_mode().
+- FileDialog's `get_mode()` is now `get_file_mode()`.
 
-- FileDialog's set_mode() is now set_file_mode().
+- FileDialog's `set_mode()` is now `set_file_mode()`.
 
-- GraphNode's get_offset() is now get_position_offset().
+- GraphNode's `get_offset()` is now `get_position_offset()`.
 
-- GridMap's map_to_world() is now map_to_local().
+- GridMap's `map_to_world()` is now `map_to_local()`.
 
-- GridMap's world_to_map() is now local_to_map().
+- GridMap's `world_to_map()` is now `local_to_map()`.
 
-- Image's get_rect() is now get_region().
+- Image's `get_rect()` is now `get_region()`.
 
-- ImmediateGeometry's set_normal() is now surface_set_normal().
+- ImmediateGeometry's `set_normal()` is now `surface_set_normal()`.
 
-- ImmediateMesh's set_color() is now surface_set_color().
+- ImmediateMesh's `set_color()` is now `surface_set_color()`.
 
-- ImmediateMesh's set_uv() is now surface_set_uv().
+- ImmediateMesh's `set_uv()` is now `surface_set_uv()`.
 
-- ItemList's get_v_scroll() is now get_v_scroll_bar().
+- ItemList's `get_v_scroll()` is now `get_v_scroll_bar()`.
 
-- MultiPlayerAPI's get_network_connected_peers() is now get_peers().
+- MultiPlayerAPI's `get_network_connected_peers()` is now `get_peers()`.
 
-- MultiPlayerAPI's get_network_peer() is now get_peer().
+- MultiPlayerAPI's `get_network_peer()` is now `get_peer()`.
 
-- MultiPlayerAPI's get_network_unique_id() is now get_unique_id().
+- MultiPlayerAPI's `get_network_unique_id()` is now `get_unique_id()`.
 
-- MultiPlayerAPI's has_network_peer() is now has_multiplayer_peer().
+- MultiPlayerAPI's `has_network_peer()` is now `has_multiplayer_peer()`.
 
-- MultiplayerAPI's is_refusing_new_network_connections() is now is_refusing_new_connections().
+- MultiplayerAPI's `is_refusing_new_network_connections()` is now `is_refusing_new_connections()`.
 
-- PacketPeerUDP's is_listening() is now is_bound().
+- PacketPeerUDP's `is_listening()` is now `is_bound()`.
 
-- PacketPeerUDP's listen() is now bind().
+- PacketPeerUDP's `listen()` is now `bind()`.
 
-- ParticleProcessMaterial's set_flag() is now set_particle_flag().
+- ParticleProcessMaterial's `set_flag()` is now `set_particle_flag()`.
 
-- PhysicsTestMotionResult2D's get_motion() is now get_travel().
+- PhysicsTestMotionResult2D's `get_motion()` is now `get_travel()`.
 
-- RenderingServer's get_render_info() is now get_rendering_info().
+- RenderingServer's `get_render_info()` is now `get_rendering_info()`.
 
-- ResourceFormatLoader's get_dependencies() is now _get_dependencies()
+- ResourceFormatLoader's `get_dependencies()` is now `_get_dependencies()`
 (note the leading underscore, which denotes a virtual method).
 
-- ResourceFormatLoader's load() is now _load().
+- ResourceFormatLoader's `load()` is now `_load()`.
 
-- SceneTree's change_scene() is now change_scene_to_file().
+- SceneTree's `change_scene()` is now `change_scene_to_file()`.
 
-- Shortcut's is_valid() is now has_valid_event().
+- Shortcut's `is_valid()` is now `has_valid_event()`.
 
-- TileMap's map_to_world() is now map_to_local().
+- TileMap's `map_to_world()` is now `map_to_local()`.
 
-- TileMap's world_to_map() is now local_to_map().
+- TileMap's `world_to_map()` is now `local_to_map()`.
 
-- Transform2D's xform() is mat * vec and xform_inv() is vec * mat.
+- Transform2D's `xform()` is `mat * vec` and `xform_inv()` is `vec * mat`.
 
-- XRPositionalTracker's get_name() is now get_tracker_name().
+- XRPositionalTracker's `get_name()` is now `get_tracker_name()`.
 
-- XRPositionalTracker's get_type() is now get_tracker_type().
+- XRPositionalTracker's `get_type()` is now `get_tracker_type()`.
 
-- XRPositionalTracker's _set_name() is now get_tracker_name().
+- XRPositionalTracker's `_set_name()` is now `get_tracker_name()`.
 
 **Properties**
 
@@ -444,89 +444,89 @@ may not work in 100% of situations.
 >
 > If a property is listed here, its associated getter and setter methods must
 > also be renamed manually if used in the project. For example, PathFollow2D
-> and PathFollow3D's set_offset() and get_offset() must be renamed to
-> set_progress() and get_progress() respectively.
+> and PathFollow3D's `set_offset()` and `get_offset()` must be renamed to
+> `set_progress()` and `get_progress()` respectively.
 >
 
-- AudioServer's device is now output_device.
+- AudioServer's `device` is now `output_device`.
 
-- BaseButton's group is now button_group.
+- BaseButton's `group` is now `button_group`.
 
-- Camera3D's zfar is now far.
+- Camera3D's `zfar` is now `far`.
 
-- Camera3D's znear is now near
+- Camera3D's `znear` is now `near`
 
-- Control's margin is now offset.
+- Control's `margin` is now `offset`.
 
-- InputEventMouseButton's doubleclick is now double_click.
+- InputEventMouseButton's `doubleclick` is now `double_click`.
 
-- InputEventWithModifiers's alt is now alt_pressed.
+- InputEventWithModifiers's `alt` is now `alt_pressed`.
 
-- InputEventWithModifiers's command is now command_pressed.
+- InputEventWithModifiers's `command` is now `command_pressed`.
 
-- InputEventWithModifiers's control is now ctrl_pressed.
+- InputEventWithModifiers's `control` is now `ctrl_pressed`.
 
-- InputEventWithModifiers's meta is now meta_pressed.
+- InputEventWithModifiers's `meta` is now `meta_pressed`.
 
-- InputEventWithModifiers's shift is now shift_pressed.
+- InputEventWithModifiers's `shift` is now `shift_pressed`.
 
-- Label's percent_visible is now visible_ratio.
+- Label's `percent_visible` is now `visible_ratio`.
 
-- MultiPlayerAPI's refuse_new_network_connections is now refuse_new_connections.
+- MultiPlayerAPI's `refuse_new_network_connections` is now `refuse_new_connections`.
 
-- Node's filename is now scene_file_path.
+- Node's `filename` is now `scene_file_path`.
 
-- PathFollow2D's rotate is now rotates.
+- PathFollow2D's `rotate` is now `rotates`.
 
-- PathFollow2D and PathFollow3D's offset is now progress.
+- PathFollow2D and PathFollow3D's `offset` is now `progress`.
 
-- RectangleShape2D's extents is now size
+- RectangleShape2D's `extents` is now `size`
 
-- TextureProgressBar's percent_visible is now show_percentage.
+- TextureProgressBar's `percent_visible` is now `show_percentage`.
 
-- Theme's off is now unchecked.
+- Theme's `off` is now `unchecked`.
 
-- Theme's ofs is now offset.
+- Theme's `ofs` is now `offset`.
 
-- Theme's on is now checked.
+- Theme's `on` is now `checked`.
 
-- Window's window_title is now title.
+- Window's `window_title` is now `title`.
 
-- WorldMarginShape2D's d is now distance.
+- WorldMarginShape2D's `d` is now `distance`.
 
-- The extents property on CSG nodes and VoxelGI will have to be replaced
-with size, with the set value halved (as they're no longer half-extents).
-This also affects its setter/getter methods set_extents() and
-get_extents().
+- The `extents` property on CSG nodes and VoxelGI will have to be replaced
+with `size`, with the set value halved (as they're no longer half-extents).
+This also affects its setter/getter methods `set_extents()` and
+`get_extents()`.
 
-- The Engine.editor_hint property was removed in favor of the
-Engine.is_editor_hint() method. This is because it's read-only, and
+- The `Engine.editor_hint` property was removed in favor of the
+`Engine.is_editor_hint()` method. This is because it's read-only, and
 properties in Godot are not used for read-only values.
 
 **Enums**
 
-- CPUParticles2D's FLAG_MAX is now PARTICLE_FLAG_MAX.
+- CPUParticles2D's `FLAG_MAX` is now `PARTICLE_FLAG_MAX`.
 
 **Signals**
 
-- FileSystemDock's instantiate is now instance.
+- FileSystemDock's `instantiate` is now `instance`.
 
-- CanvasItem's hide is now hidden. This rename does **not** apply to the
-hide() method, only the signal.
+- CanvasItem's `hide` is now `hidden`. This rename does **not** apply to the
+`hide()` method, only the signal.
 
-- Tween's tween_all_completed is now loop_finished.
+- Tween's `tween_all_completed` is now `loop_finished`.
 
-- EditorSettings' changed is now settings_changed.
+- EditorSettings' `changed` is now `settings_changed`.
 
 **Constants**
 
 - Color names are now uppercase and use underscores between words.
-For example, Color.palegreen is now Color.PALE_GREEN.
+For example, `Color.palegreen` is now `Color.PALE_GREEN`.
 
-- MainLoop's NOTIFICATION_ constants were duplicated to Node which means
-you can remove the MainLoop. prefix when referencing them.
+- MainLoop's `NOTIFICATION_` constants were duplicated to `Node` which means
+you can remove the `MainLoop.` prefix when referencing them.
 
-- MainLoop's NOTIFICATION_WM_QUIT_REQUEST is now NOTIFICATION_WM_CLOSE_REQUEST.
+- MainLoop's `NOTIFICATION_WM_QUIT_REQUEST` is now `NOTIFICATION_WM_CLOSE_REQUEST`.
 
 ### Checking project settings
 
@@ -555,10 +555,10 @@ environment effect and its visual knobs remain within the Environment resource.
 
 There have been some changes to shaders that aren't covered by the upgrade tool.
 You will need to make some manual changes, especially if your shader uses coordinate
-space transformations or a custom light() function.
+space transformations or a custom `light()` function.
 
-The .shader file extension is no longer supported, which means you must
-rename .shader files to .gdshader and update references accordingly in
+The `.shader` file extension is no longer supported, which means you must
+rename `.shader` files to `.gdshader` and update references accordingly in
 scene/resource files using an external text editor.
 
 Some notable changes you will need to perform in shaders are:
@@ -566,22 +566,22 @@ Some notable changes you will need to perform in shaders are:
 - Texture filter and repeat modes are now set on individual uniforms, rather
 than the texture files themselves.
 
-- hint_albedo is now source_color.
+- `hint_albedo` is now `source_color`.
 
-- hint_color is now source_color.
+- `hint_color` is now `source_color`.
 
 - <doc:spatial_shader>
 
-- Particles shaders no longer use the vertex() processor function. Instead
-they use start() and process().
+- Particles shaders no longer use the `vertex()` processor function. Instead
+they use `start()` and `process()`.
 
-- In the Forward+ and Mobile renderers, normalized device coordinates now have a Z-range of [0.0,1.0]
-instead of [-1.0,1.0]. When reconstructing NDC from SCREEN_UV and depth, use
-vec3 ndc = vec3(SCREEN_UV * 2.0 - 1.0, depth); instead of
-vec3 ndc = vec3(SCREEN_UV, depth) * 2.0 - 1.0;. The Compatibility renderer is unchanged,
+- In the Forward+ and Mobile renderers, normalized device coordinates now have a Z-range of `[0.0,1.0]`
+instead of `[-1.0,1.0]`. When reconstructing NDC from `SCREEN_UV` and depth, use
+`vec3 ndc = vec3(SCREEN_UV * 2.0 - 1.0, depth);` instead of
+`vec3 ndc = vec3(SCREEN_UV, depth) * 2.0 - 1.0;`. The Compatibility renderer is unchanged,
 using the same NDC Z-range as 3.x.
 
-- The lighting model changed. If your shader has a custom light() function,
+- The lighting model changed. If your shader has a custom `light()` function,
 you may need to make changes to get the same visual result.
 
 - In 4.3 and up, the reverse Z depth buffer technique is now implemented, which
@@ -600,18 +600,18 @@ break backwards compatibility due to different default behavior.
 
 The most notable examples of this are:
 
-- Lifecycle functions such as _ready() and _process() no longer
+- Lifecycle functions such as `_ready()` and `_process()` no longer
 implicitly call parent classes' functions that have the same name. Instead,
-you must use super() at the top of a lifecycle function in the child class
+you must use `super()` at the top of a lifecycle function in the child class
 so that the parent class function is called first.
 
 - Both [String](https://docs.godotengine.org/en/stable/classes/class_string.html#class-string) and [StringName](https://docs.godotengine.org/en/stable/classes/class_stringname.html#class-stringname) are now exposed to
 GDScript. This allows for greater optimization, as StringName is specifically
 designed to be used for "constant" strings that are created once and reused
 many times. These types are not strictly equivalent to each other, which means
-is_same("example", &"example") returns false. Although in most cases
-they are interchangeable ("example" == &"example" returns true),
-sometimes you may have to replace "example" with &"example".
+`is_same("example", &"example")` returns `false`. Although in most cases
+they are interchangeable (`"example" == &"example"` returns `true`),
+sometimes you may have to replace `"example"` with `&"example"`.
 
 - <doc:index#Basics-Setters-Getters>
 was changed, but it's only partially converted by the conversion tool. In most
@@ -624,87 +624,87 @@ described on the linked page. This way, strings are no longer involved,
 which avoids issues with signal name errors that can only be discovered at runtime.
 
 - Built-in scripts that are <doc:running_code_in_the_editor>
-do not get the tool keyword converted to the @tool annotation.
+do not get the `tool` keyword converted to the `@tool` annotation.
 
 - The Tween node was removed in favor of Tweeners, which are also available in
 Godot 3.5 and later. See the
 original pull request
 for details.
 
-- randomize() is now automatically called on project load, so deterministic
+- `randomize()` is now automatically called on project load, so deterministic
 randomness with the global RandomNumberGenerate instance requires manually
-setting a seed in a script's _ready() function.
+setting a seed in a script's `_ready()` function.
 
-- call_group(), set_group() and notify_group() are now immediate by
+- `call_group()`, `set_group()` and `notify_group()` are now immediate by
 default. If calling an expensive function, this may result in stuttering when
 used on a group containing a large number of nodes. To use deferred calls like
-before, replace call_group(...) with
-call_group_flags(SceneTree.GROUP_CALL_DEFERRED, ...) (and do the same with
-set_group() and notify_group() respectively).
+before, replace `call_group(...)` with
+`call_group_flags(SceneTree.GROUP_CALL_DEFERRED, ...)` (and do the same with
+`set_group()` and `notify_group()` respectively).
 
-- Instead of rotation_degrees, the rotation property is exposed to the
+- Instead of `rotation_degrees`, the `rotation` property is exposed to the
 editor, which is automatically displayed as degrees in the Inspector
 dock. This may break animations, as the conversion is not handled automatically by the
 conversion tool.
 
-- [AABB](https://docs.godotengine.org/en/stable/classes/class_aabb.html#class-aabb)'s has_no_surface() was inverted and renamed to has_surface().
+- [AABB](https://docs.godotengine.org/en/stable/classes/class_aabb.html#class-aabb)'s `has_no_surface()` was inverted and renamed to `has_surface()`.
 
-- [AABB](https://docs.godotengine.org/en/stable/classes/class_aabb.html#class-aabb) and [Rect2](https://docs.godotengine.org/en/stable/classes/class_rect2.html#class-rect2)'s has_no_area() was inverted and
-renamed to has_area().
+- [AABB](https://docs.godotengine.org/en/stable/classes/class_aabb.html#class-aabb) and [Rect2](https://docs.godotengine.org/en/stable/classes/class_rect2.html#class-rect2)'s `has_no_area()` was inverted and
+renamed to `has_area()`.
 
-- [AnimatedTexture](https://docs.godotengine.org/en/stable/classes/class_animatedtexture.html#class-animatedtexture)'s fps property was replaced by speed_scale,
-which works the same as AnimationPlayer's playback_speed property.
+- [AnimatedTexture](https://docs.godotengine.org/en/stable/classes/class_animatedtexture.html#class-animatedtexture)'s `fps` property was replaced by `speed_scale`,
+which works the same as AnimationPlayer's `playback_speed` property.
 
 - [AnimatedSprite2D](https://docs.godotengine.org/en/stable/classes/class_animatedsprite2d.html#class-animatedsprite2d) and [AnimatedSprite3D](https://docs.godotengine.org/en/stable/classes/class_animatedsprite3d.html#class-animatedsprite3d) now allow
-negative speed_scale values. This may break animations if you relied on
-speed_scale being internally clamped to 0.0.
+negative `speed_scale` values. This may break animations if you relied on
+`speed_scale` being internally clamped to `0.0`.
 
-- [AnimatedSprite2D](https://docs.godotengine.org/en/stable/classes/class_animatedsprite2d.html#class-animatedsprite2d) and [AnimatedSprite3D](https://docs.godotengine.org/en/stable/classes/class_animatedsprite3d.html#class-animatedsprite3d)'s playing
-property was removed. Use play()/stop() method instead OR configure
-autoplay animation via the SpriteFrames bottom panel (but not both at once).
+- [AnimatedSprite2D](https://docs.godotengine.org/en/stable/classes/class_animatedsprite2d.html#class-animatedsprite2d) and [AnimatedSprite3D](https://docs.godotengine.org/en/stable/classes/class_animatedsprite3d.html#class-animatedsprite3d)'s `playing`
+property was removed. Use `play()`/`stop()` method instead OR configure
+`autoplay` animation via the SpriteFrames bottom panel (but not both at once).
 
-- [Array](https://docs.godotengine.org/en/stable/classes/class_array.html#class-array)'s slice() second parameter (end) is now exclusive,
+- [Array](https://docs.godotengine.org/en/stable/classes/class_array.html#class-array)'s `slice()` second parameter (`end`) is now exclusive,
 instead of being inclusive. For example, this means that
-[1, 2, 3].slice(0, 1) now returns [1] instead of [1, 2].
+`[1, 2, 3].slice(0, 1)` now returns `[1]` instead of `[1, 2]`.
 
-- [BaseButton](https://docs.godotengine.org/en/stable/classes/class_basebutton.html#class-basebutton)'s signals are now button_up and button_down.
-The pressed property is now button_pressed.
+- [BaseButton](https://docs.godotengine.org/en/stable/classes/class_basebutton.html#class-basebutton)'s signals are now `button_up` and `button_down`.
+The `pressed` property is now `button_pressed`.
 
-- [Camera2D](https://docs.godotengine.org/en/stable/classes/class_camera2d.html#class-camera2d)'s rotating property was replaced by
-ignore_rotation, which has inverted behavior.
+- [Camera2D](https://docs.godotengine.org/en/stable/classes/class_camera2d.html#class-camera2d)'s `rotating` property was replaced by
+`ignore_rotation`, which has inverted behavior.
 
-- Camera2D's zoom property was inverted: higher values are now more zoomed
+- Camera2D's `zoom` property was inverted: higher values are now more zoomed
 in, instead of less.
 
-- [Node](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node)'s remove_and_skip() method was removed.
+- [Node](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node)'s `remove_and_skip()` method was removed.
 If you need to reimplement it in a script, you can use the
 old C++ implementation
 as a reference.
 
-- OS.get_system_time_secs() should be converted to
-Time.get_time_dict_from_system()["second"].
+- `OS.get_system_time_secs()` should be converted to
+`Time.get_time_dict_from_system()["second"]`.
 
-- [ResourceSaver](https://docs.godotengine.org/en/stable/classes/class_resourcesaver.html#class-resourcesaver)'s save() method now has its arguments swapped around
-(resource: Resource, path: String). This also applies to
-[ResourceFormatSaver](https://docs.godotengine.org/en/stable/classes/class_resourceformatsaver.html#class-resourceformatsaver)'s _save() method.
+- [ResourceSaver](https://docs.godotengine.org/en/stable/classes/class_resourcesaver.html#class-resourcesaver)'s `save()` method now has its arguments swapped around
+(`resource: Resource, path: String`). This also applies to
+[ResourceFormatSaver](https://docs.godotengine.org/en/stable/classes/class_resourceformatsaver.html#class-resourceformatsaver)'s `_save()` method.
 
-- A [StreamPeerTCP](https://docs.godotengine.org/en/stable/classes/class_streampeertcp.html#class-streampeertcp) must have poll() called on it to update its
-state, instead of relying on get_status() automatically polling:
+- A [StreamPeerTCP](https://docs.godotengine.org/en/stable/classes/class_streampeertcp.html#class-streampeertcp) must have `poll()` called on it to update its
+state, instead of relying on `get_status()` automatically polling:
 GH-59582
 
-- [String](https://docs.godotengine.org/en/stable/classes/class_string.html#class-string)'s right() method has changed behavior:
+- [String](https://docs.godotengine.org/en/stable/classes/class_string.html#class-string)'s `right()` method has changed behavior:
 it now returns a number of characters from the right of the string, rather than
 the right side of the string from a given position. If you need the old behavior,
-you can use substr() instead.
+you can use `substr()` instead.
 
-- is_connected_to_host() was removed from StreamPeerTCP and PacketPeerUDP as
+- `is_connected_to_host()` was removed from StreamPeerTCP and PacketPeerUDP as
 per GH-59582.
-get_status() can be used in StreamPeerTCP instead.
-is_socket_connected() can be used in [PacketPeerUDP](https://docs.godotengine.org/en/stable/classes/class_packetpeerudp.html#class-packetpeerudp) instead.
+`get_status()` can be used in StreamPeerTCP instead.
+`is_socket_connected()` can be used in [PacketPeerUDP](https://docs.godotengine.org/en/stable/classes/class_packetpeerudp.html#class-packetpeerudp) instead.
 
-- In _get_property_list(), the or_lesser property hint string is now or_less.
+- In `_get_property_list()`, the `or_lesser` property hint string is now `or_less`.
 
-- In _get_property_list(), the noslider property hint string is now no_slider.
+- In `_get_property_list()`, the `noslider` property hint string is now `no_slider`.
 
 - VisualShaderNodeVec4Parameter now takes a [Vector4](https://docs.godotengine.org/en/stable/classes/class_vector4.html#class-vector4) as parameter
 instead of a [Quaternion](https://docs.godotengine.org/en/stable/classes/class_quaternion.html#class-quaternion).
@@ -761,7 +761,7 @@ var start_success = new_thread.start(self, "__threaded_background_loader",
 var start_success = new_thread.start(__threaded_background_loader.bind(resource_path, thread_num))
 ```
 
-Thread.is_active() is no longer used and should be converted to Thread.is_alive().
+`Thread.is_active()` is no longer used and should be converted to `Thread.is_alive()`.
 
 > Seealso:
 >
@@ -771,7 +771,7 @@ Thread.is_active() is no longer used and should be converted to Thread.is_alive(
 
 ### ArrayMesh resource compatibility breakage
 
-If you've saved an ArrayMesh resource to a .res or .tres file, the
+If you've saved an ArrayMesh resource to a `.res` or `.tres` file, the
 format used in 4.0 is not compatible with the one used in 3.x. You will need to
 go through the process of importing the source mesh file and saving it as an
 ArrayMesh resource again.
@@ -789,7 +789,7 @@ can be changed independently from each other.
 
 If you wish to port over your Godot 3.x settings to Godot 4, open the
 <doc:data_paths#Editor-Data-Paths> and copy
-editor_settings-3.tres to editor_settings-4.tres while the Godot 4
+`editor_settings-3.tres` to `editor_settings-4.tres` while the Godot 4
 editor is closed.
 
 > Note:

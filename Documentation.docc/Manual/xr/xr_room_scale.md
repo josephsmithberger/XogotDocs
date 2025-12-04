@@ -108,13 +108,13 @@ func _physics_process(delta):
   var is_colliding = _process_on_physical_movement(delta)
 ```
 
-Note that we're returning true from our _process_on_physical_movement function when we couldn't move our player all the way.
+Note that we're returning `true` from our `_process_on_physical_movement` function when we couldn't move our player all the way.
 
 ## Step 2
 
 The second step is to handle rotation of the player as a result of user input.
 
-As the input used can differ based on your needs we are simply calling the function _get_rotational_input.
+As the input used can differ based on your needs we are simply calling the function `_get_rotational_input`.
 This function should obtain the necessary input and return the rotational speed in radians per second.
 
 > Note:
@@ -166,7 +166,7 @@ func _physics_process(delta):
 
 The third and final step is moving the player forwards, backwards or sideways as a result of user input.
 
-Just like with the rotation the inputs differ from project to project so we are simply calling the function _get_movement_input.
+Just like with the rotation the inputs differ from project to project so we are simply calling the function `_get_movement_input`.
 This function should obtain the necessary input and return a directional vector scaled to the required velocity.
 
 > Note:
@@ -301,7 +301,7 @@ As with our previous solution we return true if this is the case.
 In this step we again apply the rotation based on controller input.
 However in this case the code is nearly identical to how one would implement this in a normal first person game.
 
-As the input used can differ based on your needs we are simply calling the function _get_rotational_input.
+As the input used can differ based on your needs we are simply calling the function `_get_rotational_input`.
 This function should obtain the necessary input and return the rotational speed in radians per second.
 
 ```
@@ -323,7 +323,7 @@ func _physics_process(delta):
 For step three we again apply the movement based on controller input.
 However just like at step 2, we can now implement this as we would in a normal first person game.
 
-Just like with the rotation the inputs differ from project to project so we are simply calling the function _get_movement_input.
+Just like with the rotation the inputs differ from project to project so we are simply calling the function `_get_movement_input`.
 This function should obtain the necessary input and return a directional vector scaled to the required velocity.
 
 ```

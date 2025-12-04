@@ -1,9 +1,9 @@
 # Fog shaders
 
-Fog shaders are used to define how fog is added (or subtracted) from a scene in
+Fog shaders are used to define how fog is added to (or subtracted from) a scene in
 a given area. Fog shaders are always used together with
 [FogVolumes](https://docs.godotengine.org/en/stable/classes/class_fogvolume.html#class-fogvolume) and volumetric fog. Fog shaders only have
-one processing function, the fog() function.
+one processing function, the `fog()` function.
 
 The resolution of the fog shaders depends on the resolution of the
 volumetric fog froxel grid. Accordingly, the level of detail that a fog shader
@@ -11,13 +11,13 @@ can add depends on how close the [FogVolume](https://docs.godotengine.org/en/sta
 camera.
 
 Fog shaders are a special form of compute shader that is called once for
-every froxel that is touched by an axis aligned bounding box of the associated
+every froxel that is touched by an axis-aligned bounding box of the associated
 [FogVolume](https://docs.godotengine.org/en/stable/classes/class_fogvolume.html#class-fogvolume). This means that froxels that just barely
 touch a given [FogVolume](https://docs.godotengine.org/en/stable/classes/class_fogvolume.html#class-fogvolume) will still be used.
 
 ## Built-ins
 
-Values marked as in are read-only. Values marked as out can optionally
+Values marked as `in` are read-only. Values marked as `out` can optionally
 be written to and will not necessarily contain sensible values. Samplers cannot
 be written to so they are not marked.
 
@@ -27,18 +27,18 @@ Global built-ins are available everywhere, including in custom functions.
 
 Built-in | Description
 -------- | -----------
-in float**TIME** | Global time since the engine has started, in seconds. It repeats after every3,600seconds (which can  be changed with the
+in float**TIME** | Global time since the engine has started, in seconds. It repeats after every`3,600`seconds (which can be changed with the
 [rollover](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_rendering/limits/time/time_rollover_secs.html#class-projectsettings_property_rendering/limits/time/time_rollover_secs)
 setting). It's affected by
-[time_scale](https://docs.godotengine.org/en/stable/classes/class_engine_property_time_scale.html#class-engine_property_time_scale) but not by pausing. If you need aTIMEvariable that is not affected by time scale, add your own
+[time_scale](https://docs.godotengine.org/en/stable/classes/class_engine_property_time_scale.html#class-engine_property_time_scale) but not by pausing. If you need a`TIME`variable that is not affected by time scale, add your own
 <doc:shading_language#Global-Uniforms> and update it each
 frame.
-in float**PI** | APIconstant (3.141592).
-A ratio of a circle's circumference to its diameter and amount of radians in half turn.
-in float**TAU** | ATAUconstant (6.283185).
-An equivalent ofPI * 2and amount of radians in full turn.
-in float**E** | AnEconstant (2.718281).
-Euler's number and a base of the natural logarithm.
+in float**PI** | A`PI`constant (`3.141592`).
+The ratio of a circle's circumference to its diameter and the number of radians in a half turn.
+in float**TAU** | A`TAU`constant (`6.283185`).
+Equivalent to`PI * 2`and the number of radians in a full turn.
+in float**E** | An`E`constant (`2.718281`).
+Euler's number, the base of the natural logarithm.
 
 ## Fog built-ins
 

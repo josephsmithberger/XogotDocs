@@ -49,7 +49,7 @@ which makes it quite useful.
 > Note:
 >
 > Since Godot 4, the preview environment and sun system replace the
-> default_env.tres file that was used in Godot 3 projects.
+> `default_env.tres` file that was used in Godot 3 projects.
 >
 
 If no WorldEnvironment node or DirectionalLight3D node is present in the current
@@ -69,7 +69,7 @@ preview sun and sky into the scene as nodes.
 
 > Tip:
 >
-> If you hold `Shift` while clicking **Add Sun to Scene** or **Add
+> If you hold ``Shift`` while clicking **Add Sun to Scene** or **Add
 > Environment to Scene** in the preview environment editor, this will add both
 > a preview sun and environment to the current scene (as if you clicked both
 > buttons separately). Use this to speed up project setup and prototyping.
@@ -171,8 +171,8 @@ There are 3 built-in sky materials to choose from:
 
 - **PanoramaSkyMaterial:** Use a 360 degree panorama sky image (2:1 aspect ratio
 recommended). To benefit from high dynamic range, the panorama image must be
-in an HDR-compatible format such as .hdr or .exr rather than a
-standard dynamic range format like .png or .jpg.
+in an HDR-compatible format such as `.hdr` or `.exr` rather than a
+standard dynamic range format like `.png` or `.jpg`.
 
 - **ProceduralSkyMaterial:** Use a procedurally generated sky with adjustable
 ground, sun, sky and horizon colors. This is the type of sky used in the
@@ -233,9 +233,9 @@ this mode behaves identically to **Background**.
 
 When the ambient light mode is set to Sky or Background (and background is set
 to Sky), it's possible to blend between the ambient color and sky using the
-**Sky Contribution** property. This value is set to 1.0 by default, which
+**Sky Contribution** property. This value is set to `1.0` by default, which
 means that only the ambient sky is used. The ambient color is ignored unless
-**Sky Contribution** is decreased below 1.0.
+**Sky Contribution** is decreased below `1.0`.
 
 Here is a comparison of how different ambient light affects a scene:
 
@@ -304,11 +304,11 @@ simulate the sunlight passing through the fog.
 
 The second is **Aerial Perspective**, which tints the fog color according to the
 sky color to better blend the sky with the background. Higher values will result
-in more tinting, with 1.0 fully replacing the regular fog color with aerial
+in more tinting, with `1.0` fully replacing the regular fog color with aerial
 perspective. This can be used in large open world levels to provide a better
 sense of depth, or to avoid color discontinuities between the sky and fog colors.
 
-If both **Sun Scatter** and **Aerial Perspective** are greater than 0.0, sun
+If both **Sun Scatter** and **Aerial Perspective** are greater than `0.0`, sun
 scattering is applied on top of aerial perspective.
 
 > Note:
@@ -346,7 +346,7 @@ look blown out. The simplest and fastest tonemapper.
 **Reinhard:** A simple tonemapping curve that rolls off bright values to
 prevent clipping. This results in an image that can appear dull and low
 contrast. Slower than Linear. When **White** is left at the default
-value of 1.0, Reinhard produces an identical image to Linear.
+value of `1.0`, Reinhard produces an identical image to Linear.
 **Filmic:** Uses a film-like tonemapping curve to prevent clipping of
 bright values and provide better contrast than Reinhard. Slightly slower
 than Reinhard.
@@ -355,7 +355,7 @@ bright values for a more realistic appearance. Slightly slower than Filmic.
 **AgX:** Uses a film-like tonemapping curve and desaturates bright values
 for a more realistic appearance. Better than other tonemappers at
 maintaining the hue of colors as they become brighter. The slowest
-tonemapping option. **White** is fixed at a value of 16.29,
+tonemapping option. **White** is fixed at a value of `16.29`,
 which makes AgX unsuitable for use with the Mobile rendering method.
 
 
@@ -367,7 +367,7 @@ look blown out. The simplest and fastest tonemapper.
 - **Reinhard:** A simple tonemapping curve that rolls off bright values to
 prevent clipping. This results in an image that can appear dull and low
 contrast. Slower than Linear. When **White** is left at the default
-value of 1.0, Reinhard produces an identical image to Linear.
+value of `1.0`, Reinhard produces an identical image to Linear.
 
 - **Filmic:** Uses a film-like tonemapping curve to prevent clipping of
 bright values and provide better contrast than Reinhard. Slightly slower
@@ -379,19 +379,19 @@ bright values for a more realistic appearance. Slightly slower than Filmic.
 - **AgX:** Uses a film-like tonemapping curve and desaturates bright values
 for a more realistic appearance. Better than other tonemappers at
 maintaining the hue of colors as they become brighter. The slowest
-tonemapping option. **White** is fixed at a value of 16.29,
+tonemapping option. **White** is fixed at a value of `16.29`,
 which makes AgX unsuitable for use with the Mobile rendering method.
 
 - **Exposure:** Adjusts the brightness of values before they are provided to
 the tonemapper. Higher **Exposure** values result in a brighter image.
-Values provided to the tonemapper will also be multiplied by 2.0
-and 1.8 for **Filmic** and **ACES** respectively to produce a similar
+Values provided to the tonemapper will also be multiplied by `2.0`
+and `1.8` for **Filmic** and **ACES** respectively to produce a similar
 apparent brightness as Linear.
 
 - **White:** The white reference value for tonemapping, which indicates where
 bright white is located in the scale of values provided to the tonemapper.
-For photorealistic lighting, recommended values are between 6.0 and
-8.0. Higher values result in less blown out highlights, but may make the
+For photorealistic lighting, recommended values are between `6.0` and
+`8.0`. Higher values result in less blown out highlights, but may make the
 scene appear lower contrast. **White** is not available when using
 **Linear** or **AgX**.
 
@@ -402,7 +402,7 @@ look blown out. The simplest and fastest tonemapper.
 - **Reinhard:** A simple tonemapping curve that rolls off bright values to
 prevent clipping. This results in an image that can appear dull and low
 contrast. Slower than Linear. When **White** is left at the default
-value of 1.0, Reinhard produces an identical image to Linear.
+value of `1.0`, Reinhard produces an identical image to Linear.
 
 - **Filmic:** Uses a film-like tonemapping curve to prevent clipping of
 bright values and provide better contrast than Reinhard. Slightly slower
@@ -414,7 +414,7 @@ bright values for a more realistic appearance. Slightly slower than Filmic.
 - **AgX:** Uses a film-like tonemapping curve and desaturates bright values
 for a more realistic appearance. Better than other tonemappers at
 maintaining the hue of colors as they become brighter. The slowest
-tonemapping option. **White** is fixed at a value of 16.29,
+tonemapping option. **White** is fixed at a value of `16.29`,
 which makes AgX unsuitable for use with the Mobile rendering method.
 
 ## Mid- and post-processing effects
@@ -472,13 +472,13 @@ creating physically incorrect reflections.
 
 Keep in mind that screen-space-reflections only work for reflecting opaque
 geometry. Transparent materials won't be reflected, as they don't write to the depth buffer.
-This also applies to shaders that use hint_screen_texture or hint_depth_texture
+This also applies to shaders that use `hint_screen_texture` or `hint_depth_texture`
 uniforms.
 
 ### Screen-Space Ambient Occlusion (SSAO)
 
-This feature is only available when using the Forward+ renderer, not
-Mobile or Compatibility.
+This feature is only available when using the Forward+ and Compatibility renderers,
+not Mobile.
 
 As mentioned in the **Ambient** section, areas where light from light nodes
 does not reach (either because it's outside the radius or shadowed) are lit
@@ -549,12 +549,22 @@ appear blurry.
 light. In real life, ambient occlusion only applies to indirect light, which
 means its effects can't be seen in direct light. Values higher than 0 will
 make the :abbr:`SSAO (Screen-Space Ambient Occlusion)` effect visible in
-direct light. Values above 0.0 are not physically accurate, but some
+direct light. Values above `0.0` are not physically accurate, but some
 artists prefer this effect.
 
 - **AO Channel Affect** The screen-space ambient occlusion intensity on
-materials that have an AO texture defined. Values higher than 0.0 will
+materials that have an AO texture defined. Values higher than `0.0` will
 make the SSAO effect visible in areas darkened by AO textures.
+
+> Note:
+>
+> Since Godot 4.6, a simplified version of SSAO is available in the Compatibility
+> renderer. This implementation has a different look, but should perform
+> significantly better on low-end devices compared to SSAO in Forward+.
+>
+> When using the Compatibility renderer, only the **Radius** and **Intensity**
+> parameters can be adjusted.
+>
 
 ### Screen-Space Indirect Lighting (SSIL)
 
@@ -670,15 +680,15 @@ threshold.
 @Image(source: "environment_glow_threshold.png")
 
 - 
-The **Bloom** property has a value greater than 0.0. As it increases,
+The **Bloom** property has a value greater than `0.0`. As it increases,
 it sends the whole screen to the glow processor at higher amounts.
 
 
 
-- The **Bloom** property has a value greater than 0.0. As it increases,
+- The **Bloom** property has a value greater than `0.0`. As it increases,
 it sends the whole screen to the glow processor at higher amounts.
 
-1. The **Bloom** property has a value greater than 0.0. As it increases,
+1. The **Bloom** property has a value greater than `0.0`. As it increases,
 it sends the whole screen to the glow processor at higher amounts.
 
 @Image(source: "environment_glow_bloom.png")
@@ -688,7 +698,7 @@ Both will cause the light to start bleeding out of the brighter areas.
 Once glow is visible, it can be controlled with a few extra parameters:
 
 - **Intensity** is an overall scale for the effect, it can be made stronger or
-weaker (0.0 removes it).
+weaker (`0.0` removes it).
 
 - **Strength** is how strong the gaussian filter kernel is processed. Greater
 values make the filter saturate and expand outwards. In general, changing this
@@ -761,7 +771,7 @@ There are 2 ways to use glow in 2D:
 and Mobile rendering methods. This has a performance cost, but it allows for a
 greater dynamic range. This also allows you to control which objects glow
 using their individual **Modulate** or **Self Modulate** properties (use the
-RAW mode in the color picker). Enabling HDR can also reduce banding in the 2D
+Intensity slider in the color picker). Enabling HDR can also reduce banding in the 2D
 rendering output.
 
 To enable HDR in 2D, open the Project Settings, enable
@@ -806,18 +816,18 @@ resource.
 
 @Image(source: "environment_and_post_processing_glow_in_2d.png", alt: "Example of using glow in a 2D scene") {Example of using glow in a 2D scene. HDR 2D is enabled, while coins and the
 bullet have their **Modulate** property increased to overbright values using the
-RAW mode in the color picker.}
+Intensity slider in the color picker.}
 
 > Warning:
 >
 > The 2D renderer renders in linear color space if the
 > [Rendering > Viewport > HDR 2D](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_rendering/viewport/hdr_2d.html#class-projectsettings_property_rendering/viewport/hdr_2d)
-> project setting is enabled, so the source_color hint must also be used
-> for uniform samplers that are used as color input in canvas_item shaders.
+> project setting is enabled, so the `source_color` hint must also be used
+> for uniform samplers that are used as color input in `canvas_item` shaders.
 > If this is not done, the texture will appear washed out.
 >
-> If 2D HDR is disabled, source_color will keep working correctly in
-> canvas_item shaders, so it's recommend to use it when relevant either
+> If 2D HDR is disabled, `source_color` will keep working correctly in
+> `canvas_item` shaders, so it's recommend to use it when relevant either
 > way.
 >
 > Using linear color space also means that alpha blending will change. Sprites
@@ -839,13 +849,13 @@ To use glow as a blurring solution:
 
 - Enable **Normalized** and adjust levels according to preference. Increasing
 higher level indices will result in a more blurred image. It's recommended to
-leave a single glow level at 1.0 and leave all other glow levels at
-0.0, but this is not required. Note that the final appearance will vary
+leave a single glow level at `1.0` and leave all other glow levels at
+`0.0`, but this is not required. Note that the final appearance will vary
 depending on viewport resolution.
 
-- Set **Intensity** to 1.0 and **Bloom** to 1.0.
+- Set **Intensity** to `1.0` and **Bloom** to `1.0`.
 
-- Set the blend mode to **Replace** and **HDR Luminance Cap** to 1.0.
+- Set the blend mode to **Replace** and **HDR Luminance Cap** to `1.0`.
 
 @Image(source: "environment_and_post_processing_glow_blur.png", alt: "Example of using glow to blur the 2D rendering in the menu's background") {Example of using glow to blur the 2D rendering in the menu's background}
 
@@ -905,7 +915,7 @@ You can use this neutral 33×33×33 LUT template as a base (right-click and choo
 @Image(source: "environment_adjustments_3d_lut_template.png")
 
 With the above LUT template, after changing its import mode to **Texture3D**,
-set its number of **Horizontal** slices to 33 in the Import dock then click
+set its number of **Horizontal** slices to `33` in the Import dock then click
 **Reimport**. If you load this LUT into the **Color Correction** property, you
 won't see any visible difference for now since this texture is designed to be a
 neutral starting point.

@@ -20,9 +20,9 @@ Waiting for synchronization is required to apply changes to all maps, regions an
 Synchronization is done because some updates like a recalculation of the entire navigation map are very expensive and require updated data from all other objects.
 Also the NavigationServer uses a **threadpool** by default for some functionality like avoidance calculation between agents.
 
-Waiting is not required for most get() functions that only request data from the NavigationServer without making changes.
+Waiting is not required for most `get()` functions that only request data from the NavigationServer without making changes.
 Note that not all data will account for changes made in the same frame.
-E.g. if an avoidance agent changed the navigation map this frame the agent_get_map() function will still return the old map before the synchronization.
+E.g. if an avoidance agent changed the navigation map this frame the `agent_get_map()` function will still return the old map before the synchronization.
 The exception to this are nodes that store their values internally before sending the update to the NavigationServer.
 When a getter on a node is used for a value that was updated in the same frame it will return the already updated value stored on the node.
 
@@ -60,10 +60,61 @@ One workaround is to make a deferred call to a custom setup function (so all nod
 The setup function makes all the navigation changes, e.g. adding procedural stuff.
 Afterwards the function waits for the next physics frame before continuing with path queries.
 
+```
+extends Node3D
+
+func _ready():
+    # Use call deferred to make sure the entire scene tree nodes are setup
+    # else await on 'physics_frame' in a _ready() might get stuck.
+    custom_setup.call_deferred()
+
+func custom_setup():
+
+    # Create a new navigation map.
+    var map: RID = NavigationServer3D.map_create()
+    NavigationServer3D.map_set_up(map, Vector3.UP)
+    NavigationServer3D.map_set_active(map, true)
+
+    # Create a new navigation region and add it to the map.
+    var region: RID = NavigationServer3D.region_create()
+    NavigationServer3D.region_set_transform(region, Transform3D())
+    NavigationServer3D.region_set_map(region, map)
+
+    # Create a procedural navigation mesh for the region.
+    var new_navigation_mesh: NavigationMesh = NavigationMesh.new()
+    var vertices: PackedVector3Array = PackedVector3Array([
+        Vector3(0, 0, 0),
+        Vector3(9.0, 0, 0),
+        Vector3(0, 0, 9.0)
+    ])
+    new_navigation_mesh.set_vertices(vertices)
+    var polygon: PackedInt32Array = PackedInt32Array([0, 1, 2])
+    new_navigation_mesh.add_polygon(polygon)
+    NavigationServer3D.region_set_navigation_mesh(region, new_navigation_mesh)
+
+    # Wait for NavigationServer sync to adapt to made changes.
+    await get_tree().physics_frame
+
+    # Query the path from the navigation server.
+    var start_position: Vector3 = Vector3(0.1, 0.0, 0.1)
+    var target_position: Vector3 = Vector3(1.0, 0.0, 1.0)
+    var optimize_path: bool = true
+
+    var path: PackedVector3Array = NavigationServer3D.map_get_path(
+        map,
+        start_position,
+        target_position,
+        optimize_path
+    )
+
+    print("Found a path!")
+    print(path)
+```
+
 ## Server Avoidance Callbacks
 
 If RVO avoidance agents are registered for avoidance callbacks the NavigationServer dispatches
-their velocity_computed signals just before the PhysicsServer synchronization.
+their `velocity_computed` signals just before the PhysicsServer synchronization.
 
 To learn more about NavigationAgents see <doc:navigation_using_navigationagents>.
 
@@ -71,9 +122,9 @@ The simplified order of execution for NavigationAgents that use avoidance:
 
 - physics frame starts.
 
-- _physics_process(delta).
+- `_physics_process(delta)`.
 
-- velocity property is set on NavigationAgent Node.
+- `velocity` property is set on NavigationAgent Node.
 
 - Agent sends velocity and position to NavigationServer.
 
@@ -83,7 +134,7 @@ The simplified order of execution for NavigationAgents that use avoidance:
 
 - NavigationServer sends safe velocity vector with signals for each registered avoidance agents.
 
-- Agents receive the signal and move their parent e.g. with move_and_slide or linear_velocity.
+- Agents receive the signal and move their parent e.g. with `move_and_slide` or `linear_velocity`.
 
 - PhysicsServer synchronizes.
 

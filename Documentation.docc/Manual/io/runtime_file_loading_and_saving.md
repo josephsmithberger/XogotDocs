@@ -63,13 +63,13 @@ func load_file():
 To handle custom binary formats (such as loading file formats not supported by
 Godot), [FileAccess](https://docs.godotengine.org/en/stable/classes/class_fileaccess.html#class-fileaccess) provides several methods to read/write integers,
 floats, strings and more. These FileAccess methods have names that start with
-get_ and store_.
+`get_` and `store_`.
 
 If you need more control over reading binary files or need to read binary
 streams that are not part of a file, [PackedByteArray](https://docs.godotengine.org/en/stable/classes/class_packedbytearray.html#class-packedbytearray) provides
 several helper methods to decode/encode series of bytes to integers, floats,
 strings and more. These PackedByteArray methods have names that start with
-decode_ and encode_. See also <doc:binary_serialization_api>.
+`decode_` and `encode_`. See also <doc:binary_serialization_api>.
 
 ## Images
 
@@ -109,7 +109,7 @@ or [Image.save_jpg_to_buffer](https://docs.godotengine.org/en/stable/classes/cla
 or [Image.save_exr_to_buffer](https://docs.godotengine.org/en/stable/classes/class_image_method_save_exr_to_buffer.html#class-image_method_save_exr_to_buffer)
 (only available in editor builds, cannot be used in exported projects)
 
-The methods with the to_buffer suffix save the image to a PackedByteArray
+The methods with the `to_buffer` suffix save the image to a PackedByteArray
 instead of the filesystem. This is useful to send the image over the network or
 into a ZIP archive without having to write it on the filesystem. This can
 increase performance by reducing I/O utilization.
@@ -144,7 +144,7 @@ $TextureRect.texture.get_image().save_png("/path/to/file.png")
 ## Audio/video files
 
 Godot supports loading Ogg Vorbis, MP3, and WAV audio at runtime. Note that not all
-files with a .ogg extension are Ogg Vorbis files. Some may be Ogg Theora
+files with a `.ogg` extension are Ogg Vorbis files. Some may be Ogg Theora
 videos, or contain Opus audio within an Ogg container. These files will **not**
 load correctly as audio files in Godot.
 
@@ -173,15 +173,14 @@ $VideoStreamPlayer.play()
 Godot has first-class support for glTF 2.0, both in the editor and exported
 projects. Using [gltfdocument](https://docs.godotengine.org/en/stable/classes/class_gltfdocument.html#class-gltfdocument) and [gltfstate](https://docs.godotengine.org/en/stable/classes/class_gltfstate.html#class-gltfstate) together,
 Godot can load and save glTF files in exported projects, in both text
-(.gltf) and binary (.glb) formats. The binary format should be preferred
+(`.gltf`) and binary (`.glb`) formats. The binary format should be preferred
 as it's faster to write and smaller, but the text format is easier to debug.
 
 Since Godot 4.3, FBX scenes can also be loaded (but not saved) at runtime using the
 [fbxdocument](https://docs.godotengine.org/en/stable/classes/class_fbxdocument.html#class-fbxdocument) and [fbxstate](https://docs.godotengine.org/en/stable/classes/class_fbxstate.html#class-fbxstate) classes. The code to do so
 is the same as glTF, but you will need to replace all instances of
-GLTFDocument and GLTFState with FBXDocument and FBXState in the
-code samples below. There are known issues
-with runtime FBX loading, so using glTF instead is preferred for now.
+`GLTFDocument` and `GLTFState` with `FBXDocument` and `FBXState` in the
+code samples below.
 
 Example of loading a glTF scene and appending its root node to the scene:
 
@@ -230,7 +229,7 @@ gltf_document_save.write_to_filesystem(gltf_state_save, path)
 font file formats: TTF, OTF, WOFF, WOFF2, PFB, PFM
 
 On the other hand, [FontFile.load_bitmap_font](https://docs.godotengine.org/en/stable/classes/class_fontfile_method_load_bitmap_font.html#class-fontfile_method_load_bitmap_font) supports
-the BMFont format (.fnt or .font).
+the BMFont format (`.fnt` or `.font`).
 
 Additionally, it is possible to load any font that is installed on the system using
 Godot's support for <doc:using_fonts_system_fonts>.

@@ -44,7 +44,7 @@ with the following nodes:
 > information.
 >
 
-Now select the AnimatedSprite2D and in its SpriteFrames property, select
+Now select the `AnimatedSprite2D` and in its SpriteFrames property, select
 "New SpriteFrames".
 
 @Image(source: "2d_animation_new_spriteframes.png")
@@ -71,13 +71,25 @@ adding additional images.
 ### Controlling the animation
 
 Once the animation is complete, you can control the animation via code using
-the play() and stop() methods. Here is a brief example to play the
+the `play()` and `stop()` methods. Here is a brief example to play the
 animation while the right arrow key is held, and stop it when the key is
 released.
 
+```
+extends CharacterBody2D
+
+@onready var _animated_sprite = $AnimatedSprite2D
+
+func _process(_delta):
+    if Input.is_action_pressed("ui_right"):
+        _animated_sprite.play("run")
+    else:
+        _animated_sprite.stop()
+```
+
 ## Sprite sheet with AnimatedSprite2D
 
-You can also easily animate from a sprite sheet with the class AnimatedSprite2D.
+You can also easily animate from a sprite sheet with the class `AnimatedSprite2D`.
 We will use this public domain sprite sheet:
 
 @Image(source: "2d_animation_frog_spritesheet.png")
@@ -86,7 +98,7 @@ Right-click the image and choose "Save Image As" to download it,
 and then copy the image into your project folder.
 
 Set up your scene tree the same way you did previously when using individual images.
-Select the AnimatedSprite2D and in its SpriteFrames property, select "New SpriteFrames".
+Select the `AnimatedSprite2D` and in its SpriteFrames property, select "New SpriteFrames".
 
 Click on the new SpriteFrames resource.
 This time, when the bottom panel appears, select "Add frames from a Sprite Sheet".
@@ -143,27 +155,27 @@ setting up your scene tree:
 
 Drag the spritesheet into the Sprite's Texture property, and you'll see the
 whole sheet displayed on the screen. To slice it up into individual frames,
-expand the Animation section in the Inspector and set the Hframes to 6.
+expand the Animation section in the Inspector and set the Hframes to `6`.
 Hframes and Vframes are the number of horizontal and vertical frames in
 your sprite sheet.
 
 @Image(source: "2d_animation_setframes.png")
 
 Now try changing the value of the Frame property. You'll see that it ranges
-from 0 to 5 and the image displayed by the Sprite2D changes accordingly.
+from `0` to `5` and the image displayed by the Sprite2D changes accordingly.
 This is the property we'll be animating.
 
-Select the AnimationPlayer and click the "Animation" button followed by
-"New". Name the new animation "walk". Set the animation length to 0.6 and
+Select the `AnimationPlayer` and click the "Animation" button followed by
+"New". Name the new animation "walk". Set the animation length to `0.6` and
 click the "Loop" button so that our animation will repeat.
 
 @Image(source: "2d_animation_new_animation.png")
 
-Now select the Sprite2D node and click the key icon to add a new track.
+Now select the `Sprite2D` node and click the key icon to add a new track.
 
 @Image(source: "2d_animation_new_track.png")
 
-Continue adding frames at each point in the timeline (0.1 seconds by
+Continue adding frames at each point in the timeline (`0.1` seconds by
 default), until you have all the frames from 0 to 5. You'll see the frames
 actually appearing in the animation track:
 
@@ -176,26 +188,38 @@ Press "Play" on the animation to see how it looks.
 ### Controlling an AnimationPlayer animation
 
 Like with AnimatedSprite2D, you can control the animation via code using
-the play() and stop() methods. Again, here is an example to play the
+the `play()` and `stop()` methods. Again, here is an example to play the
 animation while the right arrow key is held, and stop it when the key is
 released.
 
+```
+extends CharacterBody2D
+
+@onready var _animation_player = $AnimationPlayer
+
+func _process(_delta):
+    if Input.is_action_pressed("ui_right"):
+        _animation_player.play("walk")
+    else:
+        _animation_player.stop()
+```
+
 > Note: If updating both an animation and a separate property at once
-> (for example, a platformer may update the sprite's h_flip/v_flip
+> (for example, a platformer may update the sprite's `h_flip`/`v_flip`
 > properties when a character turns while starting a 'turning' animation),
-> it's important to keep in mind that play() isn't applied instantly.
+> it's important to keep in mind that `play()` isn't applied instantly.
 > Instead, it's applied the next time the [AnimationPlayer](https://docs.godotengine.org/en/stable/classes/class_animationplayer.html#class-animationplayer) is processed.
 > This may end up being on the next frame, causing a 'glitch' frame,
 > where the property change was applied, but the animation was not.
-> If this turns out to be a problem, after calling play(), you can call advance(0)
+> If this turns out to be a problem, after calling `play()`, you can call `advance(0)`
 > to update the animation immediately.
 >
 
 ## Summary
 
 These examples illustrate the two classes you can use in Godot for 2D animation.
-AnimationPlayer is a bit more complex than AnimatedSprite2D,
+`AnimationPlayer` is a bit more complex than `AnimatedSprite2D`,
 but it provides additional functionality, since you can also
 animate other properties like position or scale.
-The class AnimationPlayer can also be used with an AnimatedSprite2D.
+The class `AnimationPlayer` can also be used with an `AnimatedSprite2D`.
 Experiment to see what works best for your needs.

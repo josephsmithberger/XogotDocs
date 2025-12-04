@@ -38,7 +38,7 @@ Go into the the MeshInstance3D and make the mesh a SphereMesh
 
 ## Setting up the SubViewport
 
-Click on the [SubViewport](https://docs.godotengine.org/en/stable/classes/class_subviewport.html#class-subviewport) node and set its size to (1024, 512). The
+Click on the [SubViewport](https://docs.godotengine.org/en/stable/classes/class_subviewport.html#class-subviewport) node and set its size to `(1024, 512)`. The
 [SubViewport](https://docs.godotengine.org/en/stable/classes/class_subviewport.html#class-subviewport) can actually be any size so long as the width is double the
 height. The width needs to be double the height so that the image will accurately map onto the
 sphere, as we will be using equirectangular projection, but more on that later.
@@ -48,18 +48,18 @@ we don't need 3D either.
 
 @Image(source: "planet_new_viewport.png")
 
-Select the [ColorRect](https://docs.godotengine.org/en/stable/classes/class_colorrect.html#class-colorrect) and in the inspector set the anchors preset to Full Rect.
+Select the [ColorRect](https://docs.godotengine.org/en/stable/classes/class_colorrect.html#class-colorrect) and in the inspector set the anchors preset to `Full Rect`.
 This will ensure that the [ColorRect](https://docs.godotengine.org/en/stable/classes/class_colorrect.html#class-colorrect) takes up the entire [SubViewport](https://docs.godotengine.org/en/stable/classes/class_subviewport.html#class-subviewport).
 
 @Image(source: "planet_new_colorrect.png")
 
-Next, we add a [Shader Material](https://docs.godotengine.org/en/stable/classes/class_shadermaterial.html#class-shadermaterial) to the [ColorRect](https://docs.godotengine.org/en/stable/classes/class_colorrect.html#class-colorrect) (ColorRect > CanvasItem > Material > Material > New ShaderMaterial).
+Next, we add a [Shader Material](https://docs.godotengine.org/en/stable/classes/class_shadermaterial.html#class-shadermaterial) to the [ColorRect](https://docs.godotengine.org/en/stable/classes/class_colorrect.html#class-colorrect) (ColorRect > CanvasItem > Material > Material > `New ShaderMaterial`).
 
 > Note: Basic familiarity with shading is recommended for this tutorial. However, even if you are new
 > to shaders, all the code will be provided, so you should have no problem following along.
 >
 
-Click the dropdown menu button for the shader material and click / Edit. From here go to Shader > New Shader.
+Click the dropdown menu button for the shader material and click / Edit. From here go to Shader > `New Shader`.
 give it a name and click "Create". click the shader in the inspector to open the shader editor. Delete the default code
 and add the following:
 
@@ -84,11 +84,11 @@ Now go into the [MeshInstance3D](https://docs.godotengine.org/en/stable/classes/
 to it. No need for a special [Shader Material](https://docs.godotengine.org/en/stable/classes/class_shadermaterial.html#class-shadermaterial) (although that would be a good idea
 for more advanced effects, like the atmosphere in the example above).
 
-MeshInstance3D > GeometryInstance > Geometry > Material Override > New StandardMaterial3D
+MeshInstance3D > GeometryInstance > Geometry > Material Override > `New StandardMaterial3D`
 
 Then click the dropdown for the StandardMaterial3D and click "Edit"
 
-Go to the "Resource" section and check the Local to scene box. Then, go to the "Albedo" section
+Go to the "Resource" section and check the `Local to scene` box. Then, go to the "Albedo" section
 and click beside the "Texture" property to add an Albedo Texture. Here we will apply the texture we made.
 Choose "New ViewportTexture"
 
@@ -114,7 +114,7 @@ problem that we will illustrate in the next section.
 So now, when we render to our [SubViewport](https://docs.godotengine.org/en/stable/classes/class_subviewport.html#class-subviewport), it appears magically on the sphere. But there is an ugly
 seam created by our texture coordinates. So how do we get a range of coordinates that wrap around
 the sphere in a nice way? One solution is to use a function that repeats on the domain of our texture.
-sin and cos are two such functions. Let's apply them to the texture and see what happens. Replace the
+`sin` and `cos` are two such functions. Let's apply them to the texture and see what happens. Replace the
 existing color code in the shader with the following:
 
 ```
@@ -139,7 +139,7 @@ For each pixel, we will calculate its 3D position on the sphere. From that, we w
 of the pinching at the poles. To understand why, picture the noise being calculated across the
 surface of the sphere instead of across the 2D plane. When you calculate across the
 surface of the sphere, you never hit an edge, and hence you never create a seam or
-a pinch point on the pole. The following code converts the UVs into Cartesian
+a pinch point on the pole. The following code converts the `UVs` into Cartesian
 coordinates.
 
 ```
@@ -153,7 +153,7 @@ unit.z = cos(phi) * sin(theta);
 unit = normalize(unit);
 ```
 
-And if we use unit as an output COLOR value, we get:
+And if we use `unit` as an output `COLOR` value, we get:
 
 @Image(source: "planet_normals.png")
 
@@ -185,10 +185,10 @@ float noise(vec3 p) {
 }
 ```
 
-> Note: All credit goes to the author, Inigo Quilez. It is published under the MIT licence.
+> Note: All credit goes to the author, Inigo Quilez. It is published under the `MIT` licence.
 >
 
-Now to use noise, add the following to the    fragment function:
+Now to use `noise`, add the following to the    `fragment` function:
 
 ```
 float n = noise(unit * 5.0);
@@ -208,10 +208,10 @@ looks nothing like the planet you were promised. So let's move onto something mo
 Now to make the planet colors. While there are many ways to do this, for now, we will stick
 with a gradient between water and land.
 
-To make a gradient in GLSL, we use the mix function. mix takes two values to interpolate
+To make a gradient in GLSL, we use the `mix` function. `mix` takes two values to interpolate
 between and a third argument to choose how much to interpolate between them; in essence,
-it mixes the two values together. In other APIs, this function is often called lerp.
-However, lerp is typically reserved for mixing two floats together; mix can take any
+it mixes the two values together. In other APIs, this function is often called `lerp`.
+However, `lerp` is typically reserved for mixing two floats together; `mix` can take any
 values whether it be floats or vector types.
 
 ```
@@ -219,24 +219,24 @@ COLOR.xyz = mix(vec3(0.05, 0.3, 0.5), vec3(0.9, 0.4, 0.1), n * 0.5 + 0.5);
 ```
 
 The first color is blue for the ocean. The second color is a kind of reddish color (because
-all alien planets need red terrain). And finally, they are mixed together by n * 0.5 + 0.5.
-n smoothly varies between -1 and 1. So we map it into the 0-1 range that mix expects.
+all alien planets need red terrain). And finally, they are mixed together by `n * 0.5 + 0.5`.
+`n` smoothly varies between `-1` and `1`. So we map it into the `0-1` range that `mix` expects.
 Now you can see that the colors change between blue and red.
 
 @Image(source: "planet_noise_color.png")
 
 That is a little more blurry than we want. Planets typically have a relatively clear separation between
-land and sea. In order to do that, we will change the last term to smoothstep(-0.1, 0.0, n).
+land and sea. In order to do that, we will change the last term to `smoothstep(-0.1, 0.0, n)`.
 And thus the whole line becomes:
 
 ```
 COLOR.xyz = mix(vec3(0.05, 0.3, 0.5), vec3(0.9, 0.4, 0.1), smoothstep(-0.1, 0.0, n));
 ```
 
-What smoothstep does is return 0 if the third argument is below the first and 1 if the
-third argument is larger than the second and smoothly blends between 0 and 1 if the third number
-is between the first and the second. So in this line, smoothstep returns 0 whenever n is less than -0.1
-and it returns 1 whenever n is above 0.
+What `smoothstep` does is return `0` if the third argument is below the first and `1` if the
+third argument is larger than the second and smoothly blends between `0` and `1` if the third number
+is between the first and the second. So in this line, `smoothstep` returns `0` whenever `n` is less than `-0.1`
+and it returns `1` whenever `n` is above `0`.
 
 @Image(source: "planet_noise_smooth.png")
 
@@ -244,8 +244,8 @@ One more thing to make this a little more planet-y. The land shouldn't be so blo
 a little rougher. A trick that is often used in shaders to make rough looking terrain with noise is
 to layer levels of noise over one another at various frequencies. We use one layer to make the
 overall blobby structure of the continents. Then another layer breaks up the edges a bit, and then
-another, and so on. What we will do is calculate n with four lines of shader code
-instead of just one. n becomes:
+another, and so on. What we will do is calculate `n` with four lines of shader code
+instead of just one. `n` becomes:
 
 ```
 float n = noise(unit * 5.0) * 0.5;
@@ -262,42 +262,42 @@ And now the planet looks like:
 
 One final thing to make this look more like a planet. The ocean and the land reflect light differently.
 So we want the ocean to shine a little more than the land. We can do this by passing a fourth value
-into the alpha channel of our output COLOR and using it as a Roughness map.
+into the `alpha` channel of our output `COLOR` and using it as a Roughness map.
 
 ```
 COLOR.a = 0.3 + 0.7 * smoothstep(-0.1, 0.0, n);
 ```
 
-This line returns 0.3 for water and 1.0 for land. This means that the land is going to be quite
+This line returns `0.3` for water and `1.0` for land. This means that the land is going to be quite
 rough, while the water will be quite smooth.
 
-And then, in the material, under the "Metallic" section, make sure Metallic is set to 0 and
-Specular is set to 1. The reason for this is the water reflects light really well, but
+And then, in the material, under the "Metallic" section, make sure `Metallic` is set to `0` and
+`Specular` is set to `1`. The reason for this is the water reflects light really well, but
 isn't metallic. These values are not physically accurate, but they are good enough for this demo.
 
 Next, under the "Roughness" section set the roughness texture to a
 [Viewport Texture](https://docs.godotengine.org/en/stable/classes/class_viewporttexture.html#class-viewporttexture) pointing to our planet texture [SubViewport](https://docs.godotengine.org/en/stable/classes/class_subviewport.html#class-subviewport).
-Finally, set the Texture Channel to Alpha. This instructs the renderer to use the alpha
-channel of our output COLOR as the Roughness value.
+Finally, set the `Texture Channel` to `Alpha`. This instructs the renderer to use the `alpha`
+channel of our output `COLOR` as the `Roughness` value.
 
 @Image(source: "planet_ocean.png")
 
 You'll notice that very little changes except that the planet is no longer reflecting the sky.
 This is happening because, by default, when something is rendered with an
 alpha value, it gets drawn as a transparent object over the background. And since the default background
-of the [SubViewport](https://docs.godotengine.org/en/stable/classes/class_subviewport.html#class-subviewport) is opaque, the alpha channel of the
-[Viewport Texture](https://docs.godotengine.org/en/stable/classes/class_viewporttexture.html#class-viewporttexture) is 1, resulting in the planet texture being
-drawn with slightly fainter colors and a Roughness value of 1 everywhere. To correct this, we
+of the [SubViewport](https://docs.godotengine.org/en/stable/classes/class_subviewport.html#class-subviewport) is opaque, the `alpha` channel of the
+[Viewport Texture](https://docs.godotengine.org/en/stable/classes/class_viewporttexture.html#class-viewporttexture) is `1`, resulting in the planet texture being
+drawn with slightly fainter colors and a `Roughness` value of `1` everywhere. To correct this, we
 go into the [SubViewport](https://docs.godotengine.org/en/stable/classes/class_subviewport.html#class-subviewport) and enable the "Transparent Bg" property. Since we are now
-rendering one transparent object on top of another, we want to enable blend_premul_alpha:
+rendering one transparent object on top of another, we want to enable `blend_premul_alpha`:
 
 ```
 render_mode blend_premul_alpha;
 ```
 
-This pre-multiplies the colors by the alpha value and then blends them correctly together. Typically,
-when blending one transparent color on top of another, even if the background has an alpha of 0 (as it
-does in this case), you end up with weird color bleed issues. Setting blend_premul_alpha fixes that.
+This pre-multiplies the colors by the `alpha` value and then blends them correctly together. Typically,
+when blending one transparent color on top of another, even if the background has an `alpha` of `0` (as it
+does in this case), you end up with weird color bleed issues. Setting `blend_premul_alpha` fixes that.
 
 Now the planet should look like it is reflecting light on the ocean but not the land. move around the [OmniLight3D](https://docs.godotengine.org/en/stable/classes/class_omnilight3d.html#class-omnilight3d)
 in the scene so you can see the effect of the reflections on the ocean.

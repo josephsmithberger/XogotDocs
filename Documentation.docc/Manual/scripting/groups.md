@@ -69,20 +69,34 @@ global groups, or change existing groups' names and descriptions.
 ### Using code
 
 You can also manage groups from scripts. The following code adds the node to
-which you attach the script to the guards group as soon as it enters the
+which you attach the script to the `guards` group as soon as it enters the
 scene tree.
+
+```
+func _ready():
+    add_to_group("guards")
+```
 
 Imagine you're creating an infiltration game. When an
 enemy spots the player, you want all guards and robots to be on alert.
 
-In the fictional example below, we use SceneTree.call_group() to alert all
+In the fictional example below, we use `SceneTree.call_group()` to alert all
 enemies that the player was spotted.
 
-The above code calls the function enter_alert_mode on every member of the
-group guards.
+```
+func _on_player_spotted():
+    get_tree().call_group("guards", "enter_alert_mode")
+```
 
-To get the full list of nodes in the guards group as an array, you can call
+The above code calls the function `enter_alert_mode` on every member of the
+group `guards`.
+
+To get the full list of nodes in the `guards` group as an array, you can call
 [SceneTree.get_nodes_in_group()](https://docs.godotengine.org/en/stable/classes/class_scenetree_method_get_nodes_in_group.html#class-scenetree_method_get_nodes_in_group):
+
+```
+var guards = get_tree().get_nodes_in_group("guards")
+```
 
 The [SceneTree](https://docs.godotengine.org/en/stable/classes/class_scenetree.html#class-scenetree) class provides many more useful methods
 to interact with scenes, their node hierarchy, and groups. It allows you to

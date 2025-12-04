@@ -100,27 +100,115 @@ functions should always be used for creating and controlling new ones and intera
 This is an example of how to create a sprite from code and move it using the low-level
 [CanvasItem](https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#class-canvasitem) API.
 
+> Note: When creating canvas items using the RenderingServer, you should reset physics
+> interpolation on the first frame using
+> [RenderingServer.canvas_item_reset_physics_interpolation()](https://docs.godotengine.org/en/stable/classes/class_renderingserver_method_canvas_item_reset_physics_interpolation.html#class-renderingserver_method_canvas_item_reset_physics_interpolation).
+> This ensures proper synchronization between the rendering and physics systems.
+>
+
+```
+extends Node2D
+
+
+# RenderingServer expects references to be kept around.
+var texture
+
+
+func _ready():
+    # Create a canvas item, child of this node.
+    var ci_rid = RenderingServer.canvas_item_create()
+    # Make this node the parent.
+    RenderingServer.canvas_item_set_parent(ci_rid, get_canvas_item())
+    # Draw a texture on it.
+    # Remember, keep this reference.
+    texture = load("res://my_texture.png")
+    # Add it, centered.
+    RenderingServer.canvas_item_add_texture_rect(ci_rid, Rect2(-texture.get_size() / 2, texture.get_size()), texture)
+    # Add the item, rotated 45 degrees and translated.
+    var xform = Transform2D().rotated(deg_to_rad(45)).translated(Vector2(20, 30))
+    RenderingServer.canvas_item_set_transform(ci_rid, xform)
+```
+
 The Canvas Item API in the server allows you to add draw primitives to it. Once added, they can't be modified.
 The Item needs to be cleared and the primitives re-added (this is not the case for setting the transform,
 which can be done as many times as desired).
 
 Primitives are cleared this way:
 
+```
+RenderingServer.canvas_item_clear(ci_rid)
+```
+
 ## Instantiating a Mesh into 3D space
 
 The 3D APIs are different from the 2D ones, so the instantiation API must be used.
+
+```
+extends Node3D
+
+
+# RenderingServer expects references to be kept around.
+var mesh
+
+
+func _ready():
+    # Create a visual instance (for 3D).
+    var instance = RenderingServer.instance_create()
+    # Set the scenario from the world, this ensures it
+    # appears with the same objects as the scene.
+    var scenario = get_world_3d().scenario
+    RenderingServer.instance_set_scenario(instance, scenario)
+    # Add a mesh to it.
+    # Remember, keep the reference.
+    mesh = load("res://mymesh.obj")
+    RenderingServer.instance_set_base(instance, mesh)
+    # Move the mesh around.
+    var xform = Transform3D(Basis(), Vector3(20, 100, 0))
+    RenderingServer.instance_set_transform(instance, xform)
+```
 
 ## Creating a 2D RigidBody and moving a sprite with it
 
 This creates a [RigidBody2D](https://docs.godotengine.org/en/stable/classes/class_rigidbody2d.html#class-rigidbody2d) using the [PhysicsServer2D](https://docs.godotengine.org/en/stable/classes/class_physicsserver2d.html#class-physicsserver2d) API,
 and moves a [CanvasItem](https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#class-canvasitem) when the body moves.
 
+```
+# Physics2DServer expects references to be kept around.
+var body
+var shape
+
+
+func _body_moved(state, index):
+    # Created your own canvas item, use it here.
+    RenderingServer.canvas_item_set_transform(canvas_item, state.transform)
+
+
+func _ready():
+    # Create the body.
+    body = Physics2DServer.body_create()
+    Physics2DServer.body_set_mode(body, Physics2DServer.BODY_MODE_RIGID)
+    # Add a shape.
+    shape = Physics2DServer.rectangle_shape_create()
+    # Set rectangle extents.
+    Physics2DServer.shape_set_data(shape, Vector2(10, 10))
+    # Make sure to keep the shape reference!
+    Physics2DServer.body_add_shape(body, shape)
+    # Set space, so it collides in the same space as current scene.
+    Physics2DServer.body_set_space(body, get_world_2d().space)
+    # Move initial position.
+    Physics2DServer.body_set_state(body, Physics2DServer.BODY_STATE_TRANSFORM, Transform2D(0, Vector2(10, 20)))
+    # Add the transform callback, when body moves
+    # The last parameter is optional, can be used as index
+    # if you have many bodies and a single callback.
+    Physics2DServer.body_set_force_integration_callback(body, self, "_body_moved", 0)
+```
+
 The 3D version should be very similar, as 2D and 3D physics servers are identical (using
 [RigidBody3D](https://docs.godotengine.org/en/stable/classes/class_rigidbody3d.html#class-rigidbody3d) and [PhysicsServer3D](https://docs.godotengine.org/en/stable/classes/class_physicsserver3d.html#class-physicsserver3d) respectively).
 
 ## Getting data from the servers
 
-Try to **never** request any information from RenderingServer, PhysicsServer2D or PhysicsServer3D
+Try to **never** request any information from `RenderingServer`, `PhysicsServer2D` or `PhysicsServer3D`
 by calling functions unless you know what you are doing. These servers will often run asynchronously
 for performance and calling any function that returns a value will stall them and force them to process
 anything pending until the function is actually called. This will severely decrease performance if you

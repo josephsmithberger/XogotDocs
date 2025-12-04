@@ -33,13 +33,13 @@ won't trigger the corresponding warning anymore:
 To ignore multiple warnings in a region within a file, use the
 [@warning_ignore_start](https://docs.godotengine.org/en/stable/classes/class_@gdscript_annotation_@warning_ignore_start.html#class-@gdscript_annotation_@warning_ignore_start)
 and [@warning_ignore_restore](https://docs.godotengine.org/en/stable/classes/class_@gdscript_annotation_@warning_ignore_restore.html#class-@gdscript_annotation_@warning_ignore_restore)
-annotations. You can omit @warning_ignore_restore if you want to ignore
+annotations. You can omit `@warning_ignore_restore` if you want to ignore
 the specified warning types until the end of the file.
 
 Warnings won't prevent the game from running, but you can turn them into
 errors if you'd like. This way your game won't compile unless you fix
-all warnings. Head to the GDScript section of the Project Settings to
+all warnings. Head to the `GDScript` section of the Project Settings to
 turn on this option to the warning that you want. Here's the same file as
-the previous example with the warning unused_variable as an error turned on:
+the previous example with the warning `unused_variable` as an error turned on:
 
 @Image(source: "typed_gdscript_warning_system_errors.png")

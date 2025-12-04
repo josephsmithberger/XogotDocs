@@ -7,17 +7,17 @@ iOS plugins allow you to use third-party libraries and support iOS-specific feat
 
 ## Loading and using an existing plugin
 
-An iOS plugin requires a .gdip configuration file, a binary file which can be either .a static library or .xcframework containing .a static libraries, and possibly other dependencies. To use it, you need to:
+An iOS plugin requires a `.gdip` configuration file, a binary file which can be either `.a` static library or `.xcframework` containing `.a` static libraries, and possibly other dependencies. To use it, you need to:
 
-1. Copy the plugin's files to your Godot project's res://ios/plugins directory. You can also group files in a sub-directory, like res://ios/plugins/my_plugin.
+1. Copy the plugin's files to your Godot project's `res://ios/plugins` directory. You can also group files in a sub-directory, like `res://ios/plugins/my_plugin`.
 
-1. The Godot editor automatically detects and imports .gdip files inside res://ios/plugins and its subdirectories.
+1. The Godot editor automatically detects and imports `.gdip` files inside `res://ios/plugins` and its subdirectories.
 
 1. You can find and activate detected plugins by going to Project -> Export... -> iOS and in the Options tab, scrolling to the Plugins section.
 
 @Image(source: "ios_export_preset_plugins_section.png")
 
-When a plugin is active, you can access it in your code using Engine.get_singleton():
+When a plugin is active, you can access it in your code using `Engine.get_singleton()`:
 
 ```
 if Engine.has_singleton("MyPlugin"):
@@ -27,7 +27,7 @@ if Engine.has_singleton("MyPlugin"):
 
 > Note:
 >
-> The plugin's files have to be in the res://ios/plugins/ directory or a subdirectory, otherwise the Godot editor will not automatically detect them.
+> The plugin's files have to be in the `res://ios/plugins/` directory or a subdirectory, otherwise the Godot editor will not automatically detect them.
 >
 
 ## Creating an iOS plugin
@@ -36,7 +36,7 @@ At its core, a Godot iOS plugin is an iOS library (.a archive file or .xcframewo
 
 - The library must have a dependency on the Godot engine headers.
 
-- The library must come with a .gdip configuration file.
+- The library must come with a `.gdip` configuration file.
 
 An iOS plugin can have the same functionality as a Godot module but provides more flexibility and doesn't require to rebuild the engine.
 
@@ -52,7 +52,7 @@ To build an iOS plugin:
 
 1. Create an Objective-C static library for your plugin inside Xcode.
 
-1. Add the Godot engine header files as a dependency for your plugin library in HEADER_SEARCH_PATHS. You can find the setting inside the Build Settings tab:
+1. Add the Godot engine header files as a dependency for your plugin library in `HEADER_SEARCH_PATHS`. You can find the setting inside the `Build Settings` tab:
 
 
 Download the Godot engine source from the Godot GitHub page.
@@ -68,7 +68,7 @@ You should use the same header files for iOS plugins and for the iOS export temp
 
 1. You should use the same header files for iOS plugins and for the iOS export template.
 
-1. In the Build Settings tab, specify the compilation flags for your static library in OTHER_CFLAGS. The most important ones are -fcxx-modules, -fmodules, and -DDEBUG if you need debug support. Other flags should be the same you use to compile Godot. For instance:
+1. In the `Build Settings` tab, specify the compilation flags for your static library in `OTHER_CFLAGS`. The most important ones are `-fcxx-modules`, `-fmodules`, and `-DDEBUG` if you need debug support. Other flags should be the same you use to compile Godot. For instance:
 
 - Download the Godot engine source from the Godot GitHub page.
 
@@ -80,9 +80,9 @@ You should use the same header files for iOS plugins and for the iOS export temp
 -DPTRCALL_ENABLED -DDEBUG_ENABLED -DDEBUG_MEMORY_ALLOC -DDISABLE_FORCED_INLINE -DTYPED_METHOD_BIND
 ```
 
-1. Add the required logic for your plugin and build your library to generate a .a file. You will probably need to build both debug and release target .a files. Depending on your needs, pick either or both. If you need both debug and release .a files, their name should match following pattern: [PluginName].[TargetType].a. You can also build the static library with your SCons configuration.
+1. Add the required logic for your plugin and build your library to generate a `.a` file. You will probably need to build both `debug` and `release` target `.a` files. Depending on your needs, pick either or both. If you need both debug and release `.a` files, their name should match following pattern: `[PluginName].[TargetType].a`. You can also build the static library with your SCons configuration.
 
-1. The iOS plugin system also supports .xcframework files. To generate one, you can use a command such as:
+1. The iOS plugin system also supports `.xcframework` files. To generate one, you can use a command such as:
 
 ```
 xcodebuild -create-xcframework -library [DeviceLibrary].a -library [SimulatorLibrary].a -output [PluginName].xcframework
@@ -91,7 +91,7 @@ xcodebuild -create-xcframework -library [DeviceLibrary].a -library [SimulatorLib
 1. Create a Godot iOS Plugin configuration file to help the system detect and load your plugin:
 
 
-The configuration file extension must be gdip (e.g.: MyPlugin.gdip).
+The configuration file extension must be `gdip` (e.g.: `MyPlugin.gdip`).
 The configuration file format is as follow:
 
     [config]
@@ -161,11 +161,11 @@ The ``dependencies`` and ``plist`` sections are optional and defined as follow:
 
 
 
-1. The configuration file extension must be gdip (e.g.: MyPlugin.gdip).
+1. The configuration file extension must be `gdip` (e.g.: `MyPlugin.gdip`).
 
 1. The configuration file format is as follow:
 
-- The configuration file extension must be gdip (e.g.: MyPlugin.gdip).
+- The configuration file extension must be `gdip` (e.g.: `MyPlugin.gdip`).
 
 - The configuration file format is as follow:
 

@@ -4,10 +4,10 @@
 There are dozens of settings you can change to control a project's execution,
 including physics, rendering, and windowing settings. These settings can be
 changed from the **Project Settings** window, from code, or by manually editing
-the project.godot file. You can see a full list of settings in the
+the `project.godot` file. You can see a full list of settings in the
 [ProjectSettings](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings) class.
 
-Internally, Godot stores the settings for a project in a project.godot file,
+Internally, Godot stores the settings for a project in a `project.godot` file,
 a plain text file in INI format. While this is human-readable and version control
 friendly, it's not the most convenient to edit. For that reason, the
 **Project Settings** window is available to edit these settings. To open the
@@ -39,10 +39,20 @@ by clicking the circular arrow **Reset** button next to each property.
 You can use [set_setting()](https://docs.godotengine.org/en/stable/classes/class_projectsettings_method_set_setting.html#class-projectsettings_method_set_setting) to
 change a setting's value from code:
 
+```
+ProjectSettings.set_setting("application/run/max_fps", 60)
+ProjectSettings.set_setting("display/window/size/mode", DisplayServer.WINDOW_MODE_WINDOWED)
+```
+
 However, many project settings are only read once when the game starts. After
-that, changing the setting with set_setting() will have no effect. Instead,
+that, changing the setting with `set_setting()` will have no effect. Instead,
 most settings have a corresponding property or method on a runtime class like
 [Engine](https://docs.godotengine.org/en/stable/classes/class_engine.html#class-engine) or [DisplayServer](https://docs.godotengine.org/en/stable/classes/class_displayserver.html#class-displayserver):
+
+```
+Engine.max_fps = 60
+DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+```
 
 In general, project settings are duplicated at runtime in the
 [Engine](https://docs.godotengine.org/en/stable/classes/class_engine.html#class-engine), [PhysicsServer2D](https://docs.godotengine.org/en/stable/classes/class_physicsserver2d.html#class-physicsserver2d),
@@ -58,20 +68,30 @@ You can read project settings with
 [get_setting()](https://docs.godotengine.org/en/stable/classes/class_projectsettings_method_get_setting.html#class-projectsettings_method_get_setting) or
 [get_setting_with_override()](https://docs.godotengine.org/en/stable/classes/class_projectsettings_method_get_setting_with_override.html#class-projectsettings_method_get_setting_with_override):
 
+```
+var max_fps = ProjectSettings.get_setting("application/run/max_fps")
+var window_mode = ProjectSettings.get_setting("display/window/size/mode")
+```
+
 Since many project settings are only read once at startup, the value in the
 project settings may no longer be accurate. In these cases, it's better to read
 the value from the runtime equivalent property or method:
 
+```
+var max_fps = Engine.max_fps
+var window_mode = DisplayServer.window_get_mode()
+```
+
 ## Manually editing project.godot
 
-You can open the project.godot file using a text editor and manually
-change project settings. Note that if the project.godot file does not have a
+You can open the `project.godot` file using a text editor and manually
+change project settings. Note that if the `project.godot` file does not have a
 stored value for a particular setting, it is implicitly the default value of
 that setting. This means that if you are manually editing the file, you may
 have to write in both the setting name and the value.
 
 In general, it is recommended to use the Project Settings window rather than
-manually edit project.godot.
+manually edit `project.godot`.
 
 ## Advanced project settings
 

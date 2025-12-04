@@ -128,7 +128,7 @@ as a resource.
 
 @Image(source: "gridmap_export.png")
 
-You can find an already exported MeshLibrary in the project named MeshLibrary.tres.
+You can find an already exported MeshLibrary in the project named `MeshLibrary.tres`.
 
 ## Using GridMap
 

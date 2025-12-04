@@ -9,12 +9,12 @@
 >
 
 The simplest way to distribute a game for PC is to copy the executable
-(godot.exe), compress the folder and send it to someone else. However, this
+(`godot.exe`), compress the folder and send it to someone else. However, this
 is often not desired.
 
 Godot offers a more elegant approach for PC distribution when using the export
 system. When exporting for Windows, the exporter takes all the project files and
-creates a data.pck file. This file is bundled with a specially optimized
+creates a `data.pck` file. This file is bundled with a specially optimized
 binary that is smaller, faster and does not contain the editor and debugger.
 
 ## Changing the executable icon
@@ -27,7 +27,7 @@ resolutions then see the <doc:changing_application_icon_for_windows> page.
 ## Code signing
 
 Godot is capable of automatic code signing on export. To do this you must have the
-Windows SDK (on Windows) or osslsigncode
+`Windows SDK` (on Windows) or osslsigncode
 (on any other OS) installed. You will also need a package signing certificate,
 information on creating one can be found here.
 
@@ -45,9 +45,9 @@ information on creating one can be found here.
 ### Setup
 
 Settings need to be changed in two places. First, in the editor settings, under
-**Export > Windows**. Click on the folder next to the Sign Tool setting, if
-you're using Windows navigate to and select SignTool.exe, if you're on a different
-OS select osslsigncode.
+**Export > Windows**. Click on the folder next to the `Sign Tool` setting, if
+you're using Windows navigate to and select `SignTool.exe`, if you're on a different
+OS select `osslsigncode`.
 
 @Image(source: "windows_editor_settings.png")
 
@@ -57,7 +57,7 @@ Under options there is a code signing category.
 
 @Image(source: "windows_export_codesign.png")
 
-Enabled must be set to true, and Identity must be set to the signing
+`Enabled` must be set to true, and `Identity` must be set to the signing
 certificate. The other settings can be adjusted as needed. Once this is Done
 Godot will sign your project on export.
 
@@ -69,10 +69,10 @@ the export menu.
 
 Export option | Environment variable
 ------------- | --------------------
-Encryption / Encryption Key | GODOT_SCRIPT_ENCRYPTION_KEY
-Options / Codesign / Identity Type | GODOT_WINDOWS_CODESIGN_IDENTITY_TYPE
-Options / Codesign / Identity | GODOT_WINDOWS_CODESIGN_IDENTITY
-Options / Codesign / Password | GODOT_WINDOWS_CODESIGN_PASSWORD
+Encryption / Encryption Key | `GODOT_SCRIPT_ENCRYPTION_KEY`
+Options / Codesign / Identity Type | `GODOT_WINDOWS_CODESIGN_IDENTITY_TYPE`
+Options / Codesign / Identity | `GODOT_WINDOWS_CODESIGN_IDENTITY`
+Options / Codesign / Password | `GODOT_WINDOWS_CODESIGN_PASSWORD`
 
 ## Export options
 

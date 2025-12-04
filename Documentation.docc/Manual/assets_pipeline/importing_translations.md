@@ -37,5 +37,5 @@ files have a special arrangement. See
 formatting and importing CSVs.
 
 If you need a more powerful file format, Godot also supports loading
-translations written in the gettext .po format. See
+translations written in the gettext `.po` format. See
 <doc:localization_using_gettext> for details.

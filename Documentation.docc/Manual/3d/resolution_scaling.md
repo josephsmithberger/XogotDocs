@@ -25,7 +25,7 @@ settings in your in-game menus.
 > Note:
 >
 > Resolution scaling is currently not available for 2D rendering, but it can be
-> simulated using the viewport stretch mode. See <doc:multiple_resolutions>
+> simulated using the `viewport` stretch mode. See <doc:multiple_resolutions>
 > for more information.
 >
 
@@ -85,14 +85,14 @@ already performs temporal antialiasing.
 ### Rendering scale
 
 The **Rendering > Scaling 3D > Scale** setting adjusts the resolution scale.
-1.0 represents the full resolution scale, with the 3D rendering resolution
-matching the 2D rendering resolution. Resolution scales below 1.0 can be
+`1.0` represents the full resolution scale, with the 3D rendering resolution
+matching the 2D rendering resolution. Resolution scales below `1.0` can be
 used to speed up rendering, at the cost of a blurrier final image and more aliasing.
 
-The rendering scale can be adjusted at runtime by changing the scaling_3d_scale
+The rendering scale can be adjusted at runtime by changing the `scaling_3d_scale`
 property on a [Viewport](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport) node.
 
-Resolution scales above 1.0 can be used for supersample antialiasing
+Resolution scales above `1.0` can be used for supersample antialiasing
 (SSAA). This will provide antialiasing at a very high performance cost, and is
 **not recommended** for most use cases. See <doc:3d_antialiasing> for more
 information.
@@ -115,40 +115,40 @@ in each table.
 
 Resolution scale factor | 3D rendering resolution | Megapixels rendered per frame
 ----------------------- | ----------------------- | -----------------------------
-0.50 | 960×540 | 0.52 MPix
-0.67 | 1286×723 | 0.93 MPix
-0.75 | 1440×810 | 1.17 MPix
-0.85 | 1632×918 | 1.50 MPix
-1.00**(native)** | **1920×1080** | **2.07 MPix**
-1.33(supersampling) | 2553×1436 | 3.67 MPix
-1.50(supersampling) | 2880×1620 | 4.67 MPix
-2.00(supersampling) | 3840×2160 | 8.29 MPix
+`0.50` | 960×540 | 0.52 MPix
+`0.67` | 1286×723 | 0.93 MPix
+`0.75` | 1440×810 | 1.17 MPix
+`0.85` | 1632×918 | 1.50 MPix
+`1.00`**(native)** | **1920×1080** | **2.07 MPix**
+`1.33`(supersampling) | 2553×1436 | 3.67 MPix
+`1.50`(supersampling) | 2880×1620 | 4.67 MPix
+`2.00`(supersampling) | 3840×2160 | 8.29 MPix
 
 **2560×1440 (QHD)**
 
 Resolution scale factor | 3D rendering resolution | Megapixels rendered per frame
 ----------------------- | ----------------------- | -----------------------------
-0.50 | 1280×720 | 0.92 MPix
-0.67 | 1715×964 | 1.65 MPix
-0.75 | 1920×1080 | 2.07 MPix
-0.85 | 2176×1224 | 2.66 MPix
-1.00**(native)** | **2560×1440** | **3.69 MPix**
-1.33(supersampling) | 3404×1915 | 6.52 MPix
-1.50(supersampling) | 3840×2160 | 8.29 MPix
-2.00(supersampling) | 5120×2880 | 14.75 MPix
+`0.50` | 1280×720 | 0.92 MPix
+`0.67` | 1715×964 | 1.65 MPix
+`0.75` | 1920×1080 | 2.07 MPix
+`0.85` | 2176×1224 | 2.66 MPix
+`1.00`**(native)** | **2560×1440** | **3.69 MPix**
+`1.33`(supersampling) | 3404×1915 | 6.52 MPix
+`1.50`(supersampling) | 3840×2160 | 8.29 MPix
+`2.00`(supersampling) | 5120×2880 | 14.75 MPix
 
 **3840×2160 (Ultra HD "4K")**
 
 Resolution scale factor | 3D rendering resolution | Megapixels rendered per frame
 ----------------------- | ----------------------- | -----------------------------
-0.50 | 1920×1080 | 2.07 MPix
-0.67 | 2572×1447 | 3.72 MPix
-0.75 | 2880×1620 | 4.67 MPix
-0.85 | 3264×1836 | 5.99 MPix
-1.00**(native)** | **3840×2160** | **8.29 MPix**
-1.33(supersampling) | 5107×2872 | 14.67 MPix
-1.50(supersampling) | 5760×3240 | 18.66 MPix
-2.00(supersampling) | 7680×4320 | 33.18 MPix
+`0.50` | 1920×1080 | 2.07 MPix
+`0.67` | 2572×1447 | 3.72 MPix
+`0.75` | 2880×1620 | 4.67 MPix
+`0.85` | 3264×1836 | 5.99 MPix
+`1.00`**(native)** | **3840×2160** | **8.29 MPix**
+`1.33`(supersampling) | 5107×2872 | 14.67 MPix
+`1.50`(supersampling) | 5760×3240 | 18.66 MPix
+`2.00`(supersampling) | 7680×4320 | 33.18 MPix
 
 ### FSR Sharpness
 
@@ -160,8 +160,8 @@ When using the FSR1 or FSR2 scaling modes, the sharpness can be controlled using
 
 The intensity is inverted compared to most other sharpness sliders: lower
 values will result in a sharper final image, while higher values will reduce
-the impact of the sharpening filter. 0.0 is the sharpest, while 2.0 is
-the least sharp. The default value of 0.2 provides a balance between
+the impact of the sharpening filter. `0.0` is the sharpest, while `2.0` is
+the least sharp. The default value of `0.2` provides a balance between
 preserving the original image's sharpness and avoiding additional aliasing due
 to oversharpening.
 
@@ -171,12 +171,12 @@ to oversharpening.
 > currently doesn't allow using the sharpening component of FSR1 (RCAS)
 > independently from the upscaling component (EASU).
 >
-> As a workaround, you can set the 3D rendering scale to 0.99, set the
+> As a workaround, you can set the 3D rendering scale to `0.99`, set the
 > scaling mode to **FSR 1.0** then adjust FSR sharpness as needed. This allows
 > using FSR1 while rendering at a near-native resolution.
 >
 > Alternatively, you can set the scaling mode to **FSR 2.2** with the 3D
-> rendering scale set to 1.0 if you have enough GPU headroom. This also
+> rendering scale set to `1.0` if you have enough GPU headroom. This also
 > provides high-quality temporal antialiasing. The **FSR Sharpness** setting
 > remains functional in this case.
 >
@@ -187,7 +187,7 @@ This is only available in the Forward+ and Mobile renderers, not the Compatibili
 renderer.
 
 Godot automatically uses a negative texture mipmap bias when the 3D resolution
-scale is set below 1.0. This allows for better preservation of texture
+scale is set below `1.0`. This allows for better preservation of texture
 detail at the cost of a grainy appearance on detailed textures.
 
 The texture LOD bias currently affects both 2D and 3D rendering in the same way.
@@ -197,18 +197,18 @@ rendering is affected unless you enabled mipmaps on 2D textures in the Import
 dock.
 
 The formula used to determine the texture mipmap bias is:
-log2f(min(scaling_3d_scale, 1.0)) + custom_texture_mipmap_bias
+`log2f(min(scaling_3d_scale, 1.0)) + custom_texture_mipmap_bias`
 
 To counteract the blurriness added by some antialiasing methods, Godot also adds
-a -0.25 offset when FXAA is enabled, and a -0.5 offset when TAA is
-enabled. If both are enabled at the same time, a -0.75 offset is used. This
+a `-0.25` offset when FXAA is enabled, and a `-0.5` offset when TAA is
+enabled. If both are enabled at the same time, a `-0.75` offset is used. This
 mipmap bias offset is applied before the resolution scaling offset, so it does
 not change depending on resolution scale.
 
 The texture LOD bias can manually be changed by adjusting the **Rendering >
 Textures > Default Filters > Texture Mipmap Bias** advanced project setting. It
 can also be changed at runtime on [Viewports](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport) by
-adjusting the texture_mipmap_bias property.
+adjusting the `texture_mipmap_bias` property.
 
 > Warning:
 >
@@ -218,7 +218,7 @@ adjusting the texture_mipmap_bias property.
 >
 > Negative mipmap LOD bias can also decrease performance due to
 > higher-resolution mips having to be sampled further away. Recommended values
-> for a manual offset are between -0.5 and 0.0.
+> for a manual offset are between `-0.5` and `0.0`.
 >
 > Positive mipmap LOD bias will make mipmapped textures appear blurrier than
 > intended. This may improve performance slightly, but is otherwise not
@@ -226,7 +226,7 @@ adjusting the texture_mipmap_bias property.
 > performance gain.
 >
 
-The example below shows an extreme case, with a mipmap LOD bias of -1.0 and
+The example below shows an extreme case, with a mipmap LOD bias of `-1.0` and
 anisotropic filtering disabled to make the difference more noticeable:
 
 @Image(source: "resolution_scaling_texture_mipmap_bias_comparison.png")
@@ -236,7 +236,7 @@ anisotropic filtering disabled to make the difference more noticeable:
 ### Performance does not increase much when decreasing resolution scale
 
 If performance doesn't increase much when decreasing resolution scale to a value
-like 0.5, it likely means the performance bottleneck is elsewhere in your
+like `0.5`, it likely means the performance bottleneck is elsewhere in your
 scene. For example, your scene could have too many draw calls, causing a CPU
 bottleneck to occur. Likewise, you may have too many graphics effects enabled
 for your GPU to handle (such as SDFGI, SSAO or SSR).

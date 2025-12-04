@@ -6,6 +6,15 @@ it generates. This holds true even for nodes outside of the "current"
 scene. Autoloads fall into this category, and also scenes which you
 instantiate and add to the tree at runtime:
 
+```
+var simultaneous_scene = preload("res://levels/level2.tscn").instantiate()
+
+func _add_a_scene_manually():
+    # This is like autoloading the scene, only
+    # it happens after already loading the main scene.
+    get_tree().root.add_child(simultaneous_scene)
+```
+
 To complete the cycle and swap out the new scene with the old one,
 you have a choice to make. Many strategies exist for removing a scene
 from view of the [Viewport](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport). The tradeoffs involve
@@ -17,7 +26,7 @@ access and integrity.
 [SceneTree.change_scene_to_packed()](https://docs.godotengine.org/en/stable/classes/class_scenetree_method_change_scene_to_packed.html#class-scenetree_method_change_scene_to_packed)
 will delete the current scene immediately. You can also delete the
 main scene. Assuming the root node's name is "Main", you could do
-get_node("/root/Main").free() to delete the whole scene.
+`get_node("/root/Main").free()` to delete the whole scene.
 
 
 Unloads memory.
@@ -356,6 +365,10 @@ access.
 There are also cases where you may wish to have many scenes present at the same
 time, such as adding your own singleton at runtime, or preserving
 a scene's data between scene changes (adding the scene to the root node).
+
+```
+get_tree().root.add_child(scene)
+```
 
 Another case may be displaying multiple scenes at the same time using
 [SubViewportContainers](https://docs.godotengine.org/en/stable/classes/class_subviewportcontainer.html#class-subviewportcontainer). This is optimal for

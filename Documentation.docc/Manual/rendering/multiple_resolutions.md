@@ -68,13 +68,13 @@ screen sizes.
 >
 > On this page, window refers to the screen area allotted to your game
 > by the system, while viewport refers to the root object (accessible
-> from get_tree().root) which the game controls to fill this screen area.
+> from `get_tree().root`) which the game controls to fill this screen area.
 > This viewport is a [Window](https://docs.godotengine.org/en/stable/classes/class_window.html#class-window) instance. Recall from the
 > <doc:viewports> that all Window objects are viewports.
 >
 
 To configure the stretch base size at runtime from a script, use the
-get_tree().root.content_scale_size property (see
+`get_tree().root.content_scale_size` property (see
 [Window.content_scale_size](https://docs.godotengine.org/en/stable/classes/class_window_property_content_scale_size.html#class-window_property_content_scale_size)).
 Changing this value can indirectly change the size of 2D elements. However, to
 provide a user-accessible scaling option, using
@@ -108,7 +108,7 @@ little easier. The [Viewport](https://docs.godotengine.org/en/stable/classes/cla
 node has several functions to handle resizing, and the root node of the
 scene tree is always a viewport (scenes loaded are instanced as a child
 of it, and it can always be accessed by calling
-get_tree().root or get_node("/root")).
+`get_tree().root` or `get_node("/root")`).
 
 In any case, while changing the root Viewport params is probably the
 most flexible way to deal with the problem, it can be a lot of work,
@@ -166,7 +166,7 @@ account).
 @Image(source: "stretch_viewport_expand.gif")
 
 To configure the stretch mode at runtime from a script, use the
-get_tree().root.content_scale_mode property (see
+`get_tree().root.content_scale_mode` property (see
 [Window.content_scale_mode](https://docs.godotengine.org/en/stable/classes/class_window_property_content_scale_mode.html#class-window_property_content_scale_mode)
 and the :ref:`ContentScaleMode <enum_Window_ContentScaleMode>` enum).
 
@@ -244,21 +244,21 @@ size).
 > Project Settings.
 >
 > To allow the user to choose their preferred screen orientation at runtime,
-> remember to set **Display > Window > Handheld > Orientation** to sensor.
+> remember to set **Display > Window > Handheld > Orientation** to `sensor`.
 >
 
 To configure the stretch aspect at runtime from a script, use the
-get_tree().root.content_scale_aspect property (see
+`get_tree().root.content_scale_aspect` property (see
 [Window.content_scale_aspect](https://docs.godotengine.org/en/stable/classes/class_window_property_content_scale_aspect.html#class-window_property_content_scale_aspect)
 and the :ref:`ContentScaleAspect <enum_Window_ContentScaleAspect>` enum).
 
 ### Stretch Scale
 
 The **Scale** setting allows you to add an extra scaling factor on top of
-what the **Stretch** options above already provide. The default value of 1.0
+what the **Stretch** options above already provide. The default value of `1.0`
 means that no additional scaling occurs.
 
-For example, if you set **Scale** to 2.0 and leave **Stretch Mode** on
+For example, if you set **Scale** to `2.0` and leave **Stretch Mode** on
 **Disabled**, each unit in your scene will correspond to 2×2 pixels on the
 screen. This is a good way to provide scaling options for non-game applications.
 
@@ -272,7 +272,7 @@ by **Scale**. This makes pixels look larger and reduces rendering resolution
 (with a given window size), which can improve performance.
 
 To configure the stretch scale at runtime from a script, use the
-get_tree().root.content_scale_factor property (see
+`get_tree().root.content_scale_factor` property (see
 [Window.content_scale_factor](https://docs.godotengine.org/en/stable/classes/class_window_property_content_scale_factor.html#class-window_property_content_scale_factor)).
 
 You can also adjust the scale at which the default project theme is generated
@@ -286,41 +286,41 @@ cannot be changed at runtime, as its value is only read once when the project st
 Since Godot 4.2, the **Stretch Scale Mode** setting allows you to constrain the
 automatically determined scale factor (as well as the manually specified
 **Stretch Scale** setting) to integer values. By default, this setting is set to
-fractional, which allows any scale factor to be applied (including fractional
-values such as 2.5). When set to integer, the value is rounded down to
-the nearest integer. For example, instead of using a scale factor of 2.5, it
-would be rounded down to 2.0. This is useful to prevent distortion when
+`fractional`, which allows any scale factor to be applied (including fractional
+values such as `2.5`). When set to `integer`, the value is rounded down to
+the nearest integer. For example, instead of using a scale factor of `2.5`, it
+would be rounded down to `2.0`. This is useful to prevent distortion when
 displaying pixel art.
 
-Compare this pixel art which is displayed with the viewport stretch mode,
-with the stretch scale mode set to fractional:
+Compare this pixel art which is displayed with the `viewport` stretch mode,
+with the stretch scale mode set to `fractional`:
 
 @Image(source: "multiple_resolutions_pixel_art_fractional_scaling.png", alt: "Fractional scaling example (incorrect pixel art appearance)") {Checkerboard doesn't look "even". Line widths in the logo and text varies wildly.}
 
-This pixel art is also displayed with the viewport stretch mode, but the
-stretch scale mode is set to integer this time:
+This pixel art is also displayed with the `viewport` stretch mode, but the
+stretch scale mode is set to `integer` this time:
 
 @Image(source: "multiple_resolutions_pixel_art_integer_scaling.png", alt: "Integer scaling example (correct pixel art appearance)") {Checkerboard looks perfectly even. Line widths are consistent.}
 
 For example, if your viewport base size is 640×360 and the window size is 1366×768:
 
-- When using fractional, the viewport is displayed at a resolution of
+- When using `fractional`, the viewport is displayed at a resolution of
 1366×768 (scale factor is roughly 2.133×). The entire window space is used.
 Each pixel in the viewport corresponds to 2.133×2.133 pixels in the displayed
 area. However, since displays can only display "whole" pixels, this will lead
 to uneven pixel scaling which results in incorrect appearance of pixel art.
 
-- When using integer, the viewport is displayed at a resolution of 1280×720
+- When using `integer`, the viewport is displayed at a resolution of 1280×720
 (scale factor is 2×). The remaining space is filled with black bars on all
 four sides, so that each pixel in the viewport corresponds to 2×2 pixels in
 the displayed area.
 
 This setting is effective with any stretch mode. However, when using the
-disabled stretch mode, it will only affect the **Stretch Scale** setting by
+`disabled` stretch mode, it will only affect the **Stretch Scale** setting by
 rounding it down to the nearest integer value. This can be used for 3D games
 that have a pixel art UI, so that the visible area in the 3D viewport doesn't
-reduce in size (which occurs when using canvas_items or viewport stretch
-mode with the integer scale mode).
+reduce in size (which occurs when using `canvas_items` or `viewport` stretch
+mode with the `integer` scale mode).
 
 > Tip:
 >
@@ -348,16 +348,16 @@ ratios well.
 
 **Non-pixel art:**
 
-- Set the base window width to 1920 and window height to 1080. If you have a
+- Set the base window width to `1920` and window height to `1080`. If you have a
 display smaller than 1920×1080, set **Window Width Override** and **Window Height Override** to
 lower values to make the window smaller when the project starts.
 
 - Alternatively, if you're targeting high-end devices primarily, set the base
-window width to 3840 and window height to 2160.
+window width to `3840` and window height to `2160`.
 This allows you to provide higher resolution 2D assets, resulting in crisper
 visuals at the cost of higher memory usage and file sizes. You'll also want
-to increase **GUI > Theme > Default Theme Scale** to a value between 2.0
-and 3.0 to ensure UI elements remain readable.
+to increase **GUI > Theme > Default Theme Scale** to a value between `2.0`
+and `3.0` to ensure UI elements remain readable.
 
 Note that this will make non-mipmapped textures grainy on low resolution devices,
 so make sure to follow the instructions described in
@@ -369,9 +369,9 @@ so make sure to follow the instructions described in
 so make sure to follow the instructions described in
 <doc:multiple_resolutions#Reducing-Aliasing-On-Downsampling>.
 
-- Set the stretch mode to canvas_items.
+- Set the stretch mode to `canvas_items`.
 
-- Set the stretch aspect to expand. This allows for supporting multiple aspect ratios
+- Set the stretch aspect to `expand`. This allows for supporting multiple aspect ratios
 and makes better use of tall smartphone displays (such as 18:9 or 19:9 aspect ratios).
 
 - Configure Control nodes' anchors to snap to the correct corners using the **Layout** menu.
@@ -393,24 +393,24 @@ any black bars when using integer scaling. Higher viewport sizes will require
 using higher resolution artwork, unless you intend to show more of the game
 world at a given time.
 
-- Set the stretch mode to viewport.
+- Set the stretch mode to `viewport`.
 
-- Set the stretch aspect to keep to enforce a single aspect ratio (with
-black bars). As an alternative, you can set the stretch aspect to expand to
+- Set the stretch aspect to `keep` to enforce a single aspect ratio (with
+black bars). As an alternative, you can set the stretch aspect to `expand` to
 support multiple aspect ratios.
 
-- If using the expand stretch aspect, Configure Control nodes' anchors to
+- If using the `expand` stretch aspect, Configure Control nodes' anchors to
 snap to the correct corners using the **Layout** menu.
 
-- Set the stretch scale mode to integer. This prevents uneven pixel scaling
+- Set the stretch scale mode to `integer`. This prevents uneven pixel scaling
 from occurring, which makes pixel art not display as intended.
 
 > Note:
 >
-> The viewport stretch mode provides low-resolution rendering that is then
+> The `viewport` stretch mode provides low-resolution rendering that is then
 > stretched to the final window size. If you are OK with sprites being able to
 > move or rotate in "sub-pixel" positions or wish to have a high resolution 3D
-> viewport, you should use the canvas_items stretch mode instead of the viewport
+> viewport, you should use the `canvas_items` stretch mode instead of the `viewport`
 > stretch mode.
 >
 
@@ -419,16 +419,16 @@ from occurring, which makes pixel art not display as intended.
 Godot is configured to use landscape mode by default. This means you don't need
 to change the display orientation project setting.
 
-- Set the base window width to 1280 and window height to 720.
+- Set the base window width to `1280` and window height to `720`.
 
 - Alternatively, if you're targeting high-end devices primarily, set the base
-window width to 1920 and window height to 1080.
+window width to `1920` and window height to `1080`.
 This allows you to provide higher resolution 2D assets, resulting in crisper
 visuals at the cost of higher memory usage and file sizes. Many devices have
 even higher resolution displays (1440p), but the difference with 1080p is
 barely visible given the small size of smartphone displays. You'll also want
-to increase **GUI > Theme > Default Theme Scale** to a value between 1.5
-and 2.0 to ensure UI elements remain readable.
+to increase **GUI > Theme > Default Theme Scale** to a value between `1.5`
+and `2.0` to ensure UI elements remain readable.
 
 Note that this will make non-mipmapped textures grainy on low resolution devices,
 so make sure to follow the instructions described in
@@ -440,9 +440,9 @@ so make sure to follow the instructions described in
 so make sure to follow the instructions described in
 <doc:multiple_resolutions#Reducing-Aliasing-On-Downsampling>.
 
-- Set the stretch mode to canvas_items.
+- Set the stretch mode to `canvas_items`.
 
-- Set the stretch aspect to expand. This allows for supporting multiple aspect ratios
+- Set the stretch aspect to `expand`. This allows for supporting multiple aspect ratios
 and makes better use of tall smartphone displays (such as 18:9 or 19:9 aspect ratios).
 
 - Configure Control nodes' anchors to snap to the correct corners using the **Layout** menu.
@@ -456,22 +456,22 @@ so make sure to follow the instructions described in
 > To better support tablets and foldable phones (which frequently feature
 > displays with aspect ratios close to 4:3), consider using a base resolution
 > that has a 4:3 aspect ratio while following the rest of the instructions
-> here. For instance, you can set the base window width to 1280 and the
-> base window height to 960.
+> here. For instance, you can set the base window width to `1280` and the
+> base window height to `960`.
 >
 
 ### Mobile game in portrait mode
 
-- Set the base window width to 720 and window height to 1280.
+- Set the base window width to `720` and window height to `1280`.
 
 - Alternatively, if you're targeting high-end devices primarily, set the base
-window width to 1080 and window height to 1920.
+window width to `1080` and window height to `1920`.
 This allows you to provide higher resolution 2D assets, resulting in crisper
 visuals at the cost of higher memory usage and file sizes. Many devices have
 even higher resolution displays (1440p), but the difference with 1080p is
 barely visible given the small size of smartphone displays. You'll also want
-to increase **GUI > Theme > Default Theme Scale** to a value between 1.5
-and 2.0 to ensure UI elements remain readable.
+to increase **GUI > Theme > Default Theme Scale** to a value between `1.5`
+and `2.0` to ensure UI elements remain readable.
 
 Note that this will make non-mipmapped textures grainy on low resolution devices,
 so make sure to follow the instructions described in
@@ -483,11 +483,11 @@ so make sure to follow the instructions described in
 so make sure to follow the instructions described in
 <doc:multiple_resolutions#Reducing-Aliasing-On-Downsampling>.
 
-- Set **Display > Window > Handheld > Orientation** to portrait.
+- Set **Display > Window > Handheld > Orientation** to `portrait`.
 
-- Set the stretch mode to canvas_items.
+- Set the stretch mode to `canvas_items`.
 
-- Set the stretch aspect to expand. This allows for supporting multiple aspect ratios
+- Set the stretch aspect to `expand`. This allows for supporting multiple aspect ratios
 and makes better use of tall smartphone displays (such as 18:9 or 19:9 aspect ratios).
 
 - Configure Control nodes' anchors to snap to the correct corners using the **Layout** menu.
@@ -501,8 +501,8 @@ so make sure to follow the instructions described in
 > To better support tablets and foldable phones (which frequently feature
 > displays with aspect ratios close to 4:3), consider using a base resolution
 > that has a 3:4 aspect ratio while following the rest of the instructions
-> here. For instance, you can set the base window width to 960 and the
-> base window height to 1280.
+> here. For instance, you can set the base window width to `960` and the
+> base window height to `1280`.
 >
 
 ### Non-game application
@@ -510,13 +510,13 @@ so make sure to follow the instructions described in
 - Set the base window width and height to the smallest window size that you intend to target.
 This is not required, but this ensures that you design your UI with small window sizes in mind.
 
-- Keep the stretch mode to its default value, disabled.
+- Keep the stretch mode to its default value, `disabled`.
 
-- Keep the stretch aspect to its default value, ignore
-(its value won't be used since the stretch mode is disabled).
+- Keep the stretch aspect to its default value, `ignore`
+(its value won't be used since the stretch mode is `disabled`).
 
-- You can define a minimum window size by calling get_window().set_min_size() in a
-script's _ready() function. This prevents the user from resizing the application
+- You can define a minimum window size by calling `get_window().set_min_size()` in a
+script's `_ready()` function. This prevents the user from resizing the application
 below a certain size, which could break the UI layout.
 
 - Add a setting in the application's settings to change the root viewport's
@@ -535,17 +535,17 @@ Since Godot projects are DPI-aware, they may appear at a very small window size
 when launching on an hiDPI display (proportionally to the screen resolution).
 For a game, the most common way to work around this issue is to make them
 fullscreen by default. Alternatively, you could set the window size in an
-<doc:singletons_autoload>'s _ready() function according to
+<doc:singletons_autoload>'s `_ready()` function according to
 the screen size.
 
 To ensure 2D elements don't appear too small on hiDPI displays:
 
-- For games, use the canvas_items or viewport stretch modes so that 2D
+- For games, use the `canvas_items` or `viewport` stretch modes so that 2D
 elements are automatically resized according to the current window size.
 
-- For non-game applications, use the disabled stretch mode and set the
+- For non-game applications, use the `disabled` stretch mode and set the
 stretch scale to a value corresponding to the display scale factor in an
-<doc:singletons_autoload>'s _ready() function.
+<doc:singletons_autoload>'s `_ready()` function.
 The display scale factor is set in the operating system's settings and can be queried
 using [screen_get_scale](https://docs.godotengine.org/en/stable/classes/class_displayserver_method_screen_get_scale.html#class-displayserver_method_screen_get_scale). This
 method is currently implemented on Android, iOS, Linux (Wayland only), macOS and Web.

@@ -19,6 +19,15 @@ But, choosing which one to use can be a dilemma. Creating script instances
 is identical to creating in-engine classes whereas handling scenes requires
 a change in API:
 
+```
+const MyNode = preload("my_node.gd")
+const MyScene = preload("my_scene.tscn")
+var node = Node.new()
+var my_node = MyNode.new() # Same method call.
+var my_scene = MyScene.instantiate() # Different method call.
+var my_inherited_scene = MyScene.instantiate(PackedScene.GEN_EDIT_STATE_MAIN) # Create scene inheriting from MyScene.
+```
+
 Also, scripts will operate a little slower than scenes due to the
 speed differences between engine and script code. The larger and more complex
 the node, the more reason there is to build it as a scene.
@@ -165,9 +174,21 @@ As the size of objects increases, the scripts' necessary size to create and
 initialize them grows much larger. Creating node hierarchies demonstrates this.
 Each Node's logic could be several hundred lines of code in length.
 
-The code example below creates a new Node, changes its name, assigns a
+The code example below creates a new `Node`, changes its name, assigns a
 script to it, sets its future parent as its owner so it gets saved to disk along
-with it, and finally adds it as a child of the Main node:
+with it, and finally adds it as a child of the `Main` node:
+
+```
+# main.gd
+extends Node
+
+func _init():
+    var child = Node.new()
+    child.name = "Child"
+    child.script = preload("child.gd")
+    add_child(child)
+    child.owner = self
+```
 
 Script code like this is much slower than engine-side C++ code. Each instruction
 makes a call to the scripting API which leads to many "lookups" on the back-end
@@ -193,3 +214,16 @@ security than scripts.
 - If one would like to give a name to a scene, then they can still sort of do
 this by declaring a script class and giving it a scene as a constant.
 The script becomes, in effect, a namespace:
+
+```
+# game.gd
+class_name Game # extends RefCounted, so it won't show up in the node creation dialog.
+extends RefCounted
+
+const MyScene = preload("my_scene.tscn")
+
+# main.gd
+extends Node
+func _ready():
+    add_child(Game.MyScene.instantiate())
+```

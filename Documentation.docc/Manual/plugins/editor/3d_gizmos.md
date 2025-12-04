@@ -51,13 +51,12 @@ func _exit_tree():
 ```
 
 For simple gizmos, inheriting [EditorNode3DGizmoPlugin](https://docs.godotengine.org/en/stable/classes/class_editornode3dgizmoplugin.html#class-editornode3dgizmoplugin)
-is enough. If you want to store some per-gizmo data or you are porting a Godot 3.0 gizmo
-to 3.1+, you should go with the second approach.
+is enough. If you want to store some per-gizmo data, you should go with the second approach.
 
 ## Simple approach
 
 The first step is to, in our custom gizmo plugin, override the [_has_gizmo()](https://docs.godotengine.org/en/stable/classes/class_editornode3dgizmoplugin_private_method__has_gizmo.html#class-editornode3dgizmoplugin_private_method__has_gizmo)
-method so that it returns true when the node parameter is of our target type.
+method so that it returns `true` when the node parameter is of our target type.
 
 ```
 # ...

@@ -33,7 +33,7 @@ It is designed for animations imported from external 3D models and can reduce re
 ## Call Method Track
 
 A call method track allow you to call a function at a precise time from within an
-animation. For example, you can call queue_free() to delete a node at the
+animation. For example, you can call `queue_free()` to delete a node at the
 end of a death animation.
 
 > Note: The events placed on the call method track are not executed when the animation is previewed in the editor for safety.
@@ -54,13 +54,40 @@ inspector dock. There, you can change the method to call. If you expand the
 @Image(source: "node_method_args.png")
 
 To create such a track through code, pass a dictionary that contains the target method's name
-and parameters as the Variant for key in Animation.track_insert_key(). The keys and
+and parameters as the Variant for `key` in `Animation.track_insert_key()`. The keys and
 their expected values are as follows:
 
 **Key** | **Value**
 ------- | ---------
-"method" | The name of the method as aString
-"args" | The arguments to pass to the function as anArray
+`"method"` | The name of the method as a`String`
+`"args"` | The arguments to pass to the function as an`Array`
+
+```
+# Create a call method track.
+func create_method_animation_track():
+    # Get or create the animation the target method will be called from.
+    var animation = $AnimationPlayer.get_animation("idle")
+    # Get or create the target method's animation track.
+    var track_index = animation.add_track(Animation.TYPE_METHOD)
+    # Make the arguments for the target method jump().
+    var jump_velocity = -400.0
+    var multiplier = randf_range(.8, 1.2)
+    # Get or create a dictionary with the target method's name and arguments.
+    var method_dictionary = {
+        "method": "jump",
+        "args": [jump_velocity, multiplier],
+    }
+
+    # Set scene-tree path to node with target method.
+    animation.track_set_path(track_index, ".")
+    # Add the dictionary as the animation method track's key.
+    animation.track_insert_key(track_index, 0.6, method_dictionary, 0)
+
+
+# The target method that will be called from the animation.
+func jump(jump_velocity, multiplier):
+    velocity.y = jump_velocity * multiplier
+```
 
 ## Bezier Curve Track
 
@@ -83,8 +110,8 @@ diamonds connected to them by a line control curve's shape.
 >
 > For better precision while manually working with curves, you might want to alter
 > the zoom levels of the editor. The slider on the bottom right of the editor can be used to
-> zoom in and out on the time axis, you can also do that with `Ctrl + Shift + Mouse wheel`.
-> Using `Ctrl + Alt + Mouse wheel` will zoom in and out on the Y axis
+> zoom in and out on the time axis, you can also do that with ``Ctrl + Shift + Mouse wheel``.
+> Using ``Ctrl + Alt + Mouse wheel`` will zoom in and out on the Y axis
 >
 
 @Image(source: "bezier_curves.png")
@@ -119,7 +146,7 @@ file in the track.
 @Image(source: "audio_track.png")
 
 To remove a sound from the animation, you can right-click it and select "Delete
-Key(s)" or click on it and press the `Del` key.
+Key(s)" or click on it and press the ``Del`` key.
 
 The blend mode allows you to choose whether or not to adjust the audio volume when blending in the [AnimationTree](https://docs.godotengine.org/en/stable/classes/class_animationtree.html#class-animationtree).
 

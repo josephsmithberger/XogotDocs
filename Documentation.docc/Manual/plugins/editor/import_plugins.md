@@ -27,7 +27,7 @@ imported material. In this example it contains the pure blue color
 ## Configuration
 
 First we need a generic plugin that will handle the initialization and
-destruction of our import plugin. Let's add the plugin.cfg file first:
+destruction of our import plugin. Let's add the `plugin.cfg` file first:
 
 ```
 [plugin]
@@ -39,7 +39,7 @@ version="1.0"
 script="material_import.gd"
 ```
 
-Then we need the material_import.gd file to add and remove the import plugin
+Then we need the `material_import.gd` file to add and remove the import plugin
 when needed:
 
 ```
@@ -64,14 +64,14 @@ func _exit_tree():
 When this plugin is activated, it will create a new instance of the import
 plugin (which we'll soon make) and add it to the editor using the
 [add_import_plugin()](https://docs.godotengine.org/en/stable/classes/class_editorplugin_method_add_import_plugin.html#class-editorplugin_method_add_import_plugin) method. We store
-a reference to it in a class member import_plugin so we can refer to it
+a reference to it in a class member `import_plugin` so we can refer to it
 later when removing it. The
 [remove_import_plugin()](https://docs.godotengine.org/en/stable/classes/class_editorplugin_method_remove_import_plugin.html#class-editorplugin_method_remove_import_plugin) method is
 called when the plugin is deactivated to clean up the memory and let the editor
 know the import plugin isn't available anymore.
 
 Note that the import plugin is a reference type, so it doesn't need to be
-explicitly released from memory with the free() function. It will be
+explicitly released from memory with the `free()` function. It will be
 released automatically by the engine when it goes out of scope.
 
 ## The EditorImportPlugin class
@@ -123,7 +123,7 @@ method you return an array of strings to represent each extension that this
 plugin can understand. If an extension is recognized by more than one plugin,
 the user can select which one to use when importing the files.
 
-> Tip: Common extensions like .json and .txt might be used by many
+> Tip: Common extensions like `.json` and `.txt` might be used by many
 > plugins. Also, there could be files in the project that are just data
 > for the game and should not be imported. You have to be careful when
 > importing to validate the data. Never expect the file to be well-formed.
@@ -134,15 +134,15 @@ func _get_save_extension():
     return "material"
 ```
 
-The imported files are saved in the .import folder at the project's root.
+The imported files are saved in the `.import` folder at the project's root.
 Their extension should match the type of resource you are importing, but since
 Godot can't tell what you'll use (because there might be multiple valid
 extensions for the same resource), you need to declare what will be used in
 the import.
 
 Since we're importing a Material, we'll use the special extension for such
-resource types. If you are importing a scene, you can use scn. Generic
-resources can use the res extension. However, this is not enforced in any
+resource types. If you are importing a scene, you can use `scn`. Generic
+resources can use the `res` extension. However, this is not enforced in any
 way by the engine.
 
 ```
@@ -196,7 +196,7 @@ func _get_preset_count():
 The [_get_preset_count()](https://docs.godotengine.org/en/stable/classes/class_editorimportplugin_private_method__get_preset_count.html#class-editorimportplugin_private_method__get_preset_count) method
 returns the amount of presets that this plugins defines. We only have one preset
 now, but we can make this method future-proof by returning the size of our
-Presets enumeration.
+`Presets` enumeration.
 
 ```
 func _get_preset_name(preset_index):
@@ -212,7 +212,7 @@ Here we have the
 gives names to the presets as they will be presented to the user, so be sure to
 use short and clear names.
 
-We can use the match statement here to make the code more structured. This
+We can use the `match` statement here to make the code more structured. This
 way it's easy to add new presets in the future. We use the catch all pattern to
 return something too. Although Godot won't ask for presets beyond the preset
 count you defined, it's always better to be on the safe side.
@@ -240,22 +240,22 @@ shows the possible keys:
 
 Key | Type | Description
 --- | ---- | -----------
-name | String | The name of the option. When showed, underscores become spaces and first letters are capitalized.
-default_value | Any | The default value of the option for this preset.
-property_hint | Enum value | One of the :ref:`PropertyHint <enum_@GlobalScope_PropertyHint>` values to use as hint.
-hint_string | String | The hint text of the property. The same as you'd add in theexportstatement in GDScript.
-usage | Enum value | One of the :ref:`PropertyUsageFlags <enum_@GlobalScope_PropertyUsageFlags>` values to define the usage.
+`name` | String | The name of the option. When showed, underscores become spaces and first letters are capitalized.
+`default_value` | Any | The default value of the option for this preset.
+`property_hint` | Enum value | One of the :ref:`PropertyHint <enum_@GlobalScope_PropertyHint>` values to use as hint.
+`hint_string` | String | The hint text of the property. The same as you'd add in the`export`statement in GDScript.
+`usage` | Enum value | One of the :ref:`PropertyUsageFlags <enum_@GlobalScope_PropertyUsageFlags>` values to define the usage.
 
-The name and default_value keys are **mandatory**, the rest are optional.
+The `name` and `default_value` keys are **mandatory**, the rest are optional.
 
-Note that the _get_import_options method receives the preset number, so you
+Note that the `_get_import_options` method receives the preset number, so you
 can configure the options for each different preset (especially the default
-value). In this example we use the match statement, but if you have lots of
+value). In this example we use the `match` statement, but if you have lots of
 options and the presets only change the value you may want to create the array
 of options first and then change it based on the preset.
 
-> Warning: The _get_import_options method is called even if you don't
-> define presets (by making _get_preset_count return zero). You
+> Warning: The `_get_import_options` method is called even if you don't
+> define presets (by making `_get_preset_count` return zero). You
 > have to return an array even it's empty, otherwise you can get
 > errors.
 >
@@ -267,13 +267,13 @@ func _get_option_visibility(path, option_name, options):
 
 For the
 [_get_option_visibility()](https://docs.godotengine.org/en/stable/classes/class_editorimportplugin_private_method__get_option_visibility.html#class-editorimportplugin_private_method__get_option_visibility)
-method, we simply return true because all of our options (i.e. the single
+method, we simply return `true` because all of our options (i.e. the single
 one we defined) are visible all the time.
 
 If you need to make certain option visible only if another is set with a certain
 value, you can add the logic in this method.
 
-## The import method
+## The `import` method
 
 The heavy part of the process, responsible for converting the files into
 resources, is covered by the [_import()](https://docs.godotengine.org/en/stable/classes/class_editorimportplugin_private_method__import.html#class-editorimportplugin_private_method__import)
@@ -289,7 +289,7 @@ func _import(source_file, save_path, options, r_platform_variants, r_gen_files):
 ```
 
 The first part of our import method opens and reads the source file. We use the
-[FileAccess](https://docs.godotengine.org/en/stable/classes/class_fileaccess.html#class-fileaccess) class to do that, passing the source_file
+[FileAccess](https://docs.godotengine.org/en/stable/classes/class_fileaccess.html#class-fileaccess) class to do that, passing the `source_file`
 parameter which is provided by the editor.
 
 If there's an error when opening the file, we return it to let the editor know
@@ -302,9 +302,9 @@ if channels.size() != 3:
 
 var color
 if options.use_red_anyway:
-    color = Color8(255, 0, 0)
+    color = Color.from_rgba8(255, 0, 0)
 else:
-    color = Color8(int(channels[0]), int(channels[1]), int(channels[2]))
+    color = Color.from_rgba8(int(channels[0]), int(channels[1]), int(channels[2]))
 ```
 
 This code takes the line of the file it read before and splits it in pieces
@@ -312,7 +312,7 @@ that are separated by a comma. If there are more or less than the three values,
 it considers the file invalid and reports an error.
 
 Then it creates a new [Color](https://docs.godotengine.org/en/stable/classes/class_color.html#class-color) variable and sets its values
-according to the input file. If the use_red_anyway option is enabled, then
+according to the input file. If the `use_red_anyway` option is enabled, then
 it sets the color as a pure red instead.
 
 ```
@@ -330,9 +330,9 @@ return ResourceSaver.save(material, "%s.%s" % [save_path, _get_save_extension()]
 
 This is the last part and quite an important one, because here we save the made
 resource to the disk. The path of the saved file is generated and informed by
-the editor via the save_path parameter. Note that this comes **without** the
+the editor via the `save_path` parameter. Note that this comes **without** the
 extension, so we add it using <doc:gdscript_format_string>. For
-this we call the _get_save_extension method that we defined earlier, so we
+this we call the `_get_save_extension` method that we defined earlier, so we
 can be sure that they won't get out of sync.
 
 We also return the result from the
@@ -341,18 +341,18 @@ error in this step, the editor will know about it.
 
 ## Platform variants and generated files
 
-You may have noticed that our plugin ignored two arguments of the import
-method. Those are return arguments (hence the r at the beginning of their
+You may have noticed that our plugin ignored two arguments of the `import`
+method. Those are return arguments (hence the `r` at the beginning of their
 name), which means that the editor will read from them after calling your import
 method. Both of them are arrays that you can fill with information.
 
-The r_platform_variants argument is used if you need to import the resource
+The `r_platform_variants` argument is used if you need to import the resource
 differently depending on the target platform. While it's called platform
 variants, it is based on the presence of <doc:feature_tags>,
 so even the same platform can have multiple variants depending on the setup.
 
 To import a platform variant, you need to save it with the feature tag before
-the extension, and then push the tag to the r_platform_variants array so the
+the extension, and then push the tag to the `r_platform_variants` array so the
 editor can know that you did.
 
 For example, let's say we save a different material for a mobile platform. We
@@ -363,7 +363,7 @@ r_platform_variants.push_back("mobile")
 return ResourceSaver.save(mobile_material, "%s.%s.%s" % [save_path, "mobile", _get_save_extension()])
 ```
 
-The r_gen_files argument is meant for extra files that are generated during
+The `r_gen_files` argument is meant for extra files that are generated during
 your import process and need to be kept. The editor will look at it to
 understand the dependencies and make sure the extra file is not inadvertently
 deleted.
@@ -387,7 +387,7 @@ r_gen_files.push_back(next_pass_path)
 
 This has been theoretical, but now that the import plugin is done, let's
 test it. Make sure you created the sample file (with the contents described in
-the introduction section) and save it as test.mtxt. Then activate the plugin
+the introduction section) and save it as `test.mtxt`. Then activate the plugin
 in the Project Settings.
 
 If everything goes well, the import plugin is added to the editor and the file

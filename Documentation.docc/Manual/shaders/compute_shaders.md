@@ -22,7 +22,7 @@ a very useful tool to offload heavy calculations to the GPU.
 Now let's get started by creating a short compute shader.
 
 First, in the **external** text editor of your choice, create a new file called
-compute_example.glsl in your project folder. When you write compute shaders
+`compute_example.glsl` in your project folder. When you write compute shaders
 in Godot, you write them in GLSL directly. The Godot shader language is based on
 GLSL. If you are familiar with normal shaders in Godot, the syntax below will
 look somewhat familiar.
@@ -88,7 +88,7 @@ workgroups to run. Workgroups run in parallel to each other. While running one
 workgroup, you cannot access information in another workgroup. However,
 invocations in the same workgroup can have some limited access to other invocations.
 
-Think about workgroups and invocations as a giant nested for loop.
+Think about workgroups and invocations as a giant nested `for` loop.
 
 ```
 for (int x = 0; x < workgroup_size_x; x++) {
@@ -119,14 +119,14 @@ my_data_buffer;
 ```
 
 Here we provide information about the memory that the compute shader will have
-access to. The layout property allows us to tell the shader where to look
-for the buffer, we will need to match these set and binding positions
+access to. The `layout` property allows us to tell the shader where to look
+for the buffer, we will need to match these `set` and `binding` positions
 from the CPU side later.
 
-The restrict keyword tells the shader that this buffer is only going to be
+The `restrict` keyword tells the shader that this buffer is only going to be
 accessed from one place in this shader. In other words, we won't bind this
-buffer in another set or binding index. This is important as it allows
-the shader compiler to optimize the shader code. Always use restrict when
+buffer in another `set` or `binding` index. This is important as it allows
+the shader compiler to optimize the shader code. Always use `restrict` when
 you can.
 
 This is an unsized buffer, which means it can be any size. So we need to be
@@ -140,12 +140,12 @@ void main() {
 }
 ```
 
-Finally, we write the main function which is where all the logic happens. We
-access a position in the storage buffer using the gl_GlobalInvocationID
-built-in variables. gl_GlobalInvocationID gives you the global unique ID for
+Finally, we write the `main` function which is where all the logic happens. We
+access a position in the storage buffer using the `gl_GlobalInvocationID`
+built-in variables. `gl_GlobalInvocationID` gives you the global unique ID for
 the current invocation.
 
-To continue, write the code above into your newly created compute_example.glsl
+To continue, write the code above into your newly created `compute_example.glsl`
 file.
 
 ## Create a local RenderingDevice
@@ -157,8 +157,20 @@ in your scene.
 Now to execute our shader we need a local [RenderingDevice](https://docs.godotengine.org/en/stable/classes/class_renderingdevice.html#class-renderingdevice)
 which can be created using the [RenderingServer](https://docs.godotengine.org/en/stable/classes/class_renderingserver.html#class-renderingserver):
 
-After that, we can load the newly created shader file compute_example.glsl
+```
+# Create a local rendering device.
+var rd := RenderingServer.create_local_rendering_device()
+```
+
+After that, we can load the newly created shader file `compute_example.glsl`
 and create a precompiled version of it using this:
+
+```
+# Load GLSL shader
+var shader_file := load("res://compute_example.glsl")
+var shader_spirv: RDShaderSPIRV = shader_file.get_spirv()
+var shader := rd.shader_create_from_spirv(shader_spirv)
+```
 
 > Warning:
 >
@@ -178,9 +190,28 @@ and from the GPU.
 
 So let's initialize an array of floats and create a storage buffer:
 
+```
+# Prepare our data. We use floats in the shader, so we need 32 bit.
+var input := PackedFloat32Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+var input_bytes := input.to_byte_array()
+
+# Create a storage buffer that can hold our float values.
+# Each float has 4 bytes (32 bit) so 10 x 4 = 40 bytes
+var buffer := rd.storage_buffer_create(input_bytes.size(), input_bytes)
+```
+
 With the buffer in place we need to tell the rendering device to use this
 buffer. To do that we will need to create a uniform (like in normal shaders) and
 assign it to a uniform set which we can pass to our shader later.
+
+```
+# Create a uniform to assign the buffer to the rendering device
+var uniform := RDUniform.new()
+uniform.uniform_type = RenderingDevice.UNIFORM_TYPE_STORAGE_BUFFER
+uniform.binding = 0 # this needs to match the "binding" in our shader file
+uniform.add_id(buffer)
+var uniform_set := rd.uniform_set_create([uniform], shader, 0) # the last parameter (the 0) needs to match the "set" in our shader file
+```
 
 ## Defining a compute pipeline
 
@@ -201,6 +232,16 @@ The steps we need to do to compute our result are:
 
 1. End the list of instructions
 
+```
+# Create a compute pipeline
+var pipeline := rd.compute_pipeline_create(shader)
+var compute_list := rd.compute_list_begin()
+rd.compute_list_bind_compute_pipeline(compute_list, pipeline)
+rd.compute_list_bind_uniform_set(compute_list, uniform_set, 0)
+rd.compute_list_dispatch(compute_list, 5, 1, 1)
+rd.compute_list_end()
+```
+
 Note that we are dispatching the compute shader with 5 work groups in the
 X axis, and one in the others. Since we have 2 local invocations in the X axis
 (specified in our shader), 10 compute shader invocations will be launched in
@@ -217,7 +258,13 @@ actually run the shader program.
 To execute our compute shader we need to submit the pipeline to the GPU and
 wait for the execution to finish:
 
-Ideally, you would not call sync() to synchronize the RenderingDevice right
+```
+# Submit to GPU and wait for sync
+rd.submit()
+rd.sync()
+```
+
+Ideally, you would not call `sync()` to synchronize the RenderingDevice right
 away as it will cause the CPU to wait for the GPU to finish working. In our
 example, we synchronize right away because we want our data available for reading
 right away. In general, you will want to wait at least 2 or 3 frames before
@@ -245,12 +292,20 @@ storage buffer. In other words, the shader read from our array and stored the da
 in the same array again so our results are already there. Let's retrieve
 the data and print the results to our console.
 
+```
+# Read back the data from the buffer
+var output_bytes := rd.buffer_get_data(buffer)
+var output := output_bytes.to_float32_array()
+print("Input: ", input)
+print("Output: ", output)
+```
+
 ## Freeing memory
 
-The buffer, pipeline, and uniform_set variables we've been using are
+The `buffer`, `pipeline`, and `uniform_set` variables we've been using are
 each an [RID](https://docs.godotengine.org/en/stable/classes/class_rid.html#class-rid). Because RenderingDevice is meant to be a lower-level
 API, RIDs aren't freed automatically. This means that once you're done using
-buffer or any other RID, you are responsible for freeing its memory
+`buffer` or any other RID, you are responsible for freeing its memory
 manually using the RenderingDevice's
 [free_rid()](https://docs.godotengine.org/en/stable/classes/class_renderingdevice_method_free_rid.html#class-renderingdevice_method_free_rid) method.
 

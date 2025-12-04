@@ -86,11 +86,11 @@ the output file path. This path can be set for all scenes in the Project Setting
 @Image(source: "creating_movies_project_settings.png", alt: "Movie Maker project settings (with Advanced toggle enabled)") {Movie Maker project settings (with Advanced toggle enabled)}
 
 Alternatively, you can set the output file path on a per-scene basis by adding a
-String metadata with the name movie_file to the scene's **root node**. This
+String metadata with the name `movie_file` to the scene's **root node**. This
 is only used when the main scene is set to the scene in question, or when
-running the scene directly by pressing `F6` (`Cmd + R` on macOS).
+running the scene directly by pressing ``F6`` (``Cmd + R`` on macOS).
 
-@Image(source: "creating_movies_set_per_scene_metadata.png", alt: "Inspector view after creating a movie_file metadata of type String") {Inspector view after creating a movie_file metadata of type String}
+@Image(source: "creating_movies_set_per_scene_metadata.png", alt: "Inspector view after creating a `movie_file` metadata of type String") {Inspector view after creating a `movie_file` metadata of type String}
 
 The path specified in the project settings or metadata can be either absolute,
 or relative to the project root.
@@ -108,12 +108,12 @@ godot --path /path/to/your_project --write-movie output.avi
 
 If the output path is relative, then it is **relative to the project folder**,
 not the current working directory. In the above example, the file will be
-written to /path/to/your_project/output.avi. This behavior is similar to the
---export-release command line argument.
+written to `/path/to/your_project/output.avi`. This behavior is similar to the
+`--export-release` command line argument.
 
 Since Movie Maker's output resolution is set by the viewport size, you can
 adjust the window size on startup to override it if the project uses the
-disabled or canvas_items <doc:multiple_resolutions>:
+`disabled` or `canvas_items` <doc:multiple_resolutions>:
 
 ```
 godot --path /path/to/your_project --write-movie output.avi --resolution 1280x720
@@ -132,7 +132,7 @@ godot --path /path/to/your_project --write-movie output.avi --fixed-fps 30
 
 > Note:
 >
-> The --write-movie and --fixed-fps command line arguments are both available
+> The `--write-movie` and `--fixed-fps` command line arguments are both available
 > in exported projects. Movie Maker mode cannot be toggled while the project is running,
 > but you can use the [OS.execute()](https://docs.godotengine.org/en/stable/classes/class_os_method_execute.html#class-os_method_execute) method to
 > run a second instance of the exported project that will record a video file.
@@ -162,7 +162,7 @@ compression efficiency without downsides.
 The resulting file can be viewed in Godot with [VideoStreamPlayer](https://docs.godotengine.org/en/stable/classes/class_videostreamplayer.html#class-videostreamplayer) and most video players but not web browsers. OGV
 does not support transparency.
 
-To use OGV, specify a path to a .ogv file to be created in the **Editor >
+To use OGV, specify a path to a `.ogv` file to be created in the **Editor >
 Movie Writer > Movie File** project setting.
 
 > Note:
@@ -184,7 +184,7 @@ to another format for viewing on the web or by Godot with the VideoStreamPlayer
 node. MJPEG does not support transparency. AVI output is currently limited to a
 file of 4 GB in size at most.
 
-To use AVI, specify a path to a .avi file to be created in the
+To use AVI, specify a path to a `.avi` file to be created in the
 **Editor > Movie Writer > Movie File** project setting.
 
 ### PNG
@@ -195,16 +195,16 @@ to be
 <doc:creating_movies#Converting-Avi>.
 
 Transparency is supported, but the root viewport **must** have its
-transparent_bg property set to true for transparency to be visible on
+`transparent_bg` property set to `true` for transparency to be visible on
 the output image. This can be achieved by enabling the **Rendering > Transparent
 Background** advanced project setting. **Display > Window > Size > Transparent**
 and **Display > Window > Per Pixel Transparency > Enabled** can optionally be
 enabled to allow transparency to be previewed while recording the video, but
 they do not have to be enabled for the output image to contain transparency.
 
-To use PNG, specify a .png file to be created in the
-**Editor > Movie Writer > Movie File** project setting. The generated .wav
-file will have the same name as the .png file (minus the extension).
+To use PNG, specify a `.png` file to be created in the
+**Editor > Movie Writer > Movie File** project setting. The generated `.wav`
+file will have the same name as the `.png` file (minus the extension).
 
 ### Custom
 
@@ -228,9 +228,9 @@ desynchronizing over time.
 a movie (stereo, 5.1 surround or 7.1 surround).
 
 - **Video Quality:** The image quality to use when writing a video to an OGV or
-AVI file, between 0.01 and 1.0 (inclusive). Higher quality values result
+AVI file, between `0.01` and `1.0` (inclusive). Higher quality values result
 in better-looking output at the cost of larger file sizes. Recommended quality
-values are between 0.75 and 0.9. Even at quality 1.0, compression
+values are between `0.75` and `0.9`. Even at quality `1.0`, compression
 remains lossy. This setting does not affect audio quality and is ignored when
 writing to a PNG image sequence.
 
@@ -250,10 +250,10 @@ higher than 60, but you can use a higher value and use that to generate motion
 blur.
 
 - **Audio Quality:** The audio quality to use when writing a video to an OGV
-file, between -0.1 and 1.0 (inclusive). Higher quality values result
+file, between `-0.1` and `1.0` (inclusive). Higher quality values result
 in better audio quality at the cost of very slightly larger file sizes.
-Recommended quality values are between 0.3 and 0.5. Even at quality
-1.0, compression remains lossy.
+Recommended quality values are between `0.3` and `0.5`. Even at quality
+`1.0`, compression remains lossy.
 
 - **Encoding Speed:** The speed level to use when writing a video to an OGV
 file. Faster speed levels have less compression efficiency. The image quality
@@ -266,7 +266,7 @@ video seeks.
 
 > Note:
 >
-> When using the disabled or 2d <doc:multiple_resolutions>,
+> When using the `disabled` or `2d` <doc:multiple_resolutions>,
 > the output file's resolution is set by the window size. Make sure to resize
 > the window before the splash screen has ended. For this purpose, it's
 > recommended to adjust the
@@ -279,11 +279,11 @@ video seeks.
 ## Quitting Movie Maker mode
 
 To safely quit a project that is using Movie Maker mode, use the X button at the
-top of the window, or call get_tree().quit() in a script. You can also use
-the --quit-after N command line argument where N is the number of frames
+top of the window, or call `get_tree().quit()` in a script. You can also use
+the `--quit-after N` command line argument where `N` is the number of frames
 to render before quitting.
 
-Pressing `F8` (`Cmd + .` on macOS) or pressing `Ctrl + C` on the
+Pressing ``F8`` (``Cmd + .`` on macOS) or pressing ``Ctrl + C`` on the
 terminal running Godot is **not recommended**, as it will result in an
 improperly formatted AVI file with no duration information. For PNG image
 sequences, PNG images will not be negatively altered, but the associated WAV
@@ -305,7 +305,7 @@ Therefore, you need to make sure that the animation is set as non-looping.
 
 ## Using high-quality graphics settings
 
-The movie <doc:feature_tags> can be used to override
+The `movie` <doc:feature_tags> can be used to override
 specific project settings. This is useful to enable high-quality graphics settings
 that wouldn't be fast enough to run in real-time speeds on your hardware.
 Remember that putting every setting to its maximum value can still slow down
@@ -336,7 +336,7 @@ resolutions such as 4K or 8K.
 > Note:
 >
 > For 3D rendering, Godot provides a **Rendering > Scaling 3D > Scale**
-> advanced project setting, which can be set above 1.0 to obtain
+> advanced project setting, which can be set above `1.0` to obtain
 > supersample antialiasing. The 3D rendering is then downsampled when it's
 > drawn on the viewport. This provides an expensive but high-quality form of
 > antialiasing, without increasing the final output resolution.
@@ -350,11 +350,11 @@ If you wish to render 2D at a higher resolution, or if you actually need the
 higher raw pixel output for 3D rendering, you can increase the resolution above
 what the screen allows.
 
-By default, Godot uses the disabled <doc:multiple_resolutions>
-in projects. If using disabled or canvas_items stretch mode,
+By default, Godot uses the `disabled` <doc:multiple_resolutions>
+in projects. If using `disabled` or `canvas_items` stretch mode,
 the window size dictates the output video resolution.
 
-On the other hand, if the project is configured to use the viewport stretch
+On the other hand, if the project is configured to use the `viewport` stretch
 mode, the viewport resolution dictates the output video resolution. The viewport
 resolution is set using the **Display > Window > Size > Viewport Width** and
 **Viewport Height** project settings. This can be used to render a video at a
@@ -363,10 +363,10 @@ higher resolution than the screen resolution.
 To make the window smaller during recording without affecting the output video
 resolution, you can set the **Display > Window > Size > Window Width Override**
 and **Window Height Override** advanced project settings to values greater than
-0.
+`0`.
 
 To apply a resolution override only when recording a movie, you can override
-those settings with the movie <doc:feature_tags>.
+those settings with the `movie` <doc:feature_tags>.
 
 ## Post-processing steps
 
@@ -399,8 +399,8 @@ To get a smaller file at the cost of quality, increase the CRF value in the
 above command.
 
 To get a file with a better size/quality ratio (at the cost of slower encoding
-times), add -preset veryslow before -crf 15 in the above command. On the
-contrary, -preset veryfast can be used to achieve faster encoding at the
+times), add `-preset veryslow` before `-crf 15` in the above command. On the
+contrary, `-preset veryfast` can be used to achieve faster encoding at the
 cost of a worse size/quality ratio.
 
 ### Converting PNG image sequence + WAV audio to a video
@@ -410,11 +410,11 @@ you need to convert it to a video before you can use it elsewhere.
 
 The filename for the PNG image sequence generated by Godot always contains 8
 digits, starting at 0 with zero-padded numbers. If you specify an output
-path folder/example.png, Godot will write folder/example00000000.png,
-folder/example00000001.png, and so on in that folder. The audio will be saved
-at folder/example.wav.
+path `folder/example.png`, Godot will write `folder/example00000000.png`,
+`folder/example00000001.png`, and so on in that folder. The audio will be saved
+at `folder/example.wav`.
 
-The FPS is specified using the -r argument. It should match the FPS
+The FPS is specified using the `-r` argument. It should match the FPS
 specified during recording. Otherwise, the video will appear to be slowed down
 or sped up, and audio will be out of sync with the video.
 

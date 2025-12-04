@@ -31,134 +31,134 @@ upgrading Godot.
 Change | GDScript Compatible | C# Binary Compatible | C# Source Compatible | Introduced
 ------ | ------------------- | -------------------- | -------------------- | ----------
 **Basis** |  |  |  | 
-Methodlooking_atadds a newuse_model_frontoptional parameter | |✔️| | |✔️| | |✔️| | GH-76082
+Method`looking_at`adds a new`use_model_front`optional parameter | |✔️| | |✔️| | |✔️| | GH-76082
 **Object** |  |  |  | 
-Methodget_meta_listchanges return type fromPackedStringArraytoArray[StringName] | |✔️| | |❌| | |❌| | GH-76418
+Method`get_meta_list`changes return type from`PackedStringArray`to`Array[StringName]` | |✔️| | |❌| | |❌| | GH-76418
 **Transform3D** |  |  |  | 
-Methodlooking_atadds a newuse_model_frontoptional parameter | |✔️| | |✔️| | |✔️| | GH-76082
+Method`looking_at`adds a new`use_model_front`optional parameter | |✔️| | |✔️| | |✔️| | GH-76082
 **UndoRedo** |  |  |  | 
-Methodcreate_actionadds a newbackward_undo_opsoptional parameter | |✔️| | |✔️ with compat| | |✔️| | GH-76688
+Method`create_action`adds a new`backward_undo_ops`optional parameter | |✔️| | |✔️ with compat| | |✔️| | GH-76688
 **WorkerThreadPool** |  |  |  | 
-Methodwait_for_task_completionchanges return type fromvoidtoError | |✔️| | |❌| | |✔️| | GH-77143
+Method`wait_for_task_completion`changes return type from`void`to`Error` | |✔️| | |❌| | |✔️| | GH-77143
 
 ### Animation
 
 Change | GDScript Compatible | C# Binary Compatible | C# Source Compatible | Introduced
 ------ | ------------------- | -------------------- | -------------------- | ----------
 **AnimationNode** |  |  |  | 
-Method_processadds a newtest_onlyparameter | |❌| | |❌| | |❌| | GH-75759
-Methodblend_inputadds a newtest_onlyoptional parameter | |✔️| | |✔️ with compat| | |✔️| | GH-75759
-Methodblend_nodeadds a newtest_onlyoptional parameter | |✔️| | |✔️ with compat| | |✔️| | GH-75759
+Method`_process`adds a new`test_only`parameter | |❌| | |❌| | |❌| | GH-75759
+Method`blend_input`adds a new`test_only`optional parameter | |✔️| | |✔️ with compat| | |✔️| | GH-75759
+Method`blend_node`adds a new`test_only`optional parameter | |✔️| | |✔️ with compat| | |✔️| | GH-75759
 **AnimationNodeStateMachinePlayback** |  |  |  | 
-Methodget_travel_pathchanges return type fromPackedStringArraytoArray[StringName] | |✔️| | |❌| | |❌| | GH-76418
+Method`get_travel_path`changes return type from`PackedStringArray`to`Array[StringName]` | |✔️| | |❌| | |❌| | GH-76418
 
 ### 2D nodes
 
 Change | GDScript Compatible | C# Binary Compatible | C# Source Compatible | Introduced
 ------ | ------------------- | -------------------- | -------------------- | ----------
 **PathFollow2D** |  |  |  | 
-Propertylookaheadremoved | |❌| | |❌| | |❌| | GH-72842
+Property`lookahead`removed | |❌| | |❌| | |❌| | GH-72842
 
 ### 3D nodes
 
 Change | GDScript Compatible | C# Binary Compatible | C# Source Compatible | Introduced
 ------ | ------------------- | -------------------- | -------------------- | ----------
 **Geometry3D** |  |  |  | 
-Methodsegment_intersects_convexchangesplanesparameter type from untypedArraytoArray[Plane] | |✔️| | |✔️ with compat| | |❌| | GH-76418
+Method`segment_intersects_convex`changes`planes`parameter type from untyped`Array`to`Array[Plane]` | |✔️| | |✔️ with compat| | |❌| | GH-76418
 **MeshInstance3D** |  |  |  | 
-Methodcreate_multiple_convex_collisionsadds a newsettingsoptional parameter | |✔️| | |✔️ with compat| | |✔️| | GH-72152
+Method`create_multiple_convex_collisions`adds a new`settings`optional parameter | |✔️| | |✔️ with compat| | |✔️| | GH-72152
 **Node3D** |  |  |  | 
-Methodlook_atadds a newuse_model_frontoptional parameter | |✔️| | |✔️ with compat| | |✔️| | GH-76082
-Methodlook_at_from_positionadds a newuse_model_frontoptional parameter | |✔️| | |✔️ with compat| | |✔️| | GH-76082
+Method`look_at`adds a new`use_model_front`optional parameter | |✔️| | |✔️ with compat| | |✔️| | GH-76082
+Method`look_at_from_position`adds a new`use_model_front`optional parameter | |✔️| | |✔️ with compat| | |✔️| | GH-76082
 
 ### GUI nodes
 
 Change | GDScript Compatible | C# Binary Compatible | C# Source Compatible | Introduced
 ------ | ------------------- | -------------------- | -------------------- | ----------
 **CodeEdit** |  |  |  | 
-Methodadd_code_completion_optionadds a newlocationoptional parameter | |✔️| | |✔️ with compat| | |✔️| | GH-75746
+Method`add_code_completion_option`adds a new`location`optional parameter | |✔️| | |✔️ with compat| | |✔️| | GH-75746
 **RichTextLabel** |  |  |  | 
-Methodpush_listadds a newbulletoptional parameter | |✔️| | |✔️ with compat| | |✔️| | GH-75017
-Methodpush_paragraphadds a newjustification_flagsoptional parameter | |✔️| | |✔️ with compat| | |✔️| | GH-75250
-Methodpush_paragraphadds a newtab_stopsoptional parameter | |✔️| | |✔️ with compat| | |✔️| | GH-76401
+Method`push_list`adds a new`bullet`optional parameter | |✔️| | |✔️ with compat| | |✔️| | GH-75017
+Method`push_paragraph`adds a new`justification_flags`optional parameter | |✔️| | |✔️ with compat| | |✔️| | GH-75250
+Method`push_paragraph`adds a new`tab_stops`optional parameter | |✔️| | |✔️ with compat| | |✔️| | GH-76401
 **Tree** |  |  |  | 
-Methodedit_selectedadds a newforce_editoptional parameter | |✔️| | |✔️ with compat| | |✔️| | GH-76794
+Method`edit_selected`adds a new`force_edit`optional parameter | |✔️| | |✔️ with compat| | |✔️| | GH-76794
 
 ### Physics
 
 Change | GDScript Compatible | C# Binary Compatible | C# Source Compatible | Introduced
 ------ | ------------------- | -------------------- | -------------------- | ----------
 **Area2D** |  |  |  | 
-Propertyprioritychanges type fromfloattoint | |❌| | |❌| | |❌| | GH-72749
+Property`priority`changes type from`float`to`int` | |❌| | |❌| | |❌| | GH-72749
 **Area3D** |  |  |  | 
-Propertyprioritychanges type fromfloattoint | |❌| | |❌| | |❌| | GH-72749
+Property`priority`changes type from`float`to`int` | |❌| | |❌| | |❌| | GH-72749
 **PhysicsDirectSpaceState2D** |  |  |  | 
-Methodcollide_shapechanges return type fromArray[PackedVector2Array]toArray[Vector2] | |❌| | |❌| | |❌| | GH-75260
+Method`collide_shape`changes return type from`Array[PackedVector2Array]`to`Array[Vector2]` | |❌| | |❌| | |❌| | GH-75260
 **PhysicsDirectSpaceState3D** |  |  |  | 
-Methodcollide_shapechanges return type fromArray[PackedVector3Array]toArray[Vector3] | |❌| | |❌| | |❌| | GH-75260
+Method`collide_shape`changes return type from`Array[PackedVector3Array]`to`Array[Vector3]` | |❌| | |❌| | |❌| | GH-75260
 
 ### Rendering
 
 Change | GDScript Compatible | C# Binary Compatible | C# Source Compatible | Introduced
 ------ | ------------------- | -------------------- | -------------------- | ----------
 **RDShaderFile** |  |  |  | 
-Methodget_version_listchanges return type fromPackedStringArraytoArray[StringName] | |✔️| | |❌| | |❌| | GH-76418
+Method`get_version_list`changes return type from`PackedStringArray`to`Array[StringName]` | |✔️| | |❌| | |❌| | GH-76418
 **RenderingDevice** |  |  |  | 
-Methoddraw_list_beginchangesstorage_texturesparameter type from untypedArraytoArray[RID] | |✔️| | |✔️ with compat| | |❌| | GH-76418
+Method`draw_list_begin`changes`storage_textures`parameter type from untyped`Array`to`Array[RID]` | |✔️| | |✔️ with compat| | |❌| | GH-76418
 **RenderingServer** |  |  |  | 
-Methodglobal_shader_parameter_get_listchanges return type fromPackedStringArraytoArray[StringName] | |✔️| | |❌| | |❌| | GH-76418
+Method`global_shader_parameter_get_list`changes return type from`PackedStringArray`to`Array[StringName]` | |✔️| | |❌| | |❌| | GH-76418
 **SurfaceTool** |  |  |  | 
-Methodadd_triangle_fanchangestangentsparameter type from untypedArraytoArray[Plane] | |✔️| | |✔️ with compat| | |❌| | GH-76418
+Method`add_triangle_fan`changes`tangents`parameter type from untyped`Array`to`Array[Plane]` | |✔️| | |✔️ with compat| | |❌| | GH-76418
 
 ### Navigation
 
 Change | GDScript Compatible | C# Binary Compatible | C# Source Compatible | Introduced
 ------ | ------------------- | -------------------- | -------------------- | ----------
 **NavigationAgent2D** |  |  |  | 
-Methodset_velocityreplaced withvelocityproperty | |✔️| | |❌| | |❌| | GH-69988
-Propertytime_horizonsplit intotime_horizon_agentsandtime_horizon_obstacles | |❌| | |❌| | |❌| | GH-69988
+Method`set_velocity`replaced with`velocity`property | |✔️| | |❌| | |❌| | GH-69988
+Property`time_horizon`split into`time_horizon_agents`and`time_horizon_obstacles` | |❌| | |❌| | |❌| | GH-69988
 **NavigationAgent3D** |  |  |  | 
-Propertyagent_height_offsetrenamed topath_height_offset | |❌| | |❌| | |❌| | GH-69988
-Propertyignore_yremoved | |❌| | |❌| | |❌| | GH-69988
-Methodset_velocityreplaced withvelocityproperty | |✔️| | |❌| | |❌| | GH-69988
-Propertytime_horizonsplit intotime_horizon_agentsandtime_horizon_obstacles | |❌| | |❌| | |❌| | GH-69988
+Property`agent_height_offset`renamed to`path_height_offset` | |❌| | |❌| | |❌| | GH-69988
+Property`ignore_y`removed | |❌| | |❌| | |❌| | GH-69988
+Method`set_velocity`replaced with`velocity`property | |✔️| | |❌| | |❌| | GH-69988
+Property`time_horizon`split into`time_horizon_agents`and`time_horizon_obstacles` | |❌| | |❌| | |❌| | GH-69988
 **NavigationObstacle2D** |  |  |  | 
-Propertyestimate_radiusremoved | |❌| | |❌| | |❌| | GH-69988
-Methodget_ridrenamed toget_agent_rid | |❌| | |❌| | |❌| | GH-69988
+Property`estimate_radius`removed | |❌| | |❌| | |❌| | GH-69988
+Method`get_rid`renamed to`get_agent_rid` | |❌| | |❌| | |❌| | GH-69988
 **NavigationObstacle3D** |  |  |  | 
-Propertyestimate_radiusremoved | |❌| | |❌| | |❌| | GH-69988
-Methodget_ridrenamed toget_agent_rid | |❌| | |❌| | |❌| | GH-69988
+Property`estimate_radius`removed | |❌| | |❌| | |❌| | GH-69988
+Method`get_rid`renamed to`get_agent_rid` | |❌| | |❌| | |❌| | GH-69988
 **NavigationServer2D** |  |  |  | 
-Methodagent_set_callbackrenamed toagent_set_avoidance_callback | |❌| | |❌| | |❌| | GH-69988
-Methodagent_set_target_velocityremoved | |❌| | |❌| | |❌| | GH-69988
-Methodagent_set_time_horizonsplit intoagent_set_time_horizon_agentsandagent_set_time_horizon_obstacles | |❌| | |❌| | |❌| | GH-69988
+Method`agent_set_callback`renamed to`agent_set_avoidance_callback` | |❌| | |❌| | |❌| | GH-69988
+Method`agent_set_target_velocity`removed | |❌| | |❌| | |❌| | GH-69988
+Method`agent_set_time_horizon`split into`agent_set_time_horizon_agents`and`agent_set_time_horizon_obstacles` | |❌| | |❌| | |❌| | GH-69988
 **NavigationServer3D** |  |  |  | 
-Methodagent_set_callbackrenamed toagent_set_avoidance_callback | |❌| | |❌| | |❌| | GH-69988
-Methodagent_set_target_velocityremoved | |❌| | |❌| | |❌| | GH-69988
-Methodagent_set_time_horizonsplit intoagent_set_time_horizon_agentsandagent_set_time_horizon_obstacles | |❌| | |❌| | |❌| | GH-69988
+Method`agent_set_callback`renamed to`agent_set_avoidance_callback` | |❌| | |❌| | |❌| | GH-69988
+Method`agent_set_target_velocity`removed | |❌| | |❌| | |❌| | GH-69988
+Method`agent_set_time_horizon`split into`agent_set_time_horizon_agents`and`agent_set_time_horizon_obstacles` | |❌| | |❌| | |❌| | GH-69988
 
 ### Networking
 
 Change | GDScript Compatible | C# Binary Compatible | C# Source Compatible | Introduced
 ------ | ------------------- | -------------------- | -------------------- | ----------
 **WebRTCPeerConnectionExtension** |  |  |  | 
-Method_create_data_channelchanges return type fromObjecttoWebRTCDataChannel | |✔️| | |❌| | |✔️| | GH-78237
+Method`_create_data_channel`changes return type from`Object`to`WebRTCDataChannel` | |✔️| | |❌| | |✔️| | GH-78237
 
 ### Editor plugins
 
 Change | GDScript Compatible | C# Binary Compatible | C# Source Compatible | Introduced
 ------ | ------------------- | -------------------- | -------------------- | ----------
 **AnimationTrackEditPlugin** |  |  |  | 
-TypeAnimationTrackEditPluginremoved | |❌| | |❌| | |❌| | GH-76413
+Type`AnimationTrackEditPlugin`removed | |❌| | |❌| | |❌| | GH-76413
 **EditorInterface** |  |  |  | 
-TypeEditorInterfacechanges inheritance fromNodetoObject | |✔️| | |❌| | |❌| | GH-76176
-Methodset_movie_maker_enabledreplaced withmovie_maker_enabledproperty | |✔️| | |❌| | |❌| | GH-76176
-Methodis_movie_maker_enabledreplaced withmovie_maker_enabledproperty | |✔️| | |❌| | |❌| | GH-76176
+Type`EditorInterface`changes inheritance from`Node`to`Object` | |✔️| | |❌| | |❌| | GH-76176
+Method`set_movie_maker_enabled`replaced with`movie_maker_enabled`property | |✔️| | |❌| | |❌| | GH-76176
+Method`is_movie_maker_enabled`replaced with`movie_maker_enabled`property | |✔️| | |❌| | |❌| | GH-76176
 **EditorResourcePreviewGenerator** |  |  |  | 
-Method_generateadds a newmetadataparameter | |❌| | |❌| | |❌| | GH-64628
-Method_generate_from_pathadds a newmetadataparameter | |❌| | |❌| | |❌| | GH-64628
+Method`_generate`adds a new`metadata`parameter | |❌| | |❌| | |❌| | GH-64628
+Method`_generate_from_path`adds a new`metadata`parameter | |❌| | |❌| | |❌| | GH-64628
 **EditorUndoRedoManager** |  |  |  | 
-Methodcreate_actionadds a newbackward_undo_opsoptional parameter | |✔️| | |✔️ with compat| | |✔️| | GH-76688
+Method`create_action`adds a new`backward_undo_ops`optional parameter | |✔️| | |✔️ with compat| | |✔️| | GH-76688
 
 ## Behavior changes
 
@@ -167,10 +167,10 @@ In 4.1, some behavior changes have been introduced, which might require you to a
 Change | Introduced
 ------ | ----------
 **SubViewportContainer** | 
-When input events should reach SubViewports and their children,SubViewportContainer.mouse_filternow needs to beMOUSE_FILTER_STOPorMOUSE_FILTER_PASS. SeeGH-79271for details. | GH-57894
-Multiple layeredSubViewportContainernodes, that should all receive mouse input events, now need to be replaced byArea2Dnodes. SeeGH-79128for details. | GH-57894
+When input events should reach SubViewports and their children,`SubViewportContainer.mouse_filter`now needs to be`MOUSE_FILTER_STOP`or`MOUSE_FILTER_PASS`. SeeGH-79271for details. | GH-57894
+Multiple layered`SubViewportContainer`nodes, that should all receive mouse input events, now need to be replaced by`Area2D`nodes. SeeGH-79128for details. | GH-57894
 **Viewport** | 
-Viewportnodes, that have Physics Picking enabled, now automatically set InputEvents as handled. SeeGH-79897for workarounds. | GH-77595
+`Viewport`nodes, that have Physics Picking enabled, now automatically set InputEvents as handled. SeeGH-79897for workarounds. | GH-77595
 
 ## Updating your GDExtension for 4.1
 
@@ -178,7 +178,7 @@ In order to fix a serious bug, in Godot 4.1 we had to break binary compatibility
 way and source compatibility in a small way.
 
 This means that GDExtensions made for Godot 4.0 will need to be recompiled for Godot 4.1
-(using the  4.1 branch of godot-cpp), with a small change to their source code.
+(using the  `4.1` branch of godot-cpp), with a small change to their source code.
 
 In Godot 4.0, your "entry_symbol" function looks something like this:
 
@@ -210,11 +210,11 @@ GDExtensionBool GDE_EXPORT example_library_init(GDExtensionInterfaceGetProcAddre
 
 There are two small changes:
 
-1. The first argument changes from const GDExtensionInterface *p_interface to GDExtensionInterfaceGetProcAddress p_get_proc_address
+1. The first argument changes from `const GDExtensionInterface *p_interface` to `GDExtensionInterfaceGetProcAddress p_get_proc_address`
 
-1. The constructor for the `init_obj` variable now receives p_get_proc_address as its first parameter
+1. The constructor for the `init_obj` variable now receives `p_get_proc_address` as its first parameter
 
-You also need to add an extra compatibility_minimum line to your .gdextension file, so that it looks something like:
+You also need to add an extra `compatibility_minimum` line to your `.gdextension` file, so that it looks something like:
 
 ```
 [configuration]

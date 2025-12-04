@@ -105,8 +105,8 @@ There are some limitations to TextMesh:
 - No built-in outline support, unlike Label3D. This can be simulated using custom
 shaders though.
 
-- Only dynamic fonts are supported (.ttf, .otf, .woff, .woff2).
-Bitmap fonts in the .fnt or .font formats are **not** supported.
+- Only dynamic fonts are supported (`.ttf`, `.otf`, `.woff`, `.woff2`).
+Bitmap fonts in the `.fnt` or `.font` formats are **not** supported.
 
 - Fonts with self-intersecting outlines will not render correctly.
 If you notice rendering issues on fonts downloaded from websites such as
@@ -123,8 +123,8 @@ distance. See <doc:3d_antialiasing> for more information.
 There is a last solution that is more complex to set up, but provides the most
 flexibility: projecting a 2D node onto 3D space. This can be achieved using the
 return value of [unproject_position](https://docs.godotengine.org/en/stable/classes/class_camera3d_method_unproject_position.html#class-camera3d_method_unproject_position)
-method on a Camera3D node in a script's _process() function. This return value
-should then be used to set the position property of a Control node.
+method on a Camera3D node in a script's `_process()` function. This return value
+should then be used to set the `position` property of a Control node.
 
 See the 3D waypoints
 demo for an example of this.
@@ -148,7 +148,7 @@ RayCast to fully hide the control if its target position is occluded by a
 collider, but this doesn't allow for partially hiding the control behind a
 wall.
 
-- Changing text size depending on distance by adjusting the Control's scale
+- Changing text size depending on distance by adjusting the Control's `scale`
 property is possible, but it needs to be done manually. Label3D and TextMesh
 automatically take care of this, at the cost of less flexibility (can't set a
 minimum/maximum text size in pixels).

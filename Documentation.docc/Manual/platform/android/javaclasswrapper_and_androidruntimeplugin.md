@@ -25,7 +25,7 @@ To address this, we've introduced a couple of tools in **Godot 4.4** to simplify
 
 ## JavaClassWrapper (Godot singleton)
 
-JavaClassWrapper is a [Godot singleton](https://docs.godotengine.org/en/stable/classes/class_javaclasswrapper.html#class-javaclasswrapper) which allows
+`JavaClassWrapper` is a [Godot singleton](https://docs.godotengine.org/en/stable/classes/class_javaclasswrapper.html#class-javaclasswrapper) which allows
 creating instances of Java / Kotlin classes and calling methods on them using only GDScript, C# or GDExtension.
 
 ```
@@ -38,27 +38,27 @@ var formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")
 print(datetime.format(formatter))
 ```
 
-In the code snippet above, JavaClassWrapper is used from GDScript to access the Java LocalDateTime and DateTimeFormatter classes.
-Through JavaClassWrapper, we can call the Java classes methods directly from GDScript as if they were GDScript methods.
+In the code snippet above, `JavaClassWrapper` is used from GDScript to access the Java `LocalDateTime` and `DateTimeFormatter` classes.
+Through `JavaClassWrapper`, we can call the Java classes methods directly from GDScript as if they were GDScript methods.
 
 ## AndroidRuntime plugin
 
-JavaClassWrapper is great, but to do many things on Android, you need access to various Android lifecycle / runtime objects.
-AndroidRuntime plugin is a built-in Godot Android plugin that allows you to do this.
+`JavaClassWrapper` is great, but to do many things on Android, you need access to various Android lifecycle / runtime objects.
+`AndroidRuntime` plugin is a built-in Godot Android plugin that allows you to do this.
 
-Combining JavaClassWrapper and AndroidRuntime plugin allows developers to access and use Android APIs without switching away from GDScript, or using any tools aside from Godot itself.
+Combining `JavaClassWrapper` and `AndroidRuntime` plugin allows developers to access and use Android APIs without switching away from GDScript, or using any tools aside from Godot itself.
 This is **huge** for the adoption of Godot for Android development:
 
 - If you need to do something simple, or only use a small part of a third-party library, you don't have to make a plugin
 
 - It allows developers to quickly integrate Android functionality
 
-- It allows developers to create Godot addons using only GDScript and JavaClassWrapper (no Java or Kotlin needed)
+- It allows developers to create Godot addons using only GDScript and `JavaClassWrapper` (no Java or Kotlin needed)
 
 > Note:
 >
-> For exports using gradle, Godot will automatically include .jar or .aar files it find in the project addons directory.
-> So to use a third-party library, you can just drop its .jar or .aar file in the addons directory, and call its method directly from GDScript using JavaClassWrapper.
+> For exports using `gradle`, Godot will automatically include `.jar` or `.aar` files it find in the project `addons` directory.
+> So to use a third-party library, you can just drop its `.jar` or `.aar` file in the `addons` directory, and call its method directly from GDScript using `JavaClassWrapper`.
 >
 
 ### Example: Show an Android toast
@@ -97,7 +97,7 @@ if android_runtime:
 
 ### Example: Accessing inner classes
 
-Java inner classes can be accessed using the $ sign:
+Java inner classes can be accessed using the `$` sign:
 
 ```
 # Accessing 'VERSION' class, which is an inner class from the 'android.os.Build' class.
@@ -126,4 +126,28 @@ if android_runtime:
     intent.putExtra(Intent.EXTRA_TEXT, "This is a test message.")
     intent.setType("text/plain")
     activity.startActivity(intent)
+```
+
+### Example: Saving an image to the Android gallery
+
+```
+# Retrieve the AndroidRuntime singleton.
+var android_runtime = Engine.get_singleton("AndroidRuntime")
+if android_runtime:
+    var Intent = JavaClassWrapper.wrap("android.content.Intent")
+    var activity = android_runtime.getActivity()
+    var intent = Intent.Intent()
+
+    # Create the File and Uri.
+    var Uri = JavaClassWrapper.wrap("android.net.Uri")
+    var File = JavaClassWrapper.wrap("java.io.File")
+    var file = File.File(file_path_to_image_here)
+    var uri = Uri.fromFile(file)
+
+    # Set Action and Data of Intent.
+    intent.setAction(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE)
+    intent.setData(uri)
+
+    # Broadcast it.
+    activity.sendBroadcast(intent)
 ```

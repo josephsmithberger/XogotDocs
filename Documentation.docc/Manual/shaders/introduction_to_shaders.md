@@ -20,7 +20,7 @@ working with shaders, you need to code and think differently from other
 programming languages.
 
 Suppose you want to update all the pixels in a texture to a given color. In
-GDScript, your code would use for loops:
+GDScript, your code would use `for` loops:
 
 ```
 for x in range(width):
@@ -39,7 +39,7 @@ void fragment() {
 
 > Note:
 >
-> The graphics card calls the fragment() function once or more for each
+> The graphics card calls the `fragment()` function once or more for each
 > pixel it has to draw. More on that below.
 >
 
@@ -53,39 +53,39 @@ In Godot, shaders are made up of main functions called "processor functions".
 Processor functions are the entry point for your shader into the program. There
 are seven different processor functions.
 
-1. The vertex() function runs over all the vertices in the mesh and sets
+1. The `vertex()` function runs over all the vertices in the mesh and sets
 their positions and some other per-vertex variables. Used in
 <doc:canvas_item_shader> and
 <doc:spatial_shader>.
 
-1. The fragment() function runs for every pixel covered by the mesh. It uses
-values output by the vertex() function, interpolated between the
+1. The `fragment()` function runs for every pixel covered by the mesh. It uses
+values output by the `vertex()` function, interpolated between the
 vertices. Used in <doc:canvas_item_shader> and
 <doc:spatial_shader>.
 
-1. The light() function runs for every pixel and for every light. It takes
-variables from the fragment() function and from its previous runs. Used
+1. The `light()` function runs for every pixel and for every light. It takes
+variables from the `fragment()` function and from its previous runs. Used
 in <doc:canvas_item_shader> and
 <doc:spatial_shader>.
 
-1. The start() function runs for every particle in a particle system once
+1. The `start()` function runs for every particle in a particle system once
 when the particle is first spawned. Used in
 <doc:particle_shader>.
 
-1. The process() function runs for every particle in a particle system for
+1. The `process()` function runs for every particle in a particle system for
 each frame. Used in <doc:particle_shader>.
 
-1. The sky() function runs for every pixel in the radiance cubemap when the
+1. The `sky()` function runs for every pixel in the radiance cubemap when the
 radiance cubemap needs to be updated, and for every pixel on the current
 screen. Used in <doc:sky_shader>.
 
-1. The fog() function runs for every froxel in the volumetric fog froxel
+1. The `fog()` function runs for every froxel in the volumetric fog froxel
 buffer that intersects with the [FogVolume](https://docs.godotengine.org/en/stable/classes/class_fogvolume.html#class-fogvolume). Used by
 <doc:fog_shader>.
 
 > Warning:
 >
-> The light() function won't run if the vertex_lighting render mode is
+> The `light()` function won't run if the `vertex_lighting` render mode is
 > enabled, or if **Rendering > Quality > Shading > Force Vertex Shading** is
 > enabled in the Project Settings. It's enabled by default on mobile
 > platforms.
@@ -133,15 +133,15 @@ render_mode unshaded, cull_disabled;
 ```
 
 Render modes alter the way Godot applies the shader. For example, the
-unshaded mode makes the engine skip the built-in light processor function.
+`unshaded` mode makes the engine skip the built-in light processor function.
 
 Each shader type has different render modes. See the reference for each shader
 type for a complete list of render modes.
 
 ### Vertex processor
 
-The vertex() processing function is called once for every vertex in
-spatial and canvas_item shaders.
+The `vertex()` processing function is called once for every vertex in
+`spatial` and `canvas_item` shaders.
 
 Each vertex in your world's geometry has properties like a position and color.
 The function modifies those values and passes them to the fragment function. You
@@ -154,28 +154,28 @@ example.
 
 ### Fragment processor
 
-The fragment() processing function is used to set up the Godot material
+The `fragment()` processing function is used to set up the Godot material
 parameters per pixel. This code runs on every visible pixel the object or
-primitive draws. It is only available in spatial and canvas_item shaders.
+primitive draws. It is only available in `spatial` and `canvas_item` shaders.
 
 The standard use of the fragment function is to set up material properties used
-to calculate lighting. For example, you would set values for ROUGHNESS,
-RIM, or TRANSMISSION, which would tell the light function how the lights
+to calculate lighting. For example, you would set values for `ROUGHNESS`,
+`RIM`, or `TRANSMISSION`, which would tell the light function how the lights
 respond to that fragment. This makes it possible to control a complex shading
 pipeline without the user having to write much code. If you don't need this
 built-in functionality, you can ignore it and write your own light processing
 function, and Godot will optimize it away. For example, if you do not write a
-value to RIM, Godot will not calculate rim lighting. During compilation,
-Godot checks to see if RIM is used; if not, it cuts all the corresponding
+value to `RIM`, Godot will not calculate rim lighting. During compilation,
+Godot checks to see if `RIM` is used; if not, it cuts all the corresponding
 code out. Therefore, you will not waste calculations on the effects that you do
 not use.
 
 ### Light processor
 
-The light() processor runs per pixel too, and it runs once for every light
+The `light()` processor runs per pixel too, and it runs once for every light
 that affects the object. It does not run if no lights affect the object. It
-exists as a function called inside the fragment() processor and typically
-operates on the material properties setup inside the fragment() function.
+exists as a function called inside the `fragment()` processor and typically
+operates on the material properties setup inside the `fragment()` function.
 
-The light() processor works differently in 2D than it does in 3D; for a
+The `light()` processor works differently in 2D than it does in 3D; for a
 description of how it works in each, see their documentation, <doc:canvas_item_shader> and <doc:spatial_shader>, respectively.

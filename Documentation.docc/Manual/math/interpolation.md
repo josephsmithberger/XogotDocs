@@ -5,9 +5,9 @@ blend or transition between two values. Interpolation can also be used to smooth
 movement, rotation, etc. It's good to become familiar with it in order to expand
 your horizons as a game developer.
 
-The basic idea is that you want to transition from A to B. A value t, represents the states in-between.
+The basic idea is that you want to transition from A to B. A value `t`, represents the states in-between.
 
-For example, if t is 0, then the state is A. If t is 1, then the state is B. Anything in-between is an interpolation.
+For example, if `t` is 0, then the state is A. If `t` is 1, then the state is B. Anything in-between is an interpolation.
 
 Between two real (floating-point) numbers, an interpolation can be described as:
 
@@ -34,6 +34,15 @@ For cubic interpolation, there are also [Vector2.cubic_interpolate()](https://do
 
 Here is example pseudo-code for going from point A to B using interpolation:
 
+```
+var t = 0.0
+
+func _physics_process(delta):
+    t += delta * 0.4
+
+    $Sprite2D.position = $A.position.lerp($B.position, t)
+```
+
 It will produce the following motion:
 
 @Image(source: "interpolation_vector.gif")
@@ -49,6 +58,15 @@ Here is an example of transforming a monkey from Position1 to Position2:
 
 Using the following pseudocode:
 
+```
+var t = 0.0
+
+func _physics_process(delta):
+    t += delta
+
+    $Monkey.transform = $Position1.transform.interpolate_with($Position2.transform, t)
+```
+
 And again, it will produce the following motion:
 
 @Image(source: "interpolation_monkey.gif")
@@ -56,10 +74,19 @@ And again, it will produce the following motion:
 ## Smoothing motion
 
 Interpolation can be used to smoothly follow a moving target value, such as a
-position or a rotation. Each frame, lerp() moves the current value towards
+position or a rotation. Each frame, `lerp()` moves the current value towards
 the target value by a fixed percentage of the remaining difference between the values.
 The current value will smoothly move towards the target, slowing down as it gets
 closer. Here is an example of a circle following the mouse using interpolation smoothing:
+
+```
+const FOLLOW_SPEED = 4.0
+
+func _physics_process(delta):
+    var mouse_pos = get_local_mouse_position()
+
+    $Sprite2D.position = $Sprite2D.position.lerp(mouse_pos, delta * FOLLOW_SPEED)
+```
 
 Here is how it looks:
 
@@ -69,14 +96,14 @@ This is useful for smoothing camera movement, for allies following the player
 (ensuring they stay within a certain range), and for many other common game patterns.
 
 > Note:
-> Despite using delta, the formula used above is framerate-dependent, because
-> the weight parameter of lerp() represents a percentage of the remaining
-> difference in values, not an absolute amount to change. In _physics_process(),
+> Despite using `delta`, the formula used above is framerate-dependent, because
+> the `weight` parameter of `lerp()` represents a percentage of the remaining
+> difference in values, not an absolute amount to change. In `_physics_process()`,
 > this is usually fine because physics is expected to maintain a constant framerate,
-> and therefore delta is expected to remain constant.
+> and therefore `delta` is expected to remain constant.
 >
 > For a framerate-independent version of interpolation smoothing that can also
-> be used in process(), use the following formula instead:
+> be used in `process()`, use the following formula instead:
 >
 > .. tabs::
 > .. code-tab:: gdscript GDScript

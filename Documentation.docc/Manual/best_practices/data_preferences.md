@@ -15,9 +15,9 @@ Y or Z? This article covers a variety of topics related to these dilemmas.
 > "As the size of a problem domain increases, the runtime length of the
 > algorithm..."
 >
-> - Constant-time, O(1): "...does not increase."
-> - Logarithmic-time, O(log n): "...increases at a slow rate."
-> - Linear-time, O(n): "...increases at the same rate."
+> - Constant-time, `O(1)`: "...does not increase."
+> - Logarithmic-time, `O(log n)`: "...increases at a slow rate."
+> - Linear-time, `O(n)`: "...increases at the same rate."
 > - Etc.
 >
 > Imagine if one had to process 3 million data points within a single frame. It
@@ -42,7 +42,7 @@ Variants can store Variant-compatible data structures such as
 [Array](https://docs.godotengine.org/en/stable/classes/class_array.html#class-array) and [Dictionary](https://docs.godotengine.org/en/stable/classes/class_dictionary.html#class-dictionary) as well
 as [Objects](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object).
 
-Godot implements Array as a Vector<Variant>. The engine stores the Array
+Godot implements Array as a `Vector<Variant>`. The engine stores the Array
 contents in a contiguous section of memory, i.e. they are in a row adjacent
 to each other.
 
@@ -53,7 +53,7 @@ to each other.
 > type, meaning that its records can only contain a particular type (denoted
 > by angled brackets). So, for example, a
 > [PackedStringArray](https://docs.godotengine.org/en/stable/classes/class_packedstringarray.html#class-packedstringarray) would be something like
-> a Vector<String>.
+> a `Vector<String>`.
 >
 
 Contiguous memory stores imply the following operation performance:
@@ -222,7 +222,7 @@ ordered-aware search algorithm.
 - Performance is also dependent on whether one needs an exhaustive
 search.
 
-Godot implements Dictionary as a HashMap<Variant, Variant, VariantHasher, StringLikeVariantComparator>. The engine
+Godot implements Dictionary as a `HashMap<Variant, Variant, VariantHasher, StringLikeVariantComparator>`. The engine
 stores a small array (initialized to 2^3 or 8 records) of key-value pairs. When
 one attempts to access a value, they provide it a key. It then hashes the
 key, i.e. converts it into a number. The "hash" is used to calculate the index
@@ -462,6 +462,21 @@ class contains things that won't be relevant to one's custom data structure.
 As such, it can be helpful to construct one's own node type when building
 tree structures.
 
+```
+extends Object
+class_name TreeNode
+
+var _parent: TreeNode = null
+var _children := []
+
+func _notification(p_what):
+    match p_what:
+        NOTIFICATION_PREDELETE:
+            # Destructor.
+            for a_child in _children:
+                a_child.free()
+```
+
 From here, one can then create their own structures with specific features,
 limited only by their imagination.
 
@@ -469,7 +484,7 @@ limited only by their imagination.
 
 Most languages offer an enumeration type option. GDScript is no different, but
 unlike most other languages, it allows one to use either integers or strings for
-the enum values (the latter only when using the @export_enum annotation in GDScript).
+the enum values (the latter only when using the `@export_enum` annotation in GDScript).
 The question then arises, "which should one use?"
 
 The short answer is, "whichever you are more comfortable with." This
@@ -481,8 +496,8 @@ faster than string comparisons (linear-time). If one wants to keep
 up other languages' conventions though, then one should use integers.
 
 The primary issue with using integers comes up when one wants to print
-an enum value. As integers, attempting to print MY_ENUM will print
-5 or what-have-you, rather than something like "MyEnum". To
+an enum value. As integers, attempting to print `MY_ENUM` will print
+`5` or what-have-you, rather than something like `"MyEnum"`. To
 print an integer enum, one would have to write a Dictionary that maps the
 corresponding string value for each enum.
 

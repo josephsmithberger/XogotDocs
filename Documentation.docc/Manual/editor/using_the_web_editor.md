@@ -94,12 +94,12 @@ the folder to create then click the **Create Folder** button
 
 > Attention:
 >
-> It's important to place the project folder somewhere in /home/web_user/.
-> If your project folder is placed outside /home/web_user/, you will
+> It's important to place the project folder somewhere in `/home/web_user/`.
+> If your project folder is placed outside `/home/web_user/`, you will
 > lose your project when closing the editor!
 >
 > When you follow the steps described above, the project folder will always be
-> located in /home/web_user/projects, keeping it safe.
+> located in `/home/web_user/projects`, keeping it safe.
 >
 
 ## Editing and running a project
@@ -107,7 +107,7 @@ the folder to create then click the **Create Folder** button
 Unlike the native version of Godot, the web editor is constrained to a single
 window. Therefore, it cannot open a new window when running the project.
 Instead, when you run the project by clicking the Run button or pressing
-`F5`, it will appear to "replace" the editor window.
+``F5``, it will appear to "replace" the editor window.
 
 The web editor offers an alternative way to deal with the editor and game
 windows (which are now "tabs"). You can switch between the **Editor** and

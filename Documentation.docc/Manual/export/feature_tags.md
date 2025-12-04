@@ -14,7 +14,7 @@ Each feature is represented as a string, which can refer to many of the followin
 
 - Supported texture compression algorithms on the platform.
 
-- Whether a build is debug or release (debug includes the editor).
+- Whether a build is `debug` or `release` (`debug` includes the editor).
 
 - Whether the project is running from the editor or a "standalone" binary.
 
@@ -27,7 +27,7 @@ OS.has_feature(name)
 ```
 
 OS feature tags are used by GDExtension to determine which libraries to load.
-For example, a library for linux.debug.editor.x86_64 will be
+For example, a library for `linux.debug.editor.x86_64` will be
 loaded only on a debug editor build for Linux x86_64.
 
 ## Default features
@@ -89,14 +89,14 @@ enabled (only applies to the exported project, not when running in the editor)
 
 > Warning:
 >
-> With the exception of texture compression, web_<platform> and
-> movie feature tags, default feature tags are **immutable**.
+> With the exception of texture compression, `web_<platform>` and
+> `movie` feature tags, default feature tags are **immutable**.
 > This means that they will not change depending on runtime conditions.
-> For example, OS.has_feature("mobile") will return false
+> For example, `OS.has_feature("mobile")` will return `false`
 > when running a project exported to Web on a mobile device.
 >
 > To check whether a project exported to Web is running on a mobile device,
-> use OS.has_feature("web_android") or OS.has_feature("web_ios").
+> use `OS.has_feature("web_android") or OS.has_feature("web_ios")`.
 >
 
 ## Custom features
@@ -165,10 +165,10 @@ subsection/example = "Release"
 subsection/example.debug = "Debug"
 ```
 
-Using ProjectSettings.get_setting("section/subsection/example") will return
-"Release" regardless of whether a debug build is currently running. On the
-other hand, ProjectSettings.get_setting_with_override("section/subsection/example")
-will obey feature tags and will return "Debug" if using a debug build.
+Using `ProjectSettings.get_setting("section/subsection/example")` will return
+`"Release"` regardless of whether a debug build is currently running. On the
+other hand, `ProjectSettings.get_setting_with_override("section/subsection/example")`
+will obey feature tags and will return `"Debug"` if using a debug build.
 
 ## Customizing the build
 

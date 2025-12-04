@@ -12,7 +12,7 @@ Navigating between UI elements with keyboard or controller is done by
 changing which node is actively selected. This is also called changing UI focus.
 Every [Control](https://docs.godotengine.org/en/stable/classes/class_control.html#class-control) node in Godot is capable of having focus.
 By default, some control nodes have the ability to automatically grab focus
-reacting to built-in UI actions such as ui_up, ui_down, ui_focus_next, etc.
+reacting to built-in UI actions such as `ui_up`, `ui_down`, `ui_focus_next`, etc.
 These actions can be seen in the project settings in the input map and can be modified.
 
 > Warning:
@@ -35,7 +35,7 @@ Neighbor options are used to define nodes for 4-directional navigation, such
 as using arrow keys or a D-pad on a controller. For example, the bottom neighbor
 will be used when navigating down with the down arrow or by pushing down on
 the D-pad. The "Next" and "Previous" options are used with the focus shift button,
-such as `Tab` on desktop operating systems.
+such as ``Tab`` on desktop operating systems.
 
 > Note:
 > A node can lose focus if it becomes hidden.
@@ -62,6 +62,11 @@ do anything.
 
 You can use the [Control.grab_focus()](https://docs.godotengine.org/en/stable/classes/class_control_method_grab_focus.html#class-control_method_grab_focus) method
 to focus a control. Here is a basic example of setting initial focus with code:
+
+```
+func _ready():
+    $StartButton.grab_focus.call_deferred()
+```
 
 Now when the scene starts, the "Start Button" node will be focused, and the keyboard
 or a controller can be used to navigate between it and other UI elements.

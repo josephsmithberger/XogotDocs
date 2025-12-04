@@ -10,7 +10,7 @@ Some use-cases where customizing the default page is useful include:
 
 - Loading files from a different directory than the page;
 
-- Loading a .zip file instead of a .pck file as the main pack;
+- Loading a `.zip` file instead of a `.pck` file as the main pack;
 
 - Loading the engine from a different directory than the main pack file;
 
@@ -19,7 +19,7 @@ Some use-cases where customizing the default page is useful include:
 - Loading some extra files before the engine starts, making them available in
 the project file system as soon as possible;
 
-- Passing custom command line arguments, e.g. -s to start a MainLoop script.
+- Passing custom command line arguments, e.g. `-s` to start a `MainLoop` script.
 
 The default HTML page is available in the Godot Engine repository at
 /misc/dist/html/full-size.html
@@ -46,45 +46,45 @@ but the following template can be used as a much simpler example:
 ## Setup
 
 As shown by the example above, it is mostly a regular HTML document, with few placeholders
-which needs to be replaced during export, an html <canvas> element, and some simple
+which needs to be replaced during export, an html `<canvas>` element, and some simple
 JavaScript code that calls the :js:class:`Engine` class.
 
 The only required placeholders are:
 
-- $GODOT_URL:
+- `$GODOT_URL`:
 The name of the main JavaScript file, which provides the :js:class:`Engine` class required
-to start the engine and that must be included in the HTML as a <script>.
+to start the engine and that must be included in the HTML as a `<script>`.
 The name is generated from the Export Path during the export process.
 
-- $GODOT_CONFIG:
+- `$GODOT_CONFIG`:
 A JavaScript object, containing the export options and can be later overridden.
 See :js:attr:`EngineConfig` for the full list of overrides.
 
 The following optional placeholders will enable some extra features in your custom HTML template.
 
-- $GODOT_PROJECT_NAME:
+- `$GODOT_PROJECT_NAME`:
 The project name as defined in the
 [Name](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_application/config/name.html#class-projectsettings_property_application/config/name) setting
 in **Project Settings > Application > Config**.
-It is a good idea to use it as a <title> in your template.
+It is a good idea to use it as a `<title>` in your template.
 
-- $GODOT_HEAD_INCLUDE:
-A custom string to include in the HTML document just before the end of the <head> tag. It
+- `$GODOT_HEAD_INCLUDE`:
+A custom string to include in the HTML document just before the end of the `<head>` tag. It
 is customized in the export options under the Html / Head Include section. While you fully
 control the HTML page you create, this variable can be useful for configuring parts of the
-HTML head element from the Godot Editor, e.g. for different Web export presets.
+HTML `head` element from the Godot Editor, e.g. for different Web export presets.
 
-- $GODOT_SPLASH:
+- `$GODOT_SPLASH`:
 The path to the image used as the boot splash as defined in the
 [Image](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_application/boot_splash/image.html#class-projectsettings_property_application/boot_splash/image) setting
 in **Project Settings > Application > Boot Splash**.
 
-- $GODOT_SPLASH_COLOR
+- `$GODOT_SPLASH_COLOR`
 The splash screen background color as defined in the
 [BG Color](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_application/boot_splash/bg_color.html#class-projectsettings_property_application/boot_splash/bg_color) setting
 in **Project Settings > Application > Boot Splash**, converted to a hex color code.
 
-- $GODOT_SPLASH_CLASSES:
+- `$GODOT_SPLASH_CLASSES`:
 This placeholder provides a string of setting names and their values, which affect the splash screen.
 This string is meant to be used as a set of CSS class names, which allows styling the splash image
 based on the splash project settings.
@@ -92,31 +92,31 @@ The following settings from **Project Settings > Application > Boot Splash** are
 represented by the class names shown below depending on the setting's boolean value:
 
 [Show Image](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_application/boot_splash/show_image.html#class-projectsettings_property_application/boot_splash/show_image):
-show-image--true, show-image--false
-[Fullsize](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_application/boot_splash/fullsize.html#class-projectsettings_property_application/boot_splash/fullsize):
-fullsize--true, fullsize--false
+`show-image--true`, `show-image--false`
+[Stretch Mode](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_application/boot_splash/stretch_mode.html#class-projectsettings_property_application/boot_splash/stretch_mode):
+`fullsize--true` (if **not** Disabled), `fullsize--false`
 [Use Filter](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_application/boot_splash/use_filter.html#class-projectsettings_property_application/boot_splash/use_filter):
-use-filter--true, use-filter--false
+`use-filter--true`, `use-filter--false`
 
 
 
 - [Show Image](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_application/boot_splash/show_image.html#class-projectsettings_property_application/boot_splash/show_image):
-show-image--true, show-image--false
+`show-image--true`, `show-image--false`
 
-- [Fullsize](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_application/boot_splash/fullsize.html#class-projectsettings_property_application/boot_splash/fullsize):
-fullsize--true, fullsize--false
+- [Stretch Mode](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_application/boot_splash/stretch_mode.html#class-projectsettings_property_application/boot_splash/stretch_mode):
+`fullsize--true` (if **not** Disabled), `fullsize--false`
 
 - [Use Filter](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_application/boot_splash/use_filter.html#class-projectsettings_property_application/boot_splash/use_filter):
-use-filter--true, use-filter--false
+`use-filter--true`, `use-filter--false`
 
 - [Show Image](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_application/boot_splash/show_image.html#class-projectsettings_property_application/boot_splash/show_image):
-show-image--true, show-image--false
+`show-image--true`, `show-image--false`
 
-- [Fullsize](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_application/boot_splash/fullsize.html#class-projectsettings_property_application/boot_splash/fullsize):
-fullsize--true, fullsize--false
+- [Stretch Mode](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_application/boot_splash/stretch_mode.html#class-projectsettings_property_application/boot_splash/stretch_mode):
+`fullsize--true` (if **not** Disabled), `fullsize--false`
 
 - [Use Filter](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_application/boot_splash/use_filter.html#class-projectsettings_property_application/boot_splash/use_filter):
-use-filter--true, use-filter--false
+`use-filter--true`, `use-filter--false`
 
 When the custom page is ready, it can be selected in the export options under the Html / Custom Html Shell
 section.
@@ -149,12 +149,12 @@ engine.startGame({
 
 This snippet of code automatically loads and initializes the engine before starting the game.
 It uses the given configuration to load the engine. The :js:meth:`engine.startGame <Engine.prototype.startGame>`
-method is asynchronous and returns a Promise. This allows your control code to track if
+method is asynchronous and returns a `Promise`. This allows your control code to track if
 the game was loaded correctly without blocking execution or relying on polling.
 
 In case your project needs to have special control over the start arguments and dependency files,
 the :js:meth:`engine.start <Engine.prototype.start>` method can be used instead. Note, that this method do not
-automatically preload the pck file, so you will probably want to manually preload it
+automatically preload the `pck` file, so you will probably want to manually preload it
 (and any other extra file) via the :js:meth:`engine.preloadFile <Engine.prototype.preloadFile>` method.
 
 Optionally, you can also manually :js:meth:`engine.init <Engine.prototype.init>` to perform specific actions after
@@ -180,7 +180,7 @@ Promise.all([
 ```
 
 To load the engine manually the :js:meth:`Engine.load` static method must be called. As
-this method is static, multiple engine instances can be spawned if the share the same wasm.
+this method is static, multiple engine instances can be spawned if the share the same `wasm`.
 
 > Note: Multiple instances cannot be spawned by default, as the engine is immediately unloaded after it is initialized.
 > To prevent this from happening see the :js:attr:`unloadAfterInit` override option. It is still possible
@@ -229,18 +229,18 @@ function printProgress(current, total) {
 engine.startGame({ onProgress: printProgress });
 ```
 
-Be aware that in some cases total can be 0. This means that it cannot be calculated.
+Be aware that in some cases `total` can be `0`. This means that it cannot be calculated.
 
 If your game supports multiple languages, the :js:attr:`locale` override option can be used to
 force a specific locale, provided you have a valid language code string. It may be good to use server-side
 logic to determine which languages a user may prefer. This way the language code can be taken from the
-Accept-Language HTTP header, or determined by a GeoIP service.
+`Accept-Language` HTTP header, or determined by a GeoIP service.
 
 ## Debugging
 
 To debug exported projects, it may be useful to read the standard output and error streams generated
 by the engine. This is similar to the output shown in the editor console window. By default, standard
-console.log and console.warn are used for the output and error streams respectively. This
+`console.log` and `console.warn` are used for the output and error streams respectively. This
 behavior can be customized by setting your own functions to handle messages.
 
 Use the :js:attr:`onPrint` override option to set a callback function for the output stream,

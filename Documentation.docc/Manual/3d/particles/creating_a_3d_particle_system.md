@@ -3,14 +3,14 @@
 
 @Image(source: "particle_node_new.png") {Required particle node properties}
 
-To get started with particles, the first thing we need to do is add a GPUParticles3D
+To get started with particles, the first thing we need to do is add a `GPUParticles3D`
 node to the scene. Before we can actually see any particles, we have to set up two parameters on the node:
-the Process Material and at least one Draw Pass.
+the `Process Material` and at least one `Draw Pass`.
 
 ## The process material
 
-To add a process material to your particles node, go to Process Material in the inspector panel.
-Click on the box next to Process Material and from the dropdown menu select New ParticleProcessMaterial.
+To add a process material to your particles node, go to `Process Material` in the inspector panel.
+Click on the box next to `Process Material` and from the dropdown menu select `New ParticleProcessMaterial`.
 
 @Image(source: "particle_new_process_material.png") {Creating a process material}
 
@@ -24,9 +24,9 @@ control each particle's behavior.
 @Image(source: "particle_first_draw_pass.png") {At least one draw pass is required}
 
 In order to render any particles, at least one draw pass needs to be defined. To do that, go to
-Draw Passes in the inspector panel. Click on the box next to Pass 1 and select New QuadMesh
-from the dropdown menu. After that, click on the mesh and set its Size to 0.1 for both x
-and y. Reducing the mesh's size makes it a little easier to tell the individual particle
+`Draw Passes` in the inspector panel. Click on the box next to `Pass 1` and select `New QuadMesh`
+from the dropdown menu. After that, click on the mesh and set its `Size` to 0.1 for both `x`
+and `y`. Reducing the mesh's size makes it a little easier to tell the individual particle
 meshes apart at this stage.
 
 You can use up to 4 draw passes per particle system. Each pass can render a different
@@ -72,27 +72,27 @@ Some of the most notable features that are lost during the conversion include:
 
 You also lose the following properties:
 
-- Amount Ratio
+- `Amount Ratio`
 
-- Interp to End
+- `Interp to End`
 
-- Damping as Friction
+- `Damping as Friction`
 
-- Emission Shape Offset
+- `Emission Shape Offset`
 
-- Emission Shape Scale
+- `Emission Shape Scale`
 
-- Inherit Velocity Ratio
+- `Inherit Velocity Ratio`
 
-- Velocity Pivot
+- `Velocity Pivot`
 
-- Directional Velocity
+- `Directional Velocity`
 
-- Radial Velocity
+- `Radial Velocity`
 
-- Velocity Limit
+- `Velocity Limit`
 
-- Scale Over Velocity
+- `Scale Over Velocity`
 
 Converting GPU particles to CPU particles can become necessary when you want to release a game
 on older devices that don't support modern graphics APIs.

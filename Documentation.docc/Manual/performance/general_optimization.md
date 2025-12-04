@@ -231,7 +231,7 @@ reading its value.
 
 Once algorithms and data are good, you can often make small changes in routines
 which improve performance. For instance, you can move some calculations outside
-of loops or transform nested for loops into non-nested loops.
+of loops or transform nested `for` loops into non-nested loops.
 (This should be feasible if you know a 2D array's width or height in advance.)
 
 Always retest your timing/bottlenecks after making each change. Some changes
@@ -245,7 +245,7 @@ you may choose to leave out that optimization.
 
 The proverb "a chain is only as strong as its weakest link" applies directly to
 performance optimization. If your project is spending 90% of the time in
-function A, then optimizing A can have a massive effect on performance.
+function `A`, then optimizing `A` can have a massive effect on performance.
 
 ```
 A: 9 ms
@@ -259,7 +259,7 @@ Everything else: 1ms
 Total frame time: 2 ms
 ```
 
-In this example, improving this bottleneck A by a factor of 9× decreases
+In this example, improving this bottleneck `A` by a factor of 9× decreases
 overall frame time by 5× while increasing frames per second by 5×.
 
 However, if something else is running slowly and also bottlenecking your
@@ -277,7 +277,7 @@ Everything else: 50 ms
 Total frame time: 51 ms
 ```
 
-In this example, even though we have hugely optimized function A,
+In this example, even though we have hugely optimized function `A`,
 the actual gain in terms of frame rate is quite small.
 
 In games, things become even more complicated because the CPU and GPU run

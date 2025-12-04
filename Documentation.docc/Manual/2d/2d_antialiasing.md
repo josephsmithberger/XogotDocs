@@ -27,7 +27,7 @@ This is the recommended method, as it has a lower performance impact in most cas
 
 Line2D has an **Antialiased** property which you can enable in the inspector.
 Also, several methods for <doc:custom_drawing_in_2d> support an optional
-antialiased parameter, which can be set to true when calling the
+`antialiased` parameter, which can be set to `true` when calling the
 function.
 
 These methods do not require MSAA to be enabled, which makes their baseline

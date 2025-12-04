@@ -84,15 +84,15 @@ Clicking on the Godot editor app icon to summon the App menu, and select the Edi
 an Android terminal emulator which provides access to common terminal utilities such Git and SSH.
 
 **Note:** To use Git with the Termux terminal, you'll need to grant WRITE permission to the terminal.
-This can be done by running the following command from within the terminal: termux-setup-storage
+This can be done by running the following command from within the terminal: `termux-setup-storage`
 
 
 
 - **Note:** To use Git with the Termux terminal, you'll need to grant WRITE permission to the terminal.
-This can be done by running the following command from within the terminal: termux-setup-storage
+This can be done by running the following command from within the terminal: `termux-setup-storage`
 
 - **Note:** To use Git with the Termux terminal, you'll need to grant WRITE permission to the terminal.
-This can be done by running the following command from within the terminal: termux-setup-storage
+This can be done by running the following command from within the terminal: `termux-setup-storage`
 
 **Plugins**
 

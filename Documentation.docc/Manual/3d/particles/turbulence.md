@@ -28,21 +28,21 @@ Once enabled, you have access to all the turbulence properties.
 The basis for particle turbulence is a noise pattern. There are several
 properties that allow you to manipulate different attributes of this pattern.
 
-The Noise Strength property controls the pattern's contrast, which affects the overall turbulence
+The `Noise Strength` property controls the pattern's contrast, which affects the overall turbulence
 sharpness. A lower value creates a softer pattern where individual movement paths are
 not as sharply separated from another. Set this to a higher number to make the pattern more
 distinct.
 
 @Image(source: "particle_turbulence_strength.png", alt: "Turbulence noise strength") {At a value of 1 (left), the noise strength produces softer turbulence patterns than at 20 (right)}
 
-The Noise Scale property controls the pattern's frequency. It basically changes the noise texture's UV scale
+The `Noise Scale` property controls the pattern's frequency. It basically changes the noise texture's UV scale
 where a smaller value produces finer detail, but repeating patterns become noticeable faster. A larger value
 results in a weaker turbulence pattern overall, but the particle system can cover a larger area before repetition
 starts to become an issue.
 
 @Image(source: "particle_turbulence_scale.png", alt: "Turbulence noise scale") {Turbulence noise scale produces finer details at a value of 1.5 (left) than at 6 (right)}
 
-The Noise Speed property takes a vector and controls the noise panning speed and direction.
+The `Noise Speed` property takes a vector and controls the noise panning speed and direction.
 This allows you to move the noise pattern over time, which adds another layer of movement
 variation to the particle system.
 
@@ -50,26 +50,26 @@ variation to the particle system.
 >
 > Don't mix up particle movement speed and noise panning speed! They are two different things.
 > Particle movement is determined by a number of properties, including the turbulence noise.
-> The Noise Speed property moves the pattern itself, which in turn changes where the
+> The `Noise Speed` property moves the pattern itself, which in turn changes where the
 > noise affects the particles.
 >
 
-At a value of (X=0,Y=0,Z=0), the noise pattern doesn't move at all. The influence on particle
-movement stays the same at any given point. Set the speed to (X=1,Y=0,Z=0) instead, and the
+At a value of `(X=0,Y=0,Z=0)`, the noise pattern doesn't move at all. The influence on particle
+movement stays the same at any given point. Set the speed to `(X=1,Y=0,Z=0)` instead, and the
 noise pattern moves along the X-axis.
 
 @Image(source: "particle_turbulence_speed.png", alt: "Turbulence noise speed") {Different noise speed values. Left: (X=0,Y=0,Z=0), middle: (X=0.5,Y=0.5,Z=0.5), right: (X=0,Y=-2,Z=0).}
 
-The Noise Speed Random property adds some randomness to the noise panning speed. This helps
+The `Noise Speed Random` property adds some randomness to the noise panning speed. This helps
 with breaking up visible patterns, especially at higher panning speeds when repetition becomes
 noticeable faster.
 
 ## Influence properties
 
 The influence properties determine how much each particle is affected by turbulence. Use
-Influence Min to set a minimum value and Influence Max to set a maximum value. When a
+`Influence Min` to set a minimum value and `Influence Max` to set a maximum value. When a
 particle spawns, the influence is randomly chosen from within this range. You can
-also set up a curve with the Influence Over Life property that modifies that value
+also set up a curve with the `Influence Over Life` property that modifies that value
 over each particle's lifetime. These three properties together control the strength of
 the turbulence's effect on the particle system <doc:process_material_properties>.
 
@@ -81,8 +81,8 @@ a particle to move faster and all particles to follow along narrower paths as a 
 
 ## Displacement properties
 
-Displacement changes a particle's starting position. Use Initial Displacement Min to set a
-lower limit and Initial Displacement Max to set an upper limit. When a particle spawns, the
+Displacement changes a particle's starting position. Use `Initial Displacement Min` to set a
+lower limit and `Initial Displacement Max` to set an upper limit. When a particle spawns, the
 amount of displacement is randomly chosen from within this range and multiplied by a random
 direction.
 

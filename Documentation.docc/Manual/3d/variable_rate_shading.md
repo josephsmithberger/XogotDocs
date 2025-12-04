@@ -97,7 +97,7 @@ For custom viewports, the VRS mode and texture must be set manually to the
 >
 > On unsupported hardware, there is no visual difference when variable rate
 > shading is enabled. You can check whether hardware supports variable rate
-> shading by running the editor or project with the --verbose
+> shading by running the editor or project with the `--verbose`
 > <doc:command_line_tutorial>.
 >
 
@@ -123,16 +123,16 @@ representing a lower level of shading precision:
 
 Density | Color | Comment
 ------- | ----- | -------
-1×1 (highest detail) | rgb(0, 0, 0) - #000000 | 
-1×2 | rgb(0, 85, 0) - #005500 | 
-2×1 | rgb(85, 0, 0) - #550000 | 
-2×2 | rgb(85, 85, 0) - #555500 | 
-2×4 | rgb(85, 170, 0) - #55aa00 | 
-4×2 | rgb(170, 85, 0) - #aa5500 | 
-4×4 | rgb(170, 170, 0) - #aaaa00 | 
-4×8 | rgb(170, 255, 0) - #aaff00 | Not supported on most hardware.
-8×4 | rgb(255, 170, 0) - #ffaa00 | Not supported on most hardware.
-8×8 (lowest detail) | rgb(255, 255, 0) - #ffff00 | Not supported on most hardware.
+1×1 (highest detail) | `rgb(0, 0, 0) - #000000` | 
+1×2 | `rgb(0, 85, 0) - #005500` | 
+2×1 | `rgb(85, 0, 0) - #550000` | 
+2×2 | `rgb(85, 85, 0) - #555500` | 
+2×4 | `rgb(85, 170, 0) - #55aa00` | 
+4×2 | `rgb(170, 85, 0) - #aa5500` | 
+4×4 | `rgb(170, 170, 0) - #aaaa00` | 
+4×8 | `rgb(170, 255, 0) - #aaff00` | Not supported on most hardware.
+8×4 | `rgb(255, 170, 0) - #ffaa00` | Not supported on most hardware.
+8×8 (lowest detail) | `rgb(255, 255, 0) - #ffff00` | Not supported on most hardware.
 
 For example, this VRS density texture provides the highest shading density in
 the center of the viewport, and the lowest shading density in the corners:
@@ -144,7 +144,7 @@ However, there is no benefit to using a VRS density map that is larger than the
 viewport resolution divided by the GPU's tile size. The tile size is what
 determines the smallest area of pixels where the shading density can be changed
 separately from other tiles. On most GPUs, this tile size is 8×8 pixels. You can
-view the tile size by running Godot with the --verbose command line
+view the tile size by running Godot with the `--verbose` command line
 argument, as it's printed in the VRS debugging information.
 
 Therefore, sticking to a relatively low resolution such as 256×256 (square) or

@@ -199,3 +199,18 @@ it as if it was an image (via [SubViewportContainer](https://docs.godotengine.or
 
 It is possible to create a custom container using a script.
 Here is an example of a container that fits children to its size:
+
+```
+extends Container
+
+func _notification(what):
+    if what == NOTIFICATION_SORT_CHILDREN:
+        # Must re-sort the children
+        for c in get_children():
+            # Fit to own size
+            fit_child_in_rect(c, Rect2(Vector2(), size))
+
+func set_some_setting():
+    # Some setting changed, ask for children re-sort.
+    queue_sort()
+```

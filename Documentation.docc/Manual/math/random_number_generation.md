@@ -38,9 +38,9 @@ the RandomNumberGenerator class.
 > Note:
 >
 > Since Godot 4.0, the random seed is automatically set to a random value when
-> the project starts. This means you don't need to call randomize() in
-> _ready() anymore to ensure that results are random across project runs.
-> However, you can still use randomize() if you want to use a specific
+> the project starts. This means you don't need to call `randomize()` in
+> `_ready()` anymore to ensure that results are random across project runs.
+> However, you can still use `randomize()` if you want to use a specific
 > seed number, or generate it using a different method.
 >
 
@@ -48,13 +48,30 @@ In global scope, you can find a [randomize()](https://docs.godotengine.org/en/st
 once when your project starts to initialize the random seed.** Calling it
 multiple times is unnecessary and may impact performance negatively.
 
-Putting it in your main scene script's _ready() method is a good choice:
+Putting it in your main scene script's `_ready()` method is a good choice:
+
+```
+func _ready():
+    randomize()
+```
 
 You can also set a fixed random seed instead using [seed()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_seed.html#class-@globalscope_method_seed). Doing so will give you deterministic results
 across runs:
 
-When using the RandomNumberGenerator class, you should call randomize() on
+```
+func _ready():
+    seed(12345)
+    # To use a string as a seed, you can hash it to a number.
+    seed("Hello world".hash())
+```
+
+When using the RandomNumberGenerator class, you should call `randomize()` on
 the instance since it has its own seed:
+
+```
+var random = RandomNumberGenerator.new()
+random.randomize()
+```
 
 ## Getting a random number
 
@@ -62,9 +79,17 @@ Let's look at some of the most commonly used functions and methods to generate
 random numbers in Godot.
 
 The function [randi()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_randi.html#class-@globalscope_method_randi) returns a random
-number between 0 and 2^32 - 1. Since the maximum value is huge, you most
-likely want to use the modulo operator (%) to bound the result between 0 and
+number between `0` and `2^32 - 1`. Since the maximum value is huge, you most
+likely want to use the modulo operator (`%`) to bound the result between 0 and
 the denominator:
+
+```
+# Prints a random integer between 0 and 49.
+print(randi() % 50)
+
+# Prints a random integer between 10 and 60.
+print(randi() % 51 + 10)
+```
 
 [randf()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_randf.html#class-@globalscope_method_randf) returns a random floating-point
 number between 0 and 1. This is useful to implement a
@@ -76,12 +101,27 @@ floating-point number following a normal distribution. This means the returned
 value is more likely to be around the mean (0.0 by default),
 varying by the deviation (1.0 by default):
 
-[randf_range()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_randf_range.html#class-@globalscope_method_randf_range) takes two arguments
-from and to, and returns a random floating-point number between from
-and to:
+```
+# Prints a random floating-point number from a normal distribution with a mean 0.0 and deviation 1.0.
+print(randfn(0.0, 1.0))
+```
 
-[randi_range()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_randi_range.html#class-@globalscope_method_randi_range) takes two arguments from
-and to, and returns a random integer between from and to:
+[randf_range()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_randf_range.html#class-@globalscope_method_randf_range) takes two arguments
+`from` and `to`, and returns a random floating-point number between `from`
+and `to`:
+
+```
+# Prints a random floating-point number between -4 and 6.5.
+print(randf_range(-4, 6.5))
+```
+
+[randi_range()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_randi_range.html#class-@globalscope_method_randi_range) takes two arguments `from`
+and `to`, and returns a random integer between `from` and `to`:
+
+```
+# Prints a random integer between -10 and 10.
+print(randi_range(-10, 10))
+```
 
 ## Get a random array element
 
@@ -89,10 +129,57 @@ We can use random integer generation to get a random element from an array,
 or use the [Array.pick_random](https://docs.godotengine.org/en/stable/classes/class_array_method_pick_random.html#class-array_method_pick_random) method
 to do it for us:
 
+```
+var _fruits = ["apple", "orange", "pear", "banana"]
+
+func _ready():
+    for i in range(100):
+        # Pick 100 fruits randomly.
+        print(get_fruit())
+
+    for i in range(100):
+        # Pick 100 fruits randomly, this time using the `Array.pick_random()`
+        # helper method. This has the same behavior as `get_fruit()`.
+        print(_fruits.pick_random())
+
+func get_fruit():
+    var random_fruit = _fruits[randi() % _fruits.size()]
+    # Returns "apple", "orange", "pear", or "banana" every time the code runs.
+    # We may get the same fruit multiple times in a row.
+    return random_fruit
+```
+
 To prevent the same fruit from being picked more than once in a row, we can add
 more logic to the above method. In this case, we can't use
 [Array.pick_random](https://docs.godotengine.org/en/stable/classes/class_array_method_pick_random.html#class-array_method_pick_random) since it lacks a way to
 prevent repetition:
+
+```
+var _fruits = ["apple", "orange", "pear", "banana"]
+var _last_fruit = ""
+
+
+func _ready():
+    # Pick 100 fruits randomly.
+    for i in range(100):
+        print(get_fruit())
+
+
+func get_fruit():
+    var random_fruit = _fruits[randi() % _fruits.size()]
+    while random_fruit == _last_fruit:
+        # The last fruit was picked. Try again until we get a different fruit.
+        random_fruit = _fruits[randi() % _fruits.size()]
+
+    # Note: if the random element to pick is passed by reference,
+    # such as an array or dictionary,
+    # use `_last_fruit = random_fruit.duplicate()` instead.
+    _last_fruit = random_fruit
+
+    # Returns "apple", "orange", "pear", or "banana" every time the code runs.
+    # The function will never return the same fruit more than once in a row.
+    return random_fruit
+```
 
 This approach can be useful to make random number generation feel less
 repetitive. Still, it doesn't prevent results from "ping-ponging" between a
@@ -102,11 +189,51 @@ limited set of values. To prevent this, use the <doc:random_number_generation#Sh
 
 We can apply similar logic from arrays to dictionaries as well:
 
+```
+var _metals = {
+    "copper": {"quantity": 50, "price": 50},
+    "silver": {"quantity": 20, "price": 150},
+    "gold": {"quantity": 3, "price": 500},
+}
+
+
+func _ready():
+    for i in range(20):
+        print(get_metal())
+
+
+func get_metal():
+    var random_metal = _metals.values()[randi() % metals.size()]
+    # Returns a random metal value dictionary every time the code runs.
+    # The same metal may be selected multiple times in succession.
+    return random_metal
+```
+
 ## Weighted random probability
 
 The [randf()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_randf.html#class-@globalscope_method_randf) method returns a
 floating-point number between 0.0 and 1.0. We can use this to create a
 "weighted" probability where different outcomes have different likelihoods:
+
+```
+func _ready():
+    for i in range(100):
+        print(get_item_rarity())
+
+
+func get_item_rarity():
+    var random_float = randf()
+
+    if random_float < 0.8:
+        # 80% chance of being returned.
+        return "Common"
+    elif random_float < 0.95:
+        # 15% chance of being returned.
+        return "Uncommon"
+    else:
+        # 5% chance of being returned.
+        return "Rare"
+```
 
 You can also get a weighted random index using the
 [rand_weighted()](https://docs.godotengine.org/en/stable/classes/class_randomnumbergenerator_method_rand_weighted.html#class-randomnumbergenerator_method_rand_weighted) method
@@ -114,14 +241,25 @@ on a RandomNumberGenerator instance. This returns a random integer
 between 0 and the size of the array that is passed as a parameter. Each value in the
 array is a floating-point number that represents the relative likelihood that it
 will be returned as an index. A higher value means the value is more likely to be
-returned as an index, while a value of 0 means it will never be returned as an index.
+returned as an index, while a value of `0` means it will never be returned as an index.
 
-For example, if [0.5, 1, 1, 2] is passed as a parameter, then the method is twice
-as likely to return 3 (the index of the value 2) and twice as unlikely to return
-0 (the index of the value 0.5) compared to the indices 1 and 2.
+For example, if `[0.5, 1, 1, 2]` is passed as a parameter, then the method is twice
+as likely to return `3` (the index of the value `2`) and twice as unlikely to return
+`0` (the index of the value `0.5`) compared to the indices `1` and `2`.
 
 Since the returned value matches the array's size, it can be used as an index to
 get a value from another array as follows:
+
+```
+# Prints a random element using the weighted index that is returned by `rand_weighted()`.
+# Here, "apple" will be returned twice as rarely as "orange" and "pear".
+# "banana" is twice as common as "orange" and "pear", and four times as common as "apple".
+var fruits = ["apple", "orange", "pear", "banana"]
+var probabilities = [0.5, 1, 1, 2];
+
+var random = RandomNumberGenerator.new()
+print(fruits[random.rand_weighted(probabilities)])
+```
 
 ## "Better" randomness using shuffle bags
 
@@ -133,6 +271,34 @@ could get the same fruit three or more times in a row.
 You can accomplish this using the shuffle bag pattern. It works by removing an
 element from the array after choosing it. After multiple selections, the array
 ends up empty. When that happens, you reinitialize it to its default value:
+
+```
+var _fruits = ["apple", "orange", "pear", "banana"]
+# A copy of the fruits array so we can restore the original value into `fruits`.
+var _fruits_full = []
+
+
+func _ready():
+    _fruits_full = _fruits.duplicate()
+    _fruits.shuffle()
+
+    for i in 100:
+        print(get_fruit())
+
+
+func get_fruit():
+    if _fruits.is_empty():
+        # Fill the fruits array again and shuffle it.
+        _fruits = _fruits_full.duplicate()
+        _fruits.shuffle()
+
+    # Get a random fruit, since we shuffled the array,
+    # and remove it from the `_fruits` array.
+    var random_fruit = _fruits.pop_front()
+    # Returns "apple", "orange", "pear", or "banana" every time the code runs, removing it from the array.
+    # When all fruit are removed, it refills the array.
+    return random_fruit
+```
 
 When running the above code, there is a chance to get the same fruit twice in a
 row. Once we picked a fruit, it will no longer be a possible return value unless
@@ -149,6 +315,22 @@ To achieve this, you can use random noise functions. Noise functions are
 especially popular in procedural generation to generate realistic-looking
 terrain. Godot provides [fastnoiselite](https://docs.godotengine.org/en/stable/classes/class_fastnoiselite.html#class-fastnoiselite) for this, which supports
 1D, 2D and 3D noise. Here's an example with 1D noise:
+
+```
+var _noise = FastNoiseLite.new()
+
+func _ready():
+    # Configure the FastNoiseLite instance.
+    _noise.noise_type = FastNoiseLite.NoiseType.TYPE_SIMPLEX_SMOOTH
+    _noise.seed = randi()
+    _noise.fractal_octaves = 4
+    _noise.frequency = 1.0 / 20.0
+
+    for i in 100:
+        # Prints a slowly-changing series of floating-point numbers
+        # between -1.0 and 1.0.
+        print(_noise.get_noise_1d(i))
+```
 
 ## Cryptographically secure pseudorandom number generation
 
@@ -168,8 +350,8 @@ is also less convenient to use. As a result,
 :abbr:`CSPRNG (Cryptographically secure pseudorandom number generation)`
 should be avoided for gameplay elements.
 
-Example of using the Crypto class to generate 2 random integers between 0
-and 2^32 - 1 (inclusive):
+Example of using the Crypto class to generate 2 random integers between `0`
+and `2^32 - 1` (inclusive):
 
 ```
 var crypto := Crypto.new()

@@ -14,7 +14,7 @@ and to reload changes to your scenes or your code while the game is running.
 
 ## Output Panel
 
-The output panel allows you to see text printed by the project, but also by the editor (e.g. from @tool scripts).
+The output panel allows you to see text printed by the project, but also by the editor (e.g. from `@tool` scripts).
 You can find information about in <doc:output_panel>.
 
 ## Debugger Panel
@@ -179,7 +179,7 @@ of the debugger.
 > remove the breakpoint. Breakpoints created this way persist across editor
 > restarts, even if the script wasn't saved when exiting the editor.
 >
-> You can also use the breakpoint keyword in GDScript to create a
+> You can also use the `breakpoint` keyword in GDScript to create a
 > breakpoint that is stored in the script itself. Unlike breakpoints created by
 > clicking in the gutter, this keyword-based breakpoint is persistent across
 > different machines when using version control.

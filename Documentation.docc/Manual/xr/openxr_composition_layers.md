@@ -80,14 +80,14 @@ This is very important as the XR runtime positions everything in relation to our
 We want to position the composition layer so it is at eye height and roughly 1 to 1.5 meters
 away from the player.
 
-We now assign the SubViewport to the Layer Viewport property and enable Alpha Blend.
+We now assign the SubViewport to the `Layer Viewport` property and enable Alpha Blend.
 
 @Image(source: "openxr_composition_layer_quad.png")
 
 > Note:
 > As the player can walk away from the origin point,
 > you will want to reposition the composition layer when the player recenters the view.
-> Using the reference space Local Floor will apply this logic automatically.
+> Using the reference space `Local Floor` will apply this logic automatically.
 >
 
 ## Making the interface work
@@ -97,16 +97,16 @@ For this example we're going to keep things simple and
 make one of the controllers work as a pointer.
 We'll then simulate mouse actions with this pointer.
 
-This code also requires a MeshInstance3D node called Pointer to be added
-as a child to our OpenXRCompositionLayerQuad node.
-We configure a SphereMesh with a radius 0.01 meters.
+This code also requires a `MeshInstance3D` node called `Pointer` to be added
+as a child to our `OpenXRCompositionLayerQuad` node.
+We configure a `SphereMesh` with a radius `0.01` meters.
 We'll be using this as a helper to visualize where the user is pointing.
 
-The main function that drives this functionality is the intersects_ray
+The main function that drives this functionality is the `intersects_ray`
 function on our composition layer node.
 This function takes the global position and orientation of our pointer and returns
 the UV where our ray intersects our viewport.
-It returns Vector2(-1.0, -1.0) if we're not pointing at our viewport.
+It returns `Vector2(-1.0, -1.0)` if we're not pointing at our viewport.
 
 We start with setting up some variables, important here are the export variables
 which identify our controller node with which we point to our screen.
@@ -125,9 +125,9 @@ var was_intersect : Vector2 = NO_INTERSECTION
 ...
 ```
 
-Next we define a helper function that takes the value returned from intersects_ray
+Next we define a helper function that takes the value returned from `intersects_ray`
 and gives us the global position for that intersection point.
-This implementation only works for our OpenXRCompositionLayerQuad node.
+This implementation only works for our `OpenXRCompositionLayerQuad` node.
 
 ```
 ...
@@ -142,7 +142,7 @@ func _intersect_to_global_pos(intersect : Vector2) -> Vector3:
 ...
 ```
 
-We also define a helper function that takes our intersect value and
+We also define a helper function that takes our `intersect` value and
 returns our location in the viewport's local coordinate system:
 
 ```
@@ -158,10 +158,10 @@ func _intersect_to_viewport_pos(intersect : Vector2) -> Vector2i:
 ...
 ```
 
-The main logic happens in our _process function.
+The main logic happens in our `_process` function.
 Here we start by hiding our pointer,
 we then check if we have a valid controller and viewport,
-and we call intersects_ray with the position and orientation of our controller:
+and we call `intersects_ray` with the position and orientation of our controller:
 
 ```
 ...
@@ -285,7 +285,7 @@ It does this in a way that fills the depth buffer and clears the current renderi
 Anything behind our viewport will now be cleared,
 while anything in front of our viewport will be rendered as usual.
 
-You also need to set Sort Order to a negative value,
+You also need to set `Sort Order` to a negative value,
 the XR compositor will now draw the viewport first, and then overlay our rendering result.
 
 @Image(source: "openxr_composition_layer_hole_punch.png") {Use case showing how the user's hand is incorrectly obscured

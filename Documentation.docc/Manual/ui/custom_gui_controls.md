@@ -20,7 +20,7 @@ usefulness when drawing, so they will be detailed next:
 Unlike 2D nodes, "size" is important with controls, as it helps to
 organize them in proper layouts. For this, the
 [Control.size](https://docs.godotengine.org/en/stable/classes/class_control_property_size.html#class-control_property_size)
-property is provided. Checking it during _draw() is vital to ensure
+property is provided. Checking it during `_draw()` is vital to ensure
 everything is kept in-bounds.
 
 ### Checking focus
@@ -34,6 +34,14 @@ always desired to show some sort of indicator (highlight, box, etc.) to
 indicate that this is the currently focused control. To check for this
 status, the [Control.has_focus()](https://docs.godotengine.org/en/stable/classes/class_control_method_has_focus.html#class-control_method_has_focus) method
 exists. Example
+
+```
+func _draw():
+    if has_focus():
+         draw_selected()
+    else:
+         draw_normal()
+```
 
 ## Sizing
 
@@ -49,7 +57,17 @@ To provide this callback, just override
 [Control._get_minimum_size()](https://docs.godotengine.org/en/stable/classes/class_control_private_method__get_minimum_size.html#class-control_private_method__get_minimum_size),
 for example:
 
+```
+func _get_minimum_size():
+    return Vector2(30, 30)
+```
+
 Alternatively, set it using a function:
+
+```
+func _ready():
+    set_custom_minimum_size(Vector2(30, 30))
+```
 
 ## Input
 
@@ -74,6 +92,14 @@ This function is
 [Control._gui_input()](https://docs.godotengine.org/en/stable/classes/class_control_private_method__gui_input.html#class-control_private_method__gui_input).
 To use it, override it in your control. No processing needs to be set.
 
+```
+extends Control
+
+func _gui_input(event):
+   if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+       print("Left mouse button was pressed!")
+```
+
 For more information about events themselves, check the <doc:inputevent>
 tutorial.
 
@@ -81,3 +107,28 @@ tutorial.
 
 Controls also have many useful notifications for which no dedicated callback
 exists, but which can be checked with the _notification callback:
+
+```
+func _notification(what):
+    match what:
+        NOTIFICATION_MOUSE_ENTER:
+            pass # Mouse entered the area of this control.
+        NOTIFICATION_MOUSE_EXIT:
+            pass # Mouse exited the area of this control.
+        NOTIFICATION_FOCUS_ENTER:
+            pass # Control gained focus.
+        NOTIFICATION_FOCUS_EXIT:
+            pass # Control lost focus.
+        NOTIFICATION_THEME_CHANGED:
+            pass # Theme used to draw the control changed;
+            # update and redraw is recommended if using a theme.
+        NOTIFICATION_VISIBILITY_CHANGED:
+            pass # Control became visible/invisible;
+            # check new status with is_visible().
+        NOTIFICATION_RESIZED:
+            pass # Control changed size; check new size
+            # with get_size().
+        NOTIFICATION_MODAL_CLOSE:
+            pass # For modal pop-ups, notification
+            # that the pop-up was closed.
+```

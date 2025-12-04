@@ -30,7 +30,7 @@ rates, it is recommended that you take a manual approach to camera interpolation
 This is because viewers are very sensitive to camera movement. For instance, a
 Camera3D that realigns slightly every 1/10th of a second (at 10tps tick rate) will
 often be noticeable. You can get a much smoother result by moving the camera each
-frame in _process, and following an interpolated target manually.
+frame in `_process`, and following an interpolated target manually.
 
 ### Manual camera interpolation
 
@@ -46,12 +46,12 @@ There are two ways of doing this:
 
 @Image(source: "fti_camera_worldspace.png")
 
-1. Call [Node3D.top_level](https://docs.godotengine.org/en/stable/classes/class_node3d_property_top_level.html#class-node3d_property_top_level) and set this to true, which will make the Camera ignore the transform of its parent.
+1. Call [Node3D.top_level](https://docs.godotengine.org/en/stable/classes/class_node3d_property_top_level.html#class-node3d_property_top_level) and set this to `true`, which will make the Camera ignore the transform of its parent.
 
-A typical example of a custom approach is to use the look_at function in the
-Camera3D every frame in _process() to look at a target node (such as the player).
+A typical example of a custom approach is to use the `look_at` function in the
+Camera3D every frame in `_process()` to look at a target node (such as the player).
 
-But there is a problem. If we use the traditional get_global_transform() on a
+But there is a problem. If we use the traditional `get_global_transform()` on a
 Camera3D "target" node, this transform will only focus the Camera3D on the target at
 the current physics tick. This is not what we want, as the camera will jump
 about on each physics tick as the target moves. Even though the camera may be
@@ -64,17 +64,17 @@ target will be rendered.
 
 We can do this using the [Node3D.get_global_transform_interpolated](https://docs.godotengine.org/en/stable/classes/class_node3d_method_get_global_transform_interpolated.html#class-node3d_method_get_global_transform_interpolated)
 function. This acts exactly like getting [Node3D.global_transform](https://docs.godotengine.org/en/stable/classes/class_node3d_property_global_transform.html#class-node3d_property_global_transform)
-but it gives you the interpolated transform (during a _process() call).
+but it gives you the interpolated transform (during a `_process()` call).
 
-> Important: get_global_transform_interpolated() should only be used once or
+> Important: `get_global_transform_interpolated()` should only be used once or
 > twice for special cases such as cameras. It should **not** be used
 > all over the place in your code (both for performance reasons, and
 > to give correct gameplay).
 >
 
 > Note: Aside from exceptions like the camera, in most cases, your game logic
-> should be in _physics_process(). In game logic you should be calling
-> get_global_transform() or get_transform(), which will give the
+> should be in `_physics_process()`. In game logic you should be calling
+> `get_global_transform()` or `get_transform()`, which will give the
 > current physics transform (in global or local space respectively), which
 > is usually what you will want for gameplay code.
 >
@@ -119,7 +119,7 @@ physics tick.
 In this situation, it can be better to disable physics interpolation for the camera
 node (using [Node.physics_interpolation_mode](https://docs.godotengine.org/en/stable/classes/class_node_property_physics_interpolation_mode.html#class-node_property_physics_interpolation_mode))
 and directly apply the mouse input to the camera rotation, rather than apply it in
-_physics_process.
+`_physics_process`.
 
 Sometimes, especially with cameras, you will want to use a combination of
 interpolation and non-interpolation:

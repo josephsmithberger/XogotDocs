@@ -131,9 +131,9 @@ Comparison between no antialiasing (left) and FSR2 at native resolution (right):
 
 > Note:
 >
-> By default, the **FSR Sharpness** project setting is set to 0.2 (higher
+> By default, the **FSR Sharpness** project setting is set to `0.2` (higher
 > values result in less sharpening). For the purposes of comparison, FSR
-> sharpening has been disabled by setting it to 2.0 on the above screenshot.
+> sharpening has been disabled by setting it to `2.0` on the above screenshot.
 >
 
 ## Fast approximate antialiasing (FXAA)
@@ -156,7 +156,7 @@ still, but less than TAA when the camera is moving).
 
 FXAA can be enabled in the Project Settings by changing the value of the
 [Rendering > Anti Aliasing > Quality > Screen Space AA](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_rendering/anti_aliasing/quality/screen_space_aa.html#class-projectsettings_property_rendering/anti_aliasing/quality/screen_space_aa)
-setting to FXAA.
+setting to `FXAA`.
 
 Comparison between no antialiasing (left) and FXAA (right):
 
@@ -180,7 +180,7 @@ after a camera cut, especially at lower FPS.
 
 SMAA 1x can be enabled in the Project Settings by changing the value of the
 [Rendering > Anti Aliasing > Quality > Screen Space AA](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_rendering/anti_aliasing/quality/screen_space_aa.html#class-projectsettings_property_rendering/anti_aliasing/quality/screen_space_aa)
-setting to SMAA.
+setting to `SMAA`.
 
 Comparison between no antialiasing (left) and SMAA 1x (right):
 
@@ -201,13 +201,13 @@ useful for <doc:creating_movies>.
 
 Supersample antialiasing is performed by increasing the
 [Rendering > Scaling 3D > Scale](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_rendering/scaling_3d/scale.html#class-projectsettings_property_rendering/scaling_3d/scale)
-advanced project setting above 1.0 while ensuring
+advanced project setting above `1.0` while ensuring
 [Rendering > Scaling 3D > Mode](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_rendering/scaling_3d/mode.html#class-projectsettings_property_rendering/scaling_3d/mode)
-is set to Bilinear (the default).
-Since the scale factor is defined per-axis, a scale factor of 1.5 will result
-in 2.25× SSAA while a scale factor of 2.0 will result in 4× SSAA. Since Godot
+is set to `Bilinear` (the default).
+Since the scale factor is defined per-axis, a scale factor of `1.5` will result
+in 2.25× SSAA while a scale factor of `2.0` will result in 4× SSAA. Since Godot
 uses the hardware's own bilinear filtering to perform the downsampling, the result
-will look crisper at integer scale factors (namely, 2.0).
+will look crisper at integer scale factors (namely, `2.0`).
 
 Comparison between no antialiasing (left) and various SSAA levels (right):
 
@@ -305,9 +305,9 @@ Mobile | ✔️ Yes | ❌ No | ❌ No | ✔️ Yes | ✔️ Yes | ✔️ Yes | �
 Compatibility | ✔️ Yes | ❌ No | ❌ No | ❌ No | ❌ No | ✔️ Yes | ❌ No
 
 MSAA does not work well with materials with Alpha Scissor (1-bit transparency).
-This can be mitigated by enabling alpha antialiasing on the material.
+This can be mitigated by enabling `alpha antialiasing` on the material.
 
 TAA/FSR2 transparency antialiasing is most effective when using Alpha Scissor.
 
 SSAA has some blur from bilinear downscaling. This can be mitigated by
-using an integer scaling factor of 2.0.
+using an integer scaling factor of `2.0`.

@@ -28,8 +28,8 @@ reliably.
 in the advanced Project Settings. While
 this has other benefits (such as more stable simulation and reduced input
 lag), this increases CPU utilization and may not be viable for mobile/web
-platforms. Multipliers of the default value of 60 (such as 120, 180
-or 240) should be preferred for a smooth appearance on most displays.
+platforms. Multipliers of the default value of `60` (such as `120`, `180`
+or `240`) should be preferred for a smooth appearance on most displays.
 
 ## Stacked objects are unstable and wobbly
 
@@ -44,7 +44,7 @@ Increasing the physics simulation rate can help alleviate this issue. To do so,
 increase [Physics Ticks per Second](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_physics/common/physics_ticks_per_second.html#class-projectsettings_property_physics/common/physics_ticks_per_second)
 in the advanced Project Settings. Note
 that increases CPU utilization and may not be viable for mobile/web platforms.
-Multipliers of the default value of 60 (such as 120, 180 or 240)
+Multipliers of the default value of `60` (such as `120`, `180` or `240`)
 should be preferred for a smooth appearance on most displays.
 
 In 3D, switching the physics engine from the default GodotPhysics to Jolt
@@ -62,7 +62,7 @@ shape is not a child of the visual representation in this case.
 Since resources are shared by default, you'll have to make the collision shape
 resource unique if you don't want the change to be applied to all nodes using
 the same collision shape resource in the scene. This can be done by calling
-duplicate() in a script on the collision shape resource before changing
+`duplicate()` in a script on the collision shape resource before changing
 its size.
 
 ## Thin objects are wobbly when resting on the floor
@@ -87,8 +87,8 @@ this issue. To do so, increase
 [Physics Ticks per Second](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_physics/common/physics_ticks_per_second.html#class-projectsettings_property_physics/common/physics_ticks_per_second)
 in the advanced
 Project Settings. Note that this increases CPU utilization and may not be viable
-for mobile/web platforms. Multipliers of the default value of 60 (such as
-120, 180 or 240) should be preferred for a smooth appearance on most
+for mobile/web platforms. Multipliers of the default value of `60` (such as
+`120`, `180` or `240`) should be preferred for a smooth appearance on most
 displays.
 
 ## Cylinder collision shapes are unstable
@@ -124,8 +124,8 @@ rate. To do so, increase
 [Physics Ticks per Second](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_physics/common/physics_ticks_per_second.html#class-projectsettings_property_physics/common/physics_ticks_per_second)
 in the advanced Project
 Settings. Note that this increases CPU utilization and may not be viable for
-mobile/web platforms. Multipliers of the default value of 60 (such as
-120, 180 or 240) should be preferred for a smooth appearance on most
+mobile/web platforms. Multipliers of the default value of `60` (such as
+`120`, `180` or `240`) should be preferred for a smooth appearance on most
 displays.
 
 ## Collision results in bumps when an object moves across tiles
@@ -147,7 +147,7 @@ complex, this may not be a net performance win in all cases.
 > Tip:
 >
 > In Godot 4.5 and later, creating a composite collider is automatically done
-> when using a TileMapLayer node. The chunk size (16 tiles on each axis
+> when using a TileMapLayer node. The chunk size (`16` tiles on each axis
 > by default) can be set using the **Physics Quadrant Size** property in the
 > TileMapLayer inspector. Larger values provide more reliable collision,
 > at the cost of slower updates when the TileMap is changed.

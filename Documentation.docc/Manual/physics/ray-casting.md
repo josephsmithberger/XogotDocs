@@ -45,9 +45,25 @@ must be used.
 
 Use the following code in 2D:
 
+```
+func _physics_process(delta):
+    var space_rid = get_world_2d().space
+    var space_state = PhysicsServer2D.space_get_direct_state(space_rid)
+```
+
 Or more directly:
 
+```
+func _physics_process(delta):
+    var space_state = get_world_2d().direct_space_state
+```
+
 And in 3D:
+
+```
+func _physics_process(delta):
+    var space_state = get_world_3d().direct_space_state
+```
 
 ## Raycast query
 
@@ -55,10 +71,23 @@ For performing a 2D raycast query, the method
 [PhysicsDirectSpaceState2D.intersect_ray()](https://docs.godotengine.org/en/stable/classes/class_physicsdirectspacestate2d_method_intersect_ray.html#class-physicsdirectspacestate2d_method_intersect_ray)
 may be used. For example:
 
+```
+func _physics_process(delta):
+    var space_state = get_world_2d().direct_space_state
+    # use global coordinates, not local to node
+    var query = PhysicsRayQueryParameters2D.create(Vector2(0, 0), Vector2(50, 100))
+    var result = space_state.intersect_ray(query)
+```
+
 The result is a dictionary. If the ray didn't hit anything, the dictionary will
 be empty. If it did hit something, it will contain collision information:
 
-The result dictionary when a collision occurs contains the following
+```
+if result:
+    print("Hit at point: ", result.position)
+```
+
+The `result` dictionary when a collision occurs contains the following
 data:
 
 ```
@@ -74,7 +103,23 @@ data:
 ```
 
 The data is similar in 3D space, using Vector3 coordinates. Note that to enable collisions
-with Area3D, the boolean parameter collide_with_areas must be set to true.
+with Area3D, the boolean parameter `collide_with_areas` must be set to `true`.
+
+```
+const RAY_LENGTH = 1000
+
+func _physics_process(delta):
+    var space_state = get_world_3d().direct_space_state
+    var cam = $Camera3D
+    var mousepos = get_viewport().get_mouse_position()
+
+    var origin = cam.project_ray_origin(mousepos)
+    var end = origin + cam.project_ray_normal(mousepos) * RAY_LENGTH
+    var query = PhysicsRayQueryParameters3D.create(origin, end)
+    query.collide_with_areas = true
+
+    var result = space_state.intersect_ray(query)
+```
 
 ## Collision exceptions
 
@@ -85,9 +130,19 @@ as shown in the following image:
 
 @Image(source: "raycast_falsepositive.png")
 
-To avoid self-intersection, the intersect_ray() parameters object can take an
-array of exceptions via its exclude property. This is an example of how to use it
+To avoid self-intersection, the `intersect_ray()` parameters object can take an
+array of exceptions via its `exclude` property. This is an example of how to use it
 from a CharacterBody2D or any other collision object node:
+
+```
+extends CharacterBody2D
+
+func _physics_process(delta):
+    var space_state = get_world_2d().direct_space_state
+    var query = PhysicsRayQueryParameters2D.create(global_position, player_position)
+    query.exclude = [self]
+    var result = space_state.intersect_ray(query)
+```
 
 The exceptions array can contain objects or RIDs.
 
@@ -97,9 +152,19 @@ While the exceptions method works fine for excluding the parent body, it becomes
 very inconvenient if you need a large and/or dynamic list of exceptions. In
 this case, it is much more efficient to use the collision layer/mask system.
 
-The intersect_ray() parameters object can also be supplied a collision mask.
-For example, to use the same mask as the parent body, use the collision_mask
+The `intersect_ray()` parameters object can also be supplied a collision mask.
+For example, to use the same mask as the parent body, use the `collision_mask`
 member variable. The array of exceptions can be supplied as the last argument as well:
+
+```
+extends CharacterBody2D
+
+func _physics_process(delta):
+    var space_state = get_world_2d().direct_space_state
+    var query = PhysicsRayQueryParameters2D.create(global_position, target_position,
+        collision_mask, [self])
+    var result = space_state.intersect_ray(query)
+```
 
 See <doc:physics_introduction#Collision-Layer-Code-Example> for details on how to set the collision mask.
 
@@ -112,14 +177,24 @@ has an "input_event" signal that will let you know when it was clicked,
 but in case there is any desire to do it manually, here's how.
 
 To cast a ray from the screen, you need a [Camera3D](https://docs.godotengine.org/en/stable/classes/class_camera3d.html#class-camera3d)
-node. A Camera3D can be in two projection modes: perspective and
+node. A `Camera3D` can be in two projection modes: perspective and
 orthogonal. Because of this, both the ray origin and direction must be
-obtained. This is because origin changes in orthogonal mode, while
-normal changes in perspective mode:
+obtained. This is because `origin` changes in orthogonal mode, while
+`normal` changes in perspective mode:
 
 @Image(source: "raycast_projection.png")
 
 To obtain it using a camera, the following code can be used:
 
-Remember that during _input(), the space may be locked, so in practice
-this query should be run in _physics_process().
+```
+const RAY_LENGTH = 1000.0
+
+func _input(event):
+    if event is InputEventMouseButton and event.pressed and event.button_index == 1:
+        var camera3d = $Camera3D
+        var from = camera3d.project_ray_origin(event.position)
+        var to = from + camera3d.project_ray_normal(event.position) * RAY_LENGTH
+```
+
+Remember that during `_input()`, the space may be locked, so in practice
+this query should be run in `_physics_process()`.

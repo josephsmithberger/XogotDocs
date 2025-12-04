@@ -18,17 +18,29 @@ own projects.
 Sometimes you want your game to respond to a certain input event - pressing
 the "jump" button, for example. For other situations, you might want something
 to happen as long as a key is pressed, such as movement. In the first case,
-you can use the _input() function, which will be called whenever an input
+you can use the `_input()` function, which will be called whenever an input
 event occurs. In the second case, Godot provides the [Input](https://docs.godotengine.org/en/stable/classes/class_input.html#class-input)
 singleton, which you can use to query the state of an input.
 
 Examples:
 
+```
+func _input(event):
+    if event.is_action_pressed("jump"):
+        jump()
+
+
+func _physics_process(delta):
+    if Input.is_action_pressed("move_right"):
+        # Move as long as the key/button is pressed.
+        position.x += speed * delta
+```
+
 This gives you the flexibility to mix-and-match the type of input processing
 you do.
 
 For the remainder of this tutorial, we'll focus on capturing individual
-events in _input().
+events in `_input()`.
 
 ## Input events
 
@@ -36,6 +48,14 @@ Input events are objects that inherit from [InputEvent](https://docs.godotengine
 Depending on the event type, the object will contain specific properties
 related to that event. To see what events actually look like, add a Node and
 attach the following script:
+
+```
+extends Node
+
+
+func _input(event):
+    print(event.as_text())
+```
 
 As you press keys, move the mouse, and perform other inputs, you'll see each
 event scroll by in the output window. Here's an example of the output:
@@ -63,9 +83,9 @@ It inherits from the following classes:
 
 - [InputEvent](https://docs.godotengine.org/en/stable/classes/class_inputevent.html#class-inputevent) - the base class for all input events
 
-- [InputEventWithModifiers](https://docs.godotengine.org/en/stable/classes/class_inputeventwithmodifiers.html#class-inputeventwithmodifiers) - adds the ability to check if modifiers are pressed, such as `Shift` or `Alt`.
+- [InputEventWithModifiers](https://docs.godotengine.org/en/stable/classes/class_inputeventwithmodifiers.html#class-inputeventwithmodifiers) - adds the ability to check if modifiers are pressed, such as ``Shift`` or ``Alt``.
 
-- [InputEventMouse](https://docs.godotengine.org/en/stable/classes/class_inputeventmouse.html#class-inputeventmouse) - adds mouse event properties, such as position
+- [InputEventMouse](https://docs.godotengine.org/en/stable/classes/class_inputeventmouse.html#class-inputeventmouse) - adds mouse event properties, such as `position`
 
 - [InputEventMouseButton](https://docs.godotengine.org/en/stable/classes/class_inputeventmousebutton.html#class-inputeventmousebutton) - contains the index of the button that was pressed, whether it was a double-click, etc.
 
@@ -75,8 +95,14 @@ It inherits from the following classes:
 >
 
 You can encounter errors if you try to access a property on an input type that
-doesn't contain it - calling position on InputEventKey for example. To
+doesn't contain it - calling `position` on `InputEventKey` for example. To
 avoid this, make sure to test the event type first:
+
+```
+func _input(event):
+    if event is InputEventMouseButton:
+        print("mouse button event at ", event.position)
+```
 
 ## InputMap
 
@@ -90,21 +116,34 @@ the InputMap tab:
 
 > Tip:
 > A new Godot project includes a number of default actions already defined.
-> To see them, turn on Show Built-in Actions in the InputMap dialog.
+> To see them, turn on `Show Built-in Actions` in the InputMap dialog.
 >
 
 ### Capturing actions
 
 Once you've defined your actions, you can process them in your scripts using
-is_action_pressed() and is_action_released() by passing the name of
+`is_action_pressed()` and `is_action_released()` by passing the name of
 the action you're looking for:
+
+```
+func _input(event):
+    if event.is_action_pressed("my_action"):
+        print("my_action occurred!")
+```
 
 ## Keyboard events
 
 Keyboard events are captured in [InputEventKey](https://docs.godotengine.org/en/stable/classes/class_inputeventkey.html#class-inputeventkey).
 While it's recommended to use input actions instead, there may be cases where
 you want to specifically look at key events. For this example, let's check for
-the `T`:
+the ``T``:
+
+```
+func _input(event):
+    if event is InputEventKey and event.pressed:
+        if event.keycode == KEY_T:
+            print("T was pressed")
+```
 
 > Tip: See :ref:`@GlobalScope_Key <enum_@GlobalScope_Key>` for a list of keycode
 > constants.
@@ -129,8 +168,18 @@ the `T`:
 Modifier properties are inherited from
 [InputEventWithModifiers](https://docs.godotengine.org/en/stable/classes/class_inputeventwithmodifiers.html#class-inputeventwithmodifiers). This allows
 you to check for modifier combinations using boolean properties. Let's imagine
-you want one thing to happen when the `T` is pressed, but something
-different when it's `Shift + T`:
+you want one thing to happen when the ``T`` is pressed, but something
+different when it's ``Shift + T``:
+
+```
+func _input(event):
+    if event is InputEventKey and event.pressed:
+        if event.keycode == KEY_T:
+            if event.shift_pressed:
+                print("Shift+T was pressed")
+            else:
+                print("T was pressed")
+```
 
 > Tip: See :ref:`@GlobalScope_Key <enum_@GlobalScope_Key>` for a list of keycode
 > constants.
@@ -141,24 +190,56 @@ different when it's `Shift + T`:
 Mouse events stem from the [InputEventMouse](https://docs.godotengine.org/en/stable/classes/class_inputeventmouse.html#class-inputeventmouse) class, and
 are separated into two types: [InputEventMouseButton](https://docs.godotengine.org/en/stable/classes/class_inputeventmousebutton.html#class-inputeventmousebutton)
 and [InputEventMouseMotion](https://docs.godotengine.org/en/stable/classes/class_inputeventmousemotion.html#class-inputeventmousemotion). Note that this
-means that all mouse events will contain a position property.
+means that all mouse events will contain a `position` property.
 
 ### Mouse buttons
 
 Capturing mouse buttons is very similar to handling key events. :ref:`@GlobalScope_MouseButton <enum_@GlobalScope_MouseButton>`
-contains a list of MOUSE_BUTTON_* constants for each possible button, which will
-be reported in the event's button_index property. Note that the scrollwheel
+contains a list of `MOUSE_BUTTON_*` constants for each possible button, which will
+be reported in the event's `button_index` property. Note that the scrollwheel
 also counts as a button - two buttons, to be precise, with both
-MOUSE_BUTTON_WHEEL_UP and MOUSE_BUTTON_WHEEL_DOWN being separate events.
+`MOUSE_BUTTON_WHEEL_UP` and `MOUSE_BUTTON_WHEEL_DOWN` being separate events.
+
+```
+func _input(event):
+    if event is InputEventMouseButton:
+        if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+            print("Left button was clicked at ", event.position)
+        if event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
+            print("Wheel up")
+```
 
 ### Mouse motion
 
 [InputEventMouseMotion](https://docs.godotengine.org/en/stable/classes/class_inputeventmousemotion.html#class-inputeventmousemotion) events occur whenever
-the mouse moves. You can find the move's distance with the relative
+the mouse moves. You can find the move's distance with the `relative`
 property.
 
 Here's an example using mouse events to drag-and-drop a [Sprite2D](https://docs.godotengine.org/en/stable/classes/class_sprite2d.html#class-sprite2d)
 node:
+
+```
+extends Node
+
+
+var dragging = false
+var click_radius = 32 # Size of the sprite.
+
+
+func _input(event):
+    if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+        if (event.position - $Sprite2D.position).length() < click_radius:
+            # Start dragging if the click is on the sprite.
+            if not dragging and event.pressed:
+                dragging = true
+        # Stop dragging if the button is released.
+        if dragging and not event.pressed:
+            dragging = false
+
+    if event is InputEventMouseMotion and dragging:
+        # While dragging, move the sprite with the mouse.
+        $Sprite2D.position = event.position
+```
 
 ## Touch events
 

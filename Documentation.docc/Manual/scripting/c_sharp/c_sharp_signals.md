@@ -13,14 +13,14 @@ In some cases it's necessary to use the older
 [Disconnect()](https://docs.godotengine.org/en/stable/classes/class_object_method_disconnect.html#class-object_method_disconnect) APIs.
 See :ref:`using_connect_and_disconnect` for more details.
 
-If you encounter a System.ObjectDisposedException while handling a signal,
+If you encounter a `System.ObjectDisposedException` while handling a signal,
 you might be missing a signal disconnection. See
 :ref:`disconnecting_automatically_when_the_receiver_is_freed` for more details.
 
 ## Signals as C# events
 
 To provide more type-safety, Godot signals are also all available through events.
-You can handle these events, as any other event, with the += and -= operators.
+You can handle these events, as any other event, with the `+=` and `-=` operators.
 
 ```
 Timer myTimer = GetNode<Timer>("Timer");
@@ -28,7 +28,7 @@ myTimer.Timeout += () => GD.Print("Timeout!");
 ```
 
 In addition, you can always access signal names associated with a node type through its nested
-SignalName class. This is useful when, for example, you want to await on a signal (see <doc:c_sharp_differences#Await>).
+`SignalName` class. This is useful when, for example, you want to await on a signal (see <doc:c_sharp_differences#Await>).
 
 ```
 await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
@@ -36,8 +36,8 @@ await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
 
 ## Custom signals as C# events
 
-To declare a custom event in your C# script, use the [Signal] attribute on a public delegate type.
-Note that the name of this delegate needs to end with EventHandler.
+To declare a custom event in your C# script, use the `[Signal]` attribute on a public delegate type.
+Note that the name of this delegate needs to end with `EventHandler`.
 
 ```
 [Signal]
@@ -49,7 +49,7 @@ public delegate void MySignalWithArgumentEventHandler(string myString);
 
 Once this is done, Godot will create the appropriate events automatically behind the scenes. You
 can then use said events as you'd do for any other Godot signal. Note that events are named using
-your delegate's name minus the final EventHandler part.
+your delegate's name minus the final `EventHandler` part.
 
 ```
 public override void _Ready()
@@ -74,8 +74,8 @@ private void SayHelloTo(string name)
 
 ## Signal emission
 
-To emit signals, use the EmitSignal method. Note that, as for signals defined by the engine,
-your custom signal names are listed under the nested SignalName class.
+To emit signals, use the `EmitSignal` method. Note that, as for signals defined by the engine,
+your custom signal names are listed under the nested `SignalName` class.
 
 ```
 public void MyMethodEmittingSignals()
@@ -85,12 +85,12 @@ public void MyMethodEmittingSignals()
 }
 ```
 
-In contrast with other C# events, you cannot use Invoke to raise events tied to Godot signals.
+In contrast with other C# events, you cannot use `Invoke` to raise events tied to Godot signals.
 
 Signals support arguments of any :ref:`Variant-compatible type <c_sharp_variant_compatible_types>`.
 
-Consequently, any Node or RefCounted will be compatible automatically, but custom data objects will need
-to inherit from GodotObject or one of its subclasses.
+Consequently, any `Node` or `RefCounted` will be compatible automatically, but custom data objects will need
+to inherit from `GodotObject` or one of its subclasses.
 
 ```
 using Godot;
@@ -109,7 +109,7 @@ Sometimes you'll want to bind values to a signal when the connection is establis
 the following example.
 
 Here, the [Button.Pressed](https://docs.godotengine.org/en/stable/classes/class_basebutton_signal_pressed.html#class-basebutton_signal_pressed) signal does not take any argument. But we
-want to use the same ModifyValue for both the "plus" and "minus" buttons. So we bind the
+want to use the same `ModifyValue` for both the "plus" and "minus" buttons. So we bind the
 modifier value at the time we're connecting the signals.
 
 ```
@@ -132,10 +132,10 @@ private void ModifyValue(int modifier)
 
 ## Signal creation at runtime
 
-Finally, you can create custom signals directly while your game is running. Use the AddUserSignal
+Finally, you can create custom signals directly while your game is running. Use the `AddUserSignal`
 method for that. Be aware that it should be executed before any use of said signals (either
 connecting to them or emitting them). Also, note that signals created this way won't be visible through the
-SignalName nested class.
+`SignalName` nested class.
 
 ```
 public override void _Ready()
@@ -155,7 +155,7 @@ much type safety as the events. However, they're necessary for
 and passing :ref:`ConnectFlags<enum_Object_ConnectFlags>`.
 
 In the following example, pressing the button for the first time prints
-Greetings!. OneShot disconnects the signal, so pressing the button again
+`Greetings!`. `OneShot` disconnects the signal, so pressing the button again
 does nothing.
 
 ```
@@ -173,7 +173,7 @@ public void OnButtonPressed()
 
 ## Disconnecting automatically when the receiver is freed
 
-Normally, when any GodotObject is freed (such as any Node), Godot
+Normally, when any `GodotObject` is freed (such as any `Node`), Godot
 automatically disconnects all connections associated with that object. This
 happens for both signal emitters and signal receivers.
 
@@ -241,12 +241,12 @@ Time's up!
 [...] System.ObjectDisposedException: Cannot access a disposed object.
 ```
 
-On tick 4, the lambda expression tries to access the Name property of the
+On tick 4, the lambda expression tries to access the `Name` property of the
 node, but the node has already been freed. This causes the exception.
 
 To disconnect, keep a reference to the delegate created by the lambda expression
-and pass that to -=. For example, this node connects and disconnects using
-the _EnterTree and _ExitTree lifecycle methods:
+and pass that to `-=`. For example, this node connects and disconnects using
+the `_EnterTree` and `_ExitTree` lifecycle methods:
 
 ```
 [Export]
@@ -276,34 +276,34 @@ public override void _ExitTree()
 }
 ```
 
-In this example, Free causes the node to leave the tree, which calls
-_ExitTree. _ExitTree disconnects the signal, so _tick is never
+In this example, `Free` causes the node to leave the tree, which calls
+`_ExitTree`. `_ExitTree` disconnects the signal, so `_tick` is never
 called again.
 
 The lifecycle methods to use depend on what the node does. Another option is to
-connect to signals in _Ready and disconnect in Dispose.
+connect to signals in `_Ready` and disconnect in `Dispose`.
 
 > Note:
 >
 > Godot uses Delegate.Target
 > to determine what instance a delegate is associated with. When a lambda
-> expression doesn't capture a variable, the generated delegate's Target
+> expression doesn't capture a variable, the generated delegate's `Target`
 > is the instance that created the delegate. When a variable is captured, the
-> Target instead points at a generated type that stores the captured
+> `Target` instead points at a generated type that stores the captured
 > variable. This is what breaks the association. If you want to see if a
-> delegate will be automatically cleaned up, try checking its Target.
+> delegate will be automatically cleaned up, try checking its `Target`.
 >
-> Callable.From doesn't affect the Delegate.Target, so connecting a
-> lambda that captures variables using Connect doesn't work any better
-> than +=.
+> `Callable.From` doesn't affect the `Delegate.Target`, so connecting a
+> lambda that captures variables using `Connect` doesn't work any better
+> than `+=`.
 >
 
 ### No automatic disconnection: a custom signal
 
-Connecting to a custom signal using += doesn't disconnect automatically when
+Connecting to a custom signal using `+=` doesn't disconnect automatically when
 the receiving node is freed.
 
-To disconnect, use -= at an appropriate time. For example:
+To disconnect, use `-=` at an appropriate time. For example:
 
 ```
 [Export]
@@ -320,7 +320,7 @@ public override void _ExitTree()
 }
 ```
 
-Another solution is to use Connect, which does disconnect automatically with
+Another solution is to use `Connect`, which does disconnect automatically with
 custom signals:
 
 ```

@@ -242,7 +242,7 @@ Volumetric Fog | ❌ Not supported. | ❌ Not supported. | ✔️ Supported.
 Tonemapping | ✔️ Supported. | ✔️ Supported. | ✔️ Supported.
 Screen-Space Reflections | ❌ Not supported. | ❌ Not supported. | ✔️ Supported.
 Screen-Space Ambient
-Occlusion (SSAO) | ❌ Not supported. | ❌ Not supported. | ✔️ Supported.
+Occlusion (SSAO) | ✔️ Supported. | ❌ Not supported. | ✔️ Supported.
 Screen-Space
 Indirect Lighting (SSIL) | ❌ Not supported. | ❌ Not supported. | ✔️ Supported.
 Signed Distance Field

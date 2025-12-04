@@ -18,7 +18,7 @@ up though, so this page provides in-depth descriptions of some properties and ho
 
 The parallax node supports adding nodes that render things as children, so you can use one or many nodes to make up each
 layer. To begin, place each node or nodes you want to have scroll independently as a child of their own parallax node.
-Make sure that the top left of the textures used are at the (0, 0) crossing, like in the image below. See the section
+Make sure that the top left of the textures used are at the `(0, 0)` crossing, like in the image below. See the section
 on <doc:2d_parallax#Positioning> for why this is important.
 
 @Image(source: "2d_parallax_size_viewport.png")
@@ -37,15 +37,15 @@ to the camera, use a value higher than 1, making it scroll faster.
 The scene above is comprised of five layers. Some good [scroll_scale](https://docs.godotengine.org/en/stable/classes/class_parallax2d_property_scroll_scale.html#class-parallax2d_property_scroll_scale)
 values might be:
 
-- (0.7, 1) - Forest
+- `(0.7, 1)` - Forest
 
-- (0.5, 1) - Hills
+- `(0.5, 1)` - Hills
 
-- (0.3, 1) - Lower Clouds
+- `(0.3, 1)` - Lower Clouds
 
-- (0.2, 1) - Higher Clouds
+- `(0.2, 1)` - Higher Clouds
 
-- (0.1, 1) - Sky
+- `(0.1, 1)` - Sky
 
 The video below displays how these values affect scrolling while in-game:
 
@@ -104,7 +104,7 @@ You can also start off on the right foot by preparing child nodes earlier in the
 
 - set [texture_repeat](https://docs.godotengine.org/en/stable/classes/class_canvasitem_property_texture_repeat.html#class-canvasitem_property_texture_repeat) to [CanvasItem.TEXTURE_REPEAT_ENABLED](https://docs.godotengine.org/en/stable/classes/class_canvasitem_constant_texture_repeat_enabled.html#class-canvasitem_constant_texture_repeat_enabled)
 
-- set [region_enabled](https://docs.godotengine.org/en/stable/classes/class_sprite2d_property_region_enabled.html#class-sprite2d_property_region_enabled) to true
+- set [region_enabled](https://docs.godotengine.org/en/stable/classes/class_sprite2d_property_region_enabled.html#class-sprite2d_property_region_enabled) to `true`
 
 - set the [region_rect](https://docs.godotengine.org/en/stable/classes/class_sprite2d_property_region_rect.html#class-sprite2d_property_region_rect) to a multiple of the size of your texture large enough to cover the viewport.
 
@@ -114,17 +114,17 @@ Below, you can see that repeating the image twice makes it large enough to cover
 
 ### Poor positioning
 
-It's common to see users mistakenly set all of their textures to be centered at (0,0):
+It's common to see users mistakenly set all of their textures to be centered at `(0,0)`:
 
 @Image(source: "2d_parallax_single_centered.png")
 
 This creates problems with the infinite repeat effect and should be avoided. The "infinite repeat canvas" starts at
-(0,0) and expands down and to the right to the size of the [repeat_size](https://docs.godotengine.org/en/stable/classes/class_parallax2d_property_repeat_size.html#class-parallax2d_property_repeat_size)
+`(0,0)` and expands down and to the right to the size of the [repeat_size](https://docs.godotengine.org/en/stable/classes/class_parallax2d_property_repeat_size.html#class-parallax2d_property_repeat_size)
 value.
 
 @Image(source: "2d_parallax_single_expand.png")
 
-If the textures are centered on the (0,0) crossing, the infinite repeat canvas is only partly covered, so it
+If the textures are centered on the `(0,0)` crossing, the infinite repeat canvas is only partly covered, so it
 only partly repeats.
 
 Increasing [repeat_times](https://docs.godotengine.org/en/stable/classes/class_parallax2d_property_repeat_times.html#class-parallax2d_property_repeat_times) technically would work in some scenarios, but
@@ -132,7 +132,7 @@ is a brute force solution and not the problem it is designed to solve (we'll go 
 understand how the repeat effect works and set up the parallax textures appropriately to begin with.
 
 First, check to see if any textures are spilling over onto the negative parts of the canvas. Make sure the textures
-used in the parallax nodes fit inside the "infinite repeat canvas" starting at (0,0). That way, if
+used in the parallax nodes fit inside the "infinite repeat canvas" starting at `(0,0)`. That way, if
 [Parallax2D.repeat_size](https://docs.godotengine.org/en/stable/classes/class_parallax2d_property_repeat_size.html#class-parallax2d_property_repeat_size) is set correctly, it should look something like
 this, with one single loop of the image the same size or larger than the viewport:
 
@@ -154,25 +154,25 @@ half of the image is cut off before it jumps forward like in the image below:
 If your parallax textures are already working correctly, but you prefer it to start at a different point,
 [Parallax2D](https://docs.godotengine.org/en/stable/classes/class_parallax2d.html#class-parallax2d) comes with a [scroll_offset](https://docs.godotengine.org/en/stable/classes/class_parallax2d_property_scroll_offset.html#class-parallax2d_property_scroll_offset) property
 used to offset where the infinite repeat canvas starts. As an example, if your image is 288x208, setting
-the [scroll_offset](https://docs.godotengine.org/en/stable/classes/class_parallax2d_property_scroll_offset.html#class-parallax2d_property_scroll_offset) to (-144,0) or (144,0) allows it to begin
+the [scroll_offset](https://docs.godotengine.org/en/stable/classes/class_parallax2d_property_scroll_offset.html#class-parallax2d_property_scroll_offset) to `(-144,0)` or `(144,0)` allows it to begin
 halfway across the image.
 
 ## Repeat times
 
 Ideally, following this guide, your parallax textures are large enough to cover the screen even when zoomed out.
 Until now, we have had a perfectly fitting 288x208 texture inside of a 288x208 viewport. However, problems
-occur when we zoom out by setting the [Camera2D.zoom](https://docs.godotengine.org/en/stable/classes/class_camera2d_property_zoom.html#class-camera2d_property_zoom) to (0.5, 0.5):
+occur when we zoom out by setting the [Camera2D.zoom](https://docs.godotengine.org/en/stable/classes/class_camera2d_property_zoom.html#class-camera2d_property_zoom) to `(0.5, 0.5)`:
 
 @Image(source: "2d_parallax_zoom_single.png")
 
 Even though everything is correctly set for the viewport at the default zoom level, zooming out makes it smaller than
 the viewport, breaking the infinite repeat effect. This is where
-[repeat_times](https://docs.godotengine.org/en/stable/classes/class_parallax2d_property_repeat_times.html#class-parallax2d_property_repeat_times) can help out. Setting a value of 3 (one extra
+[repeat_times](https://docs.godotengine.org/en/stable/classes/class_parallax2d_property_repeat_times.html#class-parallax2d_property_repeat_times) can help out. Setting a value of `3` (one extra
 repeat behind and in front), it is now large enough to accommodate the infinite repeat effect.
 
 @Image(source: "2d_parallax_zoom_repeat_times.png")
 
-If these textures were meant to be repeated vertically, we would have specified a y value for the
+If these textures were meant to be repeated vertically, we would have specified a `y` value for the
 [repeat_size](https://docs.godotengine.org/en/stable/classes/class_parallax2d_property_repeat_size.html#class-parallax2d_property_repeat_size). The
 [repeat_times](https://docs.godotengine.org/en/stable/classes/class_parallax2d_property_repeat_times.html#class-parallax2d_property_repeat_times) would automatically add a repeat above and below as well.
 This is only a horizontal parallax, so it leaves an empty block above and below the image. How do we solve this? We

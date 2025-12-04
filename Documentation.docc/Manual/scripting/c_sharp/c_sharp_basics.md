@@ -11,7 +11,7 @@ and (re)visit the <doc:scripting_languages> of the
 step-by-step tutorial.
 
 C# is a high-level programming language developed by Microsoft. In Godot,
-it is implemented with .NET 8.0.
+it is implemented with the modern .NET runtime.
 
 > Attention:
 >
@@ -31,7 +31,7 @@ it is implemented with .NET 8.0.
 
 ## Prerequisites
 
-Godot bundles the parts of .NET needed to run already compiled games.
+Godot bundles the parts of .NET needed to run already-compiled games.
 However, Godot does not bundle the tools required to build and compile
 games, such as MSBuild and the C# compiler. These are
 included in the .NET SDK, and need to be installed separately.
@@ -41,6 +41,7 @@ version of Godot.
 
 Download and install the latest stable version of the SDK from the
 .NET download page.
+Godot 4.5 requires .NET 8 or later, but exporting to Android requires .NET 9 or later.
 
 > Important:
 >
@@ -103,10 +104,10 @@ In Visual Studio Code:
 
 - Install the C# extension.
 
-To configure a project for debugging, you need a tasks.json and launch.json file in
-the .vscode folder with the necessary configuration.
+To configure a project for debugging, you need a `tasks.json` and `launch.json` file in
+the `.vscode` folder with the necessary configuration.
 
-Here is an example launch.json:
+Here is an example `launch.json`:
 
 ```
 {
@@ -127,10 +128,10 @@ Here is an example launch.json:
 ```
 
 For this launch configuration to work, you need to either setup a GODOT4
-environment variable that points to the Godot executable, or replace program
+environment variable that points to the Godot executable, or replace `program`
 parameter with the path to the Godot executable.
 
-Here is an example tasks.json:
+Here is an example `tasks.json`:
 
 ```
 {
@@ -171,8 +172,8 @@ In Godot's **Editor → Editor Settings** menu:
 > your NuGet configuration may be incorrect and need to be fixed.
 >
 > A simple way to fix the NuGet configuration file is to regenerate it.
-> In a file explorer window, go to %AppData%\NuGet. Rename or delete
-> the NuGet.Config file. When you build your Godot project again,
+> In a file explorer window, go to `%AppData%\NuGet`. Rename or delete
+> the `NuGet.Config` file. When you build your Godot project again,
 > the file will be automatically created with default values.
 >
 
@@ -180,10 +181,10 @@ To debug your C# scripts using Visual Studio, open the .sln file that is generat
 after opening the first C# script in the editor. In the **Debug** menu, go to the
 **Debug Properties** menu item for your project. Click the **Create a new profile**
 button and choose **Executable**. In the **Executable** field, browse to the path
-of the C# version of the Godot editor, or type %GODOT4% if you have created an
+of the C# version of the Godot editor, or type `%GODOT4%` if you have created an
 environment variable for the Godot executable path. It must be the path to the main Godot
 executable, not the 'console' version. For the **Working Directory**, type a single period,
-., meaning the current directory. Also check the **Enable native code debugging**
+`.`, meaning the current directory. Also check the **Enable native code debugging**
 checkbox. You may now close this window, click downward arrow on the debug profile
 dropdown, and select your new launch profile. Hit the green start button, and your
 game will begin playing in debug mode.
@@ -204,13 +205,13 @@ can be transferred from GDScript.
 ## Project setup and workflow
 
 When you create the first C# script, Godot initializes the C# project files
-for your Godot project. This includes generating a C# solution (.sln)
-and a project file (.csproj), as well as some utility files and folders
-(.godot/mono).
-All of these but .godot/mono are important and should be committed to your
-version control system. Everything under .godot can be safely added to the
+for your Godot project. This includes generating a C# solution (`.sln`)
+and a project file (`.csproj`), as well as some utility files and folders
+(`.godot/mono`).
+All of these but `.godot/mono` are important and should be committed to your
+version control system. Everything under `.godot` can be safely added to the
 ignore list of your VCS.
-When troubleshooting, it can sometimes help to delete the .godot/mono folder
+When troubleshooting, it can sometimes help to delete the `.godot/mono` folder
 and let it regenerate.
 
 ## Example
@@ -242,22 +243,22 @@ public partial class YourCustomClass : Node
 ```
 
 As you can see, functions normally in global scope in GDScript like Godot's
-print function are available in the GD static class which is part of
-the Godot namespace. For a full list of methods in the GD class, see the
+`print` function are available in the `GD` static class which is part of
+the `Godot` namespace. For a full list of methods in the `GD` class, see the
 class reference pages for
 [@GDScript](https://docs.godotengine.org/en/stable/classes/class_@gdscript.html#class-@gdscript) and [@GlobalScope](https://docs.godotengine.org/en/stable/classes/class_@globalscope.html#class-@globalscope).
 
 > Note:
 >
 > Keep in mind that the class you wish to attach to your node should have the same
-> name as the .cs file. Otherwise, you will get the following error:
+> name as the `.cs` file. Otherwise, you will get the following error:
 >
 > "Cannot find class XXX for script res://XXX.cs"
 >
 
 ## General differences between C# and GDScript
 
-The C# API uses PascalCase instead of snake_case in GDScript/C++.
+The C# API uses `PascalCase` instead of `snake_case` in GDScript/C++.
 Where possible, fields and getters/setters have been converted to properties.
 In general, the C# Godot API strives to be as idiomatic as is reasonably possible.
 
@@ -290,14 +291,14 @@ with the exception of exported variables.
 - Attached C# scripts should refer to a class that has a class name
 that matches the file name.
 
-- There are some methods such as Get()/Set(), Call()/CallDeferred()
-and signal connection method Connect() that rely on Godot's snake_case API
+- There are some methods such as `Get()`/`Set()`, `Call()`/`CallDeferred()`
+and signal connection method `Connect()` that rely on Godot's `snake_case` API
 naming conventions.
-So when using e.g. CallDeferred("AddChild"), AddChild will not work because
-the API is expecting the original snake_case version add_child. However, you
+So when using e.g. `CallDeferred("AddChild")`, `AddChild` will not work because
+the API is expecting the original `snake_case` version `add_child`. However, you
 can use any custom properties or methods without this limitation.
-Prefer using the exposed StringName in the PropertyName, MethodName and
-SignalName to avoid extra StringName allocations and worrying about snake_case naming.
+Prefer using the exposed `StringName` in the `PropertyName`, `MethodName` and
+`SignalName` to avoid extra `StringName` allocations and worrying about snake_case naming.
 
 As of Godot 4.0, exporting .NET projects is supported for desktop platforms
 (Linux, Windows and macOS). Other platforms will gain support in future 4.x
@@ -306,9 +307,9 @@ releases.
 ## Common pitfalls
 
 You might encounter the following error when trying to modify some values in Godot
-objects, e.g. when trying to change the X coordinate of a Node2D:
+objects, e.g. when trying to change the X coordinate of a `Node2D`:
 
-This is perfectly normal. Structs (in this example, a Vector2) in C# are
+This is perfectly normal. Structs (in this example, a `Vector2`) in C# are
 copied on assignment, meaning that when you retrieve such an object from a
 property or an indexer, you get a copy of it, not the object itself. Modifying
 said copy without reassigning it afterwards won't achieve anything.
@@ -339,8 +340,8 @@ You can read more about this error on the C# language reference.
 > see <doc:faq#Which-Programming-Language-Is-Fastest>.
 >
 
-Most properties of Godot C# objects that are based on GodotObject
-(e.g. any Node like Control or Node3D like Camera3D) require native (interop) calls as they talk to
+Most properties of Godot C# objects that are based on `GodotObject`
+(e.g. any `Node` like `Control` or `Node3D` like `Camera3D`) require native (interop) calls as they talk to
 Godot's C++ core.
 Consider assigning values of such properties into a local variable if you need to modify or read them multiple times at
 a single code location:
@@ -375,21 +376,21 @@ public partial class YourCustomClass : Node3D
 }
 ```
 
-Passing raw arrays (such as byte[]) or string to Godot's C# API requires marshalling which is
+Passing raw arrays (such as `byte[]`) or `string` to Godot's C# API requires marshalling which is
 comparatively pricey.
 
-The implicit conversion from string to NodePath or StringName incur both the native interop and marshalling
-costs as the string has to be marshalled and passed to the respective native constructor.
+The implicit conversion from `string` to `NodePath` or `StringName` incur both the native interop and marshalling
+costs as the `string` has to be marshalled and passed to the respective native constructor.
 
 ## Using NuGet packages in Godot
 
 NuGet packages can be installed and used with Godot,
 as with any C# project. Many IDEs are able to add packages directly.
 They can also be added manually by adding the package reference in
-the .csproj file located in the project root:
+the `.csproj` file located in the project root:
 
-As of Godot 3.2.3, Godot automatically downloads and sets up newly added NuGet
-packages the next time it builds the project.
+Godot automatically downloads and sets up newly added NuGet packages
+the next time it builds the project.
 
 ## Profiling your C# code
 

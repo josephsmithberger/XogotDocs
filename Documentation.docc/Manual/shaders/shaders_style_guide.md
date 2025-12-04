@@ -103,7 +103,7 @@ the "1TBS Style"
 which recommends placing the brace associated with a control statement on the
 same line. Always use braces for statements, even if they only span one line.
 This makes them easier to refactor and avoids mistakes when adding more lines to
-an if statement or similar.
+an `if` statement or similar.
 
 **Good**:
 
@@ -207,14 +207,14 @@ Don't use multiline comment syntax if your comment can fit on a single line:
 > Note:
 >
 > In the shader editor, to make the selected code a comment (or uncomment it),
-> press `Ctrl + K`. This feature adds or removes // at the start of
+> press ``Ctrl + K``. This feature adds or removes `//` at the start of
 > the selected lines.
 >
 
 ### Documentation comments
 
 Use the following format for documentation comments above uniforms, with **two**
-leading asterisks (/**) and follow-up asterisks on every line:
+leading asterisks (`/**`) and follow-up asterisks on every line:
 
 ```
 /**
@@ -228,7 +228,7 @@ uniform int something = 1;
 
 These comments will appear when hovering a property in the inspector. If you
 don't wish the comment to be visible in the inspector, use the standard comment
-syntax instead (// ... or /* ... */ with only one leading asterisk).
+syntax instead (`// ...` or `/* ... */` with only one leading asterisk).
 
 ### Whitespace
 
@@ -282,9 +282,9 @@ void fragment() {
 
 ## Accessing vector members
 
-Use r, g, b, and a when accessing a vector's members if it
-contains a color. If the vector contains anything else than a color, use x,
-y, z, and w. This allows those reading your code to better
+Use `r`, `g`, `b`, and `a` when accessing a vector's members if it
+contains a color. If the vector contains anything else than a color, use `x`,
+`y`, `z`, and `w`. This allows those reading your code to better
 understand what the underlying data represents.
 
 **Good**:
@@ -331,8 +331,8 @@ Directives should be written without any indentation before them, even if
 nested within a function.
 
 To preserve the natural flow of indentation when shader errors are printed to
-the console, extra indentation should **not** be added within #if,
-#ifdef or #ifndef blocks:
+the console, extra indentation should **not** be added within `#if`,
+`#ifdef` or `#ifndef` blocks:
 
 **Good**:
 
@@ -366,10 +366,10 @@ void fragment() {
 
 To automatically format shader files, you can use
 clang-format on one or several
-.gdshader files, as the syntax is close enough to a C-style language.
+`.gdshader` files, as the syntax is close enough to a C-style language.
 
 However, the default style in clang-format doesn't follow this style guide,
-so you need to save this file as .clang-format in your project's root folder:
+so you need to save this file as `.clang-format` in your project's root folder:
 
 ```
 BasedOnStyle: LLVM
@@ -395,8 +395,8 @@ TabWidth: 4
 UseTab: Always
 ```
 
-While in the project root, you can then call clang-format -i path/to/shader.gdshader
-in a terminal to format a single shader file, or clang-format -i path/to/folder/*.gdshader
+While in the project root, you can then call `clang-format -i path/to/shader.gdshader`
+in a terminal to format a single shader file, or `clang-format -i path/to/folder/*.gdshader`
 to format all shaders in a folder.
 
 ## Code order

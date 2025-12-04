@@ -17,7 +17,7 @@ Most GLSL ES 3.0 datatypes are supported:
 Type | Description
 ---- | -----------
 **void** | Void datatype, useful only for functions that return nothing.
-**bool** | Boolean datatype, can only containtrueorfalse.
+**bool** | Boolean datatype, can only contain`true`or`false`.
 **bvec2** | Two-component vector of booleans.
 **bvec3** | Three-component vector of booleans.
 **bvec4** | Four-component vector of booleans.
@@ -53,7 +53,7 @@ Only supported in Compatibility/Android platform.
 
 > Warning:
 >
-> Local variables are not initialized to a default value such as 0.0. If
+> Local variables are not initialized to a default value such as `0.0`. If
 > you use a variable without assigning it first, it will contain whatever
 > value was already present at that memory location, and unpredictable visual
 > glitches will appear. However, uniforms and varyings are initialized to a
@@ -63,7 +63,7 @@ Only supported in Compatibility/Android platform.
 ### Comments
 
 The shading language supports the same comment syntax as used in C# and C++,
-using // for single-line comments and /* */ for multi-line comments:
+using `//` for single-line comments and `/* */` for multi-line comments:
 
 ```
 // Single-line comment.
@@ -79,9 +79,9 @@ int b = 3;
 
 Additionally, you can use documentation comments that are displayed in the
 inspector when hovering a shader parameter. Documentation comments are currently
-only supported when placed immediately above a uniform declaration. These
+only supported when placed immediately above a `uniform` declaration. These
 documentation comments only support the **multiline** comment syntax and must use
-**two** leading asterisks (/**) instead of just one (/*):
+**two** leading asterisks (`/**`) instead of just one (`/*`):
 
 ```
 /**
@@ -126,9 +126,9 @@ Individual scalar members of vector types are accessed via the "x", "y", "z" and
 "w" members. Alternatively, using "r", "g", "b" and "a" also works and is
 equivalent. Use whatever fits best for your needs.
 
-For matrices, use the m[column][row] indexing syntax to access each scalar,
-or m[column] to access a vector by column index. For example, for accessing the
-y-component of the translation from a mat4 transform matrix (4th column, 2nd line) you use m[3][1] or m[3].y.
+For matrices, use the `m[column][row]` indexing syntax to access each scalar,
+or `m[column]` to access a vector by column index. For example, for accessing the
+y-component of the translation from a mat4 transform matrix (4th column, 2nd line) you use `m[3][1]` or `m[3].y`.
 
 ### Constructing
 
@@ -145,8 +145,8 @@ vec4 a = vec4(0.0);
 ```
 
 Construction of matrix types requires vectors of the same dimension as the
-matrix, interpreted as columns. You can also build a diagonal matrix using matx(float) syntax.
-Accordingly, mat4(1.0) is an identity matrix.
+matrix, interpreted as columns. You can also build a diagonal matrix using `matx(float)` syntax.
+Accordingly, `mat4(1.0)` is an identity matrix.
 
 ```
 mat2 m2 = mat2(vec2(1.0, 0.0), vec2(0.0, 1.0));
@@ -217,7 +217,7 @@ Arrays are containers for multiple variables of a similar type.
 
 Local arrays are declared in functions. They can use all of the allowed
 datatypes, except samplers. The array declaration follows a C-style syntax:
-[const] + [precision] + typename + identifier + [array size].
+`[const] + [precision] + typename + identifier + [array size]`.
 
 ```
 void fragment() {
@@ -257,8 +257,8 @@ arr[0] = 1.0; // setter
 COLOR.r = arr[0]; // getter
 ```
 
-Arrays also have a built-in function .length() (not to be confused with the
-built-in length() function). It doesn't accept any parameters and will
+Arrays also have a built-in function `.length()` (not to be confused with the
+built-in `length()` function). It doesn't accept any parameters and will
 return the array's size.
 
 ```
@@ -271,8 +271,8 @@ for (int i = 0; i < arr.length(); i++) {
 > Note:
 >
 > If you use an index either below 0 or greater than array size - the shader will
-> crash and break rendering. To prevent this, use length(), if, or
-> clamp() functions to ensure the index is between 0 and the array's
+> crash and break rendering. To prevent this, use `length()`, `if`, or
+> `clamp()` functions to ensure the index is between 0 and the array's
 > length. Always carefully test and check your code. If you pass a constant
 > expression or a number, the editor will check its bounds to prevent
 > this crash.
@@ -280,7 +280,7 @@ for (int i = 0; i < arr.length(); i++) {
 
 ### Global arrays
 
-You can declare arrays in global space as either const or uniform:
+You can declare arrays in global space as either `const` or `uniform`:
 
 ```
 shader_type spatial;
@@ -295,14 +295,14 @@ void fragment() {
 
 > Note:
 >
-> Global arrays use the same syntax as local arrays, except with a const
-> or uniform added to their declaration. Note that uniform arrays can't
+> Global arrays use the same syntax as local arrays, except with a `const`
+> or `uniform` added to their declaration. Note that uniform arrays can't
 > have a default value.
 >
 
 ## Constants
 
-Use the const keyword before the variable declaration to make that variable
+Use the `const` keyword before the variable declaration to make that variable
 immutable, which means that it cannot be modified. All basic types, except
 samplers can be declared as constants. Accessing and using a constant value is
 slightly faster than using a uniform. Constants must be initialized at their
@@ -323,7 +323,7 @@ them (if they have the same type) can be declared in a single expression e.g
 const vec2 V1 = vec2(1, 1), V2 = vec2(2, 2);
 ```
 
-Similar to variables, arrays can also be declared with const.
+Similar to variables, arrays can also be declared with `const`.
 
 ```
 const float arr[] = { 1.0, 0.5, 0.0 };
@@ -345,8 +345,8 @@ shader_type spatial;
 const float GOLDEN_RATIO = 1.618033988749894;
 ```
 
-Constants of the float type must be initialized using . notation after the
-decimal part or by using the scientific notation. The optional f post-suffix is
+Constants of the `float` type must be initialized using `.` notation after the
+decimal part or by using the scientific notation. The optional `f` post-suffix is
 also supported.
 
 ```
@@ -355,8 +355,8 @@ float b = 1.0f; // same, using suffix for clarity
 float c = 1e-1; // gives 0.1 by using the scientific notation
 ```
 
-Constants of the uint (unsigned int) type must have a u suffix to differentiate them from signed integers.
-Alternatively, this can be done by using the uint(x) built-in conversion function.
+Constants of the `uint` (unsigned int) type must have a `u` suffix to differentiate them from signed integers.
+Alternatively, this can be done by using the `uint(x)` built-in conversion function.
 
 ```
 uint a = 1u;
@@ -463,11 +463,11 @@ Precedence | Class | Operator
 > +---------------------------------------+------------------------------------------------------+
 > | Operation                             | Equivalent Scalar Operation                          |
 > +=======================================+======================================================+
-> | vec3(4, 5, 6) + 2                 | vec3(4 + 2, 5 + 2, 6 + 2)                        |
+> | `vec3(4, 5, 6) + 2`                 | `vec3(4 + 2, 5 + 2, 6 + 2)`                        |
 > +---------------------------------------+------------------------------------------------------+
-> | vec2(3, 4) * vec2(10, 20)         | vec2(3 * 10, 4 * 20)                             |
+> | `vec2(3, 4) * vec2(10, 20)`         | `vec2(3 * 10, 4 * 20)`                             |
 > +---------------------------------------+------------------------------------------------------+
-> | mat2(vec2(1, 2), vec2(3, 4)) + 10 | mat2(vec2(1 + 10, 2 + 10), vec2(3 + 10, 4 + 10)) |
+> | `mat2(vec2(1, 2), vec2(3, 4)) + 10` | `mat2(vec2(1 + 10, 2 + 10), vec2(3 + 10, 4 + 10))` |
 > +---------------------------------------+------------------------------------------------------+
 >
 > The GLSL Language Specification says under section 5.10 Vector and Matrix Operations:
@@ -539,7 +539,7 @@ careful not to make this mistake!
 Also, when comparing floating-point values against a number, make sure to
 compare them against a range instead of an exact number.
 
-A comparison like if (value == 0.3) may not evaluate to true.
+A comparison like `if (value == 0.3)` may not evaluate to `true`.
 Floating-point math is often approximate and can defy expectations. It can also
 behave differently depending on the hardware.
 
@@ -571,12 +571,12 @@ information.
 ## Discarding
 
 Fragment, light, and custom functions (called from fragment or light) can use the
-discard keyword. If used, the fragment is discarded and nothing is written.
+`discard` keyword. If used, the fragment is discarded and nothing is written.
 
-Beware that discard has a performance cost when used, as it will prevent the
+Beware that `discard` has a performance cost when used, as it will prevent the
 depth prepass from being effective on any surfaces using the shader. Also, a
 discarded pixel still needs to be rendered in the vertex shader, which means a
-shader that uses discard on all of its pixels is still more expensive to
+shader that uses `discard` on all of its pixels is still more expensive to
 render compared to not rendering any object in the first place.
 
 ## Functions
@@ -621,7 +621,7 @@ void sum2(int a, int b, inout int result) {
 
 Function overloading is supported. You can define multiple functions with the same
 name, but different arguments. Note that implicit casting in overloaded
-function calls is not allowed, such as from int to float (1 to 1.0).
+function calls is not allowed, such as from `int` to `float` (`1` to `1.0`).
 
 ```
 vec3 get_color(int t) {
@@ -747,7 +747,7 @@ Passing values to shaders is possible with uniforms, which are defined in the
 global scope of the shader, outside of functions. When a shader is later
 assigned to a material, the uniforms will appear as editable parameters in the
 material's inspector. Uniforms can't be written from within the shader. Any
-<doc:shading_language#Data-Types> except for void can be a uniform.
+<doc:shading_language#Data-Types> except for `void` can be a uniform.
 
 ```
 shader_type spatial;
@@ -798,7 +798,7 @@ Type | Hint | Description
 **sampler2D** | hint_default_black | As value or albedo color, default to opaque black.
 **sampler2D** | hint_default_transparent | As value or albedo color, default to transparent black.
 **sampler2D** | hint_anisotropy | As flowmap, default to right.
-**sampler2D** | hint_roughness[_r, _g, _b, _a, _normal, _gray] | Used for roughness limiter on import (attempts reducing specular aliasing)._normalis a normal map that guides the roughness limiter,
+**sampler2D** | hint_roughness[_r, _g, _b, _a, _normal, _gray] | Used for roughness limiter on import (attempts reducing specular aliasing).`_normal`is a normal map that guides the roughness limiter,
 with roughness increasing in areas that have high-frequency detail.
 **sampler2D** | filter[_nearest, _linear][_mipmap][_anisotropic] | Enabled specified texture filtering.
 **sampler2D** | repeat[_enable, _disable] | Enabled texture repeating.
@@ -806,44 +806,44 @@ with roughness increasing in areas that have high-frequency detail.
 **sampler2D** | hint_depth_texture | Texture is the depth texture.
 **sampler2D** | hint_normal_roughness_texture | Texture is the normal roughness texture (only supported in Forward+).
 
-You can access int values as a readable dropdown widget using the hint_enum uniform:
+You can access `int` values as a readable dropdown widget using the `hint_enum` uniform:
 
 ```
 uniform int noise_type : hint_enum("OpenSimplex2", "Cellular", "Perlin", "Value") = 0;
 ```
 
-You can assign explicit values to the hint_enum uniform using colon syntax similar to GDScript:
+You can assign explicit values to the `hint_enum` uniform using colon syntax similar to GDScript:
 
 ```
 uniform int character_speed: hint_enum("Slow:30", "Average:60", "Very Fast:200") = 60;
 ```
 
 The value will be stored as an integer, corresponding to the index of the selected
-option (i.e. 0, 1, or 2) or the value assigned by colon syntax
-(i.e. 30, 60, or 200). When setting the value with
-set_shader_parameter(), you must use the integer value, not the String
+option (i.e. `0`, `1`, or `2`) or the value assigned by colon syntax
+(i.e. `30`, `60`, or `200`). When setting the value with
+`set_shader_parameter()`, you must use the integer value, not the `String`
 name.
 
-Any texture which contains sRGB color data requires a source_color hint
+Any texture which contains sRGB color data requires a `source_color` hint
 in order to be correctly sampled. This is because Godot renders in linear
 color space, but some textures contain sRGB color data. If this hint is not
 used, the texture will appear washed out.
 
-Albedo and color textures should typically have a source_color hint. Normal,
-roughness, metallic, and height textures typically do not need a source_color
+Albedo and color textures should typically have a `source_color` hint. Normal,
+roughness, metallic, and height textures typically do not need a `source_color`
 hint.
 
-Using source_color hint is required in the Forward+ and Mobile renderers,
-and in canvas_item shaders when [HDR 2D](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_rendering/viewport/hdr_2d.html#class-projectsettings_property_rendering/viewport/hdr_2d)
-is enabled. The source_color hint is optional for the Compatibility renderer,
-and for canvas_item shaders if HDR 2D is disabled. However, it is
-recommended to always use the source_color hint, because it works even
-if you change renderers or disable HDR 2D.
+Using `source_color` hint is required in the Forward+ and Mobile renderers,
+and in `canvas_item` shaders when [HDR 2D](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_rendering/viewport/hdr_2d.html#class-projectsettings_property_rendering/viewport/hdr_2d)
+is enabled. The `source_color` hint is optional for the Compatibility renderer,
+and for `canvas_item` shaders if `HDR 2D` is disabled. However, it is
+recommended to always use the `source_color` hint, because it works even
+if you change renderers or disable `HDR 2D`.
 
 ### Uniform groups
 
 To group multiple uniforms in a section in the inspector, you can use a
-group_uniform keyword like this:
+`group_uniform` keyword like this:
 
 ```
 group_uniforms MyGroup;
@@ -868,8 +868,8 @@ Sometimes, you want to modify a parameter in many different shaders at once.
 With a regular uniform, this takes a lot of work as all these shaders need to be
 tracked and the uniform needs to be set for each of them. Global uniforms allow
 you to create and update uniforms that will be available in all shaders, in
-every shader type (canvas_item, spatial, particles, sky and
-fog).
+every shader type (`canvas_item`, `spatial`, `particles`, `sky` and
+`fog`).
 
 Global uniforms are especially useful for environmental effects that affect many
 objects in a scene, like having foliage bend when the player is nearby, or having
@@ -904,7 +904,7 @@ void fragment() {
 
 Note that the global uniform must exist in the Project Settings at the time
 the shader is saved, or compilation will fail. While you can assign a default
-value using global uniform vec4 my_color = ... in the shader code, it will
+value using `global uniform vec4 my_color = ...` in the shader code, it will
 be ignored as the global uniform must always be defined in the Project Settings
 anyway.
 
@@ -934,7 +934,7 @@ it's not as pronounced compared to getting global uniform values from a script
 > Warning:
 >
 > While you can query the value of a global uniform at runtime in a script
-> using RenderingServer.global_shader_parameter_get("uniform_name"), this
+> using `RenderingServer.global_shader_parameter_get("uniform_name")`, this
 > has a large performance penalty as the rendering thread needs to synchronize
 > with the calling thread.
 >
@@ -949,7 +949,7 @@ it's not as pronounced compared to getting global uniform values from a script
 
 > Note:
 >
-> Per-instance uniforms are available in both canvas_item (2D) and spatial (3D) shaders.
+> Per-instance uniforms are available in both `canvas_item` (2D) and `spatial` (3D) shaders.
 >
 
 Sometimes, you want to modify a parameter on each node using the material. As an
@@ -992,10 +992,43 @@ $MeshInstance3D.set_instance_shader_parameter("my_color", Color(0.3, 0.6, 1.0))
 
 When using per-instance uniforms, there are some restrictions you should be aware of:
 
-- **Per-instance uniforms do not support textures or arrays**, only regular scalar and
-vector types. As a workaround, you can pass a texture array as a regular
-uniform, then pass the index of the texture to be drawn using a per-instance
-uniform.
+- **Per-instance uniforms do not support textures or arrays**, only regular scalar and vector types.
+
+> Note:
+>
+> Due to GLSL limitations, you cannot directly index a texture array
+> using a per-instance uniform. Sampler arrays can only be indexed by
+> compile-time constant expressions.
+>
+> As a workaround, pass a texture array as a regular uniform and the
+> desired texture index as a per-instance uniform. Then use a `switch`
+> statement to select the texture:
+>
+> .. code-block:: glsl
+>
+> uniform sampler2D texture_array[4];
+> instance uniform int texture_index;
+>
+> void fragment() {
+> vec4 color;
+> switch (texture_index) {
+> case 0:
+> color = texture(texture_array[0], UV);
+> break;
+> case 1:
+> color = texture(texture_array[1], UV);
+> break;
+> case 2:
+> color = texture(texture_array[2], UV);
+> break;
+> case 3:
+> color = texture(texture_array[3], UV);
+> break;
+> }
+>
+> COLOR = color;
+> }
+>
 
 - There is a practical maximum limit of 16 instance uniforms per shader.
 
@@ -1005,7 +1038,7 @@ name, index and type. In this case, all parameters are affected correctly.
 
 - If you run into the above situation, you can avoid clashes by manually
 specifying the index (0-15) of the instance uniform by using the
-instance_index hint:
+`instance_index` hint:
 
 ```
 instance uniform vec4 my_color : source_color, instance_index(5);
@@ -1023,7 +1056,7 @@ material.set_shader_parameter("some_value", some_value)
 material.set_shader_parameter("colors", [Vector3(1, 0, 0), Vector3(0, 1, 0), Vector3(0, 0, 1)])
 ```
 
-> Note: The first argument to set_shader_parameter() is the name of the uniform
+> Note: The first argument to `set_shader_parameter()` is the name of the uniform
 > in the shader. It must match exactly to the name of the uniform in
 > the shader or else it will not be recognized.
 >
@@ -1086,12 +1119,12 @@ bvec2_input: int = (int(bx)) | (int(by) << 1)
 ### Uniform limits
 
 There is a limit to the total size of shader uniforms that you can use
-in a single shader. On most desktop platforms, this limit is 65536
-bytes, or 4096 vec4 uniforms. On mobile platforms, the limit is
-typically 16384 bytes, or 1024 vec4 uniforms. Vector uniforms
-smaller than a vec4, such as vec2 or vec3, are padded to
-the size of a vec4. Scalar uniforms such as int or float
-are not padded, and bool is padded to the size of an int.
+in a single shader. On most desktop platforms, this limit is `65536`
+bytes, or 4096 `vec4` uniforms. On mobile platforms, the limit is
+typically `16384` bytes, or 1024 `vec4` uniforms. Vector uniforms
+smaller than a `vec4`, such as `vec2` or `vec3`, are padded to
+the size of a `vec4`. Scalar uniforms such as `int` or `float`
+are not padded, and `bool` is padded to the size of an `int`.
 
 Arrays count as the total size of their contents. If you need a uniform
 array that is larger than this limit, consider packing the data into a
@@ -1100,11 +1133,11 @@ this limit, only the size of the sampler uniform.
 
 ## Built-in variables
 
-A large number of built-in variables are available, like UV, COLOR and
-VERTEX. What variables are available depends on the type of shader
-(spatial, canvas_item, particle, etc) and the
-function used (vertex, fragment, light, start, process,
-sky, or fog). For a list of the built-in variables that are available,
+A large number of built-in variables are available, like `UV`, `COLOR` and
+`VERTEX`. What variables are available depends on the type of shader
+(`spatial`, `canvas_item`, `particle`, etc) and the
+function used (`vertex`, `fragment`, `light`, `start`, `process`,
+`sky`, or `fog`). For a list of the built-in variables that are available,
 please see the corresponding pages:
 
 - <doc:spatial_shader>

@@ -47,9 +47,9 @@ is because the node needs a ParticleProcessMaterial to function.
 
 ### ParticleProcessMaterial
 
-To add a process material to your particles node, go to Process Material in
-your inspector panel. Click on the box next to Material, and from the dropdown
-menu select New ParticleProcessMaterial.
+To add a process material to your particles node, go to `Process Material` in
+your inspector panel. Click on the box next to `Material`, and from the dropdown
+menu select `New ParticleProcessMaterial`.
 
 @Image(source: "particles_material.png")
 
@@ -136,13 +136,13 @@ actually drawn the first time.
 
 ### Speed Scale
 
-The speed scale has a default value of 1 and is used to adjust the
+The speed scale has a default value of `1` and is used to adjust the
 speed of a particle system. Lowering the value will make the particles
 slower while increasing the value will make the particles much faster.
 
 ### Explosiveness
 
-If lifetime is 1 and there are 10 particles, it means a particle
+If lifetime is `1` and there are 10 particles, it means a particle
 will be emitted every 0.1 seconds. The explosiveness parameter changes
 this, and forces particles to be emitted all together. Ranges are:
 
@@ -157,8 +157,8 @@ creating explosions or sudden bursts of particles:
 
 ### Randomness
 
-All physics parameters can be randomized. Random values range from 0 to
-1. The formula to randomize a parameter is:
+All physics parameters can be randomized. Random values range from `0` to
+`1`. The formula to randomize a parameter is:
 
 ```
 initial_value = param_value + param_value * randomness
@@ -167,7 +167,7 @@ initial_value = param_value + param_value * randomness
 ### Fixed FPS
 
 This setting can be used to set the particle system to render at a fixed
-FPS. For instance, changing the value to 2 will make the particles render
+FPS. For instance, changing the value to `2` will make the particles render
 at 2 frames per second. Note this does not slow down the particle system itself.
 
 > Note:
@@ -179,7 +179,7 @@ at 2 frames per second. Note this does not slow down the particle system itself.
 
 ### Fract Delta
 
-Setting Fract Delta to true results in fractional delta calculation,
+Setting Fract Delta to `true` results in fractional delta calculation,
 which has a smoother particles display effect.
 This increased smoothness stems from higher accuracy.
 The difference is more noticeable in systems with high randomness or fast-moving particles.
@@ -196,13 +196,13 @@ particularly in systems with a higher amount of particles.
 
 The visibility rectangle controls the visibility of the particles on screen. If this rectangle is outside of the viewport, the engine will not render the particles on screen.
 
-The rectangle's W and H properties respectively control its Width and its Height.
-The X and Y properties control the position of the upper-left
+The rectangle's `W` and `H` properties respectively control its Width and its Height.
+The `X` and `Y` properties control the position of the upper-left
 corner of the rectangle, relative to the particle emitter.
 
-You can have Godot generate a Visibility Rect automatically using the toolbar above the 2d view. To do so, select the GPUParticles2D node and Click Particles > Generate Visibility Rect. Godot will simulate the Particles2D node emitting particles for a few seconds and set the rectangle to fit the surface the particles take.
+You can have Godot generate a Visibility Rect automatically using the toolbar above the 2d view. To do so, select the GPUParticles2D node and Click `Particles > Generate Visibility Rect`. Godot will simulate the Particles2D node emitting particles for a few seconds and set the rectangle to fit the surface the particles take.
 
-You can control the emit duration with the Generation Time (sec) option. The maximum value is 25 seconds. If you need more time for your particles to move around, you can temporarily change the preprocess duration on the Particles2D node.
+You can control the emit duration with the `Generation Time (sec)` option. The maximum value is 25 seconds. If you need more time for your particles to move around, you can temporarily change the `preprocess` duration on the Particles2D node.
 
 ### Local Coords
 
@@ -219,9 +219,9 @@ node is moved, already emitted particles are not affected:
 
 ### Draw Order
 
-This controls the order in which individual particles are drawn. Index
+This controls the order in which individual particles are drawn. `Index`
 means particles are drawn according to their emission order (default).
-Lifetime means they are drawn in order of remaining lifetime.
+`Lifetime` means they are drawn in order of remaining lifetime.
 
 ## Particle Process Material Settings
 

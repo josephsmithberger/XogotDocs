@@ -28,22 +28,22 @@ holographic effects.
 To make use of this feature, start by creating a particle system in the current scene.
 Add a mesh instance that serves as the source of the particle emission points. With the
 particle system selected, navigate to the viewport menu and select the GPUParticles3D
-entry. From there, select Create Emission Points From Node.
+entry. From there, select `Create Emission Points From Node`.
 
 A dialog window will pop up and ask you to select a node as the emission source.
 Choose one of the mesh instances in the scene and confirm your selection. The next
 dialog window deals with the amount of points and how to generate them.
 
-Emission Points controls the total number of points that you are about to generate.
+`Emission Points` controls the total number of points that you are about to generate.
 Particles will spawn from these points, so what to enter here depends on the
 size of the source mesh (how much area you have to cover) and the desired density of
 the particles.
 
-Emission Source offers 3 different options for how the points are generated.
-Select Surface Points if all you want to do is distribute the emission points across the
-surface of the mesh. Select Surface Points + Normal (Directed) if you also want to
+`Emission Source` offers 3 different options for how the points are generated.
+Select `Surface Points` if all you want to do is distribute the emission points across the
+surface of the mesh. Select `Surface Points + Normal (Directed)` if you also want to
 generate information about the surface normals and make particles move in the direction
-that the normals point at. The last option, Volume, creates emission points everywhere
+that the normals point at. The last option, `Volume`, creates emission points everywhere
 inside the mesh, not just across its surface.
 
 The emission points are stored in the particle system's local coordinate system, so
@@ -57,18 +57,18 @@ the particle system or the source mesh.
 @Image(source: "particle_emission_textures.png", alt: "Emission textures") {The available emission shape textures}
 
 All the data for complex particle emission shapes is stored in a set of textures. How
-many, depends on the type of emission shape you use. If you set the Shape property
-in the Emission Shape group on the particle process material to Points, you
-have access to 2 texture properties, the Point Texture and the Color Texture.
-Set it to Directed Points and there is a third property called Normal Texture.
+many, depends on the type of emission shape you use. If you set the `Shape` property
+in the `Emission Shape` group on the particle process material to `Points`, you
+have access to 2 texture properties, the `Point Texture` and the `Color Texture`.
+Set it to `Directed Points` and there is a third property called `Normal Texture`.
 
-Point Texture contains all possible emission points that were generated in the
+`Point Texture` contains all possible emission points that were generated in the
 previous step. A point is randomly selected for every particle when it spawns.
-Normal Texture, if it exists, provides a direction vector at that same location.
-If the Color Texture property is also set, it provides color for the particle,
+`Normal Texture`, if it exists, provides a direction vector at that same location.
+If the `Color Texture` property is also set, it provides color for the particle,
 sampled at the same location as the other two textures and modulating any other color
 that was set up on the process material.
 
-There is also the Point Count property that you can use to change the number of
+There is also the `Point Count` property that you can use to change the number of
 emission points at any time after creating the emission shape. This includes dynamically
 at runtime while the playing the game.

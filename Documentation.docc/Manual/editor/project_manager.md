@@ -127,9 +127,9 @@ This will open up the manage project tags window. To add a tag click the plus bu
 Type out the tag name, and click **OK**. Your project will now have a tag added to it.
 These tags can be used for any other project in your project manager.
 
-To show projects with a specific tag only, you can click on the tags or write tag:
+To show projects with a specific tag only, you can click on the tags or write `tag:`
 and type the tag you would like to search for in the filter bar. To limit the results
-using multiple tags, you can click on another tag or add tag: after
+using multiple tags, you can click on another tag or add `tag:` after
 a space and type another tag in the filter bar.
 
 In addition, tags will stay with projects. So if you tag your project, send it to
@@ -149,7 +149,7 @@ while looking for the source of the crashing to fix it.
 Usually a project should open in recovery mode automatically when you re-open it
 after a crash. If it doesn't you can manually open recovery mode by selecting the
 project in the project manager, to do that select the project from your list of
-projects, click the dropdown button next to the edit node, and select Edit in recovery mode.
+projects, click the dropdown button next to the edit node, and select `Edit in recovery mode`.
 
 @Image(source: "editor_ui_intro_project_manager_13.png")
 

@@ -13,7 +13,7 @@ Drag-and-drop files from the operating system's file manager to the editor's Fil
 This only works with resource file types (i.e. file types that Godot can import).
 
 Godot will automatically import these files internally and keep the imported
-resources hidden in a res://.godot/imported/ folder.
+resources hidden in a `res://.godot/imported/` folder.
 
 This means that when trying to access imported assets through code, you
 need to use the [Resource Loader](https://docs.godotengine.org/en/stable/classes/class_resourceloader.html#class-resourceloader) as it will
@@ -29,8 +29,8 @@ non-imported files. Only the [FileAccess](https://docs.godotengine.org/en/stable
 > Note:
 >
 > Import parameters are only present in non-native Godot resource types.
-> This means Godot's own scene and resource file formats (.tscn, .scn,
-> .tres, .res) don't have import options you can select in the Import
+> This means Godot's own scene and resource file formats (`.tscn`, `.scn`,
+> `.tres`, `.res`) don't have import options you can select in the Import
 > dock.
 >
 
@@ -71,7 +71,7 @@ asset.
 
 ## Files generated
 
-Importing will add an extra <asset>.import file next to the source file,
+Importing will add an extra `<asset>.import` file next to the source file,
 containing the import configuration.
 
 **Make sure to commit these files to your version control system**, as these
@@ -85,7 +85,7 @@ project.godot
 ```
 
 Additionally, extra assets will be present in the hidden
-res://.godot/imported/ folder:
+`res://.godot/imported/` folder:
 
 ```
 ls .godot/imported
@@ -95,12 +95,12 @@ example.png-218a8f2b3041327d8a5756f3a245f83b.md5
 
 If any of the files present in this folder is erased (or the whole folder), the
 asset or assets will be reimported automatically. As such, committing the
-.godot/ folder to the version control system is not recommended. While
+`.godot/` folder to the version control system is not recommended. While
 committing this folder can shorten reimporting time when checking out on another
 computer, it requires considerably more space and bandwidth.
 
 The default version control metadata that can be generated on project creation
-will automatically ignore the .godot/ folder.
+will automatically ignore the `.godot/` folder.
 
 ## Changing import resource type
 
@@ -109,10 +109,10 @@ select the relevant type of resource desired then click **Reimport**:
 
 @Image(source: "import_process_changing_import_type.png")
 
-Select Keep File (exported as is) as resource type to skip file import, files
+Select `Keep File (exported as is)` as resource type to skip file import, files
 with this resource type will be preserved as is during project export.
 
-Select Skip File (not exported) as resource type to skip file import and ignore
+Select `Skip File (not exported)` as resource type to skip file import and ignore
 file during project export.
 
 ## Changing default import parameters

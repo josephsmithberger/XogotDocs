@@ -42,20 +42,20 @@ left to right:
 
 @Image(source: "3d_toolbar.png")
 
-- **Select Mode** (`Q`): Allows selection of nodes in the viewport. Left clicking
+- **Select Mode** (``Q``): Allows selection of nodes in the viewport. Left clicking
 on a node to select one. Left clicking and dragging a rectangle selects all
 nodes within the rectangle's boundaries, once released.
-Holding `Shift` while selecting adds more nodes to the selection.
-Clicking on a selected node while holding `Shift` deselects the node.
+Holding ``Shift`` while selecting adds more nodes to the selection.
+Clicking on a selected node while holding ``Shift`` deselects the node.
 In this mode, you can use the gizmos to perform movement or rotation.
 
-- **Move Mode** (`W`): Enables move (or translate) mode for the selected nodes.
+- **Move Mode** (``W``): Enables move (or translate) mode for the selected nodes.
 See <doc:introduction_to_3d#Space-And-Manipulation> for more details.
 
-- **Rotate Mode** (`E`): Enables rotation mode for the selected nodes. See
+- **Rotate Mode** (``E``): Enables rotation mode for the selected nodes. See
 <doc:introduction_to_3d#Space-And-Manipulation> for more details.
 
-- **Scale Mode** (`R`): Enables scaling and displays scaling gizmos in different
+- **Scale Mode** (``R``): Enables scaling and displays scaling gizmos in different
 axes for the selected nodes. See <doc:introduction_to_3d#Space-And-Manipulation>
 for more details.
 
@@ -63,25 +63,25 @@ for more details.
 this provides a list of selectable nodes at the clicked position as a context menu,
 if there is more than one node in the clicked area.
 
-- **Lock** (`Ctrl + L`) the selected nodes, preventing selection and movement in the viewport.
-Clicking the button again (or using `Ctrl + Shift + L`) unlocks the selected nodes.
+- **Lock** (``Ctrl + L``) the selected nodes, preventing selection and movement in the viewport.
+Clicking the button again (or using ``Ctrl + Shift + L``) unlocks the selected nodes.
 Locked nodes can only be selected in the scene tree.
 They can easily be identified with a padlock next to their node names in the scene tree.
 Clicking on this padlock also unlocks the nodes.
 
-- **Group selected nodes** (`Ctrl + G`). This allows selection of the root node if
+- **Group selected nodes** (``Ctrl + G``). This allows selection of the root node if
 any of the children are selected.
-Using `Ctrl + G` ungroups them. Additionally, clicking the ungroup button in
+Using ``Ctrl + G`` ungroups them. Additionally, clicking the ungroup button in
 the scene tree performs the same action.
 
-- **Ruler Mode** (`M`): When enabled you can click and drag to measure distance in the scene
+- **Ruler Mode** (``M``): When enabled you can click and drag to measure distance in the scene
 in meters.
 
-- **Use Local Space** (`T`): If enabled, gizmos of a node are drawn using the current node's
+- **Use Local Space** (``T``): If enabled, gizmos of a node are drawn using the current node's
 rotation angle instead of the <doc:introduction_to_3d#Coordinate-System>.
 
-- **Use Snap** (`Y`): If enabled, movement, and rotation snap to grid. Snapping can also
-temporarily be activated using `Ctrl` while performing the action.
+- **Use Snap** (``Y``): If enabled, movement, and rotation snap to grid. Snapping can also
+temporarily be activated using ``Ctrl`` while performing the action.
 The settings for changing snap options are explained below.
 
 - **Toggle preview sunlight**: If no DirectionalLight3D exist in the scene, a preview
@@ -201,10 +201,10 @@ Vector3, Color, etc.).
 
 Some useful keybindings:
 
-- To snap placement or rotation, press `Ctrl` while moving, scaling,
+- To snap placement or rotation, press ``Ctrl`` while moving, scaling,
 or rotating.
 
-- To center the view on the selected object, press `F`.
+- To center the view on the selected object, press ``F``.
 
 In the viewport, the arrows can be clicked and held to move the object on an axis.
 The arcs can be clicked and held to rotate the object.
@@ -248,30 +248,30 @@ orthogonal and the viewport's view menu will be updated accordingly.
 
 If the Perspective view is enabled on the viewport (can be seen on the viewport's View menu,
 not the View menu on the main toolbar), holding down the right mouse button on the viewport
-or pressing `Shift + F` switches to "free-look" mode.
-In this mode you can move the mouse to look around, use the `W` `A`
-`S` `D` keys to fly around the view, `E` to go up, and `Q` to
+or pressing ``Shift + F`` switches to "free-look" mode.
+In this mode you can move the mouse to look around, use the ``W`` ``A``
+``S`` ``D`` keys to fly around the view, ``E`` to go up, and ``Q`` to
 go down. To disable this mode, release the right mouse button or press
-`Shift + F` again.
+``Shift + F`` again.
 
 In the free-look mode, you can temporarily increase the flying
-speed using `Shift` or decrease it using `Alt`. To change and keep the
-speed modifier use `mouse wheel up` or `mouse wheel down`, to increase or
+speed using ``Shift`` or decrease it using ``Alt``. To change and keep the
+speed modifier use ``mouse wheel up`` or ``mouse wheel down``, to increase or
 decrease it, respectively.
 
 In orthogonal mode, holding the right mouse button will pan the view instead.
-Use `Keypad 5` to toggle between perspective and orthogonal view.
+Use ``Keypad 5`` to toggle between perspective and orthogonal view.
 
 ### Using Blender-style transform shortcuts
 
 Since Godot 4.2, you can enable Blender-style shortcuts for translating,
 rotating and scaling nodes. In Blender, these shortcuts are:
 
-- `G` for translating
+- ``G`` for translating
 
-- `R` for rotating
+- ``R`` for rotating
 
-- `S` for scaling
+- ``S`` for scaling
 
 After pressing a shortcut key while focusing on the 3D editor viewport,
 move the mouse or enter a number to move the selected node(s) by the
@@ -282,16 +282,16 @@ value with the keyboard).
 For instance, to move the selection upwards by 2.5 units, enter the
 following sequence in order (Y+ is upwards in Godot):
 
-`G`-`Y`-`2`-`.`-`5`-`Enter`
+``G``-``Y``-``2``-``.``-``5``-``Enter``
 
 To use Blender-style transform shortcuts in Godot, go to the Editor Settings'
 **Shortcuts** tab, then in the Spatial Editor section:
 
-- Bind **Begin Translate Transformation** to `G`.
+- Bind **Begin Translate Transformation** to ``G``.
 
-- Bind **Begin Rotate Transformation** to `R`.
+- Bind **Begin Rotate Transformation** to ``R``.
 
-- Bind **Begin Scale Transformation** to `S`.
+- Bind **Begin Scale Transformation** to ``S``.
 
 - Finally, unbind **Scale Mode** so that its shortcut won't conflict with
 **Begin Rotate Transformation**.

@@ -19,7 +19,7 @@ or split it to a separate window by choosing **Make Floating** in the submenu th
 
 To move a floating dock back to the editor window, close the dock window using
 the **×** button in the top-right corner of the window (or in the top-left
-corner on macOS). Alternatively, you can press `Alt + F4` while the split
+corner on macOS). Alternatively, you can press ``Alt + F4`` while the split
 window is focused.
 
 ## Splitting the script or shader editor to its own window
@@ -48,7 +48,7 @@ the top-right corner of the script editor:
 To go back to the previous state (with the script/shader editor embedded in the
 editor window), close the split window using the **×** button in the top-right
 corner of the window (or in the top-left corner on macOS). Alternatively, you
-can press `Alt + F4` while the split window is focused.
+can press ``Alt + F4`` while the split window is focused.
 
 ## Customizing editor layouts
 
@@ -94,17 +94,17 @@ dropdown.
 
 > Tip:
 >
-> If you name the saved layout Default (case-sensitive), the default
-> editor layout will be overwritten. Note that the Default does not appear
+> If you name the saved layout `Default` (case-sensitive), the default
+> editor layout will be overwritten. Note that the `Default` does not appear
 > in the list of layouts to overwrite until you overwrite it once, but you can
 > still write its name manually.
 >
-> You can go back to the standard default layout by removing the Default
+> You can go back to the standard default layout by removing the `Default`
 > layout after overriding it. (This option does not appear if you haven't
 > overridden the default layout yet.)
 >
 
-Editor layouts are saved to a file named editor_layouts.cfg in
+Editor layouts are saved to a file named `editor_layouts.cfg` in
 the configuration path of the <doc:data_paths#Editor-Data-Paths>.
 
 ## Customizing editor settings

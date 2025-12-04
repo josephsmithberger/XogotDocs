@@ -3,9 +3,9 @@
 
 ## Introduction
 
-Using get_node() to reference nodes from a script can sometimes be fragile.
+Using `get_node()` to reference nodes from a script can sometimes be fragile.
 If you move a button in a UI scene from one panel to another, the button's node
-path changes, and if a script uses get_node() with a hard-coded node path,
+path changes, and if a script uses `get_node()` with a hard-coded node path,
 the script will not be able to find the button anymore.
 
 In situations like this, the node can be turned into a scene
@@ -30,8 +30,13 @@ You can also do this while renaming the node by adding "%" to the beginning of t
 Once you confirm, the percent symbol will appear next to its name.
 
 You can now use the node in your script. For example, you can reference it with
-a get_node() method call by typing the % symbol, followed by the node's
+a `get_node()` method call by typing the % symbol, followed by the node's
 name:
+
+```
+get_node("%RedButton").text = "Hello"
+%RedButton.text = "Hello" # Shorter syntax
+```
 
 ## Same-scene limitation
 
@@ -41,32 +46,32 @@ instances a **Sword** scene:
 
 @Image(source: "unique_name_scene_instance_example.png")
 
-Here are the results of get_node() calls inside the **Player** script:
+Here are the results of `get_node()` calls inside the **Player** script:
 
-- get_node("%Eyes") returns the **Eyes** node.
+- `get_node("%Eyes")` returns the **Eyes** node.
 
-- get_node("%Hilt") returns null.
+- `get_node("%Hilt")` returns `null`.
 
-These are the results of get_node() calls inside the **Sword** script:
+These are the results of `get_node()` calls inside the **Sword** script:
 
-- get_node("%Eyes") returns null.
+- `get_node("%Eyes")` returns `null`.
 
-- get_node("%Hilt") returns the **Hilt** node.
+- `get_node("%Hilt")` returns the **Hilt** node.
 
-If a script has access to a node in another scene, it can call get_node() on
+If a script has access to a node in another scene, it can call `get_node()` on
 that node to get scene unique nodes from that node's scene. This also works in a
-node path, which avoids multiple get_node() calls. Here are two ways to get
+node path, which avoids multiple `get_node()` calls. Here are two ways to get
 the **Hilt** node from the **Player** script using scene unique nodes:
 
-- get_node("Hand/Sword").get_node("%Hilt") returns the **Hilt** node.
+- `get_node("Hand/Sword").get_node("%Hilt")` returns the **Hilt** node.
 
-- get_node("Hand/Sword/%Hilt") also returns the **Hilt** node.
+- `get_node("Hand/Sword/%Hilt")` also returns the **Hilt** node.
 
 Scene unique names don't only work at the end of a node path. They can be used
 in the middle to navigate from one node to another. For example, the **Sword** node
 is marked as a scene unique node in the **Player** scene, so this is possible:
 
-- get_node("%Sword/%Hilt") returns the **Hilt** node.
+- `get_node("%Sword/%Hilt")` returns the **Hilt** node.
 
 ## Alternatives
 
@@ -85,5 +90,5 @@ without knowing its full path. This seems similar to a scene unique node, but
 this method is able to find nodes in nested scenes, and doesn't require marking
 the node in the scene editor in any way. However, this method is slow. Scene
 unique nodes are cached by Godot and are fast to retrieve, but each time the
-method is called, find_child() needs to check every descendant (every child,
+method is called, `find_child()` needs to check every descendant (every child,
 grandchild, and so on).

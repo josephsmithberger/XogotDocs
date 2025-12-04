@@ -88,7 +88,7 @@ This decreases the file size by 50% by merging the two channels into one.
 
 ## Force > Max Rate
 
-If set to a value greater than 0, forces the audio's sample rate to be
+If set to a value greater than `0`, forces the audio's sample rate to be
 reduced to a value lower than or equal to the value specified here.
 
 This can decrease file size noticeably on certain sounds, without impacting
@@ -137,11 +137,11 @@ When choosing one of the **Forward**, **Ping-Pong** or **Backward** loop modes,
 loop points can also be defined to make only a specific part of the sound loop.
 **Loop Begin** is set in samples after the beginning of the audio file. **Loop
 End** is also set in samples after the beginning of the audio file, but will use
-the end of the audio file if set to -1.
+the end of the audio file if set to `-1`.
 
 > Warning:
 >
-> In AudioStreamPlayer, the finished signal won't be emitted for looping
+> In AudioStreamPlayer, the `finished` signal won't be emitted for looping
 > audio when it reaches the end of the audio file, as the audio will keep
 > playing indefinitely.
 >
@@ -169,7 +169,7 @@ reaching the end of the audio.
 
 > Warning:
 >
-> In AudioStreamPlayer, the finished signal won't be emitted for looping
+> In AudioStreamPlayer, the `finished` signal won't be emitted for looping
 > audio when it reaches the end of the audio file, as the audio will keep
 > playing indefinitely.
 >
@@ -179,7 +179,7 @@ reaching the end of the audio.
 The loop offset determines where audio will start to loop after playback reaches
 the end of the audio. This can be used to only loop a part of the audio file,
 which is useful for some ambient sounds or music. The value is determined in
-seconds relative to the beginning of the audio, so 0 will loop the entire
+seconds relative to the beginning of the audio, so `0` will loop the entire
 audio file.
 
 Only has an effect if **Loop** is enabled.

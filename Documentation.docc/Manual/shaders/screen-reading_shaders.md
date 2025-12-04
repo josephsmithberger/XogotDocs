@@ -18,8 +18,8 @@ few tools that make this process easy.
 
 Godot <doc:shading_language> has a special texture to access the already
 rendered contents of the screen. It is used by specifying a hint when declaring
-a sampler2D uniform: hint_screen_texture. A special built-in varying
-SCREEN_UV can be used to obtain the UV relative to the screen for the current
+a `sampler2D` uniform: `hint_screen_texture`. A special built-in varying
+`SCREEN_UV` can be used to obtain the UV relative to the screen for the current
 fragment. As a result, this canvas_item fragment shader results in an invisible
 object, because it only shows what lies behind:
 
@@ -33,18 +33,18 @@ void fragment() {
 }
 ```
 
-textureLod is used here as we only want to read from the bottom mipmap. If
+`textureLod` is used here as we only want to read from the bottom mipmap. If
 you want to read from a blurred version of the texture instead, you can increase
-the third argument to textureLod and change the hint filter_nearest to
-filter_nearest_mipmap (or any other filter with mipmaps enabled). If using a
+the third argument to `textureLod` and change the hint `filter_nearest` to
+`filter_nearest_mipmap` (or any other filter with mipmaps enabled). If using a
 filter with mipmaps, Godot will automatically calculate the blurred texture for
 you.
 
 > Warning:
 >
-> If the filter mode is not changed to a filter mode that contains mipmap in its name,
-> textureLod with an LOD parameter greater than 0.0 will have the same appearance
-> as with the 0.0 LOD parameter.
+> If the filter mode is not changed to a filter mode that contains `mipmap` in its name,
+> `textureLod` with an LOD parameter greater than `0.0` will have the same appearance
+> as with the `0.0` LOD parameter.
 >
 
 ## Screen texture example
@@ -76,14 +76,14 @@ void fragment() {
 
 ## Behind the scenes
 
-While this seems magical, it's not. In 2D, when hint_screen_texture is first
+While this seems magical, it's not. In 2D, when `hint_screen_texture` is first
 found in a node that is about to be drawn, Godot does a full-screen copy to a
 back-buffer. Subsequent nodes that use it in shaders will not have the screen
 copied for them, because this ends up being inefficient. In 3D, the screen is
 copied after the opaque geometry pass, but before the transparent geometry pass,
 so transparent objects will not be captured in the screen texture.
 
-As a result, in 2D, if shaders that use hint_screen_texture overlap, the
+As a result, in 2D, if shaders that use `hint_screen_texture` overlap, the
 second one will not use the result of the first one, resulting in unexpected
 visuals:
 
@@ -105,9 +105,9 @@ With correct back-buffer copying, the two spheres blend correctly:
 
 > Warning:
 >
-> In 3D, materials that use hint_screen_texture are considered transparent themselves and
+> In 3D, materials that use `hint_screen_texture` are considered transparent themselves and
 > will not appear in the resulting screen texture of other materials.
-> If you plan to instance a scene that uses a material with hint_screen_texture,
+> If you plan to instance a scene that uses a material with `hint_screen_texture`,
 > you will need to use a BackBufferCopy node.
 >
 
@@ -125,14 +125,14 @@ with a camera in the same position as your object, and then use the
 So, to make it clearer, here's how the backbuffer copying logic works in 2D in
 Godot:
 
-- If a node uses hint_screen_texture, the entire screen is copied to the
+- If a node uses `hint_screen_texture`, the entire screen is copied to the
 back buffer before drawing that node. This only happens the first
 time; subsequent nodes do not trigger this.
 
 - If a BackBufferCopy node was processed before the situation in the point
-above (even if hint_screen_texture was not used), the behavior described
+above (even if `hint_screen_texture` was not used), the behavior described
 in the point above does not happen. In other words, automatic copying of the
-entire screen only happens if hint_screen_texture is used in a node for
+entire screen only happens if `hint_screen_texture` is used in a node for
 the first time and no BackBufferCopy node (not disabled) was found before in
 tree-order.
 
@@ -146,7 +146,7 @@ region. Avoid this behavior!
 ## Depth texture
 
 For 3D shaders, it's also possible to access the screen depth buffer. For this,
-the hint_depth_texture hint is used. This texture is not linear; it must be
+the `hint_depth_texture` hint is used. This texture is not linear; it must be
 converted using the inverse projection matrix.
 
 The following code retrieves the 3D position below the pixel being drawn:
@@ -171,8 +171,8 @@ void fragment() {
 
 Similarly, the normal-roughness texture can be used to read the normals and
 roughness of objects rendered in the depth prepass. The normal is stored in the
-.xyz channels (mapped to the 0-1 range) while the roughness is stored in the
-.w channel.
+`.xyz` channels (mapped to the 0-1 range) while the roughness is stored in the
+`.w` channel.
 
 ```
 uniform sampler2D normal_roughness_texture : hint_normal_roughness_texture, repeat_disable, filter_nearest;
@@ -185,8 +185,8 @@ void fragment() {
 
 ## Redefining screen textures
 
-The screen texture hints (hint_screen_texture, hint_depth_texture, and
-hint_normal_roughness_texture) can be used with multiple uniforms. For
+The screen texture hints (`hint_screen_texture`, `hint_depth_texture`, and
+`hint_normal_roughness_texture`) can be used with multiple uniforms. For
 example, you may want to read from the texture multiple times with a different
 repeat flag or filter flag.
 

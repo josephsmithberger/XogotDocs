@@ -23,12 +23,12 @@ There are several ways to improve performance and battery life:
 which can be up to 4 times faster.
 
 - Open the Editor Settings and increase the value of **Low Processor Mode Sleep (µsec)**
-to 33000 (30 FPS). This value determines the amount of microseconds
+to `33000` (30 FPS). This value determines the amount of microseconds
 between frames to render. Higher values will make the editor feel less reactive,
 but will help decrease CPU and GPU usage significantly.
 
 - If you have a node that causes the editor to redraw continuously (such as
-particles), hide it and show it using a script in the _ready() method.
+particles), hide it and show it using a script in the `_ready()` method.
 This way, it will be hidden in the editor, but will still be visible in the
 running project.
 
@@ -46,7 +46,7 @@ There are several workarounds for this:
 this will increase power usage and heat/noise emissions since the editor will
 now be rendering constantly, even if nothing has changed on screen. To
 alleviate this, you can increase **Low Processor Mode Sleep (µsec)** to
-33000 (30 FPS) in the Editor Settings. This value determines the amount of
+`33000` (30 FPS) in the Editor Settings. This value determines the amount of
 microseconds between frames to render. Higher values will make the editor
 feel less reactive, but will help decrease CPU and GPU usage significantly.
 
@@ -61,7 +61,7 @@ Editor Settings. This hides VRR flicker thanks to OLED's perfect black levels.
 
 ## The editor or project takes a very long time to start
 
-When using one of the Vulkan-based renderers (Forward+ or Mobile), the first
+When using one of the RenderingDevice-based renderers (Forward+ or Mobile), the first
 startup is expected to be relatively long. This is because shaders
 need to be compiled before they can be cached. Shaders also need to be cached
 again after updating Godot, after updating graphics drivers or after switching
@@ -77,10 +77,10 @@ connect the peripheral again.
 
 Firewall software such as Portmaster may also cause the debug port to be
 blocked. This causes the project to take a long time to start, while being
-unable to use debugging features in the editor (such as viewing print()
+unable to use debugging features in the editor (such as viewing `print()`
 output). You can work this around by changing the debug port used by the project
 in the Editor Settings (**Network > Debug > Remote Port**). The default is
-6007; try another value that is greater than 1024, such as 7007.
+`6007`; try another value that is greater than `1024`, such as `7007`.
 
 On Windows, when loading the project for the first time after the PC is turned on,
 Windows Defender will cause the filesystem cache validation on project startup
@@ -122,7 +122,7 @@ This is caused by the NVIDIA graphics driver injecting an overlay to display inf
 To disable this overlay on Windows, restore your graphics driver settings to the
 default values in the NVIDIA Control Panel.
 
-To disable this overlay on Linux, open nvidia-settings, go to **X Screen 0 >
+To disable this overlay on Linux, open `nvidia-settings`, go to **X Screen 0 >
 OpenGL Settings** then uncheck **Enable Graphics API Visual Indicator**.
 
 ## A microphone or "refresh" icon appears in the bottom-right corner of the Project Manager and editor window
@@ -131,7 +131,7 @@ This is caused by the NVIDIA graphics driver injecting an overlay to display
 instant replay information on ShadowPlay recording. This overlay can only be
 seen on Windows, as Linux does not have support for ShadowPlay.
 
-To disable this overlay, press `Alt + Z` (default shortcut for the NVIDIA overlay)
+To disable this overlay, press ``Alt + Z`` (default shortcut for the NVIDIA overlay)
 and disable **Settings > HUD Layout > Status Indicator** in the NVIDIA overlay.
 
 Alternatively, you can install the `new NVIDIA app
@@ -194,7 +194,7 @@ currently does not support :abbr:`HDR (High Dynamic Range)` output
 As most displays are not designed to display SDR content in HDR mode,
 it is recommended to disable HDR in the Windows settings when not running applications
 that use HDR output. On Windows 11, this can be done by pressing
-`Windows + Alt + B` (this shortcut is part of the Xbox Game Bar app).
+``Windows + Alt + B`` (this shortcut is part of the Xbox Game Bar app).
 To toggle HDR automatically based on applications currently running, you can use
 AutoActions.
 
@@ -227,13 +227,13 @@ To avoid losing work, save scenes in the editor before putting the PC to sleep.
 This is usually caused by forgetting to specify a filter for non-resource files
 in the Export dialog. By default, Godot will only include actual resources
 into the PCK file. Some files commonly used, such as JSON files, are not
-considered resources. For example, if you load test.json in the exported
-project, you need to specify *.json in the non-resource export filter. See
+considered resources. For example, if you load `test.json` in the exported
+project, you need to specify `*.json` in the non-resource export filter. See
 <doc:exporting_projects#Export-Mode> for more information.
 
 Also, note that files and folders whose names begin with a period will never be
 included in the exported project. This is done to prevent version control
-folders like .git from being included in the exported PCK file.
+folders like `.git` from being included in the exported PCK file.
 
 On Windows, this can also be due to <doc:project_organization#Case-Sensitivity> issues. If you reference a resource
 in your script with a different case than on the filesystem, loading will fail

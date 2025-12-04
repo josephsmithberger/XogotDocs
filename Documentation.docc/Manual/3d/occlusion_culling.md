@@ -181,7 +181,7 @@ your scene. Note that the performance benefit highly depends on the 3D editor
 camera's view angle, as occlusion culling is only effective if there are
 occluders in front of the camera.
 
-To toggle occlusion culling at runtime, set use_occlusion_culling on the
+To toggle occlusion culling at runtime, set `use_occlusion_culling` on the
 root viewport as follows:
 
 ```
@@ -264,7 +264,7 @@ can add OccluderInstance3D nodes for those manually.
 **On the occludee side:**
 
 Make sure **Extra Cull Margin** is set as low as possible (it should usually be
-0.0), and that **Ignore Occlusion Culling** is disabled in the object's
+`0.0`), and that **Ignore Occlusion Culling** is disabled in the object's
 GeometryInstance3D section.
 
 Also, check the AABB's size (which is represented by an orange box when

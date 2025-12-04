@@ -15,15 +15,15 @@ However, in computing, floating-point numbers have **limited precision and range
 This can be a problem for games with huge worlds, such as space or planetary-scale
 simulation games.
 
-Precision is the greatest when the value is close to 0.0. Precision becomes
-gradually lower as the value increases or decreases away from 0.0. This
+Precision is the greatest when the value is close to `0.0`. Precision becomes
+gradually lower as the value increases or decreases away from `0.0`. This
 occurs every time the floating-point number's exponent increases, which
 happens when the floating-point number surpasses a power of 2 value (2, 4, 8,
 16, …). Every time this occurs, the number's minimum step will increase,
 resulting in a loss of precision.
 
 In practice, this means that as the player moves away from the world origin
-(Vector2(0, 0) in 2D games or Vector3(0, 0, 0) in 3D games), precision
+(`Vector2(0, 0)` in 2D games or `Vector3(0, 0, 0)` in 3D games), precision
 will decrease.
 
 This loss of precision can result in objects appearing to "vibrate" when far
@@ -163,10 +163,10 @@ to compile an editor build so you can test your large precision world without
 having to export the project every time.
 
 See the :ref:`Compiling <toc-devel-compiling>` section for compiling
-instructions for each target platform. You will need to add the precision=double
+instructions for each target platform. You will need to add the `precision=double`
 SCons option when compiling the editor and export templates.
 
-The resulting binaries will be named with a .double suffix to distinguish
+The resulting binaries will be named with a `.double` suffix to distinguish
 them from single-precision binaries (which lack any precision suffix). You can
 then specify the binaries as custom export templates in your project's export
 presets in the Export dialog.
@@ -192,27 +192,27 @@ Using different build types may work, but various issues can occur.
 
 - The GDExtension API changes in an incompatible way in double-precision builds.
 This means extensions **must** be rebuilt to work with double-precision
-builds. On the extension developer's end, the REAL_T_IS_DOUBLE define is
-enabled when building a GDExtension with precision=double.
-real_t can be used as an alias for float in single-precision builds,
-and double in double-precision builds.
+builds. On the extension developer's end, the `REAL_T_IS_DOUBLE` define is
+enabled when building a GDExtension with `precision=double`.
+`real_t` can be used as an alias for `float` in single-precision builds,
+and `double` in double-precision builds.
 
 ## Limitations
 
 Since 3D rendering shaders don't actually use double-precision floats, there are
 some limitations when it comes to 3D rendering precision:
 
-- Shaders using the skip_vertex_transform or world_vertex_coords don't
+- Shaders using the `skip_vertex_transform` or `world_vertex_coords` don't
 benefit from increased precision.
 
 - <doc:standard_material_3d#Triplanar-Mapping> doesn't
 benefit from increased precision. Materials using triplanar mapping will exhibit
 visible jittering when far away from the world origin.
 
-- In double-precision builds, world space coordinates in a shader fragment()
+- In double-precision builds, world space coordinates in a shader `fragment()`
 function can't be reconstructed from view space, for example:
 vec3 world = (INV_VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
-Instead, calculate the world space coordinates in the vertex() function and
+Instead, calculate the world space coordinates in the `vertex()` function and
 pass them using a <doc:shading_language#Varyings>, for example:
 varying vec3 world;
 void vertex() {

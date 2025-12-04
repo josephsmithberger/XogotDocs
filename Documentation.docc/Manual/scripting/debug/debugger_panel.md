@@ -28,7 +28,7 @@ debugger broke on.
 > remove the breakpoint. Breakpoints created this way persist across editor
 > restarts, even if the script wasn't saved when exiting the editor.
 >
-> You can also use the breakpoint keyword in GDScript to create a
+> You can also use the `breakpoint` keyword in GDScript to create a
 > breakpoint that is stored in the script itself. Unlike breakpoints created by
 > clicking in the gutter, this keyword-based breakpoint is persistent across
 > different machines when using version control.
@@ -55,7 +55,7 @@ but it doesn't step line-by-line through functions.
 >
 > Using the debugger and breakpoints on <doc:running_code_in_the_editor>
 > is not currently supported. Breakpoints placed in the script editor or using
-> the breakpoint keyword are ignored. You can use print statements to
+> the `breakpoint` keyword are ignored. You can use print statements to
 > display the contents of variables instead.
 >
 
@@ -96,23 +96,23 @@ func _process(delta):
         breakpoint
 ```
 
-If the debugger breaks on the **first** line containing breakpoint, the following
+If the debugger breaks on the **first** line containing `breakpoint`, the following
 expressions return non-null values:
 
-- **Constant expression:** 2 * PI + 5
+- **Constant expression:** `2 * PI + 5`
 
-- **Member variable:** counter, counter ** 2, sqrt(counter)
+- **Member variable:** `counter`, `counter ** 2`, `sqrt(counter)`
 
-- **Local variable or function parameter:** delta, text, text.to_upper()
+- **Local variable or function parameter:** `delta`, `text`, `text.to_upper()`
 
-If the debugger breaks on the **second** line containing breakpoint, the following
+If the debugger breaks on the **second** line containing `breakpoint`, the following
 expressions return non-null values:
 
-- **Constant expression:** 2 * PI + 5
+- **Constant expression:** `2 * PI + 5`
 
-- **Member variable:** counter, counter ** 2, sqrt(counter)
+- **Member variable:** `counter`, `counter ** 2`, `sqrt(counter)`
 
-- **Local variable or function parameter:** delta, other_text, other_text.to_upper()
+- **Local variable or function parameter:** `delta`, `other_text`, `other_text.to_upper()`
 
 ## Profiler
 
@@ -176,7 +176,7 @@ FPS+ portion.
 >
 > Remember that Visual Profiler results can vary **heavily** based on
 > viewport resolution, which is determined by the window size if using the
-> disabled or canvas_items <doc:multiple_resolutions>.
+> `disabled` or `canvas_items` <doc:multiple_resolutions>.
 >
 > When comparing results across different runs, make sure to use the same
 > viewport size for all runs.

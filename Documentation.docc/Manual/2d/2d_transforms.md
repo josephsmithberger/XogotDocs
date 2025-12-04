@@ -64,15 +64,33 @@ to left, this means multiplying a transform with a coordinate results in a coord
 further to the left, multiplying the [affine inverse](https://docs.godotengine.org/en/stable/classes/class_transform2d_method_affine_inverse.html#class-transform2d_method_affine_inverse)
 of a transform results in a coordinate system further to the right:
 
+```
+# Called from a CanvasItem.
+canvas_pos = get_global_transform() * local_pos
+local_pos = get_global_transform().affine_inverse() * canvas_pos
+```
+
 Finally, then, to convert a CanvasItem local coordinates to screen coordinates, just multiply in
 the following order:
 
+```
+var screen_coord = get_viewport().get_screen_transform() * get_global_transform_with_canvas() * local_pos
+```
+
 Keep in mind, however, that it is generally not desired to work with screen coordinates. The
 recommended approach is to simply work in Canvas coordinates
-(CanvasItem.get_global_transform()), to allow automatic screen resolution resizing to work
+(`CanvasItem.get_global_transform()`), to allow automatic screen resolution resizing to work
 properly.
 
 ## Feeding custom input events
 
 It is often desired to feed custom input events to the game. With the above knowledge, to correctly
 do this in the focused window, it must be done the following way:
+
+```
+var local_pos = Vector2(10, 20) # Local to Control/Node2D.
+var ie = InputEventMouseButton.new()
+ie.button_index = MOUSE_BUTTON_LEFT
+ie.position = get_viewport().get_screen_transform() * get_global_transform_with_canvas() * local_pos
+Input.parse_input_event(ie)
+```

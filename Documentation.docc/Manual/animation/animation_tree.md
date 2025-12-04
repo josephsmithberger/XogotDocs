@@ -7,58 +7,57 @@ With [AnimationPlayer](https://docs.godotengine.org/en/stable/classes/class_anim
 It is pretty much unique in its ability to animate almost any property in any node or resource, and its dedicated transform, bezier,
 function calling, audio, and sub-animation tracks.
 
-However, the support for blending those animations via AnimationPlayer is limited, as you can only set a fixed cross-fade transition time.
+However, the support for blending those animations via `AnimationPlayer` is limited, as you can only set a fixed cross-fade transition time.
 
-[AnimationTree](https://docs.godotengine.org/en/stable/classes/class_animationtree.html#class-animationtree) is a new node introduced in Godot 3.1 to deal with advanced transitions.
-It replaces the ancient AnimationTreePlayer, while adding a huge amount of features and flexibility.
+[AnimationTree](https://docs.godotengine.org/en/stable/classes/class_animationtree.html#class-animationtree) is a node designed to deal with advanced transitions.
 
 ## AnimationTree and AnimationPlayer
 
-Before starting, know that an AnimationTree node does not contain its own animations.
-Instead, it uses animations contained in an AnimationPlayer node. You create, edit, or import your animations in an AnimationPlayer
-and then use an AnimationTree to control the playback.
+Before starting, know that an `AnimationTree` node does not contain its own animations.
+Instead, it uses animations contained in an `AnimationPlayer` node. You create, edit, or import your animations in an `AnimationPlayer`
+and then use an `AnimationTree` to control the playback.
 
-AnimationPlayer and AnimationTree can be used in both 2D and 3D scenes. When importing 3D scenes and their animations, you can use
+`AnimationPlayer` and `AnimationTree` can be used in both 2D and 3D scenes. When importing 3D scenes and their animations, you can use
 name suffixes
-to simplify the process and import with the correct properties. At the end, the imported Godot scene will contain the animations in an AnimationPlayer node.
-Since you rarely use imported scenes directly in Godot (they are either instantiated or inherited from), you can place the AnimationTree node in your
-new scene which contains the imported one. Afterwards, point the AnimationTree node to the AnimationPlayer that was created in the imported scene.
+to simplify the process and import with the correct properties. At the end, the imported Godot scene will contain the animations in an `AnimationPlayer` node.
+Since you rarely use imported scenes directly in Godot (they are either instantiated or inherited from), you can place the `AnimationTree` node in your
+new scene which contains the imported one. Afterwards, point the `AnimationTree` node to the `AnimationPlayer` that was created in the imported scene.
 
 This is how it's done in the Third Person Shooter demo, for reference:
 
 @Image(source: "animtree_treeandplayersetup.png")
 
-A new scene was created for the player with a CharacterBody3D as root. Inside this scene, the original .dae (Collada) file was instantiated
-and an AnimationTree node was created.
+A new scene was created for the player with a `CharacterBody3D` as root. Inside this scene, the original `.dae` (Collada) file was instantiated
+and an `AnimationTree` node was created.
 
 ## Creating a tree
 
-To use an AnimationTree, you have to set a root node. An animation root node is a class that contains and evaluates sub-nodes and outputs an animation.
+To use an `AnimationTree`, you have to set a root node. An animation root node is a class that contains and evaluates sub-nodes and outputs an animation.
 There are 3 types of sub-nodes:
 
-1. Animation nodes, which reference an animation from the linked AnimationPlayer.
+1. Animation nodes, which reference an animation from the linked `AnimationPlayer`.
 
 1. Animation Root nodes, which are used to blend sub-nodes and can be nested.
 
-1. Animation Blend nodes, which are used in an AnimationNodeBlendTree, a 2D graph of nodes. Blend nodes take multiple input ports and give one output port.
+1. Animation Blend nodes, which are used in an `AnimationNodeBlendTree`, a 2D graph of nodes. Blend nodes take multiple input ports and give one output port.
 
 A few types of root nodes are available:
 
 @Image(source: "animtree_rootnodes.png")
 
-- AnimationNodeAnimation: Selects an animation from the list and plays it. This is the simplest root node, and generally not used as a root.
+- `AnimationNodeAnimation`: Selects an animation from the list and plays it. This is the simplest root node, and generally not used as a root.
 
-- AnimationNodeBlendTree: Contains multiple nodes as children in a graph. Many blend nodes are available, such as mix, blend2, blend3, one shot, etc.
+- `AnimationNodeBlendTree`: Contains multiple nodes as children in a graph. Many blend nodes are available, such as mix, blend2, blend3, one shot, etc.
 
-- AnimationNodeBlendSpace1D: Allows linear blending between two animation nodes. Control the blend position in a 1D blend space to mix between animations.
+- `AnimationNodeBlendSpace1D`: Allows linear blending between two animation nodes. Control the blend position in a 1D blend space to mix between animations.
 
-- AnimationNodeBlendSpace2D: Allows linear blending between three animation nodes. Control the blend position in a 2D blend space to mix between animations.
+- `AnimationNodeBlendSpace2D`: Allows linear blending between three animation nodes. Control the blend position in a 2D blend space to mix between animations.
 
-- AnimationNodeStateMachine: Contains multiple nodes as children in a graph. Each node is used as a state, with multiple functions used to alternate between states.
+- `AnimationNodeStateMachine`: Contains multiple nodes as children in a graph. Each node is used as a state, with multiple functions used to alternate between states.
 
 ## Blend tree
 
-When you make an AnimationNodeBlendTree, you get an empty 2d graph in the bottom panel, under the AnimationTree tab. It contains only an Output
+When you make an `AnimationNodeBlendTree`, you get an empty 2d graph in the bottom panel, under the AnimationTree tab. It contains only an `Output`
 node by default.
 
 @Image(source: "animtree_emptyblendtree.png")
@@ -67,7 +66,7 @@ In order for animations to play, a node has to be connected to the output. You c
 
 @Image(source: "animtree_blendnodes.png")
 
-The simplest connection to make is to connect an Animation node to the output directly, which will just play back the animation.
+The simplest connection to make is to connect an `Animation` node to the output directly, which will just play back the animation.
 
 @Image(source: "animtree_animtooutput.png")
 
@@ -91,13 +90,42 @@ This node will execute an animation once and return when it finishes. You can cu
 
 @Image(source: "animtree_oneshot.gif")
 
+```
+# Play child animation connected to "shot" port.
+animation_tree.set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+# Alternative syntax (same result).
+animation_tree["parameters/OneShot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+
+# Abort child animation connected to "shot" port.
+animation_tree.set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
+# Alternative syntax (same result).
+animation_tree["parameters/OneShot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT
+
+# Get current state (read-only).
+animation_tree.get("parameters/OneShot/active"))
+# Alternative syntax (same result).
+animation_tree["parameters/OneShot/active"]
+```
+
 ### TimeSeek
 
-This node allows you to seek to a time in the animation connected to its `in` input. Use this node to play an Animation starting from a certain playback position.
-Note that the seek request value is measured in seconds, so if you would like to play an animation from the beginning, set the value to 0.0, or if you would like
-to play an animation from 3 seconds in, set the value to 3.0.
+This node allows you to seek to a time in the animation connected to its `in` input. Use this node to play an `Animation` starting from a certain playback position.
+Note that the seek request value is measured in seconds, so if you would like to play an animation from the beginning, set the value to `0.0`, or if you would like
+to play an animation from 3 seconds in, set the value to `3.0`.
 
 @Image(source: "animtree_timeseek.png")
+
+```
+# Play child animation from the start.
+animation_tree.set("parameters/TimeSeek/seek_request", 0.0)
+# Alternative syntax (same result).
+animation_tree["parameters/TimeSeek/seek_request"] = 0.0
+
+# Play child animation from 12 second timestamp.
+animation_tree.set("parameters/TimeSeek/seek_request", 12.0)
+# Alternative syntax (same result).
+animation_tree["parameters/TimeSeek/seek_request"] = 12.0
+```
 
 ### TimeScale
 
@@ -113,9 +141,26 @@ You may specify a crossfade transition time. In the Inspector, you may change th
 
 @Image(source: "animtree_transition.png")
 
+```
+# Play child animation connected to "state_2" port.
+animation_tree.set("parameters/Transition/transition_request", "state_2")
+# Alternative syntax (same result).
+animation_tree["parameters/Transition/transition_request"] = "state_2"
+
+# Get current state name (read-only).
+animation_tree.get("parameters/Transition/current_state")
+# Alternative syntax (same result).
+animation_tree["parameters/Transition/current_state"]
+
+# Get current state index (read-only).
+animation_tree.get("parameters/Transition/current_index"))
+# Alternative syntax (same result).
+animation_tree["parameters/Transition/current_index"]
+```
+
 ### StateMachine
 
-When you make an AnimationNodeStateMachine, you get an empty 2d graph in the bottom panel, under the AnimationTree tab. It contains a Start and End
+When you make an `AnimationNodeStateMachine`, you get an empty 2d graph in the bottom panel, under the AnimationTree tab. It contains a `Start` and `End`
 state by default.
 
 @Image(source: "animtree_emptystatemachine.png")
@@ -149,13 +194,13 @@ Transitions also have a few properties. Click a transition and it will be displa
 
 - Reset determines whether the state you are switching into plays from the beginning (true) or not (false).
 
-- Priority is used together with the travel() function from code (more on this later). Lower priority transitions are preferred when travelling through the tree.
+- Priority is used together with the `travel()` function from code (more on this later). Lower priority transitions are preferred when travelling through the tree.
 
 - Switch Mode is the transition type (see above). It can be changed after creation here.
 
-- Advance Mode determines the advance mode. If Disabled, the transition will not be used. If Enabled, the transition will only be used during travel(). If Auto, the transition will be used if the advance condition and expression are true, or if there are no advance conditions/expressions.
+- Advance Mode determines the advance mode. If `Disabled`, the transition will not be used. If `Enabled`, the transition will only be used during `travel()`. If `Auto`, the transition will be used if the advance condition and expression are true, or if there are no advance conditions/expressions.
 
-The last 2 properties in a StateMachine transition are Advance Condition and Advance Expression. When the Advance Mode is set to Auto, these
+The last 2 properties in a StateMachine transition are `Advance Condition` and `Advance Expression.` When the Advance Mode is set to Auto, these
 determine if the transition will advance or not.
 
 Advance Condition is a true/false check. You may put a custom variable name in the text field, and when the StateMachine reaches this transition,
@@ -166,17 +211,17 @@ This gives the Advance Condition a very limited capability. If you wanted to mak
 2 variables that have opposite values, and check if either of them are true. This is why, in Godot 4, the Advance Expression was added.
 
 The Advance Expression works similar to the Advance Condition, but instead of checking if one variable is true, it evaluates any expression. An expression
-is anything you could put in an if statement. These are all examples of expressions that would work in the Advance Expression:
+is anything you could put in an `if` statement. These are all examples of expressions that would work in the Advance Expression:
 
-- is_walking
+- `is_walking`
 
-- is_walking == true
+- `is_walking` == true
 
-- is_walking && !is_idle
+- `is_walking && !is_idle`
 
-- velocity > 0
+- `velocity > 0`
 
-- player.is_on_floor()
+- `player.is_on_floor()`
 
 Here is an example of an improperly-set-up StateMachine transition using Advance Condition:
 
@@ -184,7 +229,7 @@ Here is an example of an improperly-set-up StateMachine transition using Advance
 
 @Image(source: "animtree_badanimcondition.gif")
 
-This is not working because there is a ! variable in the Advance Condition, which cannot be checked.
+This is not working because there is a `!` variable in the Advance Condition, which cannot be checked.
 
 Here is the same example, set up properly, using two opposite variables:
 
@@ -203,18 +248,23 @@ Here is the same example, but using Advance Expression rather than Advance Condi
 In order to use Advance Expressions, the Advance Expression Base Node has to be set from the Inspector of the AnimationTree node. By default, it is set
 to the AnimationTree node itself, but it needs to point to whatever node contains the script with your animation variables.
 
-One of the nice features in Godot's StateMachine implementation is the ability to travel. You can instruct the graph to go from the
+One of the nice features in Godot's `StateMachine` implementation is the ability to travel. You can instruct the graph to go from the
 current state to another one, while visiting all the intermediate ones. This is done via the A* algorithm.
 If there is no path of transitions starting at the current state and finishing at the destination state, the graph teleports to the destination state.
 
 To use the travel ability, you should first retrieve the [AnimationNodeStateMachinePlayback](https://docs.godotengine.org/en/stable/classes/class_animationnodestatemachineplayback.html#class-animationnodestatemachineplayback)
-object from the AnimationTree node (it is exported as a property), and then call one of its many functions:
+object from the `AnimationTree` node (it is exported as a property), and then call one of its many functions:
 
-The StateMachine must be running before you can travel. Make sure to either call start() or connect a node to **Start**.
+```
+var state_machine = animation_tree["parameters/playback"]
+state_machine.travel("SomeState")
+```
+
+The StateMachine must be running before you can travel. Make sure to either call `start()` or connect a node to **Start**.
 
 ## BlendSpace2D and BlendSpace1D
 
-BlendSpace2D is a node to do advanced blending in two dimensions. Points representing animations are added to a 2D space and then a position between them
+`BlendSpace2D` is a node to do advanced blending in two dimensions. Points representing animations are added to a 2D space and then a position between them
 is controlled to determine the blending:
 
 @Image(source: "animtree_blendspace2d.gif")
@@ -237,30 +287,30 @@ BlendSpace1D works just like BlendSpace2D, but in one dimension (a line). Triang
 
 ## For better blending
 
-In Godot 4.0+, in order for the blending results to be deterministic (reproducible and always consistent),
+For the blending results to be deterministic (reproducible and always consistent),
 the blended property values must have a specific initial value.
 For example, in the case of two animations to be blended, if one animation has a property track and the other does not,
 the blended animation is calculated as if the latter animation had a property track with the initial value.
 
 When using Position/Rotation/Scale 3D tracks for Skeleton3D bones, the initial value is Bone Rest.
-For other properties, the initial value is 0 and if the track is present in the RESET animation,
+For other properties, the initial value is `0` and if the track is present in the `RESET` animation,
 the value of its first keyframe is used instead.
 
 For example, the following AnimationPlayer has two animations, but one of them lacks a Property track for Position.
 
 @Image(source: "blending1.png")
 
-This means that the animation lacking that will treat those Positions as Vector2(0, 0).
+This means that the animation lacking that will treat those Positions as `Vector2(0, 0)`.
 
 @Image(source: "blending2.png")
 
-This problem can be solved by adding a Property track for Position as an initial value to the RESET animation.
+This problem can be solved by adding a Property track for Position as an initial value to the `RESET` animation.
 
 @Image(source: "blending3.png")
 
 @Image(source: "blending4.png")
 
-> Note: Be aware that the RESET animation exists to define the default pose when loading an object originally.
+> Note: Be aware that the `RESET` animation exists to define the default pose when loading an object originally.
 > It is assumed to have only one frame and is not expected to be played back using the timeline.
 >
 
@@ -290,9 +340,21 @@ transformation visually (the animation will stay in place).
 
 Afterwards, the actual motion can be retrieved via the [AnimationTree](https://docs.godotengine.org/en/stable/classes/class_animationtree.html#class-animationtree) API as a transform:
 
+```
+# Get the motion delta.
+animation_tree.get_root_motion_position()
+animation_tree.get_root_motion_rotation()
+animation_tree.get_root_motion_scale()
+
+# Get the actual blended value of the animation.
+animation_tree.get_root_motion_position_accumulator()
+animation_tree.get_root_motion_rotation_accumulator()
+animation_tree.get_root_motion_scale_accumulator()
+```
+
 This can be fed to functions such as [CharacterBody3D.move_and_slide](https://docs.godotengine.org/en/stable/classes/class_characterbody3d_method_move_and_slide.html#class-characterbody3d_method_move_and_slide) to control the character movement.
 
-There is also a tool node, RootMotionView, you can place a scene that will act as a custom floor for your
+There is also a tool node, `RootMotionView`, you can place a scene that will act as a custom floor for your
 character and animations (this node is disabled by default during the game).
 
 @Image(source: "animtree15.gif")
@@ -302,16 +364,16 @@ character and animations (this node is disabled by default during the game).
 After building the tree and previewing it, the only question remaining is "How is all this controlled from code?".
 
 Keep in mind that the animation nodes are just resources, so they are shared between all instances using them.
-Setting values in the nodes directly will affect all instances of the scene that uses this AnimationTree.
+Setting values in the nodes directly will affect all instances of the scene that uses this `AnimationTree`.
 This is generally undesirable, but does have some cool use cases, e.g. you can copy and paste parts of your animation tree,
 or reuse nodes with a complex layout (such as a StateMachine or blend space) in different animation trees.
 
-The actual animation data is contained in the AnimationTree node and is accessed via properties.
-Check the "Parameters" section of the AnimationTree node to see all the parameters that can be modified in real-time:
+The actual animation data is contained in the `AnimationTree` node and is accessed via properties.
+Check the "Parameters" section of the `AnimationTree` node to see all the parameters that can be modified in real-time:
 
 @Image(source: "animtree_parameters.png")
 
-This is handy because it makes it possible to animate them from an AnimationPlayer, or even the AnimationTree itself,
+This is handy because it makes it possible to animate them from an `AnimationPlayer`, or even the `AnimationTree` itself,
 allowing very complex animation logic.
 
 To modify these values from code, you must obtain the property path. You can find them by hovering your mouse over any of the parameters:
@@ -319,6 +381,12 @@ To modify these values from code, you must obtain the property path. You can fin
 @Image(source: "animtree_propertypath.png")
 
 Then you can set or read them:
+
+```
+animation_tree.set("parameters/eye_blend/blend_amount", 1.0)
+# Alternate syntax (same result)
+animation_tree["parameters/eye_blend/blend_amount"] = 1.0
+```
 
 > Note: Advance Expressions from a StateMachine will not be found under the parameters. This is because they are held in another script rather than the
 > AnimationTree itself. Advance `Conditions` will be found under parameters.

@@ -46,7 +46,7 @@ while also allowing shaded areas to receive some lighting (which is what we want
 so experiment with various energy values depending on the light and your typical
 material colors.
 
-- Set **Specular** to 0.0. Indirect lighting shouldn't emit visible specular
+- Set **Specular** to `0.0`. Indirect lighting shouldn't emit visible specular
 lobes, so we need to disable specular lighting entirely for the secondary light.
 
 > Note:

@@ -8,26 +8,26 @@
 > read <doc:compiling_for_macos>.
 >
 
-macOS apps exported with the official export templates are exported as a single "Universal 2" binary .app bundle, a folder with a specific structure which stores the executable, libraries and all the project files.
+macOS apps exported with the official export templates are exported as a single "Universal 2" binary `.app` bundle, a folder with a specific structure which stores the executable, libraries and all the project files.
 This bundle can be exported as is, packed in a ZIP archive, or packed in a DMG disk image (only supported when exporting from macOS).
 Universal binaries for macOS support both Intel x86_64 and ARM64 (Apple Silicon) architectures.
 
 > Warning:
-> Due to file system limitations, .app bundles exported from Windows lack the
-> executable flag and won't run on macOS. Projects exported as .zip are not
-> affected by this issue. To run .app bundles exported from Windows on macOS,
-> transfer the .app to a device running macOS or Linux and use the
-> chmod +x {executable_name} terminal command to add the executable permission.
-> The main executable located in the Contents/MacOS/ subfolder, as well
-> as optional helper executables in the Contents/Helpers/ subfolder, should have
-> the executable permission for the .app bundle to be valid.
+> Due to file system limitations, `.app` bundles exported from Windows lack the
+> `executable` flag and won't run on macOS. Projects exported as `.zip` are not
+> affected by this issue. To run `.app` bundles exported from Windows on macOS,
+> transfer the `.app` to a device running macOS or Linux and use the
+> `chmod +x {executable_name}` terminal command to add the `executable` permission.
+> The main executable located in the `Contents/MacOS/` subfolder, as well
+> as optional helper executables in the `Contents/Helpers/` subfolder, should have
+> the `executable` permission for the `.app` bundle to be valid.
 >
 
 ## Requirements
 
-- Download the Godot export templates. Use the Godot menu: Editor > Manage Export Templates.
+- Download the Godot export templates. Use the Godot menu: `Editor > Manage Export Templates`.
 
-- A valid and unique Bundle identifier should be set in the Application section of the export options.
+- A valid and unique `Bundle identifier` should be set in the `Application` section of the export options.
 
 > Warning:
 >
@@ -42,19 +42,19 @@ To notarize an app, you **must** have a valid Apple Developer ID Certificate.
 
 ### If you have an Apple Developer ID Certificate and exporting from macOS
 
-Install Xcode command line tools and open Xcode at least once or run the sudo xcodebuild -license accept command to accept license agreement.
+Install Xcode command line tools and open Xcode at least once or run the `sudo xcodebuild -license accept` command to accept license agreement.
 
-- Select Xcode codesign in the Code Signing > Codesign option.
+- Select `Xcode codesign` in the `Code Signing > Codesign` option.
 
-- Set valid Apple ID certificate identity (certificate "Common Name") in the Code Signing > Identity section.
+- Set valid Apple ID certificate identity (certificate "Common Name") in the `Code Signing > Identity` section.
 
-- Select Xcode altool in the Notarization > Notarization option.
+- Select `Xcode altool` in the `Notarization > Notarization` option.
 
-- Disable the Debugging entitlement.
+- Disable the `Debugging` entitlement.
 
-- Set valid Apple ID login / app. specific password or App Store Connect API UUID / Key in the Notarization section.
+- Set valid Apple ID login / app. specific password or App Store Connect API UUID / Key in the `Notarization` section.
 
-You can use the xcrun notarytool history command to check notarization status and use the xcrun notarytool log {ID} command to download the notarization log.
+You can use the `xcrun notarytool history` command to check notarization status and use the `xcrun notarytool log {ID}` command to download the notarization log.
 
 If you encounter notarization issues, see Resolving common notarization issues for more info.
 
@@ -62,27 +62,27 @@ After notarization is completed, staple the ticket to the exported project.
 
 ### If you have an Apple Developer ID Certificate and exporting from Linux or Windows
 
-Install PyOxidizer rcodesign, and configure the path to rcodesign in the Editor Settings > Export > macOS > rcodesign.
+Install PyOxidizer rcodesign, and configure the path to `rcodesign` in the `Editor Settings > Export > macOS > rcodesign`.
 
-- Select PyOxidizer rcodesign in the Code Signing > Codesign option.
+- Select `PyOxidizer rcodesign` in the `Code Signing > Codesign` option.
 
-- Set valid Apple ID PKCS #12 certificate file and password in the Code Signing section.
+- Set valid Apple ID PKCS #12 certificate file and password in the `Code Signing` section.
 
-- Select PyOxidizer rcodesign in the Notarization > Notarization option.
+- Select `PyOxidizer rcodesign` in the `Notarization > Notarization` option.
 
-- Disable the Debugging entitlement.
+- Disable the `Debugging` entitlement.
 
-- Set valid App Store Connect API UUID / Key in the Notarization section.
+- Set valid App Store Connect API UUID / Key in the `Notarization` section.
 
-You can use the rcodesign notary-log command to check notarization status.
+You can use the `rcodesign notary-log` command to check notarization status.
 
-After notarization is completed, use the rcodesign staple command to staple the ticket to the exported project.
+After notarization is completed, use the `rcodesign staple` command to staple the ticket to the exported project.
 
 ### If you do not have an Apple Developer ID Certificate
 
-- Select Built-in (ad-hoc only) in the Code Signing > Codesign option.
+- Select `Built-in (ad-hoc only)` in the `Code Signing > Codesign` option.
 
-- Select Disabled in the Notarization > Notarization option.
+- Select `Disabled` in the `Notarization > Notarization` option.
 
 In this case Godot will use an ad-hoc signature, which will make running an exported app easier for the end users,
 see the <doc:running_on_macos> page for more information.
@@ -143,16 +143,16 @@ Photo Library | [5]Enable to allow access to the user's Photos library, if it's 
 Apple Events | [5]Enable to allow app to send Apple events to other apps.
 Debugging | [6]You can temporarily enable this entitlement to use native debugger (GDB, LLDB) with the exported app. This entitlement should be disabled for production export.
 
-The Allow JIT Code Execution, Allow Unsigned Executable Memory and Allow DYLD Environment Variables entitlements are always enabled for the Godot Mono exports, and are not visible in the export options.
+The `Allow JIT Code Execution`, `Allow Unsigned Executable Memory` and `Allow DYLD Environment Variables` entitlements are always enabled for the Godot Mono exports, and are not visible in the export options.
 
 These features aren't supported by Godot out of the box, enable them only if you are using add-ons which require them.
 
-To notarize an app, you must disable the Debugging entitlement.
+To notarize an app, you must disable the `Debugging` entitlement.
 
 ### App Sandbox Entitlement
 
 The App Sandbox restricts access to user data, networking and devices.
-Sandboxed apps can't access most of the file system, can't use custom file dialogs and execute binaries (using OS.execute and OS.create_process) outside the .app bundle.
+Sandboxed apps can't access most of the file system, can't use custom file dialogs and execute binaries (using `OS.execute` and `OS.create_process`) outside the `.app` bundle.
 See App Sandbox for more info.
 
 > Note:
@@ -189,15 +189,15 @@ the export menu.
 
 Export option | Environment variable
 ------------- | --------------------
-Encryption / Encryption Key | GODOT_SCRIPT_ENCRYPTION_KEY
-Options / Codesign / Certificate File | GODOT_MACOS_CODESIGN_CERTIFICATE_FILE
-Options / Codesign / Certificate Password | GODOT_MACOS_CODESIGN_CERTIFICATE_PASSWORD
-Options / Codesign / Provisioning Profile | GODOT_MACOS_CODESIGN_PROVISIONING_PROFILE
-Options / Notarization / API UUID | GODOT_MACOS_NOTARIZATION_API_UUID
-Options / Notarization / API Key | GODOT_MACOS_NOTARIZATION_API_KEY
-Options / Notarization / API Key ID | GODOT_MACOS_NOTARIZATION_API_KEY_ID
-Options / Notarization / Apple ID Name | GODOT_MACOS_NOTARIZATION_APPLE_ID_NAME
-Options / Notarization / Apple ID Password | GODOT_MACOS_NOTARIZATION_APPLE_ID_PASSWORD
+Encryption / Encryption Key | `GODOT_SCRIPT_ENCRYPTION_KEY`
+Options / Codesign / Certificate File | `GODOT_MACOS_CODESIGN_CERTIFICATE_FILE`
+Options / Codesign / Certificate Password | `GODOT_MACOS_CODESIGN_CERTIFICATE_PASSWORD`
+Options / Codesign / Provisioning Profile | `GODOT_MACOS_CODESIGN_PROVISIONING_PROFILE`
+Options / Notarization / API UUID | `GODOT_MACOS_NOTARIZATION_API_UUID`
+Options / Notarization / API Key | `GODOT_MACOS_NOTARIZATION_API_KEY`
+Options / Notarization / API Key ID | `GODOT_MACOS_NOTARIZATION_API_KEY_ID`
+Options / Notarization / Apple ID Name | `GODOT_MACOS_NOTARIZATION_APPLE_ID_NAME`
+Options / Notarization / Apple ID Password | `GODOT_MACOS_NOTARIZATION_APPLE_ID_PASSWORD`
 
 ## Export options
 

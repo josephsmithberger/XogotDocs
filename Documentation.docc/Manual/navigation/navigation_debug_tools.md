@@ -16,30 +16,35 @@ To visualize navigation meshes and connections at runtime too, enable the option
 
 In Godot debug builds the navigation debug can also be toggled through the NavigationServer singletons from scripts.
 
+```
+NavigationServer2D.set_debug_enabled(false)
+NavigationServer3D.set_debug_enabled(true)
+```
+
 Debug visualizations are currently based on Nodes in the SceneTree. If the [NavigationServer2D](https://docs.godotengine.org/en/stable/classes/class_navigationserver2d.html#class-navigationserver2d) or [NavigationServer3D](https://docs.godotengine.org/en/stable/classes/class_navigationserver3d.html#class-navigationserver3d)
 APIs are used exclusively then changes will not be reflected by the debug navigation tools.
 
 ## Navigation debug settings
 
-The appearance of navigation debug can be changed in the ProjectSettings under debug/shapes/navigation.
+The appearance of navigation debug can be changed in the ProjectSettings under `debug/shapes/navigation`.
 Certain debug features can also be enabled or disabled at will but may require a scene restart to take effect.
 
 @Image(source: "nav_debug_settings.png")
 
 ## Debug navigation mesh polygons
 
-If enable_edge_lines is enabled, the edges of navigation mesh polygons will be highlighted.
-If enable_edge_lines_xray is also enabled, the edges of navigation meshes will be visible through geometry.
+If `enable_edge_lines` is enabled, the edges of navigation mesh polygons will be highlighted.
+If `enable_edge_lines_xray` is also enabled, the edges of navigation meshes will be visible through geometry.
 
-If enable_geometry_face_random_color is enabled, the color of each navigation mesh face will be mixed with a random color that is itself mixed with the color specified in geometry_face_color.
+If `enable_geometry_face_random_color` is enabled, the color of each navigation mesh face will be mixed with a random color that is itself mixed with the color specified in `geometry_face_color`.
 
 @Image(source: "nav_debug_xray_edge_lines.png")
 
 ## Debug edge connections
 
-When two navigation meshes are connected within edge_connection_margin distance, the connection is overlaid.
-The color of the overlay is controlled by edge_connection_color.
-The connections can be made visible through geometry with enable_edge_connections_xray.
+When two navigation meshes are connected within `edge_connection_margin` distance, the connection is overlaid.
+The color of the overlay is controlled by `edge_connection_color`.
+The connections can be made visible through geometry with `enable_edge_connections_xray`.
 
 @Image(source: "nav_edge_connection2d.gif")
 

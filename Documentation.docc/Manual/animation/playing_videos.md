@@ -19,11 +19,11 @@ as it was too buggy and difficult to maintain.
 
 > Note:
 >
-> You may find videos with a .ogg or .ogx extensions, which are generic
+> You may find videos with a `.ogg` or `.ogx` extensions, which are generic
 > extensions for data within an Ogg container.
 >
-> Renaming these file extensions to .ogv may allow the videos to be
-> imported in Godot. However, not all files with .ogg or .ogx
+> Renaming these file extensions to `.ogv` may allow the videos to be
+> imported in Godot. However, not all files with `.ogg` or `.ogx`
 > extensions are videos - some of them may only contain audio.
 >
 
@@ -32,7 +32,7 @@ as it was too buggy and difficult to maintain.
 1. Create a VideoStreamPlayer node using the Create New Node dialog.
 
 1. Select the VideoStreamPlayer node in the scene tree dock, go to the inspector
-and load a .ogv file in the Stream property.
+and load a `.ogv` file in the Stream property.
 
 If you don't have your video in Ogg Theora format yet, jump to
 <doc:playing_videos#Recommended-Theora-Encoding-Settings>.
@@ -44,7 +44,7 @@ If you don't have your video in Ogg Theora format yet, jump to
 
 1. If you want the video to play as soon as the scene is loaded, check
 **Autoplay** in the inspector. If not, leave **Autoplay** disabled and call
-play() on the VideoStreamPlayer node in a script to start playback when
+`play()` on the VideoStreamPlayer node in a script to start playback when
 desired.
 
 - If you don't have your video in Ogg Theora format yet, jump to
@@ -52,7 +52,7 @@ desired.
 
 ### Handling resizing and different aspect ratios
 
-By default in Godot 4.0, the VideoStreamPlayer will automatically be resized to match
+By default, the VideoStreamPlayer will automatically be resized to match
 the video's resolution. You can make it follow usual [Control](https://docs.godotengine.org/en/stable/classes/class_control.html#class-control) sizing
 by enabling **Expand** on the VideoStreamPlayer node.
 
@@ -193,8 +193,8 @@ below with almost any input video format (AVI, MOV, WebM, …).
 > Note:
 >
 > Make sure your copy of FFmpeg is compiled with libtheora and libvorbis support.
-> You can check this by running ffmpeg without any arguments, then looking
-> at the configuration: line in the command output.
+> You can check this by running `ffmpeg` without any arguments, then looking
+> at the `configuration:` line in the command output.
 >
 
 > Warning:
@@ -206,18 +206,18 @@ below with almost any input video format (AVI, MOV, WebM, …).
 
 ### Balancing quality and file size
 
-The **video quality** level (-q:v) must be between 1 and 10. Quality
-6 is a good compromise between quality and file size. If encoding at a high
-resolution (such as 1440p or 4K), you will probably want to decrease -q:v to
-5 to keep file sizes reasonable. Since pixel density is higher on a 1440p or
+The **video quality** level (`-q:v`) must be between `1` and `10`. Quality
+`6` is a good compromise between quality and file size. If encoding at a high
+resolution (such as 1440p or 4K), you will probably want to decrease `-q:v` to
+`5` to keep file sizes reasonable. Since pixel density is higher on a 1440p or
 4K video, lower quality presets at higher resolutions will look as good or
 better compared to low-resolution videos.
 
-The **audio quality** level (-q:a) must be between -1 and 10. Quality
-6 provides a good compromise between quality and file size. In contrast to
+The **audio quality** level (`-q:a`) must be between `-1` and `10`. Quality
+`6` provides a good compromise between quality and file size. In contrast to
 video quality, increasing audio quality doesn't increase the output file size
 nearly as much. Therefore, if you want the cleanest audio possible, you can
-increase this to 9 to get perceptually lossless audio. This is especially
+increase this to `9` to get perceptually lossless audio. This is especially
 valuable if your input file already uses lossy audio compression. Higher quality
 audio does increase the CPU usage of the decoder, so it might lead to audio
 dropouts in case of high system load. See
@@ -225,18 +225,18 @@ this page
 for a table listing Ogg Vorbis audio quality presets and their respective
 variable bitrates.
 
-The **GOP (Group of Pictures) size** (-g:v) is the max interval between
+The **GOP (Group of Pictures) size** (`-g:v`) is the max interval between
 keyframes. Increasing this value can improve compression with almost no impact
-on quality. The default size (12) is too low for most types of content,
+on quality. The default size (`12`) is too low for most types of content,
 it's therefore recommended using higher GOP values before reducing video
 quality. Compression benefits will fade away as the GOP size increases though.
-Values between 64 and 512 usually give the best compression.
+Values between `64` and `512` usually give the best compression.
 
 > Note:
 >
 > Higher GOP sizes will increase max seek times with a sudden increase when
-> going beyond powers of two starting at 64. Max seek times with GOP size
-> 65 can be almost twice as long as with GOP size 64, depending on
+> going beyond powers of two starting at `64`. Max seek times with GOP size
+> `65` can be almost twice as long as with GOP size `64`, depending on
 > decoding speed.
 >
 

@@ -36,9 +36,9 @@ You can drag and drop compatible nodes from the FileSystem dock to add them to t
 viewport as nodes.
 Dragging and dropping adds the dragged node as a sibling of the selected node
 (if the root node is selected, adds as a child).
-Keeping `Shift` pressed when dropping adds the node as a child of the selected node.
-Holding `Alt` when dropping adds the node as a child of the root node.
-If `Alt + Shift` is held when dropping, the node type can be selected if
+Keeping ``Shift`` pressed when dropping adds the node as a child of the selected node.
+Holding ``Alt`` when dropping adds the node as a child of the root node.
+If ``Alt + Shift`` is held when dropping, the node type can be selected if
 applicable.
 
 ### Main toolbar
@@ -51,24 +51,24 @@ from left to right:
 
 @Image(source: "2d_toolbar.png")
 
-- **Select Mode** (`Q`): Allows selection of nodes in the viewport. Left clicking on a node
+- **Select Mode** (``Q``): Allows selection of nodes in the viewport. Left clicking on a node
 in the viewport selects it.
 Left clicking and dragging a rectangle selects all nodes within the rectangle's boundaries,
 once released.
-Holding `Shift` while selecting adds more nodes to the selection.
-Clicking on a selected node while holding `Shift` deselects the node.
-In this mode, you can drag the selected node(s) to move, press `Ctrl` to switch to the
+Holding ``Shift`` while selecting adds more nodes to the selection.
+Clicking on a selected node while holding ``Shift`` deselects the node.
+In this mode, you can drag the selected node(s) to move, press ``Ctrl`` to switch to the
 rotation mode temporarily, or use the red circles to scale it. If multiple nodes are
 selected, only movement and rotation are possible. In this mode, rotation and scaling
 will not use the snapping options if snapping is enabled.
 
-- **Move Mode** (`W`): Enables move (or translate) mode for the selected nodes. See
+- **Move Mode** (``W``): Enables move (or translate) mode for the selected nodes. See
 <doc:introduction_to_2d#The-Viewport> for more details.
 
-- **Rotate Mode** (`E`): Enables rotation mode for the selected nodes. See
+- **Rotate Mode** (``E``): Enables rotation mode for the selected nodes. See
 <doc:introduction_to_2d#The-Viewport> for more details.
 
-- **Scale Mode** (`S`): Enables scaling and displays scaling gizmos in both
+- **Scale Mode** (``S``): Enables scaling and displays scaling gizmos in both
 axes for the selected node(s). See <doc:introduction_to_2d#The-Viewport> for more details.
 
 - **Show list of selectable nodes at position clicked**: As the description suggests,
@@ -76,23 +76,23 @@ this provides a list of selectable nodes at the clicked position as a context me
 there is more than one node in the clicked area.
 
 - **Rotation pivot**: Sets the rotation pivot to rotate node(s) around.
-An added node has its rotation pivot at x: 0, y: 0, by default, with
+An added node has its rotation pivot at `x: 0`, `y: 0`, by default, with
 exceptions. For example, the default pivot for a [Sprite2D](https://docs.godotengine.org/en/stable/classes/class_sprite2d.html#class-sprite2d) is its
-center if the centered property is set to true. If you would like to change the
+center if the `centered` property is set to `true`. If you would like to change the
 rotation pivot of a node, click this button and choose a new location by left clicking.
 The node rotates considering this point. If you have multiple nodes selected, this icon
-will add a temporary pivot to be used commonly by all selected nodes. Pressing `Shift`
+will add a temporary pivot to be used commonly by all selected nodes. Pressing ``Shift``
 and clicking this button will create the pivot at the center of selected nodes. If any of
 the snap options are enabled, the pivot will also snap to them when dragged.
 
-- **Pan Mode** (`G`): Allows you to navigate in the viewport without accidentally selecting any nodes.
-In other modes, you can also hold `Space` and drag with the left mouse button to do the same.
+- **Pan Mode** (``G``): Allows you to navigate in the viewport without accidentally selecting any nodes.
+In other modes, you can also hold ``Space`` and drag with the left mouse button to do the same.
 
 - **Ruler Mode**: After enabling, click on the viewport to display the current global
 x and y coordinates. Dragging from a position to another one measures the distance in pixels.
 If you drag diagonally, it will draw a triangle and show the separate distances in terms
 of x, y, and total distance to the target, including the angles to the axes in degrees.
-The `R` key activates the ruler. If snapping is enabled, it also displays the
+The ``R`` key activates the ruler. If snapping is enabled, it also displays the
 measurements in terms of grid count:
 
 @Image(source: "2d_ruler_with_snap.png") {Using ruler with snapping enabled.}
@@ -115,8 +115,8 @@ Use the three-dot menu for this:
 
 - **Snap Relative**: Toggles the usage of snapping based on the selected node's current
 transform values. For example, if the grids are set to 32x32 pixels and if the selected node
-is located at x: 1, y: 1, then, enabling this option will temporarily shift the grids by
-x: 1, y: 1.
+is located at `x: 1, y: 1`, then, enabling this option will temporarily shift the grids by
+`x: 1, y: 1`.
 
 - **Use Pixel Snap**: Toggles the use of subpixels for snapping. If enabled, the position values
 will be integers, disabling will enable subpixel movement as decimal values. For the runtime
@@ -184,9 +184,9 @@ on the ruler and guides below.
 
 - **Configure Snap**: Opens the window shown above, offering a set of snapping parameters.
 
-Grid Offset: Allows you to shift grids with respect to the origin. x and y can
+Grid Offset: Allows you to shift grids with respect to the origin. `x` and `y` can
 be adjusted separately.
-Grid Step: The distance between each grid in pixels. x and y can be adjusted separately.
+Grid Step: The distance between each grid in pixels. `x` and `y` can be adjusted separately.
 Primary Line Every: The number of grids in-between to draw infinite lines as indication of
 main lines.
 Rotation Offset: Sets the offset to shift rotational snapping.
@@ -197,10 +197,10 @@ change the scaling at 0.1 steps if scaling snap is enabled and the scaling mode 
 
 
 
-- Grid Offset: Allows you to shift grids with respect to the origin. x and y can
+- Grid Offset: Allows you to shift grids with respect to the origin. `x` and `y` can
 be adjusted separately.
 
-- Grid Step: The distance between each grid in pixels. x and y can be adjusted separately.
+- Grid Step: The distance between each grid in pixels. `x` and `y` can be adjusted separately.
 
 - Primary Line Every: The number of grids in-between to draw infinite lines as indication of
 main lines.
@@ -213,14 +213,14 @@ at multiples of 15 degrees if rotation snap is enabled and the rotate mode is us
 - Scale Step: Determines the scaling increment factor. For example, if it is 0.1, it will
 change the scaling at 0.1 steps if scaling snap is enabled and the scaling mode is used.
 
-- **Lock selected nodes** (`Ctrl + L`). Locks the selected nodes, preventing selection and movement in the
-viewport. Clicking the button again (or using `Ctrl + Shift + L`) unlocks the selected
+- **Lock selected nodes** (``Ctrl + L``). Locks the selected nodes, preventing selection and movement in the
+viewport. Clicking the button again (or using ``Ctrl + Shift + L``) unlocks the selected
 nodes. Locked nodes can only be selected in the scene tree.
 They can easily be identified by a padlock next to their node names in the scene tree.
 Clicking on this padlock also unlocks the nodes.
 
-- **Group selected nodes** (`Ctrl + G`). This allows selection of the root node if any
-of the children are selected. Using `Ctrl + G` ungroups them. Additionally, clicking
+- **Group selected nodes** (``Ctrl + G``). This allows selection of the root node if any
+of the children are selected. Using ``Ctrl + G`` ungroups them. Additionally, clicking
 the ungroup button in the scene tree performs the same action.
 
 - **Skeleton Options**: Provides options to work with Skeleton2D and Bone2D.
@@ -234,10 +234,10 @@ Make Bone2D Node(s) from Node(s): Converts selected node(s) into Bone2D.
 
 - Make Bone2D Node(s) from Node(s): Converts selected node(s) into Bone2D.
 
-- Grid Offset: Allows you to shift grids with respect to the origin. x and y can
+- Grid Offset: Allows you to shift grids with respect to the origin. `x` and `y` can
 be adjusted separately.
 
-- Grid Step: The distance between each grid in pixels. x and y can be adjusted separately.
+- Grid Step: The distance between each grid in pixels. `x` and `y` can be adjusted separately.
 
 - Primary Line Every: The number of grids in-between to draw infinite lines as indication of
 main lines.
@@ -269,23 +269,23 @@ provides buttons to add, modify, or remove points.
 
 ### Coordinate system
 
-In the 2D editor, unlike 3D, there are only two axes: x and y. Also, the viewing
+In the 2D editor, unlike 3D, there are only two axes: `x` and `y`. Also, the viewing
 angle is fixed.
 
 In the viewport, you will see two lines in two colors going across the screen infinitely:
 red for the x-axis, and green for the y-axis.
 In Godot, going right and down are positive directions.
-Where these two lines intersect is the origin: x: 0, y: 0.
+Where these two lines intersect is the origin: `x: 0, y: 0`.
 
 A root node will have its origin at this position once added.
 Switching to the `move` or `scale` modes after selecting a node will display the gizmos at the
 node's offset position.
 The gizmos will point to the positive directions of the x and y axes.
-In the move mode, you can drag the green line to move only in the y axis.
-Similarly, you can hold the red line to move only in the x axis.
+In the move mode, you can drag the green line to move only in the `y` axis.
+Similarly, you can hold the red line to move only in the `x` axis.
 
 In the scale mode, the gizmos will have a square shape. You can hold and drag the green and
-red squares to scale the nodes in the y or x axes.
+red squares to scale the nodes in the `y` or `x` axes.
 Dragging in a negative direction flips the node horizontally or vertically.
 
 ### 2D Viewport
@@ -297,9 +297,9 @@ interfaces visually:
 
 Middle-clicking and dragging the mouse will pan the view.
 The scrollbars on the right or bottom of the viewport also move the view.
-Alternatively, the `G` or `Space` keys can be used.
+Alternatively, the ``G`` or ``Space`` keys can be used.
 If you enable `Editor Settings > Editors > Panning > Simple Panning`, you can activate
-panning directly with `Space` only, without requiring dragging.
+panning directly with ``Space`` only, without requiring dragging.
 
 The viewport has buttons on the top-left.
 **Center View** centers the selected node(s) in the screen. Useful if you have a large scene
@@ -330,16 +330,16 @@ dragging them all the way back to the ruler.
 You can also enable snapping to the created guides using the `Smart Snap` menu.
 
 > Note: If you cannot create a line, or do not see previously created guides, make sure that
-> they are visible by checking the `View` menu of the viewport. `Y` toggles their visibility,
+> they are visible by checking the `View` menu of the viewport. ``Y`` toggles their visibility,
 > by default. Also, make sure you have at least one node in the scene.
 >
 
 Depending on the tool chosen in the toolbar, left-clicking will have a primary action in the
 viewport.
 For example, the `Select Mode` will select the left-clicked node in the viewport.
-Sometimes, left-clicking can be combined with a modifier (e.g., `Ctrl`, or `Shift`) to
+Sometimes, left-clicking can be combined with a modifier (e.g., ``Ctrl``, or ``Shift``) to
 perform secondary actions.
-For example, keeping `Shift` pressed while dragging a node in the Select or Move modes will
+For example, keeping ``Shift`` pressed while dragging a node in the Select or Move modes will
 try to snap the node in a single axis while moving.
 
 Right clicking in the viewport provides two options to create a node or instantiate a scene
@@ -362,7 +362,7 @@ initiated. For `Control` nodes, it also shows the sizing parameters. Useful to s
 - **Show Guides**: Toggles the visibility of created guides. See
 <doc:introduction_to_2d#The-Viewport> for on how to create them.
 
-- **Show Origin**: Toggles the display of the green and red origin lines drawn at x: 0, y: 0.
+- **Show Origin**: Toggles the display of the green and red origin lines drawn at `x: 0, y: 0`.
 
 - **Show Viewport**: Toggles the visibility of the game's default
 viewport, indicated by an indigo-colored rectangle. It is also the default window size on desktop
@@ -374,10 +374,10 @@ setting `Viewport Width` and `Viewport Height`.
 green and red lines) indicators.
 
 - **Center Selection**: The same as the **Center View** button inside the viewport. Centers the selected
-node(s) in the view. `F` is the default shortcut.
+node(s) in the view. ``F`` is the default shortcut.
 
 - **Frame to Selection**: Similar to `Center Selection`, but also changes the zoom factor to fit the
-contents in the screen. `Shift + F` is the default shortcut.
+contents in the screen. ``Shift + F`` is the default shortcut.
 
 - **Clear Guides**: Deletes all guides from the screen. You will need to recreate them if
 you plan to use them later.

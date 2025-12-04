@@ -3,7 +3,7 @@
 
 ## Introduction
 
-StandardMaterial3D and ORMMaterial3D (Occlusion, Roughness, Metallic)
+`StandardMaterial3D` and `ORMMaterial3D` (Occlusion, Roughness, Metallic)
 are default 3D materials that aim to provide most of the features artists look
 for in a material, without the need for writing shader code. However, they can
 be converted to shader code if additional functionality is needed.
@@ -174,8 +174,8 @@ made transparent. While you've already defined an alpha scissor threshold (when
 using **Alpha Scissor** only), this additional threshold is used to smoothly
 transition between opaque and transparent pixels. **Alpha Antialiasing Edge**
 must always be set to a value that is strictly below the alpha scissor
-threshold. The default of 0.3 is a sensible value with an alpha scissor of
-threshold of 0.5, but remember to adjust this alpha antialiasing edge when
+threshold. The default of `0.3` is a sensible value with an alpha scissor of
+threshold of `0.5`, but remember to adjust this alpha antialiasing edge when
 modifying the alpha scissor threshold.
 
 If you find the antialiasing effect not effective enough, try increasing **Alpha
@@ -205,15 +205,15 @@ other than Mix forces the object to go through the transparent pipeline.
 - **Add:** The final color of the object is added to the color of the screen,
 nice for flares or some fire-like effects.
 
-- **Sub:** The final color of the object is subtracted from the color of the
+- **Subtract:** The final color of the object is subtracted from the color of the
 screen.
 
-- **Mul:** The final color of the object is multiplied with the color of the
+- **Multiply:** The final color of the object is multiplied with the color of the
 screen.
 
 - **Premultiplied Alpha:** The color of the object is expected to have already been
-multiplied by the alpha. This behaves like **Add** when the alpha is 0.0
-(fully transparent) and like **Mix** when the alpha is 1.0 (opaque).
+multiplied by the alpha. This behaves like **Add** when the alpha is `0.0`
+(fully transparent) and like **Mix** when the alpha is `1.0` (opaque).
 
 @Image(source: "spatial_material8.png")
 
@@ -265,6 +265,15 @@ and works very well with the Render Priority property of Material
 (see the bottom of this page).
 
 @Image(source: "spatial_material3.png")
+
+### Depth Test
+
+This can be used to invert the standard depth test. When set to **Inverted**,
+the object will only appear when occluded, and will be hidden otherwise.
+
+This has no effect if **No Depth Test** is enabled.
+
+@Image(source: "material_depth_test.png")
 
 ## Shading
 
@@ -385,18 +394,18 @@ less diffuse/ambient light affects the material and the more light is reflected.
 This model is called "energy-conserving".
 
 The Specular parameter is a general amount for the reflectivity (unlike
-Metallic, this is not energy-conserving, so leave it at 0.5 and don't touch
+Metallic, this is not energy-conserving, so leave it at `0.5` and don't touch
 it unless you need to).
 
-The minimum internal reflectivity is 0.04, so it's impossible to make a
+The minimum internal reflectivity is `0.04`, so it's impossible to make a
 material completely unreflective, just like in real life.
 
 @Image(source: "spatial_material13.png")
 
 ## Roughness
 
-Roughness affects the way reflection happens. A value of 0 makes it a
-perfect mirror while a value of 1 completely blurs the reflection (simulating
+Roughness affects the way reflection happens. A value of `0` makes it a
+perfect mirror while a value of `1` completely blurs the reflection (simulating
 natural microsurfacing). Most common types of materials can be achieved with
 the right combination of Metallic and Roughness.
 
@@ -482,8 +491,8 @@ which just use the emission channel, this one actually takes light into account
 @Image(source: "spatial_material17.png")
 
 Rim size depends on roughness, and there is a special parameter to specify how
-it must be colored. If Tint is 0, the color of the light is used for the
-rim. If Tint is 1, then the albedo of the material is used. Using
+it must be colored. If Tint is `0`, the color of the light is used for the
+rim. If Tint is `1`, then the albedo of the material is used. Using
 intermediate values generally works best.
 
 ## Clearcoat
@@ -658,12 +667,12 @@ for a full list of options and their description.
 
 ## Shadows
 
-### Do Not Receive Shadows
+### Disable Receive Shadows
 
 Makes the object not receive any kind of shadow that would otherwise
 be cast onto it.
 
-### Use Shadow to Opacity
+### Shadow to Opacity
 
 Lighting modifies the alpha so shadowed areas are opaque and non-shadowed
 areas are transparent. Useful for overlaying shadows onto a camera feed in AR.
@@ -711,6 +720,10 @@ make it black and unshaded, reverse culling (Cull Front), and add some grow:
 > vertices, or "flat shading", the mesh will appear to have gaps when using Grow.
 >
 
+Note that in Godot 4.5 onwards, stencil buffer-based outlines are available
+using the **Outline** <doc:standard_material_3d#Stencil>.
+This can be used as an alternative to Grow for outlines.
+
 ## Transform
 
 ### Fixed Size
@@ -747,12 +760,12 @@ possible.
 
 ### Use FOV Override
 
-Overrides the Camera3D's field of view angle (in degrees).
+Overrides the `Camera3D`'s field of view angle (in degrees).
 
 > Note:
 >
-> This behaves as if the field of view is set on a Camera3D with
-> Camera3D.keep_aspect set to Camera3D.KEEP_HEIGHT. Additionally, it may not
+> This behaves as if the field of view is set on a `Camera3D` with
+> `Camera3D.keep_aspect` set to `Camera3D.KEEP_HEIGHT`. Additionally, it may not
 > look correct on a non-perspective camera where the field of view setting is
 > ignored.
 >
@@ -795,6 +808,34 @@ by only having a fraction of the pixels rendered.
 is the same across the entire object's surface.
 
 @Image(source: "standart_material_distance_fade_object_dither_mode.png")
+
+## Stencil
+
+Since Godot 4.5, Godot allows materials to make use of the stencil buffer.
+This feature is commonly used to create outlines and X-ray effects,
+which can be useful to highlight objects, especially behind walls.
+
+The **Outline** and **X-Ray** modes assign a preconfigured stencil material
+in the material's **Next Pass** property. The **Custom** mode can be used for
+advanced effects.
+
+@Image(source: "material_stencil.png")
+
+Materials that write to the stencil buffer are always drawn in the transparent pass,
+so they are subject to the usual
+<doc:3d_rendering_limitations#Transparency-Sorting>.
+
+> Note:
+>
+> Like with the :ref:`Grow property <ref_standard_material_3d_grow>`, for the
+> stencil outline to work as expected, the mesh must have connected faces with
+> shared vertices, or "smooth shading". If the mesh has disconnected faces with
+> unique vertices, or "flat shading", the mesh will appear to have gaps when using
+> a stencil outline.
+>
+> Stencil outlines render similarly to the Grow property, but won't look identical
+> in every scenario, especially when intersections with opaque surfaces are involved.
+>
 
 ## Material Settings
 

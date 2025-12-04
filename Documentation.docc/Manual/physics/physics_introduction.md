@@ -31,8 +31,8 @@ The last three listed below are physics bodies and additionally extend [PhysicsB
 
 - 
 [Area2D](https://docs.godotengine.org/en/stable/classes/class_area2d.html#class-area2d)
-Area2D nodes provide **detection** and **influence**. They can detect when
-objects overlap and can emit signals when bodies enter or exit. An Area2D
+`Area2D` nodes provide **detection** and **influence**. They can detect when
+objects overlap and can emit signals when bodies enter or exit. An `Area2D`
 can also be used to override physics properties, such as gravity or damping,
 in a defined area.
 
@@ -52,7 +52,7 @@ not need to have any dynamic behavior.
 - 
 [RigidBody2D](https://docs.godotengine.org/en/stable/classes/class_rigidbody2d.html#class-rigidbody2d)
 This is the node that implements simulated 2D physics. You do not control a
-RigidBody2D directly, but instead you apply forces to it (gravity, impulses,
+`RigidBody2D` directly, but instead you apply forces to it (gravity, impulses,
 etc.) and the physics engine calculates the resulting movement.
 <doc:rigid_body>
 
@@ -67,8 +67,8 @@ collision response must be implemented in code.
 
 
 
-Area2D nodes provide **detection** and **influence**. They can detect when
-objects overlap and can emit signals when bodies enter or exit. An Area2D
+`Area2D` nodes provide **detection** and **influence**. They can detect when
+objects overlap and can emit signals when bodies enter or exit. An `Area2D`
 can also be used to override physics properties, such as gravity or damping,
 in a defined area.
 
@@ -78,7 +78,7 @@ are most often used for objects that are part of the environment or that do
 not need to have any dynamic behavior.
 
 This is the node that implements simulated 2D physics. You do not control a
-RigidBody2D directly, but instead you apply forces to it (gravity, impulses,
+`RigidBody2D` directly, but instead you apply forces to it (gravity, impulses,
 etc.) and the physics engine calculates the resulting movement.
 <doc:rigid_body>
 
@@ -96,7 +96,7 @@ A physics body can hold any number of [Shape2D](https://docs.godotengine.org/en/
 as children. These shapes are used to define the object's collision bounds
 and to detect contact with other objects.
 
-> Note: In order to detect collisions, at least one Shape2D must be
+> Note: In order to detect collisions, at least one `Shape2D` must be
 > assigned to the object.
 >
 
@@ -105,9 +105,9 @@ or [CollisionPolygon2D](https://docs.godotengine.org/en/stable/classes/class_col
 These nodes allow you to draw the shape directly in the editor workspace.
 
 > Important: Be careful to never scale your collision shapes in the editor.
-> The "Scale" property in the Inspector should remain (1, 1). When changing
+> The "Scale" property in the Inspector should remain `(1, 1)`. When changing
 > the size of the collision shape, you should always use the size handles, **not**
-> the Node2D scale handles. Scaling a shape can result in unexpected
+> the `Node2D` scale handles. Scaling a shape can result in unexpected
 > collision behavior.
 >
 
@@ -127,14 +127,14 @@ of those processing rates.
 
 The physics callback, [Node._physics_process()](https://docs.godotengine.org/en/stable/classes/class_node_private_method__physics_process.html#class-node_private_method__physics_process),
 is called before each physics step. Any code that needs to access a body's properties should
-be run in here. This method will be passed a delta
+be run in here. This method will be passed a `delta`
 parameter, which is a floating-point number equal to the time passed in
 seconds since the last step. When using the default 60 Hz physics update rate,
-it will typically be equal to 0.01666... (but not always, see below).
+it will typically be equal to `0.01666...` (but not always, see below).
 
 > Note:
 >
-> It's recommended to always use the delta parameter when relevant in your
+> It's recommended to always use the `delta` parameter when relevant in your
 > physics calculations, so that the game behaves correctly if you change the
 > physics update rate or if the player's device can't keep up.
 >
@@ -144,7 +144,7 @@ it will typically be equal to 0.01666... (but not always, see below).
 One of the most powerful, but frequently misunderstood, collision features
 is the collision layer system. This system allows you to build up complex
 interactions between a variety of objects. The key concepts are **layers**
-and **masks**. Each CollisionObject2D has 32 different physics layers
+and **masks**. Each `CollisionObject2D` has 32 different physics layers
 it can interact with.
 
 Let's look at each of the properties in turn:
@@ -152,7 +152,7 @@ Let's look at each of the properties in turn:
 - 
 collision_layer
 This describes the layers that the object appears **in**. By default, all
-bodies are on layer 1.
+bodies are on layer `1`.
 
 
 
@@ -161,17 +161,17 @@ bodies are on layer 1.
 collision_mask
 This describes what layers the body will **scan** for collisions. If an
 object isn't in one of the mask layers, the body will ignore it. By default,
-all bodies scan layer 1.
+all bodies scan layer `1`.
 
 
 
 
 This describes the layers that the object appears **in**. By default, all
-bodies are on layer 1.
+bodies are on layer `1`.
 
 This describes what layers the body will **scan** for collisions. If an
 object isn't in one of the mask layers, the body will ignore it. By default,
-all bodies scan layer 1.
+all bodies scan layer `1`.
 
 These properties can be configured via code, or by editing them in the Inspector.
 
@@ -196,7 +196,7 @@ interact with. For example, the Player's settings would look like this:
 @Image(source: "player_collision_mask.png")
 
 In function calls, layers are specified as a bitmask. Where a function enables
-all layers by default, the layer mask will be given as 0xffffffff. Your code
+all layers by default, the layer mask will be given as `0xffffffff`. Your code
 can use binary, hexadecimal, or decimal notation for layer masks, depending
 on your preference.
 
@@ -228,8 +228,8 @@ would be as follows:
 # pow(2, 1 - 1) + pow(2, 3 - 1) + pow(2, 4 - 1)
 ```
 
-You can also set bits independently by calling set_collision_layer_value(layer_number, value)
-or set_collision_mask_value(layer_number, value) on any given [CollisionObject2D](https://docs.godotengine.org/en/stable/classes/class_collisionobject2d.html#class-collisionobject2d) as follows:
+You can also set bits independently by calling `set_collision_layer_value(layer_number, value)`
+or `set_collision_mask_value(layer_number, value)` on any given [CollisionObject2D](https://docs.godotengine.org/en/stable/classes/class_collisionobject2d.html#class-collisionobject2d) as follows:
 
 ```
 # Example: Setting mask value to enable layers 1, 3, and 4.
@@ -270,12 +270,12 @@ By default, areas also receive mouse and touchscreen input.
 A static body is one that is not moved by the physics engine. It participates
 in collision detection, but does not move in response to the collision. However,
 it can impart motion or rotation to a colliding body **as if** it were moving,
-using its constant_linear_velocity and constant_angular_velocity properties.
+using its `constant_linear_velocity` and `constant_angular_velocity` properties.
 
-StaticBody2D nodes are most often used for objects that are part of the environment
+`StaticBody2D` nodes are most often used for objects that are part of the environment
 or that do not need to have any dynamic behavior.
 
-Example uses for StaticBody2D:
+Example uses for `StaticBody2D`:
 
 - Platforms (including moving platforms)
 
@@ -312,21 +312,40 @@ RigidBody2Ds and adjust their properties. Stacking, falling, and bouncing would
 automatically be calculated by the physics engine.
 
 However, if you do wish to have some control over the body, you should take
-care - altering the position, linear_velocity, or other physics properties
+care - altering the `position`, `linear_velocity`, or other physics properties
 of a rigid body can result in unexpected behavior. If you need to alter any
 of the physics-related properties, you should use the [_integrate_forces()](https://docs.godotengine.org/en/stable/classes/class_rigidbody2d_private_method__integrate_forces.html#class-rigidbody2d_private_method__integrate_forces)
-callback instead of _physics_process(). In this callback, you have access
+callback instead of `_physics_process()`. In this callback, you have access
 to the body's [PhysicsDirectBodyState2D](https://docs.godotengine.org/en/stable/classes/class_physicsdirectbodystate2d.html#class-physicsdirectbodystate2d),
 which allows for safely changing properties and synchronizing them with
 the physics engine.
 
 For example, here is the code for an "Asteroids" style spaceship:
 
-Note that we are not setting the linear_velocity or angular_velocity
-properties directly, but rather applying forces (thrust and torque) to
+```
+extends RigidBody2D
+
+var thrust = Vector2(0, -250)
+var torque = 20000
+
+func _integrate_forces(state):
+    if Input.is_action_pressed("ui_up"):
+        state.apply_force(thrust.rotated(rotation))
+    else:
+        state.apply_force(Vector2())
+    var rotation_direction = 0
+    if Input.is_action_pressed("ui_right"):
+        rotation_direction += 1
+    if Input.is_action_pressed("ui_left"):
+        rotation_direction -= 1
+    state.apply_torque(rotation_direction * torque)
+```
+
+Note that we are not setting the `linear_velocity` or `angular_velocity`
+properties directly, but rather applying forces (`thrust` and `torque`) to
 the body and letting the physics engine calculate the resulting movement.
 
-> Note: When a rigid body goes to sleep, the _integrate_forces()
+> Note: When a rigid body goes to sleep, the `_integrate_forces()`
 > function will not be called. To override this behavior, you will
 > need to keep the body awake by creating a collision, applying a
 > force to it, or by disabling the [can_sleep](https://docs.godotengine.org/en/stable/classes/class_rigidbody2d_property_can_sleep.html#class-rigidbody2d_property_can_sleep)
@@ -353,8 +372,8 @@ other bodies, but are not affected by physics properties like gravity or frictio
 Instead, they must be controlled by the user via code. The physics engine will
 not move a character body.
 
-When moving a character body, you should not set its position directly.
-Instead, you use the move_and_collide() or move_and_slide() methods.
+When moving a character body, you should not set its `position` directly.
+Instead, you use the `move_and_collide()` or `move_and_slide()` methods.
 These methods move the body along a given vector, and it will instantly stop
 if a collision is detected with another body. After the body has collided,
 any collision response must be coded manually.
@@ -365,7 +384,7 @@ After a collision, you may want the body to bounce, to slide along a wall,
 or to alter the properties of the object it hit. The way you handle collision
 response depends on which method you used to move the CharacterBody2D.
 
-When using move_and_collide(), the function returns a
+When using `move_and_collide()`, the function returns a
 [KinematicCollision2D](https://docs.godotengine.org/en/stable/classes/class_kinematiccollision2d.html#class-kinematiccollision2d) object, which contains
 information about the collision and the colliding body. You can use this
 information to determine the response.
@@ -373,23 +392,71 @@ information to determine the response.
 For example, if you want to find the point in space where the collision
 occurred:
 
+```
+extends PhysicsBody2D
+
+var velocity = Vector2(250, 250)
+
+func _physics_process(delta):
+    var collision_info = move_and_collide(velocity * delta)
+    if collision_info:
+        var collision_point = collision_info.get_position()
+```
+
 Or to bounce off of the colliding object:
+
+```
+extends PhysicsBody2D
+
+var velocity = Vector2(250, 250)
+
+func _physics_process(delta):
+    var collision_info = move_and_collide(velocity * delta)
+    if collision_info:
+        velocity = velocity.bounce(collision_info.get_normal())
+```
 
 Sliding is a common collision response; imagine a player moving along walls
 in a top-down game or running up and down slopes in a platformer. While it's
-possible to code this response yourself after using move_and_collide(),
-move_and_slide() provides a convenient way to implement sliding movement
+possible to code this response yourself after using `move_and_collide()`,
+`move_and_slide()` provides a convenient way to implement sliding movement
 without writing much code.
 
-> Warning: move_and_slide() automatically includes the timestep in its
+> Warning: `move_and_slide()` automatically includes the timestep in its
 > calculation, so you should **not** multiply the velocity vector
-> by delta. This does **not** apply to gravity as it is an
+> by `delta`. This does **not** apply to `gravity` as it is an
 > acceleration and is time dependent, and needs to be scaled by
-> delta.
+> `delta`.
 >
 
 For example, use the following code to make a character that can walk along
 the ground (including slopes) and jump when standing on the ground:
 
-See <doc:kinematic_character_2d> for more details on using move_and_slide(),
+```
+extends CharacterBody2D
+
+var run_speed = 350
+var jump_speed = -1000
+var gravity = 2500
+
+func get_input():
+    velocity.x = 0
+    var right = Input.is_action_pressed('ui_right')
+    var left = Input.is_action_pressed('ui_left')
+    var jump = Input.is_action_just_pressed('ui_select')
+
+    if is_on_floor() and jump:
+        velocity.y = jump_speed
+    if right:
+        velocity.x += run_speed
+    if left:
+        velocity.x -= run_speed
+
+func _physics_process(delta):
+    velocity.y += gravity * delta
+    get_input()
+    move_and_slide()
+```
+
+See <doc:kinematic_character_2d> for more details on using `move_and_slide()`,
 including a demo project with detailed code.

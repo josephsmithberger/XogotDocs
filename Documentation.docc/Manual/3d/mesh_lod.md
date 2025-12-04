@@ -117,14 +117,14 @@ To see mesh LOD decimation in action, change the debug draw mode to
 
 You can adjust how aggressive mesh LOD transitions should be in the root viewport
 by changing the **Rendering > Mesh LOD > LOD Change > Threshold Pixels** project
-setting. To change this value at runtime, set mesh_lod_threshold on the
+setting. To change this value at runtime, set `mesh_lod_threshold` on the
 root viewport as follows:
 
 ```
 get_tree().root.mesh_lod_threshold = 4.0
 ```
 
-Each viewport has its own mesh_lod_threshold property, which can be set
+Each viewport has its own `mesh_lod_threshold` property, which can be set
 independently from other viewports.
 
 The default mesh LOD threshold of 1 pixel is tuned to look perceptually
@@ -134,9 +134,9 @@ camera moves away, resulting in higher performance, but lower quality.
 
 If you need to perform per-object adjustments to mesh LOD, you can adjust how
 aggressive LOD transitions should be by adjusting the **LOD Bias** property on
-any node that inherits from GeometryInstance3D. Values above 1.0 will make
+any node that inherits from GeometryInstance3D. Values above `1.0` will make
 LOD transitions happen later than usual (resulting in higher quality, but lower
-performance). Values below 1.0 will make LOD transitions happen sooner than
+performance). Values below `1.0` will make LOD transitions happen sooner than
 usual (resulting in lower quality, but higher performance).
 
 Additionally, ReflectionProbe nodes have their own **Mesh LOD Threshold** property

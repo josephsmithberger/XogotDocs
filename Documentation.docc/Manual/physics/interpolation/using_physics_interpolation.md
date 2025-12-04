@@ -22,16 +22,16 @@ behind the scenes.
 > To convert an existing game to use interpolation, it is highly recommended that
 > you temporarily set
 > [Project Settings > Physics > Common > Physics Tick per Second](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_physics/common/physics_ticks_per_second.html#class-projectsettings_property_physics/common/physics_ticks_per_second)
-> to a low value such as 10, which will make interpolation problems more obvious.
+> to a low value such as `10`, which will make interpolation problems more obvious.
 >
 
 ## Move (almost) all game logic from _process to _physics_process
 
 The most fundamental requirement for physics interpolation (which you may be doing
 already) is that you should be moving and performing game logic on your objects
-within _physics_process (which runs at a physics tick) rather than _process
+within `_physics_process` (which runs at a physics tick) rather than `_process`
 (which runs on a rendered frame). This means your scripts should typically be doing
-the bulk of their processing within _physics_process, including responding to
+the bulk of their processing within `_physics_process`, including responding to
 input and AI.
 
 Setting the transform of objects only within physics ticks allows the automatic
@@ -88,7 +88,7 @@ Simple physics behaviour |  |
 > changing the project setting.
 >
 
-## Call reset_physics_interpolation() when teleporting objects
+## Call `reset_physics_interpolation()` when teleporting objects
 
 Most of the time, interpolation is what you want between two physics ticks.
 However, there is one situation in which it may not be what you want. That is
@@ -108,13 +108,13 @@ to the polishing phase of your game. The worst that will happen is seeing a
 streaking motion for a frame or so when you move them - you will know when you need
 it!
 
-There are actually two ways to use reset_physics_interpolation():
+There are actually two ways to use `reset_physics_interpolation()`:
 
 Standing start (e.g. player)
 
 1. Set the initial transform
 
-1. Call reset_physics_interpolation()
+1. Call `reset_physics_interpolation()`
 
 The previous and current transforms will be identical, resulting in no initial
 movement.
@@ -123,7 +123,7 @@ Moving start (e.g. bullet)
 
 1. Set the initial transform
 
-1. Call reset_physics_interpolation()
+1. Call `reset_physics_interpolation()`
 
 1. Immediately set the transform expected after the first tick of motion
 
@@ -132,7 +132,7 @@ will act as though a tick of simulation has already taken place. This will
 immediately start moving the object, instead of having a tick delay standing still.
 
 > Important: Make sure you set the transform and call
-> reset_physics_interpolation() in the correct order as shown
+> `reset_physics_interpolation()` in the correct order as shown
 > above, otherwise you will see unwanted "streaking".
 >
 
@@ -151,4 +151,4 @@ physics tick rate back to the desired setting.
 The other great advantage to testing at a low tick rate is you can often notice
 other game systems that are synchronized to the physics tick and creating glitches
 which you may want to work around. Typical examples include setting animation blend
-values, which you may decide to set in _process() and interpolate manually.
+values, which you may decide to set in `_process()` and interpolate manually.

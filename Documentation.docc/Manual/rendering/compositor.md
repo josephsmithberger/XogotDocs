@@ -37,7 +37,7 @@ post processing effect that allows you to write your own shader code
 and apply this full screen through a compute shader.
 You can find the finished demo project here.
 
-We start by creating a new script called post_process_shader.gd.
+We start by creating a new script called `post_process_shader.gd`.
 We'll make this a tool script so we can see the compositor effect work in the editor.
 We need to extend our node from [CompositorEffect](https://docs.godotengine.org/en/stable/classes/class_compositoreffect.html#class-compositoreffect).
 We must also give our script a class name.
@@ -82,11 +82,11 @@ For more information on how compute shaders work,
 please check <doc:compute_shaders>.
 
 The important bit here is that for every pixel on our screen,
-our main function is executed and inside of this we load
+our `main` function is executed and inside of this we load
 the current color value of our pixel, execute our user code,
 and write our modified color back to our color image.
 
-#COMPUTE_CODE gets replaced by our user code.
+`#COMPUTE_CODE` gets replaced by our user code.
 
 In order to set our user code, we need an export variable.
 We'll also define a few script variables we'll be using:
@@ -124,7 +124,7 @@ func _init():
     rd = RenderingServer.get_rendering_device()
 ```
 
-The main thing here is setting our effect_callback_type which tells
+The main thing here is setting our `effect_callback_type` which tells
 the rendering engine at what stage of the render pipeline to call our code.
 
 > Note:
@@ -135,7 +135,7 @@ the rendering engine at what stage of the render pipeline to call our code.
 We also get a reference to our rendering device, which will come in very handy.
 
 We also need to clean up after ourselves, for this we react to the
-NOTIFICATION_PREDELETE notification:
+`NOTIFICATION_PREDELETE` notification:
 
 ```
 # System notifications, we want to react on the notification that
@@ -149,7 +149,7 @@ func _notification(what):
 
 Note that we do not use our mutex here even though we create our shader inside
 of our render thread.
-The methods on our rendering server are thread safe and free_rid will
+The methods on our rendering server are thread safe and `free_rid` will
 be postponed cleaning up the shader until after any frames currently being
 rendered are finished.
 
@@ -227,7 +227,7 @@ compile it.
 > This prevents precompiling and caching this shader which may be an issues
 > on some platforms such as consoles.
 > Note that the demo project comes with an alternative example where
-> a glsl file contains the entire compute shader and this is used.
+> a `glsl` file contains the entire compute shader and this is used.
 > Godot is able to precompile and cache the shader with this approach.
 >
 
@@ -288,18 +288,18 @@ if our callback type is the correct one, and check if we have our shader.
 > Note:
 >
 > The check for the effect type is only a safety mechanism.
-> We've set this in our _init function, however it is possible
+> We've set this in our `_init` function, however it is possible
 > for the user to change this in the UI.
 >
 
-Our p_render_data parameter gives us access to an object that holds
+Our `p_render_data` parameter gives us access to an object that holds
 data specific to the frame we're currently rendering. We're currently only
 interested in our render scene buffers, which provide us access to all the
 internal buffers used by the rendering engine.
 Note that we cast this to [RenderSceneBuffersRD](https://docs.godotengine.org/en/stable/classes/class_renderscenebuffersrd.html#class-renderscenebuffersrd)
 to expose the full API to this data.
 
-Next we obtain our internal size which is the resolution of our 3D render
+Next we obtain our `internal size` which is the resolution of our 3D render
 buffers before they are upscaled (if applicable), upscaling happens after our
 post processes have run.
 
@@ -308,7 +308,7 @@ template shader.
 
 We also populate our push constant so our shader knows our size.
 Godot does not support structs here **yet** so we use a
-PackedFloat32Array to store this data into. Note that we have
+`PackedFloat32Array` to store this data into. Note that we have
 to pad this array with a 16 byte alignment. In other words, the
 length of our array needs to be a multiple of 4.
 
@@ -342,13 +342,13 @@ and calling dispatch for our groups.
 With our compositor effect completed, we now need to add it to our compositor.
 
 On our compositor we expand the compositor effects property
-and press Add Element.
+and press `Add Element`.
 
 Now we can add our compositor effect:
 
 @Image(source: "add_compositor_effect.png")
 
-After selecting our PostProcessShader we need to set our user shader code:
+After selecting our `PostProcessShader` we need to set our user shader code:
 
 ```
 float gray = color.r * 0.2125 + color.g * 0.7154 + color.b * 0.0721;

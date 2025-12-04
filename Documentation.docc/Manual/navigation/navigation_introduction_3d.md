@@ -8,7 +8,7 @@ Godot provides the following objects and classes for 3D navigation:
 
 - 
 [Astar3D](https://docs.godotengine.org/en/stable/classes/class_astar3d.html#class-astar3d)
-Astar3D objects provide an option to find the shortest path in a graph of weighted **points**.
+`Astar3D` objects provide an option to find the shortest path in a graph of weighted **points**.
 The AStar3D class is best suited for cell-based 3D gameplay that does not require actors to reach any possible position within an area but only predefined, distinct positions.
 
 
@@ -16,7 +16,7 @@ The AStar3D class is best suited for cell-based 3D gameplay that does not requir
 
 - 
 [NavigationServer3D](https://docs.godotengine.org/en/stable/classes/class_navigationserver3d.html#class-navigationserver3d)
-NavigationServer3D provides a powerful server API to find the shortest path between two positions on an area defined by a navigation mesh.
+`NavigationServer3D` provides a powerful server API to find the shortest path between two positions on an area defined by a navigation mesh.
 The NavigationServer is best suited for 3D realtime gameplay that does require actors to reach any possible position within a navigation mesh defined area.
 Mesh-based navigation scales well with large game worlds as a large area can often be defined with a single polygon when it would require many, many grid cells.
 The NavigationServer holds different navigation maps that each consist of regions that hold navigation mesh data.
@@ -105,11 +105,11 @@ Reference to a specific avoidance obstacle used to affect and constrain the avoi
 
 
 
-Astar3D objects provide an option to find the shortest path in a graph of weighted **points**.
+`Astar3D` objects provide an option to find the shortest path in a graph of weighted **points**.
 
 The AStar3D class is best suited for cell-based 3D gameplay that does not require actors to reach any possible position within an area but only predefined, distinct positions.
 
-NavigationServer3D provides a powerful server API to find the shortest path between two positions on an area defined by a navigation mesh.
+`NavigationServer3D` provides a powerful server API to find the shortest path between two positions on an area defined by a navigation mesh.
 
 The NavigationServer is best suited for 3D realtime gameplay that does require actors to reach any possible position within a navigation mesh defined area.
 Mesh-based navigation scales well with large game worlds as a large area can often be defined with a single polygon when it would require many, many grid cells.
@@ -178,7 +178,7 @@ The following scene tree nodes are available as helpers to work with the Navigat
 A Node that holds a Navigation Mesh resource that defines a navigation mesh for the NavigationServer3D.
 
 The region can be enabled / disabled.
-The use in pathfinding can be further restricted through the navigation_layers bitmask.
+The use in pathfinding can be further restricted through the `navigation_layers` bitmask.
 The NavigationServer3D will join the navigation meshes of regions by proximity for a combined navigation mesh.
 
 
@@ -187,7 +187,7 @@ The NavigationServer3D will join the navigation meshes of regions by proximity f
 
 - The region can be enabled / disabled.
 
-- The use in pathfinding can be further restricted through the navigation_layers bitmask.
+- The use in pathfinding can be further restricted through the `navigation_layers` bitmask.
 
 - The NavigationServer3D will join the navigation meshes of regions by proximity for a combined navigation mesh.
 
@@ -197,7 +197,7 @@ A Node that connects two positions on navigation meshes over arbitrary distances
 
 The link can be enabled / disabled.
 The link can be made one-way or bidirectional.
-The use in pathfinding can be further restricted through the navigation_layers bitmask.
+The use in pathfinding can be further restricted through the `navigation_layers` bitmask.
 
 Links tell the pathfinding that a connection exists and at what cost. The actual agent handling and movement needs to happen in custom scripts.
 
@@ -208,7 +208,7 @@ Links tell the pathfinding that a connection exists and at what cost. The actual
 
 - The link can be made one-way or bidirectional.
 
-- The use in pathfinding can be further restricted through the navigation_layers bitmask.
+- The use in pathfinding can be further restricted through the `navigation_layers` bitmask.
 
 - 
 [NavigationAgent3D](https://docs.godotengine.org/en/stable/classes/class_navigationagent3d.html#class-navigationagent3d) Node
@@ -230,7 +230,7 @@ A Node that holds a Navigation Mesh resource that defines a navigation mesh for 
 
 - The region can be enabled / disabled.
 
-- The use in pathfinding can be further restricted through the navigation_layers bitmask.
+- The use in pathfinding can be further restricted through the `navigation_layers` bitmask.
 
 - The NavigationServer3D will join the navigation meshes of regions by proximity for a combined navigation mesh.
 
@@ -240,7 +240,7 @@ A Node that connects two positions on navigation meshes over arbitrary distances
 
 - The link can be made one-way or bidirectional.
 
-- The use in pathfinding can be further restricted through the navigation_layers bitmask.
+- The use in pathfinding can be further restricted through the `navigation_layers` bitmask.
 
 Links tell the pathfinding that a connection exists and at what cost. The actual agent handling and movement needs to happen in custom scripts.
 
@@ -319,6 +319,44 @@ the region node.
 1. Add a script to the CharacterBody3D node with the following content. We make sure to set a
 movement target after the scene has fully loaded and the NavigationServer had time to sync.
 Also, add a Camera3D and some light and environment to see something.
+
+```
+extends CharacterBody3D
+
+var movement_speed: float = 2.0
+var movement_target_position: Vector3 = Vector3(-3.0,0.0,2.0)
+
+@onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
+
+func _ready():
+    # These values need to be adjusted for the actor's speed
+    # and the navigation layout.
+    navigation_agent.path_desired_distance = 0.5
+    navigation_agent.target_desired_distance = 0.5
+
+    # Make sure to not await during _ready.
+    actor_setup.call_deferred()
+
+func actor_setup():
+    # Wait for the first physics frame so the NavigationServer can sync.
+    await get_tree().physics_frame
+
+    # Now that the navigation map is no longer empty, set the movement target.
+    set_movement_target(movement_target_position)
+
+func set_movement_target(movement_target: Vector3):
+    navigation_agent.set_target_position(movement_target)
+
+func _physics_process(delta):
+    if navigation_agent.is_navigation_finished():
+        return
+
+    var current_agent_position: Vector3 = global_position
+    var next_path_position: Vector3 = navigation_agent.get_next_path_position()
+
+    velocity = current_agent_position.direction_to(next_path_position) * movement_speed
+    move_and_slide()
+```
 
 > Note:
 >

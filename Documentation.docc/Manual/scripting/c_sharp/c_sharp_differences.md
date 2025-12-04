@@ -5,8 +5,8 @@ This is an (incomplete) list of API differences between C# and GDScript.
 
 ## General differences
 
-As explained in <doc:index#General-Differences>, PascalCase is used
-to access Godot APIs in C# instead of the snake_case used by GDScript and
+As explained in <doc:index#General-Differences>, `PascalCase` is used
+to access Godot APIs in C# instead of the `snake_case` used by GDScript and
 C++. Where possible, fields and getters/setters have been converted to
 properties. In general, the C# Godot API strives to be as idiomatic as is
 reasonably possible. See the <doc:c_sharp_style_guide>, which we encourage
@@ -14,8 +14,8 @@ you to also use for your own C# code.
 
 In GDScript, the setters/getters of a property can be called directly, although
 this is not encouraged. In C#, only the property is defined. For example, to
-translate the GDScript code x.set_name("Friend") to C#, write
-x.Name = "Friend";.
+translate the GDScript code `x.set_name("Friend")` to C#, write
+`x.Name = "Friend";`.
 
 A C# IDE will provide intellisense, which is extremely useful when figuring out
 renamed C# APIs. The built-in Godot script editor has no support for C#
@@ -30,55 +30,55 @@ Most global constants were moved to their own enums.
 
 ### Constants
 
-In C#, only primitive types can be constant. For example, the TAU constant
-is replaced by the Mathf.Tau constant, but the Vector2.RIGHT constant
-is replaced by the Vector2.Right read-only property. This behaves similarly
-to a constant, but can't be used in some contexts like switch statements.
+In C#, only primitive types can be constant. For example, the `TAU` constant
+is replaced by the `Mathf.Tau` constant, but the `Vector2.RIGHT` constant
+is replaced by the `Vector2.Right` read-only property. This behaves similarly
+to a constant, but can't be used in some contexts like `switch` statements.
 
 Global enum constants were moved to their own enums.
-For example, ERR_* constants were moved to the Error enum.
+For example, `ERR_*` constants were moved to the `Error` enum.
 
 Special cases:
 
 GDScript | C#
 -------- | ---
-TYPE_* | Variant.Typeenum
-OP_* | Variant.Operatorenum
+`TYPE_*` | `Variant.Type`enum
+`OP_*` | `Variant.Operator`enum
 
 ### Math functions
 
-Math global functions, like abs, acos, asin, atan and atan2, are
-located under Mathf as Abs, Acos, Asin, Atan and Atan2.
-The PI constant can be found as Mathf.Pi.
+Math global functions, like `abs`, `acos`, `asin`, `atan` and `atan2`, are
+located under `Mathf` as `Abs`, `Acos`, `Asin`, `Atan` and `Atan2`.
+The `PI` constant can be found as `Mathf.Pi`.
 
 C# also provides static System.Math and System.MathF classes that may
 contain other useful mathematical operations.
 
 ### Random functions
 
-Random global functions, like rand_range and rand_seed, are located under GD.
-Example: GD.RandRange and GD.RandSeed.
+Random global functions, like `rand_range` and `rand_seed`, are located under `GD`.
+Example: `GD.RandRange` and `GD.RandSeed`.
 
 Consider using System.Random or, if you need cryptographically strong randomness,
 System.Security.Cryptography.RandomNumberGenerator.
 
 ### Other functions
 
-Many other global functions like print and var_to_str are located under GD.
-Example: GD.Print and GD.VarToStr.
+Many other global functions like `print` and `var_to_str` are located under `GD`.
+Example: `GD.Print` and `GD.VarToStr`.
 
 Exceptions:
 
 GDScript | C#
 -------- | ---
-weakref(obj) | GodotObject.WeakRef(obj)
-instance_from_id(id) | GodotObject.InstanceFromId(id)
-is_instance_id_valid(id) | GodotObject.IsInstanceIdValid(id)
-is_instance_valid(obj) | GodotObject.IsInstanceValid(obj)
+`weakref(obj)` | `GodotObject.WeakRef(obj)`
+`instance_from_id(id)` | `GodotObject.InstanceFromId(id)`
+`is_instance_id_valid(id)` | `GodotObject.IsInstanceIdValid(id)`
+`is_instance_valid(obj)` | `GodotObject.IsInstanceValid(obj)`
 
 ### Tips
 
-Sometimes it can be useful to use the using static directive. This directive allows
+Sometimes it can be useful to use the `using static` directive. This directive allows
 to access the members and nested types of a class without specifying the class name.
 
 Example:
@@ -221,7 +221,7 @@ List of GDScript utility functions and their equivalent in C#:
 GDScript | C#
 -------- | ---
 assert | System.Diagnostics.Debug.Assert
-char | Use explicit conversion:(char)65
+char | Use explicit conversion:`(char)65`
 convert | GD.Convert
 dict_to_inst | N/A
 get_stack | System.Environment.StackTrace
@@ -234,13 +234,13 @@ print_stack | GD.Print(System.Environment.StackTrace)
 range | GD.Range orSystem.Linq.Enumerable.Range
 type_exists | ClassDB.ClassExists(type)
 
-preload, as it works in GDScript, is not available in C#.
-Use GD.Load or ResourceLoader.Load instead.
+`preload`, as it works in GDScript, is not available in C#.
+Use `GD.Load` or `ResourceLoader.Load` instead.
 
-## @export annotation
+## `@export` annotation
 
-Use the [Export] attribute instead of the GDScript @export annotation.
-This attribute can also be provided with optional :ref:`PropertyHint<enum_@GlobalScope_PropertyHint>` and hintString parameters.
+Use the `[Export]` attribute instead of the GDScript `@export` annotation.
+This attribute can also be provided with optional :ref:`PropertyHint<enum_@GlobalScope_PropertyHint>` and `hintString` parameters.
 Default values can be set by assigning a value.
 
 Example:
@@ -266,11 +266,11 @@ public partial class MyNode : Node
 
 See also: <doc:c_sharp_exports>.
 
-## signal keyword
+## `signal` keyword
 
-Use the [Signal] attribute to declare a signal instead of the GDScript signal keyword.
+Use the `[Signal]` attribute to declare a signal instead of the GDScript `signal` keyword.
 This attribute should be used on a `delegate`, whose name signature will be used to define the signal.
-The `delegate` must have the EventHandler suffix, an `event` will be generated in the class with the same name but without the suffix, use that event's name with EmitSignal.
+The `delegate` must have the `EventHandler` suffix, an `event` will be generated in the class with the same name but without the suffix, use that event's name with `EmitSignal`.
 
 ```
 [Signal]
@@ -303,7 +303,7 @@ public override void _Ready()
 ## Singletons
 
 Singletons are available as static classes rather than using the singleton pattern.
-This is to make code less verbose than it would be with an Instance property.
+This is to make code less verbose than it would be with an `Instance` property.
 
 Example:
 
@@ -312,9 +312,9 @@ Input.IsActionPressed("ui_down")
 ```
 
 However, in some very rare cases this is not enough. For example, you may want
-to access a member from the base class GodotObject, like Connect.
-For such use cases we provide a static property named Singleton that returns
-the singleton instance. The type of this instance is GodotObject.
+to access a member from the base class `GodotObject`, like `Connect`.
+For such use cases we provide a static property named `Singleton` that returns
+the singleton instance. The type of this instance is `GodotObject`.
 
 Example:
 
@@ -323,18 +323,18 @@ Input.Singleton.JoyConnectionChanged += Input_JoyConnectionChanged;
 ```
 
 If you are developing main screen plugins, it is essential to note that
-EditorInterface is not a static class in C#, unlike in GDScript.
+`EditorInterface` is not a static class in C#, unlike in GDScript.
 Therefore, you must use the singleton pattern to obtain an instance of the
-EditorInterface:
+`EditorInterface`:
 
 GDScript | C#
 -------- | ---
-EditorInterface | EditorInterface.Singleton
+`EditorInterface` | `EditorInterface.Singleton`
 
 ## String
 
-Use System.String (string). Most of Godot's String methods have an
-equivalent in System.String or are provided by the StringExtensions
+Use `System.String` (`string`). Most of Godot's String methods have an
+equivalent in `System.String` or are provided by the `StringExtensions`
 class as extension methods.
 
 Note that C# strings use UTF-16 encoding, while Godot Strings use UTF-32 encoding.
@@ -473,7 +473,7 @@ hex_encode | StringExtensions.HexEncode (Consider usingSystem.Convert.ToHexStrin
 > .NET provides path utility methods under the
 > System.IO.Path
 > class. They can only be used with native OS paths, not Godot paths
-> (paths that start with res:// or user://).
+> (paths that start with `res://` or `user://`).
 > See <doc:data_paths>.
 >
 
@@ -483,7 +483,7 @@ The following method was converted to a property with a different name:
 
 GDScript | C#
 -------- | ---
-is_empty() | IsEmpty
+`is_empty()` | `IsEmpty`
 
 ## Signal
 
@@ -491,13 +491,13 @@ The following methods were converted to properties with their respective names c
 
 GDScript | C#
 -------- | ---
-get_name() | Name
-get_object() | Owner
+`get_name()` | `Name`
+`get_object()` | `Owner`
 
-The Signal type implements the awaitable pattern which means it can be used with
-the await keyword. See <doc:c_sharp_differences#Await>.
+The `Signal` type implements the awaitable pattern which means it can be used with
+the `await` keyword. See <doc:c_sharp_differences#Await>.
 
-Instead of using the Signal type, the recommended way to use Godot signals in C# is
+Instead of using the `Signal` type, the recommended way to use Godot signals in C# is
 to use the generated C# events. See <doc:c_sharp_signals>.
 
 ## Callable
@@ -506,30 +506,30 @@ The following methods were converted to properties with their respective names c
 
 GDScript | C#
 -------- | ---
-get_object() | Target
-get_method() | Method
+`get_object()` | `Target`
+`get_method()` | `Method`
 
-Currently C# supports Callable if one of the following holds:
+Currently C# supports `Callable` if one of the following holds:
 
-- Callable was created using the C# Callable type.
+- `Callable` was created using the C# `Callable` type.
 
-- Callable is a basic version of the engine's Callable. Custom Callables
-are unsupported. A Callable is custom when any of the following holds:
+- `Callable` is a basic version of the engine's `Callable`. Custom `Callable`s
+are unsupported. A `Callable` is custom when any of the following holds:
 
-Callable has bound information (Callables created with bind/unbind are unsupported).
-Callable was created from other languages through the GDExtension API.
+`Callable` has bound information (`Callable`s created with `bind`/`unbind` are unsupported).
+`Callable` was created from other languages through the GDExtension API.
 
 
 
-- Callable has bound information (Callables created with bind/unbind are unsupported).
+- `Callable` has bound information (`Callable`s created with `bind`/`unbind` are unsupported).
 
-- Callable was created from other languages through the GDExtension API.
+- `Callable` was created from other languages through the GDExtension API.
 
-- Callable has bound information (Callables created with bind/unbind are unsupported).
+- `Callable` has bound information (`Callable`s created with `bind`/`unbind` are unsupported).
 
-- Callable was created from other languages through the GDExtension API.
+- `Callable` was created from other languages through the GDExtension API.
 
-Some methods such as bind and unbind are not implemented, use lambdas instead:
+Some methods such as `bind` and `unbind` are not implemented, use lambdas instead:
 
 ```
 string name = "John Doe";
@@ -541,57 +541,57 @@ void SayHello(string name)
 }
 ```
 
-The lambda captures the name variable so it can be bound to the SayHello method.
+The lambda captures the `name` variable so it can be bound to the `SayHello` method.
 
 ## RID
 
-This type is named Rid in C# to follow the .NET naming convention.
+This type is named `Rid` in C# to follow the .NET naming convention.
 
 The following methods were converted to properties with their respective names changed:
 
 GDScript | C#
 -------- | ---
-get_id() | Id
-is_valid() | IsValid
+`get_id()` | `Id`
+`is_valid()` | `IsValid`
 
 ## Basis
 
-Structs cannot have parameterless constructors in C#. Therefore, new Basis()
-initializes all primitive members to their default value. Use Basis.Identity
-for the equivalent of Basis() in GDScript and C++.
+Structs cannot have parameterless constructors in C#. Therefore, `new Basis()`
+initializes all primitive members to their default value. Use `Basis.Identity`
+for the equivalent of `Basis()` in GDScript and C++.
 
 The following method was converted to a property with a different name:
 
 GDScript | C#
 -------- | ---
-get_scale() | Scale
+`get_scale()` | `Scale`
 
 ## Transform2D
 
-Structs cannot have parameterless constructors in C#. Therefore, new Transform2D()
+Structs cannot have parameterless constructors in C#. Therefore, `new Transform2D()`
 initializes all primitive members to their default value.
-Please use Transform2D.Identity for the equivalent of Transform2D() in GDScript and C++.
+Please use `Transform2D.Identity` for the equivalent of `Transform2D()` in GDScript and C++.
 
 The following methods were converted to properties with their respective names changed:
 
 GDScript | C#
 -------- | ---
-get_rotation() | Rotation
-get_scale() | Scale
-get_skew() | Skew
+`get_rotation()` | `Rotation`
+`get_scale()` | `Scale`
+`get_skew()` | `Skew`
 
 ## Transform3D
 
-Structs cannot have parameterless constructors in C#. Therefore, new Transform3D()
+Structs cannot have parameterless constructors in C#. Therefore, `new Transform3D()`
 initializes all primitive members to their default value.
-Please use Transform3D.Identity for the equivalent of Transform3D() in GDScript and C++.
+Please use `Transform3D.Identity` for the equivalent of `Transform3D()` in GDScript and C++.
 
 The following methods were converted to properties with their respective names changed:
 
 GDScript | C#
 -------- | ---
-get_rotation() | Rotation
-get_scale() | Scale
+`get_rotation()` | `Rotation`
+`get_scale()` | `Scale`
 
 ## Rect2
 
@@ -599,103 +599,103 @@ The following field was converted to a property with a slightly different name:
 
 GDScript | C#
 -------- | ---
-end | End
+`end` | `End`
 
 The following method was converted to a property with a different name:
 
 GDScript | C#
 -------- | ---
-get_area() | Area
+`get_area()` | `Area`
 
 ## Rect2i
 
-This type is named Rect2I in C# to follow the .NET naming convention.
+This type is named `Rect2I` in C# to follow the .NET naming convention.
 
 The following field was converted to a property with a slightly different name:
 
 GDScript | C#
 -------- | ---
-end | End
+`end` | `End`
 
 The following method was converted to a property with a different name:
 
 GDScript | C#
 -------- | ---
-get_area() | Area
+`get_area()` | `Area`
 
 ## AABB
 
-This type is named Aabb in C# to follow the .NET naming convention.
+This type is named `Aabb` in C# to follow the .NET naming convention.
 
 The following method was converted to a property with a different name:
 
 GDScript | C#
 -------- | ---
-get_volume() | Volume
+`get_volume()` | `Volume`
 
 ## Quaternion
 
-Structs cannot have parameterless constructors in C#. Therefore, new Quaternion()
+Structs cannot have parameterless constructors in C#. Therefore, `new Quaternion()`
 initializes all primitive members to their default value.
-Please use Quaternion.Identity for the equivalent of Quaternion() in GDScript and C++.
+Please use `Quaternion.Identity` for the equivalent of `Quaternion()` in GDScript and C++.
 
 ## Projection
 
-Structs cannot have parameterless constructors in C#. Therefore, new Projection()
+Structs cannot have parameterless constructors in C#. Therefore, `new Projection()`
 initializes all primitive members to their default value.
-Please use Projection.Identity for the equivalent of Projection() in GDScript and C++.
+Please use `Projection.Identity` for the equivalent of `Projection()` in GDScript and C++.
 
 ## Color
 
-Structs cannot have parameterless constructors in C#. Therefore, new Color()
+Structs cannot have parameterless constructors in C#. Therefore, `new Color()`
 initializes all primitive members to their default value (which represents the transparent black color).
-Please use Colors.Black for the equivalent of Color() in GDScript and C++.
+Please use `Colors.Black` for the equivalent of `Color()` in GDScript and C++.
 
-The global Color8 method to construct a Color from bytes is available as a static method
+The global `Color8` method to construct a Color from bytes is available as a static method
 in the Color type.
 
-The Color constants are available in the Colors static class as readonly properties.
+The Color constants are available in the `Colors` static class as readonly properties.
 
 The following method was converted to a property with a different name:
 
 GDScript | C#
 -------- | ---
-get_luminance() | Luminance
+`get_luminance()` | `Luminance`
 
 The following method was converted to a method with a different name:
 
 GDScript | C#
 -------- | ---
-html(String) | FromHtml(ReadOnlySpan<char>)
+`html(String)` | `FromHtml(ReadOnlySpan<char>)`
 
 The following methods are available as constructors:
 
 GDScript | C#
 -------- | ---
-hex(int) | Color(uint)
-hex64(int) | Color(ulong)
+`hex(int)` | `Color(uint)`
+`hex64(int)` | `Color(ulong)`
 
 ## Array
 
-The equivalent of packed arrays are System.Array.
+The equivalent of packed arrays are `System.Array`.
 
 See also <doc:c_sharp_collections#Packedarray>.
 
-Use Godot.Collections.Array for an untyped Variant array.
-Godot.Collections.Array<T> is a type-safe wrapper around Godot.Collections.Array.
+Use `Godot.Collections.Array` for an untyped `Variant` array.
+`Godot.Collections.Array<T>` is a type-safe wrapper around `Godot.Collections.Array`.
 
 See also <doc:c_sharp_collections#Array>.
 
 ## Dictionary
 
-Use Godot.Collections.Dictionary for an untyped Variant dictionary.
-Godot.Collections.Dictionary<TKey, TValue> is a type-safe wrapper around Godot.Collections.Dictionary.
+Use `Godot.Collections.Dictionary` for an untyped `Variant` dictionary.
+`Godot.Collections.Dictionary<TKey, TValue>` is a type-safe wrapper around `Godot.Collections.Dictionary`.
 
 See also <doc:c_sharp_collections#Dictionary>.
 
 ## Variant
 
-Godot.Variant is used to represent Godot's native [Variant](https://docs.godotengine.org/en/stable/classes/class_variant.html#class-variant) type.
+`Godot.Variant` is used to represent Godot's native [Variant](https://docs.godotengine.org/en/stable/classes/class_variant.html#class-variant) type.
 Any :ref:`Variant-compatible type <c_sharp_variant_compatible_types>` can be converted from/to it.
 
 See also: <doc:c_sharp_variant>.
@@ -704,45 +704,45 @@ See also: <doc:c_sharp_variant>.
 
 This is explained extensively in <doc:cross_language_scripting>.
 
-## await keyword
+## `await` keyword
 
-Something similar to GDScript's await keyword can be achieved with C#'s
+Something similar to GDScript's `await` keyword can be achieved with C#'s
 await keyword.
 
-The await keyword in C# can be used with any awaitable expression. It's commonly
+The `await` keyword in C# can be used with any awaitable expression. It's commonly
 used with operands of the types Task, Task<TResult>, ValueTask, or ValueTask<TResult>.
 
-An expression t is awaitable if one of the following holds:
+An expression `t` is awaitable if one of the following holds:
 
-- t is of compile-time type dynamic.
+- `t` is of compile-time type `dynamic`.
 
-- t has an accessible instance or extension method called GetAwaiter with no
-parameters and no type parameters, and a return type A for which all of the
+- `t` has an accessible instance or extension method called `GetAwaiter` with no
+parameters and no type parameters, and a return type `A` for which all of the
 following hold:
 
-A implements the interface System.Runtime.CompilerServices.INotifyCompletion.
-A has an accessible, readable instance property IsCompleted of type bool.
-A has an accessible instance method GetResult with no parameters and no type
+`A` implements the interface `System.Runtime.CompilerServices.INotifyCompletion`.
+`A` has an accessible, readable instance property `IsCompleted` of type `bool`.
+`A` has an accessible instance method `GetResult` with no parameters and no type
 parameters.
 
 
 
-- A implements the interface System.Runtime.CompilerServices.INotifyCompletion.
+- `A` implements the interface `System.Runtime.CompilerServices.INotifyCompletion`.
 
-- A has an accessible, readable instance property IsCompleted of type bool.
+- `A` has an accessible, readable instance property `IsCompleted` of type `bool`.
 
-- A has an accessible instance method GetResult with no parameters and no type
+- `A` has an accessible instance method `GetResult` with no parameters and no type
 parameters.
 
-- A implements the interface System.Runtime.CompilerServices.INotifyCompletion.
+- `A` implements the interface `System.Runtime.CompilerServices.INotifyCompletion`.
 
-- A has an accessible, readable instance property IsCompleted of type bool.
+- `A` has an accessible, readable instance property `IsCompleted` of type `bool`.
 
-- A has an accessible instance method GetResult with no parameters and no type
+- `A` has an accessible instance method `GetResult` with no parameters and no type
 parameters.
 
-An equivalent of awaiting a signal in GDScript can be achieved with the await keyword and
-GodotObject.ToSignal.
+An equivalent of awaiting a signal in GDScript can be achieved with the `await` keyword and
+`GodotObject.ToSignal`.
 
 Example:
 

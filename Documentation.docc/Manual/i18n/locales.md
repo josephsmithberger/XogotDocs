@@ -1,14 +1,14 @@
 # Locale codes
 
-Locale code has the following format: language_Script_COUNTRY_VARIANT, where:
+Locale code has the following format: `language_Script_COUNTRY_VARIANT`, where:
 
-- language - 2 or 3-letter language code, in lower case.
+- `language` - 2 or 3-letter language code, in lower case.
 
-- Script - optional, 4-letter script code, in title case.
+- `Script` - optional, 4-letter script code, in title case.
 
-- COUNTRY - optional, 2-letter country code, in upper case.
+- `COUNTRY` - optional, 2-letter country code, in upper case.
 
-- VARIANT - optional, language variant, region and, sort order. A variant can have any number of underscored keywords.
+- `VARIANT` - optional, language variant, region and, sort order. A variant can have any number of underscored keywords.
 
 ## List of supported language codes
 

@@ -4,7 +4,7 @@
 In Godot, class members can be exported. This means their value gets saved along
 with the resource (such as the [scene](https://docs.godotengine.org/en/stable/classes/class_packedscene.html#class-packedscene)) they're
 attached to. They will also be available for editing in the property editor.
-Exporting is done by using the [Export] attribute.
+Exporting is done by using the `[Export]` attribute.
 
 ```
 using Godot;
@@ -16,7 +16,7 @@ public partial class ExportExample : Node3D
 }
 ```
 
-In that example the value 5 will be saved, and after building the current project
+In that example the value `5` will be saved, and after building the current project
 it will be visible in the property editor.
 
 One of the fundamental benefits of exporting member variables is to have
@@ -46,8 +46,8 @@ public int Number { get; set; }
 
 Exported members can specify a default value; otherwise, the default value of the type is used instead.
 
-An int like Number defaults to 0. Text defaults to null because
-string is a reference type.
+An `int` like `Number` defaults to `0`. `Text` defaults to null because
+`string` is a reference type.
 
 ```
 [Export]
@@ -82,13 +82,13 @@ public int NumberWithBackingField
 
 > Note:
 >
-> A property's get is not actually executed to determine the default
+> A property's `get` is not actually executed to determine the default
 > value. Instead, Godot analyzes the C# source code. This works fine for most
 > cases, such as the examples on this page. However, some properties are too
 > complex for the analyzer to understand.
 >
 > For example, the following property attempts to use math to display the
-> default value as 5 in the property editor, but it doesn't work:
+> default value as `5` in the property editor, but it doesn't work:
 >
 > .. code-block:: csharp
 >
@@ -102,18 +102,18 @@ public int NumberWithBackingField
 > private int _number = 2;
 >
 > The analyzer doesn't understand this code and falls back to the default
-> value for int, 0. However, when running the scene or inspecting a
-> node with an attached tool script, _number will be 2, and
-> NumberWithBackingField will return 5. This difference may cause
+> value for `int`, `0`. However, when running the scene or inspecting a
+> node with an attached tool script, `_number` will be `2`, and
+> `NumberWithBackingField` will return `5`. This difference may cause
 > confusing behavior. To avoid this, don't use complex properties. Alternatively,
 > if the default value can be explicitly specified, it can be overridden with the
 > [_PropertyCanRevert()](https://docs.godotengine.org/en/stable/classes/class_object_private_method__property_can_revert.html#class-object_private_method__property_can_revert) and
 > [_PropertyGetRevert()](https://docs.godotengine.org/en/stable/classes/class_object_private_method__property_get_revert.html#class-object_private_method__property_get_revert) methods.
 >
 
-Any type of Resource or Node can be exported. The property editor shows
+Any type of `Resource` or `Node` can be exported. The property editor shows
 a user-friendly assignment dialog for these types. This can be used instead of
-GD.Load and GetNode. See <doc:c_sharp_exports#Nodes>.
+`GD.Load` and `GetNode`. See <doc:c_sharp_exports#Nodes>.
 
 ```
 [Export]
@@ -125,9 +125,9 @@ public RigidBody2D RigidBody2D { get; set; }
 
 ## Grouping exports
 
-It is possible to group your exported properties inside the Inspector with the [ExportGroup]
+It is possible to group your exported properties inside the Inspector with the `[ExportGroup]`
 attribute. Every exported property after this attribute will be added to the group. Start a new
-group or use [ExportGroup("")] to break out.
+group or use `[ExportGroup("")]` to break out.
 
 ```
 [ExportGroup("My Properties")]
@@ -137,7 +137,7 @@ public int Number { get; set; } = 3;
 
 The second argument of the attribute can be used to only group properties with the specified prefix.
 
-Groups cannot be nested, use [ExportSubgroup] to create subgroups within a group.
+Groups cannot be nested, use `[ExportSubgroup]` to create subgroups within a group.
 
 ```
 [ExportSubgroup("Extra Properties")]
@@ -148,7 +148,7 @@ public bool Flag { get; set; } = false;
 ```
 
 You can also change the name of your main category, or create additional categories in the property
-list with the [ExportCategory] attribute.
+list with the `[ExportCategory]` attribute.
 
 ```
 [ExportCategory("Main Category")]
@@ -275,8 +275,8 @@ public float Gravity { get; set; } = 9.8f;
 public Vector3 Velocity { get; set; }
 ```
 
-In the above example, \u00b2 is used to write the "squared" character
-(²).
+In the above example, `\u00b2` is used to write the "squared" character
+(`²`).
 
 ## Colors
 
@@ -296,7 +296,7 @@ public Color Color { get; set; }
 
 ## Nodes
 
-Since Godot 4.0, nodes can be directly exported without having to use NodePaths.
+Nodes can also be directly exported without having to use NodePaths.
 
 ```
 [Export]
@@ -357,13 +357,13 @@ in conjunction with a <doc:index#Tool-Mode>.
 
 ## Exporting bit flags
 
-Members whose type is an enum with the [Flags] attribute can be exported and
+Members whose type is an enum with the `[Flags]` attribute can be exported and
 their values are limited to the members of the enum type.
 The editor will create a widget in the Inspector, allowing to select none, one,
 or multiple of the enum members. The value will be stored as an integer.
 
 A flags enum uses powers of 2 for the values of the enum members. Members that
-combine multiple flags using logical OR (|) are also possible.
+combine multiple flags using logical OR (`|`) are also possible.
 
 ```
 [Flags]
@@ -381,8 +381,8 @@ public enum SpellElements
 public SpellElements MySpellElements { get; set; }
 ```
 
-Integers used as bit flags can store multiple true/false (boolean)
-values in one property. By using the Flags property hint, any of the given
+Integers used as bit flags can store multiple `true`/`false` (boolean)
+values in one property. By using the `Flags` property hint, any of the given
 flags can be set from the editor.
 
 ```
@@ -390,10 +390,10 @@ flags can be set from the editor.
 public int SpellElements { get; set; } = 0;
 ```
 
-You must provide a string description for each flag. In this example, Fire
-has value 1, Water has value 2, Earth has value 4 and Wind
+You must provide a string description for each flag. In this example, `Fire`
+has value 1, `Water` has value 2, `Earth` has value 4 and `Wind`
 corresponds to value 8. Usually, constants should be defined accordingly (e.g.
-private const int ElementWind = 8 and so on).
+`private const int ElementWind = 8` and so on).
 
 You can add explicit values using a colon:
 
@@ -446,10 +446,10 @@ public MyEnum MyEnumCurrent { get; set; }
 ```
 
 Integer and string members can also be limited to a specific list of values using the
-[Export] annotation with the PropertyHint.Enum hint.
+`[Export]` annotation with the `PropertyHint.Enum` hint.
 The editor will create a widget in the Inspector, enumerating the following as Warrior,
 Magician, Thief. The value will be stored as an integer, corresponding to the index
-of the selected option (i.e. 0, 1, or 2).
+of the selected option (i.e. `0`, `1`, or `2`).
 
 ```
 [Export(PropertyHint.Enum, "Warrior,Magician,Thief")]
@@ -463,7 +463,7 @@ You can add explicit values using a colon:
 public int CharacterSpeed { get; set; }
 ```
 
-If the type is string, the value will be stored as a string.
+If the type is `string`, the value will be stored as a string.
 
 ```
 [Export(PropertyHint.Enum, "Rebecca,Mary,Leah")]
@@ -477,10 +477,10 @@ If you want to set an initial value, you must specify it explicitly:
 public string CharacterName { get; set; } = "Rebecca";
 ```
 
-## Exporting inspector buttons with [ExportToolButton]
+## Exporting inspector buttons with `[ExportToolButton]`
 
 If you want to create a clickable button in the inspector, you can use the
-[ExportToolButton] attribute.  This exports a Callable property or field as
+`[ExportToolButton]` attribute.  This exports a Callable property or field as
 a clickable button. Since this runs in the editor, usage of the <doc:running_code_in_the_editor> attribute is required. When the button is
 pressed, the callable is called:
 
@@ -500,7 +500,7 @@ public partial class MyNode : Node
 
 You can also set an icon for the button with a second argument. If specified, an
 icon will be fetched via [GetThemeIcon()](https://docs.godotengine.org/en/stable/classes/class_control_method_get_theme_icon.html#class-control_method_get_theme_icon),
-from the "EditorIcons" theme type.
+from the `"EditorIcons"` theme type.
 
 ```
 [ExportToolButton("Click me!", Icon = "CharacterBody2D")]
@@ -510,7 +510,7 @@ public Callable ClickMeButton => Callable.From(ClickMe);
 ## Exporting collections
 
 As explained in the <doc:c_sharp_variant> documentation, only
-certain C# arrays and the collection types defined in the Godot.Collections
+certain C# arrays and the collection types defined in the `Godot.Collections`
 namespace are Variant-compatible, therefore, only those types can be exported.
 
 ### Exporting Godot arrays
@@ -520,7 +520,7 @@ namespace are Variant-compatible, therefore, only those types can be exported.
 public Godot.Collections.Array Array { get; set; }
 ```
 
-Using the generic Godot.Collections.Array<T> allows specifying the type of the
+Using the generic `Godot.Collections.Array<T>` allows specifying the type of the
 array elements, which will be used as a hint for the editor. The Inspector will
 restrict the elements to the specified type.
 
@@ -559,7 +559,7 @@ public Godot.Collections.Array<PackedScene> Scenes { get; set; }
 public Godot.Collections.Dictionary Dictionary { get; set; }
 ```
 
-Using the generic Godot.Collections.Dictionary<TKey, TValue> allows specifying
+Using the generic `Godot.Collections.Dictionary<TKey, TValue>` allows specifying
 the types of the key and value elements of the dictionary.
 
 ```
@@ -627,5 +627,5 @@ described in <doc:accessing_data_or_logic_from_object>.
 > <doc:binding_properties_using_set_get_property_list>.
 >
 
-> Warning: The script must operate in the tool mode so the above methods
+> Warning: The script must operate in the `tool` mode so the above methods
 > can work from within the editor.

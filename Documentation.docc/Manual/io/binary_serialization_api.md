@@ -6,17 +6,17 @@ Godot has a serialization API based on Variant. It's used for
 converting data types to an array of bytes efficiently. This API is exposed
 via the global [bytes_to_var()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_bytes_to_var.html#class-@globalscope_method_bytes_to_var)
 and [var_to_bytes()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_var_to_bytes.html#class-@globalscope_method_var_to_bytes) functions,
-but it is also used in the get_var and store_var methods of
+but it is also used in the `get_var` and `store_var` methods of
 [FileAccess](https://docs.godotengine.org/en/stable/classes/class_fileaccess.html#class-fileaccess) as well as the packet APIs for [PacketPeer](https://docs.godotengine.org/en/stable/classes/class_packetpeer.html#class-packetpeer).
 This format is not used for binary scenes and resources.
 
 ## Full Objects vs Object instance IDs
 
-If a variable is serialized with full_objects = true, then any Objects
+If a variable is serialized with `full_objects = true`, then any Objects
 contained in the variable will be serialized and included in the result. This
 is recursive.
 
-If full_objects = false, then only the instance IDs will be serialized for
+If `full_objects = false`, then only the instance IDs will be serialized for
 any Objects contained in the variable.
 
 ## Packet specification
@@ -70,7 +70,7 @@ Following this is the actual packet contents, which varies for each type of
 packet. Note that this assumes Godot is compiled with single-precision floats,
 which is the default. If Godot was compiled with double-precision floats, the
 length of "Float" fields within data structures should be 8, and the offset
-should be (offset - 4) * 2 + 4. The "float" type itself always uses double
+should be `(offset - 4) * 2 + 4`. The "float" type itself always uses double
 precision.
 
 ### 0: null
@@ -89,7 +89,7 @@ Offset | Len | Type | Description
 ------ | --- | ---- | -----------
 4 | 4 | Integer | 32-bit signed integer
 
-If flag ENCODE_FLAG_64 is set (flags & 1 == 1), the integer is sent as
+If flag `ENCODE_FLAG_64` is set (`flags & 1 == 1`), the integer is sent as
 a 64-bit integer:
 
 Offset | Len | Type | Description
@@ -104,7 +104,7 @@ Offset | Len | Type | Description
 ------ | --- | ---- | -----------
 4 | 4 | Float | IEEE 754 single-precision float
 
-If flag ENCODE_FLAG_64 is set (flags & 1 == 1), the float is sent as
+If flag `ENCODE_FLAG_64` is set (`flags & 1 == 1`), the float is sent as
 a 64-bit double precision number:
 
 Offset | Len | Type | Description
@@ -259,7 +259,7 @@ Every name string is padded to 4 bytes.
 ### 17: [Object](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object)
 
 An Object could be serialized in three different ways: as a null value, with
-full_objects = false, or with full_objects = true.
+`full_objects = false`, or with `full_objects = true`.
 
 Offset | Len | Type | Description
 ------ | --- | ---- | -----------
@@ -290,7 +290,7 @@ Y+4+Z | W | <variable> | Property value, using this same format
 > flag set will be serialized. You can add a new usage flag to a property by overriding the
 > [_get_property_list](https://docs.godotengine.org/en/stable/classes/class_object_private_method__get_property_list.html#class-object_private_method__get_property_list)
 > method in your class. You can also check how property usage is configured by
-> calling Object._get_property_list See
+> calling `Object._get_property_list` See
 > :ref:`PropertyUsageFlags<enum_@GlobalScope_PropertyUsageFlags>` for the
 > possible usage flags.
 >

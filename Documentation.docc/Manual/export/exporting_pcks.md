@@ -20,7 +20,7 @@ release.
 ## Overview of PCK/ZIP files
 
 Godot enables this via a feature called **resource packs** (PCK files,
-with the .pck extension, or ZIP files).
+with the `.pck` extension, or ZIP files).
 
 **Advantages:**
 
@@ -84,7 +84,7 @@ to have an export preset selected while doing so.
 @Image(source: "export_pck.png")
 
 Another method would be to <doc:command_line_tutorial#Exporting>
-with --export-pack. The output file must with a .pck or .zip
+with `--export-pack`. The output file must with a `.pck` or `.zip`
 file extension. The export process will build that type of file for the
 chosen platform.
 
@@ -114,8 +114,18 @@ chosen platform.
 ## Opening PCK or ZIP files at runtime
 
 To load a PCK or ZIP file, one uses the ProjectSettings singleton. The following
-example expects a mod.pck file in the directory of the game's executable.
-The PCK or ZIP file contains a mod_scene.tscn test scene in its root.
+example expects a `mod.pck` file in the directory of the game's executable.
+The PCK or ZIP file contains a `mod_scene.tscn` test scene in its root.
+
+```
+func _your_function():
+    # This could fail if, for example, mod.pck cannot be found.
+    var success = ProjectSettings.load_resource_pack(OS.get_executable_path().get_base_dir().path_join("mod.pck"))
+
+    if success:
+        # Now one can use the assets as if they had them in the project from the start.
+        var imported_scene = load("res://mod_scene.tscn")
+```
 
 > Warning:
 >
@@ -128,7 +138,7 @@ The PCK or ZIP file contains a mod_scene.tscn test scene in its root.
 > file of this kind can fix the content of a previously loaded PCK/ZIP
 > (therefore, the order in which packs are loaded matters).
 >
-> To opt out of this behavior, pass false as the second argument to
+> To opt out of this behavior, pass `false` as the second argument to
 > [ProjectSettings.load_resource_pack()](https://docs.godotengine.org/en/stable/classes/class_projectsettings_method_load_resource_pack.html#class-projectsettings_method_load_resource_pack).
 >
 
@@ -136,7 +146,7 @@ The PCK or ZIP file contains a mod_scene.tscn test scene in its root.
 >
 > For a C# project, you need to build the DLL and place it in the project directory first.
 > Then, before loading the resource pack, you need to load its DLL as follows:
-> Assembly.LoadFile("mod.dll")
+> `Assembly.LoadFile("mod.dll")`
 >
 
 ### Troubleshooting
@@ -150,8 +160,8 @@ a pack in the menu will not affect the other scene that was already preloaded.
 To avoid this, you need to load the pack as early as possible.
 To do so, create a new <doc:singletons_autoload> script and
 call [ProjectSettings.load_resource_pack()](https://docs.godotengine.org/en/stable/classes/class_projectsettings_method_load_resource_pack.html#class-projectsettings_method_load_resource_pack)
-in the autoload script's _init() function, rather than _enter_tree()
-or _ready().
+in the autoload script's `_init()` function, rather than `_enter_tree()`
+or `_ready()`.
 
 ## Summary
 

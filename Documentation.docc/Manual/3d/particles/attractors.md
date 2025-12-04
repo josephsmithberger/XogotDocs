@@ -15,7 +15,7 @@ attraction effects.
 > Particle attractors are not yet implemented for 2D particle systems.
 >
 
-The first thing you have to do if you want to use attractors is enable the Attractor Interaction
+The first thing you have to do if you want to use attractors is enable the `Attractor Interaction`
 property on the ParticleProcessMaterial. Do this for every particle system that needs to react to attractors.
 Like most properties in Godot, you can also change this at runtime.
 
@@ -24,12 +24,12 @@ Like most properties in Godot, you can also change this at runtime.
 @Image(source: "particle_attractor_common.png", alt: "Common particle attractor properties") {Common attractor properties}
 
 There are some properties that you can find on all attractors. They're located in the
-GPUParticlesAttractor3D section in the inspector.
+`GPUParticlesAttractor3D` section in the inspector.
 
-Strength controls how strong the attractor force is. A positive value pulls particles
+`Strength` controls how strong the attractor force is. A positive value pulls particles
 closer to the attractor's center, while a negative value pushes them away.
 
-Attenuation controls the strength falloff within the attractor's influence region. Every
+`Attenuation` controls the strength falloff within the attractor's influence region. Every
 particle attractor has a boundary. Its strength is weakest at the border of this boundary
 and strongest at its center. Particles outside of the boundary are not affected by the attractor
 at all. The attenuation curve controls how the strength weakens over that distance. A straight
@@ -42,37 +42,30 @@ attractor.
 at the boundary border and slowly at the center (middle), slowly at the boundary and
 fast at the center (right).}
 
-The Directionality property changes the direction towards which particles are pulled.
-At a value of 0.0, there is no directionality, which means that particles are pulled towards
-the attractor's center. At 1.0, the attractor is fully directional, which means particles
-will be pulled along the attractor's local -Z-axis. You can change the global direction
-by rotating the attractor. If Strength is negative, particles are instead pulled along
-the +Z-axis.
+The `Directionality` property changes the direction towards which particles are pulled.
+At a value of `0.0`, there is no directionality, which means that particles are pulled towards
+the attractor's center. At `1.0`, the attractor is fully directional, which means particles
+will be pulled along the attractor's local `-Z`-axis. You can change the global direction
+by rotating the attractor. If `Strength` is negative, particles are instead pulled along
+the `+Z`-axis.
 
 @Image(source: "particle_attractor_direction.png", alt: "Different attractor directionality values") {No directionality (left) vs. full directionality (right). Notice how the particles move along
 the attractor's local Z-axis.}
 
-The Cull Mask property controls which particle systems are affected by an attractor based
+The `Cull Mask` property controls which particle systems are affected by an attractor based
 on each system's [visibility layers](https://docs.godotengine.org/en/stable/classes/class_visualinstance3d.html#class-visualinstance3d). A particle system is only
 affected by an attractor if at least one of the system's visibility layers is enabled in the
 attractor's cull mask.
-
-> Warning:
->
-> There is a known issue with
-> GPU particle attractors that prevent the cull mask from working properly in Godot 4.0. We will
-> update the documentation as soon as it is fixed.
->
 
 ## Box attractors
 
 @Image(source: "particle_attractor_box_entry.png", alt: "Particle attractor box") {Box attractor in the node list}
 
-Box attractors have a box-shaped influence region. You control their size with the Extents
+Box attractors have a box-shaped influence region. You control their size with the `Extents`
 property. Box extents always measure half of the sides of its bounds, so a value of
-(X=1.0,Y=1.0,Z=1.0) creates a box with an influence region that is 2 meters wide on each side.
+`(X=1.0,Y=1.0,Z=1.0)` creates a box with an influence region that is 2 meters wide on each side.
 
-To create a box attractor, add a new child node to your scene and select GPUParticlesAttractorBox3D
+To create a box attractor, add a new child node to your scene and select `GPUParticlesAttractorBox3D`
 from the list of available nodes. You can animate the box position or attach it to a
 moving node for more dynamic effects.
 
@@ -82,12 +75,12 @@ moving node for more dynamic effects.
 
 @Image(source: "particle_attractor_sphere_entry.png", alt: "Particle attractor sphere") {Sphere attractor in the node list}
 
-Sphere attractors have a spherical influence region. You control their size with the Radius
+Sphere attractors have a spherical influence region. You control their size with the `Radius`
 property. While box attractors don't have to be perfect cubes, sphere attractors will always be
 spheres: You can't set width independently from height. If you want to use a sphere attractor for
-elongated shapes, you have to change its Scale in the attractor's Node3D section.
+elongated shapes, you have to change its `Scale` in the attractor's `Node3D` section.
 
-To create a sphere attractor, add a new child node to your scene and select GPUParticlesAttractorSphere3D
+To create a sphere attractor, add a new child node to your scene and select `GPUParticlesAttractorSphere3D`
 from the list of available nodes. You can animate the sphere position or attach it to a
 moving node for more dynamic effects.
 
@@ -106,9 +99,9 @@ When particles interact with a vector field, their movement direction changes to
 in the field. As a particle moves closer to the next vector in the field, it changes
 direction to match that vector's direction. The particle's speed depends on the vector's length.
 
-Like box attractors, vector field attractors have a box-shaped influence region. You control their size with the Extents
-property, where a value of (X=1.0,Y=1.0,Z=1.0) creates a box with an influence region that is
-2 meters wide on each side. The Texture property takes a [3D texture](https://docs.godotengine.org/en/stable/classes/class_texture3d.html#class-texture3d)
+Like box attractors, vector field attractors have a box-shaped influence region. You control their size with the `Extents`
+property, where a value of `(X=1.0,Y=1.0,Z=1.0)` creates a box with an influence region that is
+2 meters wide on each side. The `Texture` property takes a [3D texture](https://docs.godotengine.org/en/stable/classes/class_texture3d.html#class-texture3d)
 where every pixel represents a vector with the pixel's color interpreted as the vector's direction and size.
 
 > Note:
@@ -117,18 +110,18 @@ where every pixel represents a vector with the pixel's color interpreted as the 
 >
 > 1. The texture coordinates map to the attractor bounds. The image below shows which part of the texture
 > corresponds to which part of the vector field volume. For example, the bottom half of the texture
-> affects the top half of the vector field attractor because +Y points down in the texture UV space,
+> affects the top half of the vector field attractor because `+Y` points down in the texture UV space,
 > but up in Godot's world space.
 > 2. The pixel color values map to direction vectors in space. The image below provides an overview. Since
 > particles can move in two directions along each axis, the lower half of the color range represents
 > negative direction values while the upper half represents positive direction values. So a yellow pixel
-> (R=1,G=1,B=0) maps to the vector (X=1,Y=1,Z=-1) while a neutral gray (R=0.5,G=0.5,B=0.5)
+> `(R=1,G=1,B=0)` maps to the vector `(X=1,Y=1,Z=-1)` while a neutral gray `(R=0.5,G=0.5,B=0.5)`
 > results in no movement at all.
 >
 
 @Image(source: "particle_attractor_vector_mapping.png", alt: "Mapping from texture to vector field")
 
-To create a vector field attractor, add a new child node to your scene and select GPUParticlesAttractorVectorField3D
+To create a vector field attractor, add a new child node to your scene and select `GPUParticlesAttractorVectorField3D`
 from the list of available nodes. You can animate the attractor's position or attach it to a
 moving node for more dynamic effects.
 

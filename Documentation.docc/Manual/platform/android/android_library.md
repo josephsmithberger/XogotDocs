@@ -94,14 +94,14 @@ Below we break-down the steps used to create the GLTF Viewer app.
 
 - Add the maven dependency for the Godot Android library
 
-If using gradle, add the following to the dependency section of the app's gradle build file. Make sure to update <version> to the latest version of the Godot Android library:
+If using `gradle`, add the following to the `dependency` section of the app's gradle build file. Make sure to update `<version>` to the latest version of the Godot Android library:
 
 implementation("org.godotengine:godot:<version>")
 
 
-- If using gradle, add the following to the dependency section of the app's gradle build file. Make sure to update <version> to the latest version of the Godot Android library:
+- If using `gradle`, add the following to the `dependency` section of the app's gradle build file. Make sure to update `<version>` to the latest version of the Godot Android library:
 
-- If using gradle, include the following aaptOptions configuration under the android > defaultConfig section of the app's gradle build file. Doing so allows gradle to include Godot's hidden directories when building the app binary.
+- If using `gradle`, include the following `aaptOptions` configuration under the `android > defaultConfig` section of the app's gradle build file. Doing so allows `gradle` to include Godot's hidden directories when building the app binary.
 
 If your build system does not support including hidden directories, you can
 configure the Godot project to not use hidden directories by deselecting
@@ -115,7 +115,7 @@ configure the Godot project to not use hidden directories by deselecting
 [Application > Config > Use Hidden Project Data Directory](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_application/config/use_hidden_project_data_directory.html#class-projectsettings_property_application/config/use_hidden_project_data_directory)
 in the Project Settings.
 
-- If using gradle, add the following to the dependency section of the app's gradle build file. Make sure to update <version> to the latest version of the Godot Android library:
+- If using `gradle`, add the following to the `dependency` section of the app's gradle build file. Make sure to update `<version>` to the latest version of the Godot Android library:
 
 ```
 implementation("org.godotengine:godot:<version>")
@@ -199,13 +199,13 @@ override fun onCreate(savedInstanceState: Bundle?) {
 > Alternatively, applications can directly create a Godot instance, host and manage it themselves.
 >
 
-- Using GodotHost#getHostPlugins(...), the sample app creates a runtime GodotPlugin instance that's used to send <doc:signals> to the gdscript logic
+- Using GodotHost#getHostPlugins(...), the sample app creates a runtime GodotPlugin instance that's used to send <doc:signals> to the `gdscript` logic
 
-The runtime GodotPlugin can also be used by gdscript logic to access JVM methods. For more information, see <doc:android_plugin>.
+The runtime `GodotPlugin` can also be used by `gdscript` logic to access JVM methods. For more information, see <doc:android_plugin>.
 
 
 
-- The runtime GodotPlugin can also be used by gdscript logic to access JVM methods. For more information, see <doc:android_plugin>.
+- The runtime `GodotPlugin` can also be used by `gdscript` logic to access JVM methods. For more information, see <doc:android_plugin>.
 
 - Add any additional logic that will be used by your application
 
@@ -215,7 +215,7 @@ For the sample app, this includes adding the ItemsSelectionFragment fragment (an
 
 - For the sample app, this includes adding the ItemsSelectionFragment fragment (and related classes), a fragment used to build and show the list of glTF items
 
-- Open the AndroidManifest.xml file, and configure the orientation if needed using the android:screenOrientation attribute
+- Open the `AndroidManifest.xml` file, and configure the orientation if needed using the android:screenOrientation attribute
 
 If needed, disable automatic resizing / orientation configuration changes using the android:configChanges attribute
 
@@ -223,7 +223,7 @@ If needed, disable automatic resizing / orientation configuration changes using 
 
 - If needed, disable automatic resizing / orientation configuration changes using the android:configChanges attribute
 
-- The runtime GodotPlugin can also be used by gdscript logic to access JVM methods. For more information, see <doc:android_plugin>.
+- The runtime `GodotPlugin` can also be used by `gdscript` logic to access JVM methods. For more information, see <doc:android_plugin>.
 
 - For the sample app, this includes adding the ItemsSelectionFragment fragment (and related classes), a fragment used to build and show the list of glTF items
 
@@ -243,13 +243,13 @@ If needed, disable automatic resizing / orientation configuration changes using 
 
 > Note:
 >
-> On Android, Godot's project files are exported to the assets directory of the generated apk binary.
+> On Android, Godot's project files are exported to the `assets` directory of the generated `apk` binary.
 >
-> We leverage that architecture to bind our Android app and Godot project together by creating the Godot project in the Android app's assets directory.
+> We leverage that architecture to bind our Android app and Godot project together by creating the Godot project in the Android app's `assets` directory.
 >
 > Note that it's also possible to create the Godot project in a separate directory and export it as a PCK or ZIP file
-> to the Android app's assets directory.
-> Using this approach requires passing the --main-pack <pck_or_zip_filepath_relative_to_assets_dir> argument to the hosted Godot Engine instance using GodotHost#getCommandLine().
+> to the Android app's `assets` directory.
+> Using this approach requires passing the `--main-pack <pck_or_zip_filepath_relative_to_assets_dir>` argument to the hosted Godot Engine instance using GodotHost#getCommandLine().
 >
 > Example:
 >
@@ -264,11 +264,11 @@ If needed, disable automatic resizing / orientation configuration changes using 
 > return results;
 > }
 >
-> The instructions below and the sample app follow the first approach of creating the Godot project in the Android app's assets directory.
+> The instructions below and the sample app follow the first approach of creating the Godot project in the Android app's `assets` directory.
 >
 >
 
-- As mentioned in the **note** above, open the Godot Editor and create a Godot project directly (no subfolder) in the assets directory of the Android application project
+- As mentioned in the **note** above, open the Godot Editor and create a Godot project directly (no subfolder) in the `assets` directory of the Android application project
 
 See the sample app's Godot project for reference
 
@@ -289,8 +289,8 @@ For Android, make sure textures/vram_compression/import_etc2_astc is set to `tru
 
 - Update the Godot project script logic as needed
 
-For the sample app, the script logic queries for the runtime GodotPlugin instance and uses it to register for signals fired by the app logic
-The app logic fires a signal every time an item is selected in the list. The signal contains the filepath of the glTF model, which is used by the gdscript logic to render the model.
+For the sample app, the script logic queries for the runtime `GodotPlugin` instance and uses it to register for signals fired by the app logic
+The app logic fires a signal every time an item is selected in the list. The signal contains the filepath of the glTF model, which is used by the `gdscript` logic to render the model.
 
 extends Node3D
 
@@ -321,9 +321,9 @@ func _load_gltf(gltf_path: String):
   add_child(current_gltf_node)
 
 
-- For the sample app, the script logic queries for the runtime GodotPlugin instance and uses it to register for signals fired by the app logic
+- For the sample app, the script logic queries for the runtime `GodotPlugin` instance and uses it to register for signals fired by the app logic
 
-- The app logic fires a signal every time an item is selected in the list. The signal contains the filepath of the glTF model, which is used by the gdscript logic to render the model.
+- The app logic fires a signal every time an item is selected in the list. The signal contains the filepath of the glTF model, which is used by the `gdscript` logic to render the model.
 
 - See the sample app's Godot project for reference
 
@@ -331,9 +331,9 @@ func _load_gltf(gltf_path: String):
 
 - For Android, make sure textures/vram_compression/import_etc2_astc is set to `true`
 
-- For the sample app, the script logic queries for the runtime GodotPlugin instance and uses it to register for signals fired by the app logic
+- For the sample app, the script logic queries for the runtime `GodotPlugin` instance and uses it to register for signals fired by the app logic
 
-- The app logic fires a signal every time an item is selected in the list. The signal contains the filepath of the glTF model, which is used by the gdscript logic to render the model.
+- The app logic fires a signal every time an item is selected in the list. The signal contains the filepath of the glTF model, which is used by the `gdscript` logic to render the model.
 
 ```
 extends Node3D
@@ -369,7 +369,7 @@ func _load_gltf(gltf_path: String):
 
 Once you complete configuration of your Godot project, build and run the Android app.
 If set up correctly, the host Activity will initialize the embedded Godot Engine on startup.
-The Godot Engine will check the assets directory for project files to load (unless configured to look for a main pack), and will proceed to run the project.
+The Godot Engine will check the `assets` directory for project files to load (unless configured to look for a `main pack`), and will proceed to run the project.
 
 While the app is running on device, you can check Android logcat to investigate any errors or crashes.
 

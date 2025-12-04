@@ -22,23 +22,23 @@ the flags string:
 
 Field in Exec Flags | Is replaced with
 ------------------- | ----------------
-{project} | The absolute path to the project directory
-{file} | The absolute path to the file
-{col} | The column number of the error
-{line} | The line number of the error
+`{project}` | The absolute path to the project directory
+`{file}` | The absolute path to the file
+`{col}` | The column number of the error
+`{line}` | The line number of the error
 
 Some example **Exec Flags** for various editors include:
 
 Editor | Exec Flags
 ------ | ----------
-Geany/Kate | {file}--line{line}--column{col}
-Atom | {file}:{line}
-JetBrains Rider | {project}--line{line} {file}
-Visual Studio Code | {project}--goto{file}:{line}:{col}
-Vim (gVim) | "+callcursor({line},{col})"{file}
-Emacs | emacs+{line}:{col}{file}
-Sublime Text | {project}{file}:{line}:{col}
-Visual Studio* | /edit "file"
+Geany/Kate | `{file} --line {line} --column {col}`
+Atom | `{file}:{line}`
+JetBrains Rider | `{project} --line {line} {file}`
+Visual Studio Code | `{project} --goto {file}:{line}:{col}`
+Vim (gVim) | `"+call cursor({line}, {col})" {file}`
+Emacs | `emacs +{line}:{col} {file}`
+Sublime Text/Zed | `{project} {file}:{line}:{col}`
+Visual Studio* | `/edit "{file}"`
 
 *: Arguments are not automatically detected, so you must fill them in manually.
 
@@ -49,13 +49,13 @@ recognized automatically (e.g. a fork of an editor listed here).
 
 > Note:
 >
-> For Visual Studio Code on Windows, you will have to point to the code.cmd
+> For Visual Studio Code on Windows, you will have to point to the `code.cmd`
 > file.
 >
-> For Emacs, you can call emacsclient instead of emacs if
+> For Emacs, you can call `emacsclient` instead of `emacs` if
 > you use the server mode.
 >
-> For Visual Studio, you will have to open the solution file .sln
+> For Visual Studio, you will have to open the solution file `.sln`
 > manually to get access to the IDE features. Additionally, it will not go to a specific line.
 >
 
@@ -81,7 +81,7 @@ We have official plugins for the following code editors:
 
 Godot supports the Language Server Protocol (**LSP**) for code completion and the Debug Adapter Protocol (**DAP**) for debugging. You can check the LSP client list and DAP client list to find if your editor supports them. If this is the case, you should be able to take advantage of these features without the need of a custom plugin.
 
-To use these protocols, a Godot instance must be running on your current project. You should then configure your editor to communicate to the running adapter ports in Godot, which by default are 6005 for **LSP**, and 6006 for **DAP**. You can change these ports and other settings in the **Editor Settings**, under the **Network > Language Server** and **Network > Debug Adapter** sections respectively.
+To use these protocols, a Godot instance must be running on your current project. You should then configure your editor to communicate to the running adapter ports in Godot, which by default are `6005` for **LSP**, and `6006` for **DAP**. You can change these ports and other settings in the **Editor Settings**, under the **Network > Language Server** and **Network > Debug Adapter** sections respectively.
 
 Below are some configuration steps for specific editors:
 
@@ -93,7 +93,7 @@ For **LSP**, follow these instructions to change the default LSP port. The conne
 
 @Image(source: "lsp_vscode_status.png")
 
-For **DAP**, specify the debugServer property in your launch.json file:
+For **DAP**, specify the `debugServer` property in your `launch.json` file:
 
 ```
 {

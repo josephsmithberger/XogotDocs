@@ -8,7 +8,7 @@ Godot provides the following objects and classes for 2D navigation:
 
 - 
 [Astar2D](https://docs.godotengine.org/en/stable/classes/class_astar2d.html#class-astar2d)
-Astar2D objects provide an option to find the shortest path in a graph of weighted **points**.
+`Astar2D` objects provide an option to find the shortest path in a graph of weighted **points**.
 The AStar2D class is best suited for cell-based 2D gameplay that does not require actors to reach any possible position within an area but only predefined, distinct positions.
 
 
@@ -16,7 +16,7 @@ The AStar2D class is best suited for cell-based 2D gameplay that does not requir
 
 - 
 [AstarGrid2D](https://docs.godotengine.org/en/stable/classes/class_astargrid2d.html#class-astargrid2d)
-AstarGrid2D  is a variant of AStar2D that is specialized for partial 2D grids.
+`AstarGrid2D`  is a variant of AStar2D that is specialized for partial 2D grids.
 AstarGrid2D is simpler to use when applicable because it doesn't require you to manually create points and connect them together.
 
 
@@ -24,7 +24,7 @@ AstarGrid2D is simpler to use when applicable because it doesn't require you to 
 
 - 
 [NavigationServer2D](https://docs.godotengine.org/en/stable/classes/class_navigationserver2d.html#class-navigationserver2d)
-NavigationServer2D provides a powerful server API to find the shortest path between two positions on an area defined by a navigation mesh.
+`NavigationServer2D` provides a powerful server API to find the shortest path between two positions on an area defined by a navigation mesh.
 The NavigationServer is best suited for 2D realtime gameplay that does require actors to reach any possible position within a navigation mesh defined area.
 Mesh-based navigation scales well with large game worlds as a large area can often be defined with a single polygon when it would require many, many grid cells.
 The NavigationServer holds different navigation maps that each consist of regions that hold navigation mesh data.
@@ -113,15 +113,15 @@ Reference to a specific avoidance obstacle used to affect and constrain the avoi
 
 
 
-Astar2D objects provide an option to find the shortest path in a graph of weighted **points**.
+`Astar2D` objects provide an option to find the shortest path in a graph of weighted **points**.
 
 The AStar2D class is best suited for cell-based 2D gameplay that does not require actors to reach any possible position within an area but only predefined, distinct positions.
 
-AstarGrid2D  is a variant of AStar2D that is specialized for partial 2D grids.
+`AstarGrid2D`  is a variant of AStar2D that is specialized for partial 2D grids.
 
 AstarGrid2D is simpler to use when applicable because it doesn't require you to manually create points and connect them together.
 
-NavigationServer2D provides a powerful server API to find the shortest path between two positions on an area defined by a navigation mesh.
+`NavigationServer2D` provides a powerful server API to find the shortest path between two positions on an area defined by a navigation mesh.
 
 The NavigationServer is best suited for 2D realtime gameplay that does require actors to reach any possible position within a navigation mesh defined area.
 Mesh-based navigation scales well with large game worlds as a large area can often be defined with a single polygon when it would require many, many grid cells.
@@ -190,7 +190,7 @@ The following scene tree nodes are available as helpers to work with the Navigat
 A Node that holds a NavigationPolygon resource that defines a navigation mesh for the NavigationServer2D.
 
 The region can be enabled / disabled.
-The use in pathfinding can be further restricted through the navigation_layers bitmask.
+The use in pathfinding can be further restricted through the `navigation_layers` bitmask.
 The NavigationServer2D will join the navigation meshes of regions by proximity for a combined navigation mesh.
 
 
@@ -199,7 +199,7 @@ The NavigationServer2D will join the navigation meshes of regions by proximity f
 
 - The region can be enabled / disabled.
 
-- The use in pathfinding can be further restricted through the navigation_layers bitmask.
+- The use in pathfinding can be further restricted through the `navigation_layers` bitmask.
 
 - The NavigationServer2D will join the navigation meshes of regions by proximity for a combined navigation mesh.
 
@@ -209,7 +209,7 @@ A Node that connects two positions on navigation meshes over arbitrary distances
 
 The link can be enabled / disabled.
 The link can be made one-way or bidirectional.
-The use in pathfinding can be further restricted through the navigation_layers bitmask.
+The use in pathfinding can be further restricted through the `navigation_layers` bitmask.
 
 Links tell the pathfinding that a connection exists and at what cost. The actual agent handling and movement needs to happen in custom scripts.
 
@@ -220,7 +220,7 @@ Links tell the pathfinding that a connection exists and at what cost. The actual
 
 - The link can be made one-way or bidirectional.
 
-- The use in pathfinding can be further restricted through the navigation_layers bitmask.
+- The use in pathfinding can be further restricted through the `navigation_layers` bitmask.
 
 - 
 [NavigationAgent2D](https://docs.godotengine.org/en/stable/classes/class_navigationagent2d.html#class-navigationagent2d) Node
@@ -242,7 +242,7 @@ A Node that holds a NavigationPolygon resource that defines a navigation mesh fo
 
 - The region can be enabled / disabled.
 
-- The use in pathfinding can be further restricted through the navigation_layers bitmask.
+- The use in pathfinding can be further restricted through the `navigation_layers` bitmask.
 
 - The NavigationServer2D will join the navigation meshes of regions by proximity for a combined navigation mesh.
 
@@ -252,7 +252,7 @@ A Node that connects two positions on navigation meshes over arbitrary distances
 
 - The link can be made one-way or bidirectional.
 
-- The use in pathfinding can be further restricted through the navigation_layers bitmask.
+- The use in pathfinding can be further restricted through the `navigation_layers` bitmask.
 
 Links tell the pathfinding that a connection exists and at what cost. The actual agent handling and movement needs to happen in custom scripts.
 
@@ -328,6 +328,44 @@ for visuals.
 
 1. Add the following script to the CharacterBody2D node. We make sure to set a movement target
 after the scene has fully loaded and the NavigationServer had time to sync.
+
+```
+extends CharacterBody2D
+
+var movement_speed: float = 200.0
+var movement_target_position: Vector2 = Vector2(60.0,180.0)
+
+@onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
+
+func _ready():
+    # These values need to be adjusted for the actor's speed
+    # and the navigation layout.
+    navigation_agent.path_desired_distance = 4.0
+    navigation_agent.target_desired_distance = 4.0
+
+    # Make sure to not await during _ready.
+    actor_setup.call_deferred()
+
+func actor_setup():
+    # Wait for the first physics frame so the NavigationServer can sync.
+    await get_tree().physics_frame
+
+    # Now that the navigation map is no longer empty, set the movement target.
+    set_movement_target(movement_target_position)
+
+func set_movement_target(movement_target: Vector2):
+    navigation_agent.target_position = movement_target
+
+func _physics_process(delta):
+    if navigation_agent.is_navigation_finished():
+        return
+
+    var current_agent_position: Vector2 = global_position
+    var next_path_position: Vector2 = navigation_agent.get_next_path_position()
+
+    velocity = current_agent_position.direction_to(next_path_position) * movement_speed
+    move_and_slide()
+```
 
 > Note:
 >

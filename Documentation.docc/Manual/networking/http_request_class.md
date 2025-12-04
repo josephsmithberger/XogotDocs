@@ -47,16 +47,28 @@ Then add an [HTTPRequest](https://docs.godotengine.org/en/stable/classes/class_h
 
 ## Scripting the request
 
-When the project is started (so in _ready()), we're going to send an HTTP request
+When the project is started (so in `_ready()`), we're going to send an HTTP request
 to Github using our [HTTPRequest](https://docs.godotengine.org/en/stable/classes/class_httprequest.html#class-httprequest) node,
 and once the request completes, we're going to parse the returned JSON data,
-look for the name field and print that to console.
+look for the `name` field and print that to console.
+
+```
+extends Node
+
+func _ready():
+    $HTTPRequest.request_completed.connect(_on_request_completed)
+    $HTTPRequest.request("https://api.github.com/repos/godotengine/godot/releases/latest")
+
+func _on_request_completed(result, response_code, headers, body):
+    var json = JSON.parse_string(body.get_string_from_utf8())
+    print(json["name"])
+```
 
 Save the script and the scene, and run the project.
 The name of the most recent Godot release on Github should be printed to the output log.
 For more information on parsing JSON, see the class references for [JSON](https://docs.godotengine.org/en/stable/classes/class_json.html#class-json).
 
-Note that you may want to check whether the result equals RESULT_SUCCESS
+Note that you may want to check whether the `result` equals `RESULT_SUCCESS`
 and whether a JSON parsing error occurred, see the JSON class reference and
 [HTTPRequest](https://docs.godotengine.org/en/stable/classes/class_httprequest.html#class-httprequest) for more.
 
@@ -69,8 +81,18 @@ A common strategy is to create and delete HTTPRequest nodes at runtime as necess
 Until now, we have limited ourselves to requesting data from a server.
 But what if you need to send data to the server? Here is a common way of doing it:
 
+```
+var json = JSON.stringify(data_to_send)
+var headers = ["Content-Type: application/json"]
+$HTTPRequest.request(url, headers, HTTPClient.METHOD_POST, json)
+```
+
 ## Setting custom HTTP headers
 
 Of course, you can also set custom HTTP headers. These are given as a string array,
-with each string containing a header in the format "header: value".
-For example, to set a custom user agent (the HTTP User-Agent header) you could use the following:
+with each string containing a header in the format `"header: value"`.
+For example, to set a custom user agent (the HTTP `User-Agent` header) you could use the following:
+
+```
+$HTTPRequest.request("https://api.github.com/repos/godotengine/godot/releases/latest", ["User-Agent: YourCustomUserAgent"])
+```

@@ -10,6 +10,13 @@ multiple locations, depending on the purpose.
 
 Here is a quick example, closing your game if the escape key is hit:
 
+```
+func _unhandled_input(event):
+    if event is InputEventKey:
+        if event.pressed and event.keycode == KEY_ESCAPE:
+            get_tree().quit()
+```
+
 However, it is cleaner and more flexible to use the provided [InputMap](https://docs.godotengine.org/en/stable/classes/class_inputmap.html#class-inputmap) feature,
 which allows you to define input actions and assign them different keys. This way,
 you can define multiple keys for the same action (e.g. the keyboard escape key and the start button on a gamepad).
@@ -17,6 +24,12 @@ You can then more easily change this mapping in the project settings without upd
 and even build a key mapping feature on top of it to allow your game to change the key mapping at runtime!
 
 You can set up your InputMap under **Project > Project Settings > Input Map** and then use those actions like this:
+
+```
+func _process(delta):
+    if Input.is_action_pressed("ui_right"):
+        # Move right.
+```
 
 ## How does it work?
 
@@ -179,6 +192,15 @@ Alternatively, it may be desired to supply the game back with an action
 from the game code (a good example of this is detecting gestures).
 The Input singleton has a method for this:
 [Input.parse_input_event()](https://docs.godotengine.org/en/stable/classes/class_input_method_parse_input_event.html#class-input_method_parse_input_event). You would normally use it like this:
+
+```
+var ev = InputEventAction.new()
+# Set as ui_left, pressed.
+ev.action = "ui_left"
+ev.pressed = true
+# Feedback.
+Input.parse_input_event(ev)
+```
 
 > Seealso:
 >

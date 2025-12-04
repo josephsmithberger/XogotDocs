@@ -18,9 +18,23 @@ A map can contain avoidance agents. Collision avoidance will be calculated based
 
 By default Godot creates a navigation map for each [World2D](https://docs.godotengine.org/en/stable/classes/class_world2d.html#class-world2d) and [World3D](https://docs.godotengine.org/en/stable/classes/class_world3d.html#class-world3d) of the root viewport.
 
-The 2D default navigation map RID can be obtained with get_world_2d().get_navigation_map() from any [Node2D](https://docs.godotengine.org/en/stable/classes/class_node2d.html#class-node2d) inheriting Node.
+The 2D default navigation map RID can be obtained with `get_world_2d().get_navigation_map()` from any [Node2D](https://docs.godotengine.org/en/stable/classes/class_node2d.html#class-node2d) inheriting Node.
 
-The 3D default navigation map RID can be obtained with get_world_3d().get_navigation_map() from any [Node3D](https://docs.godotengine.org/en/stable/classes/class_node3d.html#class-node3d) inheriting Node.
+The 3D default navigation map RID can be obtained with `get_world_3d().get_navigation_map()` from any [Node3D](https://docs.godotengine.org/en/stable/classes/class_node3d.html#class-node3d) inheriting Node.
+
+```
+extends Node2D
+
+func _ready() -> void:
+    var default_navigation_map_rid: RID = get_world_2d().get_navigation_map()
+```
+
+```
+extends Node3D
+
+func _ready() -> void:
+    var default_navigation_map_rid: RID = get_world_3d().get_navigation_map()
+```
 
 ## Creating new navigation maps
 
@@ -38,6 +52,22 @@ Navigation regions and avoidance agents can only be part of a single navigation 
 >
 > A navigation map switch will take effect only after the next NavigationServer synchronization.
 >
+
+```
+extends Node2D
+
+func _ready() -> void:
+    var new_navigation_map: RID = NavigationServer2D.map_create()
+    NavigationServer2D.map_set_active(new_navigation_map, true)
+```
+
+```
+extends Node3D
+
+func _ready() -> void:
+    var new_navigation_map: RID = NavigationServer3D.map_create()
+    NavigationServer3D.map_set_active(new_navigation_map, true)
+```
 
 > Note:
 >

@@ -3,11 +3,10 @@
 
 ## Introduction
 
-While indie or niche games usually
-do not need localization, games targeting a more massive market
-often require localization. Godot offers many tools to make this process
-more straightforward, so this tutorial is more like a collection of
-tips and tricks.
+While indie or niche games usually do not need localization, games targeting
+a more massive market often require localization. Godot offers many tools to
+make this process more straightforward, so this tutorial is more like a
+collection of tips and tricks.
 
 Localization is usually done by specific studios hired for the job. Despite the
 huge amount of software and file formats available for this, the most common way
@@ -57,10 +56,13 @@ Select the resource to be remapped then add some alternatives for each locale.
 
 ## Automatically setting a language
 
-It is recommended to default to the user's preferred language which can be obtained via [OS.get_locale_language()](https://docs.godotengine.org/en/stable/classes/class_os_method_get_locale_language.html#class-os_method_get_locale_language).
-If your game is not available in that language, it will fall back to the [Fallback](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_internationalization/locale/fallback.html#class-projectsettings_property_internationalization/locale/fallback)
-in **Project Settings > Internationalization > Locale**, or to en if empty.
-Nevertheless letting players change the language in game is recommended for various reasons (e.g. translation quality or player preference).
+It is recommended to default to the user's preferred language which can be
+obtained via [OS.get_locale_language()](https://docs.godotengine.org/en/stable/classes/class_os_method_get_locale_language.html#class-os_method_get_locale_language).
+If your game is not available in that language, it will fall back to the
+[Fallback](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_internationalization/locale/fallback.html#class-projectsettings_property_internationalization/locale/fallback)
+in **Project Settings > Internationalization > Locale**, or to `en` if empty.
+Nevertheless, letting players change the language in game is recommended for
+various reasons (e.g. translation quality or player preference).
 
 ```
 var language = "automatic"
@@ -74,32 +76,40 @@ else:
 
 ## Locale vs. language
 
-A <doc:locales> is commonly a combination of a language with a region or country, but can also contain information like a script or a variant.
+A <doc:locales> is commonly a combination of a language with a
+region or country, but can also contain information like a script or a variant.
 
 Examples:
 
-- en: English language
+- `en`: English language
 
-- en_GB: English in Great Britain / British English
+- `en_GB`: English in Great Britain / British English
 
-- en_US: English in the USA / American English
+- `en_US`: English in the USA / American English
 
-- en_DE: English in Germany
+- `en_DE`: English in Germany
 
-Indie games generally only need to care about language, but read on for more information.
+Indie games generally only need to care about language, but read on for more
+information.
 
-Why locales exist can be illustrated through the USA and Great Britain. Both speak the same language (English), yet differ in many aspects:
-- Spelling: E.g. gray (USA), grey (GB)
-- Use of words: E.g. eggplant (USA), aubergine (GB)
-- Units or currencies: E.g. feet/inches (USA), metres/cm (GB)
+Why locales exist can be illustrated through the USA and Great Britain.
+Both speak the same language (English), yet differ in many aspects:
 
-It can get more complex however. Imagine you offer different content in Europe and in China (e.g. in an MMO). You will need to translate each of those content variations into many languages and store and load them accordingly.
+- Spelling: e.g. gray (USA), grey (GB)
+
+- Use of words: e.g. eggplant (USA), aubergine (GB)
+
+- Units or currencies: e.g. feet/inches (USA), metres/cm (GB)
+
+It can get more complex however. Imagine you offer different content in Europe
+and in China (e.g. in an MMO). You will need to translate each of those content
+variations into many languages and store and load them accordingly.
 
 ## Converting keys to text
 
 Some controls, such as [Button](https://docs.godotengine.org/en/stable/classes/class_button.html#class-button) and [Label](https://docs.godotengine.org/en/stable/classes/class_label.html#class-label),
 will automatically fetch a translation if their text matches a translation key.
-For example, if a label's text is "MAIN_SCREEN_GREETING1" and that key exists
+For example, if a label's text is `MAIN_SCREEN_GREETING1` and that key exists
 in the current translation, then the text will automatically be translated.
 
 This automatic translation behavior may be undesirable in certain cases. For
@@ -138,23 +148,25 @@ To feature placeholders in your translated strings, use
 <doc:gdscript_format_string> or the equivalent feature in C#. This lets
 translators move the location of the placeholder in the string freely, which
 allows translations to sound more natural. Named placeholders with the
-String.format() function should be used whenever possible, as they also
+`String.format()` function should be used whenever possible, as they also
 allow translators to choose the order in which placeholders appear:
 
 ```
-# The placeholder's locations can be changed, but not their order.
-# This will probably not suffice for some target languages.
-message.text = tr("%s picked up the %s") % ["Ogre", "Sword"]
+    # The placeholder's locations can be changed, but not their order.
+    # This will probably not suffice for some target languages.
+    message.text = tr("%s picked up the %s") % ["Ogre", "Sword"]
 
-# The placeholder's locations and order can be changed.
-# Additionally, this form gives more context for translators to work with.
-message.text = tr("{character} picked up the {weapon}").format({character = "Ogre", weapon = "Sword"})
+    # The placeholder's locations and order can be changed.
+    # Additionally, this form gives more context for translators to work with.
+    message.text = tr("{character} picked up the {weapon}").format({character = "Ogre", weapon = "Sword"})
+
+.. _doc_internationalizing_games_translation_contexts:
 ```
 
 ### Translation contexts
 
 If you're using plain English as source strings (rather than message codes
-LIKE_THIS), you may run into ambiguities when you have to translate the same
+`LIKE_THIS`), you may run into ambiguities when you have to translate the same
 English string to different strings in certain target languages. You can
 optionally specify a translation context to resolve this ambiguity and allow
 target languages to use different strings, even though the source string is
@@ -194,12 +206,6 @@ var num_jobs = 1
 label.text = tr_n("%d job", "%d jobs", num_jobs, "Task Manager") % num_jobs
 ```
 
-> Note:
->
-> Providing pluralized translations is only supported with
-> <doc:localization_using_gettext>, not CSV.
->
-
 ## Making controls resizable
 
 The same text in different languages can vary greatly in length. For
@@ -216,8 +222,8 @@ original strings with accented versions (while still being readable).
 Placeholders are kept as-is, so that they keep working when pseudolocalization
 is enabled.
 
-For example, the string Hello world, this is %s! becomes
-[Ĥéłłô ŵôŕłd́, ŧh̀íš íš %s!] when pseudolocalization is enabled.
+For example, the string `Hello world, this is %s!` becomes
+`[Ĥéłłô ŵôŕłd́, ŧh̀íš íš %s!]` when pseudolocalization is enabled.
 
 While looking strange at first, pseudolocalization has several benefits:
 
@@ -244,7 +250,7 @@ called the [TranslationServer](https://docs.godotengine.org/en/stable/classes/cl
 Translations can be added or removed during runtime;
 the current language can also be changed at runtime.
 
-## Bidirectional text and UI Mirroring
+## Bidirectional text and UI mirroring
 
 Arabic and Hebrew are written from right to left (except for the numbers and Latin
 words mixed in), and the user interface for these languages should be mirrored as well.
@@ -259,21 +265,31 @@ For RTL languages, Godot will automatically do the following changes to the UI:
 
 - Swaps left and right text alignment.
 
-- Mirrors horizontal order of the child controls in the containers, and items in Tree/ItemList controls.
+- Mirrors horizontal order of the child controls in the containers, and items in
+Tree/ItemList controls.
 
-- Uses mirrored order of the internal control elements (e.g. OptionButton dropdown button, checkbox alignment, List column order, Tree item icons and connecting line alignment, e.t.c.), in some cases mirrored controls use separate theme styles.
+- Uses mirrored order of the internal control elements (e.g., OptionButton
+dropdown button, CheckBox/CheckButton alignment, List column order, TreeItem icons
+and connecting line alignment). In some cases, mirrored controls
+use separate theme styles.
 
-- Coordinate system is not mirrored, and non-UI nodes (sprites, e.t.c) are not affected.
+- Coordinate system is **not** mirrored.
 
-It is possible to override text and control layout direction by using the following control properties:
+- Non-UI nodes (sprites, etc.) are **not** affected.
 
-- text_direction, sets the base text direction. When set to "auto", direction depends on the first strong directional character in the text according to the Unicode Bidirectional Algorithm,
+It is possible to override text and control layout direction by using
+the following control properties:
 
-- language, overrides current project locale.
+- `text_direction`, sets the base text direction. When set to "auto",
+the direction depends on the first strong directional character in the text
+according to the Unicode Bidirectional Algorithm.
 
-- structured_text_bidi_override property and _structured_text_parser callback, enables special handling for structured text.
+- `language`, overrides the current project locale.
 
-- layout_direction, overrides control mirroring.
+- The `structured_text_bidi_override` property and `_structured_text_parser`
+callback, enable special handling for structured text.
+
+- `layout_direction`, overrides control mirroring.
 
 @Image(source: "ui_mirror.png")
 
@@ -290,7 +306,8 @@ word and line breaking require more than rules over character sequences.
 Godot includes ICU rule and dictionary-based break iterator data, but this data
 is not included in exported projects by default.
 
-To include it, go to **Project → Project Settings**, enable **Internationalization → Locale → Include Text Server Data**,
+To include it, go to **Project → Project Settings**, enable
+**Internationalization → Locale → Include Text Server Data**,
 then export the project. Break iterator data is about 4 MB in size.
 
 ## Structured text BiDi override
@@ -328,10 +345,10 @@ buttons). Otherwise, they can remain the same.
 You may want to test a project's translation before releasing it. Godot provides three ways
 to do this.
 
-First, in the Project Settings, under :menu:`Internationalization > Locale` (with advanced settings enabled), there is a **Test**
-property. Set this property to the locale code of the language you want to test. Godot will
-run the project with that locale when the project is run (either from the editor or when
-exported).
+First, in the Project Settings, under :menu:`Internationalization > Locale`
+(with advanced settings enabled), there is a **Test** property. Set this property
+to the locale code of the language you want to test. Godot will run the project
+with that locale when the project is run (either from the editor or when exported).
 
 @Image(source: "locale_test.png")
 
@@ -339,8 +356,8 @@ Keep in mind that since this is a project setting, it will show up in version co
 it is set to a non-empty value. Therefore, it should be set back to an empty value before
 committing changes to version control.
 
-Second, from within the editor go to the top bar and click on :button:`View` on the top bar, then go down to
-:ui:`Preview Translation` and select the language you want to preview.
+Second, from within the editor go to the top bar and click on :button:`View` on the top bar,
+then go down to :ui:`Preview Translation` and select the language you want to preview.
 
 @Image(source: "locale_editor_preview.png")
 
@@ -359,7 +376,7 @@ godot --language fr
 The project name becomes the app name when exporting to different
 operating systems and platforms. To specify the project name in more
 than one language go to **Project > Project Settings> Application >
-Config**. From here click on the button that says Localizable String (Size 0). Now there should be a button below that which says Add Translation. Click on that and it will take you to a page where you
+Config**. From here click on the button that says `Localizable String (Size 0)`. Now there should be a button below that which says `Add Translation`. Click on that and it will take you to a page where you
 can choose the language (and country if needed) for your project name
 translation. After doing that you can now type in the localized name.
 

@@ -27,7 +27,7 @@ using this ImageMagick command:
 magick convert icon.png -define icon:auto-resize=256,128,64,48,32,16 icon.ico
 ```
 
-Depending on which version of ImageMagick you installed, you might need to leave out the magick and run this command instead:
+Depending on which version of ImageMagick you installed, you might need to leave out the `magick` and run this command instead:
 
 ```
 convert icon.png -define icon:auto-resize=256,128,64,48,32,16 icon.ico
@@ -53,13 +53,13 @@ is running.
 To change the taskbar icon, go to
 **Project > Project Settings > Application > Config**, make sure
 **Advanced Settings** are enabled to see the setting, then go to
-Windows Native Icon. Click on the folder icon and select your ICO file.
+`Windows Native Icon`. Click on the folder icon and select your ICO file.
 
 @Image(source: "icon_project_settings.png")
 
 This setting only changes the icon for your exported game on Windows.
-To set the icon for macOS, use Macos Native Icon. And for any other platform,
-use the Icon setting.
+To set the icon for macOS, use `Macos Native Icon`. And for any other platform,
+use the `Icon` setting.
 
 ## Changing the file icon
 
@@ -84,4 +84,4 @@ You can now export the project. If it worked correctly, you should see this:
 > Note:
 >
 > If your icon isn't showing up properly try clearing the icon
-> cache. To do so, open the **Run** dialog and enter ie4uinit.exe > -ClearIconCache or ie4uinit.exe -show.
+> cache. To do so, open the **Run** dialog and enter `ie4uinit.exe > -ClearIconCache` or `ie4uinit.exe -show`.
