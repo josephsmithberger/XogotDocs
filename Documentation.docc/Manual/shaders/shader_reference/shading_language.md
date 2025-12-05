@@ -1,9 +1,8 @@
-<!-- Remove this line to publish to docs.xogot.com -->
 # Shading language
 
 ## Introduction
 
-Godot uses a shading language similar to GLSL ES 3.0. Most datatypes and
+Godot and Xogot use a shading language similar to GLSL ES 3.0. Most datatypes and
 functions are supported, and the few remaining ones will likely be added over
 time.
 
@@ -49,7 +48,7 @@ Type | Description
 **samplerCubeArray** | Sampler type for binding Cubemap arrays, which are read as float.
 Only supported in Forward+ and Mobile, not Compatibility.
 **samplerExternalOES** | External sampler type.
-Only supported in Compatibility/Android platform.
+Only supported in Compatibility
 
 > Warning:
 >
