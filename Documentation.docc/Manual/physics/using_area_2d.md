@@ -25,18 +25,18 @@ Areas have many properties you can use to customize their behavior.
 
 @Image(source: "area2d_properties.png")
 
-The Gravity, Linear Damp, and Angular Damp sections
+The `Gravity`, `Linear Damp`, and `Angular Damp` sections
 are used to configure the area's physics override behavior.
 We'll look at how to use those in the Area influence section below.
 
-Monitoring and Monitorable are used to enable and disable the area.
+`Monitoring` and `Monitorable` are used to enable and disable the area.
 
-The Audio Bus section allows you to override audio in the area, for example to
+The `Audio Bus` section allows you to override audio in the area, for example to
 apply an audio effect when the player moves through.
 
 Note that Area2D extends [CollisionObject2D](https://docs.godotengine.org/en/stable/classes/class_collisionobject2d.html#class-collisionobject2d), so it
 also provides properties inherited from that class.
-The Collision section of CollisionObject2D is where you configure the
+The `Collision` section of `CollisionObject2D` is where you configure the
 area's collision layer(s) and mask(s).
 
 ## Overlap detection
@@ -55,18 +55,19 @@ Here's the node setup for the coin:
 
 To detect the overlap, we'll connect the appropriate signal on the Area2D. Which
 signal to use depends on the player's node type. If the player is another area,
-use area_entered. However, let's assume our player is a CharacterBody2D
-(and therefore a CollisionObject2D type), so we'll connect the
-body_entered signal.
+use `area_entered`. However, let's assume our player is a `CharacterBody2D`
+(and therefore a `CollisionObject2D` type), so we'll connect the
+`body_entered` signal.
 
 > Note: If you're not familiar with using signals, see <doc:signals> for
 > an introduction.
 >
-```gdscript
+
+```
 extends Area2D
 
 func _on_coin_body_entered(body):
-	queue_free()
+    queue_free()
 ```
 
 Now our player can collect the coins!
@@ -84,8 +85,8 @@ See the <doc:index> for an example of using Area2D in a game.
 ## Area influence
 
 The second major use for area nodes is to alter physics. By default, the area
-won't do this, but you can enable this with the Space Override property. When
-areas overlap, they are processed in Priority order (higher priority areas are
+won't do this, but you can enable this with the `Space Override` property. When
+areas overlap, they are processed in `Priority` order (higher priority areas are
 processed first). There are four options for override:
 
 - Combine - The area adds its values to what has been calculated so far.
@@ -111,9 +112,9 @@ The physics properties that can be overridden are:
 
 ### Point gravity
 
-The Gravity Point property allows you to create an "attractor". Gravity in the
-area will be calculated towards a point, given by the Point Center property.
-Values are relative to the Area2D, so for example using (0, 0) will attract
+The `Gravity Point` property allows you to create an "attractor". Gravity in the
+area will be calculated towards a point, given by the `Point Center` property.
+Values are relative to the Area2D, so for example using `(0, 0)` will attract
 objects to the center of the area.
 
 ### Examples

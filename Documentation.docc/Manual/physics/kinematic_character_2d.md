@@ -48,16 +48,20 @@ in sync with physics server, also it is called the same amount of times
 per second, always. This makes physics and motion calculation work in a
 more predictable way than using regular process, which might have spikes
 or lose precision if the frame rate is too high or too low.
-```gdscript 
+
+```
 extends CharacterBody2D
 
 func _physics_process(delta):
-	pass
+    pass
 ```
 
 ## Scene setup
-To have something to test, here's the scene (from the tilemap tutorial): [kinematic_character_2d_starter.zip.](https://github.com/godotengine/godot-docs-project-starters/releases/download/latest-4.x/kinematic_character_2d_starter.zip) 
-We'll be creating a new scene for the character. Use the robot sprite and create a scene like this:
+
+To have something to test, here's the scene (from the tilemap tutorial):
+kinematic_character_2d_starter.zip.
+We'll be creating a new scene for the character. Use the robot sprite and
+create a scene like this:
 
 @Image(source: "kbscene.png")
 
@@ -84,17 +88,18 @@ map scene the main one, so it runs when pressing play.
 
 Go back to the character scene, and open the script, the magic begins
 now! Kinematic body will do nothing by default, but it has a
-useful function called CharacterBody2D.move_and_collide().
+useful function called `CharacterBody2D.move_and_collide()`.
 This function takes a [Vector2](https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2) as
 an argument, and tries to apply that motion to the kinematic body. If a
 collision happens, it stops right at the moment of the collision.
 
 So, let's move our sprite downwards until it hits the floor:
-```gdscript 
+
+```
 extends CharacterBody2D
 
 func _physics_process(delta):
-	move_and_collide(Vector2(0, 1)) # Move down 1 pixel per physics frame 
+    move_and_collide(Vector2(0, 1)) # Move down 1 pixel per physics frame
 ```
 
 The result is that the character will move, but stop right when
@@ -102,16 +107,17 @@ hitting the floor. Pretty cool, huh?
 
 The next step will be adding gravity to the mix, this way it behaves a
 little more like a regular game character:
-```gdscript
+
+```
 extends CharacterBody2D
 
 const GRAVITY = 200.0
 
 func _physics_process(delta):
-	velocity.y += delta * GRAVITY
+    velocity.y += delta * GRAVITY
 
-	var motion = velocity * delta
-	move_and_collide(motion)
+    var motion = velocity * delta
+    move_and_collide(motion)
 ```
 
 Now the character falls smoothly. Let's make it walk to the sides, left
@@ -119,24 +125,25 @@ and right when touching the directional keys. Remember that the values
 being used (for speed at least) are pixels/second.
 
 This adds basic support for walking when pressing left and right:
-```gdscript
+
+```
 extends CharacterBody2D
 
 const GRAVITY = 200.0
 const WALK_SPEED = 200
 
 func _physics_process(delta):
-	velocity.y += delta * GRAVITY
+    velocity.y += delta * GRAVITY
 
-	if Input.is_action_pressed("ui_left"):
-		velocity.x = -WALK_SPEED
-	elif Input.is_action_pressed("ui_right"):
-		velocity.x =  WALK_SPEED
-	else:
-		velocity.x = 0
+    if Input.is_action_pressed("ui_left"):
+        velocity.x = -WALK_SPEED
+    elif Input.is_action_pressed("ui_right"):
+        velocity.x =  WALK_SPEED
+    else:
+        velocity.x = 0
 
-	# "move_and_slide" already takes delta time into account.
-	move_and_slide()
+    # "move_and_slide" already takes delta time into account.
+    move_and_slide()
 ```
 
 And give it a try.

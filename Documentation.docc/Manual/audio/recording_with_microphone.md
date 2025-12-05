@@ -1,4 +1,3 @@
-<!-- Remove this line to publish to docs.xogot.com -->
 # Recording with microphone
 
 Godot supports in-game audio recording for Windows, macOS, Linux, Android and
@@ -25,13 +24,26 @@ You will need to enable audio input in the [Audio > Driver > Enable Input](https
 The demo consists of a single scene. This scene includes two major parts: the
 GUI and the audio.
 
-We will focus on the audio part. In this demo, a bus named Record with the
-effect Record is created to handle the audio recording.
-An AudioStreamPlayer named AudioStreamRecord is used for recording.
+We will focus on the audio part. In this demo, a bus named `Record` with the
+effect `Record` is created to handle the audio recording.
+An `AudioStreamPlayer` named `AudioStreamRecord` is used for recording.
 
 @Image(source: "record_bus.png")
 
 @Image(source: "record_stream_player.png")
+
+```
+var effect
+var recording
+
+
+func _ready():
+    # We get the index of the "Record" bus.
+    var idx = AudioServer.get_bus_index("Record")
+    # And use it to retrieve its first effect, which has been defined
+    # as an "AudioEffectRecord" resource.
+    effect = AudioServer.get_bus_effect(idx, 0)
+```
 
 The audio recording is handled by the [AudioEffectRecord](https://docs.godotengine.org/en/stable/classes/class_audioeffectrecord.html#class-audioeffectrecord) resource
 which has three methods:
@@ -39,16 +51,52 @@ which has three methods:
 [is_recording_active()](https://docs.godotengine.org/en/stable/classes/class_audioeffectrecord_method_is_recording_active.html#class-audioeffectrecord_method_is_recording_active),
 and [set_recording_active()](https://docs.godotengine.org/en/stable/classes/class_audioeffectrecord_method_set_recording_active.html#class-audioeffectrecord_method_set_recording_active).
 
-At the start of the demo, the recording effect is not active. When the user
-presses the RecordButton, the effect is enabled with
-set_recording_active(true).
+```
+func _on_record_button_pressed():
+    if effect.is_recording_active():
+        recording = effect.get_recording()
+        $PlayButton.disabled = false
+        $SaveButton.disabled = false
+        effect.set_recording_active(false)
+        $RecordButton.text = "Record"
+        $Status.text = ""
+    else:
+        $PlayButton.disabled = true
+        $SaveButton.disabled = true
+        effect.set_recording_active(true)
+        $RecordButton.text = "Stop"
+        $Status.text = "Recording..."
+```
 
-On the next button press, as effect.is_recording_active() is true,
-the recorded stream can be stored into the recording variable by calling
-effect.get_recording().
+At the start of the demo, the recording effect is not active. When the user
+presses the `RecordButton`, the effect is enabled with
+`set_recording_active(true)`.
+
+On the next button press, as `effect.is_recording_active()` is `true`,
+the recorded stream can be stored into the `recording` variable by calling
+`effect.get_recording()`.
+
+```
+func _on_play_button_pressed():
+    print(recording)
+    print(recording.format)
+    print(recording.mix_rate)
+    print(recording.stereo)
+    var data = recording.get_data()
+    print(data.size())
+    $AudioStreamPlayer.stream = recording
+    $AudioStreamPlayer.play()
+```
 
 To playback the recording, you assign the recording as the stream of the
-AudioStreamPlayer and call play().
+`AudioStreamPlayer` and call `play()`.
 
-To save the recording, you call save_to_wav() with the path to a file.
-In this demo, the path is defined by the user via a LineEdit input box.
+```
+func _on_save_button_pressed():
+    var save_path = $SaveButton/Filename.text
+    recording.save_to_wav(save_path)
+    $Status.text = "Saved WAV file to: %s\n(%s)" % [save_path, ProjectSettings.globalize_path(save_path)]
+```
+
+To save the recording, you call `save_to_wav()` with the path to a file.
+In this demo, the path is defined by the user via a `LineEdit` input box.

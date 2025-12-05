@@ -7,9 +7,9 @@ at runtime. You can use it to run native code without compiling it with the engi
 
 There are three primary methods with which this is achieved:
 
-- gdextension_interface.h: A set of C functions that Godot and a GDExtension can use to communicate.
+- `gdextension_interface.h`: A set of C functions that Godot and a GDExtension can use to communicate.
 
-- extension_api.json: A list of C functions that are exposed from Godot APIs (<doc:scripting_languages#Core-Features>).
+- `extension_api.json`: A list of C functions that are exposed from Godot APIs (<doc:scripting_languages#Core-Features>).
 
 - <doc:gdextension_file>: A file format read by Godot to load a GDExtension.
 

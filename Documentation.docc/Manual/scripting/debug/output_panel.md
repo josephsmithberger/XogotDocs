@@ -43,7 +43,7 @@ This method accepts multiple arguments which are concatenated together upon prin
 This method has variants that separate arguments with tabs and spaces respectively:
 [printt()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_printt.html#class-@globalscope_method_printt) and [prints()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_prints.html#class-@globalscope_method_prints).
 
-- [print_rich()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_print_rich.html#class-@globalscope_method_print_rich): Same as print(),
+- [print_rich()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_print_rich.html#class-@globalscope_method_print_rich): Same as `print()`,
 but BBCode can be used to format the text that is printed (see below).
 
 - [push_error()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_push_error.html#class-@globalscope_method_push_error): Prints an error message.
@@ -56,15 +56,15 @@ tab instead.
 
 For more complex use cases, these can be used:
 
-- [print_verbose()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_print_verbose.html#class-@globalscope_method_print_verbose): Same as print(),
+- [print_verbose()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_print_verbose.html#class-@globalscope_method_print_verbose): Same as `print()`,
 but only prints when verbose mode is enabled in the Project Settings
-or the project is run with the --verbose command line argument.
+or the project is run with the `--verbose` command line argument.
 
-- [printerr()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_printerr.html#class-@globalscope_method_printerr): Same as print(),
+- [printerr()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_printerr.html#class-@globalscope_method_printerr): Same as `print()`,
 but prints to the standard error stream instead of the standard output string.
-push_error() should be preferred in most cases.
+`push_error()` should be preferred in most cases.
 
-- [printraw()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_printraw.html#class-@globalscope_method_printraw): Same as print(),
+- [printraw()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_printraw.html#class-@globalscope_method_printraw): Same as `print()`,
 but prints without a blank line at the end. This is the only method
 that does **not** print to the editor Output panel.
 It prints to the standard output stream only, which means it's still included
@@ -78,7 +78,7 @@ or when the project is exported in debug mode.
 relative to the current node. Useful for debugging node structures created at runtime.
 
 - [print_tree_pretty()](https://docs.godotengine.org/en/stable/classes/class_node_method_print_tree_pretty.html#class-node_method_print_tree_pretty): Same as
-print_tree(), but with Unicode characters for a more tree-like appearance. This relies on
+`print_tree()`, but with Unicode characters for a more tree-like appearance. This relies on
 box-drawing characters,
 so it may not render correctly with all fonts.
 
@@ -101,7 +101,7 @@ terminal understands.
 
 In the editor output, all BBCode tags are recognized as usual. In the terminal
 output, only a subset of BBCode tags will work, as documented in the linked
-print_rich() method description above. In the terminal, the colors will look
+`print_rich()` method description above. In the terminal, the colors will look
 different depending on the user's theme, while colors in the editor will use the
 same colors as they would in the project.
 
