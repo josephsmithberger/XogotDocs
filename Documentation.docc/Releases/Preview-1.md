@@ -4,7 +4,70 @@ Release notes for our preview release of Xogot to TestFlight.
 
 # Releases 
 
-## Build
+## Build 3501
+
+### Improvements
+
+* Improved our numeric input controls - it no longer roundrips data to strings,
+  so it should keep the precision just as you see it.   This fixed a handful of
+  small usability problems too with numeric input, and would love if you could
+  test this.
+
+### Fixes
+
+* Fixes "New Shader Global" regression, it was not possible to add new shader
+  globals (#2016).
+
+* Fixes a crash related to the gizmo display update when the selection changed
+  before the finger was lifted (Testflight, #2023)
+
+* Fixed ranged input on the project settings, which was getting choppy (#2017)
+
+## Build 3484
+
+### Improvements
+
+* Feature Tags are now supported (#614) so you can more easily have conditional
+  code in your games.  Learn more here
+  https://docs.godotengine.org/en/stable/tutorials/export/feature_tags.html
+
+### Fixes
+
+* Caught another crash in the wild that should now be fixed (Testflight)
+
+* When you use the command to show the file in the FilePad inspector
+  (Command-Shift-J), we will now open the sidebar if it is closed.
+
+* Fixes running from a "Run Scene" that sometimes might not initialize correctly
+  (#1996).
+
+* It is now possible to create ShaderInclude resources without getting a warning
+  (#1992, Discord)
+
+* Workaround for a SwiftUI problem when you shrank the window and it would crash
+  on you (Testflight)
+
+* Fix for a crash when trying to setup a remote debugging connection (#2005,
+  Testflight).
+
+* We now react to changes on resource objects, before you had to navigate
+  back/forward in the inspector.  #2004. This worked for Nodes, this was just a
+  special case for Resource editing.
+
+* Paywall will not show up on first use anymore.
+
+* Prevents a crash if we attempt to switch the theme color before Xogot starts,
+  or just after it is shutting down (#2010).
+
+* Fixes an importer loader crash (#2011).
+
+* Prevents a crash on the numeric input (values larger than Int crashing when
+  editing Int values - #2012).
+
+* Prevents a crash when the user switches a scene, but was playing an animation
+  (#2013).
+
+## Build 3457
 
 ### Fixes
 
