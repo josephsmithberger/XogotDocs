@@ -119,7 +119,7 @@
             The next step is to change the Label's Text property. Let's change
             it to "Hello World".
 
-            Head to the Inspector dock on the right of the viewport. Click inside the field
+            Head to the **Scope** dock on the right of the viewport. Click inside the field
             below the Text property and type "Hello World".
 
             @Image(source: "nodes_and_scenes_06_label_text.png")
@@ -128,15 +128,14 @@
             @Step {
                 You will see the text draw in the viewport as you type.
 
-                > See also: You can edit any property listed in the Inspector as we did with
-                the Text. For a complete reference of the Inspector dock, see
-                <doc:doc_editor_inspector_dock>.
-
-                You can move your Label node in the viewport by selecting the move tool in the
-                toolbar.
+                > Tip: You can edit any property listed in the Inspector as we did with
+                the Text. 
                 @Image(source: "nodes_and_scenes_07_move_tool.png")
             }
             @Step {
+                You can also move your Label node in the viewport by selecting the move tool in the
+                toolbar.
+                
                 With the Label selected, click and drag anywhere in the viewport to
                 move it to the center of the view delimited by the rectangle.
                 @Image(source: "nodes_and_scenes_08_hello_world_text.png")
