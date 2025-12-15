@@ -69,40 +69,38 @@
             @Image(source: "scripting_first_script_attach_script.png")
         }
         @Steps {
+            The Attach Node Script window appears. It allows you to select the script's
+            language and file path, among other options.
             @Step {
-                The Attach Node Script window appears. It allows you to select the script's
-                language and file path, among other options.
-
-                Change the Template field from `Node: Default` to `Object: Empty` to
+                Hit the toggle switch for **Use Template** to `off` in  order to
                 start with a clean file. Leave the other options set to their default values and
                 press the Create button to create the script.
                 @Image(source: "scripting_first_script_attach_node_script.png")
             }
             @Step {
                 The Script workspace should appear with your new `sprite_2d.gd` file open and
-                the following line of code:
+                the following line of code: `extends Sprite2D`
 
                 @Code(name: "sprite_2d.gd", file: scripting_01.gd, previousFile: scripting_01.gd)
             }
-            @Step {
-                Every GDScript file is implicitly a class. The `extends` keyword defines the
+            Every GDScript file is implicitly a class. The `extends` keyword defines the
                 class this script inherits or extends. In this case, it's `Sprite2D`, meaning
                 our script will get access to all the properties and functions of the Sprite2D
                 node, including classes it extends, like `Node2D`, `CanvasItem`, and
                 `Node`.
 
-                > In GDScript, if you omit the line with the `extends` keyword, your
+            > In GDScript, if you omit the line with the `extends` keyword, your
                 class will implicitly extend [`RefCounted`](https://docs.godotengine.org/en/stable/classes/class_RefCounted.html#class-RefCounted), which
                 Godot uses to manage your application's memory.
 
-                Inherited properties include the ones you can see in the Inspector dock, like
+            Inherited properties include the ones you can see in the Inspector dock, like
                 our node's `texture`.
 
-                > By default, the Inspector displays a node's properties in "Title Case", with
+            > By default, the Scope displays a node's properties in "Title Case", with
                 capitalized words separated by a space. In GDScript code, these properties
                 are in "snake_case", which is lowercase with words separated by an underscore.You can hover over any property's name in the Inspector to see a description and
                 its identifier in code.
-            }
+    
         }
     }
     @Section(title: "Hello, world!") {
