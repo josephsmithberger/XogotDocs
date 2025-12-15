@@ -3,45 +3,35 @@
 
         @Image(source: "fix-me.png")
     }
-    @Section(title: "FIXME: Introduction") {
+    @Section(title: "Introduction") {
         @ContentAndMedia {
-            FIXME: Replace this with introduction content (possibly from the next step or section that appears after this.)
-
-            @Image(source: "fix-me.png")
-        }
-        @Steps {
-            @Step {
-                In this lesson, you will code your first script to make the Godot icon turn in
-                circles. As we mentioned [`in the introduction`](doc:doc_introduction_learning_programming), we assume you have programming
-                foundations.
-
-                This tutorial is written for GDScript, and the equivalent C# code is included in
-                another tab of each codeblock for convenience.
-                @Image(source: "scripting_first_script_rotating_godot.gif")
-            }
-            @Step {
-                > See also: To learn more about GDScript, its keywords, and its syntax, head to
-                the <doc:doc_gdscript> section. To learn more about C#,
-                head to the <doc:doc_c_sharp> section.
-            }
+            In this lesson, you will code your first script to make the Godot icon turn in
+            circles. This tutorial assumes you have some basic programming foundations before you start.
+            
+            Now that we've stated that, let's have fun learning to code in GDScript!
+            
+            @Image(source: "scripting_first_script_rotating_godot.gif")
         }
     }
     @Section(title: "Project setup") {
         @ContentAndMedia {
-            Please [`create a new project`](doc:doc_creating_and_importing_projects) to
-            start with a clean slate. Your project should contain one picture: the Godot
-            icon, which we often use for prototyping in the community.
+            Please create a new project to
+            start with a clean slate. 
+            
+            In the file browser dock  on the left you will find one image: the Godot icon or `icon.svg`; which we often use for prototyping in the community.
 
-            @Image(source: "scripting_first_script_icon.svg")
+            @Image(source: "scripting_first_script_icon.png")
         }
         @Steps {
+            We need to create a Sprite2D node to display it in the game. 
             @Step {
-                We need to create a Sprite2D node to display it in the game. In the Scene dock,
+                In the Scene dock,
                 click the Other Node button.
                 @Image(source: "scripting_first_script_click_other_node.png")
             }
             @Step {
-                Type "Sprite2D" in the search bar to filter nodes and double-click on Sprite2D
+                Click **All** in the tab bar and then
+                type "Sprite2D" in the search bar to filter nodes and double-click on Sprite2D
                 to create the node.
                 @Image(source: "scripting_first_script_add_sprite_node.png")
             }
@@ -50,10 +40,17 @@
                 @Image(source: "scripting_first_script_scene_tree.png")
             }
             @Step {
-                A Sprite2D node needs a texture to display. In the Inspector on the right, you
-                can see that the Texture property says `<empty>`. To display the
-                Godot icon, click and drag the file `icon.svg` from the FileSystem dock onto the
-                Texture slot.
+                A Sprite2D node needs a texture to display. In the Scope on the right, you can open it by clicking the Scope icon if it's closed. 
+                
+                Inside, you
+                can see that the Texture property says `Pick Resource`. 
+            }
+            @Step {
+                To display the
+                Godot icon, drag the file `icon.svg` from the FileSystem dock on the left onto the
+                Texture slot
+                
+                Alternatively, click `Pick Resource` and pick `Load` in the menu that appears. Then in the popup window, choose the icon file and hit `select`. 
                 @Image(source: "scripting_first_script_setting_texture.png")
             }
             @Step {
