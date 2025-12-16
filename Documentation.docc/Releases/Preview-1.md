@@ -4,7 +4,35 @@ Release notes for our preview release of Xogot to TestFlight.
 
 # Releases 
 
-## Build 3501
+## Build 3519
+
+### Fixes
+
+* Fixed array editing in the Project Settings (#2015)
+
+* Prevents a crash during drag and drop (#2031, TestFlight)
+
+* Properly reports rename errors, and also improves the Rename File dialog to
+  auto-select the file, without selecting the extension (#2030, Discord).
+
+* Another attempt at fixing the crash on the keyboard layout guide that
+  sometimes gets triggered (#2032, Testflight).  We have tracked this down
+  to a bug in SwiftUI on iPhone, and we have added a workaround.
+
+* Fixes a race condition in Godot that crashes the editor when closing a project
+  (#2034, Testflight).
+
+* Fixes a crash on the text editor when attempting to highlight a line that has
+  been removed (#2033, Testflight)
+
+* Fixes a crash when starting a game, related to the Virtual Controller
+  initialization.   We finally tracked down our major source of crashes (#1920,
+  related to #1633 - Testflight)
+
+* Fixes a problem with remote debugging (#2026, Testflight)
+
+
+## Build 3501 (beta 151)
 
 ### Improvements
 
