@@ -47,16 +47,18 @@ by tapping the Sidebar toolbar button in the upper-right corner of Xogot.
 
 1. Create New Node
 2. Instantiate Child Scene
-3. Attach/Detach Node Script
-4. Select multiple nodes
-5. Open in Editor
-6. Toggle Visibility
-7. Open Attached Script
+3. Select multiple nodes
+4. Show/Hide Xogot Sidebar
+5. Open Attached Node Script
+6. Open in Editor
+7. Toggle Visibility
 8. Create New File (Scene/Script/Resource/Import/etc)
 9. File Sort order / Show Search / Refresh
 10. Find/Replace Tool
 11. Show/Hide Scene Tree
 12. Show/Hide File Pad
+13. Undo
+14. Redo
 
 Refer to the screenshot above to better understand the numbered elements of
 the Scene Tree and File Pad UI components.
