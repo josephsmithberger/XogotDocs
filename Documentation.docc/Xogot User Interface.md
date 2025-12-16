@@ -20,15 +20,13 @@ screenshot to help you locate each feature.
 
 1. Show/Hide Xogot Sidebar
 2. Document Menu - New/Open/Save/Close Scene, Close Project
-3. Undo
-4. Redo
-5. Import Assets
-6. Open 3D Editor
-7. Open 2D Editor
-8. Open Script Editor
-9. Run Project
-10. Show/Hide Inspector
-11. Settings menu
+3. Open 3D Editor
+4. Open 2D Editor
+5. Open Script Editor
+6. Open Game Tab
+7. Run Project
+8. Show/Hide Inspector
+9. Settings menu
 
 Refer to the screenshot above to better understand the numbered elements of
 the toolbar.
