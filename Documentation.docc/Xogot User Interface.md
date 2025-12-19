@@ -173,13 +173,14 @@ of the 2D workspace.
 2. Move Mode
 3. Rotate Mode / Change Rotation Pivot
 4. Scale Mode
-5. Use Snap
-6. Snap Menu
-7. Lock/Unlock Select Node(s)
-8. Group/Ungroup Selected Node(s)
-9. Bones Menu / Selection Options
-10. Zoom
-11. View Menu
+5. Set Scale Behavior (Freeform or Uniform)
+6. Use Snap
+7. Snap Menu
+8. Lock/Unlock Select Node(s)
+9. Group/Ungroup Selected Node(s)
+10. Bones Menu / Selection Options
+11. Zoom
+12. View Menu
 
 Refer to the screenshot above to better understand the numbered elements of
 these 2D Editor Toolbar.
