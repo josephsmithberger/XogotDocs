@@ -3,47 +3,37 @@
 
         @Image(source: "fix-me.png")
     }
-    @Section(title: "FIXME: Introduction") {
+    @Section(title: "Signals: Introduction") {
         @ContentAndMedia {
-            FIXME: Replace this with introduction content (possibly from the next step or section that appears after this.)
-
-            @Image(source: "fix-me.png")
+            In this lesson, we will look at signals. They are messages that nodes emit when
+            something specific happens to them, like a button being pressed. Other nodes can
+            connect to that signal and call a function when the event occurs.
         }
-        @Steps {
-            @Step {
-                In this lesson, we will look at signals. They are messages that nodes emit when
-                something specific happens to them, like a button being pressed. Other nodes can
-                connect to that signal and call a function when the event occurs.
-
-                Signals are a delegation mechanism built into Godot that allows one game object to
-                react to a change in another without them referencing one another. Using signals
-                limits [coupling](https://en.wikipedia.org/wiki/Coupling_(computer_programming)) and keeps your
-                code flexible.
-
-                For example, you might have a life bar on the screen that represents the
-                player's health. When the player takes damage or uses a healing potion, you want
-                the bar to reflect the change. To do so, in Godot, you would use signals.
-
-                Like methods (<doc:class_callable>), signals are a first-class type since Godot
-                4.0. This means you can pass them around as method arguments directly without
-                having to pass them as strings, which allows for better autocompletion and is
-                less error-prone. See the <doc:class_signal> class reference for a list of
-                what you can do with the Signal type directly.
-
-                > See also: As mentioned in the introduction, signals are Godot's version of the
-                observer pattern. You can learn more about it in
-                [Game Programming Patterns](https://gameprogrammingpatterns.com/observer.html).
-
-                We will now use a signal to make our Godot icon from the previous lesson
-                (<doc:doc_scripting_player_input>) move and stop by pressing a button.
-
-                > For this project, we will be following the Godot naming conventions.**GDScript**: Classes (nodes) use PascalCase, variables and
-                functions use snake_case, and constants use ALL_CAPS (See
-                <doc:doc_gdscript_styleguide>).**C#**: Classes, export variables and methods use PascalCase,
-                private fields use _camelCase, local variables and parameters use
-                camelCase (See <doc:doc_c_sharp_styleguide>). Be careful to type
-                the method names precisely when connecting signals.
-            }
+        @ContentAndMedia {
+            Signals are a delegation mechanism built into Godot that allows one game object to
+            react to a change in another without them referencing one another. Using signals
+            limits [coupling](https://en.wikipedia.org/wiki/Coupling_(computer_programming)) and keeps your
+            code flexible.
+            
+            For example, you might have a life bar on the screen that represents the
+            player's health. When the player takes damage or uses a healing potion, you want
+            the bar to reflect the change. To do so, in Godot, you would use signals.
+        }
+        @ContentAndMedia {
+            Like methods, signals are a first-class type since Godot
+            4.0. This means you can pass them around as method arguments directly without
+            having to pass them as strings, which allows for better autocompletion and is
+            less error-prone..
+            
+            > See also: As mentioned in the introduction, signals are Godot's version of the
+            observer pattern. You can learn more about it in
+            [Game Programming Patterns](https://gameprogrammingpatterns.com/observer.html).
+            
+            We will now use a signal to make our Godot icon from the previous lesson move and stop by pressing a button.
+            
+            > For this project, we will be following the Godot naming conventions. **GDScript**: Classes (nodes) use PascalCase, variables and
+            functions use snake_case, and constants use ALL_CAPS. Be careful to type
+            the method names precisely when connecting signals.
         }
     }
     @Section(title: "Scene setup") {
@@ -52,11 +42,12 @@
             both a [`Button`](https://docs.godotengine.org/en/stable/classes/class_button.html#class-button) and the `sprite_2d.tscn` scene we created in
             the <doc:doc_scripting_first_script> lesson.
 
-            Create a new scene by going to the menu Scene > New Scene.
-
             @Image(source: "signals_01_new_scene.png")
         }
         @Steps {
+            @Step {
+                Create a new scene by pressing **sprite_2d** in the top menu bar and tapping **New Scene**.
+            }
             @Step {
                 In the Scene dock, click the 2D Scene button. This will add
                 a [`Node2D`](https://docs.godotengine.org/en/stable/classes/class_Node2D.html#class-Node2D) as our root.
