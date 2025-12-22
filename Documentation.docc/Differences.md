@@ -14,7 +14,7 @@ written in C++, C#, or other compiled languages are not currently supported.
 
 ## Project Settings
 
-In Xogot, tap the **...** button in the upper-righthand corner and choose **“Settings”**
+In Xogot, tap the menu button in the upper-righthand corner and choose **“Settings”**
 to open Project Settings.  The individual Project Settings tabs from Godot, such as
 Input Map, Autoload and Plugins, can be navigated to by tapping on the **General** in
 the drop-down list at the top of the Settings dialog.
