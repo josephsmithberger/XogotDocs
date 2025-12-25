@@ -4,7 +4,7 @@ Release notes for our preview release of Xogot to TestFlight.
 
 # Releases 
 
-## Build 3573
+## Build 3573/Beta 176
 
 ### Improvements
 
