@@ -4,6 +4,52 @@ Release notes for our preview release of Xogot to TestFlight.
 
 # Releases 
 
+## Build
+
+### Improvements
+
+* We are bringing the pre-compiled Shaders back into Xogot, which should help
+  startup performance as fewer shaders must be compiled when the editor starts.
+
+  We used to have this a long time ago, but we disabled shortly before the Xogot
+  official launch, I am enabling it, as I got a chance to identify the root
+  cause of the bugs that this introduced back in March.
+
+* Command Palette uses a bit more space, and the image previews are slightly
+  larger along.
+
+* The Command Palette when directed to load files will now load the file listing
+  upfront.
+
+* The XogotShell no longer triggers the command palette when tapping again
+  2D/3D, I found it confusing - but the document icon will, like it did before,
+  and is replaced by the Command Palette.
+
+### Fixes
+
+* Fixes the sidebar position on the iPhone in landscape mode.
+
+* Should fix the UI on iPhone Max when rotating the UI (Discord).
+
+## Build 3582/Beta 179
+
+### Improvements
+
+* iPhone: Fixes various papercuts in the search tab #2069, now tapping on
+  different filters will update the results without typing additional text, it
+  will now auto-close the search when you take an action, automatically selects
+  the text input.
+
+* iPhone: synced the fact that our iPhone tabs are not exacly the same as the
+  iPad tabs, and we need to propagate some state.
+
+* iPhone: Fixes the sizing after rotation, the bug was alwasy present, but the
+  new TabView made it more pronounced (#2077)
+
+## Build 3575
+
+* iPhone: Small fix for the new tab view
+
 ## Build 3573/Beta 176
 
 ### Improvements
@@ -30,7 +76,7 @@ Glass presentation from Slack.
 
 * Fix TileSet: Collision layer position mismatch (#2066, Discord)
 
-## Build 3564
+## Build 3564/Beta 173
 
 * iPhone: additional Liquid Glass work, this time, the UI has been moved to use
   a tab-view inspired by recent Apple talks covering migration to Liquid Glass.
