@@ -269,68 +269,56 @@
             > This section is a reference on how to define and use your own signals,
             and does not build upon the project created in previous lessons.
         }
-        @ContentAndMedia {
+        @Steps {
             You can define custom *signals* in a script. Say, for example, that you want to
             show a game over screen when the player's health reaches zero. To do so, you
             could define a *signal* named "died" or "health_depleted" when their `health`
             reaches `0`.
-
-            ``` gdscript
-            extends Node2D
-
-            signal health_depleted
-
-            var health = 10
-            ```
-        }
-        @ContentAndMedia {
+            @Step {
+                If we were creating a health script we might start with something like this:
+                @Code(name: "health.gd", file: signals_01.gd, previousFile: signals_00.gd)
+            }
+            @Step {
+                We have hardcoded health to 10 in the example script to keep it simple for beginners.
+                In a production game, it's better to leave the variable undefined and add a type hint (e.g., `@export var health: int`). 
+                
+                This exposes the variable in the Godot Inspector, allowing you to easily set different health values for different entities using the same script, while ensuring the value is always a whole number. When you create copde this way, you can use this single script on a Goblin (set health to 5) and a Giant (set health to 100) without changing the code! Both entities would still benefit from the same functions and signals.
+                @Image(source: "singals_best_practices.png")
+            }
+            
             > As signals represent events that just occurred, we generally use an
             action verb in the past tense in their names.
+            @Step {
+                Your signals work the same way as built-in ones: they appear in the Node tab and
+                you can connect to them like any other.
+                
+                @Image(source: "signals_17_custom_signal.png")
+            }
+            @Step {
+                To emit a signal in your scripts, call `emit()` on the signal. 
+                
+                In this case, we are creating a function that other scripts can call when the node this is attached to "takes damage".
+                @Code(name: "health.gd", file: signals_02.gd, previousFile: signals_01.gd)
+            }
+            Signals can display more than one argument as well, so let's say we wanted a more complex signal that allows us to track damage and display it along with the current health, maybe for a health bar or damage meter. 
             
-            Your signals work the same way as built-in ones: they appear in the Node tab and
-            you can connect to them like any other.
+            @Step {
+                For custom arguments, specify the argument names between parentheses when initializing the signal:
+                @Code(name: "health.gd", file: signals_03.gd, previousFile: signals_02.gd)
+            }
             
-            @Image(source: "signals_17_custom_signal.png")
-        }
-        @ContentAndMedia {
-            To emit a signal in your scripts, call `emit()` on the signal.
-            
-            ``` gdscript
-            func take_damage(amount):
-                health -= amount
-                if health <= 0:
-                    health_depleted.emit()
-            ```
-        }
-        @ContentAndMedia {
-            A signal can optionally declare one or more arguments. Specify the argument
-            names between parentheses:
-            
-            ``` gdscript
-            extends Node2D
-            
-            signal health_changed(old_value, new_value)
-            
-            var health = 10
-            ```
-        }
-        @ContentAndMedia {
             > The signal arguments show up in the editor's node dock, and Godot can use
             them to generate callback functions for you. However, you can still emit any
             number of arguments when you emit signals. So it's up to you to emit the
             correct values.
             
-            To emit values along with the signal, add them as extra arguments to the
-            `emit()` function:
-            
-            ``` gdscript
-            func take_damage(amount):
-                var old_health = health
-                health -= amount
-                health_changed.emit(old_health, health)
-            ```
+            @Step {
+                To emit values along with the signal, add them as extra arguments to the
+                `emit()` function:
+                @Code(name: "health.gd", file: signals_04.gd, previousFile: signals_03.gd)
+            }
         }
-    }
+    } 
     @Section(title: "Summary") {
         @ContentAndMedia {
             Any node in Godot emits signals when something specific happens to them, like a
