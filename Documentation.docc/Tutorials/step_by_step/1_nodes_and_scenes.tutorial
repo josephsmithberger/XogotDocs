@@ -1,7 +1,7 @@
 @Tutorial(time: 30) {
     @Intro(title: "Nodes and Scenes") {
 
-        @Image(source: "fix-me.png")
+        @Image(source: "nodes_cover.png")
         }
     @Section(title: "Nodes") {
         @ContentAndMedia {
@@ -44,10 +44,10 @@
             @Image(source: "nodes_and_scenes_3d_scene_example.png")
         }
         @ContentAndMedia {
-            The Godot editor essentially is a **scene editor**. It has plenty of tools for
-            editing 2D and 3D scenes, as well as user interfaces. A Godot project can
+            The Xogot editor essentially is a **scene editor**. It has plenty of tools for
+            editing 2D and 3D scenes, as well as user interfaces. A Xogot project can
             contain as many of these scenes as you need. The engine only requires one as
-            your application's **main scene**. This is the scene Godot will first load when
+            your application's **main scene**. This is the scene the Godot engine will first load when
             you or a player runs the game.
 
             On top of acting like nodes, scenes have the following characteristics:
@@ -98,8 +98,8 @@
                 @Image(source: "nodes_and_scenes_04_create_label_window.png")
             }
             @Step {
-                Click on the `Label` node to select it and click the **Create** button at
-                the bottom of the window.
+                Press on the `Label` node to select it (1) and press the **Add** button at
+                the top of the window (2).
                 @Image(source: "nodes_and_scenes_05_editor_with_label.png")
             }
              A lot happens when you add a scene's first node: 
@@ -114,6 +114,7 @@
             Let's open the **Scope** now and take a look at the available properties. We will edit them in the next section.
             @Step {
                 Press the cross-hair icon in the top right to open the **Scope**.
+                @Image(source: "nodes_and_scenes_06_scope.png")
             }
         }
     }
@@ -122,12 +123,13 @@
             The next step is to change the Label's Text property. Let's change
             it to "Hello World".
 
-            @Image(source: "nodes_and_scenes_06_label_text.png")
+            @Image(source: "nodes_and_scenes_hello_world.png")
         }
         @Steps {
             @Step {
-                Head to the **Scope** dock on the right of the viewport. Click inside the field
-                below the `Text property and type "Hello World".
+                Head to the **Scope** dock on the right of the viewport. Press inside the field
+                below the **Text property** (1) and type "Hello World" (2). Press **Save** when finished (3).
+                @Image(source: "nodes_and_scenes_06_label_text.png")
             }
             You will see the text draw in the viewport as you type.
             @Step {
@@ -139,7 +141,7 @@
                 @Image(source: "nodes_and_scenes_07_move_tool.png")
             }
             @Step {
-                With the `Label` selected, click and drag anywhere in the viewport to
+                With the `Label` selected, press and drag anywhere in the viewport to
                 move it to the center of the view delimited by the rectangle.
                 @Image(source: "nodes_and_scenes_08_hello_world_text.png")
             }
@@ -152,15 +154,16 @@
         }
         @Steps {
             @Step {
-                Press the **Run Current Scene**
+                Press the **Run**
                 button in the top-right of the screen. It looks like a **Play** Button!
                 @Image(source: "nodes_and_scenes_09_play_scene_button.png")
             }
             @Step {
-                First a popup will appear asking you to pick a scene to run. We will select the current scene with **Current Scene**.
+                First a popup will appear asking you to pick a scene to run. We will select the current scene with **Select Current Scene**.
+                @Image(source: "nodes_and_scenes_pick_scene.png")
             }
             @Step {
-                A following popup invites you to save the scene, which is required to run it. Click the
+                A following popup invites you to save the scene, which is required to run it. Press the
                 **Save** button in the file browser to save it as `label.tscn`.
                 @Image(source: "nodes_and_scenes_10_save_scene_as.png")
             }
@@ -170,7 +173,9 @@
             stands for "resource path".
             
             @Step {
-                The Game should play in the center of the screen and display the text "Hello World".
+                The Game should play in the center of the screen and display the text "Hello World". 
+                
+                If it has not, press the **Play** button again.
                 @Image(source: "nodes_and_scenes_11_final_result.png")
             }
             @Step {
@@ -180,7 +185,7 @@
     }
     @Section(title: "Setting the main scene") {
         @ContentAndMedia {
-            To run our test scene, we used the **Play** button, which once you've picked a main scene, will always run that scene when clicked. 
+            To run our test scene, we used the **Play** button, which once you've picked a main scene, will always run that scene when pressed. 
             
             Another option is revealed by long pressing that button. When doing so, a dialog with **Run Current Scene** or **Run Specific Scene** options will appear. 
             
@@ -198,19 +203,19 @@
                 @Image(source: "nodes_and_scenes_13_main_scene_popup.png")
             }
             @Step {
-                Click the **Run Specific Scene** button, and in the file dialog that appears, double
-                click on `label.tscn`.
+                Press the **Run Specific Scene** button, and in the file dialog that appears, select `label.tscn` (1) and press the folder icon (2).
                 @Image(source: "nodes_and_scenes_14_select_main_scene.png")
             }
             
-            Since in the last section we already picked a *main scene, the way we can change the *main scene* now, is by going to our **Project Settings**.
+            By default when you press **Play** it runs the *main scene*. Since we already picked a *main scene* in the last section; the way we can change the *main scene* now, is by going to our **Project Settings**.
             
             @Step {
-                Click the furthest right icon next to the **Scope**. Inside the dropdown, click **Settings**.
-                
+                To enter the **Project Settings**, Press the furthest right icon, next to the **Scope**. (1) Inside the dropdown, press **Settings**. (2)
+                @Image(source: "nodes_and_scenes_settings_dropdown.png")
             }
             @Step {
-                In the **Project Settings** tab, in the **Run** category, we can change the currently selected *main scene* by clicking the `label.tscn` text.
+                In the **Project Settings** tab, in the **Run** category, we can change the currently selected *main scene* by pressing the `label.tscn` text.
+                @Image(source: "nodes_and_scenes_settings_window.png")
             }
             In the next part, we will discuss another key concept in games and in Xogot:
                 creating instances of a scene.

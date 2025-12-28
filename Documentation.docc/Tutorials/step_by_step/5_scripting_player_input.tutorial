@@ -30,7 +30,7 @@
             
             2. **Conditionals**: To set that variable, we use *conditional statements*. In GDScript, these start with the `if` keyword and end with a colon (:). The code inside the block only runs if the condition is `true`.
             
-            3. **Input Check**: In the conditional, we ask for the result of `Input.is_action_pressed("ui_left")`. This checks Godot's built-in *Input Map* (which covers arrow keys and gamepads by default) and returns `true` if the referenced action is held down. This can be customized, but a number of actions are built into Godot.
+            3. **Input Check**: In the conditional, we ask for the result of `Input.is_action_pressed("ui_left")`. This checks Xogot's built-in *Input Map* (which covers arrow keys and gamepads by default) and returns `true` if the referenced action is held down. This can be customized, but a number of actions are built into Xogot.
             
             4. **Setting the Variable**: Inside the `if` statement we set the `direction` variable to be either `-1` or `1`. If the user presses nothing, direction is 0, and the rotation stops completely. We then multiply the `angular_speed` by `direction` by `delta`, so that the rotation is framerate independant.
             
@@ -87,7 +87,7 @@
             
             1. **Variable**: We start by initializing `velocity` to `Vector2.ZERO`. This acts as our default state: if the player isn't pressing the forward key, the velocity remains at zero, and the node stops moving immediately.
             
-            2. **Input Check**: We use an `if` statement to check `Input.is_action_pressed("ui_up")`. Just like before, this checks Godot's built-in *Input Map* to see if the player is holding down the "move forward" key (*Up Arrow* or up on the *left joystick*).
+            2. **Input Check**: We use an `if` statement to check `Input.is_action_pressed("ui_up")`. Just like before, this checks Xogot's built-in *Input Map* to see if the player is holding down the "move forward" key (*Up Arrow* or up on the *left joystick*).
             
             3. **Rotation Logic**: Inside the block, we determine the direction using `Vector2.UP.rotated(rotation)`. Since `Vector2.UP` points straight up (0, -1), calling `.rotated()` spins that vector to match the character's current facing angle. This calculation finds "forward" relative to the player's rotation.
             
@@ -102,7 +102,7 @@
             }
             This code performs a similar function but adds a new tool: the `elif` ( or else if) statement.
             
-            - This functions as a secondary check in the logic chain. Godot evaluates the initial `if` statement first. If (and only if) that condition is `false`, it moves on to check the `elif` condition.
+            - This functions as a secondary check in the logic chain. The Godot Engine evaluates the initial `if` statement first. If (and only if) that condition is `false`, it moves on to check the `elif` condition.
             
             - The final element is `else`. This block acts as a catch-all fallback that runs only if none of the previous conditions were true. We don't use it here but It's another tool you can implement in your own code.
         }
@@ -125,7 +125,7 @@
     }
     @Section(title: "Summary") {
         @ContentAndMedia {
-            In summary, every script in Godot represents a class and extends one of the
+            In summary, every script in Xogot represents a class and extends one of the
             engine's built-in classes. The node types your classes inherit from give you
             access to properties, such as `rotation` and `position` in our sprite's case.
             You also inherit many functions, which we didn't get to use in this example.

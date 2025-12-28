@@ -87,7 +87,7 @@
 
             > Tip: In GDScript, if you omit the line with the `extends` keyword, your
                 class will implicitly extend [`RefCounted`](https://docs.godotengine.org/en/stable/classes/class_RefCounted.html#class-RefCounted), which
-                Godot uses to manage your application's memory.
+                the Godot Engine uses to manage your application's memory.
 
             By extending we have access to inherited properties which include the ones you can see in the Inspector dock, like
                 our node's `texture` property.
@@ -114,7 +114,7 @@
             
             - The `func` keyword defines a new function named
             `_init`. 
-            - "`_init`" is a built in function that acts as our class's constructor function. When this function is defined, Godot will try to call this function first whenever the object is defined in memory.
+            - "`_init`" is a built in function that acts as our class's constructor function. When this function is defined, the Godot Engine will try to call this function first whenever the object is defined in memory.
             
             > Note:  As an indent-based language, GDScript requires the print() line to be indented to function. Incorrect indentation, like if we had not indented that block, triggers the error: 'Indented block expected'.
             
@@ -151,10 +151,10 @@
             instance with this script attached to it will have its own copy of the `speed`
             and `angular_speed` properties.
             
-            > Note on Radians: Angles in Godot work in radians by default, though built-in properties allow you to work in degrees if preferred. Because of this default, we use PI to initialize our angular speed; PI corresponds to 180 degrees, or roughly 3.14 radians.
+            > Note on Radians: Angles in the Godot Engine work in radians by default, though built-in properties allow you to work in degrees if preferred. Because of this default, we use PI to initialize our angular speed; PI corresponds to 180 degrees, or roughly 3.14 radians.
             
             To move our icon, we need to update its position and rotation every frame in the
-            game loop. Godot classes that are based on the `Node` class, like Sprite2D, come with a built in function we can use called `_process()`. This is a virtual function that, once defined, Godot
+            game loop. Godot Engine classes that are based on the `Node` class, like Sprite2D, come with a built in function we can use called `_process()`. This is a virtual function that, once defined, Godot
             will call the function every frame and pass it an argument named `delta`, the time elapsed since the last frame.
             
             > Note on Delta: Games work by rendering many images per second, each called a frame, and
@@ -173,7 +173,7 @@
             }
             Breaking this down: we start with the keyword `func` and the function name. Then, we use parentheses as a container for the arguments. The colon at the end tells the engine that the instructions follow in the indented block below.
             
-            > Tip: Notice how `_process()`, like `_init()`, starts with a leading underscore. By convention, Godot uses this to mark virtual functions or callbacks the engine looks for and runs automatically. This also follows general programming conventions of GDScript that many developers use, where a leading `_` indicates that a function or variable is private or intended for internal use within the script rather than external access.
+            > Tip: Notice how `_process()`, like `_init()`, starts with a leading underscore. By convention, GDScript uses this to mark virtual functions or callbacks the engine looks for and runs automatically. This also follows general programming conventions of GDScript that many developers use, where a leading `_` indicates that a function or variable is private or intended for internal use within the script rather than external access.
             
             Inside the function we just created, the line `rotation += angular_speed * delta` updates the sprite's angle every frame.
             
@@ -207,11 +207,11 @@
             Multiplying this direction by `speed` gives us our movement vector. Finally, we add `velocity * delta` to the node's position property to move it
             
             The position property is a  [`Vector2`](https://docs.godotengine.org/en/stable/classes/class_Vector2.html#class-Vector2)
-            ; a built-in type in Godot
+            ; a built-in type in the Godot Engine
             representing a 2D vector.
             
             @Step {
-                Run the scene to see the Godot head run in circles.
+                Run the scene to see the Godot icon run in circles.
                 @Image(source: "scripting_first_script_rotating_godot.gif")
             }
             
