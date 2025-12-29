@@ -97,7 +97,7 @@
             }
             @Step {
                 Your scene tree and viewport should look like this:
-                @Image(source: "signals_09_scene_setup.png")
+                @Image(source: "signals_viewport_tree.png")
             }
             @Step {
                 Save your newly created scene.
