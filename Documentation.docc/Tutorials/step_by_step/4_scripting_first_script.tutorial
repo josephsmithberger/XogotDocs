@@ -1,4 +1,4 @@
-@Tutorial(time: 30) {
+@Tutorial(time: 35) {
     @Intro(title: "Creating your first script") {
 
         @Image(source: "scripting_first_script_rotating_godot.gif")

@@ -1,4 +1,4 @@
-@Tutorial(time: 30) {
+@Tutorial(time: 25) {
     @Intro(title: "Using signals") {
 
         @Image(source: "signals_01_final.png")

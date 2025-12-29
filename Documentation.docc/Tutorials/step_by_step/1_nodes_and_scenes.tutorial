@@ -1,4 +1,4 @@
-@Tutorial(time: 30) {
+@Tutorial(time: 15) {
     @Intro(title: "Nodes and Scenes") {
 
         @Image(source: "nodes_cover.png")
