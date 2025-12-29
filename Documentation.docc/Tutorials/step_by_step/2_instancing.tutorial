@@ -141,8 +141,7 @@
                 @Image(source: "instancing_physics_material_expand.png")
             }
             @Step {
-                Let's change it's `Bounce` property by press on the number field next to `Bounce`, type `0.5` (1),
-                and closing the menu by pressing *Enter* on a connected keyboard or the **Return key** (2).
+                Let's change it's `Bounce` property by tapping on the number field next to `Bounce`, typing `0.5` (1) in the pop-up window, and then closing the window by pressing *Enter* on a connected keyboard or the **Return key** (2).
                 @Image(source: "instancing_property_bounce_updated.png")
             }
             @Step {
@@ -163,7 +162,7 @@
                 Rerun the game and notice how this ball now falls much faster than the others.
 
                 > Tip: You may notice you are unable to change the values of the `PhysicsMaterial`
-                of the ball. This is because `PhysicsMaterial` is a *resource*, and needs
+                of the ball from the `Main` scene. This is because `PhysicsMaterial` is a *resource*, and needs
                 to be made unique before you can edit it in a scene that is linking to its
                 original scene. To make a resource unique for one instance, press the three dots on
                 the Physics Material property in the **Scope** and press **Make Unique**
