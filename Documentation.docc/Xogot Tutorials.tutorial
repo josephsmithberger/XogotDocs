@@ -11,7 +11,10 @@
     }
     
     @Chapter(name: "Step by Step") {
+        In this tutorial series, you will learn the basics of building games running Godot and using the Xogot editor. 
+        
         @Image(source: scripting_first_script_rotating_godot.gif)
+        
         @TutorialReference(tutorial: "doc:1_nodes_and_scenes")
         @TutorialReference(tutorial: "doc:2_instancing")
         @TutorialReference(tutorial: "doc:4_scripting_first_script")
@@ -33,14 +36,15 @@
         @TutorialReference(tutorial: "doc:06.heads_up_display")
         @TutorialReference(tutorial: "doc:07.finishing-up")
     }
-    <-- @Chapter(name: "TileSets and TileMaps") { -->
-    <--    @Image(source: using_tilesets_kenney_abstract_platformer_tile_sheet.png)-->
+    @Chapter(name: "TileSets and TileMaps") {
+        @Image(source: using_tilesets_kenney_abstract_platformer_tile_sheet.png)
         
-        <--    Some notes about using TileMaps and TileSets.-->
-        <--    @TutorialReference(tutorial: "doc:using_tilesets")-->
-        <--    @TutorialReference(tutorial: "doc:using_tilemaps") -->
+        Some notes about using TileMaps and TileSets in Xogot.
         
-        <--} -->
+        @TutorialReference(tutorial: "doc:01.using_tilesets")
+        @TutorialReference(tutorial: "doc:02.using_tilemaps")
+        
+    }
     <-- @Chapter(name: "Your First 3D Game") {-->
     <--     @Image(source: squash-the-creeps-final.gif, -->
     <--         alt: "An animation of Squash the Creeps running")-->
