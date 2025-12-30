@@ -1,0 +1,152 @@
+@Tutorial(time: 30) {
+    @Intro(title: "Listening to player input") {
+
+        @Image(source: "scripting_first_script_moving_with_input.gif")
+    }
+    @Section(title: "Introduction") {
+        @ContentAndMedia {
+            Building upon the previous lesson, let's look
+            at another important feature of any game: giving control to the player.
+        }
+        @Steps {
+            To process player input, you have two primary tools:
+            
+            1. `_unhandled_input()`: A built-in virtual function best for reacting to distinct events, like a single jump command.
+            
+            2. The **Input Singleton**: A global object best for checking input state every frame, like holding down a key to run.
+            
+            We will use the **Input singleton** here, as we need to check for movement input continuously on every frame.
+            @Step {
+                For turning, we should use a new variable: `direction`. In our `_process()`
+                function, so replace the `rotation += angular_speed * delta` line with the
+                code following:
+                
+                @Code(name: "sprite_2d.gd", file: scripting_07.gd, previousFile: scripting_06.gd)
+            }
+            Let's break this down':
+            
+            1. **Variable**: We start by setting the variable `direction`. This will be our multiplier to determine which way to turn.
+            
+            2. **Conditionals**: To set that variable, we use *conditional statements*. In GDScript, these start with the `if` keyword and end with a colon (:). The code inside the block only runs if the condition is `true`.
+            
+            3. **Input Check**: In the conditional, we ask for the result of `Input.is_action_pressed("ui_left")`. This checks Xogot's built-in *Input Map* (which covers arrow keys and gamepads by default) and returns `true` if the referenced action is held down. This can be customized, but a number of actions are built into Xogot.
+            
+            4. **Setting the Variable**: Inside the `if` statement we set the `direction` variable to be either `-1` or `1`. If the user presses nothing, direction is 0, and the rotation stops completely. We then multiply the `angular_speed` by `direction` by `delta`, so that the rotation is framerate independant.
+            
+            > Tip:  You can see and edit input actions in your project by going to
+            Project Settings and tapping on the Input Map tab.
+            
+            
+            @Step {
+                So that the position doesn't change, comment out the section where we set velocity and position like this:
+                
+                @Code(name: "sprite_2d.gd", file: scripting_08.gd, previousFile: scripting_07.gd)
+            }
+            This will ignore the code that moved the icon's position in a circle without user input from the previous exercise.
+            
+            Before we can run the scene locally, we need to add support for a virtual controller.
+        }
+    }
+    @Section(title: "Adding the virtual controller") {
+        @ContentAndMedia {
+            When developing on mobile, we need to add support for virtual controllers. Luckily Xogot supports a quick way to do this. 
+        }
+        @Steps {
+            @Step {
+                Press this icon and then open **Settings**.
+                @Image(source: "nodes_and_scenes_settings_dropdown.png")
+                }
+            @Step {
+                Inside setting scroll to **Input Devices** and press **Virtual Controller**.
+                @Image(source: "scripting_virtual_controller_settings.png")
+            }
+            @Step {
+                Inside *ios* enable the toggle for **Enable Controller** and disable all the other options except **Enable Left Thumbstick**.
+                @Image(source: "scripting_virtual_controller_settings_on.png")
+            }
+            In future tutorials we will cover how to install plugins that upgrade and allow more customization for the virtual controller experience.
+            
+            Now that we added the virtual controller, let's test this out!
+            @Step {
+                Run the scene; the icon should rotate when you press
+                Left and Right on a keyboard or when you move the left joystick.
+                @Image(source: "scripting_virtual_controller_running.png")
+            }
+        }
+    }
+    @Section(title: "Moving when pressing up") {
+        @ContentAndMedia {
+            Now let's make our icon move too!
+
+        }
+        @Steps {
+            To move around, not just rotate when pressing a key, we need to modify the code that calculates the
+            velocity. 
+            @Step {
+                Uncomment the code and replace the line starting with `var velocity` with the code below.
+                @Code(name: "sprite_2d.gd", file: scripting_09.gd, previousFile: scripting_08.gd)
+            }
+            Let's break this down too, you'll notice the pattern is very similar to before:
+            
+            1. **Variable**: We start by initializing `velocity` to `Vector2.ZERO`. This acts as our default state: if the player isn't pressing the forward key, the velocity remains at zero, and the node stops moving immediately.
+            
+            2. **Input Check**: We use an `if` statement to check `Input.is_action_pressed("ui_up")`. Just like before, this checks Xogot's built-in *Input Map* to see if the player is holding down the "move forward" key (*Up Arrow* or up on the *left joystick*).
+            
+            3. **Rotation Logic**: Inside the block, we determine the direction using `Vector2.UP.rotated(rotation)`. Since `Vector2.UP` points straight up (0, -1), calling `.rotated()` spins that vector to match the character's current facing angle. This calculation finds "forward" relative to the player's rotation.
+            
+            4. **Setting the Velocity**: Finally, we multiply that `direction` vector by our `speed` property. This combines `direction` and magnitude (`speed`) into a single `velocity` vector, which we can then use to move the node.
+            @Step {
+                Now run the scene to see this in action. You can move forward and turn left or right.
+            }
+            We can take this further. Let's add reverse to our tank controls!
+            @Step {
+                Add this code to our script above the final line with `position += velocity * delta`:
+                @Code(name: "sprite_2d.gd", file: scripting_10.gd, previousFile: scripting_09.gd)
+            }
+            This code performs a similar function but adds a new tool: the `elif` ( or else if) statement.
+            
+            - This functions as a secondary check in the logic chain. The Godot Engine evaluates the initial `if` statement first. If (and only if) that condition is `false`, it moves on to check the `elif` condition.
+            
+            - The final element is `else`. This block acts as a catch-all fallback that runs only if none of the previous conditions were true. We don't use it here but It's another tool you can implement in your own code.
+        }
+    }
+    @Section(title: "Complete script") {
+        @ContentAndMedia {
+            Now you've successfully created a moving character!
+        }
+        @Steps {
+            @Step {
+                For reference here's the complete script:
+                @Code(name: "sprite_2d.gd", file: scripting_10_final.gd)
+            }
+            @Step {
+                If you run the scene, you should now be able to rotate with the left and right
+                arrow keys or dragging the joystick left/right; you should also be able to move forward by dragging *Up* and move in reverse by dragging *Down*.
+                @Image(source: "scripting_first_script_moving_with_input.gif")
+            }
+        }
+    }
+    @Section(title: "Summary") {
+        @ContentAndMedia {
+            In summary, every script in Xogot represents a class and extends one of the
+            engine's built-in classes. The node types your classes inherit from give you
+            access to properties, such as `rotation` and `position` in our sprite's case.
+            You also inherit many functions, which we didn't get to use in this example.
+
+            In GDScript, the variables you put at the top of the file are your class's
+            properties, also called member variables. Besides variables, you can define
+            functions, which, for the most part, will be your classes' methods.
+
+            Godot provides several virtual functions you can define to connect your class
+            with the engine. These include `_process()`, to apply changes to the node
+            every frame, and `_unhandled_input()`, to receive input events like key and
+            button presses from the users. There are quite a few more.
+
+            The `Input` singleton allows you to react to the player's input anywhere in
+            your code. In particular, you'll get to use it in the `_process()` loop.
+
+            In the next lesson, we'll build upon the relationship between
+            scripts and nodes by having our nodes trigger code in scripts.
+        }
+    }
+}

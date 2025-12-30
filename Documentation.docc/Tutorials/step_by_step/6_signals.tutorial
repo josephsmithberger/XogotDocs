@@ -1,0 +1,346 @@
+@Tutorial(time: 25) {
+    @Intro(title: "Using signals") {
+
+        @Image(source: "signals_01_final.png")
+    }
+    @Section(title: "Signals: Introduction") {
+        @ContentAndMedia {
+            In this lesson, we will look at signals. They are messages that nodes emit when
+            something specific happens to them, like a button being pressed. Other nodes can
+            connect to that signal and call a function when the event occurs.
+        }
+        @ContentAndMedia {
+            Signals are a delegation mechanism built into the Godot Engine that allows one game object to
+            react to a change in another without them referencing one another. Using signals
+            limits [coupling](https://en.wikipedia.org/wiki/Coupling_(computer_programming)) and keeps your
+            code flexible.
+            
+            For example, you might have a life bar on the screen that represents the
+            player's health. When the player takes damage or uses a healing potion, you want
+            the bar to reflect the change. To do so, in Xogot, you would use signals.
+        }
+        @ContentAndMedia {
+            Like methods, signals are a first-class type. This means you can pass them around as method arguments directly without
+            having to pass them as strings, which allows for better autocompletion and is
+            less error-prone..
+            
+            > See also: As mentioned in the introduction, signals are the Godot Engine's version of the
+            observer pattern. You can learn more about it in
+            [Game Programming Patterns](https://gameprogrammingpatterns.com/observer.html).
+            
+            We will now use a signal to make our Godot icon from the previous lesson move and stop by pressing a button.
+            
+            For this project, we will be following the GDScript naming conventions. 
+            - Classes (nodes) use PascalCase
+            - Variables and Functions use snake_case
+            - Constants use ALL_CAPS. 
+            
+            Be careful to type the method names precisely when connecting signals.
+        }
+    }
+    @Section(title: "Scene setup") {
+        @ContentAndMedia {
+            To add a button to our game, we will create a new scene which will include
+            both a [`Button`](https://docs.godotengine.org/en/stable/classes/class_button.html#class-button) and the `sprite_2d.tscn` scene we created in
+            the last tutorial.
+
+            @Image(source: "signals_01_final.png")
+        }
+        @Steps {
+            @Step {
+                Open the Sprite2D project from the previous lesson.
+                
+                Create a new scene by pressing **sprite_2d** (1) in the top menu bar and tapping **New Scene** (2).
+                @Image(source: "signals_new_scene.png")
+            }
+            @Step {
+                Name the scene `node_2d.tscn` and select the **Empty** preset.
+                
+                Press **Create**
+                @Image(source: "signals_new_scene_create_window.png")
+            }
+            @Step {
+                In the Scene dock, press the 2D Scene button. This will add
+                a [`Node2D`](https://docs.godotengine.org/en/stable/classes/class_Node2D.html#class-Node2D) as our root.
+                @Image(source: "signals_02_2d_scene.png")
+            }
+            @Step {
+                Save the scene by pressing the **node_2d** text in the top bar, then tap **Save Scene** in the dropdown.
+                @Image(source: "signals_02_save_scene.png")
+            }
+            @Step {
+                In the FileSystem dock, press and drag the `sprite_2d.tscn` file you saved
+                previously onto the `Node2D` to instantiate it.
+                @Image(source: "signals_03_dragging_scene.png")
+            }
+            @Step {
+                We want to add another node as a sibling of the `Sprite2D`. To do so, press the **+** icon to open the *Add Node* window. Make sure the `Node2D` is selected when you do this.
+                @Image(source: "signals_04_add_child_node.png")
+            }
+            @Step {
+                Go to **All** and search for the [`Button`](https://docs.godotengine.org/en/stable/classes/class_button.html#class-button) node and add it.
+                @Image(source: "signals_05_add_button.png")
+            }
+            @Step {
+                The node is small by default. Press and drag on the bottom-right handle of the
+                `Button` in the viewport to resize it.
+                
+                > Tip: If you don't see the handles, ensure the **select tool** is active in the toolbar.
+                @Image(source: "signals_06_drag_button.png")
+            }
+            @Step {
+                Drag the button closer to the sprite.
+
+                You can also write a label on the Button by editing its **Text** property
+                in the Scope. Enter `Toggle motion`.
+                @Image(source: "signals_08_toggle_motion_text.png")
+            }
+            @Step {
+                Your scene tree and viewport should look like this:
+                @Image(source: "signals_viewport_tree.png")
+            }
+            @Step {
+                Save your newly created scene.
+                
+                You can then run it by long-pressing the **Play** button and pressing **Run Current Scene**.
+                At the moment, our button will be visible, but nothing will happen if you
+                press it.
+                @Image(source: "signals_09_scene_setup.png")
+            }
+        }
+    }
+    @Section(title: "Connecting a signal in the editor") {
+        @ContentAndMedia {
+            Next let's connect up a signal!
+
+            @Image(source: "signals_10_node_dock.png")
+        }
+        @Steps {
+            You can connect signals in the Node dock. 
+            @Step {
+                Select the Button node and, on the
+                right side of the editor in the Scope dock, press on the tab that looks like a line connecting two circles next to the Inspector tab.
+                @Image(source: "signals_11_pressed_signals.png")
+            }
+            The **Signals** tab displays a list of signals available on the selected node.
+            @Step {
+                Double-tap the `pressed` signal to open the node connection window.
+                
+                Change the name of the receiver method to `_on_button_pressed`. 
+                @Image(source: "signals_12_node_connection.png")
+            }
+            Signals need a
+            receiver method, a function that the Godot Engine will call when the Button emits the
+            signal. The editor generates one for you. By convention, we name these callback
+            methods `_on_node_name_signal_name`.
+            
+            @Step {
+                Press the **Connect** button to complete the signal connection and jump to the
+                *Script* workspace. The script now has a new function and should look like this:
+                @Code(name: "sprite_2d.gd", file: scripting_11.gd, previousFile: scripting_10.gd)
+            }
+            > Tip: You might notice something new: `-> void` at the end of our function. In GDScript, the `->` void syntax is called a **return type hint**. In this case it specifically tells the Xogot editor and compiler that the function does not return a value. Generally you can user these to indicate the type of value you want this function to return.
+            
+            Our `Sprite2D` moves thanks to code in the `_process()` function. The Godot Engine provides
+            a method to toggle processing on and off: [`set_process()`](https://docs.godotengine.org/en/stable/classes/class_Node_method_set_process.html#class-Node-method-set-process). We will use that with another method of the `Node` class: 
+            `is_processing()`. This method returns `true` if idle processing is active. We can then use
+            the `not` keyword to return an inversion of that value.
+            @Step {
+                Replace the `pass` keyword with the following code that'll toggle the
+                node's motion:
+
+                @Code(name: "sprite_2d.gd", file: scripting_12.gd, previousFile: scripting_11.gd)
+            }
+            This function will toggle processing and, in turn, the icon's motion on and off
+            upon pressing the button.
+            
+            Before trying the game, we need to simplify our `_process()` function to move
+            the node automatically and not wait for user input. 
+            @Step {
+                Replace it with the
+                following code, which we saw two lessons ago:
+
+                @Code(name: "sprite_2d.gd", file: scripting_13.gd, previousFile: scripting_12.gd)
+            }
+            @Step {
+                Your complete `sprite_2d.gd` code should look like this now:
+
+                @Code(name: "sprite_2d.gd", file: scripting_13.gd)
+            }
+            @Step {
+                Run the current scene by holding the **Play** button and pressing **Run Current Scene**,
+                and then tap the button to see the sprite start and stop.
+                @Image(source: "signals_rotate_button.gif")
+            }
+        }
+    }
+    @Section(title: "Connecting a signal via code") {
+        @ContentAndMedia {
+            You can connect signals via code instead of using the editor. This is necessary
+            when you create nodes or instantiate scenes inside of a script.
+
+            @Image(source: "signals_15_scene_tree.png")
+        }
+        @Steps {
+            For this section we will use a different node: the Godot Engine has a [`Timer`](https://docs.godotengine.org/en/stable/classes/class_Timer.html#class-Timer) node
+            that's useful to implement skill cooldown times, weapon reloading, and more.
+            
+            @Step {
+                Head back to the 2D workspace. You can either press the "2D" text at the top of
+                the app or press Cmd + 2 on a keyboard.
+                @Image(source: "instancing_2d_scene_select.png")
+            }
+            @Step {
+                In the Scene dock, with the Sprite2D node highlighted hit the **+** icon add a new child node. In the **All** tab, search for and add a `Timer` node. 
+                
+                Your scene should now look like
+                this.
+                @Image(source: "signals_15_scene_tree.png")
+            }
+            @Step {
+                With the `Timer` node selected, open the **Scope** and in the **Inspector** tab and enable the `Autostart` option by hitting the toggle switch.
+                @Image(source: "signals_18_timer_autostart.png")
+            }
+            @Step {
+                Press the script icon next to Sprite2D to jump back to the scripting workspace.
+                @Image(source: "signals_16_click_script.png")
+            }
+            To connect to a signal via code, you need to call the `connect()`
+            method of the signal you want to listen to. In this case, we want to
+            listen to the Timer's *timeout* signal.
+            
+            We want to connect the signal when the scene is instantiated, and we can do that
+            using the [`_ready()`](https://docs.godotengine.org/en/stable/classes/class_Node_private_method__ready.html#class-Node-private-method--ready) built-in function,
+            which is called automatically by the engine when a node is fully instantiated.
+            
+            To get a reference to a node relative to the current one, we use the method
+            [`get_node()`](https://docs.godotengine.org/en/stable/classes/class_Node_method_get_node.html#class-Node-method-get-node). We can store the reference
+            in a variable.
+            @Step {
+                To accomplish all that, add the following code above the `_process(delta)` function: 
+                
+                >Tip: Good practice when coding with GDScript is to add two blank lines as spacers between functions. This helps your code look clean and readable. You might have noticed that Xogot added them automatically when we linked a signal in the last section.
+                @Code(name: "sprite_2d.gd", file: scripting_14.gd, previousFile: scripting_13.gd)
+            }
+            The function `get_node()` looks at the Sprite2D's children and gets nodes by
+            their name. For example, if you renamed the Timer node to "BlinkingTimer" in the
+            editor, you would have to change the call to `get_node("BlinkingTimer")`.
+            @Step {
+                We can now connect the Timer to the Sprite2D in the `_ready()` function by adding the following:
+
+                @Code(name: "sprite_2d.gd", file: scripting_15.gd, previousFile: scripting_14.gd)
+            }
+            This line of code establishes a link between the `Timer` node and your script. Let's break it down:
+            
+            1. **The Trigger**: We listen for the `Timer`'s timeout *signal* (which fires when the countdown reaches zero).
+            
+            2. **The Target**: We connect that signal to the node this script is attached to (often referred to as self).
+            
+            3. **The Action**: When the signal is emitted, we tell the code to immediately run a specific function called `_on_timer_timeout()`.
+            
+            > Important: We must define _on_timer_timeout() in our script manually for this to work.
+            
+            > Tip: By convention, we name these callback methods in GDScript as
+            "_on_node_name_signal_name".
+            
+            @Step {
+                Add the new referenced function below `_on_button_pressed()`:
+
+                @Code(name: "sprite_2d.gd", file: scripting_16.gd, previousFile: scripting_15.gd)
+            }
+            The `visible` property is a boolean that controls the visibility of our node.
+            The line `visible = not visible` toggles the value. If `visible` is
+            `true`, it becomes `false`, and vice-versa.
+            @Step {
+                Run the `Node2D` scene now; you should see the sprite now blinks on and off, at one
+                second intervals.
+                @Image(source: "signals_flashing_rotating.gif")
+            }
+        }
+    }
+    @Section(title: "Complete script") {
+        @ContentAndMedia {
+            That's it for our little moving and blinking Godot icon demo!
+        }
+        @Steps {
+            @Step {
+                Here is the complete `sprite_2d.gd` file for reference.
+                
+                @Code(name: "sprite_2d.gd", file: scripting_16_final.gd)
+            }
+        }
+    }
+    @Section(title: "Custom signals") {
+        @ContentAndMedia {
+            > This section is a reference on how to define and use your own signals,
+            and does not build upon the project created in previous lessons.
+        }
+        @Steps {
+            You can define custom *signals* in a script. Say, for example, that you want to
+            show a game over screen when the player's health reaches zero. To do so, you
+            could define a *signal* named "died" or "health_depleted" when their `health`
+            reaches `0`.
+            @Step {
+                If we were creating a health script we might start with something like this:
+                @Code(name: "health.gd", file: signals_01.gd, previousFile: signals_00.gd)
+            }
+            @Step {
+                We have hardcoded health to 10 in the example script to keep it simple for beginners.
+                In a production game, it's better to leave the variable undefined and add a type hint (e.g., `@export var health: int`). 
+                
+                This exposes the variable in the Xogot Inspector, allowing you to easily set different health values for different entities using the same script, while ensuring the value is always a whole number. When you create copde this way, you can use this single script on a Goblin (set health to 5) and a Giant (set health to 100) without changing the code! Both entities would still benefit from the same functions and signals.
+                @Image(source: "signals_best_practices.png")
+            }
+            
+            > As signals represent events that just occurred, we generally use an
+            action verb in the past tense in their names.
+            @Step {
+                Your signals work the same way as built-in ones: they appear in the Node tab and
+                you can connect to them like any other.
+                
+                @Image(source: "signals_17_custom_signal.png")
+            }
+            @Step {
+                To emit a signal in your scripts, call `emit()` on the signal. 
+                
+                In this case, we are creating a function that other scripts can call when the node this is attached to "takes damage".
+                @Code(name: "health.gd", file: signals_02.gd, previousFile: signals_01.gd)
+            }
+            Signals can display more than one argument as well, so let's say we wanted a more complex signal that allows us to track damage and display it along with the current health, maybe for a health bar or damage meter. 
+            
+            @Step {
+                For custom arguments, specify the argument names between parentheses when initializing the signal:
+                @Code(name: "health.gd", file: signals_03.gd, previousFile: signals_02.gd)
+            }
+            
+            > The signal arguments show up in the editor's node dock, and Xogot can use
+            them to generate callback functions for you. However, you can still emit any
+            number of arguments when you emit signals. So it's up to you to emit the
+            correct values.
+            
+            @Step {
+                To emit values along with the signal, add them as extra arguments to the
+                `emit()` function:
+                @Code(name: "health.gd", file: signals_04.gd, previousFile: signals_03.gd)
+            }
+        }
+    } 
+    @Section(title: "Summary") {
+        @ContentAndMedia {
+            Any node in Xogot emits signals when something specific happens to them, like a
+            button being pressed. Other nodes can connect to individual signals and react to
+            selected events.
+
+            Signals have many uses. With them, you can react to a node entering or exiting
+            the game world, to a collision, to a character entering or leaving an area, to
+            an element of the interface changing size, and much more.
+
+            For example, an [`Area2D`](https://docs.godotengine.org/en/stable/classes/class_Area2D.html#class-Area2D) representing a coin emits a
+            `body_entered` signal whenever the player's physics body enters its collision
+            shape, allowing you to know when the player collected it.
+
+            In the next tutorial, "Your First 2D Game", you'll create a complete 2D
+            game and put everything you learned so far into practice.
+        }
+    }
+}

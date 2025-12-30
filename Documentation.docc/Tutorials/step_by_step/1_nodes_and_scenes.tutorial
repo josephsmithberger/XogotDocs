@@ -1,0 +1,223 @@
+@Tutorial(time: 15) {
+    @Intro(title: "Nodes and Scenes") {
+
+        @Image(source: "nodes_cover.png")
+        }
+    @Section(title: "Nodes") {
+        @ContentAndMedia {
+            **Nodes are the fundamental building blocks of your game**. They are like the
+            ingredients in a recipe. There are dozens of kinds that can display an image,
+            play a sound, represent a camera, and much more.
+
+            @Image(source: "nodes_and_scenes_nodes.png")
+        }
+        @ContentAndMedia {
+        
+            All nodes have the following characteristics:
+                
+            * A name.
+            * Editable properties.
+            * They receive callbacks to update every frame.
+            * You can extend them with new properties and functions.
+            * You can add them to another node as a child.
+
+            The last characteristic is important. **Together, nodes form a tree**, which is a powerful
+            feature to organize projects. Since different nodes have different functions,
+            combining them produces more complex behavior. As we saw before, you can build a
+            playable character the camera follows using a [`CharacterBody2D`](https://docs.godotengine.org/en/stable/classes/class_CharacterBody2D.html#class-CharacterBody2D)
+            node, a [`Sprite2D`](https://docs.godotengine.org/en/stable/classes/class_Sprite2D.html#class-Sprite2D) node,
+            a [`Camera2D`](https://docs.godotengine.org/en/stable/classes/class_Camera2D.html#class-Camera2D) node, and a [`CollisionShape2D`](https://docs.godotengine.org/en/stable/classes/class_CollisionShape2D.html#class-CollisionShape2D) node.
+            @Image(source: "nodes_and_scenes_character_nodes.png")
+            }
+    }
+    @Section(title: "Scenes") {
+        @ContentAndMedia {
+            When you organize nodes in a tree, like our character, we call this construct a
+            scene. Once saved, scenes work like new node types in the editor, where you can
+            add them as a child of an existing node. In that case, the instance of the scene
+            appears as a single node with its internals hidden.
+
+            Scenes allow you to structure your game's code however you want. You can
+            **compose nodes** to create custom and complex node types, like a game character
+            that runs and jumps, a life bar, a chest with which you can interact, and more.
+
+            @Image(source: "nodes_and_scenes_3d_scene_example.png")
+        }
+        @ContentAndMedia {
+            The Xogot editor essentially is a **scene editor**. It has plenty of tools for
+            editing 2D and 3D scenes, as well as user interfaces. A Xogot project can
+            contain as many of these scenes as you need. The engine only requires one as
+            your application's **main scene**. This is the scene the Godot engine will first load when
+            you or a player runs the game.
+
+            On top of acting like nodes, scenes have the following characteristics:
+
+            1. They always have one root node, like the "Player" in our example.
+            2. You can save them to your local drive and load them later.
+            3. You can create as many instances of a scene as you'd like. You could have
+            five or ten characters in your game, created from your Character scene.
+        }
+    }
+    @Section(title: "Creating your first scene") {
+        @ContentAndMedia {
+            Let's create our first scene with a single node. To do so, you will need to
+            create a new project by hitting the **+** icon first. After
+            opening the project, you should see an empty editor.
+
+            @Image(source: "nodes_and_scenes_01_empty_editor.png")
+        }
+        @ContentAndMedia {
+            In an empty scene, the Scene dock on the left shows several options to add a
+            root node quickly: 
+            * 2D Scene adds a [`Node2D`](https://docs.godotengine.org/en/stable/classes/class_Node2D.html#class-Node2D) node
+            * 3D Scene adds a [`Node3D`](https://docs.godotengine.org/en/stable/classes/class_Node3D.html#class-Node3D) node,
+            * User Interface adds a [`Control`](https://docs.godotengine.org/en/stable/classes/class_Control.html#class-Control) node
+            
+            These presets are here for convenience; they are not mandatory.
+            Other Node lets you select any node to be the root node.
+            
+            In an empty scene, **Other Node** is equivalent to pressing the **Add Child Node** (+)
+            button at the top-left of the Scene dock.
+            }
+        @Steps {
+            We're going to add a single [`Label`](https://docs.godotengine.org/en/stable/classes/class_Label.html#class-Label) node to our scene. Its function is to draw
+            text on the screen.
+            @Step {
+                Press the **Add Child Node** button or **Other Node** to create a
+                root node.
+                @Image(source: "nodes_and_scenes_02_scene_dock.png")
+            }
+            @Step {
+                The **Create New Node** dialog opens, showing an array of featured/commonly used nodes. To access the full list, press **All** in the tab bar and that will show the very long list of all available nodes.
+                @Image(source: "nodes_and_scenes_03_create_node_window.png")
+            }
+            @Step {
+                Select the `Label` node. 
+                
+                >Tip: You can also type its name to filter down the list in the **All** tab.
+                @Image(source: "nodes_and_scenes_04_create_label_window.png")
+            }
+            @Step {
+                Press on the `Label` node to select it (1) and press the **Add** button at
+                the top of the window (2).
+                @Image(source: "nodes_and_scenes_05_editor_with_label.png")
+            }
+             A lot happens when you add a scene's first node: 
+            - The scene changes to the 2D
+                workspace because `Label` is a 2D node type. 
+            - The `Label` appears, selected, in the
+                top-left corner of the viewport. 
+            - The node appears in the Scene dock on the left,
+                and the node's properties appear in the **Scope** pane on the right if open. 
+                > Note: By default in a new Xogot project the **Scope** is closed. 
+            
+            Let's open the **Scope** now and take a look at the available properties. We will edit them in the next section.
+            @Step {
+                Press the cross-hair icon in the top right to open the **Scope**.
+                @Image(source: "nodes_and_scenes_06_scope.png")
+            }
+        }
+    }
+    @Section(title: "Changing a node's properties") {
+        @ContentAndMedia {
+            The next step is to change the Label's Text property. Let's change
+            it to "Hello World".
+
+            @Image(source: "nodes_and_scenes_hello_world.png")
+        }
+        @Steps {
+            @Step {
+                Head to the **Scope** dock on the right of the viewport. Press inside the field
+                below the **Text property** (1) and type "Hello World" (2). Press **Save** when finished (3).
+                @Image(source: "nodes_and_scenes_06_label_text.png")
+            }
+            @Step {
+                > Tip: You can edit any property listed in the Scope as we did with
+                the Text.
+
+                You can move your `Label` node in the viewport by selecting the move tool in the
+                toolbar.
+                @Image(source: "nodes_and_scenes_07_move_tool.png")
+            }
+            @Step {
+                With the `Label` selected, press and drag anywhere in the viewport to
+                move it to the center of the view delimited by the rectangle.
+                @Image(source: "nodes_and_scenes_08_hello_world_text.png")
+            }
+        }
+    }
+    @Section(title: "Running the scene") {
+        @ContentAndMedia {
+            Everything's ready to run the scene!
+
+        }
+        @Steps {
+            @Step {
+                Press the **Run**
+                button in the top-right of the screen. It looks like a **Play** Button!
+                @Image(source: "nodes_and_scenes_09_play_scene_button.png")
+            }
+            @Step {
+                First a popup will appear asking you to pick a scene to run. We will select the current scene with **Select Current Scene**.
+                @Image(source: "nodes_and_scenes_pick_scene.png")
+            }
+            @Step {
+                A following popup invites you to save the scene, which is required to run it. Press the
+                **Save** button in the file browser to save it as `label.tscn`.
+                @Image(source: "nodes_and_scenes_10_save_scene_as.png")
+            }
+            > The **Save Scene As** dialog, like other file dialogs in the editor, only
+            allows you to save files inside the project. The `res://` path at
+            the top of the file browser window represents the project's root directory and
+            stands for "resource path".
+            
+            @Step {
+                The Game should play in the center of the screen and display the text "Hello World". 
+                
+                If it has not, press the **Play** button again.
+                @Image(source: "nodes_and_scenes_11_final_result.png")
+            }
+            @Step {
+                Close the game by pressing the Square **Stop** icon in the top right of the screen.
+            }
+        }
+    }
+    @Section(title: "Setting the main scene") {
+        @ContentAndMedia {
+            To run our test scene, we used the **Play** button, which once you've picked a main scene, will always run that scene when pressed. 
+            
+            Another option is revealed by long pressing that button. When doing so, a dialog with **Run Current Scene** or **Run Specific Scene** options will appear. 
+            
+            > You can also change the selected default scene triggered by the **Play** button in your **Project Settings**
+
+            @Image(source: "nodes_and_scenes_12_play_button.png")
+        }
+        @Steps {
+            @Step {
+                > Tip: Running the project's **main scene** is distinct from running the
+                *current scene*. If you encounter unexpected behavior, check
+                to ensure you are running the correct scene.
+
+                When you long press the play button a popup window appears and gives you two choices.
+                @Image(source: "nodes_and_scenes_13_main_scene_popup.png")
+            }
+            @Step {
+                Press the **Run Specific Scene** button, and in the file dialog that appears, select `label.tscn` (1) and press **Select** (2).
+                @Image(source: "nodes_and_scenes_14_select_main_scene.png")
+            }
+            
+            By default when you press **Play** it runs the *main scene*. Since we already picked a *main scene* in the last section; the way we can change the *main scene* now, is by going to our **Project Settings**.
+            
+            @Step {
+                To enter the **Project Settings**, Press the furthest right icon, next to the **Scope**. (1) Inside the dropdown, press **Settings**. (2)
+                @Image(source: "nodes_and_scenes_settings_dropdown.png")
+            }
+            @Step {
+                In the **Project Settings** tab, in the **Run** category, we can change the currently selected *main scene* by pressing the `label.tscn` text.
+                @Image(source: "nodes_and_scenes_settings_window.png")
+            }
+            In the next part, we will discuss another key concept in games and in Xogot:
+                creating instances of a scene.
+        }
+    }
+}
