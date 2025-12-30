@@ -6,6 +6,35 @@ Release notes for our preview release of Xogot to TestFlight.
 
 ## Build 
 
+### Improvements
+
+* iPhone: the keyboard accessory went on a diet, the copy/paste action were
+  repetitive as these have standard idioms on iOS, and we gained a new "hide
+  keyboard" and undo/redo now share a slot (long-press to redo). (#2078) 
+
+* iPhone: on the search tab, the search button is triggered on your current
+  selection.
+
+* The Editor/Run configuration for "Run Action On" now supports open-output,
+  open debugger or none.  Same for stopping. (Discord)
+
+### Fixes
+
+* Fixes various crashes that were logged via crash reports: a crash on scene
+  import (#2082), crash on certain node renames, a crash on tile set editing
+  (#2084), a crash on the code editor, two crashes during importing projects, a
+  crash on the file picker,  crash while triggering some forms on iPhone (#2007).
+
+* iPhone: The keyboard accessory would not re-adjust after a rotation (#2080).
+
+* iPhone: fixes the search option for 'go-to-line' that would sometimes not
+  work, even if you had an open file.
+
+* Audio Bus/Add Effect can now be used on iPhone.
+
+
+## Build 3590
+
 * Experimenting with the Scene Tab navigator on the iPhone too.
 
 * XogotBeta: bring a few fixes that were missing from the main branch, due to a
@@ -13,7 +42,7 @@ Release notes for our preview release of Xogot to TestFlight.
 
 * Fix another assumption in the code that would trigger incorrect placement of
   buttons on the iPhone Max.
-  
+
 ## Build 3587/Beta 182
 
 ### Improvements
