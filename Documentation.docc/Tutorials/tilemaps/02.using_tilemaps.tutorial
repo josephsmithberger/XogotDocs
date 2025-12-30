@@ -3,27 +3,20 @@
 
         @Image(source: "fix-me.png")
     }
-    @Section(title: "FIXME: Introduction") {
-        @ContentAndMedia {
-            FIXME: Replace this with introduction content (possibly from the next step or section that appears after this.)
-
-            @Image(source: "fix-me.png")
-        }
-        @Steps {
-            @Step {
-                > See also: This page assumes you have created or downloaded a TileSet already. If not,
-                please read <doc:doc_using_tilesets> first as you will need a TileSet
-                to create a TileMap.
-            }
-        }
-    }
     @Section(title: "Introduction") {
         @ContentAndMedia {
+            > See also: This page assumes you have created or downloaded a TileSet already. If not,
+            please read <doc:01.using_tilesets> first as you will need a TileSet
+            to create a TileMap.
+            
             A tilemap is a grid of tiles used to create a game's layout. There are several
             benefits to using [`TileMapLayer`](https://docs.godotengine.org/en/stable/classes/class_TileMapLayer.html#class-TileMapLayer) nodes to design your levels.
+            
             First, they make it possible to draw the layout by "painting" the tiles onto a
             grid, which is much faster than placing individual [`Sprite2D`](https://docs.godotengine.org/en/stable/classes/class_Sprite2D.html#class-Sprite2D)
-            nodes one by one. Second, they allow for much larger levels because they are
+            nodes one by one. 
+            
+            Second, they allow for much larger levels because they are
             optimized for drawing large numbers of tiles. Finally, you can add collision,
             occlusion, and navigation shapes to tiles, adding greater functionality to
             the TileMap.
@@ -31,20 +24,21 @@
     }
     @Section(title: "Specifying the TileSet in the TileMapLayer") {
         @ContentAndMedia {
-            If you've followed the previous page on <doc:doc_using_tilesets>, you should
+            If you've followed the previous page on <doc:01.using_tilesets>, you should
             have a TileSet resource that is built into the TileMapLayer node. This is good for
             prototyping, but in a real world project, you will generally have multiple
             levels reusing the same tileset.
 
-            The recommended way to reuse the same TileSet in several TileMapLayer nodes is to save
-            the TileSet to an external resource. To do so, click the dropdown next to the TileSet
-            resource and choose **Save**:
+            
 
             @Image(source: "using_tilemaps_save_tileset_to_resource.png", alt: "Saving the built-in TileSet resource to an external resource file")
         }
         @Steps {
+            The recommended way to reuse the same TileSet in several TileMapLayer nodes is to save
+            the TileSet to an external resource. 
             @Step {
-
+                To do so, click the dropdown next to the TileSet
+                resource and choose **Save**:
             }
         }
     }
