@@ -40,9 +40,11 @@
                 Starting from the **Project Manager** press the **+** or **New Game** buttons to create a new project.
                 
                 Name the project whatever you like, we will use "Tiles Tutorial"
+                @Image(source: fix-me.png)
             }
             @Step {
                 Press **Create Other Node** and in the **All** tab, search for **TileMapLayer**, then *tap* it to create it.
+                @Image(source: fix-me.png)
             }
             @Step {
                 Select the new node and create a new TileSet resource in the **Inspector** by tapping `PickResource` and selecting `New TileSet`:
@@ -54,24 +56,23 @@
             @Step {
                 For now, click the value to unfold it in the
                 inspector.
+                @Image(source: fix-me.png)
             }
             > Tip:  The default tile shape is Square, but you can also choose Isometric,
             Half-Offset Square or Hexagon (depending on the shape of your tile images). If
             using a tile shape other than Square, you may also need to adjust the **Tile
             Layout** and **Tile Offset Axis** properties. Lastly, enabling the
-            **Rendering > UV Clipping** property may be useful if you wish tiles to be clipped
+            **Rendering > UV Clipping** toggle may be useful if you wish tiles to be clipped
             by their tile coordinates. This ensures tiles cannot draw outside their allocated
             area on the tilesheet.
             @Step {
                 Set the tile size to 64×64 in the inspector to match the example tilesheet:
                 @Image(source: "using_tilesets_specify_size_then_edit.png", alt: "Setting the tile size to 64×64 to match the example tilesheet")
             }
-            >Important: If relying on automatic tiles creation (like we're about to do here), you must
-            set the tile size **before** creating the *atlas*. The atlas will
-            determine which tiles from the tilesheet can be added to a `TileMapLayer` node
-            (as not every part of the image may be a valid tile).
+            >Important: If relying on automatic tiles creation (like we're about to do here), you must set the tile size **before** creating the *atlas*. The atlas will determine which tiles from the tilesheet can be added to a `TileMapLayer` node (as not every part of the image may be a valid tile).
             @Step {
                 Press the little **+** icon next to `res://`. Then tap **Import Files** and navigate to your extracted archive. We want "tilesheet_complete.png" from inside the Tilesheet folder. Select it, and then press **Open**.
+                @Image(source: fix-me.png)
             }
             @Step {
                 With the `TileMapLayer`, open the **TileSet** panel at the bottom of the editor, then press and drag the
@@ -82,9 +83,10 @@
             earlier in the TileSet resource. This greatly speeds up initial tile setup.
             
             @Step {
-                Let's get a better look at your tileset image by closing both the **Scope** and **Scene Tree** panels. 
+                Let's get a better look at your tileset image by closing both the **Scope** (1) and **Scene Tree** panels (2).
                 
-                Then drag up on the pull handle to expand the **TileSet** panel.
+                Then drag up on the pull handle to expand the **TileSet** panel (3).
+                @Image(source: fix-me.png)
             }
             
             > When using automatic tile generation based on image contents, parts of the
@@ -92,20 +94,21 @@
 
             @Step {
                 You can select a tile and choose **Delete**  in the **Ellipsis** (**...**) menu to remove any tiles you don't want.
+                @Image(source: fix-me.png)
             }
-            If you wish to source tiles from several tilesheet images for a single TileSet,
+            If you wish to source tiles from several tilesheet images for a single `TileSet`,
             create additional atlases and assign textures to each of them before continuing.
             It is also possible to use one image per tile this way (although using
             tilesheets is recommended for better usability).
             @Step { 
-                You can adjust properties for the atlas by opening the **Scope** and selecting **Setup** in the **Atlas** tab.
+                You can adjust properties for the atlas by opening the **Scope** (1) and selecting **Setup** (2) in the **Atlas Inspector** tab.
                 @Image(source: "using_tilesets_properties.png", alt: "Adjusting TileSet atlas properties in the dedicated inspector (part of the TileSet panel)")
             }
-            The following properties can be adjusted in the **Atlas**:
+            The following properties can be adjusted in the **Atlas Inspector**:
 
-            * **ID:** The identifier (unique within this TileSet), used for sorting.
-            * **Name:** The human-readable name for the atlas. Use a descriptive name
-            here for organizational purposes (such as "terrain", "decoration", etc).
+            * **ID:** The identifier (unique within this `TileSet`), used for sorting.
+            * **Name:** The human-readable name for the atlas. *Use a descriptive name
+            here for organizational purposes (such as "terrain", "decoration", etc).*
             * **Margins:** The margins on the image's edges that should not be selectable as
             tiles (in pixels). Increasing this can be useful if you download a tilesheet
             image that has margins on the edges (e.g. for attribution).
@@ -115,23 +118,28 @@
             * **Texture Region Size:** The size of each tile on the atlas in pixels. In most
             cases, this should match the tile size defined in the TileMapLayer property
             (although this is not strictly necessary).
-            * **Use Texture Padding:** If checked, adds a 1-pixel transparent edge around
+            * **Use Texture Padding:** If toggled, adds a 1-pixel transparent edge around
             each tile to prevent texture bleeding when filtering is enabled.
             It's recommended to leave this enabled unless you're running into rendering issues
             due to texture padding.
 
-            Note that changing texture margin, separation and region size may cause tiles to
+            > Note: changing texture margin, separation and region size may cause tiles to
             be lost (as some of them would be located outside the atlas image's
-            coordinates). 
+            coordinates), so only change if needed during `TileSet` setup.
             @Step {
                 To regenerate tiles automatically from the tilesheet, use the
-                 **More Details** icon, at the top of the **TileSet** editor, next to the **Select Mode** button and choose
-                **Create Tiles in Non-Transparent Texture Regions**:
+                 **More Details** icon (1), at the top of the **TileSet** editor, next to the **Select Mode** button and choose
+                **Create Tiles in Non-Transparent Texture Regions** (2):
                 @Image(source: "using_tilesets_recreate_tiles_automatically.png", alt: "Recreating tiles automatically after changing atlas properties")
             }
-            The **Select Mode** button lets you change modes from individual tile selection to rectangle lasso selection. Pressing **Clear** will clear your tile selection.
+            >tip:The **Select Mode** button lets you change modes from individual tile selection to rectangle lasso selection. Pressing **Clear** will clear your tile selection.
             
-            >Note: To make a tile selection you need to be in **Select mode**, you can change that in the Atlas dropdown by pressing **Setup** and choosing **Select**.
+            >Note: To make a tile selection you need to be in **Select**, you can change that in the **Atlas Inspector** dropdown by pressing **Setup** and choosing **Select**.
+            
+            @Step {
+                Save your `TileMapLayer` scene by tapping the dropdown on the top of the screen and pressing **Save Scene**.
+                @Image(source: fix-me.png)
+            }
         }
     }
     @Section(title: "Using a collection of scenes") {
@@ -141,115 +149,140 @@
             place gameplay elements, such as shops the player may be able to interact with.
             You could also use scene tiles to place AudioStreamPlayer2Ds (for ambient
             sounds), particle effects, and more.
-
-            > Warning: Scene tiles come with a greater performance overhead compared to atlases, as
-            every scene is instanced individually for every placed tile.It's recommended to only use scene tiles when necessary. To draw sprites in a
-            tile without any kind of advanced manipulation,
-            [`use atlases instead`](doc:doc_creating_tilesets_using_tilesheet).
-
-            For this example, we'll create a scene containing a CPUParticles2D root node.
-            Save this scene to a scene file (separate from the scene containing the
-            TileMapLayer), then switch to the scene containing the TileMapLayer node. Open the TileSet
-            editor, and create a new **Scenes Collection** in the left column:
-
-            @Image(source: "using_tilesets_creating_scene_collection.png", alt: "Creating a scenes collection in the TileSet editor")
+            @Image(source: fix-me.png)
         }
+        
+        > Warning: Scene tiles come with a greater performance overhead compared to atlases, as
+        every scene is instanced individually for every placed tile. It's recommended to only use scene tiles when necessary. To draw sprites in a
+        tile without any kind of advanced manipulation, use atlases instead.
         @Steps {
+            For this example, we'll create a scene containing a `CPUParticles2D` root node.
             @Step {
-                After creating a scenes collection, you can enter a descriptive name for the
-                scenes collection in the middle column if you wish. Select this scenes
-                collection then create a new scene slot:
+                Tap the dropdown next to your scene name and press **New Scene**.
+                @Image(source: fix-me.png)
+            }
+            @Step {
+                Name the scene "cpu_particles" and select **Empty**, then press **Create**.
+                @Image(source: fix-me.png)
+            }
+            @Step {
+                Press **Create Other Node** and then in the **All** tab search for `CPUParticles2D` and tap on it to add it.
+                @Image(source: fix-me.png)
+            }
+            @Step {
+                Save this scene to a scene file in the dropdown (1), then switch to the scene containing the TileMapLayer node (2)
+                @Image(source: fix-me.png)
+            }
+            @Step {
+                Open the TileSet editor, and create a new **Scenes Collection** in the **Tiles** column. To do so, hit the **+** and select **Scenes Collection**
+                
+                @Image(source: "using_tilesets_creating_scene_collection.png", alt: "Creating a scenes collection in the TileSet editor")
+            }
+            @Step {
+                Select this scenes collection then create a new scene slot by tapping **+**:
                 @Image(source: "using_tilesets_scene_collection_create_scene_tile.png", alt: "Creating a scene tile after selecting the scenes collection in the TileSet editor")
             }
             @Step {
-                Select this scene slot in the right column, then use **Quick Load** (or
-                **Load**) to load the scene file containing the particles:
+                In the pop-up window, select your newly saved `cpu_particles.tscn` file and press **select**.
                 @Image(source: "using_tilesets_adding_scene_tile.png", alt: "Creating a scene slot, then loading a scene file into it in the TileSet editor")
             }
+            Now that we have added a scene to our `TileSet` we should give it a descriptive name.
             @Step {
-                You now have a scene tile in your TileSet. Once you switch to the TileMap
-                editor, you'll be able to select it from the scenes collection and paint it like
-                any other tile.
+                Tap on the scene entry and change the **Name** in the **Atlas Inspector** tab to `CPU Particles`.
+                @Image(source: fix-me.png)
             }
+            You now have a scene tile in your `TileSet`. Once you switch to the **TileMap**
+            editor, you'll be able to select it from the scenes collection and paint it like
+            any other tile.
         }
     }
     @Section(title: "Merging several atlases into a single atlas") {
         @ContentAndMedia {
-            Using multiple atlases within a single TileSet resource can sometimes be useful,
+            Using multiple atlases within a single `TileSet` resource can sometimes be useful,
             but it can also be cumbersome in certain situations (especially if you're using
-            one image per tile). Godot allows you to merge several atlases into a single
+            one image per tile). Xogot allows you to merge several atlases into a single
             atlas for easier organization.
-
-            To do so, you must have more than one atlas created in the TileSet resource.
-            Use the "three vertical dots" menu button located at the bottom of the list of
-            atlases, then choose **Open Atlas Merging Tool**:
-
-            @Image(source: "using_tilesets_open_atlas_merging_tool.png", alt: "Opening the atlas merging tool after creating multiple atlases")
+            @Image(source: fix-me.png)
         }
+        
         @Steps {
+            To do so, you must have more than one atlas created in the `TileSet` resource.
+            
+            For this example we will add a few new tilesets based on the Godot `icon.svg` file.
             @Step {
-                This will open a dialog, in which you can select several atlases by holding
-                Shift or Ctrl then clicking on multiple elements:
+                Use the **Settings** "Cog" menu button located at the top of the list of
+                atlases, then choose **Open Atlas Merging Tool**:
+                
+                @Image(source: "using_tilesets_open_atlas_merging_tool.png", alt: "Opening the atlas merging tool after creating multiple atlases")
+            }
+            @Step {
+                This will open a dialog, in which you can select several atlases by tapping on them in the list on the left.
+                
+                > It can take time to load the resulting atlas, especially for large files, so it may take time to update your new atlas. Please be patient when selecting atlases to merge. Once ready the result will display in the right panel.
                 @Image(source: "using_tilesets_atlas_merging_tool_dialog.png", alt: "Using the atlas merging tool dialog")
             }
             @Step {
                 Choose **Merge** to merge the selected atlases into a single atlas image (which
-                translates to a single atlas within the TileSet). The unmerged atlases will be
-                removed within the TileSet, but *the original tilesheet images will be kept on
-                the filesystem*. If you don't want the unmerged atlases to be removed from the
-                TileSet resource, choose **Merge (Keep Original Atlases)** instead.
-
-                > Tip: TileSet features a system of *tile proxies*. Tile proxies are a mapping
-                table that allows notifying the TileMap using a given TileSet that a given
-                set of tile identifiers should be replaced by another one.Tile proxies are automatically set up when merging different atlases, but
-                they can also be set manually thanks to the **Manage Tile Proxies** dialog
-                you can access using the "three vertical dots" menu mentioned above.Manually creating tile proxies may be useful when you changed an atlas ID or
-                want to replace all tiles from an atlas by the ones from another atlas. Note
-                that when editing a TileMap, you can replace all cells by their
-                corresponding mapped value.
+                translates to a single atlas within the TileSet).
+                
+                You will need to give the merged file a name in the following pop-up window.
             }
+            The unmerged atlases will be
+            removed within the TileSet, but *the original tilesheet images will be kept on
+            the filesystem*. If you don't want the unmerged atlases to be removed from the
+            TileSet resource, toggle **Keep Original Atlases** before merging.
+            
+            > Tip: `TileSet` features a system of *tile proxies*. Tile proxies are a mapping
+            table that allows notifying the TileMap using a given `TileSet` that a given
+            set of tile identifiers should be replaced by another one. Tile proxies are automatically set up when merging different atlases, but
+            they can also be set manually thanks to the **Manage Tile Proxies** dialog
+            you can access using the **Settings** "Cog" menu mentioned above. Manually creating tile proxies may be useful when you changed an atlas ID or
+            want to replace all tiles from an atlas by the ones from another atlas. 
         }
     }
     @Section(title: "Adding collision, navigation and occlusion to the TileSet") {
         @ContentAndMedia {
-            We've now successfully created a basic TileSet. We could start using it in the
-            TileMapLayer node now, but it currently lacks any form of collision detection.
+            We've now successfully created a basic `TileSet`. We could start using it in the
+            `TileMapLayer` node now, but it currently lacks any form of collision detection.
             This means the player and other objects could walk straight through the floor or
             walls.
+            @Image(source: "fix-me.png")
+        }
+        If you use 2D navigation, you'll also need
+        to define navigation polygons for tiles to generate a navigation mesh that
+        agents can use for pathfinding.
 
-            If you use [`2D navigation`](doc:doc_navigation_overview_2d), you'll also need
-            to define navigation polygons for tiles to generate a navigation mesh that
-            agents can use for pathfinding.
+        Lastly, if you use lights or GPUParticles2D, you may
+        also want your `TileSet` to be able to cast shadows and collide with particles.
+        This requires defining occluder polygons for "solid" tiles on the `TileSet`.
 
-            Lastly, if you use <doc:doc_2d_lights_and_shadows> or GPUParticles2D, you may
-            also want your TileSet to be able to cast shadows and collide with particles.
-            This requires defining occluder polygons for "solid" tiles on the TileSet.
-
+        In the next few steps we will cover how to add a layer for these important features.
+        
+        @Steps {
             To be able to define collision, navigation and occlusion shapes for each tile,
             you will need to create a physics, navigation or occlusion layer for the TileSet
-            resource first. To do so, select the TileMapLayer node, click the TileSet property
-            value in the inspector to edit it then unfold **Physics Layers** and choose
-            **Add Element**:
-
-            @Image(source: "using_tilesets_create_physics_layer.png", alt: "Creating a physics layer in the TileSet resource inspector (within the TileMapLayer node)")
-        }
-        @Steps {
+            resource first.
             @Step {
-                If you also need navigation support, now is a good time to create a navigation layer:
+                Select the `TileMapLayer` node, click the `TileSet` property
+                value in the inspector to edit it then tap `Array[0]` next to **Physics Layers** and choose
+                **Add** in the upper-right:
+            }
+            @Step {
+                If you also need navigation support, now is a good time to create a navigation layer by tapping `Array[0]` next to **Navigation Layers** and pressing **Add**:
                 @Image(source: "using_tilesets_create_navigation_layer.png", alt: "Creating a navigation layer in the TileSet resource inspector (within the TileMapLayer node)")
             }
+            If you need support for light polygon occluders, now is also a good time to create an occlusion layer.
             @Step {
-                If you need support for light polygon occluders, now is a good time to create an occlusion layer:
+                Tap **Rendering**, and then press `Array[0]` next to **Occlusion Layers** and press **Add**:
                 @Image(source: "using_tilesets_create_occlusion_layer.png", alt: "Creating an occlusion layer in the TileSet resource inspector (within the TileMapLayer node)")
             }
-            @Step {
-                > Future steps in this tutorial are tailored to creating collision polygons,
+            > Important:  Future steps in this tutorial are tailored to creating *collision polygons*,
                 but the procedure for navigation and occlusion is very similar.
                 Their respective polygon editors behave in the same way, so these steps are
-                not repeated for brevity.The only caveat is that the tile's occlusion polygon property is part of a
-                **Rendering** subsection in the atlas inspector. Make sure to unfold this
+                not repeated for brevity. The only caveat is that the tile's occlusion polygon property is part of a
+                **Rendering** subsection in the **Atlas Inspector**. Make sure to unfold this
                 section so you can edit the polygon.
-
+            @Step {
                 After creating a physics layer, you have access to the **Physics Layer** section
                 in the TileSet atlas inspector:
                 @Image(source: "using_tilesets_selecting_collision_editor.png", alt: "Opening the collision editor while in Select mode")
