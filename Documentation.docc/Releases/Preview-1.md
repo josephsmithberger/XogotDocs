@@ -4,7 +4,35 @@ Release notes for our preview release of Xogot to TestFlight.
 
 # Releases
 
-## Build 
+## Build
+
+### Improvements
+
+* When you create a new Scene, it will default to be placed in the directory
+  selected selected on the FilePad (#2052)
+
+### Fixes
+
+* New scenes will be visible after they are created (#2052, Discord).
+
+* Skeleton3D Editor: fixes a crash (#2099, Testflight)
+
+* Fixes a Vector editor crash that we saw in the wild (#2089, Testflight)
+
+* Prevents a crash on invalid timeline definitions (#2097, Testflight)
+
+* Fixes a crash that happens during the theme change, dangling pointer access in
+ Godot (#2096, Testflight).
+
+* Fixes a crash when creating a new script under certain conditions (#2085,
+  Testflight). 
+
+* Fixes a crash on the Sprite2DEditor (upstream Godot bug)
+
+* Fixes a crash when you switch the current scene from a _ready handler, only on
+  the Xogot Beta build 
+
+## Build 3606
 
 ### Improvements
 
