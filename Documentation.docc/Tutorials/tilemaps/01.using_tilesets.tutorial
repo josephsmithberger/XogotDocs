@@ -266,6 +266,7 @@
                 Select the `TileMapLayer` node, click the `TileSet` property
                 value in the inspector to edit it then tap `Array[0]` next to **Physics Layers** and choose
                 **Add** in the upper-right:
+                @Image(source: "fix-me.png")
             }
             @Step {
                 If you also need navigation support, now is a good time to create a navigation layer by tapping `Array[0]` next to **Navigation Layers** and pressing **Add**:
@@ -279,32 +280,22 @@
             > Important:  Future steps in this tutorial are tailored to creating *collision polygons*,
                 but the procedure for navigation and occlusion is very similar.
                 Their respective polygon editors behave in the same way, so these steps are
-                not repeated for brevity. The only caveat is that the tile's occlusion polygon property is part of a
-                **Rendering** subsection in the **Atlas Inspector**. Make sure to unfold this
-                section so you can edit the polygon.
+                not repeated for brevity. For other layers, you need to access them in the **Paint** mode.
             @Step {
-                After creating a physics layer, you have access to the **Physics Layer** section
-                in the TileSet atlas inspector:
+                After creating a physics layer, you have access to the **Physics** section
+                in the `TileSet` **Atlas Inspector**. Inside there is a collision drawing section. 
+                
+                > Make sure you have a tile selected in order to see this section.
                 @Image(source: "using_tilesets_selecting_collision_editor.png", alt: "Opening the collision editor while in Select mode")
             }
-            @Step {
-                You can quickly create a rectangle collision shape by pressing F while
-                the TileSet editor is focused. If the keyboard shortcut doesn't work, try
-                clicking in the empty area around the polygon editor to focus it:
-                @Image(source: "using_tilesets_using_default_rectangle_collision.png", alt: "Using default rectangle collision shape by pressing :kbd:`F`")
-            }
-            @Step {
-                In this tile collision editor, you have access to all the 2D polygon editing tools:
+            In this tile shape editor, you have access to all the 2D polygon editing tools:
+            * Use the toolbar above the polygon to toggle between creating a new polygon,
+            editing an existing polygon and removing points on the polygon. 
+            * You can create new points by tapping and dragging a line between two points with the **Move** mode selected.
+            * Remove a point by using the Remove tool described above
+            and tapping on the point you wish to remove.
 
-                * Use the toolbar above the polygon to toggle between creating a new polygon,
-                editing an existing polygon and removing points on the polygon. The "three vertical dots"
-                menu button offers additional options, such as rotating and flipping the polygon.
-                * Create new points by clicking and dragging a line between two points.
-                * Remove a point by right-clicking it (or using the Remove tool described above
-                and left-clicking).
-                * Pan in the editor by middle-clicking or right-clicking. (Right-click panning
-                can only be used in areas where there is no point nearby.)
-
+            @Step {
                 You can use the default rectangle shape to quickly create a triangle-shaped
                 collision shape by removing one of the points:
                 @Image(source: "using_tilesets_creating_triangle_collision.png", alt: "Creating a triangle collision shape by right-clicking one of the corners to remove it")
@@ -313,13 +304,14 @@
                 You can also use the rectangle as a base for more complex shapes by adding more points:
                 @Image(source: "using_tilesets_drawing_custom_collision.png", alt: "Drawing a custom collision for a complex tile shape")
             }
+            > Tip: If you have a large tileset, specifying the collision for each tile
+            individually could take a lot of time. This is especially true as `TileMaps`
+            tend to have many tiles with common collision patterns (such as solid blocks
+            or 45-degree slopes). To apply a similar collision shape to several tiles
+            quickly, use the **Paint** mode.
             @Step {
-                > Tip: If you have a large tileset, specifying the collision for each tile
-                individually could take a lot of time. This is especially true as TileMaps
-                tend to have many tiles with common collision patterns (such as solid blocks
-                or 45-degree slopes). To apply a similar collision shape to several tiles
-                quickly, use functionality to
-                [`assign properties to multiple tiles at once`](doc:doc_using_tilemaps_assigning_properties_to_multiple_tiles).
+                In the **Paint** mode, select "Physics Layer 0" in the dropdown and then proceed to create a polygon like before. Now once complete, in the `TileSet` window, you can tap on tiles to paint these shapes over your tile map.
+                @Image(source: "fix-me.png")
             }
         }
     }
@@ -332,24 +324,26 @@
 
             The data is associated with the tile in the TileSet: all instances of the placed
             tile will use the same custom data. If you need to create a variant of a tile
-            that has different custom data, this can be done by <doc:creating an
-            alternative tile <doc_using_tilesets_creating_alternative_tiles>> and changing
+            that has different custom data, this can be done by creating an
+            alternative tile and changing
             the custom data for the alternative tile only.
 
             @Image(source: "using_tilesets_create_custom_data_layer.png", alt: "Creating a custom data layer in the TileSet resource inspector (within the TileMapLayer node)")
         }
         @Steps {
             @Step {
-
+                To add a custom data layer to your TileSet resource, go back to the **Inspector** and tap `Array[0]` next to **Custom Data Layers**
                 @Image(source: "using_tilesets_custom_data_layers_example.png", alt: "Example of configured custom data layers with game-specific properties")
             }
+            This will open a window where you can add as many custom data layers as needed. Each will let you set a **Name** and **Type**. The **Type** field can be any of the many Godot variable types.
             @Step {
-                You can reorder custom data without breaking existing metadata: the TileSet
-                editor will update automatically after reordering custom data properties.
-
-                With the custom data layers example shown above, we're assigning a tile to have the
-                `damage_per_second` metadata set to `25` and the `destructible` metadata
-                to `false`:
+                In this example we have added a data layer for a `boolean`, a `string` and `float`. In the following image, you can see that in the **Atlas Inspector** we are able to edit those values.
+                @Image(source: "fix-me.png")
+            }
+            Back in the **Inspector**, you can reorder custom data without breaking existing metadata: the `TileSet` will update automatically after reordering custom data properties.
+            @Step {
+                In the **Inspector** if you open the **Custom Data Layers** `Array[]` you can tap **Edit** and then reorder or delete a layer.
+                
                 @Image(source: "using_tilesets_edit_custom_data.png", alt: "Editing custom data in the TileSet editor while in Select mode")
             }
             @Step {
