@@ -11,9 +11,13 @@
     }
     
     @Chapter(name: "Step by Step") {
-        In this tutorial series, you will learn the basics of building games running Godot and using the Xogot editor. 
-        
         @Image(source: scripting_first_script_rotating_godot.gif)
+
+        This step-by-step tutorial series is your introduction to Xogot. You’ll learn 
+        the basics of the editor, nodes, scenes, GDScript, and signals through practical 
+        examples. By the end of the series, you’ll have the foundations you need to 
+        confidently start creating games in Xogot.
+
         
         @TutorialReference(tutorial: "doc:1_nodes_and_scenes")
         @TutorialReference(tutorial: "doc:2_instancing")
