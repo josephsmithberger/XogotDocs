@@ -8,7 +8,7 @@
             A tilemap is a grid of tiles used to create a game's layout. There are several
             benefits to using [`TileMapLayer`](https://docs.godotengine.org/en/stable/classes/class_TileMapLayer.html#class-TileMapLayer) nodes to design your
             levels
-            @Image(source: "Tileset_cover.png", alt: "An example tileset featuring the Kenny's Abstract Platformer tileset")
+            @Image(source: "Tileset_cover.png")
         }
         First, they let you draw a layout by "painting" tiles onto a grid,
         which is much faster than placing individual [`Sprite2D`](https://docs.godotengine.org/en/stable/classes/class_Sprite2D.html#class-Sprite2D) nodes one by one. Second, they allow for larger levels
@@ -34,10 +34,10 @@
             @Image(source: "using_tilesets_kenney_abstract_platformer_tile_sheet.png", alt: "Tilesheet example with 64×64 tiles")
             
         }
-        Download the attached *.zip* file and extract it in the **Files** app, the once ready continue back in Xogot.
+        Download the attached *.zip* file and extract it in the **Files** app; once ready return to Xogot.
         @Steps {
             @Step {
-                Starting from the **Project Manager** press the **+** or **New Game** buttons to create a new project.
+                Starting from the **Project Manager** press the **+** or **New Project** buttons to create a new project.
                 
                 Name the project whatever you like, we will use "Tiles Tutorial"
                 @Image(source: fix-me.png)
@@ -50,11 +50,11 @@
                 Select the new node and create a new TileSet resource in the **Inspector** by tapping `PickResource` and selecting `New TileSet`:
                 @Image(source: "using_tilesets_create_new_tileset.png", alt: "Creating a new TileSet resource within the TileMapLayer node")
                 
-                >Tip: If the **Scope** dock is closed press the cross-hair icon in the upper right next to play to open it.
+                >Tip: If the **Scope** dock is closed, press the cross-hair icon in the upper right, next to the **Play** button, to open it.
             }
             This will automatically open the TileMap editor dock on the bottom. We will explore these tabs in a bit.
             @Step {
-                For now, tap the value to open it in the
+                For now, tap the `TileSet` resource value to open it in the
                 inspector.
                 @Image(source: fix-me.png)
             }
@@ -93,7 +93,7 @@
             tilesheet that are *fully* transparent will not have tiles generated.
 
             @Step {
-                You can select a tile and choose **Delete**  in the **Ellipsis** (**...**) menu to remove any tiles you don't want, or press the **Erasor** icon.
+                You can select a tile and choose **Delete**  in the **Ellipsis** (**...**) menu to remove any tiles you don't want, or press the **Eraser** icon.
                 @Image(source: fix-me.png)
             }
             If you wish to source tiles from several tilesheet images for a single `TileSet`,
@@ -490,7 +490,7 @@
         }
         @Steps {
             @Step {
-                To create an alternative tile, make sure you are in *Select* mode, then tap on a tile to select it in the **TileSet** editor (1), then choose **Create an Alternative Tile** in the **Ellipsis** "..." menu next to the **Erasor** (2)
+                To create an alternative tile, make sure you are in *Select* mode, then tap on a tile to select it in the **TileSet** editor (1), then choose **Create an Alternative Tile** in the **Ellipsis** "..." menu next to the **Eraser** (2)
 
                 @Image(source: "using_tilesets_create_alternative_tile.png")
             }
@@ -500,7 +500,7 @@
             @Step {
 
             Alternative tiles will appear inside a small window in the **TileSet** editor. If you close this window, you can reopen it by hitting the hexagonal **Alternative Tile** icon in the tool menu. 
-                @Image(source: "using_tilesets_configure_alternative_tile.png", alt: "Configuring an alternative tile aftertaping it in the TileSet editor")
+                @Image(source: "using_tilesets_configure_alternative_tile.png", alt: "Configuring an alternative tile after taping it in the TileSet editor")
             }
             After selecting an alternative tile, you can change any properties using the
             **Atlas** properties tab like you would on a base tile. However, the list of exposed

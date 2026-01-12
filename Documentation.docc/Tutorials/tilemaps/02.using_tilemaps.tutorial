@@ -7,16 +7,16 @@
         @Image(source: "fix-me.png")
         
         A tilemap is a grid of tiles used to create a game's layout. There are several
-            benefits to using [`TileMapLayer`](https://docs.godotengine.org/en/stable/classes/class_TileMapLayer.html#class-TileMapLayer) nodes to design your levels.
-            
-            First, they make it possible to draw the layout by "painting" the tiles onto a
-            grid, which is much faster than placing individual [`Sprite2D`](https://docs.godotengine.org/en/stable/classes/class_Sprite2D.html#class-Sprite2D)
-            nodes one by one. 
-            
-            Second, they allow for much larger levels because they are
-            optimized for drawing large numbers of tiles. Finally, you can add collision,
-            occlusion, and navigation shapes to tiles, adding greater functionality to
-            the TileMap.
+        benefits to using [`TileMapLayer`](https://docs.godotengine.org/en/stable/classes/class_TileMapLayer.html#class-TileMapLayer) nodes to design your levels.
+        
+        First, they make it possible to draw the layout by "painting" the tiles onto a
+        grid, which is much faster than placing individual [`Sprite2D`](https://docs.godotengine.org/en/stable/classes/class_Sprite2D.html#class-Sprite2D)
+        nodes one by one. 
+        
+        Second, they allow for much larger levels because they are
+        optimized for drawing large numbers of tiles. Finally, you can add collision,
+        occlusion, and navigation shapes to tiles, adding greater functionality to
+        the TileMap.
     }
     @Section(title: "Specifying the TileSet in the TileMapLayer") {
         @ContentAndMedia {
@@ -24,8 +24,6 @@
             have a `TileSet` resource that is built into the `TileMapLayer` node. This is good for
             prototyping, but in a real world project, you will generally have multiple
             levels reusing the same tileset.
-
-            
 
             @Image(source: "using_tilemaps_save_tileset_to_resource.png", alt: "Saving the built-in TileSet resource to an external resource file")
         }
@@ -38,106 +36,90 @@
             }
         }
     }
-    @Section(title: "Multiple TileMapLayers and settings") {
-        @ContentAndMedia {
-            When working with tilemaps it's generally advised that you use multiple TileMapLayer
-            nodes when appropriate. 
-            @Image(source: "fix-me.png")
-        }
-        
-            Using multiple layers can be advantageous, for example,
-            this allows you to distinguish foreground tiles from background tiles for better
-            organization. You can place one tile per layer at a given location, which allows you
-            to overlap several tiles together if you have more than one layer.
-
-            Each TileMapLayer node has several properties you can adjust:
-
-            * **Enabled:** If `true`, the layer is visible in the editor and when running
-            the project.
-            * **TileSet** The tileset used by the TileMapLayer node.
-        }
-    }
-    @Section(title: "Rendering") {
-        @ContentAndMedia {
-            * **Y Sort Origin:** The vertical offset to use for Y-sorting on each tile (in pixels).
-            Only effective if **Y Sort Enabled** under CanvasItem settings is `true`.
-            * **X Draw Order Reversed** Reverses the order tiles are drawn on the X axis. Requires
-            that **Y Sort Enabled** under CanvasItem settings is `true`.
-            * **Rendering Quadrant Size** A quadrant is a group of tiles drawn together on a single
-            CanvasItem for optimization purposes. This setting defines the length of a square's
-            side in the map's coordinate system. The quadrant size does not apply to a Y sorted
-            TileMapLayer since tiles are grouped by Y position in that case.
-        }
-    }
-    @Section(title: "Physics") {
-        @ContentAndMedia {
-            * **Collision Enabled** Enables or disables collision.
-            * **Use Kinematic Bodies** When true TileMapLayer collision shapes will be instantiated
-            as kinematic bodies.
-            * **Collision Visibility Mode** Whether or not the TileMapLayer's collision shapes are
-            visible. If set to default, then it depends on the show collision debug settings.
-        }
-    }
-    @Section(title: "Navigation") {
-        @ContentAndMedia {
-            * **Navigation Enabled** Whether or not navigation regions are enabled.
-            * **Navigation Visible** Whether or not the TileMapLayer's navigation meshes are
-            visible. If set to default then it depends on the show navigation debug settings.
-
-            > Tip: TileMap built-in navigation has many practical limitations that result in inferior pathfinding performance and pathfollowing quality.After designing the TileMap consider baking it to a more optimized navigation mesh (and disabling the TileMap NavigationLayer) using a [`NavigationRegion2D`](https://docs.godotengine.org/en/stable/classes/class_NavigationRegion2D.html#class-NavigationRegion2D) or the [`NavigationServer2D`](https://docs.godotengine.org/en/stable/classes/class_NavigationServer2D.html#class-NavigationServer2D). See <doc:doc_navigation_using_navigationmeshes> for additional information.
-
-            > Warning: 2D navigation meshes can not be "layered" or stacked on top of each other like visuals or physic shapes. Attempting to stack navigation meshes on the same navigation map will result in merge and logical errors that break the pathfinding.
-        }
-    }
-    @Section(title: "Reordering layers") {
-        @ContentAndMedia {
-            You can reorder layers by drag-and-dropping their node in the Scene tab. You can
-            also switch between which TileMapLayer node you're working on by using the buttons
-            in the top right corner of the TileMap editor.
-
-            > You can create, rename or reorder layers in the future without affecting
-            existing tiles. Be careful though, as *removing* a layer will also remove
-            all tiles that were placed on the layer.
-        }
-    }
-    @Section(title: "Opening the TileMap editor") {
+    Section(title: "Opening the TileMap editor") {
         @ContentAndMedia {
             Select the TileMapLayer node, then open the TileMap panel at the bottom
             of the editor:
 
             @Image(source: "using_tilemaps_open_tilemap_editor.png", alt: "Opening the TileMap panel at the bottom of the editor. The TileMapLayer node must be selected first.")
         }
-        @Steps {
-            @Step {
+    }
+    @Section(title: "TileMap settings") {
+        After creating a TileMapLayer node, the scope will show a number of settings that can been adjusted:
 
-            }
+        * **Enabled:** If `true`, the layer is visible in the editor and when running
+        the project.
+        * **TileSet** The tileset used by the TileMapLayer node.
+        
+        Rendering:
+        * **Y Sort Origin:** The vertical offset to use for Y-sorting on each tile (in pixels).
+        Only effective if **Y Sort Enabled** under CanvasItem settings is `true`.
+        * **X Draw Order Reversed** Reverses the order tiles are drawn on the X axis. Requires
+        that **Y Sort Enabled** under CanvasItem settings is `true`.
+        * **Rendering Quadrant Size** A quadrant is a group of tiles drawn together on a single
+        CanvasItem for optimization purposes. This setting defines the length of a square's
+        side in the map's coordinate system. The quadrant size does not apply to a Y sorted
+        TileMapLayer since tiles are grouped by Y position in that case.
+        Collision:
+        * **Collision Enabled** Enables or disables collision.
+        * **Use Kinematic Bodies** When true TileMapLayer collision shapes will be instantiated
+        as kinematic bodies.
+        * **Collision Visibility Mode** Whether or not the TileMapLayer's collision shapes are
+        visible. If set to default, then it depends on the show collision debug settings.
+        Navigation:
+        * **Navigation Enabled** Whether or not navigation regions are enabled.
+        * **Navigation Visible** Whether or not the TileMapLayer's navigation meshes are
+        visible. If set to default then it depends on the show navigation debug settings.
+
+        > Tip: TileMap built-in navigation has many practical limitations that result in inferior pathfinding performance and pathfollowing quality. After designing the TileMap consider baking it to a more optimized navigation mesh (and disabling the TileMap NavigationLayer) using a [`NavigationRegion2D`](https://docs.godotengine.org/en/stable/classes/class_NavigationRegion2D.html#class-NavigationRegion2D) or the [`NavigationServer2D`](https://docs.godotengine.org/en/stable/classes/class_NavigationServer2D.html#class-NavigationServer2D). See <doc:doc_navigation_using_navigationmeshes> for additional information.
+
+        > Warning: 2D navigation meshes can not be "layered" or stacked on top of each other like visuals or physic shapes. Attempting to stack navigation meshes on the same navigation map will result in merge and logical errors that break the pathfinding.
+    }
+    @Section(title: "Working with nodes and Reordering layers") 
+        @ContentAndMedia {
+            When working with tilemaps it's generally advised that you use multiple TileMapLayer
+            nodes when appropriate. 
+            @Image(source: "fix-me.png")
         }
+        
+        Using multiple layers can be advantageous, for example,
+        this allows you to distinguish foreground tiles from background tiles for better
+        organization. You can place one tile per layer at a given location, which allows you
+        to overlap several tiles together if you have more than one layer
+        
+        You can reorder layers by drag-and-dropping their node in the Scene tab. You can
+        also switch between which TileMapLayer node you're working on by using the buttons
+        in the top right corner of the TileMap editor.
+
+        > You can create, rename or reorder layers in the future without affecting
+        existing tiles. Be careful though, as *removing* a layer will also remove
+        all tiles that were placed on the layer.
     }
     @Section(title: "Selecting tiles to use for painting") {
         @ContentAndMedia {
-            First, if you've created additional layers above, make sure you've selected the
-            layer you wish to paint on:
-
-            @Image(source: "using_tilemaps_select_layer.png", alt: "Selecting a layer to paint on in the TileMap editor")
+            In this section we will go over all the tools in the TileMap editor paint mode and cover how to get ready for painting.
         }
         @Steps {
             @Step {
-                > Tip: In the 2D editor, the layers you aren't currently editing from the same
-                TileMapLayer node will appear grayed out while in the TileMap editor. You can
-                disable this behavior by clicking the icon next to the layer selection menu
-                (**Highlight Selected TileMap Layer** tooltip).
-
-                You can skip the above step if you haven't created additional layers, as the
-                first layer is automatically selected when entering the TileMap editor.
-
-                Before you can place tiles in the 2D editor, you must select one or more tiles
-                in the TileMap panel located at the bottom of the editor. To do so, click a tile
-                in the TileMap panel, or hold down the mouse button to select multiple tiles:
+                First, if you've created additional layers above, make sure you've selected the
+                layer you wish to paint on.
+    
+                @Image(source: "using_tilemaps_select_layer.png", alt: "Selecting a layer to paint on in the TileMap editor")
+            }
+            You can skip the above step if you haven't created additional layers, as the
+            first layer is automatically selected when entering the TileMap editor.
+            Before you can place tiles in the 2D editor, you must select one or more tiles
+            in the TileMap panel located at the bottom of the editor.
+            
+            To do so, there are two modes you can switch between in the TileMap editor. *Single Select* or *Multi Select*. With *Single Select*, you can tap one tile at a time
+            in the TileMap panel to select it for use. With *Multi Select* any tile you tap will be added to your paint selection.
+            @Step {
+                You can switch between these modes using this button:
                 @Image(source: "using_tilemaps_select_single_tile_from_tileset.png", alt: "Selecting a tile in the TileMap editor by clicking it")
             }
             @Step {
                 > Tip: Like in the 2D and TileSet editors, you can pan across the TileMap panel using
-                the middle or right mouse buttons, and zoom using the mouse wheel or buttons in
+                your fingers, and zoom using the mouse wheel or buttons in
                 the top-left corner.
 
                 You can also hold down Shift to append to the current selection. When
