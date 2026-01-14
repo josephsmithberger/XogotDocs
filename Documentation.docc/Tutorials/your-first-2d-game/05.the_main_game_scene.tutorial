@@ -167,7 +167,7 @@
             @Step {
                 Add a `new_game` function that will set everything up for a new game.
                 
-                @Code(name: "main.gd", file: main-04.gd
+                @Code(name: "main.gd", file: main-04.gd, previousFile: main-03.gd)
             }
             @Step {
                 Now connect the `timeout()` signal of each of the Timer nodes (`StartTimer`,
@@ -176,7 +176,7 @@
                 > `ScoreTimer` will increment the score by 1 as the game progresses. 
                 `StartTimer` will start `ScoreTimer` and `MobTimer`.
                 
-                @Code(name: "main.gd", file: main-05.gd)
+                @Code(name: "main.gd", file: main-05.gd, previousFile: main-04.gd)
             }
             @Step {
                 In `_on_mob_timer_timeout()`, we will create a mob instance, pick a random
