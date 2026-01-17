@@ -62,8 +62,9 @@ You can create an Autoload to load a scene or a script that inherits from
 
 @Image(source: "singleton.png")
 
-To autoload a scene or script, start from the menu and navigate to
-**Project > Project Settings > Globals > Autoload**.
+To autoload a scene or script, naviagte to 
+**menu icon -> settings -> drop down menu -> 'Autoload'**.
+
 
 @Image(source: "autoload_tab.png")
 
@@ -104,15 +105,15 @@ complex behavior when changing scenes, this method provides more functionality.
 
 To begin, download the template from here:
 [singleton_autoload_starter.zip](https://github.com/godotengine/godot-docs-project-starters/releases/download/latest-4.x/singleton_autoload_starter.zip)
-and open it in Godot.
+and open it in Xogot.
 
-A window notifying you that the project was last opened in an older Godot version
+A window notifying you that the project was last opened in an older Xogot version
 may appear, that's not an issue. Click Ok to open the project.
 
 The project contains two scenes: `scene_1.tscn` and `scene_2.tscn`. Each
 scene contains a label displaying the scene name and a button with its
 `pressed()` signal connected. When you run the project, it starts in
-`scene_1.tscn`. However, pressing the button does nothing.
+`scene_1.tscn`. However, tapping the button does nothing.
 
 ### Creating the script
 
@@ -123,7 +124,7 @@ Make sure it inherits from `Node`:
 
 The next step is to add this script to the autoload list.
 Starting from the menu, open
-**Project > Project Settings > Globals > Autoload** and
+**Settings > Drop down menu > Autoload** and
 select the script by clicking the browse button or typing its path:
 `res://global.gd`. Press **Add** to add it to the autoload list
 and name it "Global", which is required for scripts to access it
@@ -206,7 +207,7 @@ func _on_button_pressed():
     Global.goto_scene("res://scene_1.tscn")
 ```
 
-Run the project and test that you can switch between scenes by pressing
+Run the project and test that you can switch between scenes by tapping
 the button.
 
 > Note:
