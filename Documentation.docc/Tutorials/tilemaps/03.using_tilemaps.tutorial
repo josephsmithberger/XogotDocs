@@ -1,5 +1,5 @@
 @Tutorial(time: 20) {
-    @Intro(title: "Using TileMaps") {
+    @Intro(title: "Using the TileMap editor") {
         > This page assumes you have created or downloaded a TileSet already. If not,
             please read <doc:01.setting_up_tileset_and_tilesheet> first as you will need a `TileSet`
             to create a `TileMap`.
