@@ -36,57 +36,69 @@
             The recommended way to reuse the same `TileSet` in several `TileMapLayer` nodes is to save
             the `TileSet` to an external resource. 
             @Step {
-                To do so, long-press the resource or tap the **Ellipsis** button next to the `TileSet`
-                resource and choose **Save**:
-                @Image(source: "fix-me.png")
+                To do so, tap the **Ellipsis** button next to the `TileSet`
+                resource (1) and choose **Save As** (2)
+                @Image(source: "tilemaps_saving_your_tileset_resource.png")
+            }
+            @Step {
+                In the pop-up window, name your new `TileSet` resource (1), press the three dots menu (2) and select **Save**.
+                @Image(source: "tilemaps_saving_your_tileset_resource_popup.png")
+            }
+            @Step {
+                To use this resource, tap the **Ellipsis** menu in a `TileMapLayer` and pick **Load**.
+                @Image(source: "tilemaps_loading_your_tileset_resource.png")
             }
             Next, let's open up the TileMap editor pane.
             @Step {
                 Select the TileMapLayer node, then open the TileMap panel at the bottom
                 of the editor:
                 
-                @Image(source: "using_tilemaps_open_tilemap_editor.png", alt: "Opening the TileMap panel at the bottom of the editor. The TileMapLayer node must be selected first.")
+                @Image(source: "using_tilemaps_open_tilemap_editor.png")
             }
         }
     }
-    @Section(title: "TileMap settings") {
+    @Section(title: "TileMapLayer node properties") {
         @ContentAndMedia {
-        After creating a TileMapLayer node, the scope will show a number of settings that can been adjusted:
-        @Image(source: fix-me.png)
+        After creating a `TileMapLayer` node, the scope will show a number of settings that can been adjusted. The following is a description of all your optional settings you can adjust by exploring the sub-menus within `TileMapLayer` nodes.
+        @Image(source: "tilemaplayer_settings_header.png")
         }
+        Main Settings:
         * **Enabled:** If `true`, the layer is visible in the editor and when running
         the project.
-        * **TileSet** The tileset used by the TileMapLayer node.
+        * **TileSet** The tileset used by the `TileMapLayer` node.
         
         Rendering:
-        * **Y Sort Origin:** The vertical offset to use for Y-sorting on each tile (in pixels).
+        * **Y Sort Origin:** The vertical offset to use for `Y`-sorting on each tile (in pixels).
         Only effective if **Y Sort Enabled** under CanvasItem settings is `true`.
-        * **X Draw Order Reversed** Reverses the order tiles are drawn on the X axis. Requires
+        * **X Draw Order Reversed** Reverses the order tiles are drawn on the `X` axis. Requires
         that **Y Sort Enabled** under CanvasItem settings is `true`.
         * **Rendering Quadrant Size** A quadrant is a group of tiles drawn together on a single
         CanvasItem for optimization purposes. This setting defines the length of a square's
-        side in the map's coordinate system. The quadrant size does not apply to a Y sorted
-        TileMapLayer since tiles are grouped by Y position in that case.
-        Collision:
+        side in the map's coordinate system. The quadrant size does not apply to a `Y` sorted
+        `TileMapLayer` since tiles are grouped by `Y` position in that case.
+        
+        Physics:
         * **Collision Enabled** Enables or disables collision.
-        * **Use Kinematic Bodies** When true TileMapLayer collision shapes will be instantiated
+        * **Use Kinematic Bodies** When true `TileMapLayer` collision shapes will be instantiated
         as kinematic bodies.
-        * **Collision Visibility Mode** Whether or not the TileMapLayer's collision shapes are
+        * **Collision Visibility Mode** Whether or not the `TileMapLayer`'s collision shapes are
         visible. If set to default, then it depends on the show collision debug settings.
+        
         Navigation:
         * **Navigation Enabled** Whether or not navigation regions are enabled.
-        * **Navigation Visible** Whether or not the TileMapLayer's navigation meshes are
+        * **Navigation Visible** Whether or not the `TileMapLayer`'s navigation meshes are
         visible. If set to default then it depends on the show navigation debug settings.
+        
+        This node, being an extension of `Node2D`, also contains all the inherited properties as well from `Node2D`, `CanvasItem` and `Node`.
 
-        > Tip: TileMap built-in navigation has many practical limitations that result in inferior pathfinding performance and pathfollowing quality. After designing the TileMap consider baking it to a more optimized navigation mesh (and disabling the TileMap NavigationLayer) using a [`NavigationRegion2D`](https://docs.godotengine.org/en/stable/classes/class_NavigationRegion2D.html#class-NavigationRegion2D) or the [`NavigationServer2D`](https://docs.godotengine.org/en/stable/classes/class_NavigationServer2D.html#class-NavigationServer2D).
+        > Tip: `TileMap` built-in navigation has many practical limitations that result in inferior pathfinding performance and pathfollowing quality. After designing the `TileMap` consider baking it to a more optimized navigation mesh (and disabling the `TileMap` NavigationLayer) using a [`NavigationRegion2D`](https://docs.godotengine.org/en/stable/classes/class_NavigationRegion2D.html#class-NavigationRegion2D) or the [`NavigationServer2D`](https://docs.godotengine.org/en/stable/classes/class_NavigationServer2D.html#class-NavigationServer2D).
 
         > Warning: 2D navigation meshes can not be "layered" or stacked on top of each other like visuals or physic shapes. Attempting to stack navigation meshes on the same navigation map will result in merge and logical errors that break the pathfinding.
     }
     @Section(title: "Working with nodes and Reordering layers") { 
         @ContentAndMedia {
-            When working with tilemaps it's generally advised that you use multiple TileMapLayer
-            nodes when appropriate. 
-            @Image(source: "fix-me.png")
+            When working with tilemaps it's generally advised that you use multiple `TileMapLayer` nodes when appropriate. 
+            @Image(source: "tile_maps_nodes_layers_header.png")
         }
         
         Using multiple layers can be advantageous, for example,
@@ -94,32 +106,30 @@
         organization. You can place one tile per layer at a given location, which allows you
         to overlap several tiles together if you have more than one layer
         
-        You can reorder layers by drag-and-dropping their node in the Scene tab. You can
-        also switch between which TileMapLayer node you're working on by using the buttons
-        in the top right corner of the TileMap editor.
+        You can reorder layers by drag-and-dropping their node in the **Scene** tab.
 
         > You can create, rename or reorder layers in the future without affecting
         existing tiles. Be careful though, as *removing* a layer will also remove
-        all tiles that were placed on the layer.
+        all tiles that were placed on the layer. However, if you saved the `TileSet` resource, it will not destroy that resource, so you can always link the resource again and place new tiles.
     }
     @Section(title: "Saving and loading premade tile placements using patterns") {
         @ContentAndMedia {
             While you can copy and paste tiles while in *Select* mode, you may wish to save
             premade *patterns* of tiles to place together in a go. This can be done on a
             per-TileMap basis by choosing the **Patterns** tab of the **TileMap** editor.
-            @Image(source: fix-me.png)
+            @Image(source: "patterns_header.png")
         }
         @Steps {
             First, go to the **Patterns** tab in the **TileMap** editor
             @Step {
-                To create a new pattern, switch to *Select* mode, perform a selection and press **Add Pattern** (1).
+                To create a new pattern, switch to *Select* mode by pressing the **Mouse Pointer** icon (1), then make a selection (2) and press **Add Pattern** (3).
                 
-                @Image(source: "using_tilemaps_create_pattern.png", alt: "Creating a new pattern from a selection in the TileMap editor")
+                @Image(source: "using_tilemaps_create_pattern.png")
             }
             @Step {
                 To use an existing pattern, tap its image in the **Patterns** tab, switch to
                 any painting mode, then tap somewhere in the **2D** editor:
-                @Image(source: "using_tilemaps_use_pattern.png", alt: "Placing an existing pattern using the TileMap editor")
+                @Image(source: "painting_patterns.gif")
             }
             Like multi-tile selections, patterns will be repeated if used with the Line,
             Rectangle or Bucket Fill painting modes.
@@ -155,19 +165,29 @@
             @Step {
                 When you open the **Terrain** tab in the **TileMap** editor you will see any Terrains you have defined in your TileSet resource.
                 
-                You will also see the two modes, *Connect* (1) and *Path* (2).
+                If you have not set any `Terrains` yet, you will be greeted with a **Add Terrain** button.
+                @Image(source: "tilemaps_add_terrain.png")
+            }
+            @Step {
+                To add a new `Terrain` layer to your `TileSet` resource press this button and then in the new window, name your new `Terrain` (1) and press **Save** (2)
+                
+                >Tip: You can also define your `Terrain`'s color as well. This does not affect how your tiles will render visually, and just helps you distinguish the various `Terrains` from each-other.
+                @Image(source: "creating_new_terrain_window.png")
+            }
+            @Step {
+                Once you have a terrain set up, and you've added tiles to it, you will also see the two modes, *Connect* (1) and *Path* (2).
+                
+                You can also select specific tiles from the terrain to resolve conflicts in certain situations. 
+                
+                > Any tile that has at least one of its bits set to a value set to the corresponding terrain ID will appear in the list of tiles to choose from.
                 @Image(source: "using_tilemaps_terrain_select_path_mode.png")
             }
             @Step {
-                You can select specific tiles from the terrain to resolve conflicts in
-                certain situations:
-                @Image(source: "using_tilemaps_terrain_paint_specific_tiles.png", alt: "Painting with specific tiles in the TileMap editor's Terrains tab")
+                Now that you have a terrain, you can pick one of the modes and and use any of the painting tools to draw your tiles automatically.
+                @Image(source: "terrain_painting.gif")
             }
             
-            Any tile that has at least one of its bits set to a value set to the
-            corresponding terrain ID will appear in the list of tiles to choose from.
-            
-            In the next section, we will cover all the tools to paint with your tiles using the **TileMap** editor.
+            In the next section, we will cover all the tools to paint with your tiles using the **TileMap** editor and how to set up `Terrains` for painting!
         }
     }
 }

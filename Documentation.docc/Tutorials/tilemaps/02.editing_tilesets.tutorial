@@ -1,6 +1,6 @@
 @Tutorial(time: 20) {
     @Intro(title: "Editing your TileSet resource") {
-
+        > This page is a continuation of <doc:01.setting_up_tileset_and_tilesheet>. To complete this tutorial you will need a `TileSet` resource created and attached to a `TileMapLayer` node.
         @Image(source: "using_tilesets_collision_header.png")
     }
     @Section(title: "Adding collision, navigation and occlusion to the TileSet") {

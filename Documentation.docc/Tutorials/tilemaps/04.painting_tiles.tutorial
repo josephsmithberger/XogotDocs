@@ -1,6 +1,6 @@
 @Tutorial(time: 15) {
     @Intro(title: "Painting with TileMaps") {
-        > This page is a continuation of <doc:03.using_tilemaps>. If you have not completed the previous tutorials, please make sure you have a `TileMapLayer` and `TileSet` resource ready.
+        > This page is a continuation of <doc:03.using_tilemaps>. Please make sure you have a `TileMapLayer` and `TileSet` resource ready.
         @Image(source: "fix-me.png")
     }
     @Section(title: "Selecting tiles and other painting tools") {
