@@ -580,7 +580,7 @@ render compared to not rendering any object in the first place.
 
 ## Functions
 
-It is possible to define functions in a Xogot shader. They use the following
+It is possible to define functions in a Godot shader. They use the following
 syntax:
 
 ```
@@ -901,10 +901,10 @@ void fragment() {
 }
 ```
 
-Note that the global uniform must exist in the project Settings at the time
+Note that the global uniform must exist in the Project Settings at the time
 the shader is saved, or compilation will fail. While you can assign a default
 value using `global uniform vec4 my_color = ...` in the shader code, it will
-be ignored as the global uniform must always be defined in the project Settings
+be ignored as the global uniform must always be defined in the Project Settings
 anyway.
 
 To change the value of a global uniform at runtime, use the
