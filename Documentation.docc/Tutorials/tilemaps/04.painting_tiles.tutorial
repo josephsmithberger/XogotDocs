@@ -1,22 +1,22 @@
 @Tutorial(time: 15) {
     @Intro(title: "Painting with TileMaps") {
         > This page is a continuation of <doc:03.using_tilemaps>. Please make sure you have a `TileMapLayer` and `TileSet` resource ready.
-        @Image(source: "fix-me.png")
+        @Image(source: "terrain_painting.gif")
     }
     @Section(title: "Selecting tiles and other painting tools") {
         @ContentAndMedia {
             In this section we will go over all the tools in the TileMap editor paint mode and cover how to get ready for painting.
-            @Image(source: fix-me.png)
+            @Image(source: "selecting_tiles_header.png")
         }
         @Steps {
             @Step {
                 First, if you've created additional layers above, make sure you've selected the
                 layer you wish to paint on.
                 
-                @Image(source: "using_tilemaps_select_layer.png", alt: "Selecting a layer to paint on in the TileMap editor")
+                You can do so in the **Scene** tree.
+                
+                @Image(source: "using_tilemaps_select_layer.png")
             }
-            You can skip the above step if you haven't created additional layers, as the
-            first layer is automatically selected when entering the TileMap editor.
             Before you can place tiles in the 2D editor, you must select one or more tiles
             in the TileMap panel located at the bottom of the editor.
             
@@ -24,6 +24,8 @@
             in the TileMap panel to select it for use. With *Multi Select* any tile you tap will be added to your paint selection.
             @Step {
                 You can switch between these modes using this button:
+                
+                > If you have a mouse connected then by default, left-clicking will perform single selections and dragging with perform a rectangle selection.
                 @Image(source: "using_tilemaps_select_single_tile_from_tileset.png")
             }
             The final selection does not have to be contiguous: if there is empty space
@@ -33,11 +35,11 @@
             @Step {
                 If you've created alternative tiles in your `TileSet`, you can select them for
                 painting in the **Alternative Tiles** window:
-                @Image(source: "using_tilemaps_use_alternative_tile.png", alt: "Selecting an alternative tile in the TileMap editor")
+                @Image(source: "using_tilemaps_use_alternative_tile.png")
             }
             @Step {
                 Lastly, if you've created a *Scenes collection* in the `TileSet`, you can place scene tiles in the `TileMap`:
-                @Image(source: "using_tilemaps_placing_scene_tiles.png", alt: "Placing a scene tile containing particles using the TileMap editor")
+                @Image(source: "using_tilemaps_placing_scene_tiles.png")
             }
             Using the toolbar at the top of the TileMap editor, you can choose between
             several painting modes and tools. These modes affect operation when tapping in
@@ -47,45 +49,43 @@
             
             @Step {
                 **Selection:**
-                Select tiles by tapping a single tile, or my pressing and dragging your finger to rectagle select multiple tiles at once.
+                Select tiles by tapping a single tile, or by pressing and dragging your finger to rectangle select multiple tiles at once.
                 
                 The selection can then be used in any other painting mode to quickly create copies
                 of an already-placed pattern.
                 
                 > Note: Empty space cannot be
                 selected: if you create a rectangle selection, only non-empty tiles will be selected.
-                @Image(source:"fix-me.png")
+                @Image(source:"using_tilemaps_select_tool.gif")
             }
             
             @Step {
                 **Paint:** The standard Paint mode allows you to place tiles by tapping or dragging your finger accross the screen.
                 
-                
-                
                 If you have selected multiple tiles in the `TileMap` or using the **Selection** tool,
                 they will be placed every time you tap or drag on the screen.
-                @Image(source: "fix-me.png")
+                @Image(source: "using_tilemaps_paint_tool.gif")
             }
             The paint mode has a few more options:
             @Step {
-                To draw a line, select the line icon (1) and press and drag across the screen to create a line of tiles (2).
+                **Line Mode**: To draw a line, select the line icon and press and drag across the screen to create a line of tiles.
                 
                 This will draw a line that is
                 always 1 tile thick (no matter its orientation).
-                @Image(source: "using_tilesets_line_tool_multiple_tiles.png", alt: "Using the line tool after selecting two tiles to draw platforms diagonally")
+                @Image(source: "using_tilesets_line_tool_multiple_tiles.gif")
             }
             @Step {
-                To draw a rectangle, tap the Rectangle icon and then press and drag to create your rectagular selection; release to create the shape of tiles.
+                **Rectangle Mode**: To draw a rectangle, tap the Rectangle icon and then press and drag to create your rectagular selection; release to create the shape of tiles.
                 
                 If you have selected multiple tiles in the TileMap or using the Selection tool,
                 you can place them in a repeating pattern within the rectangle.
-                @Image(source: "fix-me.png")
+                @Image(source: "using_tilemaps_rectangle_tool.gif")
             }
             @Step {
-                Finally, to *fill* with tiles, press the water drop shaped **Bucket Fill** icon and tap a space between tiles to fill in the shape. 
+                **Fill Mode**: To *fill* with tiles, press the water drop shaped **Bucket Fill** icon and tap a space between tiles to fill in the shape. 
                 
                 This will attempt to create a rectangle the size of your tiles and fill any remaining space in that shape.
-                @Image(source: "using_tilemaps_bucket_fill.png", alt: "Using the Bucket Fill tool")
+                @Image(source: "using_tilemaps_bucket_fill.gif")
             }
             @Step {
                 **Picker:** After selecting Picker mode, you can pick existing tiles in the 2D editor by selecting the **Picker** and then tapping on a tile you want to use in the window.
@@ -94,11 +94,11 @@
                 painted tile from the one in the **TileMap** editor to the tile you've just tapped.
                 
                 >Tip: You can select multiple tiles at once by tapping the **Picker** and then pressing and dragging on multiple tiles to make a rectangle selection. This will then let you paint everything as you picked them.
-                @Image(source: "fix-me.png")
+                @Image(source: "using_tilemaps_picker_tool.gif")
             }
             @Step {
                 **Eraser:** This mode works with any other *painting mode* (**Paint, Line, Rectangle and Bucket Fill**). When *eraser mode* is enabled, tiles will be replaced by empty tiles instead of drawing new ones.
-                @Image(source: "fix-me.png")
+                @Image(source: "using_tilemaps_erasor_tool.gif")
             }
             While painting, you can optionally enable *randomization*. When enabled,
             a random tile will be chosen between all the currently selected tiles when
@@ -110,10 +110,6 @@
                 You can enable Randomization with this icon:
                 @Image(source: "using_tilemaps_scatter_tiles.png")
             }
-            @Step {
-                Example when using Bucket Fill mode:
-                @Image(source: "using_tilemaps_bucket_fill_scatter.png", alt: "Using Bucket Fill tool with a single tile, but with randomization and scattering enabled")
-            }
             > Warning: Eraser mode does not take randomization into account.
             All tiles within the selection are always removed.
             
@@ -122,9 +118,9 @@
     @Section(title: "Handling missing tiles") {
         @ContentAndMedia {
             If you remove tiles in the TileSet that are referenced in a `TileMap`, the `TileMap`
-            will display a placeholder to indicate that an invalid tile ID is placed:
+            will display a placeholder to indicate that an invalid tile ID is placed, as in this image:
             
-            @Image(source: "using_tilemaps_missing_tiles.png", alt: "Missing tiles in the TileMap editor due to the TileSet reference being broken")
+            @Image(source: "using_tilemaps_missing_tiles.png")
         }
         Tiles you have deleted will not be visible when your game is running, but their data has not been removed from the Layer. Once you re-add a tile with the matching ID, the tiles will appear in the same location.
         

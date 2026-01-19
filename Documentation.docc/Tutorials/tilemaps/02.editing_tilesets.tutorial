@@ -113,15 +113,15 @@
     }
     @Section(title: "Creating terrain sets (auto-tiling)") {
         @ContentAndMedia {
-            Terrains are essentially a more powerful replacement of autotiles. Unlike
-            autotiles, terrains can support transitions from one terrain to another, as
-            a tile may define several terrains at once. Unlike before, where autotiles were a specific kind of tiles, terrains are
-            only a set of properties assigned to atlas tiles. These properties are then
-            used by a dedicated **TileMap** *painting mode* that selects tiles featuring
-            terrain data in a smart way. This means any terrain tile can be either
-            painted as terrain or as a single tile, like any other.
             @Image(source:"using_tilesets_terrain_example_tilesheet.png")
         }
+        Terrains are essentially a more powerful replacement of autotiles. Unlike
+        autotiles, terrains can support transitions from one terrain to another, as
+        a tile may define several terrains at once. Unlike before, where autotiles were a specific kind of tiles, terrains are
+        only a set of properties assigned to atlas tiles. These properties are then
+        used by a dedicated **TileMap** *painting mode* that selects tiles featuring
+        terrain data in a smart way. This means any terrain tile can be either
+        painted as terrain or as a single tile, like any other.
         
         A "polished" tileset generally features variations that you should use on
         corners or edges of platforms, floors, etc. While these can be placed manually,
@@ -130,6 +130,11 @@
         
         Godot offers *terrains* to perform this kind of tile connection automatically.
         This allows you to have the "correct" tile variants automatically used.
+        
+        @ContentAndMedia {
+            An example of a Tileset with it's `Terrain Peering Bits` overlay visible:
+            @Image(source: "using_tilesets_terrain_example_tilesheet_configuration.png")
+        }
         
         Terrains are grouped into terrain sets. Each terrain set is assigned a mode from
         **Match Corners and Sides**, **Match Corners** and **Match sides**. They define how
@@ -173,7 +178,7 @@
             if there is empty space on top of it (including diagonally).
             @Step {
                 An example configuration for a full tilesheet may look as follows:
-                @Image(source: "using_tilesets_terrain_example_tilesheet.png")
+                @Image(source: "using_tilesets_terrain_example_tilesheet_configuration.png")
             }
             Next, we discuss the two ways to assign properties to multiple tiles at once.
             Depending on your use cases, one method may be faster than the other.

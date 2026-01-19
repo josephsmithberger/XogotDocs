@@ -18,7 +18,7 @@ more important than following this guide to a tee.
 
 > Note:
 >
-> Godot's built-in script editor uses a lot of these conventions
+> Xogot's built-in script editor uses a lot of these conventions
 > by default. Let it help you.
 >
 
@@ -160,8 +160,8 @@ indentation level to distinguish continuation lines:
 
 ```
 var party = [
-    "Godot",
-    "Godette",
+    "Xogot",
+    "Mark",
     "Steve",
 ]
 
@@ -183,8 +183,8 @@ enum Tile {
 
 ```
 var party = [
-        "Godot",
-        "Godette",
+        "Xogot",
+        "Mark",
         "Steve",
 ]
 
@@ -421,13 +421,6 @@ comments from disabled code.
 # print("This is disabled code")
 ```
 
-> Note:
->
-> In the script editor, to toggle commenting of the selected code, press
-> ``Ctrl + K``. This feature adds/removes a single `#` sign before any
-> code on the selected lines.
->
-
 Prefer writing comments on their own line as opposed to inline comments
 (comments written on the same line as code). Inline comments are best used for
 short comments, typically a few words at most:
@@ -596,10 +589,6 @@ class_name YAMLParser
 extends Object
 ```
 
-This is consistent with how C++ files are named in Godot's source code. This
-also avoids case sensitivity issues that can crop up when exporting a project
-from Windows to other platforms.
-
 ### Classes and nodes
 
 Use PascalCase for class and node names:
@@ -744,9 +733,8 @@ If the code is meant to run in the editor, place the `@tool` annotation on the
 first line of the script.
 
 Follow with the optional `@icon` then the `class_name` if necessary. You can turn a
-GDScript file into a global type in your project using `class_name`. For more
-information, see <doc:index#Basics-Class-Name>. If the class is meant
-to be an <doc:index#Basics-Abstract-Class>,
+GDScript file into a global type in your project using `class_name`. If the class is meant
+to be a Basic Abstract-Class,
 add `@abstract` before the `class_name` keyword.
 
 Then, add the `extends` keyword if the class extends a built-in type.
@@ -840,7 +828,7 @@ variable was declared.
 After the class's properties come the methods.
 
 Start with the `_init()` callback method, that the engine will call upon
-creating the object in memory. Follow with the `_ready()` callback, that Godot
+creating the object in memory. Follow with the `_ready()` callback, that Xogot
 calls when it adds a node to the scene tree.
 
 These functions should come first because they show how the object is
@@ -965,6 +953,6 @@ that type will be used to infer the type of the var.
 
 > Note:
 >
-> This option is considered more <doc:static_typing#Safe-Lines> than type hints,
+> This option is considered more <doc:static_typing> than type hints,
 > but also less null-safe as it silently casts the variable to `null` in case of a type mismatch at runtime,
 > without an error/warning.
