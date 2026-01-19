@@ -1,9 +1,8 @@
-<!-- Remove this line to publish to docs.xogot.com -->
 # Shading language
 
 ## Introduction
 
-Godot uses a shading language similar to GLSL ES 3.0. Most datatypes and
+Godot and Xogot use a shading language similar to GLSL ES 3.0. Most datatypes and
 functions are supported, and the few remaining ones will likely be added over
 time.
 
@@ -581,7 +580,7 @@ render compared to not rendering any object in the first place.
 
 ## Functions
 
-It is possible to define functions in a Godot shader. They use the following
+It is possible to define functions in a Xogot shader. They use the following
 syntax:
 
 ```
@@ -882,8 +881,8 @@ objects move with the wind.
 > scope).
 >
 
-To create a global uniform, open the **Project Settings** then go to the
-**Shader Globals** tab. Specify a name for the uniform (case-sensitive) and a
+To create a global uniform, open **Settings** then go to the drop down menu and select
+**Shader Globals**. Specify a name for the uniform (case-sensitive) and a
 type, then click **Add** in the top-right corner of the dialog. You can then
 edit the value assigned to the uniform by clicking the value in the list of
 uniforms:
@@ -902,10 +901,10 @@ void fragment() {
 }
 ```
 
-Note that the global uniform must exist in the Project Settings at the time
+Note that the global uniform must exist in the project Settings at the time
 the shader is saved, or compilation will fail. While you can assign a default
 value using `global uniform vec4 my_color = ...` in the shader code, it will
-be ignored as the global uniform must always be defined in the Project Settings
+be ignored as the global uniform must always be defined in the project Settings
 anyway.
 
 To change the value of a global uniform at runtime, use the
