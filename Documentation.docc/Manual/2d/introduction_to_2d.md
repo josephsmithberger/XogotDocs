@@ -1,4 +1,3 @@
-<!-- Remove this line to publish to docs.xogot.com -->
 # Introduction to 2D
 
 Godot's 2D game development tools include a dedicated 2D rendering engine, physics system,
@@ -9,7 +8,9 @@ allows you to create complex visual effects, and Godot also supports custom shad
 enhance your graphics. These features, combined with Godot's accessibility and
 flexibility, provide a solid foundation for creating engaging 2D games.
 
-@Image(source: "2d_platformer_demo.png") {2D Platformer Demo available on the Asset Library.}
+@Image(source: "2d_platformer_demo.png") {
+[2D Platformer Demo available on the Asset Library.](https://godotengine.org/asset-library/asset/2727)
+}
 
 This page will show you the 2D workspace and how you can get to know it.
 
@@ -397,6 +398,6 @@ for everything GUI. For 3D, Godot uses the [Node3D](https://docs.godotengine.org
 
 ## 3D in 2D
 
-It is possible to display 3D scenes in 2D screen, You can see this in the demo 3D in 2D Viewport.
+It is possible to display 3D scenes in 2D screen, [You can see this in the demo 3D in 2D Viewport.](https://godotengine.org/asset-library/asset/2804)
 
 @Image(source: "3d_in_2d_demo_editor.png")
