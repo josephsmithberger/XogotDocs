@@ -6,6 +6,37 @@ Release notes for our preview release of Xogot to TestFlight.
 
 ## Build 
 
+### Improvements
+
+* When reimporting a resource on the import panel, we now show how long it took
+  to do so.
+
+### Fixes
+
+* Fixes an iOS to iOS pairing via pin bug.
+
+* Fixes a crash while closing a project (#2137, Testflight)
+
+* Improves Project Reload, fixed two problems related to the reloading that
+  could sometimes trigger a crash during the reload operation (Testflight).
+
+* Fixes ConnectSignalToMethod that was not respecting the tab vs spaces setting
+  (#2138, Discord).
+
+* Fixes a crash on QuickOpenDialog when the data was filtered, and the user
+  pressed the return key (#2139)
+
+* Reduces memory consumption after rendering a preview image.
+
+* Fix TileMap: Missing delete pattern (#2144, Discord)
+
+* Fix TileMap: Scattering adding first tile in place where should be empty tile
+  (#2145, Discord)
+
+* Fixes a crash while importing scenes that contained animations
+
+## Build 3693/Beta 222
+
 Beta incorporates all the improvements of 3657 that were not part of the last
 cycle.
 
