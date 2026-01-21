@@ -26,7 +26,7 @@ or use the workspace selector located at the top edge of the editor:
 
 @Image(source: "2d_editor_viewport.png")
 
-Use the dropdown menu below the workspace selector to change between currently
+Use the dropdown menu to the left of the workspace selector to change between currently
 opened scenes or create a new one using the plus (+) button. The left and right docks should
 be familiar from :ref:`editor introduction <toc-editor-interface>`.
 
@@ -46,9 +46,10 @@ applicable.
 
 Some buttons in the main toolbar are the same as those in the 3D workspace. A brief explanation
 is given with the shortcut if the mouse cursor is hovered over a button for one second.
-Some buttons may have additional functionality if another keypress is performed.
+Some buttons may have additional functionality if another keypress is performed. A triangle may be shown below each tool, 
+indicating another tool wrapped in that button. Long pressing and selecting that tool will provide it's functionality.
 A recap of main functionality of each button with its default shortcut is provided below
-from left to right:
+from left to right. Wrapped tools are indented under their default tool:
 
 @Image(source: "2d_toolbar.png")
 
@@ -62,39 +63,34 @@ In this mode, you can drag the selected node(s) to move, press ``Ctrl`` to switc
 rotation mode temporarily, or use the red circles to scale it. If multiple nodes are
 selected, only movement and rotation are possible. In this mode, rotation and scaling
 will not use the snapping options if snapping is enabled.
+    - **Ruler Mode**: After enabling, click on the viewport to display the current global
+    x and y coordinates. Dragging from a position to another one measures the distance in pixels.
+    If you drag diagonally, it will draw a triangle and show the separate distances in terms
+    of x, y, and total distance to the target, including the angles to the axes in degrees.
+    The ``R`` key activates the ruler. If snapping is enabled, it also displays the
+    measurements in terms of grid count:
+
+    - **Show list of selectable nodes at position clicked**: As the description suggests,
+    this provides a list of selectable nodes at the clicked position as a context menu, if
+    there is more than one node in the clicked area.
 
 - **Move Mode** (``W``): Enables move (or translate) mode for the selected nodes. See
 <doc:introduction_to_2d#The-Viewport> for more details.
 
 - **Rotate Mode** (``E``): Enables rotation mode for the selected nodes. See
 <doc:introduction_to_2d#The-Viewport> for more details.
+    - **Rotation pivot**: Sets the rotation pivot to rotate node(s) around.
+    An added node has its rotation pivot at `x: 0`, `y: 0`, by default, with
+    exceptions. For example, the default pivot for a [Sprite2D](https://docs.godotengine.org/en/stable/classes/class_sprite2d.html#class-sprite2d) is its
+    center if the `centered` property is set to `true`. If you would like to change the
+    rotation pivot of a node, select this button and choose a new location by tapping.
+    The node rotates considering this point. If you have multiple nodes selected, this icon
+    will add a temporary pivot to be used commonly by all selected nodes. Pressing ``Shift``
+    and clicking this button will create the pivot at the center of selected nodes. If any of
+    the snap options are enabled, the pivot will also snap to them when dragged.
 
 - **Scale Mode** (``S``): Enables scaling and displays scaling gizmos in both
 axes for the selected node(s). See <doc:introduction_to_2d#The-Viewport> for more details.
-
-- **Show list of selectable nodes at position clicked**: As the description suggests,
-this provides a list of selectable nodes at the clicked position as a context menu, if
-there is more than one node in the clicked area.
-
-- **Rotation pivot**: Sets the rotation pivot to rotate node(s) around.
-An added node has its rotation pivot at `x: 0`, `y: 0`, by default, with
-exceptions. For example, the default pivot for a [Sprite2D](https://docs.godotengine.org/en/stable/classes/class_sprite2d.html#class-sprite2d) is its
-center if the `centered` property is set to `true`. If you would like to change the
-rotation pivot of a node, select this button and choose a new location by tapping.
-The node rotates considering this point. If you have multiple nodes selected, this icon
-will add a temporary pivot to be used commonly by all selected nodes. Pressing ``Shift``
-and clicking this button will create the pivot at the center of selected nodes. If any of
-the snap options are enabled, the pivot will also snap to them when dragged.
-
-- **Pan Mode** (``G``): Allows you to navigate in the viewport without accidentally selecting any nodes.
-In other modes, you can also hold ``Space`` and drag with the left mouse button to do the same.
-
-- **Ruler Mode**: After enabling, click on the viewport to display the current global
-x and y coordinates. Dragging from a position to another one measures the distance in pixels.
-If you drag diagonally, it will draw a triangle and show the separate distances in terms
-of x, y, and total distance to the target, including the angles to the axes in degrees.
-The ``R`` key activates the ruler. If snapping is enabled, it also displays the
-measurements in terms of grid count:
 
 @Image(source: "2d_ruler_with_snap.png") {Using ruler with snapping enabled.}
 
