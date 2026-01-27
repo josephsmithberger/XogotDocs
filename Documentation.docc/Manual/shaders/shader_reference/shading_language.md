@@ -1,9 +1,8 @@
-<!-- Remove this line to publish to docs.xogot.com -->
 # Shading language
 
 ## Introduction
 
-Godot uses a shading language similar to GLSL ES 3.0. Most datatypes and
+Godot and Xogot use a shading language similar to GLSL ES 3.0. Most datatypes and
 functions are supported, and the few remaining ones will likely be added over
 time.
 
@@ -882,8 +881,8 @@ objects move with the wind.
 > scope).
 >
 
-To create a global uniform, open the **Project Settings** then go to the
-**Shader Globals** tab. Specify a name for the uniform (case-sensitive) and a
+To create a global uniform, open **Settings** then go to the drop down menu and select
+**Shader Globals**. Specify a name for the uniform (case-sensitive) and a
 type, then click **Add** in the top-right corner of the dialog. You can then
 edit the value assigned to the uniform by clicking the value in the list of
 uniforms:
