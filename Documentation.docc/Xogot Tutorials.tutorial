@@ -1,4 +1,4 @@
-@Tutorials(name: "Xogot Tutorials") {
+@Tutorials(name: "Xogot") {
     @Intro(title: "Xogot") {
         This series will introduce you to Xogot and give you an overview of its features.
 
