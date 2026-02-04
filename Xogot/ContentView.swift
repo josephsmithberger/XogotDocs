@@ -7,6 +7,6 @@
 
 import SwiftUI
 
-@_cdecl ("main")
+@_cdecl("main")
 @_documentation(visibility: private)
 func main () {}
