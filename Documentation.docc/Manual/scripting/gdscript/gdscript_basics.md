@@ -123,7 +123,7 @@ keywords are reserved words (tokens), they can't be used as identifiers.
 Operators (like `in`, `not`, `and` or `or`) and names of built-in types
 as listed in the following sections are also reserved.
 
-Keywords are defined in the GDScript tokenizer
+Keywords are defined in the [GDScript tokenizer](https://github.com/godotengine/godot/blob/master/modules/gdscript/gdscript_tokenizer.cpp)
 in case you want to take a look under the hood.
 
 Keyword | Description
@@ -136,7 +136,7 @@ while | See [while](#while).
 match | See [match](#match).
 when | Used by `pattern guards <Pattern guards_>`_ in`match`statements.
 break | Exits the execution of the current`for`or`while`loop.
-continue | Immediately skips to the next iteration of the`for`or`while`loop.
+continue | Immediately skips to the next iteration of the `for` or `while` loop.
 pass | Used where a statement is required syntactically but execution of code is undesired, e.g. in empty functions.
 return | Returns a value from a function.
 class | Defines an inner class. See [Inner classes](#inner-classes).
@@ -153,8 +153,7 @@ static | Defines a static function or a static member variable.
 const | Defines a constant. See [Constants](#constants).
 enum | Defines an enum. See [Enums](#enums).
 var | Defines a variable. See [Variables](#variables).
-breakpoint | Editor helper for debugger breakpoints. Unlike breakpoints created by tapping in the gutter,`breakpoint`is stored in the script itself.
-This makes it persistent across different machines when using version control.
+breakpoint | Editor helper for debugger breakpoints. Unlike breakpoints created by tapping in the gutter, `breakpoint` is stored in the script itself. This makes it persistent across different machines when using version control.
 preload | Preloads a class or variable. See [Classes as resources](#classes-as-resources).
 await | Waits for a signal or a coroutine to finish. See [Awaiting signals or coroutines](#awaiting-signals-or-coroutines).
 yield | Previously used for coroutines. Kept as keyword for transition.
@@ -173,29 +172,29 @@ example `2 ** (2 ** 3)`. The ternary `if/else` operator is right-associative.
 
 **Operator** | **Description**
 ------------ | ---------------
-`()` | Grouping (highest priority)Parentheses are not really an operator, but allow you to explicitly specify the precedence of an operation.
+`()` | Grouping (highest priority)<br>Parentheses are not really an operator, but allow you to explicitly specify the precedence of an operation.
 `x[index]` | Subscription
 `x.attribute` | Attribute reference
 `foo()` | Function call
 `await x` | [Awaiting signals or coroutines](#awaiting-signals-or-coroutines)
 `x is Node`<br>`x is not Node` | Type checking See also [is_instance_of()](https://docs.godotengine.org/en/stable/classes/class_@gdscript_method_is_instance_of.html#class-@gdscript_method_is_instance_of) function.
-`x ** y` | PowerMultiplies `x` by itself `y` times, similar to calling [pow()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_pow.html#class-@globalscope_method_pow) function.
+`x ** y` | Power<br>Multiplies `x` by itself `y` times, similar to calling [pow()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_pow.html#class-@globalscope_method_pow) function.
 `~x` | Bitwise NOT
 `+x`<br>`-x` | Identity / Negation
-`x * y`<br>`x / y`<br>`x % y` | Multiplication / Division / RemainderThe`%`operator is additionally used for <doc:gdscript_format_string>. **Note:** These operators have the same behavior as C++, which may be unexpected for users coming from Python, JavaScript, etc. See a detailed note after the table.
+`x * y`<br>`x / y`<br>`x % y` | Multiplication / Division / Remainder<br>The`%`operator is additionally used for <doc:gdscript_format_string>. <br>**Note:** These operators have the same behavior as C++, which may be unexpected for users coming from Python, JavaScript, etc. See a detailed note after the table.
 `x + y`<br>`x - y` | Addition (or Concatenation) / Subtraction
 `x << y`<br>`x >> y` | Bit shifting
 `x & y` | Bitwise AND
 `x ^ y` | Bitwise XOR
 `x \| y` | Bitwise OR
-`x == y`<br>`x != y`<br>`x < y`<br>`x > y` <br>`x <= y`<br>`x >= y` | Comparison See a detailed note after the table.
+`x == y`<br>`x != y`<br>`x < y`<br>`x > y` <br>`x <= y`<br>`x >= y` | Comparison<br>See a detailed note after the table.
 `x in y` `x not in y` | Inclusion checking `in` is also used with theforkeyword as part of the syntax.
 `not x`<br>`!x` | Boolean NOT and its :ref:`unrecommended <boolean_operators>` alias
 `x and y`<br>`x && y` | Boolean AND and its :ref:`unrecommended <boolean_operators>` alias
 `x or y`<br>`x \|\| y` | Boolean OR and its :ref:`unrecommended <boolean_operators>` alias
 `true_expr if cond else false_expr` | Ternary if/else
 `x as Node` | Type casting
-`x = y`<br>`x += y`<br>`x -= y`<br>`x *= y`<br>`x /= y`<br>`x **= y`<br>`x %= y`<br>`x &= y`<br>`x \|= y`<br>`x ^= y`<br>`x <<= y`<br>`x >>= y` | Assignment (lowest priority)You cannot use an assignment operator inside an expression.
+`x = y`<br>`x += y`<br>`x -= y`<br>`x *= y`<br>`x /= y`<br>`x **= y`<br>`x %= y`<br>`x &= y`<br>`x \|= y`<br>`x ^= y`<br>`x <<= y`<br>`x >>= y` | Assignment (lowest priority)<br>You cannot use an assignment operator inside an expression.
 
 > Note:
 >
