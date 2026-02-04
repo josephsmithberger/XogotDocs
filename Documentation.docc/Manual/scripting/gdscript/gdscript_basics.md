@@ -1,21 +1,12 @@
-<!-- Remove this line to publish to docs.xogot.com -->
 # GDScript reference
 
 <doc:index> is a high-level, object-oriented, imperative, and gradually typed programming language built for Godot.
 It uses an indentation-based syntax similar to languages like
 Python.
-Its goal is to be optimized for and tightly integrated with Godot Engine,
+Its goal is to be optimized for and tightly integrated with Godot Engine (and subsequently Xogot),
 allowing great flexibility for content creation and integration.
 
 GDScript is entirely independent from Python and is not based on it.
-
-## History
-
-> Note:
->
-> Documentation about GDScript's history has been moved to the
-> <doc:faq#What-Is-Gdscript>.
->
 
 ## Example of GDScript
 
@@ -162,7 +153,7 @@ static | Defines a static function or a static member variable.
 const | Defines a constant. SeeConstants.
 enum | Defines an enum. SeeEnums.
 var | Defines a variable. SeeVariables.
-breakpoint | Editor helper for debugger breakpoints. Unlike breakpoints created by clicking in the gutter,`breakpoint`is stored in the script itself.
+breakpoint | Editor helper for debugger breakpoints. Unlike breakpoints created by tapping in the gutter,`breakpoint`is stored in the script itself.
 This makes it persistent across different machines when using version control.
 preload | Preloads a class or variable. SeeClasses as resources.
 await | Waits for a signal or a coroutine to finish. SeeAwaiting signals or coroutines.
@@ -315,8 +306,7 @@ GDScript also supports <doc:gdscript_format_string>.
 ## Annotations
 
 Annotations are special tokens in GDScript that act as modifiers to a script or
-its code and may affect how the script is treated by the Godot engine or
-editor.
+its code and may affect how the script is treated by the engine or editor.
 
 Every annotation starts with the `@` character and is specified by a name. A
 detailed description and example for each annotation can be found inside the
@@ -416,7 +406,7 @@ considered a comment.
 
 > Tip:
 >
-> In the Godot script editor, special keywords are highlighted within comments
+> In the Xogot script editor, special keywords are highlighted within comments
 > to bring the user's attention to specific comments:
 >
 > - **Critical** (appears in red): `ALERT`, `ATTENTION`, `CAUTION`,
@@ -436,8 +426,6 @@ considered a comment.
 >
 > # TODO: Add more items for the player to choose from.
 >
-> The list of highlighted keywords and their colors can be changed in the **Text
-> Editor > Theme > Comment Markers** section of the Editor Settings.
 >
 
 Use two hash symbols (`##`) instead of one (`#`) to add a documentation
@@ -459,7 +447,7 @@ var value
 
 Code regions are special types of comments that the script editor understands as
 foldable regions. This means that after writing code region comments, you can
-collapse and expand the region by clicking the arrow that appears at the left of
+collapse and expand the region by tapping the arrow that appears at the left of
 the comment. This arrow appears within a purple square to be distinguishable
 from standard code folding.
 
@@ -482,7 +470,7 @@ The syntax is as follows:
 > Tip:
 >
 > To create a code region quickly, select several lines in the script editor,
-> right-click the selection then choose **Create Code Region**. The region
+> long tap the selection then choose **Create Code Region**. The region
 > description will be selected automatically for editing.
 >
 > It is possible to nest code regions within other code regions.
@@ -646,7 +634,7 @@ arr[0] = "Hi!" # Replacing value 1 with "Hi!".
 arr.append(4) # Array is now ["Hi!", 2, 3, 4].
 ```
 
-Godot also features support for typed arrays. On write operations, Godot checks that
+GDScript also features support for typed arrays. On write operations, Xogot checks that
 element values match the specified type, so the array cannot contain invalid values.
 The GDScript static analyzer takes typed arrays into account, however array methods like
 `front()` and `back()` still have the `Variant` return type.
@@ -767,7 +755,7 @@ assign to it:
 var d = {} # Create an empty Dictionary.
 d.waiting = 14 # Add String "waiting" as a key and assign the value 14 to it.
 d[4] = "hello" # Add integer 4 as a key and assign the String "hello" as its value.
-d["Godot"] = 3.01 # Add String "Godot" as a key and assign the value 3.01 to it.
+d["Xogot"] = 3.01 # Add String "Xogot" as a key and assign the value 3.01 to it.
 
 var test = 4
 # Prints "hello" by indexing the dictionary with a dynamic key.
@@ -1794,7 +1782,7 @@ match x:
         print("Dennis is ", age, " years old.")
     {"name", "age"}:
         print("Has a name and an age, but it's not Dennis :(")
-    {"key": "godotisawesome", ..}:
+    {"key": "xogotisawesome", ..}:
         print("I only checked for one entry and ignored the rest")
 
 
@@ -1905,7 +1893,7 @@ match x:
         print("Dennis is ", age, " years old.")
     {"name", "age"}:
         print("Has a name and an age, but it's not Dennis :(")
-    {"key": "godotisawesome", ..}:
+    {"key": "xogotisawesome", ..}:
         print("I only checked for one entry and ignored the rest")
 ```
 
@@ -1980,8 +1968,7 @@ var character_node = Character.new()
 
 ### Registering named classes
 
-You can give your class a name to register it as a new type in Godot's
-editor. For that, you use the `class_name` keyword. You can optionally use
+You can give your class a name to register it as a new type in Xogot's editor. For that, you use the `class_name` keyword. You can optionally use
 the `@icon` annotation with a path to an image, to use it as an icon. Your
 class will then appear with its new icon in the editor:
 
@@ -1995,14 +1982,6 @@ extends Node
 
 @Image(source: "class_name_editor_register_example.png")
 
-> Tip:
->
-> SVG images that are used as custom node icons should have the
-> **Editor > Scale With Editor Scale** and **Editor > Convert Icons With Editor Theme**
-> <doc:importing_images#Editor-Import-Options> enabled. This allows
-> icons to follow the editor's scale and theming settings if the icons are designed with
-> the same color palette as Godot's own icons.
->
 
 Here's a class file example:
 
@@ -2043,18 +2022,18 @@ func _ready():
 
 > Note:
 >
-> Godot initializes non-static variables every time you create an instance,
+> Xogot initializes non-static variables every time you create an instance,
 > and this includes arrays and dictionaries. This is in the spirit of thread safety,
 > since scripts can be initialized in separate threads without the user knowing.
 >
 
 > Warning:
 >
-> The Godot editor will hide these custom classes with names that begin with the prefix
+> The editor will hide these custom classes with names that begin with the prefix
 > "Editor" in the 'Create New Node' or 'Create New Scene' dialog windows. The classes
 > are available for instantiation at runtime via their class names, but are
 > automatically hidden by the editor windows along with the built-in editor nodes used
-> by the Godot editor.
+> by the editor.
 >
 
 ### Abstract classes and methods
@@ -2483,7 +2462,7 @@ See <doc:running_code_in_the_editor> for more information.
 
 ## Memory management
 
-Godot implements reference counting to free certain instances that are no longer
+Xogot implements reference counting to free certain instances that are no longer
 used, instead of a garbage collector, or requiring purely manual management.
 Any instance of the [RefCounted](https://docs.godotengine.org/en/stable/classes/class_refcounted.html#class-refcounted) class (or any class that inherits
 it, such as [Resource](https://docs.godotengine.org/en/stable/classes/class_resource.html#class-resource)) will be freed automatically when no longer
@@ -2639,7 +2618,7 @@ You can write optional argument names in parentheses after the signal's definiti
 signal health_changed(old_value, new_value)
 ```
 
-These arguments show up in the editor's node dock, and Godot can use them to
+These arguments show up in the editor's node dock, and Xogot can use them to
 generate callback functions for you. However, you can still emit any number of
 arguments when you emit signals; it's up to you to emit the correct values.
 
