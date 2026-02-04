@@ -573,50 +573,80 @@ the tree to get a node, or affecting properties like with [Tweens](https://docs.
 
 ### Vector built-in types
 
+**Vector2**
+
 2D vector type containing `x` and `y` fields. Can also be
 accessed as an array.
+
+**Vector2i**
 
 Same as a Vector2 but the components are integers. Useful for representing
 items in a 2D grid.
 
+**Rect2**
+
 2D Rectangle type containing two vectors fields: `position` and `size`.
 Also contains an `end` field which is `position + size`.
+
+**Vector3**
 
 3D vector type containing `x`, `y` and `z` fields. This can also
 be accessed as an array.
 
+**Vector3i**
+
 Same as Vector3 but the components are integers. Can be use for indexing items
 in a 3D grid.
 
+**Transform2D**
+
 3×2 matrix used for 2D transforms.
+
+**Plane**
 
 3D Plane type in normalized form that contains a `normal` vector field
 and a `d` scalar distance.
 
+**Quaternion**
+
 Quaternion is a datatype used for representing a 3D rotation. It's
 useful for interpolating rotations.
+
+**AABB**
 
 Axis-aligned bounding box (or 3D box) contains 2 vectors fields: `position`
 and `size`. Also contains an `end` field which is
 `position + size`.
 
+**Basis**
+
 3x3 matrix used for 3D rotation and scale. It contains 3 vector fields
 (`x`, `y` and `z`) and can also be accessed as an array of 3D
 vectors.
+
+**Transform3D**
 
 3D Transform contains a Basis field `basis` and a Vector3 field
 `origin`.
 
 ### Engine built-in types
 
+**Color**
+
 Color data type contains `r`, `g`, `b`, and `a` fields. It can
 also be accessed as `h`, `s`, and `v` for hue/saturation/value.
 
+**RID**
+
 Resource ID (RID). Servers use generic RIDs to reference opaque data.
+
+**Object**
 
 Base class for anything that is not a built-in type.
 
 ### Container built-in types
+
+**Array**
 
 Generic sequence of arbitrary object types, including other arrays or dictionaries (see below).
 The array can resize dynamically. Arrays are indexed starting from index `0`.
@@ -718,6 +748,8 @@ performance in iteration and modification compared to an untyped Array.
 - [PackedVector4Array](https://docs.godotengine.org/en/stable/classes/class_packedvector4array.html#class-packedvector4array): An array of [Vector4](https://docs.godotengine.org/en/stable/classes/class_vector4.html#class-vector4) values.
 
 - [PackedColorArray](https://docs.godotengine.org/en/stable/classes/class_packedcolorarray.html#class-packedcolorarray): An array of [Color](https://docs.godotengine.org/en/stable/classes/class_color.html#class-color) values.
+
+**Dictionary**
 
 Associative container which contains values referenced by unique keys.
 
