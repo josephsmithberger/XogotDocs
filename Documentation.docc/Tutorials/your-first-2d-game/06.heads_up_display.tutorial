@@ -267,9 +267,9 @@
             Now you're ready to play! Tap the "Play" button at the top of the app.
         }
     }
-    @Section(title: "Removing old creeps") {
+    @Section(title: "Removing old predators") {
         @ContentAndMedia {
-            If you play until "Game Over" and then start a new game right away, the creeps
+            If you play until "Game Over" and then start a new game right away, the predators
             from the previous game may still be on the screen. It would be better if they
             all disappeared at the start of a new game. We just need a way to tell *all* the
             mobs to remove themselves. 
