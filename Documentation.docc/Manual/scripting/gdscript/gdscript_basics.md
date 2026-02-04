@@ -128,37 +128,37 @@ in case you want to take a look under the hood.
 
 Keyword | Description
 ------- | -----------
-if | Seeif/else/elif.
-elif | Seeif/else/elif.
-else | Seeif/else/elif.
-for | Seefor.
-while | Seewhile.
-match | Seematch.
+if | See [if/else/elif](#ifelseelif).
+elif | See [if/else/elif](#ifelseelif).
+else | See [if/else/elif](#ifelseelif).
+for | See [for](#for).
+while | See [while](#while).
+match | See [match](#match).
 when | Used by `pattern guards <Pattern guards_>`_ in`match`statements.
 break | Exits the execution of the current`for`or`while`loop.
 continue | Immediately skips to the next iteration of the`for`or`while`loop.
 pass | Used where a statement is required syntactically but execution of code is undesired, e.g. in empty functions.
 return | Returns a value from a function.
-class | Defines an inner class. SeeInner classes.
-class_name | Defines the script as a globally accessible class with the specified name. SeeRegistering named classes.
+class | Defines an inner class. See [Inner classes](#inner-classes).
+class_name | Defines the script as a globally accessible class with the specified name. See [Registering named classes](#registering-named-classes).
 extends | Defines what class to extend with the current class.
 is | Tests whether a variable extends a given class, or is of a given built-in type.
 in | Tests whether a value is within a string, array, range, dictionary, or node. When used with`for`, it iterates through them instead of testing.
 as | Cast the value to a given type if possible.
-self | Refers to current class instance. Seeself.
-super | Resolves the scope of the parent method. SeeInheritance.
-signal | Defines a signal. SeeSignals.
-func | Defines a function.  SeeFunctions.
+self | Refers to current class instance. See [self](#self).
+super | Resolves the scope of the parent method.  Inheritance.
+signal | Defines a signal. See [Signals](#signals).
+func | Defines a function.  See [Functions](#functions).
 static | Defines a static function or a static member variable.
-const | Defines a constant. SeeConstants.
-enum | Defines an enum. SeeEnums.
-var | Defines a variable. SeeVariables.
+const | Defines a constant. See [Constants](#constants).
+enum | Defines an enum. See [Enums](#enums).
+var | Defines a variable. See [Variables](#variables).
 breakpoint | Editor helper for debugger breakpoints. Unlike breakpoints created by tapping in the gutter,`breakpoint`is stored in the script itself.
 This makes it persistent across different machines when using version control.
-preload | Preloads a class or variable. SeeClasses as resources.
-await | Waits for a signal or a coroutine to finish. SeeAwaiting signals or coroutines.
+preload | Preloads a class or variable. See [Classes as resources](#classes-as-resources).
+await | Waits for a signal or a coroutine to finish. See [Awaiting signals or coroutines](#awaiting-signals-or-coroutines).
 yield | Previously used for coroutines. Kept as keyword for transition.
-assert | Asserts a condition, logs error on failure. Ignored in non-debug builds. SeeAssert keyword.
+assert | Asserts a condition, logs error on failure. Ignored in non-debug builds. See [Assert keyword](#assert-keyword).
 void | Used to represent that a function does not return any value.
 PI | PI constant.
 TAU | TAU constant.
@@ -173,35 +173,29 @@ example `2 ** (2 ** 3)`. The ternary `if/else` operator is right-associative.
 
 **Operator** | **Description**
 ------------ | ---------------
-`(``)` | Grouping (highest priority)Parentheses are not really an operator, but allow you to explicitly specify
-the precedence of an operation.
+`()` | Grouping (highest priority)Parentheses are not really an operator, but allow you to explicitly specify the precedence of an operation.
 `x[index]` | Subscription
 `x.attribute` | Attribute reference
 `foo()` | Function call
-`await x` | Awaiting signals or coroutines
-`x is Node``x is not Node` | Type checkingSee also [is_instance_of()](https://docs.godotengine.org/en/stable/classes/class_@gdscript_method_is_instance_of.html#class-@gdscript_method_is_instance_of)
-function.
-`x ** y` | PowerMultiplies`x`by itself`y`times, similar to calling
-[pow()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_pow.html#class-@globalscope_method_pow) function.
+`await x` | [Awaiting signals or coroutines](#awaiting-signals-or-coroutines)
+`x is Node`<br>`x is not Node` | Type checking See also [is_instance_of()](https://docs.godotengine.org/en/stable/classes/class_@gdscript_method_is_instance_of.html#class-@gdscript_method_is_instance_of) function.
+`x ** y` | PowerMultiplies `x` by itself `y` times, similar to calling [pow()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_pow.html#class-@globalscope_method_pow) function.
 `~x` | Bitwise NOT
-`+x``-x` | Identity / Negation
-`x * y``x / y``x % y` | Multiplication / Division / RemainderThe`%`operator is additionally used for
-<doc:gdscript_format_string>.**Note:**These operators have the same behavior as C++, which may be
-unexpected for users coming from Python, JavaScript, etc. See a detailed
-note after the table.
-`x + y``x - y` | Addition (or Concatenation) / Subtraction
-`x << y``x >> y` | Bit shifting
+`+x`<br>`-x` | Identity / Negation
+`x * y`<br>`x / y`<br>`x % y` | Multiplication / Division / RemainderThe`%`operator is additionally used for <doc:gdscript_format_string>. **Note:** These operators have the same behavior as C++, which may be unexpected for users coming from Python, JavaScript, etc. See a detailed note after the table.
+`x + y`<br>`x - y` | Addition (or Concatenation) / Subtraction
+`x << y`<br>`x >> y` | Bit shifting
 `x & y` | Bitwise AND
 `x ^ y` | Bitwise XOR
-`x | y` | Bitwise OR
-`x == y``x != y``x < y``x > y``x <= y``x >= y` | ComparisonSee a detailed note after the table.
-`x in y``x not in y` | Inclusion checking`in`is also used with theforkeyword as part of the syntax.
-`not x``!x` | Boolean NOT and its :ref:`unrecommended <boolean_operators>` alias
-`x and y``x && y` | Boolean AND and its :ref:`unrecommended <boolean_operators>` alias
-`x or y``x || y` | Boolean OR and its :ref:`unrecommended <boolean_operators>` alias
+`x \| y` | Bitwise OR
+`x == y`<br>`x != y`<br>`x < y`<br>`x > y` <br>`x <= y`<br>`x >= y` | Comparison See a detailed note after the table.
+`x in y` `x not in y` | Inclusion checking `in` is also used with theforkeyword as part of the syntax.
+`not x`<br>`!x` | Boolean NOT and its :ref:`unrecommended <boolean_operators>` alias
+`x and y`<br>`x && y` | Boolean AND and its :ref:`unrecommended <boolean_operators>` alias
+`x or y`<br>`x \|\| y` | Boolean OR and its :ref:`unrecommended <boolean_operators>` alias
 `true_expr if cond else false_expr` | Ternary if/else
 `x as Node` | Type casting
-`x = y``x += y``x -= y``x *= y``x /= y``x **= y``x %= y``x &= y``x |= y``x ^= y``x <<= y``x >>= y` | Assignment (lowest priority)You cannot use an assignment operator inside an expression.
+`x = y`<br>`x += y`<br>`x -= y`<br>`x *= y`<br>`x /= y`<br>`x **= y`<br>`x %= y`<br>`x &= y`<br>`x \|= y`<br>`x ^= y`<br>`x <<= y`<br>`x >>= y` | Assignment (lowest priority)You cannot use an assignment operator inside an expression.
 
 > Note:
 >
@@ -371,14 +365,10 @@ can replace the above code with a single line:
 
 > Warning:
 >
-> Applying `@onready` and any `@export` annotation to the same variable
-> doesn't work as you might expect. The `@onready` annotation will cause
-> the default value to be set after the `@export` takes effect and will
-> override it:
+> Applying `@onready` and any `@export` annotation to the same variabledoesn't work as you might expect. The `@onready` annotation will cause the default value to be set after the `@export` takes effect and will override it:
 >
-> ::
->
-> @export var a = "init_value_a"
+>```
+>@export var a = "init_value_a"
 > @onready @export var b = "init_value_b"
 >
 > func _init():
@@ -390,9 +380,8 @@ can replace the above code with a single line:
 >
 > func _ready():
 > prints(a, b) # exported_value_a init_value_b
->
-> Therefore, the `ONREADY_WITH_EXPORT` warning is generated, which is treated
-> as an error by default. We do not recommend disabling or ignoring it.
+>```
+> Therefore, the `ONREADY_WITH_EXPORT` warning is generated, which is treated as an error by default. We do not recommend disabling or ignoring it.
 >
 
 ## Comments
@@ -406,7 +395,7 @@ considered a comment.
 
 > Tip:
 >
-> In the Xogot script editor, special keywords are highlighted within comments
+> In the script editor, special keywords are highlighted within comments
 > to bring the user's attention to specific comments:
 >
 > - **Critical** (appears in red): `ALERT`, `ATTENTION`, `CAUTION`,
@@ -419,12 +408,11 @@ considered a comment.
 > These keywords are case-sensitive, so they must be written in uppercase for them
 > to be recognized:
 >
-> ::
 >
-> # In the example below, "TODO" will appear in yellow by default.
-> # The `:` symbol after the keyword is not required, but it's often used.
+> \# In the example below, "TODO" will appear in yellow by default.
+> \# The `:` symbol after the keyword is not required, but it's often used.
 >
-> # TODO: Add more items for the player to choose from.
+> \# TODO: Add more items for the player to choose from.
 >
 >
 
@@ -542,32 +530,42 @@ All arrays, `Dictionary`, and some objects (`Node`, `Resource`)
 have a `duplicate()` method that allows you to make a copy.
 
 ### Basic built-in types
-
 A variable in GDScript can be assigned to several built-in types.
+
+**`null`**
 
 `null` is an empty data type that contains no information and can not
 be assigned any other value.
-
 Only types that inherit from Object can have a `null` value
 (Object is therefore called a "nullable" type).
 <doc:variant_class> must have a valid value at all times,
 and therefore cannot have a `null` value.
 
+**`bool`**
+
 Short for "boolean", it can only contain `true` or `false`.
+
+**`int`**
 
 Short for "integer", it stores whole numbers (positive and negative).
 It is stored as a 64-bit value, equivalent to `int64_t` in C++.
+
+**`float`**
 
 Stores real numbers, including decimals, using floating-point values.
 It is stored as a 64-bit value, equivalent to `double` in C++.
 Note: Currently, data structures such as `Vector2`, `Vector3`, and
 `PackedFloat32Array` store 32-bit single-precision `float` values.
 
+**`String`**
+
 A sequence of characters in Unicode format.
 
-An immutable string that allows only one instance of each name. They are slower to
-create and may result in waiting for locks when multithreading. In exchange, they're
-very fast to compare, which makes them good candidates for dictionary keys.
+**`StringName`**
+
+An immutable string that allows only one instance of each name. They are slower to create and may result in waiting for locks when multithreading. In exchange, they're very fast to compare, which makes them good candidates for dictionary keys.
+
+**`NodePath`**
 
 A pre-parsed path to a node or a node property.  It can be
 easily assigned to, and from, a String. They are useful to interact with
@@ -666,14 +664,14 @@ var e: Array[Variant]
 >
 > var a: Array[Node2D] = [Node2D.new()]
 >
-> # (OK) You can add the value to the array because `Node2D` extends `Node`.
+> \# (OK) You can add the value to the array because `Node2D` extends `Node`.
 > var b: Array[Node] = [a[0]]
 >
-> # (Error) You cannot assign an `Array[Node2D]` to an `Array[Node]` variable.
+> \# (Error) You cannot assign an `Array[Node2D]` to an `Array[Node]` variable.
 > b = a
 >
-> # (OK) But you can use the `assign()` method instead. Unlike the `=` operator,
-> # the `assign()` method copies the contents of the array, not the reference.
+> \# (OK) But you can use the `assign()` method instead. Unlike the `=` operator,
+> \# the `assign()` method copies the contents of the array, not the reference.
 > b.assign(a)
 >
 > The only exception was made for the `Array` (`Array[Variant]`) type, for user convenience
@@ -1476,7 +1474,7 @@ self # Reference to current instance.
 
 Identifiers, attributes, and subscripts are valid assignment targets. Other expressions cannot be on the left side of
 an assignment.
-
+#### self
 `self` can be used to refer to the current instance and is often equivalent to
 directly referring to symbols available in the current script. However, `self`
 also allows you to access properties, methods, and other names that are defined
