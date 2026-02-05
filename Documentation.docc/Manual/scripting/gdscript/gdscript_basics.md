@@ -822,10 +822,14 @@ var f: Dictionary[Variant, bool]
 
 `Dictionary` and `Dictionary[Variant, Variant]` are the same thing.
 
+**Signal**
+
 A signal is a message that can be emitted by an object to those who want to
 listen to it. The Signal type can be used for passing the emitter around.
 
 Signals are better used by getting them from actual objects, e.g. `$Button.button_up`.
+
+**Callable**
 
 Contains an object and a function, which is useful for passing functions as
 values (e.g. when connecting to signals).
