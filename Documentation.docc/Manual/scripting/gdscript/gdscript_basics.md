@@ -1837,19 +1837,9 @@ match point:
 is **not** evaluated and the patterns of the next branch are checked.
 
 - If a matching pattern is found, the pattern guard is evaluated.
+    - If it's true, then the body of the branch is executed and `match` ends.
+    - If it's false, then the patterns of the next branch are checked.
 
-If it's true, then the body of the branch is executed and `match` ends.
-If it's false, then the patterns of the next branch are checked.
-
-
-
-- If it's true, then the body of the branch is executed and `match` ends.
-
-- If it's false, then the patterns of the next branch are checked.
-
-- If it's true, then the body of the branch is executed and `match` ends.
-
-- If it's false, then the patterns of the next branch are checked.
 
 ## Classes
 
@@ -2011,11 +2001,9 @@ class ConcreteClass extends AbstractSubClass:
 > Since an abstract class cannot be instantiated, it is not possible to attach
 > an abstract class to a node. If you attempt to do so, the engine will print
 > an error when running the scene:
->
-> .. code-block:: none
->
+>```
 > Cannot set object script. Script '<path to script>' should not be abstract.
->
+>```
 
 Unnamed classes can also be defined as abstract, the `@abstract` annotation
 must precede `extends`:
