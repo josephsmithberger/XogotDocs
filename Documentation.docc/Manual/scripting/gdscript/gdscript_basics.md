@@ -170,29 +170,29 @@ example `2 ** (2 ** 3)`. The ternary `if/else` operator is right-associative.
 
 **Operator** | **Description**
 ------------ | ---------------
-`()` | Grouping (highest priority)<br>Parentheses are not really an operator, but allow you to explicitly specify the precedence of an operation.
+`()` | Grouping (highest priority). Parentheses are not really an operator, but allow you to explicitly specify the precedence of an operation.
 `x[index]` | Subscription
 `x.attribute` | Attribute reference
 `foo()` | Function call
 `await x` | [Awaiting signals or coroutines](#awaiting-signals-or-coroutines)
-`x is Node`<br>`x is not Node` | Type checking See also [is_instance_of()](https://docs.godotengine.org/en/stable/classes/class_@gdscript_method_is_instance_of.html#class-@gdscript_method_is_instance_of) function.
-`x ** y` | Power<br>Multiplies `x` by itself `y` times, similar to calling [pow()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_pow.html#class-@globalscope_method_pow) function.
+`x is Node`, `x is not Node` | Type checking See also [is_instance_of()](https://docs.godotengine.org/en/stable/classes/class_@gdscript_method_is_instance_of.html#class-@gdscript_method_is_instance_of) function.
+`x ** y` | Power. Multiplies `x` by itself `y` times, similar to calling [pow()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_pow.html#class-@globalscope_method_pow) function.
 `~x` | Bitwise NOT
-`+x`<br>`-x` | Identity / Negation
-`x * y`<br>`x / y`<br>`x % y` | Multiplication / Division / Remainder<br>The`%`operator is additionally used for <doc:gdscript_format_string>. <br>**Note:** These operators have the same behavior as C++, which may be unexpected for users coming from Python, JavaScript, etc. See a detailed note after the table.
-`x + y`<br>`x - y` | Addition (or Concatenation) / Subtraction
-`x << y`<br>`x >> y` | Bit shifting
+`+x`, `-x` | Identity / Negation
+`x * y`, `x / y`, `x % y` | Multiplication / Division / Remainder. The `%` operator is additionally used for <doc:gdscript_format_string>. **Note:** These operators have the same behavior as C++, which may be unexpected for users coming from Python, JavaScript, etc. See a detailed note after the table.
+`x + y`, `x - y` | Addition (or Concatenation) / Subtraction
+`x << y`, `x >> y` | Bit shifting
 `x & y` | Bitwise AND
 `x ^ y` | Bitwise XOR
 `x \| y` | Bitwise OR
-`x == y`<br>`x != y`<br>`x < y`<br>`x > y` <br>`x <= y`<br>`x >= y` | Comparison<br>See a detailed note after the table.
+`x == y`, `x != y`, `x < y`, `x > y`, `x <= y`, `x >= y` | Comparison. See a detailed note after the table.
 `x in y` `x not in y` | Inclusion checking `in` is also used with the [for](#for) keyword as part of the syntax.
-`not x`<br>`!x` | Boolean NOT and its :ref:`unrecommended <boolean_operators>` alias
-`x and y`<br>`x && y` | Boolean AND and its :ref:`unrecommended <boolean_operators>` alias
-`x or y`<br>`x \|\| y` | Boolean OR and its :ref:`unrecommended <boolean_operators>` alias
+`not x`, `!x` | Boolean NOT and its :ref:`unrecommended <boolean_operators>` alias
+`x and y`, `x && y` | Boolean AND and its :ref:`unrecommended <boolean_operators>` alias
+`x or y`, `x \|\| y` | Boolean OR and its :ref:`unrecommended <boolean_operators>` alias
 `true_expr if cond else false_expr` | Ternary if/else
 `x as Node` | [Type casting](#casting)
-`x = y`<br>`x += y`<br>`x -= y`<br>`x *= y`<br>`x /= y`<br>`x **= y`<br>`x %= y`<br>`x &= y`<br>`x \|= y`<br>`x ^= y`<br>`x <<= y`<br>`x >>= y` | Assignment (lowest priority)<br>You cannot use an assignment operator inside an expression.
+`x = y`, `x += y`, `x -= y`, `x *= y`, `x /= y`, `x **= y`, `x %= y`, `x &= y`, `x \|= y`, `x ^= y`, `x <<= y`, `x >>= y` | Assignment (lowest priority). You cannot use an assignment operator inside an expression.
 
 > Note:
 >
