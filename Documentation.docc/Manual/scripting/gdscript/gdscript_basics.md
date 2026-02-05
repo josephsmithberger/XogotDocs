@@ -1,11 +1,9 @@
 # GDScript reference
 
-<doc:index> is a high-level, object-oriented, imperative, and gradually typed programming language built for Godot.
-It uses an indentation-based syntax similar to languages like
-Python.
+GDScript is a high-level, object-oriented, imperative, and gradually typed programming language built for Godot.
+It uses an indentation-based syntax similar to languages like Python.
 Its goal is to be optimized for and tightly integrated with Godot Engine (and subsequently Xogot),
 allowing great flexibility for content creation and integration.
-
 GDScript is entirely independent from Python and is not based on it.
 
 ## Example of GDScript
@@ -134,8 +132,8 @@ else | See [if/else/elif](#ifelseelif).
 for | See [for](#for).
 while | See [while](#while).
 match | See [match](#match).
-when | Used by `pattern guards <Pattern guards_>`_ in`match`statements.
-break | Exits the execution of the current`for`or`while`loop.
+when | Used by [pattern guards](#pattern-guards) in `match` statements.
+break | Exits the execution of the current `for` or `while` loop.
 continue | Immediately skips to the next iteration of the `for` or `while` loop.
 pass | Used where a statement is required syntactically but execution of code is undesired, e.g. in empty functions.
 return | Returns a value from a function.
@@ -188,12 +186,12 @@ example `2 ** (2 ** 3)`. The ternary `if/else` operator is right-associative.
 `x ^ y` | Bitwise XOR
 `x \| y` | Bitwise OR
 `x == y`<br>`x != y`<br>`x < y`<br>`x > y` <br>`x <= y`<br>`x >= y` | Comparison<br>See a detailed note after the table.
-`x in y` `x not in y` | Inclusion checking `in` is also used with theforkeyword as part of the syntax.
+`x in y` `x not in y` | Inclusion checking `in` is also used with the [for](#for) keyword as part of the syntax.
 `not x`<br>`!x` | Boolean NOT and its :ref:`unrecommended <boolean_operators>` alias
 `x and y`<br>`x && y` | Boolean AND and its :ref:`unrecommended <boolean_operators>` alias
 `x or y`<br>`x \|\| y` | Boolean OR and its :ref:`unrecommended <boolean_operators>` alias
 `true_expr if cond else false_expr` | Ternary if/else
-`x as Node` | Type casting
+`x as Node` | [Type casting](#casting)
 `x = y`<br>`x += y`<br>`x -= y`<br>`x *= y`<br>`x /= y`<br>`x **= y`<br>`x %= y`<br>`x &= y`<br>`x \|= y`<br>`x ^= y`<br>`x <<= y`<br>`x >>= y` | Assignment (lowest priority)<br>You cannot use an assignment operator inside an expression.
 
 > Note:
@@ -688,9 +686,7 @@ var e: Array[Variant]
 >
 > If you want to convert a typed array, you can create a new array and use the
 > [Array.assign()](https://docs.godotengine.org/en/stable/classes/class_array_method_assign.html#class-array_method_assign) method:
->
-> ::
->
+>```
 > var a: Array[Node2D] = [Node2D.new()]
 >
 > \# (OK) You can add the value to the array because `Node2D` extends `Node`.
@@ -702,7 +698,7 @@ var e: Array[Variant]
 > \# (OK) But you can use the `assign()` method instead. Unlike the `=` operator,
 > \# the `assign()` method copies the contents of the array, not the reference.
 > b.assign(a)
->
+>```
 > The only exception was made for the `Array` (`Array[Variant]`) type, for user convenience
 > and compatibility with old code. However, operations on untyped arrays are considered unsafe.
 >
@@ -937,28 +933,25 @@ its initialization is deferred to step 5.
 > Make sure the variables are initialized in the correct order, otherwise your values
 > may be overwritten. For example:
 >
-> ::
->
+>```
 > var a: int = proxy("a", 1)
 > var b: int = proxy("b", 2)
 > var _data: Dictionary = {}
 >
 > func proxy(key: String, value: int):
-> _data[key] = value
-> print(_data)
-> return value
+>   _data[key] = value
+>   print(_data)
+>   return value
 >
 > func _init() -> void:
-> print(_data)
->
+>   print(_data)
+>```
 > Will print:
->
-> ::
->
+>```
 > { "a": 1 }
 > { "a": 1, "b": 2 }
 > {  }
->
+>```
 > To fix this, move the `_data` variable definition above the `a` definition
 > or remove the empty dictionary assignment (`= {}`).
 >
@@ -1366,19 +1359,18 @@ lambda.call()
 > Local variables are captured by value once, when the lambda is created.
 > So they won't be updated in the lambda if reassigned in the outer function:
 >
-> ::
->
+>```
 > var x = 42
 > var lambda = func (): print(x)
 > lambda.call() # Prints `42`.
 > x = "Hello"
 > lambda.call() # Prints `42`.
->
+>```
 > Also, a lambda cannot reassign an outer local variable. After exiting the lambda,
 > the variable will be unchanged, because the lambda capture implicitly shadows it:
 >
-> ::
->
+> 
+>```
 > var x = 42
 > var lambda = func ():
 > print(x) # Prints `42`.
@@ -1386,12 +1378,11 @@ lambda.call()
 > print(x) # Prints `Hello`.
 > lambda.call()
 > print(x) # Prints `42`.
->
+>```
 > However, if you use pass-by-reference data types (arrays, dictionaries, and objects),
 > then the content changes are shared until you reassign the variable:
 >
-> ::
->
+> ```
 > var a = []
 > var lambda = func ():
 > a.append(1)
@@ -1400,7 +1391,7 @@ lambda.call()
 > print(a) # Prints `[2]`.
 > lambda.call()
 > print(a) # Prints `[1]`.
->
+>```
 
 ### Static functions
 
@@ -1457,25 +1448,23 @@ func sum(...values: Array) -> int:
 > is currently not supported in GDScript. However, you can use `callv()` to call a function
 > with an array of arguments:
 >
-> ::
->
+> 
+>```
 > func log_data(...values):
 > # ...
 >
 > func other_func(...args):
 > #log_data(...args) # This won't work.
 > log_data.callv(args) # This will work.
->
+>```
 
 ### Abstract functions
 
-See Abstract classes and methods.
+See [Abstract classes and methods](#abstract-classes-and-methods).
 
 ## Statements and control flow
 
-Statements are standard and can be assignments, function calls, control
-flow structures, etc (see below). `;` as a statement separator is
-entirely optional.
+Statements are standard and can be assignments, function calls, control flow structures, etc (see below). `;` as a statement separator is entirely optional.
 
 ### Expressions
 
@@ -1505,7 +1494,9 @@ self # Reference to current instance.
 
 Identifiers, attributes, and subscripts are valid assignment targets. Other expressions cannot be on the left side of
 an assignment.
-#### self
+
+**self**
+
 `self` can be used to refer to the current instance and is often equivalent to
 directly referring to symbols available in the current script. However, `self`
 also allows you to access properties, methods, and other names that are defined
@@ -1717,117 +1708,105 @@ If a pattern matches, the first corresponding block will be executed. After that
 
 The following pattern types are available:
 
-- 
-Literal pattern
+-  **Literal pattern**
 Matches a literal:
-match x:
-    1:
-        print("We are number one!")
-    2:
-        print("Two are better than one!")
-    "test":
-        print("Oh snap! It's a string!")
+    ```
+    match x:
+        1:
+            print("We are number one!")
+        2:
+            print("Two are better than one!")
+        "test":
+            print("Oh snap! It's a string!")
+    ```
 
-
-
-
-- 
-Expression pattern
+-  **Expression pattern**
 Matches a constant expression, an identifier, or an attribute access (`A.B`):
-match typeof(x):
-    TYPE_FLOAT:
-        print("float")
-    TYPE_STRING:
-        print("text")
-    TYPE_ARRAY:
-        print("array")
+    ```
+    match typeof(x):
+        TYPE_FLOAT:
+            print("float")
+        TYPE_STRING:
+            print("text")
+        TYPE_ARRAY:
+            print("array")
+    ```
 
-
-
-
-- 
-Wildcard pattern
+- **Wildcard pattern**
 This pattern matches everything. It's written as a single underscore.
 It can be used as the equivalent of the `default` in a `switch` statement in other languages:
-match x:
-    1:
-        print("It's one!")
-    2:
-        print("It's one times two!")
-    _:
-        print("It's not 1 or 2. I don't care to be honest.")
+    ```
+    match x:
+        1:
+            print("It's one!")
+        2:
+            print("It's one times two!")
+        _:
+            print("It's not 1 or 2. I don't care to be honest.")
+    ```
 
-
-
-
-- 
-Binding pattern
+- **Binding pattern**
 A binding pattern introduces a new variable. Like the wildcard pattern, it matches everything - and also gives that value a name.
 It's especially useful in array and dictionary patterns:
-match x:
-    1:
-        print("It's one!")
-    2:
-        print("It's one times two!")
-    var new_var:
-        print("It's not 1 or 2, it's ", new_var)
+    ```
+    match x:
+        1:
+            print("It's one!")
+        2:
+            print("It's one times two!")
+        var new_var:
+            print("It's not 1 or 2, it's ", new_var)
+    ```
 
-
-
-
-- 
-Array pattern
+- **Array pattern**
 Matches an array. Every single element of the array pattern is a pattern itself, so you can nest them.
 The length of the array is tested first, it has to be the same size as the pattern, otherwise the pattern doesn't match.
-**Open-ended array**: An array can be bigger than the pattern by making the last subpattern `..`.
+
+- **Open-ended array**: An array can be bigger than the pattern by making the last subpattern `..`.
 Every subpattern has to be comma-separated.
-match x:
-    []:
-        print("Empty array")
-    [1, 3, "test", null]:
-        print("Very specific array")
-    [var start, _, "test"]:
-        print("First element is ", start, ", and the last is \"test\"")
-    [42, ..]:
-        print("Open ended array")
+    ```
+    match x:
+        []:
+            print("Empty array")
+        [1, 3, "test", null]:
+            print("Very specific array")
+        [var start, _, "test"]:
+            print("First element is ", start, ", and the last is \"test\"")
+        [42, ..]:
+            print("Open ended array")
+    ```
 
-
-
-
-- 
-Dictionary pattern
+- **Dictionary pattern**
 Works in the same way as the array pattern. Every key has to be a constant pattern.
 The size of the dictionary is tested first, it has to be the same size as the pattern, otherwise the pattern doesn't match.
-**Open-ended dictionary**: A dictionary can be bigger than the pattern by making the last subpattern `..`.
+
+- **Open-ended dictionary**: A dictionary can be bigger than the pattern by making the last subpattern `..`.
 Every subpattern has to be comma separated.
 If you don't specify a value, then only the existence of the key is checked.
 A value pattern is separated from the key pattern with a `:`.
-match x:
-    {}:
-        print("Empty dict")
-    {"name": "Dennis"}:
-        print("The name is Dennis")
-    {"name": "Dennis", "age": var age}:
-        print("Dennis is ", age, " years old.")
-    {"name", "age"}:
-        print("Has a name and an age, but it's not Dennis :(")
-    {"key": "xogotisawesome", ..}:
-        print("I only checked for one entry and ignored the rest")
+    ```
+    match x:
+        {}:
+            print("Empty dict")
+        {"name": "Dennis"}:
+            print("The name is Dennis")
+        {"name": "Dennis", "age": var age}:
+            print("Dennis is ", age, " years old.")
+        {"name", "age"}:
+            print("Has a name and an age, but it's not Dennis :(")
+        {"key": "xogotisawesome", ..}:
+            print("I only checked for one entry and ignored the rest")
+    ```
 
-
-
-
-- 
-Multiple patterns
+- **Multiple patterns**
 You can also specify multiple patterns separated by a comma. These patterns aren't allowed to have any bindings in them.
-match x:
-    1, 2, 3:
-        print("It's 1 - 3")
-    "Sword", "Splash potion", "Fist":
-        print("Yep, you've taken damage")
-
-
-
+    ```
+    match x:
+        1, 2, 3:
+            print("It's 1 - 3")
+        "Sword", "Splash potion", "Fist":
+            print("Yep, you've taken damage")
+    ```
 
 Matches a literal:
 
@@ -1935,7 +1914,7 @@ match x:
     "Sword", "Splash potion", "Fist":
         print("Yep, you've taken damage")
 ```
-
+### Pattern guards
 A pattern guard is an optional condition that follows the pattern list
 and allows you to make additional checks before choosing a `match` branch.
 Unlike a pattern, a pattern guard can be an arbitrary expression.
