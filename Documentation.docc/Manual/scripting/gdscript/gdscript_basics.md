@@ -909,27 +909,18 @@ Member variables are initialized in the following order:
 (untyped variables and objects) or has a default value of the type
 (`0` for `int`, `false` for `bool`, etc.).
 
-1. The specified values are assigned in the order of the variables in the script,
+2. The specified values are assigned in the order of the variables in the script,
 from top to bottom.
+    (Only for `Node`-derived classes) If the `@onready` annotation is applied to a variable, its initialization is deferred to step 5.
 
-(Only for `Node`-derived classes) If the `@onready` annotation is applied to a variable,
-its initialization is deferred to step 5.
+3. If defined, the `_init()` method is called.
 
+4. When instantiating scenes and resources, the exported values are assigned.
 
+5. (Only for `Node`-derived classes) `@onready` variables are initialized.
 
-1. (Only for `Node`-derived classes) If the `@onready` annotation is applied to a variable,
-its initialization is deferred to step 5.
+6. (Only for `Node`-derived classes) If defined, the `_ready()` method is called.
 
-1. If defined, the `_init()` method is called.
-
-1. When instantiating scenes and resources, the exported values are assigned.
-
-1. (Only for `Node`-derived classes) `@onready` variables are initialized.
-
-1. (Only for `Node`-derived classes) If defined, the `_ready()` method is called.
-
-- (Only for `Node`-derived classes) If the `@onready` annotation is applied to a variable,
-its initialization is deferred to step 5.
 
 > Warning:
 >
