@@ -1,21 +1,10 @@
-<!-- Remove this line to publish to docs.xogot.com -->
 # GDScript reference
 
-<doc:index> is a high-level, object-oriented, imperative, and gradually typed programming language built for Godot.
-It uses an indentation-based syntax similar to languages like
-Python.
-Its goal is to be optimized for and tightly integrated with Godot Engine,
+GDScript is a high-level, object-oriented, imperative, and gradually typed programming language built for Godot.
+It uses an indentation-based syntax similar to languages like Python.
+Its goal is to be optimized for and tightly integrated with Godot Engine (and subsequently Xogot),
 allowing great flexibility for content creation and integration.
-
 GDScript is entirely independent from Python and is not based on it.
-
-## History
-
-> Note:
->
-> Documentation about GDScript's history has been moved to the
-> <doc:faq#What-Is-Gdscript>.
->
 
 ## Example of GDScript
 
@@ -132,42 +121,41 @@ keywords are reserved words (tokens), they can't be used as identifiers.
 Operators (like `in`, `not`, `and` or `or`) and names of built-in types
 as listed in the following sections are also reserved.
 
-Keywords are defined in the GDScript tokenizer
+Keywords are defined in the [GDScript tokenizer](https://github.com/godotengine/godot/blob/master/modules/gdscript/gdscript_tokenizer.cpp)
 in case you want to take a look under the hood.
 
 Keyword | Description
 ------- | -----------
-if | Seeif/else/elif.
-elif | Seeif/else/elif.
-else | Seeif/else/elif.
-for | Seefor.
-while | Seewhile.
-match | Seematch.
-when | Used by `pattern guards <Pattern guards_>`_ in`match`statements.
-break | Exits the execution of the current`for`or`while`loop.
-continue | Immediately skips to the next iteration of the`for`or`while`loop.
+if | See [if/else/elif](#ifelseelif).
+elif | See [if/else/elif](#ifelseelif).
+else | See [if/else/elif](#ifelseelif).
+for | See [for](#for).
+while | See [while](#while).
+match | See [match](#match).
+when | Used by [pattern guards](#pattern-guards) in `match` statements.
+break | Exits the execution of the current `for` or `while` loop.
+continue | Immediately skips to the next iteration of the `for` or `while` loop.
 pass | Used where a statement is required syntactically but execution of code is undesired, e.g. in empty functions.
 return | Returns a value from a function.
-class | Defines an inner class. SeeInner classes.
-class_name | Defines the script as a globally accessible class with the specified name. SeeRegistering named classes.
+class | Defines an inner class. See [Inner classes](#inner-classes).
+class_name | Defines the script as a globally accessible class with the specified name. See [Registering named classes](#registering-named-classes).
 extends | Defines what class to extend with the current class.
 is | Tests whether a variable extends a given class, or is of a given built-in type.
 in | Tests whether a value is within a string, array, range, dictionary, or node. When used with`for`, it iterates through them instead of testing.
 as | Cast the value to a given type if possible.
-self | Refers to current class instance. Seeself.
-super | Resolves the scope of the parent method. SeeInheritance.
-signal | Defines a signal. SeeSignals.
-func | Defines a function.  SeeFunctions.
+self | Refers to current class instance. See [self](#self).
+super | Resolves the scope of the parent method.  Inheritance.
+signal | Defines a signal. See [Signals](#signals).
+func | Defines a function.  See [Functions](#functions).
 static | Defines a static function or a static member variable.
-const | Defines a constant. SeeConstants.
-enum | Defines an enum. SeeEnums.
-var | Defines a variable. SeeVariables.
-breakpoint | Editor helper for debugger breakpoints. Unlike breakpoints created by clicking in the gutter,`breakpoint`is stored in the script itself.
-This makes it persistent across different machines when using version control.
-preload | Preloads a class or variable. SeeClasses as resources.
-await | Waits for a signal or a coroutine to finish. SeeAwaiting signals or coroutines.
+const | Defines a constant. See [Constants](#constants).
+enum | Defines an enum. See [Enums](#enums).
+var | Defines a variable. See [Variables](#variables).
+breakpoint | Editor helper for debugger breakpoints. Unlike breakpoints created by tapping in the gutter, `breakpoint` is stored in the script itself. This makes it persistent across different machines when using version control.
+preload | Preloads a class or variable. See [Classes as resources](#classes-as-resources).
+await | Waits for a signal or a coroutine to finish. See [Awaiting signals or coroutines](#awaiting-signals-or-coroutines).
 yield | Previously used for coroutines. Kept as keyword for transition.
-assert | Asserts a condition, logs error on failure. Ignored in non-debug builds. SeeAssert keyword.
+assert | Asserts a condition, logs error on failure. Ignored in non-debug builds. See [Assert keyword](#assert-keyword).
 void | Used to represent that a function does not return any value.
 PI | PI constant.
 TAU | TAU constant.
@@ -182,35 +170,29 @@ example `2 ** (2 ** 3)`. The ternary `if/else` operator is right-associative.
 
 **Operator** | **Description**
 ------------ | ---------------
-`(``)` | Grouping (highest priority)Parentheses are not really an operator, but allow you to explicitly specify
-the precedence of an operation.
+`()` | Grouping (highest priority). Parentheses are not really an operator, but allow you to explicitly specify the precedence of an operation.
 `x[index]` | Subscription
 `x.attribute` | Attribute reference
 `foo()` | Function call
-`await x` | Awaiting signals or coroutines
-`x is Node``x is not Node` | Type checkingSee also [is_instance_of()](https://docs.godotengine.org/en/stable/classes/class_@gdscript_method_is_instance_of.html#class-@gdscript_method_is_instance_of)
-function.
-`x ** y` | PowerMultiplies`x`by itself`y`times, similar to calling
-[pow()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_pow.html#class-@globalscope_method_pow) function.
+`await x` | [Awaiting signals or coroutines](#awaiting-signals-or-coroutines)
+`x is Node`, `x is not Node` | Type checking See also [is_instance_of()](https://docs.godotengine.org/en/stable/classes/class_@gdscript_method_is_instance_of.html#class-@gdscript_method_is_instance_of) function.
+`x ** y` | Power. Multiplies `x` by itself `y` times, similar to calling [pow()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_pow.html#class-@globalscope_method_pow) function.
 `~x` | Bitwise NOT
-`+x``-x` | Identity / Negation
-`x * y``x / y``x % y` | Multiplication / Division / RemainderThe`%`operator is additionally used for
-<doc:gdscript_format_string>.**Note:**These operators have the same behavior as C++, which may be
-unexpected for users coming from Python, JavaScript, etc. See a detailed
-note after the table.
-`x + y``x - y` | Addition (or Concatenation) / Subtraction
-`x << y``x >> y` | Bit shifting
+`+x`, `-x` | Identity / Negation
+`x * y`, `x / y`, `x % y` | Multiplication / Division / Remainder. The `%` operator is additionally used for <doc:gdscript_format_string>. **Note:** These operators have the same behavior as C++, which may be unexpected for users coming from Python, JavaScript, etc. See a detailed note after the table.
+`x + y`, `x - y` | Addition (or Concatenation) / Subtraction
+`x << y`, `x >> y` | Bit shifting
 `x & y` | Bitwise AND
 `x ^ y` | Bitwise XOR
-`x | y` | Bitwise OR
-`x == y``x != y``x < y``x > y``x <= y``x >= y` | ComparisonSee a detailed note after the table.
-`x in y``x not in y` | Inclusion checking`in`is also used with theforkeyword as part of the syntax.
-`not x``!x` | Boolean NOT and its :ref:`unrecommended <boolean_operators>` alias
-`x and y``x && y` | Boolean AND and its :ref:`unrecommended <boolean_operators>` alias
-`x or y``x || y` | Boolean OR and its :ref:`unrecommended <boolean_operators>` alias
+`x \| y` | Bitwise OR
+`x == y`, `x != y`, `x < y`, `x > y`, `x <= y`, `x >= y` | Comparison. See a detailed note after the table.
+`x in y` `x not in y` | Inclusion checking `in` is also used with the [for](#for) keyword as part of the syntax.
+`not x`, `!x` | Boolean NOT and its :ref:`unrecommended <boolean_operators>` alias
+`x and y`, `x && y` | Boolean AND and its :ref:`unrecommended <boolean_operators>` alias
+`x or y`, `x \|\| y` | Boolean OR and its :ref:`unrecommended <boolean_operators>` alias
 `true_expr if cond else false_expr` | Ternary if/else
-`x as Node` | Type casting
-`x = y``x += y``x -= y``x *= y``x /= y``x **= y``x %= y``x &= y``x |= y``x ^= y``x <<= y``x >>= y` | Assignment (lowest priority)You cannot use an assignment operator inside an expression.
+`x as Node` | [Type casting](#casting)
+`x = y`, `x += y`, `x -= y`, `x *= y`, `x /= y`, `x **= y`, `x %= y`, `x &= y`, `x \|= y`, `x ^= y`, `x <<= y`, `x >>= y` | Assignment (lowest priority). You cannot use an assignment operator inside an expression.
 
 > Note:
 >
@@ -315,8 +297,7 @@ GDScript also supports <doc:gdscript_format_string>.
 ## Annotations
 
 Annotations are special tokens in GDScript that act as modifiers to a script or
-its code and may affect how the script is treated by the Godot engine or
-editor.
+its code and may affect how the script is treated by the engine or editor.
 
 Every annotation starts with the `@` character and is specified by a name. A
 detailed description and example for each annotation can be found inside the
@@ -381,14 +362,10 @@ can replace the above code with a single line:
 
 > Warning:
 >
-> Applying `@onready` and any `@export` annotation to the same variable
-> doesn't work as you might expect. The `@onready` annotation will cause
-> the default value to be set after the `@export` takes effect and will
-> override it:
+> Applying `@onready` and any `@export` annotation to the same variabledoesn't work as you might expect. The `@onready` annotation will cause the default value to be set after the `@export` takes effect and will override it:
 >
-> ::
->
-> @export var a = "init_value_a"
+>```
+>@export var a = "init_value_a"
 > @onready @export var b = "init_value_b"
 >
 > func _init():
@@ -400,9 +377,8 @@ can replace the above code with a single line:
 >
 > func _ready():
 > prints(a, b) # exported_value_a init_value_b
->
-> Therefore, the `ONREADY_WITH_EXPORT` warning is generated, which is treated
-> as an error by default. We do not recommend disabling or ignoring it.
+>```
+> Therefore, the `ONREADY_WITH_EXPORT` warning is generated, which is treated as an error by default. We do not recommend disabling or ignoring it.
 >
 
 ## Comments
@@ -416,7 +392,7 @@ considered a comment.
 
 > Tip:
 >
-> In the Godot script editor, special keywords are highlighted within comments
+> In the script editor, special keywords are highlighted within comments
 > to bring the user's attention to specific comments:
 >
 > - **Critical** (appears in red): `ALERT`, `ATTENTION`, `CAUTION`,
@@ -429,15 +405,12 @@ considered a comment.
 > These keywords are case-sensitive, so they must be written in uppercase for them
 > to be recognized:
 >
-> ::
 >
-> # In the example below, "TODO" will appear in yellow by default.
-> # The `:` symbol after the keyword is not required, but it's often used.
+> \# In the example below, "TODO" will appear in yellow by default.
+> \# The `:` symbol after the keyword is not required, but it's often used.
 >
-> # TODO: Add more items for the player to choose from.
+> \# TODO: Add more items for the player to choose from.
 >
-> The list of highlighted keywords and their colors can be changed in the **Text
-> Editor > Theme > Comment Markers** section of the Editor Settings.
 >
 
 Use two hash symbols (`##`) instead of one (`#`) to add a documentation
@@ -459,7 +432,7 @@ var value
 
 Code regions are special types of comments that the script editor understands as
 foldable regions. This means that after writing code region comments, you can
-collapse and expand the region by clicking the arrow that appears at the left of
+collapse and expand the region by tapping the arrow that appears at the left of
 the comment. This arrow appears within a purple square to be distinguishable
 from standard code folding.
 
@@ -482,7 +455,7 @@ The syntax is as follows:
 > Tip:
 >
 > To create a code region quickly, select several lines in the script editor,
-> right-click the selection then choose **Create Code Region**. The region
+> long tap the selection then choose **Create Code Region**. The region
 > description will be selected automatically for editing.
 >
 > It is possible to nest code regions within other code regions.
@@ -554,32 +527,42 @@ All arrays, `Dictionary`, and some objects (`Node`, `Resource`)
 have a `duplicate()` method that allows you to make a copy.
 
 ### Basic built-in types
-
 A variable in GDScript can be assigned to several built-in types.
+
+**`null`**
 
 `null` is an empty data type that contains no information and can not
 be assigned any other value.
-
 Only types that inherit from Object can have a `null` value
 (Object is therefore called a "nullable" type).
 <doc:variant_class> must have a valid value at all times,
 and therefore cannot have a `null` value.
 
+**`bool`**
+
 Short for "boolean", it can only contain `true` or `false`.
+
+**`int`**
 
 Short for "integer", it stores whole numbers (positive and negative).
 It is stored as a 64-bit value, equivalent to `int64_t` in C++.
+
+**`float`**
 
 Stores real numbers, including decimals, using floating-point values.
 It is stored as a 64-bit value, equivalent to `double` in C++.
 Note: Currently, data structures such as `Vector2`, `Vector3`, and
 `PackedFloat32Array` store 32-bit single-precision `float` values.
 
+**`String`**
+
 A sequence of characters in Unicode format.
 
-An immutable string that allows only one instance of each name. They are slower to
-create and may result in waiting for locks when multithreading. In exchange, they're
-very fast to compare, which makes them good candidates for dictionary keys.
+**`StringName`**
+
+An immutable string that allows only one instance of each name. They are slower to create and may result in waiting for locks when multithreading. In exchange, they're very fast to compare, which makes them good candidates for dictionary keys.
+
+**`NodePath`**
 
 A pre-parsed path to a node or a node property.  It can be
 easily assigned to, and from, a String. They are useful to interact with
@@ -587,50 +570,80 @@ the tree to get a node, or affecting properties like with [Tweens](https://docs.
 
 ### Vector built-in types
 
+**Vector2**
+
 2D vector type containing `x` and `y` fields. Can also be
 accessed as an array.
+
+**Vector2i**
 
 Same as a Vector2 but the components are integers. Useful for representing
 items in a 2D grid.
 
+**Rect2**
+
 2D Rectangle type containing two vectors fields: `position` and `size`.
 Also contains an `end` field which is `position + size`.
+
+**Vector3**
 
 3D vector type containing `x`, `y` and `z` fields. This can also
 be accessed as an array.
 
+**Vector3i**
+
 Same as Vector3 but the components are integers. Can be use for indexing items
 in a 3D grid.
 
+**Transform2D**
+
 3×2 matrix used for 2D transforms.
+
+**Plane**
 
 3D Plane type in normalized form that contains a `normal` vector field
 and a `d` scalar distance.
 
+**Quaternion**
+
 Quaternion is a datatype used for representing a 3D rotation. It's
 useful for interpolating rotations.
+
+**AABB**
 
 Axis-aligned bounding box (or 3D box) contains 2 vectors fields: `position`
 and `size`. Also contains an `end` field which is
 `position + size`.
 
+**Basis**
+
 3x3 matrix used for 3D rotation and scale. It contains 3 vector fields
 (`x`, `y` and `z`) and can also be accessed as an array of 3D
 vectors.
+
+**Transform3D**
 
 3D Transform contains a Basis field `basis` and a Vector3 field
 `origin`.
 
 ### Engine built-in types
 
+**Color**
+
 Color data type contains `r`, `g`, `b`, and `a` fields. It can
 also be accessed as `h`, `s`, and `v` for hue/saturation/value.
 
+**RID**
+
 Resource ID (RID). Servers use generic RIDs to reference opaque data.
+
+**Object**
 
 Base class for anything that is not a built-in type.
 
 ### Container built-in types
+
+**Array**
 
 Generic sequence of arbitrary object types, including other arrays or dictionaries (see below).
 The array can resize dynamically. Arrays are indexed starting from index `0`.
@@ -646,7 +659,7 @@ arr[0] = "Hi!" # Replacing value 1 with "Hi!".
 arr.append(4) # Array is now ["Hi!", 2, 3, 4].
 ```
 
-Godot also features support for typed arrays. On write operations, Godot checks that
+GDScript also features support for typed arrays. On write operations, Xogot checks that
 element values match the specified type, so the array cannot contain invalid values.
 The GDScript static analyzer takes typed arrays into account, however array methods like
 `front()` and `back()` still have the `Variant` return type.
@@ -673,21 +686,19 @@ var e: Array[Variant]
 >
 > If you want to convert a typed array, you can create a new array and use the
 > [Array.assign()](https://docs.godotengine.org/en/stable/classes/class_array_method_assign.html#class-array_method_assign) method:
->
-> ::
->
+>```
 > var a: Array[Node2D] = [Node2D.new()]
 >
-> # (OK) You can add the value to the array because `Node2D` extends `Node`.
+> \# (OK) You can add the value to the array because `Node2D` extends `Node`.
 > var b: Array[Node] = [a[0]]
 >
-> # (Error) You cannot assign an `Array[Node2D]` to an `Array[Node]` variable.
+> \# (Error) You cannot assign an `Array[Node2D]` to an `Array[Node]` variable.
 > b = a
 >
-> # (OK) But you can use the `assign()` method instead. Unlike the `=` operator,
-> # the `assign()` method copies the contents of the array, not the reference.
+> \# (OK) But you can use the `assign()` method instead. Unlike the `=` operator,
+> \# the `assign()` method copies the contents of the array, not the reference.
 > b.assign(a)
->
+>```
 > The only exception was made for the `Array` (`Array[Variant]`) type, for user convenience
 > and compatibility with old code. However, operations on untyped arrays are considered unsafe.
 >
@@ -733,6 +744,8 @@ performance in iteration and modification compared to an untyped Array.
 
 - [PackedColorArray](https://docs.godotengine.org/en/stable/classes/class_packedcolorarray.html#class-packedcolorarray): An array of [Color](https://docs.godotengine.org/en/stable/classes/class_color.html#class-color) values.
 
+**Dictionary**
+
 Associative container which contains values referenced by unique keys.
 
 ```
@@ -767,7 +780,7 @@ assign to it:
 var d = {} # Create an empty Dictionary.
 d.waiting = 14 # Add String "waiting" as a key and assign the value 14 to it.
 d[4] = "hello" # Add integer 4 as a key and assign the String "hello" as its value.
-d["Godot"] = 3.01 # Add String "Godot" as a key and assign the value 3.01 to it.
+d["Xogot"] = 3.01 # Add String "Xogot" as a key and assign the value 3.01 to it.
 
 var test = 4
 # Prints "hello" by indexing the dictionary with a dynamic key.
@@ -809,10 +822,14 @@ var f: Dictionary[Variant, bool]
 
 `Dictionary` and `Dictionary[Variant, Variant]` are the same thing.
 
+**Signal**
+
 A signal is a message that can be emitted by an object to those who want to
 listen to it. The Signal type can be used for passing the emitter around.
 
 Signals are better used by getting them from actual objects, e.g. `$Button.button_up`.
+
+**Callable**
 
 Contains an object and a function, which is useful for passing functions as
 values (e.g. when connecting to signals).
@@ -892,27 +909,18 @@ Member variables are initialized in the following order:
 (untyped variables and objects) or has a default value of the type
 (`0` for `int`, `false` for `bool`, etc.).
 
-1. The specified values are assigned in the order of the variables in the script,
+2. The specified values are assigned in the order of the variables in the script,
 from top to bottom.
+    (Only for `Node`-derived classes) If the `@onready` annotation is applied to a variable, its initialization is deferred to step 5.
 
-(Only for `Node`-derived classes) If the `@onready` annotation is applied to a variable,
-its initialization is deferred to step 5.
+3. If defined, the `_init()` method is called.
 
+4. When instantiating scenes and resources, the exported values are assigned.
 
+5. (Only for `Node`-derived classes) `@onready` variables are initialized.
 
-1. (Only for `Node`-derived classes) If the `@onready` annotation is applied to a variable,
-its initialization is deferred to step 5.
+6. (Only for `Node`-derived classes) If defined, the `_ready()` method is called.
 
-1. If defined, the `_init()` method is called.
-
-1. When instantiating scenes and resources, the exported values are assigned.
-
-1. (Only for `Node`-derived classes) `@onready` variables are initialized.
-
-1. (Only for `Node`-derived classes) If defined, the `_ready()` method is called.
-
-- (Only for `Node`-derived classes) If the `@onready` annotation is applied to a variable,
-its initialization is deferred to step 5.
 
 > Warning:
 >
@@ -920,28 +928,25 @@ its initialization is deferred to step 5.
 > Make sure the variables are initialized in the correct order, otherwise your values
 > may be overwritten. For example:
 >
-> ::
->
+>```
 > var a: int = proxy("a", 1)
 > var b: int = proxy("b", 2)
 > var _data: Dictionary = {}
 >
 > func proxy(key: String, value: int):
-> _data[key] = value
-> print(_data)
-> return value
+>   _data[key] = value
+>   print(_data)
+>   return value
 >
 > func _init() -> void:
-> print(_data)
->
+>   print(_data)
+>```
 > Will print:
->
-> ::
->
+>```
 > { "a": 1 }
 > { "a": 1, "b": 2 }
 > {  }
->
+>```
 > To fix this, move the `_data` variable definition above the `a` definition
 > or remove the empty dictionary assignment (`= {}`).
 >
@@ -1349,19 +1354,18 @@ lambda.call()
 > Local variables are captured by value once, when the lambda is created.
 > So they won't be updated in the lambda if reassigned in the outer function:
 >
-> ::
->
+>```
 > var x = 42
 > var lambda = func (): print(x)
 > lambda.call() # Prints `42`.
 > x = "Hello"
 > lambda.call() # Prints `42`.
->
+>```
 > Also, a lambda cannot reassign an outer local variable. After exiting the lambda,
 > the variable will be unchanged, because the lambda capture implicitly shadows it:
 >
-> ::
->
+> 
+>```
 > var x = 42
 > var lambda = func ():
 > print(x) # Prints `42`.
@@ -1369,12 +1373,11 @@ lambda.call()
 > print(x) # Prints `Hello`.
 > lambda.call()
 > print(x) # Prints `42`.
->
+>```
 > However, if you use pass-by-reference data types (arrays, dictionaries, and objects),
 > then the content changes are shared until you reassign the variable:
 >
-> ::
->
+> ```
 > var a = []
 > var lambda = func ():
 > a.append(1)
@@ -1383,7 +1386,7 @@ lambda.call()
 > print(a) # Prints `[2]`.
 > lambda.call()
 > print(a) # Prints `[1]`.
->
+>```
 
 ### Static functions
 
@@ -1440,25 +1443,23 @@ func sum(...values: Array) -> int:
 > is currently not supported in GDScript. However, you can use `callv()` to call a function
 > with an array of arguments:
 >
-> ::
->
+> 
+>```
 > func log_data(...values):
 > # ...
 >
 > func other_func(...args):
 > #log_data(...args) # This won't work.
 > log_data.callv(args) # This will work.
->
+>```
 
 ### Abstract functions
 
-See Abstract classes and methods.
+See [Abstract classes and methods](#abstract-classes-and-methods).
 
 ## Statements and control flow
 
-Statements are standard and can be assignments, function calls, control
-flow structures, etc (see below). `;` as a statement separator is
-entirely optional.
+Statements are standard and can be assignments, function calls, control flow structures, etc (see below). `;` as a statement separator is entirely optional.
 
 ### Expressions
 
@@ -1488,6 +1489,8 @@ self # Reference to current instance.
 
 Identifiers, attributes, and subscripts are valid assignment targets. Other expressions cannot be on the left side of
 an assignment.
+
+**self**
 
 `self` can be used to refer to the current instance and is often equivalent to
 directly referring to symbols available in the current script. However, `self`
@@ -1700,225 +1703,107 @@ If a pattern matches, the first corresponding block will be executed. After that
 
 The following pattern types are available:
 
-- 
-Literal pattern
+-  **Literal pattern**
 Matches a literal:
-match x:
-    1:
-        print("We are number one!")
-    2:
-        print("Two are better than one!")
-    "test":
-        print("Oh snap! It's a string!")
+    ```
+    match x:
+        1:
+            print("We are number one!")
+        2:
+            print("Two are better than one!")
+        "test":
+            print("Oh snap! It's a string!")
+    ```
 
-
-
-
-- 
-Expression pattern
+-  **Expression pattern**
 Matches a constant expression, an identifier, or an attribute access (`A.B`):
-match typeof(x):
-    TYPE_FLOAT:
-        print("float")
-    TYPE_STRING:
-        print("text")
-    TYPE_ARRAY:
-        print("array")
+    ```
+    match typeof(x):
+        TYPE_FLOAT:
+            print("float")
+        TYPE_STRING:
+            print("text")
+        TYPE_ARRAY:
+            print("array")
+    ```
 
-
-
-
-- 
-Wildcard pattern
+- **Wildcard pattern**
 This pattern matches everything. It's written as a single underscore.
 It can be used as the equivalent of the `default` in a `switch` statement in other languages:
-match x:
-    1:
-        print("It's one!")
-    2:
-        print("It's one times two!")
-    _:
-        print("It's not 1 or 2. I don't care to be honest.")
+    ```
+    match x:
+        1:
+            print("It's one!")
+        2:
+            print("It's one times two!")
+        _:
+            print("It's not 1 or 2. I don't care to be honest.")
+    ```
 
-
-
-
-- 
-Binding pattern
+- **Binding pattern**
 A binding pattern introduces a new variable. Like the wildcard pattern, it matches everything - and also gives that value a name.
 It's especially useful in array and dictionary patterns:
-match x:
-    1:
-        print("It's one!")
-    2:
-        print("It's one times two!")
-    var new_var:
-        print("It's not 1 or 2, it's ", new_var)
+    ```
+    match x:
+        1:
+            print("It's one!")
+        2:
+            print("It's one times two!")
+        var new_var:
+            print("It's not 1 or 2, it's ", new_var)
+    ```
 
-
-
-
-- 
-Array pattern
+- **Array pattern**
 Matches an array. Every single element of the array pattern is a pattern itself, so you can nest them.
 The length of the array is tested first, it has to be the same size as the pattern, otherwise the pattern doesn't match.
-**Open-ended array**: An array can be bigger than the pattern by making the last subpattern `..`.
+
+- **Open-ended array**: An array can be bigger than the pattern by making the last subpattern `..`.
 Every subpattern has to be comma-separated.
-match x:
-    []:
-        print("Empty array")
-    [1, 3, "test", null]:
-        print("Very specific array")
-    [var start, _, "test"]:
-        print("First element is ", start, ", and the last is \"test\"")
-    [42, ..]:
-        print("Open ended array")
+    ```
+    match x:
+        []:
+            print("Empty array")
+        [1, 3, "test", null]:
+            print("Very specific array")
+        [var start, _, "test"]:
+            print("First element is ", start, ", and the last is \"test\"")
+        [42, ..]:
+            print("Open ended array")
+    ```
 
-
-
-
-- 
-Dictionary pattern
+- **Dictionary pattern**
 Works in the same way as the array pattern. Every key has to be a constant pattern.
 The size of the dictionary is tested first, it has to be the same size as the pattern, otherwise the pattern doesn't match.
-**Open-ended dictionary**: A dictionary can be bigger than the pattern by making the last subpattern `..`.
+
+- **Open-ended dictionary**: A dictionary can be bigger than the pattern by making the last subpattern `..`.
 Every subpattern has to be comma separated.
 If you don't specify a value, then only the existence of the key is checked.
 A value pattern is separated from the key pattern with a `:`.
-match x:
-    {}:
-        print("Empty dict")
-    {"name": "Dennis"}:
-        print("The name is Dennis")
-    {"name": "Dennis", "age": var age}:
-        print("Dennis is ", age, " years old.")
-    {"name", "age"}:
-        print("Has a name and an age, but it's not Dennis :(")
-    {"key": "godotisawesome", ..}:
-        print("I only checked for one entry and ignored the rest")
+    ```
+    match x:
+        {}:
+            print("Empty dict")
+        {"name": "Dennis"}:
+            print("The name is Dennis")
+        {"name": "Dennis", "age": var age}:
+            print("Dennis is ", age, " years old.")
+        {"name", "age"}:
+            print("Has a name and an age, but it's not Dennis :(")
+        {"key": "xogotisawesome", ..}:
+            print("I only checked for one entry and ignored the rest")
+    ```
 
-
-
-
-- 
-Multiple patterns
+- **Multiple patterns**
 You can also specify multiple patterns separated by a comma. These patterns aren't allowed to have any bindings in them.
-match x:
-    1, 2, 3:
-        print("It's 1 - 3")
-    "Sword", "Splash potion", "Fist":
-        print("Yep, you've taken damage")
+    ```
+    match x:
+        1, 2, 3:
+            print("It's 1 - 3")
+        "Sword", "Splash potion", "Fist":
+            print("Yep, you've taken damage")
+    ```
 
-
-
-
-Matches a literal:
-
-```
-match x:
-    1:
-        print("We are number one!")
-    2:
-        print("Two are better than one!")
-    "test":
-        print("Oh snap! It's a string!")
-```
-
-Matches a constant expression, an identifier, or an attribute access (`A.B`):
-
-```
-match typeof(x):
-    TYPE_FLOAT:
-        print("float")
-    TYPE_STRING:
-        print("text")
-    TYPE_ARRAY:
-        print("array")
-```
-
-This pattern matches everything. It's written as a single underscore.
-
-It can be used as the equivalent of the `default` in a `switch` statement in other languages:
-
-```
-match x:
-    1:
-        print("It's one!")
-    2:
-        print("It's one times two!")
-    _:
-        print("It's not 1 or 2. I don't care to be honest.")
-```
-
-A binding pattern introduces a new variable. Like the wildcard pattern, it matches everything - and also gives that value a name.
-It's especially useful in array and dictionary patterns:
-
-```
-match x:
-    1:
-        print("It's one!")
-    2:
-        print("It's one times two!")
-    var new_var:
-        print("It's not 1 or 2, it's ", new_var)
-```
-
-Matches an array. Every single element of the array pattern is a pattern itself, so you can nest them.
-
-The length of the array is tested first, it has to be the same size as the pattern, otherwise the pattern doesn't match.
-
-**Open-ended array**: An array can be bigger than the pattern by making the last subpattern `..`.
-
-Every subpattern has to be comma-separated.
-
-```
-match x:
-    []:
-        print("Empty array")
-    [1, 3, "test", null]:
-        print("Very specific array")
-    [var start, _, "test"]:
-        print("First element is ", start, ", and the last is \"test\"")
-    [42, ..]:
-        print("Open ended array")
-```
-
-Works in the same way as the array pattern. Every key has to be a constant pattern.
-
-The size of the dictionary is tested first, it has to be the same size as the pattern, otherwise the pattern doesn't match.
-
-**Open-ended dictionary**: A dictionary can be bigger than the pattern by making the last subpattern `..`.
-
-Every subpattern has to be comma separated.
-
-If you don't specify a value, then only the existence of the key is checked.
-
-A value pattern is separated from the key pattern with a `:`.
-
-```
-match x:
-    {}:
-        print("Empty dict")
-    {"name": "Dennis"}:
-        print("The name is Dennis")
-    {"name": "Dennis", "age": var age}:
-        print("Dennis is ", age, " years old.")
-    {"name", "age"}:
-        print("Has a name and an age, but it's not Dennis :(")
-    {"key": "godotisawesome", ..}:
-        print("I only checked for one entry and ignored the rest")
-```
-
-You can also specify multiple patterns separated by a comma. These patterns aren't allowed to have any bindings in them.
-
-```
-match x:
-    1, 2, 3:
-        print("It's 1 - 3")
-    "Sword", "Splash potion", "Fist":
-        print("Yep, you've taken damage")
-```
-
+### Pattern guards
 A pattern guard is an optional condition that follows the pattern list
 and allows you to make additional checks before choosing a `match` branch.
 Unlike a pattern, a pattern guard can be an arbitrary expression.
@@ -1947,19 +1832,9 @@ match point:
 is **not** evaluated and the patterns of the next branch are checked.
 
 - If a matching pattern is found, the pattern guard is evaluated.
+    - If it's true, then the body of the branch is executed and `match` ends.
+    - If it's false, then the patterns of the next branch are checked.
 
-If it's true, then the body of the branch is executed and `match` ends.
-If it's false, then the patterns of the next branch are checked.
-
-
-
-- If it's true, then the body of the branch is executed and `match` ends.
-
-- If it's false, then the patterns of the next branch are checked.
-
-- If it's true, then the body of the branch is executed and `match` ends.
-
-- If it's false, then the patterns of the next branch are checked.
 
 ## Classes
 
@@ -1980,8 +1855,7 @@ var character_node = Character.new()
 
 ### Registering named classes
 
-You can give your class a name to register it as a new type in Godot's
-editor. For that, you use the `class_name` keyword. You can optionally use
+You can give your class a name to register it as a new type in Xogot's editor. For that, you use the `class_name` keyword. You can optionally use
 the `@icon` annotation with a path to an image, to use it as an icon. Your
 class will then appear with its new icon in the editor:
 
@@ -1995,14 +1869,6 @@ extends Node
 
 @Image(source: "class_name_editor_register_example.png")
 
-> Tip:
->
-> SVG images that are used as custom node icons should have the
-> **Editor > Scale With Editor Scale** and **Editor > Convert Icons With Editor Theme**
-> <doc:importing_images#Editor-Import-Options> enabled. This allows
-> icons to follow the editor's scale and theming settings if the icons are designed with
-> the same color palette as Godot's own icons.
->
 
 Here's a class file example:
 
@@ -2043,18 +1909,18 @@ func _ready():
 
 > Note:
 >
-> Godot initializes non-static variables every time you create an instance,
+> Xogot initializes non-static variables every time you create an instance,
 > and this includes arrays and dictionaries. This is in the spirit of thread safety,
 > since scripts can be initialized in separate threads without the user knowing.
 >
 
 > Warning:
 >
-> The Godot editor will hide these custom classes with names that begin with the prefix
+> The editor will hide these custom classes with names that begin with the prefix
 > "Editor" in the 'Create New Node' or 'Create New Scene' dialog windows. The classes
 > are available for instantiation at runtime via their class names, but are
 > automatically hidden by the editor windows along with the built-in editor nodes used
-> by the Godot editor.
+> by the editor.
 >
 
 ### Abstract classes and methods
@@ -2130,11 +1996,9 @@ class ConcreteClass extends AbstractSubClass:
 > Since an abstract class cannot be instantiated, it is not possible to attach
 > an abstract class to a node. If you attempt to do so, the engine will print
 > an error when running the scene:
->
-> .. code-block:: none
->
+>```
 > Cannot set object script. Script '<path to script>' should not be abstract.
->
+>```
 
 Unnamed classes can also be defined as abstract, the `@abstract` annotation
 must precede `extends`:
@@ -2483,7 +2347,7 @@ See <doc:running_code_in_the_editor> for more information.
 
 ## Memory management
 
-Godot implements reference counting to free certain instances that are no longer
+Xogot implements reference counting to free certain instances that are no longer
 used, instead of a garbage collector, or requiring purely manual management.
 Any instance of the [RefCounted](https://docs.godotengine.org/en/stable/classes/class_refcounted.html#class-refcounted) class (or any class that inherits
 it, such as [Resource](https://docs.godotengine.org/en/stable/classes/class_resource.html#class-resource)) will be freed automatically when no longer
@@ -2639,7 +2503,7 @@ You can write optional argument names in parentheses after the signal's definiti
 signal health_changed(old_value, new_value)
 ```
 
-These arguments show up in the editor's node dock, and Godot can use them to
+These arguments show up in the editor's node dock, and Xogot can use them to
 generate callback functions for you. However, you can still emit any number of
 arguments when you emit signals; it's up to you to emit the correct values.
 
