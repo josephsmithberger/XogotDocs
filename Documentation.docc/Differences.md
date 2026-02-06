@@ -34,3 +34,11 @@ SF Symbols to better match the look and feel of iPadOS.  Because the iPad does
 not have the concept of hovering over a button, tooltips are not surfaced in the
 UI.  <doc:Xogot-User-Interface> provides a guide to the layout and structure of 
 Xogot's toolbars.
+
+## Additional Resources
+
+Watch this video to get an overview and a minimal project to break the ice:
+@Video(
+    source: "https://customer-fku244tec8fwlbfi.cloudflarestream.com/d9393fd9872838d31e98be4cee4cdedf/manifest/video.m3u8",
+    caption: "Xogot for Godot Users: Getting Oriented on iPad & iPhone"
+)
