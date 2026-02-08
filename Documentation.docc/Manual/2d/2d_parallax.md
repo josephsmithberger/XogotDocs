@@ -48,6 +48,8 @@ values might be:
 
 The video below displays how these values affect scrolling while in-game:
 
+@Image(source: "2d_parallax_scroll_scale.gif")
+
 ## Infinite repeat
 
 [Parallax2D](https://docs.godotengine.org/en/stable/classes/class_parallax2d.html#class-parallax2d) provides a bonus effect that gives textures the illusion of repeating infinitely.
