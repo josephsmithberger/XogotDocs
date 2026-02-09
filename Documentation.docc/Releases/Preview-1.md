@@ -4,7 +4,99 @@ Release notes for our preview release of Xogot to TestFlight.
 
 # Releases
 
-## Build 
+## Build 3761/Beta 
+
+### Improvements
+
+* Vastly improved the performance of the shell when selecting nodes and
+  navigating different nodes, this should be a lot snappier - fix courtesy of
+  Instrument's SwiftUI monitoring.
+
+### Fixes
+
+* Fixes a crash on Godot's polygon editor (Testflight, #2196)
+
+* Fixes a crash when opening a sheet (Testflight, #2197)
+
+* Fixes a crash on the VisualShaderEditor caught in the wild (Testflight).
+
+* Fixes a crash when you have made changes to a proejct and go back to the main
+  screen (Testflight, #2205)
+
+* Fixes a crash in the scene 3D debugging (Testflight, #2206)
+
+* Fixes a crash on various text input fields where we auto-selected text, but
+  the text contained complex unicode strings - a mismatch between Swift's
+  grapheme-based string indexes and UIKit UTF16-scalar based indexes
+  (Testflight, #2208).
+
+* Fixes a crash on code completion on the editor (Testflight, #2210)
+
+* Fixes another unicode crash, because indexes in strings can not be assumed to
+  be the same after a string has been lowercased (Testflight, #2211).
+  
+## Build 3752
+
+### Improvements
+
+* Learning center videos can now be played back from the editor, without going
+  back to the learning center.
+
+
+## Build 3749
+
+### Fixes
+
+* Update mode on the animation track was not showing up for a number of values
+  correctly - for example the 'frame' property of a SpriteFrame (Discord). 
+
+* Remote debugging sync with 4.5
+
+## Build 3742
+
+### Improvements
+
+* Added video tutorials to the learning center.
+
+* Improves handle editing on the Animation Bezier track.
+
+* Improves panning on Mac, where the dragging felt choppy.
+
+### Fixes
+
+* Fixes a Godot crash when a user would close a file and then call eof_reached
+  which would crash the editor (Testflight, #2178)
+
+* Fixes a crash when audio notifications were arriving after a game stopped and
+  could crash the editor (Testflight)
+
+## Build 3725
+
+* Improves panning speed and choppiness on the editor, should feel more natural now.
+
+* Internals that should reduce a class of crashes when closing a project.
+
+### Fixes
+
+* Fix AnimationPlayer bezier editing #2172
+
+* Makes our slide-editor more tolerant to invalid data surfaced in the property
+  editor (#2181)
+
+## Build 3725
+
+We are moving Testflight to version 4.5.1, so that is the major change in this
+release.   The Godot engine is now built in release mode as opposed to debug
+mode, so many operations (in particular importing) should be vastly faster.
+
+### Fixes
+
+* Animation when switching the bottom bar pads should no longer feel "jumpy"
+  (#2162). 
+
+* Fixes a crash on the context menu on the file and scene pad caught in the wild (Testflight)
+
+## Build 3711/Beta 229
 
 ### Improvements
 
