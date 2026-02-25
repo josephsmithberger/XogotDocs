@@ -4,7 +4,72 @@ Release notes for our preview release of Xogot to TestFlight.
 
 # Releases
 
-## Build 3761/Beta 
+## Build 
+
+This is a bug fix release, no user visible changes - but importantly, it
+contains internal refactors in preparation for a Mac release.
+
+* SpriteSheetImport: order wasn't applied when importing (#2174).
+
+* iPhone: Fix TileMap paint terrains not working on iPhone (#2176).
+
+* Memory leak fixes.
+
+* Fixes a Godot crash in the wild: a user is doing a close in GDSscript and then
+  calling eof_reached on a closed filehandle (#2178, TestFlight).
+
+* Fixes a crash when closing a project.
+
+* Add rescan of resources after extracting data to new file and folders during
+  scene import (#2180).
+
+* RangedSlider: Handle degenerate cases, (#2181, TestFlight
+
+* VirtualController appears onscreen after going to CodeEditorUI even if
+  controllers are turned off in settings (#2182).
+
+* You can now launch the videos from the learning center while editing your
+  project.
+
+* Fixes a crash on the polygon editor (#2196).
+
+* Fix Number entry fields clip after rotating iPad(#2218).
+
+* Fixes a crash when playing an animation and switching scenes (#2239)
+
+* Fixes a crash when nodes on a scene were deleted but you still had a reference
+  to them (#2240, #2241, #2256).
+  
+* Resolves black screen appearing sometimes in 2d and 3d editors when because of
+  structural identity loss / change editor view gets blank because leaving view
+  removes renderingLayer for upcoming view by mistake.
+
+* Fixes remote sync.
+
+* Fixes a crash in the ProjectManager (#2257)
+
+* Fixes a crash that could occur while going to the background while launching.
+
+* Add rescan of resources after extracting data to new file and folders (#2180).
+
+
+## Build 3777/Beta 327
+
+* Video content on the learning center now has captions and has been localized -
+  we would love your feedback on these.
+
+* Small internal styling improvements, it should not change anything, but it
+  made it easier to maintain.
+
+### Fixes
+
+* iPhone: Undo / Redo, 2D / 3D buttons no longer cover the bottom TabBar #2215 - Discord.
+
+* Fixes a warning on the tile set editor (#2214, Testflight)
+
+* Fixes a crash on the popup menu (#2202, Testflight).
+
+## Build 3761/Beta 310
 
 ### Improvements
 
