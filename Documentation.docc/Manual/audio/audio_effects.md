@@ -1,7 +1,6 @@
-<!-- Remove this line to publish to docs.xogot.com -->
 # Audio effects
 
-Godot includes several audio effects that can be added to an audio bus to
+Xogot includes several audio effects that can be added to an audio bus to
 alter every sound file that goes through that bus.
 
 @Image(source: "audio_buses4.png")
