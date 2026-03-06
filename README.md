@@ -60,6 +60,27 @@ You can build and preview the documentation locally in Xcode.
 3. Choose **Product → Build Documentation** or **Product → Run** to preview in
    the Documentation window.
 
+You can also build and preview the same static site artifact used by GitHub
+Pages:
+
+```bash
+./scripts/preview-pages.sh
+./scripts/host-preview-pages.sh
+```
+
+Optional flags:
+
+```bash
+./scripts/preview-pages.sh --output-dir docs-local
+./scripts/host-preview-pages.sh --dir docs-local --port 9000 --host 127.0.0.1
+```
+
+If you want local pages to include the same analytics IDs as production:
+
+```bash
+GOOGLE_ANALYTICS_ID=G-XXXXXXX GOOGLE_TAG_MANAGER_ID=GTM-XXXXXXX ./scripts/preview-pages.sh
+```
+
 ---
 
 ## Publishing
