@@ -28,9 +28,9 @@ Global built-ins are available everywhere, including in custom functions.
 Built-in | Description
 -------- | -----------
 in float**TIME** | Global time since the engine has started, in seconds. It repeats after every`3,600`seconds (which can be changed with the
-[rollover](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_rendering/limits/time/time_rollover_secs.html#class-projectsettings_property_rendering/limits/time/time_rollover_secs)
+[rollover](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-rendering-limits-time-time-rollover-secs)
 setting). It's affected by
-[time_scale](https://docs.godotengine.org/en/stable/classes/class_engine_property_time_scale.html#class-engine_property_time_scale) but not by pausing. If you need a`TIME`variable that is not affected by time scale, add your own
+[time_scale](https://docs.godotengine.org/en/stable/classes/class_engine.html#class-engine-property-time-scale) but not by pausing. If you need a`TIME`variable that is not affected by time scale, add your own
 <doc:shading_language#Global-Uniforms> and update it each
 frame.
 in float**PI** | A`PI`constant (`3.141592`).
@@ -52,7 +52,7 @@ in vec3**WORLD_POSITION** | Position of current froxel cell in world space.
 in vec3**OBJECT_POSITION** | Position of the center of the current [FogVolume](https://docs.godotengine.org/en/stable/classes/class_fogvolume.html#class-fogvolume) in world space.
 in vec3**UVW** | 3-dimensional UV, used to map a 3D texture to the current [FogVolume](https://docs.godotengine.org/en/stable/classes/class_fogvolume.html#class-fogvolume).
 in vec3**SIZE** | Size of the current [FogVolume](https://docs.godotengine.org/en/stable/classes/class_fogvolume.html#class-fogvolume) when its
-[shape](https://docs.godotengine.org/en/stable/classes/class_fogvolume_property_shape.html#class-fogvolume_property_shape) has a size.
+[shape](https://docs.godotengine.org/en/stable/classes/class_fogvolume.html#class-fogvolume-property-shape) has a size.
 in vec3**SDF** | Signed distance field to the surface of the [FogVolume](https://docs.godotengine.org/en/stable/classes/class_fogvolume.html#class-fogvolume). Negative if
 inside volume, positive otherwise.
 out vec3**ALBEDO** | Output base color value, interacts with light to produce final color. Only written to fog

@@ -22,8 +22,8 @@ so a way to do this by code must exist.
 In the physics world, Godot stores all the low-level collision and
 physics information in a space. The current 2d space (for 2D Physics)
 can be obtained by accessing
-[CanvasItem.get_world_2d().space](https://docs.godotengine.org/en/stable/classes/class_canvasitem_method_get_world_2d.html#class-canvasitem_method_get_world_2d).
-For 3D, it's [Node3D.get_world_3d().space](https://docs.godotengine.org/en/stable/classes/class_node3d_method_get_world_3d.html#class-node3d_method_get_world_3d).
+[CanvasItem.get_world_2d().space](https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#class-canvasitem-method-get-world-2d).
+For 3D, it's [Node3D.get_world_3d().space](https://docs.godotengine.org/en/stable/classes/class_node3d.html#class-node3d-method-get-world-3d).
 
 The resulting space [RID](https://docs.godotengine.org/en/stable/classes/class_rid.html#class-rid) can be used in
 [PhysicsServer3D](https://docs.godotengine.org/en/stable/classes/class_physicsserver3d.html#class-physicsserver3d) and
@@ -34,7 +34,7 @@ The resulting space [RID](https://docs.godotengine.org/en/stable/classes/class_r
 Godot physics runs by default in the same thread as game logic, but may
 be set to run on a separate thread to work more efficiently. Due to
 this, the only time accessing space is safe is during the
-[Node._physics_process()](https://docs.godotengine.org/en/stable/classes/class_node_private_method__physics_process.html#class-node_private_method__physics_process)
+[Node._physics_process()](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-private-method-physics-process)
 callback. Accessing it from outside this function may result in an error
 due to space being locked.
 
@@ -68,7 +68,7 @@ func _physics_process(delta):
 ## Raycast query
 
 For performing a 2D raycast query, the method
-[PhysicsDirectSpaceState2D.intersect_ray()](https://docs.godotengine.org/en/stable/classes/class_physicsdirectspacestate2d_method_intersect_ray.html#class-physicsdirectspacestate2d_method_intersect_ray)
+[PhysicsDirectSpaceState2D.intersect_ray()](https://docs.godotengine.org/en/stable/classes/class_physicsdirectspacestate2d.html#class-physicsdirectspacestate2d-method-intersect-ray)
 may be used. For example:
 
 ```

@@ -65,8 +65,10 @@ a:hover {
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 0 auto;
+  max-width: 1200px;
   padding: 0 var(--padding-x);
-  width: 980px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 #logo {
@@ -97,6 +99,7 @@ a:hover {
 
 .links li {
   display: inline-block;
+  vertical-align: middle;
 }
 
 .links li a {
@@ -104,6 +107,30 @@ a:hover {
   line-height: 52px;
   padding: 0 var(--padding-x);
   text-align: center;
+}
+
+.links li.app-store-item {
+  align-items: center;
+  display: inline-flex;
+  padding: 0 0 0 var(--padding-x);
+}
+
+.links li.app-store-item a.app-store-link {
+  align-items: center;
+  display: inline-flex;
+  height: 52px;
+  line-height: 1;
+  padding: 0;
+}
+
+.links li.app-store-item a.app-store-link:hover {
+  opacity: 0.9;
+}
+
+.links li.app-store-item img.app-store-badge {
+  display: block;
+  height: 36px;
+  width: auto;
 }
 
 .links li:first-child a {
@@ -187,5 +214,15 @@ a:hover {
 
   [data-small-menu-is-expanded] .links li:last-child a {
     padding-right: 10px;
+  }
+
+  [data-small-menu-is-expanded] .links li.app-store-item {
+    border-bottom: 1px solid var(--color-menu-border);
+    display: block;
+    padding: 10px;
+  }
+
+  [data-small-menu-is-expanded] .links li.app-store-item a.app-store-link {
+    display: inline-flex;
   }
 }

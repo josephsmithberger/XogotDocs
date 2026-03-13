@@ -20,14 +20,14 @@ There are several project settings to control logging behavior in Godot:
 
 - **Application > Run > Disable stdout:** Disables logging to standard output entirely.
 This also affects what custom loggers receive. This can be controlled at runtime
-by setting [Engine.print_to_stdout](https://docs.godotengine.org/en/stable/classes/class_engine_property_print_to_stdout.html#class-engine_property_print_to_stdout).
+by setting [Engine.print_to_stdout](https://docs.godotengine.org/en/stable/classes/class_engine.html#class-engine-property-print-to-stdout).
 
 - **Application > Run > Disable stderr:** Disables logging to standard error entirely.
 This also affects what custom loggers receive. This can be controlled at runtime
-by setting [Engine.print_error_messages](https://docs.godotengine.org/en/stable/classes/class_engine_property_print_error_messages.html#class-engine_property_print_error_messages).
+by setting [Engine.print_error_messages](https://docs.godotengine.org/en/stable/classes/class_engine.html#class-engine-property-print-error-messages).
 
 - **Debug > Settings > stdout > Verbose stdout:** Enables verbose logging to standard output.
-Prints from [print_verbose()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_print_verbose.html#class-@globalscope_method_print_verbose) are only
+Prints from [print_verbose()](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-method-print-verbose) are only
 visible if verbose mode is enabled.
 
 - **Debug > Settings > stdout > Print FPS:** Prints the frames per second every second,
@@ -65,7 +65,7 @@ for guidance on compiling binaries with debugging symbols enabled.
 
 > Note:
 >
-> Log files for [print()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_print.html#class-@globalscope_method_print)
+> Log files for [print()](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-method-print)
 > statements are updated when standard output is flushed by the engine.
 > Standard output is flushed on every print in debug builds only. In projects that
 > are exported in release mode, standard output is only flushed when the project exits
@@ -73,9 +73,9 @@ for guidance on compiling binaries with debugging symbols enabled.
 > text to standard output.
 >
 > On the other hand, the standard error stream
-> (used by [printerr()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_printerr.html#class-@globalscope_method_printerr),
-> [push_error()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_push_error.html#class-@globalscope_method_push_error), and
-> [push_warning()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_push_warning.html#class-@globalscope_method_push_warning)) is always
+> (used by [printerr()](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-method-printerr),
+> [push_error()](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-method-push-error), and
+> [push_warning()](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-method-push-warning)) is always
 > flushed on every print, even in projects exported in release mode.
 >
 > For some use cases like dedicated servers, it can be preferred to have release
@@ -207,12 +207,12 @@ or during playtesting.
 - Integrate a dedicated server export with monitoring platforms.
 
 A custom logger can be registered by creating a class that inherits from [logger](https://docs.godotengine.org/en/stable/classes/class_logger.html#class-logger),
-then passing an instance of this class to [OS.add_logger](https://docs.godotengine.org/en/stable/classes/class_os_method_add_logger.html#class-os_method_add_logger),
-in a script's [_init()](https://docs.godotengine.org/en/stable/classes/class_object_private_method__init.html#class-object_private_method__init) method. A good place to do this
+then passing an instance of this class to [OS.add_logger](https://docs.godotengine.org/en/stable/classes/class_os.html#class-os-method-add-logger),
+in a script's [_init()](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-private-method-init) method. A good place to do this
 is an <doc:singletons_autoload>.
 
-The class must define two methods: [_log_message()](https://docs.godotengine.org/en/stable/classes/class_logger_private_method__log_message.html#class-logger_private_method__log_message)
-and [_log_error()](https://docs.godotengine.org/en/stable/classes/class_logger_private_method__log_error.html#class-logger_private_method__log_error).
+The class must define two methods: [_log_message()](https://docs.godotengine.org/en/stable/classes/class_logger.html#class-logger-private-method-log-message)
+and [_log_error()](https://docs.godotengine.org/en/stable/classes/class_logger.html#class-logger-private-method-log-error).
 
 Here is a minimal working example of a custom logger, with the script added as an autoload:
 
@@ -253,10 +253,10 @@ func _init() -> void:
 ```
 
 Note that to avoid infinite recursion, you cannot effectively use
-[print()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_print.html#class-@globalscope_method_print) and its related methods in
+[print()](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-method-print) and its related methods in
 `_log_message()`. You also can't effectively use
-[push_error()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_push_error.html#class-@globalscope_method_push_error)
-or [push_warning()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_push_warning.html#class-@globalscope_method_push_warning) in
+[push_error()](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-method-push-error)
+or [push_warning()](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-method-push-warning) in
 `_log_error()`. Attempting to do so will print a message to the same stream
 as the original message. This message is not available in the custom logger,
 which is what prevents infinite recursion from occurring:

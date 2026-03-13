@@ -28,7 +28,7 @@ of the currently edited scene. This is a powerful feature which also comes
 with caveats, as the editor does not include protections for potential
 misuse of `@tool` scripts.
 Be **extremely** cautious when manipulating the scene tree, especially via
-[Node.queue_free](https://docs.godotengine.org/en/stable/classes/class_node_method_queue_free.html#class-node_method_queue_free), as it can cause
+[Node.queue_free](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-method-queue-free), as it can cause
 crashes if you free a node while the editor runs logic involving it.
 
 ## How to use `@tool`
@@ -250,7 +250,7 @@ help you and your team avoid mistakes when setting up scenes.
 
 When using node configuration warnings, when any value that should affect or
 remove the warning changes, you need to call
-[update_configuration_warnings](https://docs.godotengine.org/en/stable/classes/class_node_method_update_configuration_warnings.html#class-node_method_update_configuration_warnings) .
+[update_configuration_warnings](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-method-update-configuration-warnings) .
 By default, the warning only updates when closing and reopening the scene.
 
 ```
@@ -338,7 +338,7 @@ EditorScripts have no undo/redo functionality, so **make sure to save your
 scene before running one** if the script is designed to modify any data.
 
 To access nodes in the currently edited scene, use the
-[EditorScript.get_scene](https://docs.godotengine.org/en/stable/classes/class_editorscript_method_get_scene.html#class-editorscript_method_get_scene) method which
+[EditorScript.get_scene](https://docs.godotengine.org/en/stable/classes/class_editorscript.html#class-editorscript-method-get-scene) method which
 returns the root Node of the currently edited scene. Here's an example that
 recursively gets all nodes in the currently edited scene and doubles the range
 of all OmniLight3D nodes:
@@ -372,7 +372,7 @@ func get_all_children(in_node, children_acc = []):
 >
 > You can change the currently edited scene at the top of the editor even
 > while the Script view is open. This will affect the return value of
-> [EditorScript.get_scene](https://docs.godotengine.org/en/stable/classes/class_editorscript_method_get_scene.html#class-editorscript_method_get_scene), so make
+> EditorScript.get_scene, so make
 > sure you've selected the scene you intend to iterate upon before running
 > the script.
 >
@@ -381,10 +381,10 @@ func get_all_children(in_node, children_acc = []):
 
 You can instantiate packed scenes normally and add them to the scene currently
 opened in the editor. By default, nodes or scenes added with
-[Node.add_child(node)](https://docs.godotengine.org/en/stable/classes/class_node_method_add_child.html#class-node_method_add_child) are **not** visible
+[Node.add_child(node)](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-method-add-child) are **not** visible
 in the Scene tree dock and are **not** persisted to disk. If you wish the node
 or scene to be visible in the scene tree dock and persisted to disk when saving
-the scene, you need to set the child node's [owner](https://docs.godotengine.org/en/stable/classes/class_node_property_owner.html#class-node_property_owner)
+the scene, you need to set the child node's [owner](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-property-owner)
 property to the currently edited scene root.
 
 If you are using `@tool`:

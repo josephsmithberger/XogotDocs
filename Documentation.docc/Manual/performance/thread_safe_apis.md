@@ -24,7 +24,7 @@ code, as this is used directly and not within the scene tree.
 Interacting with the active scene tree is **not** thread-safe. Make sure
 to use mutexes when sending data between threads. If you want to call
 functions or set properties from a thread, you may use
-[call_deferred](https://docs.godotengine.org/en/stable/classes/class_object_method_call_deferred.html#class-object_method_call_deferred) or [set_deferred](https://docs.godotengine.org/en/stable/classes/class_object_method_set_deferred.html#class-object_method_set_deferred):
+[call_deferred](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-method-call-deferred) or [set_deferred](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-method-set-deferred):
 
 ```
 # Unsafe:
@@ -59,7 +59,7 @@ set in multiple ones. Otherwise, you are safer just using the servers API
 Instancing nodes that render anything in 2D or 3D (such as [Sprite2D](https://docs.godotengine.org/en/stable/classes/class_sprite2d.html#class-sprite2d)
 or [MeshInstance3D](https://docs.godotengine.org/en/stable/classes/class_meshinstance3d.html#class-meshinstance3d)) is not thread-safe by default. To run the
 rendering driver on a separate thread, set the
-[Rendering > Driver > Thread Model](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_rendering/driver/threads/thread_model.html#class-projectsettings_property_rendering/driver/threads/thread_model)
+[Rendering > Driver > Thread Model](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-rendering-driver-threads-thread-model)
 project setting to **Separate**.
 
 Note that the **Separate** thread model has several known bugs, so it may not be usable
@@ -79,9 +79,9 @@ in all scenarios.
 Physics simulation is not thread-safe by default. To run the physics servers
 on separate threads (making them thread-safe), enable the following project settings:
 
-- **PhysicsServer2D:** [Physics > 2D > Run on Separate Thread](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_physics/2d/run_on_separate_thread.html#class-projectsettings_property_physics/2d/run_on_separate_thread).
+- **PhysicsServer2D:** [Physics > 2D > Run on Separate Thread](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-physics-2d-run-on-separate-thread).
 
-- **PhysicsServer3D:** [Physics > 3D > Run on Separate Thread](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_physics/3d/run_on_separate_thread.html#class-projectsettings_property_physics/3d/run_on_separate_thread).
+- **PhysicsServer3D:** [Physics > 3D > Run on Separate Thread](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-physics-3d-run-on-separate-thread).
 
 ## GDScript arrays and dictionaries
 

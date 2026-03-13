@@ -1,12 +1,10 @@
-<!-- Remove this line to publish to docs.xogot.com -->
 # Keyboard/Controller Navigation and Focus
 
 It is a common requirement for a user interface to have full keyboard
 and controller support for navigation and interaction. There are two main
 reasons why this is beneficial for projects: improved accessibility (not everyone
 can use mouse or touch controls for interactions), and getting your project
-ready for <doc:consoles> (or just for people who prefer
-to game with a controller on PC).
+ready for consoles (or just for people who prefer to game with a controller on iPad).
 
 Navigating between UI elements with keyboard or controller is done by
 changing which node is actively selected. This is also called changing UI focus.
@@ -60,7 +58,7 @@ For keyboard and controller navigation to work correctly, any node must be focus
 using code when the scene starts. Without doing this, pressing buttons or keys won't
 do anything.
 
-You can use the [Control.grab_focus()](https://docs.godotengine.org/en/stable/classes/class_control_method_grab_focus.html#class-control_method_grab_focus) method
+You can use the [Control.grab_focus()](https://docs.godotengine.org/en/stable/classes/class_control.html#class-control-method-grab-focus) method
 to focus a control. Here is a basic example of setting initial focus with code:
 
 ```

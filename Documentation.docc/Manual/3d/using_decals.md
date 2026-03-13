@@ -222,7 +222,7 @@ rendering). Using node groups, you can also prevent non-essential decorative
 decals from spawning based on user configuration.
 
 The way decals are rendered also has an impact on performance. The
-[Rendering > Textures > Decals > Filter](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_rendering/textures/decals/filter.html#class-projectsettings_property_rendering/textures/decals/filter)
+[Rendering > Textures > Decals > Filter](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-rendering-textures-decals-filter)
 advanced project setting lets you control how decal
 textures should be filtered. **Nearest/Linear** does not use mipmaps. However,
 decals will look grainy at a distance. **Nearest/Linear Mipmaps** will look
@@ -250,7 +250,7 @@ performance allows). However, there's still a default limit of 512 clustered
 elements that can be present in the current camera view. A clustered element is
 an omni light, a spot light, a <doc:using_decals> or a
 <doc:reflection_probes>. This limit can be increased by adjusting
-[Max Clustered Elements](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_rendering/limits/cluster_builder/max_clustered_elements.html#class-projectsettings_property_rendering/limits/cluster_builder/max_clustered_elements)
+[Max Clustered Elements](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-rendering-limits-cluster-builder-max-clustered-elements)
 in **Project Settings > Rendering > Limits > Cluster Builder**.
 
 When using the Mobile renderer, only 8 decals can be applied on each

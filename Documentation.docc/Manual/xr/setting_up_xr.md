@@ -49,7 +49,7 @@ OpenXR is a new industry standard that allows different XR platforms to present 
 The Vulkan implementation of OpenXR is closely integrated with Vulkan, taking over part of the Vulkan system. This requires tight integration of certain core graphics features in the Vulkan renderer which are needed before the XR system is setup. This was one of the main deciding factors to include OpenXR as a core interface.
 
 This also means OpenXR needs to be enabled when Godot starts in order to set things
-up correctly. Check the [Enabled](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_xr/openxr/enabled.html#class-projectsettings_property_xr/openxr/enabled)
+up correctly. Check the [Enabled](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-xr-shaders-enabled)
 setting in your project settings under **XR > OpenXR**.
 
 @Image(source: "openxr_enabled.png")
@@ -59,7 +59,7 @@ changed while your application is running. The default settings will get us star
 but for more information on what's here see <doc:openxr_settings>.
 
 You'll also need to go to **XR > Shaders** in the project settings and check the
-[Enabled](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_xr/shaders/enabled.html#class-projectsettings_property_xr/shaders/enabled)
+[Enabled](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-xr-shaders-enabled)
 box to enable them. Once you've done that click the **Save & Restart** button.
 
 @Image(source: "xr_shaders.png")

@@ -27,7 +27,7 @@ control.
 Add a script to any [CanvasItem](https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#class-canvasitem)
 derived node, like [Control](https://docs.godotengine.org/en/stable/classes/class_control.html#class-control) or
 [Node2D](https://docs.godotengine.org/en/stable/classes/class_node2d.html#class-node2d). Then override the
-[_draw()](https://docs.godotengine.org/en/stable/classes/class_canvasitem_private_method__draw.html#class-canvasitem_private_method__draw) function.
+[_draw()](https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#class-canvasitem-private-method-draw) function.
 
 ```
 extends Node2D
@@ -42,12 +42,12 @@ in the examples below.
 
 ## Updating
 
-The [_draw](https://docs.godotengine.org/en/stable/classes/class_canvasitem_private_method__draw.html#class-canvasitem_private_method__draw) function is only called
+The [_draw](https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#class-canvasitem-private-method-draw) function is only called
 once, and then the draw commands are cached and remembered, so further calls
 are unnecessary.
 
 If re-drawing is required because a variable or something else changed,
-call [CanvasItem.queue_redraw](https://docs.godotengine.org/en/stable/classes/class_canvasitem_method_queue_redraw.html#class-canvasitem_method_queue_redraw)
+call [CanvasItem.queue_redraw](https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#class-canvasitem-method-queue-redraw)
 in that same node and a new `_draw()` call will happen.
 
 Here is a little more complex example, where we have a texture variable
@@ -74,8 +74,8 @@ When changing the `Texture` property value while the previous script is
 running, the texture will also change automatically.
 
 In some cases, we may need to redraw every frame. For this,
-call [queue_redraw](https://docs.godotengine.org/en/stable/classes/class_canvasitem_method_queue_redraw.html#class-canvasitem_method_queue_redraw)
-from the [_process](https://docs.godotengine.org/en/stable/classes/class_node_private_method__process.html#class-node_private_method__process) method, like this:
+call [queue_redraw](https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#class-canvasitem-method-queue-redraw)
+from the [_process](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-private-method-process) method, like this:
 
 ```
 extends Node2D
@@ -93,10 +93,10 @@ The drawing API uses the CanvasItem's coordinate system, not necessarily pixel
 coordinates. This means `_draw()` uses the coordinate space created after
 applying the CanvasItem's transform. Additionally, you can apply a custom
 transform on top of it by using
-[draw_set_transform](https://docs.godotengine.org/en/stable/classes/class_canvasitem_method_draw_set_transform.html#class-canvasitem_method_draw_set_transform) or
-[draw_set_transform_matrix](https://docs.godotengine.org/en/stable/classes/class_canvasitem_method_draw_set_transform_matrix.html#class-canvasitem_method_draw_set_transform_matrix).
+[draw_set_transform](https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#class-canvasitem-method-draw-set-transform) or
+[draw_set_transform_matrix](https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#class-canvasitem-method-draw-set-transform-matrix).
 
-When using [draw_line](https://docs.godotengine.org/en/stable/classes/class_canvasitem_method_draw_line.html#class-canvasitem_method_draw_line), you should
+When using [draw_line](https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#class-canvasitem-method-draw-line), you should
 consider the width of the line. When using a width that is an odd size, the
 position of the start and end points should be shifted by `0.5` to keep the
 line centered, as shown below.
@@ -110,7 +110,7 @@ func _draw():
     draw_line(Vector2(7.5, 1.0), Vector2(7.5, 4.0), Color.GREEN, 3.0)
 ```
 
-The same applies to the [draw_rect](https://docs.godotengine.org/en/stable/classes/class_canvasitem_method_draw_rect.html#class-canvasitem_method_draw_rect)
+The same applies to the [draw_rect](https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#class-canvasitem-method-draw-rect)
 method with `filled = false`.
 
 @Image(source: "draw_rect.png")
@@ -125,7 +125,7 @@ func _draw():
 
 ## Antialiased drawing
 
-Godot offers method parameters in [draw_line](https://docs.godotengine.org/en/stable/classes/class_canvasitem_method_draw_line.html#class-canvasitem_method_draw_line)
+Godot offers method parameters in [draw_line](https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#class-canvasitem-method-draw-line)
 to enable antialiasing, but not all custom drawing methods offer this `antialiased`
 parameter.
 
@@ -164,7 +164,7 @@ You will have to code a function to perform this and draw it yourself.
 > The following instructions use a fixed set of coordinates that could be too small
 > for high resolution screens (larger than 1080p). If that is your case, and the
 > drawing is too small consider increasing your window scale in the project setting
-> [Display > Window > Stretch > Scale](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_display/window/stretch/scale.html#class-projectsettings_property_display/window/stretch/scale)
+> [Display > Window > Stretch > Scale](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-display-window-stretch-scale)
 > to adjust the project to a higher resolution (a 2 or 4 scale tends to work well).
 >
 
@@ -221,7 +221,7 @@ func _ready():
 ```
 
 To finally draw our first shape, we will use the method
-[draw_polygon](https://docs.godotengine.org/en/stable/classes/class_canvasitem_method_draw_polygon.html#class-canvasitem_method_draw_polygon)
+[draw_polygon](https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#class-canvasitem-method-draw-polygon)
 and pass the points (as an array of Vector2 coordinates) and its color,
 like this:
 
@@ -277,7 +277,7 @@ func _ready():
 ```
 
 And finally we will use the method
-[draw_polyline](https://docs.godotengine.org/en/stable/classes/class_canvasitem_method_draw_polyline.html#class-canvasitem_method_draw_polyline) to actually
+[draw_polyline](https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#class-canvasitem-method-draw-polyline) to actually
 draw the line, like this:
 
 ```
@@ -316,7 +316,7 @@ To create the eyes, we are going to add 4 additional calls to draw the eye
 shapes, in different sizes, colors and positions.
 
 To draw a circle, you position it based on its center using the
-[draw_circle](https://docs.godotengine.org/en/stable/classes/class_canvasitem_method_draw_circle.html#class-canvasitem_method_draw_circle) method. The first
+[draw_circle](https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#class-canvasitem-method-draw-circle) method. The first
 parameter is a [Vector2](https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2) with the coordinates of its center, the second is
 its radius, and the third is its color:
 
@@ -342,13 +342,13 @@ When executing it, you should have something like this:
 
 For partial, unfilled arcs (portions of a circle shape between certain
 arbitrary angles), you can use the method
-[draw_arc](https://docs.godotengine.org/en/stable/classes/class_canvasitem_method_draw_arc.html#class-canvasitem_method_draw_arc).
+[draw_arc](https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#class-canvasitem-method-draw-arc).
 
 ### Drawing lines
 
 To draw the final shape (the nose) we will use a line to approximate it.
 
-[draw_line](https://docs.godotengine.org/en/stable/classes/class_canvasitem_method_draw_line.html#class-canvasitem_method_draw_line) can be used to draw
+[draw_line](https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#class-canvasitem-method-draw-line) can be used to draw
 a single segment by providing its start and end coordinates as arguments,
 like this:
 
@@ -375,7 +375,7 @@ You should now be able to see the following shape on screen:
 
 Note that if multiple unconnected lines are going to be drawn at the same time,
 you may get additional performance by drawing all of them in a single call, using
-the [draw_multiline](https://docs.godotengine.org/en/stable/classes/class_canvasitem_method_draw_multiline.html#class-canvasitem_method_draw_multiline) method.
+the [draw_multiline](https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#class-canvasitem-method-draw-multiline) method.
 
 ### Drawing text
 
@@ -384,7 +384,7 @@ text to your application, the low-level `_draw` function includes functionality
 to add text to your custom Node drawing. We will use it to add the name "GODOT"
 under the robot head.
 
-We will use the [draw_string](https://docs.godotengine.org/en/stable/classes/class_canvasitem_method_draw_string.html#class-canvasitem_method_draw_string) method
+We will use the [draw_string](https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#class-canvasitem-method-draw-string) method
 to do it, like this:
 
 ```
@@ -471,7 +471,7 @@ While we could rewrite all of the points' coordinates to be centered around
 `(0, 0)`, including negative coordinates, that would be a lot of work.
 
 One possible way to work around this is to use the lower level
-[draw_set_transform](https://docs.godotengine.org/en/stable/classes/class_canvasitem_method_draw_set_transform.html#class-canvasitem_method_draw_set_transform)
+[draw_set_transform](https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#class-canvasitem-method-draw-set-transform)
 method to fix this issue, translating all points in the CanvasItem's own space,
 and then moving it back to its original place with a regular node transform,
 either in the editor or in code, like this:
@@ -495,7 +495,7 @@ If what we wanted to animate was a property inside the `_draw()` call, we must r
 call `queue_redraw()` to force a refresh, as otherwise it would not be updated on screen.
 
 For example, this is how we can make the robot appear to open and close its mouth, by
-changing the width of its mouth line follow a sinusoidal ([sin](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_sin.html#class-@globalscope_method_sin)) curve:
+changing the width of its mouth line follow a sinusoidal ([sin](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-method-sin)) curve:
 
 ```
 var _mouth_width : float = 4.4
@@ -570,7 +570,7 @@ func _draw():
 
 In this example we obtain the position of the mouse in the default viewport
 every frame with the method
-[get_mouse_position](https://docs.godotengine.org/en/stable/classes/class_viewport_method_get_mouse_position.html#class-viewport_method_get_mouse_position). If the
+[get_mouse_position](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport-method-get-mouse-position). If the
 position has changed since the last draw request (a small optimization to
 avoid redrawing on every frame)- we will schedule a redraw. Our `_draw()`
 method only has one line: requesting the drawing of a green line of
@@ -610,7 +610,7 @@ var _point2 : Vector2
 @Image(source: "draw_dynamic_exported_properties.png")
 
 To draw the arc, we can use the method
-[draw_arc](https://docs.godotengine.org/en/stable/classes/class_canvasitem_method_draw_arc.html#class-canvasitem_method_draw_arc). There are many
+[draw_arc](https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#class-canvasitem-method-draw-arc). There are many
 arcs that pass through 2 points, so we will chose for this example
 the semicircle that has its center in the middle point between the 2 initial
 points.

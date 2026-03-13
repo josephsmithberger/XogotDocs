@@ -272,7 +272,7 @@ As doing so is dependent on your game, your game needs to react accordingly.
 
 All we do here is emit the `pose_recentered` signal.
 You can connect to this signal and implement the actual recenter code.
-Often it is enough to call [center_on_hmd()](https://docs.godotengine.org/en/stable/classes/class_xrserver_method_center_on_hmd.html#class-xrserver_method_center_on_hmd).
+Often it is enough to call [center_on_hmd()](https://docs.godotengine.org/en/stable/classes/class_xrserver.html#class-xrserver-method-center-on-hmd).
 
 ```
 ...

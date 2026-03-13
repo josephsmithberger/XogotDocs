@@ -36,7 +36,7 @@ by clicking the circular arrow **Reset** button next to each property.
 
 ### Changing project settings from code
 
-You can use [set_setting()](https://docs.godotengine.org/en/stable/classes/class_projectsettings_method_set_setting.html#class-projectsettings_method_set_setting) to
+You can use [set_setting()](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-method-set-setting) to
 change a setting's value from code:
 
 ```
@@ -65,8 +65,8 @@ links to their equivalent runtime property or method.
 ## Reading project settings
 
 You can read project settings with
-[get_setting()](https://docs.godotengine.org/en/stable/classes/class_projectsettings_method_get_setting.html#class-projectsettings_method_get_setting) or
-[get_setting_with_override()](https://docs.godotengine.org/en/stable/classes/class_projectsettings_method_get_setting_with_override.html#class-projectsettings_method_get_setting_with_override):
+[get_setting()](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-method-get-setting) or
+[get_setting_with_override()](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-method-get-setting-with-override):
 
 ```
 var max_fps = ProjectSettings.get_setting("application/run/max_fps")

@@ -11,7 +11,7 @@ instantiate scenes from code.
 
 ## Getting nodes
 
-You can get a reference to a node by calling the [Node.get_node()](https://docs.godotengine.org/en/stable/classes/class_node_method_get_node.html#class-node_method_get_node) method. For this to work, the child node must be
+You can get a reference to a node by calling the [Node.get_node()](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-method-get-node) method. For this to work, the child node must be
 present in the scene tree. Getting it in the parent node's `_ready()` function
 guarantees that.
 
@@ -153,7 +153,7 @@ var scene = preload("res://my_scene.tscn")
 ```
 
 At that point, `scene` is a packed scene resource, not a node. To create the
-actual node, you need to call [PackedScene.instantiate()](https://docs.godotengine.org/en/stable/classes/class_packedscene_method_instantiate.html#class-packedscene_method_instantiate). It returns a tree of nodes that you can use
+actual node, you need to call [PackedScene.instantiate()](https://docs.godotengine.org/en/stable/classes/class_packedscene.html#class-packedscene-method-instantiate). It returns a tree of nodes that you can use
 as a child of your current node.
 
 ```

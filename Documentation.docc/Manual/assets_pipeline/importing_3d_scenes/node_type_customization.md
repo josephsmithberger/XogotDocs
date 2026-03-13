@@ -151,10 +151,10 @@ In Blender, this requires using the NLA Editor and naming the Action with the `l
 ## Material alpha (-alpha)
 
 A material with the `-alpha` suffix will be imported with the
-[TRANSPARENCY_ALPHA](https://docs.godotengine.org/en/stable/classes/class_basematerial3d_constant_transparency_alpha.html#class-basematerial3d_constant_transparency_alpha) transparency mode.
+[TRANSPARENCY_ALPHA](https://docs.godotengine.org/en/stable/classes/class_basematerial3d.html#class-basematerial3d-constant-transparency-alpha) transparency mode.
 
 ## Material vertex color (-vcol)
 
 A material with the `-vcol` suffix will be imported with the
-[FLAG_ALBEDO_FROM_VERTEX_COLOR](https://docs.godotengine.org/en/stable/classes/class_basematerial3d_constant_flag_albedo_from_vertex_color.html#class-basematerial3d_constant_flag_albedo_from_vertex_color) and
-[FLAG_SRGB_VERTEX_COLOR](https://docs.godotengine.org/en/stable/classes/class_basematerial3d_constant_flag_srgb_vertex_color.html#class-basematerial3d_constant_flag_srgb_vertex_color) flags set.
+[FLAG_ALBEDO_FROM_VERTEX_COLOR](https://docs.godotengine.org/en/stable/classes/class_basematerial3d.html#class-basematerial3d-constant-flag-albedo-from-vertex-color) and
+[FLAG_SRGB_VERTEX_COLOR](https://docs.godotengine.org/en/stable/classes/class_basematerial3d.html#class-basematerial3d-constant-flag-srgb-vertex-color) flags set.

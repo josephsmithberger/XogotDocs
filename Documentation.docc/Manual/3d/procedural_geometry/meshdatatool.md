@@ -53,7 +53,7 @@ for i in range(get_vertex_count):
 ```
 
 These modifications are not done in place on the ArrayMesh. If you are dynamically updating an existing ArrayMesh,
-first delete the existing surface before adding a new one using [commit_to_surface()](https://docs.godotengine.org/en/stable/classes/class_meshdatatool_method_commit_to_surface.html#class-meshdatatool_method_commit_to_surface):
+first delete the existing surface before adding a new one using [commit_to_surface()](https://docs.godotengine.org/en/stable/classes/class_meshdatatool.html#class-meshdatatool-method-commit-to-surface):
 
 ```
 mesh.clear_surfaces() # Deletes all of the mesh's surfaces.

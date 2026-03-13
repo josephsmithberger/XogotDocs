@@ -106,7 +106,7 @@ chosen platform.
 > build of the engine or have access to one (distributed alongside or
 > perhaps in the original game's files). The tool can then use the Godot
 > executable to export a PCK file from the command line with
-> [OS.execute()](https://docs.godotengine.org/en/stable/classes/class_os_method_execute.html#class-os_method_execute). The game itself shouldn't
+> [OS.execute()](https://docs.godotengine.org/en/stable/classes/class_os.html#class-os-method-execute). The game itself shouldn't
 > use a tool-build of the engine (for security), so it's best to keep
 > the modding tool and game separate.
 >
@@ -139,7 +139,7 @@ func _your_function():
 > (therefore, the order in which packs are loaded matters).
 >
 > To opt out of this behavior, pass `false` as the second argument to
-> [ProjectSettings.load_resource_pack()](https://docs.godotengine.org/en/stable/classes/class_projectsettings_method_load_resource_pack.html#class-projectsettings_method_load_resource_pack).
+> [ProjectSettings.load_resource_pack()](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-method-load-resource-pack).
 >
 
 > Note:
@@ -154,12 +154,12 @@ func _your_function():
 If you are loading a resource pack and are not noticing any changes, it may be
 due to the pack being loaded too late. This is particularly the case with menu
 scenes that may preload other scenes using
-[preload()](https://docs.godotengine.org/en/stable/classes/class_@gdscript_method_preload.html#class-@gdscript_method_preload). This means that loading
+[preload()](https://docs.godotengine.org/en/stable/classes/class_%40gdscript.html#class-gdscript-method-preload). This means that loading
 a pack in the menu will not affect the other scene that was already preloaded.
 
 To avoid this, you need to load the pack as early as possible.
 To do so, create a new <doc:singletons_autoload> script and
-call [ProjectSettings.load_resource_pack()](https://docs.godotengine.org/en/stable/classes/class_projectsettings_method_load_resource_pack.html#class-projectsettings_method_load_resource_pack)
+call [ProjectSettings.load_resource_pack()](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-method-load-resource-pack)
 in the autoload script's `_init()` function, rather than `_enter_tree()`
 or `_ready()`.
 

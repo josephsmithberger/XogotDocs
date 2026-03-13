@@ -134,7 +134,7 @@ godot --path /path/to/your_project --write-movie output.avi --fixed-fps 30
 >
 > The `--write-movie` and `--fixed-fps` command line arguments are both available
 > in exported projects. Movie Maker mode cannot be toggled while the project is running,
-> but you can use the [OS.execute()](https://docs.godotengine.org/en/stable/classes/class_os_method_execute.html#class-os_method_execute) method to
+> but you can use the [OS.execute()](https://docs.godotengine.org/en/stable/classes/class_os.html#class-os-method-execute) method to
 > run a second instance of the exported project that will record a video file.
 >
 

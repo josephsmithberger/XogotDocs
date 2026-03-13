@@ -173,15 +173,15 @@ with a custom theme. Custom themes can be applied in two ways: as a project sett
 and as a node property throughout the tree of control nodes.
 
 There are two project settings that can be adjusted to affect your entire project:
-[GUI > Theme > Custom](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_gui/theme/custom.html#class-projectsettings_property_gui/theme/custom) allows you to
-set a custom project-wide theme, and [GUI > Theme > Custom Font](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_gui/theme/custom_font.html#class-projectsettings_property_gui/theme/custom_font)
+[GUI > Theme > Custom](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-gui-theme-custom) allows you to
+set a custom project-wide theme, and [GUI > Theme > Custom Font](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-gui-theme-custom-font)
 does the same to the default fallback font. When a theme item is requested by a control
 node the custom project theme, if present, is checked first. Only if it doesn't have
 the item the default theme is checked.
 
 This allows you to configure the default look of every Godot control with a single
 theme resource, but you can go more granular than that. Every control node also has
-a [theme](https://docs.godotengine.org/en/stable/classes/class_control_property_theme.html#class-control_property_theme) property, which allows you to set a
+a [theme](https://github.com/readthedocs/sphinx_rtd_theme) property, which allows you to set a
 custom theme for the branch of nodes starting with that control. This means that the
 control and all of its children, and their children in turn, would first check that
 custom theme resource before falling back on the project and the default themes.

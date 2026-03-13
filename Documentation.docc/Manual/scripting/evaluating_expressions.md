@@ -12,7 +12,7 @@ An expression can be:
 
 - A method call on a user-provided script like `update_health()`,
 if `base_instance` is set to a value other than `null` when calling
-[Expression.execute()](https://docs.godotengine.org/en/stable/classes/class_expression_method_execute.html#class-expression_method_execute).
+[Expression.execute()](https://docs.godotengine.org/en/stable/classes/class_expression.html#class-expression-method-execute).
 
 > Note:
 >
@@ -97,7 +97,7 @@ even if you only define one variable. Also, variable names are **case-sensitive*
 By default, an expression has a base instance of `null`. This means the
 expression has no base instance associated to it.
 
-When calling [Expression.execute()](https://docs.godotengine.org/en/stable/classes/class_expression_method_execute.html#class-expression_method_execute),
+When calling [Expression.execute()](https://docs.godotengine.org/en/stable/classes/class_expression.html#class-expression-method-execute),
 you can set the value of the `base_instance` parameter to a specific object
 instance such as `self`, another script instance or even a singleton:
 

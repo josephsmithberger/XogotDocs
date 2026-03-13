@@ -39,9 +39,9 @@ Global built-ins are available everywhere, including custom functions.
 Built-in | Description
 -------- | -----------
 in float**TIME** | Global time since the engine has started, in seconds. It repeats after every`3,600`seconds (which can be changed with the
-[rollover](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_rendering/limits/time/time_rollover_secs.html#class-projectsettings_property_rendering/limits/time/time_rollover_secs)
+[rollover](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-rendering-limits-time-time-rollover-secs)
 setting). It's affected by
-[time_scale](https://docs.godotengine.org/en/stable/classes/class_engine_property_time_scale.html#class-engine_property_time_scale) but not by pausing. If you need a`TIME`variable that is not affected by time scale, add your own
+[time_scale](https://docs.godotengine.org/en/stable/classes/class_engine.html#class-engine-property-time-scale) but not by pausing. If you need a`TIME`variable that is not affected by time scale, add your own
 <doc:shading_language#Global-Uniforms> and update it each
 frame.
 in float**PI** | A`PI`constant (`3.141592`).
@@ -99,9 +99,9 @@ in int**VERTEX_ID** | The index of the current vertex in the vertex
 buffer.
 inout vec2**UV** | Normalized texture coordinates. Range from`0.0`to`1.0`.
 inout vec4**COLOR** | Color from vertex primitive multiplied by the CanvasItem's
-[modulate](https://docs.godotengine.org/en/stable/classes/class_canvasitem_property_modulate.html#class-canvasitem_property_modulate)
+[modulate](https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#class-canvasitem-property-modulate)
 multiplied by CanvasItem's
-[self_modulate](https://docs.godotengine.org/en/stable/classes/class_canvasitem_property_self_modulate.html#class-canvasitem_property_self_modulate).
+[self_modulate](https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#class-canvasitem-property-self-modulate).
 inout float**POINT_SIZE** | Point size for point drawing.
 in vec4**CUSTOM0** | Custom value from vertex primitive.
 in vec4**CUSTOM1** | Custom value from vertex primitive.
@@ -114,8 +114,8 @@ The built-in variable `COLOR` is used for a few things:
 
 - In the `vertex()` function, `COLOR` contains the color from the vertex
 primitive multiplied by the CanvasItem's
-[modulate](https://docs.godotengine.org/en/stable/classes/class_canvasitem_property_modulate.html#class-canvasitem_property_modulate) multiplied by the
-CanvasItem's [self_modulate](https://docs.godotengine.org/en/stable/classes/class_canvasitem_property_self_modulate.html#class-canvasitem_property_self_modulate).
+[modulate](https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#class-canvasitem-property-modulate) multiplied by the
+CanvasItem's [self_modulate](https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#class-canvasitem-property-self-modulate).
 
 - In the `fragment()` function, the input value `COLOR` is that same value
 multiplied by the color from the default `TEXTURE` (if present).
@@ -123,7 +123,7 @@ multiplied by the color from the default `TEXTURE` (if present).
 - In the `fragment()` function, `COLOR` is also the final output.
 
 Certain nodes (for example, [Sprite2D](https://docs.godotengine.org/en/stable/classes/class_sprite2d.html#class-sprite2d)) display a texture
-by default, for example [texture](https://docs.godotengine.org/en/stable/classes/class_sprite2d_property_texture.html#class-sprite2d_property_texture). When
+by default, for example [texture](https://docs.godotengine.org/en/stable/classes/class_pointlight2d.html#class-pointlight2d-property-texture). When
 using a custom `fragment()` function, you have a few options on how to sample
 this texture.
 
@@ -235,10 +235,10 @@ in vec2**TEXTURE_PIXEL_SIZE** | Normalized pixel size of`TEXTURE`.
 For a Sprite2D with a`TEXTURE`of size`64x32`pixels,**TEXTURE_PIXEL_SIZE**=`vec2(1/64, 1/32)`
 in vec2**SCREEN_UV** | Screen UV coordinate for the current pixel.
 in vec2**POINT_COORD** | UV for Point Sprite.
-in vec4**LIGHT_COLOR** | [Color](https://docs.godotengine.org/en/stable/classes/class_light2d_property_color.html#class-light2d_property_color) of the [Light2D](https://docs.godotengine.org/en/stable/classes/class_light2d.html#class-light2d).
+in vec4**LIGHT_COLOR** | [Color](https://docs.godotengine.org/en/stable/classes/class_light2d.html#class-light2d-property-color) of the [Light2D](https://docs.godotengine.org/en/stable/classes/class_light2d.html#class-light2d).
 If the light is a [PointLight2D](https://docs.godotengine.org/en/stable/classes/class_pointlight2d.html#class-pointlight2d), multiplied by the light's
-[texture](https://docs.godotengine.org/en/stable/classes/class_pointlight2d_property_texture.html#class-pointlight2d_property_texture).
-in float**LIGHT_ENERGY** | [Energy multiplier](https://docs.godotengine.org/en/stable/classes/class_light2d_property_energy.html#class-light2d_property_energy) of the
+[texture](https://docs.godotengine.org/en/stable/classes/class_pointlight2d.html#class-pointlight2d-property-texture).
+in float**LIGHT_ENERGY** | [Energy multiplier](https://docs.godotengine.org/en/stable/classes/class_light2d.html#class-light2d-property-energy) of the
 [Light2D](https://docs.godotengine.org/en/stable/classes/class_light2d.html#class-light2d).
 in vec3**LIGHT_POSITION** | Position of the [Light2D](https://docs.godotengine.org/en/stable/classes/class_light2d.html#class-light2d) in screen space. If using a
 [DirectionalLight2D](https://docs.godotengine.org/en/stable/classes/class_directionallight2d.html#class-directionallight2d) this is always`(0.0, 0.0, 0.0)`.

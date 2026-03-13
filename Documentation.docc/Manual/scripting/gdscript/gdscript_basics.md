@@ -175,8 +175,8 @@ example `2 ** (2 ** 3)`. The ternary `if/else` operator is right-associative.
 `x.attribute` | Attribute reference
 `foo()` | Function call
 `await x` | [Awaiting signals or coroutines](#awaiting-signals-or-coroutines)
-`x is Node`, `x is not Node` | Type checking See also [is_instance_of()](https://docs.godotengine.org/en/stable/classes/class_@gdscript_method_is_instance_of.html#class-@gdscript_method_is_instance_of) function.
-`x ** y` | Power. Multiplies `x` by itself `y` times, similar to calling [pow()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_pow.html#class-@globalscope_method_pow) function.
+`x is Node`, `x is not Node` | Type checking See also [is_instance_of()](https://docs.godotengine.org/en/stable/classes/class_%40gdscript.html#class-gdscript-method-is-instance-of) function.
+`x ** y` | Power. Multiplies `x` by itself `y` times, similar to calling [pow()](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-method-pow) function.
 `~x` | Bitwise NOT
 `+x`, `-x` | Identity / Negation
 `x * y`, `x / y`, `x % y` | Multiplication / Division / Remainder. The `%` operator is additionally used for <doc:gdscript_format_string>. **Note:** These operators have the same behavior as C++, which may be unexpected for users coming from Python, JavaScript, etc. See a detailed note after the table.
@@ -200,14 +200,14 @@ example `2 ** (2 ** 3)`. The ternary `if/else` operator is right-associative.
 >
 > 1. If both operands of the `/` operator are [int](https://docs.godotengine.org/en/stable/classes/class_int.html#class-int), then integer division is performed instead of fractional. For example `5 / 2 == 2`, not `2.5`.
 > If this is not desired, use at least one [float](https://docs.godotengine.org/en/stable/classes/class_float.html#class-float) literal (`x / 2.0`), cast (`float(x) / y`), or multiply by `1.0` (`x * 1.0 / y`).
-> 2. The `%` operator is only available for ints, for floats use the [fmod()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_fmod.html#class-@globalscope_method_fmod) function.
+> 2. The `%` operator is only available for ints, for floats use the [fmod()](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-method-fmod) function.
 > 3. For negative values, the `%` operator and `fmod()` use truncation instead of rounding towards negative infinity.
-> This means that the remainder has a sign. If you need the remainder in a mathematical sense, use the [posmod()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_posmod.html#class-@globalscope_method_posmod) and
-> [fposmod()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_fposmod.html#class-@globalscope_method_fposmod) functions instead.
+> This means that the remainder has a sign. If you need the remainder in a mathematical sense, use the [posmod()](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-method-posmod) and
+> [fposmod()](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-method-fposmod) functions instead.
 > 4. The `==` and `!=` operators sometimes allow you to compare values of different types (for example, `1 == 1.0` is true), but in other cases it can cause
-> a runtime error. If you're not sure about the types of the operands, you can safely use the [is_same()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_is_same.html#class-@globalscope_method_is_same) function
-> (but note that it is more strict about types and references). To compare floats, use the [is_equal_approx()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_is_equal_approx.html#class-@globalscope_method_is_equal_approx)
-> and [is_zero_approx()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_is_zero_approx.html#class-@globalscope_method_is_zero_approx) functions instead.
+> a runtime error. If you're not sure about the types of the operands, you can safely use the [is_same()](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-method-is-same) function
+> (but note that it is more strict about types and references). To compare floats, use the [is_equal_approx()](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-method-is-equal-approx)
+> and [is_zero_approx()](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-method-is-zero-approx) functions instead.
 >
 
 ## Literals
@@ -685,7 +685,7 @@ var e: Array[Variant]
 > even if the type is a subtype of the required type.
 >
 > If you want to convert a typed array, you can create a new array and use the
-> [Array.assign()](https://docs.godotengine.org/en/stable/classes/class_array_method_assign.html#class-array_method_assign) method:
+> [Array.assign()](https://docs.godotengine.org/en/stable/classes/class_array.html#class-array-method-assign) method:
 >```
 > var a: Array[Node2D] = [Node2D.new()]
 >
@@ -707,7 +707,7 @@ PackedArrays are generally faster to iterate on and modify compared to a typed
 Array of the same type (e.g. PackedInt64Array versus Array[int]) and consume
 less memory. In the worst case, they are expected to be as fast as an untyped
 Array. Conversely, non-Packed Arrays (typed or not) have extra convenience
-methods such as [Array.map](https://docs.godotengine.org/en/stable/classes/class_array_method_map.html#class-array_method_map) that PackedArrays
+methods such as [Array.map](https://docs.godotengine.org/en/stable/classes/class_array.html#class-array-method-map) that PackedArrays
 lack. Consult the [class reference](https://docs.godotengine.org/en/stable/classes/class_packedfloat32array.html#class-packedfloat32array) for details
 on the methods available. Typed Arrays are generally faster to iterate on and
 modify than untyped Arrays.
@@ -794,8 +794,8 @@ print(d[test])
 > The bracket syntax can be used to access properties of any
 > [Object](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object), not just Dictionaries. Keep in mind it will cause a
 > script error when attempting to index a non-existing property. To avoid
-> this, use the [Object.get()](https://docs.godotengine.org/en/stable/classes/class_object_method_get.html#class-object_method_get) and
-> [Object.set()](https://docs.godotengine.org/en/stable/classes/class_object_method_set.html#class-object_method_set) methods instead.
+> this, use the [Object.get()](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-method-get) and
+> [Object.set()](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-method-set) methods instead.
 >
 
 Godot 4.4 added support for typed dictionaries. On write operations, Godot checks that
@@ -1052,7 +1052,7 @@ func _ready():
 Since GDScript classes are resources, having static variables in a script prevents it from being unloaded
 even if there are no more instances of that class and no other references left. This can be important
 if static variables store large amounts of data or hold references to other project resources, such as scenes.
-You should clean up this data manually, or use the [@static_unload](https://docs.godotengine.org/en/stable/classes/class_@gdscript_annotation_@static_unload.html#class-@gdscript_annotation_@static_unload)
+You should clean up this data manually, or use the [@static_unload](https://docs.godotengine.org/en/stable/classes/class_%40gdscript.html#class-gdscript-annotation-static-unload)
 annotation if static variables don't store important data and can be reset.
 
 > Warning:
@@ -1296,7 +1296,7 @@ func _ready() -> void:
 
 > Note:
 >
-> Callables **must** be called with the [call()](https://docs.godotengine.org/en/stable/classes/class_callable_method_call.html#class-callable_method_call) method.
+> Callables **must** be called with the [call()](https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable-method-call) method.
 > You cannot use the `()` operator directly. This behavior is implemented to avoid
 > performance issues on direct function calls.
 >
@@ -1312,7 +1312,7 @@ var lambda = func (x):
     print(x)
 ```
 
-To call the created lambda you can use the [call()](https://docs.godotengine.org/en/stable/classes/class_callable_method_call.html#class-callable_method_call) method:
+To call the created lambda you can use the [call()](https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable-method-call) method:
 
 ```
 lambda.call(42) # Prints `42`.
@@ -1496,8 +1496,8 @@ an assignment.
 directly referring to symbols available in the current script. However, `self`
 also allows you to access properties, methods, and other names that are defined
 dynamically (i.e. are expected to exist in subtypes of the current class, or are
-provided using [_set()](https://docs.godotengine.org/en/stable/classes/class_object_private_method__set.html#class-object_private_method__set) and/or
-[_get()](https://docs.godotengine.org/en/stable/classes/class_object_private_method__get.html#class-object_private_method__get)).
+provided using [_set()](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-private-method-set) and/or
+[_get()](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-private-method-get)).
 
 ```
 extends Node
@@ -2439,9 +2439,9 @@ to react to health changes with an animation, but we want to keep the user
 interface separate from the player in our scene tree.
 
 In our `character.gd` script, we define a `health_changed` signal and emit
-it with [Signal.emit()](https://docs.godotengine.org/en/stable/classes/class_signal_method_emit.html#class-signal_method_emit), and from
+it with [Signal.emit()](https://docs.godotengine.org/en/stable/classes/class_signal.html#class-signal-method-emit), and from
 a `Game` node higher up our scene tree, we connect it to the `Lifebar` using
-the [Signal.connect()](https://docs.godotengine.org/en/stable/classes/class_signal_method_connect.html#class-signal_method_connect) method:
+the [Signal.connect()](https://docs.godotengine.org/en/stable/classes/class_signal.html#class-signal-method-connect) method:
 
 ```
 # character.gd
@@ -2510,7 +2510,7 @@ arguments when you emit signals; it's up to you to emit the correct values.
 @Image(source: "gdscript_basics_signals_node_tab_1.png")
 
 You can also create copies of GDScript Callable objects which accept additional
-arguments using [Callable.bind()](https://docs.godotengine.org/en/stable/classes/class_callable_method_bind.html#class-callable_method_bind). This
+arguments using [Callable.bind()](https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable-method-bind). This
 allows you to add extra information to the connection if the emitted signal
 itself doesn't give you access to all the data that you need.
 

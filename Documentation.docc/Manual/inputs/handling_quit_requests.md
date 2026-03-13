@@ -50,9 +50,9 @@ On Android, pressing the Back button will exit the application if
 ## Sending your own quit notification
 
 While forcing the application to close can be done by calling
-[SceneTree.quit](https://docs.godotengine.org/en/stable/classes/class_scenetree_method_quit.html#class-scenetree_method_quit), doing so will not send
+[SceneTree.quit](https://docs.godotengine.org/en/stable/classes/class_scenetree.html#class-scenetree-method-quit), doing so will not send
 the `NOTIFICATION_WM_CLOSE_REQUEST` to the nodes in the scene tree.
-Quitting by calling [SceneTree.quit](https://docs.godotengine.org/en/stable/classes/class_scenetree_method_quit.html#class-scenetree_method_quit) will
+Quitting by calling [SceneTree.quit](https://docs.godotengine.org/en/stable/classes/class_scenetree.html#class-scenetree-method-quit) will
 not allow custom actions to complete (such as saving, confirming the quit,
 or debugging), even if you try to delay the line that forces the quit.
 
@@ -65,5 +65,5 @@ get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
 
 Sending this notification will inform all nodes about the program termination,
 but will not terminate the program itself unlike in 3.X. In order to achieve
-the previous behavior, [SceneTree.quit](https://docs.godotengine.org/en/stable/classes/class_scenetree_method_quit.html#class-scenetree_method_quit) should
+the previous behavior, [SceneTree.quit](https://docs.godotengine.org/en/stable/classes/class_scenetree.html#class-scenetree-method-quit) should
 be called after the notification.

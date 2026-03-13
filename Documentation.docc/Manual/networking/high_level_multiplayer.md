@@ -224,7 +224,7 @@ The parameters and their functions are as follows:
 
 - `"authority"`: Only the multiplayer authority can call remotely.
 The authority is the server by default, but can be changed per-node using
-[Node.set_multiplayer_authority](https://docs.godotengine.org/en/stable/classes/class_node_method_set_multiplayer_authority.html#class-node_method_set_multiplayer_authority).
+[Node.set_multiplayer_authority](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-method-set-multiplayer-authority).
 
 - `"any_peer"`: Clients are allowed to call remotely. Useful for transferring user input.
 

@@ -12,7 +12,7 @@ CanvasItem nodes, and nodes inheriting from them, are direct or indirect childre
 [Viewport](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport), that displays them.
 
 The Viewport's property
-[Viewport.canvas_transform](https://docs.godotengine.org/en/stable/classes/class_viewport_property_canvas_transform.html#class-viewport_property_canvas_transform),
+[Viewport.canvas_transform](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport-property-canvas-transform),
 allows to apply a custom [Transform2D](https://docs.godotengine.org/en/stable/classes/class_transform2d.html#class-transform2d)
 transform to the CanvasItem hierarchy it contains. Nodes such as
 [Camera2D](https://docs.godotengine.org/en/stable/classes/class_camera2d.html#class-camera2d) work by changing that transform.
@@ -57,5 +57,5 @@ their layer number, so they can be instantiated when needed.
 > Note: CanvasLayers aren't necessary to control the drawing order of nodes.
 > The standard way to ensuring that a node is correctly drawn 'in front' or 'behind' others is to manipulate the
 > order of the nodes in the scene panel. Perhaps counterintuitively, the topmost nodes in the scene panel are drawn
-> on behind lower ones in the viewport. 2D nodes also have the [CanvasItem.z_index](https://docs.godotengine.org/en/stable/classes/class_canvasitem_property_z_index.html#class-canvasitem_property_z_index)
+> on behind lower ones in the viewport. 2D nodes also have the [CanvasItem.z_index](https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#class-canvasitem-property-z-index)
 > property for controlling their drawing order.

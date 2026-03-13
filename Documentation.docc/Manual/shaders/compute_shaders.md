@@ -307,7 +307,7 @@ each an [RID](https://docs.godotengine.org/en/stable/classes/class_rid.html#clas
 API, RIDs aren't freed automatically. This means that once you're done using
 `buffer` or any other RID, you are responsible for freeing its memory
 manually using the RenderingDevice's
-[free_rid()](https://docs.godotengine.org/en/stable/classes/class_renderingdevice_method_free_rid.html#class-renderingdevice_method_free_rid) method.
+[free_rid()](https://docs.godotengine.org/en/stable/classes/class_renderingdevice.html#class-renderingdevice-method-free-rid) method.
 
 With that, you have everything you need to get started working with compute
 shaders.

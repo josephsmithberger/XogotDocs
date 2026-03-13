@@ -4,6 +4,50 @@ Release notes for public releases of Xogot to the App Store.
 
 # Releases 
 
+## 1.5.2 (3804)
+
+* Learning Center content has been fully localized, including localized captions for all videos.
+
+* Major performance improvement to the scene pad, making switching between nodes significantly faster.
+
+* Fixed more than ten crashes that were occurring in real-world usage.
+
+* Fixes the remote pairing
+
+## 1.5.0 (3755)
+
+This update delivers a major refresh to Xogot, combining a new Learning Center with the full power of Godot 4.5.1.
+
+### Learning Center
+
+* New 2D and 3D videos, guided tutorials, and updated sample projects help you learn game development and get productive in Xogot faster
+
+### Editor & UX
+
+* Stencil Buffer Support – Enable advanced rendering techniques with full stencil buffer capabilities
+* Variants in Editor – Variants are now surfaced for direct inspection and editing
+* Improved File Drag-and-Drop – Hold modifier keys while dragging files into the editor to quickly generate preload templates
+
+### GDScript Enhancements
+
+* Variadic Arguments – Support for `*args` and `kwargs` in function signatures
+* Abstract Classes & Methods – Define abstract base classes and enforce method implementation via the `@abstract` keyword
+* Deep Copies – Full support for deep copying complex data structures
+
+### Animation System
+
+* Bone Constraints – Add constraints to bones for more realistic and controllable character animations
+
+### Rendering Improvements
+
+* Specular Occlusion from Ambient Light – More realistic lighting by occluding ambient specular reflections
+* Bent Normal Maps – Improved indirect lighting with bent normal map support
+
+### 2D & Tilemap
+
+* Chunk Tilemap Physics – Optimized physics handling for large tilemaps via
+  chunk-based collision detection
+
 ## 1.4.18 (3634)
 
 ### Improvements

@@ -44,7 +44,7 @@ the RandomNumberGenerator class.
 > seed number, or generate it using a different method.
 >
 
-In global scope, you can find a [randomize()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_randomize.html#class-@globalscope_method_randomize) method. **This method should be called only
+In global scope, you can find a [randomize()](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-method-randomize) method. **This method should be called only
 once when your project starts to initialize the random seed.** Calling it
 multiple times is unnecessary and may impact performance negatively.
 
@@ -55,7 +55,7 @@ func _ready():
     randomize()
 ```
 
-You can also set a fixed random seed instead using [seed()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_seed.html#class-@globalscope_method_seed). Doing so will give you deterministic results
+You can also set a fixed random seed instead using [seed()](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-method-seed). Doing so will give you deterministic results
 across runs:
 
 ```
@@ -78,7 +78,7 @@ random.randomize()
 Let's look at some of the most commonly used functions and methods to generate
 random numbers in Godot.
 
-The function [randi()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_randi.html#class-@globalscope_method_randi) returns a random
+The function [randi()](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-method-randi) returns a random
 number between `0` and `2^32 - 1`. Since the maximum value is huge, you most
 likely want to use the modulo operator (`%`) to bound the result between 0 and
 the denominator:
@@ -91,12 +91,12 @@ print(randi() % 50)
 print(randi() % 51 + 10)
 ```
 
-[randf()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_randf.html#class-@globalscope_method_randf) returns a random floating-point
+[randf()](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-method-randf) returns a random floating-point
 number between 0 and 1. This is useful to implement a
 <doc:random_number_generation#Weighted-Random-Probability> system, among
 other things.
 
-[randfn()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_randfn.html#class-@globalscope_method_randfn) returns a random
+[randfn()](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-method-randfn) returns a random
 floating-point number following a normal distribution. This means the returned
 value is more likely to be around the mean (0.0 by default),
 varying by the deviation (1.0 by default):
@@ -106,7 +106,7 @@ varying by the deviation (1.0 by default):
 print(randfn(0.0, 1.0))
 ```
 
-[randf_range()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_randf_range.html#class-@globalscope_method_randf_range) takes two arguments
+[randf_range()](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-method-randf-range) takes two arguments
 `from` and `to`, and returns a random floating-point number between `from`
 and `to`:
 
@@ -115,7 +115,7 @@ and `to`:
 print(randf_range(-4, 6.5))
 ```
 
-[randi_range()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_randi_range.html#class-@globalscope_method_randi_range) takes two arguments `from`
+[randi_range()](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-method-randi-range) takes two arguments `from`
 and `to`, and returns a random integer between `from` and `to`:
 
 ```
@@ -126,7 +126,7 @@ print(randi_range(-10, 10))
 ## Get a random array element
 
 We can use random integer generation to get a random element from an array,
-or use the [Array.pick_random](https://docs.godotengine.org/en/stable/classes/class_array_method_pick_random.html#class-array_method_pick_random) method
+or use the [Array.pick_random](https://docs.godotengine.org/en/stable/classes/class_array.html#class-array-method-pick-random) method
 to do it for us:
 
 ```
@@ -151,7 +151,7 @@ func get_fruit():
 
 To prevent the same fruit from being picked more than once in a row, we can add
 more logic to the above method. In this case, we can't use
-[Array.pick_random](https://docs.godotengine.org/en/stable/classes/class_array_method_pick_random.html#class-array_method_pick_random) since it lacks a way to
+[Array.pick_random](https://docs.godotengine.org/en/stable/classes/class_array.html#class-array-method-pick-random) since it lacks a way to
 prevent repetition:
 
 ```
@@ -211,7 +211,7 @@ func get_metal():
 
 ## Weighted random probability
 
-The [randf()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_randf.html#class-@globalscope_method_randf) method returns a
+The [randf()](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-method-randf) method returns a
 floating-point number between 0.0 and 1.0. We can use this to create a
 "weighted" probability where different outcomes have different likelihoods:
 
@@ -236,7 +236,7 @@ func get_item_rarity():
 ```
 
 You can also get a weighted random index using the
-[rand_weighted()](https://docs.godotengine.org/en/stable/classes/class_randomnumbergenerator_method_rand_weighted.html#class-randomnumbergenerator_method_rand_weighted) method
+[rand_weighted()](https://docs.godotengine.org/en/stable/classes/class_randomnumbergenerator.html#class-randomnumbergenerator-method-rand-weighted) method
 on a RandomNumberGenerator instance. This returns a random integer
 between 0 and the size of the array that is passed as a parameter. Each value in the
 array is a floating-point number that represents the relative likelihood that it

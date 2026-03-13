@@ -299,7 +299,7 @@ If you have a system that...
 >
 > For smaller games, a simpler alternative with less control would be to have
 > a "Game" singleton that simply calls the
-> [SceneTree.change_scene_to_file()](https://docs.godotengine.org/en/stable/classes/class_scenetree_method_change_scene_to_file.html#class-scenetree_method_change_scene_to_file) method
+> [SceneTree.change_scene_to_file()](https://docs.godotengine.org/en/stable/classes/class_scenetree.html#class-scenetree-method-change-scene-to-file) method
 > to swap out the main scene's content. This structure more or less keeps
 > the "World" as the main game node.
 >
@@ -375,8 +375,8 @@ own place in the hierarchy as a sibling or some other relation.
 > them. Since it doesn't have a transform, they won't pass this information
 > to its children.
 > 2. The **imperative** solution: Use the `top_level` property for the
-> [CanvasItem](https://docs.godotengine.org/en/stable/classes/class_canvasitem_property_top_level.html#class-canvasitem_property_top_level) or
-> [Node3D](https://docs.godotengine.org/en/stable/classes/class_node3d_property_top_level.html#class-node3d_property_top_level) node. This will make
+> [CanvasItem](https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#class-canvasitem-property-top-level) or
+> [Node3D](https://docs.godotengine.org/en/stable/classes/class_node3d.html#class-node3d-property-top-level) node. This will make
 > the node ignore its inherited transform.
 >
 

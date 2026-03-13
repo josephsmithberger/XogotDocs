@@ -39,7 +39,7 @@ string.
 
 The `%s` seen in the example above is the simplest placeholder and works for
 most use cases: it converts the value by the same method by which an implicit
-String conversion or [str()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_str.html#class-@globalscope_method_str) would convert
+String conversion or [str()](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-method-str) would convert
 it. Strings remain unchanged, booleans turn into either `"True"` or `"False"`,
 an `int` or `float` becomes a decimal, and other types usually return their data
 in a human-readable string.
@@ -191,7 +191,7 @@ print("Remaining health: %d%%" % health)
 ## String format method
 
 There is also another way to format text in GDScript, namely the
-[String.format()](https://docs.godotengine.org/en/stable/classes/class_string_method_format.html#class-string_method_format)
+[String.format()](https://docs.godotengine.org/en/stable/classes/class_string.html#class-string-method-format)
 method. It replaces all occurrences of a key in the string with the corresponding
 value. The method can handle arrays or dictionaries for the key/value pairs.
 

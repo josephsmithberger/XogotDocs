@@ -41,7 +41,7 @@ will open a folder in your file browser, inside that folder is the
 
 The default path to search for templates is the
 `res://script_templates/` directory. The path can be changed by configuring the project setting
-[Editor > Script > Templates Search Path](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_editor/script/templates_search_path.html#class-projectsettings_property_editor/script/templates_search_path),
+[Editor > Script > Templates Search Path](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-editor-script-templates-search-path),
 both via code and the editor.
 
 If no `script_templates` directory is found within a project, it is simply

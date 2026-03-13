@@ -50,52 +50,52 @@ capability as a Window-Manager (e.g. for resizing or moving Windows).
 the Window's Viewport and afterwards treated as handled. If no embedded Window is focused,
 the event is sent to the nodes of the current viewport in the following order.
 
-1. First of all, the standard [Node._input()](https://docs.godotengine.org/en/stable/classes/class_node_private_method__input.html#class-node_private_method__input) function
-will be called in any node that overrides it (and hasn't disabled input processing with [Node.set_process_input()](https://docs.godotengine.org/en/stable/classes/class_node_method_set_process_input.html#class-node_method_set_process_input)).
-If any function consumes the event, it can call [Viewport.set_input_as_handled()](https://docs.godotengine.org/en/stable/classes/class_viewport_method_set_input_as_handled.html#class-viewport_method_set_input_as_handled), and the event will
+1. First of all, the standard [Node._input()](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-private-method-input) function
+will be called in any node that overrides it (and hasn't disabled input processing with [Node.set_process_input()](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-method-set-process-input)).
+If any function consumes the event, it can call [Viewport.set_input_as_handled()](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport-method-set-input-as-handled), and the event will
 not spread any more. This ensures that you can filter all events of interest, even before the GUI.
-For gameplay input, [Node._unhandled_input()](https://docs.godotengine.org/en/stable/classes/class_node_private_method__unhandled_input.html#class-node_private_method__unhandled_input) is generally a better fit, because it allows the GUI to intercept the events.
+For gameplay input, [Node._unhandled_input()](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-private-method-unhandled-input) is generally a better fit, because it allows the GUI to intercept the events.
 
 1. Second, it will try to feed the input to the GUI, and see if any
 control can receive it. If so, the [Control](https://docs.godotengine.org/en/stable/classes/class_control.html#class-control) will be called via the
-virtual function [Control._gui_input()](https://docs.godotengine.org/en/stable/classes/class_control_private_method__gui_input.html#class-control_private_method__gui_input) and the signal
+virtual function [Control._gui_input()](https://docs.godotengine.org/en/stable/classes/class_control.html#class-control-private-method-gui-input) and the signal
 "gui_input" will be emitted (this function is re-implementable by
 script by inheriting from it). If the control wants to "consume" the
-event, it will call [Control.accept_event()](https://docs.godotengine.org/en/stable/classes/class_control_method_accept_event.html#class-control_method_accept_event) and the event will
-not spread any more. Use the [Control.mouse_filter](https://docs.godotengine.org/en/stable/classes/class_control_property_mouse_filter.html#class-control_property_mouse_filter)
+event, it will call [Control.accept_event()](https://docs.godotengine.org/en/stable/classes/class_control.html#class-control-method-accept-event) and the event will
+not spread any more. Use the [Control.mouse_filter](https://docs.godotengine.org/en/stable/classes/class_control.html#class-control-property-mouse-filter)
 property to control whether a [Control](https://docs.godotengine.org/en/stable/classes/class_control.html#class-control) is notified
-of mouse events via [Control._gui_input()](https://docs.godotengine.org/en/stable/classes/class_control_private_method__gui_input.html#class-control_private_method__gui_input)
+of mouse events via [Control._gui_input()](https://docs.godotengine.org/en/stable/classes/class_control.html#class-control-private-method-gui-input)
 callback, and whether these events are propagated further.
 
-1. If so far no one consumed the event, the [Node._shortcut_input()](https://docs.godotengine.org/en/stable/classes/class_node_private_method__shortcut_input.html#class-node_private_method__shortcut_input) callback
+1. If so far no one consumed the event, the [Node._shortcut_input()](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-private-method-shortcut-input) callback
 will be called if overridden (and not disabled with
-[Node.set_process_shortcut_input()](https://docs.godotengine.org/en/stable/classes/class_node_method_set_process_shortcut_input.html#class-node_method_set_process_shortcut_input)).
+[Node.set_process_shortcut_input()](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-method-set-process-shortcut-input)).
 This happens only for [InputEventKey](https://docs.godotengine.org/en/stable/classes/class_inputeventkey.html#class-inputeventkey),
 [InputEventShortcut](https://docs.godotengine.org/en/stable/classes/class_inputeventshortcut.html#class-inputeventshortcut) and [InputEventJoypadButton](https://docs.godotengine.org/en/stable/classes/class_inputeventjoypadbutton.html#class-inputeventjoypadbutton).
-If any function consumes the event, it can call [Viewport.set_input_as_handled()](https://docs.godotengine.org/en/stable/classes/class_viewport_method_set_input_as_handled.html#class-viewport_method_set_input_as_handled), and the
+If any function consumes the event, it can call [Viewport.set_input_as_handled()](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport-method-set-input-as-handled), and the
 event will not spread any more. The shortcut input callback is ideal for treating events that are intended as shortcuts.
 
-1. If so far no one consumed the event, the [Node._unhandled_key_input()](https://docs.godotengine.org/en/stable/classes/class_node_private_method__unhandled_key_input.html#class-node_private_method__unhandled_key_input) callback
+1. If so far no one consumed the event, the [Node._unhandled_key_input()](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-private-method-unhandled-key-input) callback
 will be called if overridden (and not disabled with
-[Node.set_process_unhandled_key_input()](https://docs.godotengine.org/en/stable/classes/class_node_method_set_process_unhandled_key_input.html#class-node_method_set_process_unhandled_key_input)).
+[Node.set_process_unhandled_key_input()](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-method-set-process-unhandled-key-input)).
 This happens only if the event is an [InputEventKey](https://docs.godotengine.org/en/stable/classes/class_inputeventkey.html#class-inputeventkey).
-If any function consumes the event, it can call [Viewport.set_input_as_handled()](https://docs.godotengine.org/en/stable/classes/class_viewport_method_set_input_as_handled.html#class-viewport_method_set_input_as_handled), and the
+If any function consumes the event, it can call [Viewport.set_input_as_handled()](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport-method-set-input-as-handled), and the
 event will not spread any more. The unhandled key input callback is ideal for key events.
 
-1. If so far no one consumed the event, the [Node._unhandled_input()](https://docs.godotengine.org/en/stable/classes/class_node_private_method__unhandled_input.html#class-node_private_method__unhandled_input) callback
+1. If so far no one consumed the event, the [Node._unhandled_input()](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-private-method-unhandled-input) callback
 will be called if overridden (and not disabled with
-[Node.set_process_unhandled_input()](https://docs.godotengine.org/en/stable/classes/class_node_method_set_process_unhandled_input.html#class-node_method_set_process_unhandled_input)).
-If any function consumes the event, it can call [Viewport.set_input_as_handled()](https://docs.godotengine.org/en/stable/classes/class_viewport_method_set_input_as_handled.html#class-viewport_method_set_input_as_handled), and the
+[Node.set_process_unhandled_input()](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-method-set-process-unhandled-input)).
+If any function consumes the event, it can call [Viewport.set_input_as_handled()](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport-method-set-input-as-handled), and the
 event will not spread any more. The unhandled input callback is ideal for full-screen gameplay events, so they are not received when a GUI is active.
 
-1. If no one wanted the event so far, and [Object Picking](https://docs.godotengine.org/en/stable/classes/class_viewport_property_physics_object_picking.html#class-viewport_property_physics_object_picking)
+1. If no one wanted the event so far, and [Object Picking](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport-property-physics-object-picking)
 is turned on, the event is used for object picking. For the root viewport, this can also be
-enabled in [Project Settings](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_physics/common/enable_object_picking.html#class-projectsettings_property_physics/common/enable_object_picking).
+enabled in [Project Settings](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-physics-common-enable-object-picking).
 In the case of a 3D scene if a [Camera3D](https://docs.godotengine.org/en/stable/classes/class_camera3d.html#class-camera3d) is assigned to the Viewport, a ray
 to the physics world (in the ray direction from the click) will be cast. If this ray hits an object,
-it will call the [CollisionObject3D._input_event()](https://docs.godotengine.org/en/stable/classes/class_collisionobject3d_private_method__input_event.html#class-collisionobject3d_private_method__input_event)
+it will call the [CollisionObject3D._input_event()](https://docs.godotengine.org/en/stable/classes/class_collisionobject3d.html#class-collisionobject3d-private-method-input-event)
 function in the relevant physics object.
-In the case of a 2D scene, conceptually the same happens with [CollisionObject2D._input_event()](https://docs.godotengine.org/en/stable/classes/class_collisionobject2d_private_method__input_event.html#class-collisionobject2d_private_method__input_event).
+In the case of a 2D scene, conceptually the same happens with [CollisionObject2D._input_event()](https://docs.godotengine.org/en/stable/classes/class_collisionobject2d.html#class-collisionobject2d-private-method-input-event).
 
 When sending events to its child and descendant nodes, the viewport will do so, as depicted in
 the following graphic, in a reverse depth-first order, starting with the node at the bottom of
@@ -106,13 +106,13 @@ and SubViewports.
 
 > Note:
 >
-> This order doesn't apply to [Control._gui_input()](https://docs.godotengine.org/en/stable/classes/class_control_private_method__gui_input.html#class-control_private_method__gui_input), which uses
+> This order doesn't apply to [Control._gui_input()](https://docs.godotengine.org/en/stable/classes/class_control.html#class-control-private-method-gui-input), which uses
 > a different method based on event location or focused Control. GUI **mouse** events also travel
-> up the scene tree, subject to the [Control.mouse_filter](https://docs.godotengine.org/en/stable/classes/class_control_property_mouse_filter.html#class-control_property_mouse_filter)
+> up the scene tree, subject to the [Control.mouse_filter](https://docs.godotengine.org/en/stable/classes/class_control.html#class-control-property-mouse-filter)
 > restrictions described above. However, since these events target specific Controls, only direct ancestors of
 > the targeted Control node receive the event. GUI **keyboard and joypad** events do not travel
 > up the scene tree, and can only be handled by the Control that received them. Otherwise, they will be
-> propagated as non-GUI events through [Node._unhandled_input()](https://docs.godotengine.org/en/stable/classes/class_node_private_method__unhandled_input.html#class-node_private_method__unhandled_input).
+> propagated as non-GUI events through [Node._unhandled_input()](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-private-method-unhandled-input).
 >
 
 Since Viewports don't send events to other [SubViewports](https://docs.godotengine.org/en/stable/classes/class_subviewport.html#class-subviewport), one of the following
@@ -120,7 +120,7 @@ methods has to be used:
 
 1. Use a [SubViewportContainer](https://docs.godotengine.org/en/stable/classes/class_subviewportcontainer.html#class-subviewportcontainer), which automatically
 sends events to its child [SubViewports](https://docs.godotengine.org/en/stable/classes/class_subviewport.html#class-subviewport) after
-[Node._input()](https://docs.godotengine.org/en/stable/classes/class_node_private_method__input.html#class-node_private_method__input) or [Control._gui_input()](https://docs.godotengine.org/en/stable/classes/class_control_private_method__gui_input.html#class-control_private_method__gui_input).
+[Node._input()](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-private-method-input) or [Control._gui_input()](https://docs.godotengine.org/en/stable/classes/class_control.html#class-control-private-method-gui-input).
 
 1. Implement event propagation based on the individual requirements.
 
@@ -185,13 +185,13 @@ keyboard on PC, Joypad on console).
 Actions can be created from the Project Settings menu in the **Input Map**
 tab and assigned input events.
 
-Any event has the methods [InputEvent.is_action()](https://docs.godotengine.org/en/stable/classes/class_inputevent_method_is_action.html#class-inputevent_method_is_action),
-[InputEvent.is_pressed()](https://docs.godotengine.org/en/stable/classes/class_inputevent_method_is_pressed.html#class-inputevent_method_is_pressed) and [InputEvent.is_echo()](https://docs.godotengine.org/en/stable/classes/class_inputevent_method_is_echo.html#class-inputevent_method_is_echo).
+Any event has the methods [InputEvent.is_action()](https://docs.godotengine.org/en/stable/classes/class_inputevent.html#class-inputevent-method-is-action),
+[InputEvent.is_pressed()](https://docs.godotengine.org/en/stable/classes/class_inputevent.html#class-inputevent-method-is-pressed) and [InputEvent.is_echo()](https://docs.godotengine.org/en/stable/classes/class_inputevent.html#class-inputevent-method-is-echo).
 
 Alternatively, it may be desired to supply the game back with an action
 from the game code (a good example of this is detecting gestures).
 The Input singleton has a method for this:
-[Input.parse_input_event()](https://docs.godotengine.org/en/stable/classes/class_input_method_parse_input_event.html#class-input_method_parse_input_event). You would normally use it like this:
+[Input.parse_input_event()](https://docs.godotengine.org/en/stable/classes/class_input.html#class-input-method-parse-input-event). You would normally use it like this:
 
 ```
 var ev = InputEventAction.new()

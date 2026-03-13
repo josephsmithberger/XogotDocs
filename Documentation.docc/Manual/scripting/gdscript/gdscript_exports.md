@@ -57,7 +57,7 @@ if the script is in <doc:index#Tool-Mode>.
 ## Grouping exports
 
 It is possible to group your exported properties inside the Inspector
-with the [@export_group](https://docs.godotengine.org/en/stable/classes/class_@gdscript_annotation_@export_group.html#class-@gdscript_annotation_@export_group)
+with the [@export_group](https://docs.godotengine.org/en/stable/classes/class_%40gdscript.html#class-gdscript-annotation-export-group)
 annotation. Every exported property after this annotation will be added to
 the group. Start a new group or use `@export_group("")` to break out.
 
@@ -69,7 +69,7 @@ the group. Start a new group or use `@export_group("")` to break out.
 The second argument of the annotation can be used to only group properties
 with the specified prefix.
 
-Groups cannot be nested, use [@export_subgroup](https://docs.godotengine.org/en/stable/classes/class_@gdscript_annotation_@export_subgroup.html#class-@gdscript_annotation_@export_subgroup)
+Groups cannot be nested, use [@export_subgroup](https://docs.godotengine.org/en/stable/classes/class_%40gdscript.html#class-gdscript-annotation-export-subgroup)
 to create subgroups within a group.
 
 ```
@@ -79,7 +79,7 @@ to create subgroups within a group.
 ```
 
 You can also change the name of your main category, or create additional
-categories in the property list with the [@export_category](https://docs.godotengine.org/en/stable/classes/class_@gdscript_annotation_@export_category.html#class-@gdscript_annotation_@export_category)
+categories in the property list with the [@export_category](https://docs.godotengine.org/en/stable/classes/class_%40gdscript.html#class-gdscript-annotation-export-category)
 annotation.
 
 ```
@@ -100,19 +100,19 @@ annotation.
 
 ## Strings as paths
 
-String as a path to a file. See [@export_file](https://docs.godotengine.org/en/stable/classes/class_@gdscript_annotation_@export_file.html#class-@gdscript_annotation_@export_file).
+String as a path to a file. See [@export_file](https://docs.godotengine.org/en/stable/classes/class_%40gdscript.html#class-gdscript-annotation-export-file).
 
 ```
 @export_file var f
 ```
 
-String as a path to a directory. See [@export_dir](https://docs.godotengine.org/en/stable/classes/class_@gdscript_annotation_@export_dir.html#class-@gdscript_annotation_@export_dir).
+String as a path to a directory. See [@export_dir](https://docs.godotengine.org/en/stable/classes/class_%40gdscript.html#class-gdscript-annotation-export-dir).
 
 ```
 @export_dir var f
 ```
 
-String as a path to a file, custom filter provided as hint. See again [@export_file](https://docs.godotengine.org/en/stable/classes/class_@gdscript_annotation_@export_file.html#class-@gdscript_annotation_@export_file).
+String as a path to a file, custom filter provided as hint. See again [@export_file](https://docs.godotengine.org/en/stable/classes/class_%40gdscript.html#class-gdscript-annotation-export-file).
 
 ```
 @export_file("*.txt") var f
@@ -121,20 +121,20 @@ String as a path to a file, custom filter provided as hint. See again [@export_f
 Using paths in the global filesystem is also possible,
 but only in scripts in tool mode.
 
-String as a path to a PNG file in the global filesystem. See [@export_global_file](https://docs.godotengine.org/en/stable/classes/class_@gdscript_annotation_@export_global_file.html#class-@gdscript_annotation_@export_global_file).
+String as a path to a PNG file in the global filesystem. See [@export_global_file](https://docs.godotengine.org/en/stable/classes/class_%40gdscript.html#class-gdscript-annotation-export-global-file).
 
 ```
 @export_global_file("*.png") var tool_image
 ```
 
-String as a path to a directory in the global filesystem. See [@export_global_dir](https://docs.godotengine.org/en/stable/classes/class_@gdscript_annotation_@export_global_dir.html#class-@gdscript_annotation_@export_global_dir).
+String as a path to a directory in the global filesystem. See [@export_global_dir](https://docs.godotengine.org/en/stable/classes/class_%40gdscript.html#class-gdscript-annotation-export-global-dir).
 
 ```
 @export_global_dir var tool_dir
 ```
 
 The multiline annotation tells the editor to show a large input
-field for editing over multiple lines. See [@export_multiline](https://docs.godotengine.org/en/stable/classes/class_@gdscript_annotation_@export_multiline.html#class-@gdscript_annotation_@export_multiline).
+field for editing over multiple lines. See [@export_multiline](https://docs.godotengine.org/en/stable/classes/class_%40gdscript.html#class-gdscript-annotation-export-multiline).
 
 ```
 @export_multiline var text
@@ -142,7 +142,7 @@ field for editing over multiple lines. See [@export_multiline](https://docs.godo
 
 ## Limiting editor input ranges
 
-See [@export_range](https://docs.godotengine.org/en/stable/classes/class_@gdscript_annotation_@export_range.html#class-@gdscript_annotation_@export_range) for all of the following.
+See [@export_range](https://docs.godotengine.org/en/stable/classes/class_%40gdscript.html#class-gdscript-annotation-export-range) for all of the following.
 
 Allow integer values from 0 to 20.
 
@@ -220,7 +220,7 @@ when the value is modified from the inspector.
 ## Floats with easing hint
 
 Display a visual representation of the `ease()` function
-when editing. See [@export_exp_easing](https://docs.godotengine.org/en/stable/classes/class_@gdscript_annotation_@export_exp_easing.html#class-@gdscript_annotation_@export_exp_easing).
+when editing. See [@export_exp_easing](https://docs.godotengine.org/en/stable/classes/class_%40gdscript.html#class-gdscript-annotation-export-exp-easing).
 
 ```
 @export_exp_easing var transition_speed
@@ -234,7 +234,7 @@ Regular color given as red-green-blue-alpha value.
 @export var col: Color
 ```
 
-Color given as red-green-blue value (alpha will always be 1). See [@export_color_no_alpha](https://docs.godotengine.org/en/stable/classes/class_@gdscript_annotation_@export_color_no_alpha.html#class-@gdscript_annotation_@export_color_no_alpha).
+Color given as red-green-blue value (alpha will always be 1). See [@export_color_no_alpha](https://docs.godotengine.org/en/stable/classes/class_%40gdscript.html#class-gdscript-annotation-export-color-no-alpha).
 
 ```
 @export_color_no_alpha var col: Color
@@ -262,7 +262,7 @@ var node = get_node(node_path)
 ```
 
 If you want to limit the types of nodes for NodePaths, you can use the
-[@export_node_path](https://docs.godotengine.org/en/stable/classes/class_@gdscript_annotation_@export_node_path.html#class-@gdscript_annotation_@export_node_path)
+[@export_node_path](https://docs.godotengine.org/en/stable/classes/class_%40gdscript.html#class-gdscript-annotation-export-node-path)
 annotation:
 
 ```
@@ -291,7 +291,7 @@ its derived classes.
 
 ## Exporting bit flags
 
-See [@export_flags](https://docs.godotengine.org/en/stable/classes/class_@gdscript_annotation_@export_flags.html#class-@gdscript_annotation_@export_flags).
+See [@export_flags](https://docs.godotengine.org/en/stable/classes/class_%40gdscript.html#class-gdscript-annotation-export-flags).
 
 Integers used as bit flags can store multiple `true`/`false` (boolean)
 values in one property. By using the `@export_flags` annotation, they
@@ -338,7 +338,7 @@ If in doubt, use boolean variables instead.
 
 ## Exporting enums
 
-See [@export_enum](https://docs.godotengine.org/en/stable/classes/class_@gdscript_annotation_@export_enum.html#class-@gdscript_annotation_@export_enum).
+See [@export_enum](https://docs.godotengine.org/en/stable/classes/class_%40gdscript.html#class-gdscript-annotation-export-enum).
 
 Properties can be exported with a type hint referencing an enum to limit their values
 to the values of the enumeration. The editor will create a widget in the Inspector, enumerating
@@ -350,7 +350,7 @@ enum NamedEnum {THING_1, THING_2, ANOTHER_THING = -1}
 ```
 
 Integer and string properties can also be limited to a specific list of values using
-the [@export_enum](https://docs.godotengine.org/en/stable/classes/class_@gdscript_annotation_@export_enum.html#class-@gdscript_annotation_@export_enum) annotation.
+the [@export_enum](https://docs.godotengine.org/en/stable/classes/class_%40gdscript.html#class-gdscript-annotation-export-enum) annotation.
 The editor will create a widget in the Inspector, enumerating the following as Warrior,
 Magician, Thief. The value will be stored as an integer, corresponding to the index
 of the selected option (i.e. `0`, `1`,  or `2`).
@@ -433,21 +433,21 @@ Other export variants can also be used when exporting arrays:
 
 ## `@export_storage`
 
-See [@export_storage](https://docs.godotengine.org/en/stable/classes/class_@gdscript_annotation_@export_storage.html#class-@gdscript_annotation_@export_storage).
+See [@export_storage](https://docs.godotengine.org/en/stable/classes/class_%40gdscript.html#class-gdscript-annotation-export-storage).
 
 By default, exporting a property has two effects:
 
-1. makes the property stored in the scene/resource file ([PROPERTY_USAGE_STORAGE](https://docs.godotengine.org/en/stable/classes/class_@globalscope_constant_property_usage_storage.html#class-@globalscope_constant_property_usage_storage));
+1. makes the property stored in the scene/resource file ([PROPERTY_USAGE_STORAGE](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-constant-property-usage-storage));
 
-1. adds a field to the Inspector ([PROPERTY_USAGE_EDITOR](https://docs.godotengine.org/en/stable/classes/class_@globalscope_constant_property_usage_editor.html#class-@globalscope_constant_property_usage_editor)).
+1. adds a field to the Inspector ([PROPERTY_USAGE_EDITOR](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-constant-property-usage-editor)).
 
 However, sometimes you may want to make a property serializable, but not display it
 in the editor to prevent unintentional changes and cluttering the interface.
 
-To do this you can use [@export_storage](https://docs.godotengine.org/en/stable/classes/class_@gdscript_annotation_@export_storage.html#class-@gdscript_annotation_@export_storage).
-This can be useful for [@tool](https://docs.godotengine.org/en/stable/classes/class_@gdscript_annotation_@tool.html#class-@gdscript_annotation_@tool) scripts.
-Also the property value is copied when [Resource.duplicate()](https://docs.godotengine.org/en/stable/classes/class_resource_method_duplicate.html#class-resource_method_duplicate)
-or [Node.duplicate()](https://docs.godotengine.org/en/stable/classes/class_node_method_duplicate.html#class-node_method_duplicate) is called, unlike non-exported variables.
+To do this you can use [@export_storage](https://docs.godotengine.org/en/stable/classes/class_%40gdscript.html#class-gdscript-annotation-export-storage).
+This can be useful for [@tool](https://docs.godotengine.org/en/stable/classes/class_%40gdscript.html#class-gdscript-annotation-tool) scripts.
+Also the property value is copied when [Resource.duplicate()](https://docs.godotengine.org/en/stable/classes/class_resource.html#class-resource-method-duplicate)
+or [Node.duplicate()](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-method-duplicate) is called, unlike non-exported variables.
 
 ```
 var a # Not stored in the file, not displayed in the editor.
@@ -472,7 +472,7 @@ For example, this exposes the `altitude` property with no range limits but an
 The above is normally not feasible with the standard `@export_range` syntax,
 since it requires defining a range.
 
-See the [class reference](https://docs.godotengine.org/en/stable/classes/class_@gdscript_annotation_@export_custom.html#class-@gdscript_annotation_@export_custom)
+See the [class reference](https://docs.godotengine.org/en/stable/classes/class_%40gdscript.html#class-gdscript-annotation-export-custom)
 for a list of parameters and their allowed values.
 
 > Warning:
@@ -516,19 +516,19 @@ func hello():
 When changing an exported variable's value from a script in
 <doc:index#Tool-Mode>, the value in the inspector won't be updated
 automatically. To update it, call
-[notify_property_list_changed()](https://docs.godotengine.org/en/stable/classes/class_object_method_notify_property_list_changed.html#class-object_method_notify_property_list_changed)
+[notify_property_list_changed()](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-method-notify-property-list-changed)
 after setting the exported variable's value.
 
 ## Reading an exported variable's value early on
 
-If you read an exported variable's value in [_init()](https://docs.godotengine.org/en/stable/classes/class_object_private_method__init.html#class-object_private_method__init),
+If you read an exported variable's value in [_init()](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-private-method-init),
 it will return the default value specified in the export annotation instead of the value
 that was set in the inspector. This is because assigning values from the saved scene/resource
 file occurs after object initialization; until then, the default value is used.
 
 To get the value that was set in the inspector (and therefore saved in the scene/resource file),
 you need to read it after the object is constructed, such as in
-[Node._ready()](https://docs.godotengine.org/en/stable/classes/class_node_private_method__ready.html#class-node_private_method__ready). You can also read the value
+[Node._ready()](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-private-method-ready). You can also read the value
 in a setter that's defined on the exported property, which is useful in
 custom resources where `_ready()` is not available:
 
@@ -558,9 +558,9 @@ common exporting features which can be implemented with a low-level API.
 
 Before reading further, you should get familiar with the way properties are
 handled and how they can be customized with
-[_set()](https://docs.godotengine.org/en/stable/classes/class_object_private_method__set.html#class-object_private_method__set),
-[_get()](https://docs.godotengine.org/en/stable/classes/class_object_private_method__get.html#class-object_private_method__get), and
-[_get_property_list()](https://docs.godotengine.org/en/stable/classes/class_object_private_method__get_property_list.html#class-object_private_method__get_property_list) methods as
+[_set()](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-private-method-set),
+[_get()](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-private-method-get), and
+[_get_property_list()](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-private-method-get-property-list) methods as
 described in <doc:accessing_data_or_logic_from_object>.
 
 > Seealso: For binding properties using the above methods in C++, see

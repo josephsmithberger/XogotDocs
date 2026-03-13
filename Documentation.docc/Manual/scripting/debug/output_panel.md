@@ -38,46 +38,46 @@ You can clear messages by tapping the "Trash" icon to the right of the "Filter" 
 
 Several methods are available to print messages:
 
-- [print()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_print.html#class-@globalscope_method_print): Prints a message.
+- [print()](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-method-print): Prints a message.
 This method accepts multiple arguments which are concatenated together upon printing.
 This method has variants that separate arguments with tabs and spaces respectively:
-[printt()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_printt.html#class-@globalscope_method_printt) and [prints()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_prints.html#class-@globalscope_method_prints).
+[printt()](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-method-printt) and [prints()](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-method-prints).
 
-- [print_rich()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_print_rich.html#class-@globalscope_method_print_rich): Same as `print()`,
+- [print_rich()](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-method-print-rich): Same as `print()`,
 but BBCode can be used to format the text that is printed (see below).
 
-- [push_error()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_push_error.html#class-@globalscope_method_push_error): Prints an error message.
+- [push_error()](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-method-push-error): Prints an error message.
 When an error is printed in a running project, it's displayed in the **Debugger > Errors**
 tab instead.
 
-- [push_warning()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_push_warning.html#class-@globalscope_method_push_warning): Prints a warning message.
+- [push_warning()](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-method-push-warning): Prints a warning message.
 When a warning is printed in a running project, it's displayed in the **Debugger > Errors**
 tab instead.
 
 For more complex use cases, these can be used:
 
-- [print_verbose()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_print_verbose.html#class-@globalscope_method_print_verbose): Same as `print()`,
+- [print_verbose()](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-method-print-verbose): Same as `print()`,
 but only prints when verbose mode is enabled in the Project Settings
 or the project is run with the `--verbose` command line argument.
 
-- [printerr()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_printerr.html#class-@globalscope_method_printerr): Same as `print()`,
+- [printerr()](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-method-printerr): Same as `print()`,
 but prints to the standard error stream instead of the standard output string.
 `push_error()` should be preferred in most cases.
 
-- [printraw()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_printraw.html#class-@globalscope_method_printraw): Same as `print()`,
+- [printraw()](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-method-printraw): Same as `print()`,
 but prints without a blank line at the end. This is the only method
 that does **not** print to the editor Output panel.
 It prints to the standard output stream only, which means it's still included
 in file logging.
 
-- [print_stack()](https://docs.godotengine.org/en/stable/classes/class_@gdscript_method_print_stack.html#class-@gdscript_method_print_stack): Print a stack trace
+- [print_stack()](https://docs.godotengine.org/en/stable/classes/class_%40gdscript.html#class-gdscript-method-print-stack): Print a stack trace
 from the current location. Only supported when running from the editor,
 or when the project is exported in debug mode.
 
-- [print_tree()](https://docs.godotengine.org/en/stable/classes/class_node_method_print_tree.html#class-node_method_print_tree): Prints the scene tree
+- [print_tree()](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-method-print-tree): Prints the scene tree
 relative to the current node. Useful for debugging node structures created at runtime.
 
-- [print_tree_pretty()](https://docs.godotengine.org/en/stable/classes/class_node_method_print_tree_pretty.html#class-node_method_print_tree_pretty): Same as
+- [print_tree_pretty()](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-method-print-tree-pretty): Same as
 `print_tree()`, but with Unicode characters for a more tree-like appearance. This relies on
 box-drawing characters,
 so it may not render correctly with all fonts.
@@ -93,7 +93,7 @@ To get more advanced formatting capabilities, consider using
 
 ### Printing rich text
 
-Using [print_rich()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_print_rich.html#class-@globalscope_method_print_rich), you can print
+Using [print_rich()](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-method-print-rich), you can print
 rich text to the editor Output panel and standard output (visible when the user
 runs the project from a terminal). This works by converting the BBCode to
 ANSI escape codes that the

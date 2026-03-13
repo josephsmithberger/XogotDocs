@@ -121,7 +121,7 @@ Note that these arguments are space-separated.
 > Tip:
 >
 > These arguments can be accessed in your script by using
-> [get_cmdline_args](https://docs.godotengine.org/en/stable/classes/class_os_method_get_cmdline_args.html#class-os_method_get_cmdline_args).
+> [get_cmdline_args](https://docs.godotengine.org/en/stable/classes/class_os.html#class-os-method-get-cmdline-args).
 >
 
 > Warning:
@@ -150,7 +150,7 @@ Tags" unless you select "Enabled" under "Override Main Tags".
 
 > Warning:
 > If you want to pass "User" arguments, that can be accessed with
-> [get_cmdline_user_args](https://docs.godotengine.org/en/stable/classes/class_os_method_get_cmdline_user_args.html#class-os_method_get_cmdline_user_args) then you
+> [get_cmdline_user_args](https://docs.godotengine.org/en/stable/classes/class_os.html#class-os-method-get-cmdline-user-args) then you
 > must prefix them with two dashes **and a space** like `-- one two three`.
 >
 > Be aware that these dashes will apply to arguments added later in the

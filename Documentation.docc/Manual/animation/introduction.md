@@ -337,8 +337,8 @@ To add a marker to an animation right click the space above the timeline and sel
 All markers require a unique name within the animation. You can also set the color
 of the markers for improved organization.
 
-To play the part of the animation between two markers use the [play_section_with_markers()](https://docs.godotengine.org/en/stable/classes/class_animationplayer_method_play_section_with_markers.html#class-animationplayer_method_play_section_with_markers)
-and [play_section_with_markers_backwards()](https://docs.godotengine.org/en/stable/classes/class_animationplayer_method_play_section_with_markers_backwards.html#class-animationplayer_method_play_section_with_markers_backwards)
+To play the part of the animation between two markers use the [play_section_with_markers()](https://docs.godotengine.org/en/stable/classes/class_animationplayer.html#class-animationplayer-method-play-section-with-markers)
+and [play_section_with_markers_backwards()](https://docs.godotengine.org/en/stable/classes/class_animationplayer.html#class-animationplayer-method-play-section-with-markers-backwards)
 methods. If no start marker is specified then the beginning of the animation is
 used, and if no end marker is specified, then the end of the animation is used.
 

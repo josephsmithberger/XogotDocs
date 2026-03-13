@@ -1,4 +1,3 @@
-<!-- Remove this line to publish to docs.xogot.com -->
 # TLS/SSL certificates
 
 ## Introduction
@@ -19,6 +18,8 @@ as a fallback.
 You can alternatively force your own certificate bundle in the Project Settings:
 
 @Image(source: "tls_certificates_project_setting.png", alt: "Setting the TLS certificate bundle override project setting") {Setting the TLS certificate bundle override project setting}
+> Note: Tap "Show Advanced" to find Network related settings
+
 
 When set, this file overrides the operating system provided bundle by default.
 This file should contain any number of public certificates in
@@ -68,7 +69,7 @@ Settings.
 >
 
 For development purposes Godot can generate self-signed certificates via
-[Crypto.generate_self_signed_certificate](https://docs.godotengine.org/en/stable/classes/class_crypto_method_generate_self_signed_certificate.html#class-crypto_method_generate_self_signed_certificate).
+[Crypto.generate_self_signed_certificate](https://docs.godotengine.org/en/stable/classes/class_crypto.html#class-crypto-method-generate-self-signed-certificate).
 
 Alternatively, OpenSSL has some documentation about generating keys
 and certificates.

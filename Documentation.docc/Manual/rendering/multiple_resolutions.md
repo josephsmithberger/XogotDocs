@@ -75,7 +75,7 @@ screen sizes.
 
 To configure the stretch base size at runtime from a script, use the
 `get_tree().root.content_scale_size` property (see
-[Window.content_scale_size](https://docs.godotengine.org/en/stable/classes/class_window_property_content_scale_size.html#class-window_property_content_scale_size)).
+[Window.content_scale_size](https://docs.godotengine.org/en/stable/classes/class_window.html#class-window-property-content-scale-size)).
 Changing this value can indirectly change the size of 2D elements. However, to
 provide a user-accessible scaling option, using
 <doc:multiple_resolutions#Stretch-Scale> is recommended as it's easier to
@@ -167,7 +167,7 @@ account).
 
 To configure the stretch mode at runtime from a script, use the
 `get_tree().root.content_scale_mode` property (see
-[Window.content_scale_mode](https://docs.godotengine.org/en/stable/classes/class_window_property_content_scale_mode.html#class-window_property_content_scale_mode)
+[Window.content_scale_mode](https://docs.godotengine.org/en/stable/classes/class_window.html#class-window-property-content-scale-mode)
 and the :ref:`ContentScaleMode <enum_Window_ContentScaleMode>` enum).
 
 ### Stretch Aspect
@@ -249,7 +249,7 @@ size).
 
 To configure the stretch aspect at runtime from a script, use the
 `get_tree().root.content_scale_aspect` property (see
-[Window.content_scale_aspect](https://docs.godotengine.org/en/stable/classes/class_window_property_content_scale_aspect.html#class-window_property_content_scale_aspect)
+[Window.content_scale_aspect](https://docs.godotengine.org/en/stable/classes/class_window.html#class-window-property-content-scale-aspect)
 and the :ref:`ContentScaleAspect <enum_Window_ContentScaleAspect>` enum).
 
 ### Stretch Scale
@@ -273,7 +273,7 @@ by **Scale**. This makes pixels look larger and reduces rendering resolution
 
 To configure the stretch scale at runtime from a script, use the
 `get_tree().root.content_scale_factor` property (see
-[Window.content_scale_factor](https://docs.godotengine.org/en/stable/classes/class_window_property_content_scale_factor.html#class-window_property_content_scale_factor)).
+[Window.content_scale_factor](https://docs.godotengine.org/en/stable/classes/class_window.html#class-window-property-content-scale-factor)).
 
 You can also adjust the scale at which the default project theme is generated
 using the **GUI > Theme > Default Theme Scale** project setting. This can be
@@ -547,7 +547,7 @@ elements are automatically resized according to the current window size.
 stretch scale to a value corresponding to the display scale factor in an
 <doc:singletons_autoload>'s `_ready()` function.
 The display scale factor is set in the operating system's settings and can be queried
-using [screen_get_scale](https://docs.godotengine.org/en/stable/classes/class_displayserver_method_screen_get_scale.html#class-displayserver_method_screen_get_scale). This
+using [screen_get_scale](https://docs.godotengine.org/en/stable/classes/class_displayserver.html#class-displayserver-method-screen-get-scale). This
 method is currently implemented on Android, iOS, Linux (Wayland only), macOS and Web.
 On other platforms, you'll have to implement a method to guess the display
 scale factor based on the screen resolution (with a setting to let the

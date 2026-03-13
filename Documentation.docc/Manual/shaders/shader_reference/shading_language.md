@@ -833,7 +833,7 @@ roughness, metallic, and height textures typically do not need a `source_color`
 hint.
 
 Using `source_color` hint is required in the Forward+ and Mobile renderers,
-and in `canvas_item` shaders when [HDR 2D](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_rendering/viewport/hdr_2d.html#class-projectsettings_property_rendering/viewport/hdr_2d)
+and in `canvas_item` shaders when [HDR 2D](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-rendering-viewport-hdr-2d)
 is enabled. The `source_color` hint is optional for the Compatibility renderer,
 and for `canvas_item` shaders if `HDR 2D` is disabled. However, it is
 recommended to always use the `source_color` hint, because it works even
@@ -908,7 +908,7 @@ be ignored as the global uniform must always be defined in the Project Settings
 anyway.
 
 To change the value of a global uniform at runtime, use the
-[RenderingServer.global_shader_parameter_set](https://docs.godotengine.org/en/stable/classes/class_renderingserver_method_global_shader_parameter_set.html#class-renderingserver_method_global_shader_parameter_set)
+[RenderingServer.global_shader_parameter_set](https://docs.godotengine.org/en/stable/classes/class_renderingserver.html#class-renderingserver-method-global-shader-parameter-set)
 method in a script:
 
 ```
@@ -982,7 +982,7 @@ the inspector:
 @Image(source: "shading_language_per_instance_uniforms_inspector.png", alt: "Setting a per-instance uniform's value in the GeometryInstance3D section of the inspector") {Setting a per-instance uniform's value in the GeometryInstance3D section of the inspector}
 
 Per-instance uniform values can also be set at runtime using
-[set_instance_shader_parameter](https://docs.godotengine.org/en/stable/classes/class_geometryinstance3d_method_set_instance_shader_parameter.html#class-geometryinstance3d_method_set_instance_shader_parameter)
+[set_instance_shader_parameter](https://docs.godotengine.org/en/stable/classes/class_geometryinstance3d.html#class-geometryinstance3d-method-set-instance-shader-parameter)
 method on a node that inherits from [GeometryInstance3D](https://docs.godotengine.org/en/stable/classes/class_geometryinstance3d.html#class-geometryinstance3d):
 
 ```
@@ -1046,7 +1046,7 @@ instance uniform vec4 my_color : source_color, instance_index(5);
 ### Setting uniforms from code
 
 You can set uniforms from GDScript using the
-[set_shader_parameter()](https://docs.godotengine.org/en/stable/classes/class_shadermaterial_method_set_shader_parameter.html#class-shadermaterial_method_set_shader_parameter)
+[set_shader_parameter()](https://docs.godotengine.org/en/stable/classes/class_shadermaterial.html#class-shadermaterial-method-set-shader-parameter)
 method:
 
 ```

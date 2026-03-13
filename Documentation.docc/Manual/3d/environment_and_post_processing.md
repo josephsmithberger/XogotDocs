@@ -775,13 +775,13 @@ Intensity slider in the color picker). Enabling HDR can also reduce banding in t
 rendering output.
 
 To enable HDR in 2D, open the Project Settings, enable
-[Rendering > Viewport > HDR 2D](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_rendering/viewport/hdr_2d.html#class-projectsettings_property_rendering/viewport/hdr_2d)
+[Rendering > Viewport > HDR 2D](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-rendering-viewport-hdr-2d)
 then restart the editor.
 
 
 
 - To enable HDR in 2D, open the Project Settings, enable
-[Rendering > Viewport > HDR 2D](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_rendering/viewport/hdr_2d.html#class-projectsettings_property_rendering/viewport/hdr_2d)
+[Rendering > Viewport > HDR 2D](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-rendering-viewport-hdr-2d)
 then restart the editor.
 
 - If you want to maximize performance, you can leave HDR disabled for 2D
@@ -804,7 +804,7 @@ glow using the **Background > Canvas Max Layer** property of the Environment
 resource.
 
 - To enable HDR in 2D, open the Project Settings, enable
-[Rendering > Viewport > HDR 2D](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_rendering/viewport/hdr_2d.html#class-projectsettings_property_rendering/viewport/hdr_2d)
+[Rendering > Viewport > HDR 2D](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-rendering-viewport-hdr-2d)
 then restart the editor.
 
 - Enable glow, set the environment background mode to **Canvas** then decrease
@@ -821,7 +821,7 @@ Intensity slider in the color picker.}
 > Warning:
 >
 > The 2D renderer renders in linear color space if the
-> [Rendering > Viewport > HDR 2D](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_rendering/viewport/hdr_2d.html#class-projectsettings_property_rendering/viewport/hdr_2d)
+> [Rendering > Viewport > HDR 2D](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-rendering-viewport-hdr-2d)
 > project setting is enabled, so the `source_color` hint must also be used
 > for uniform samplers that are used as color input in `canvas_item` shaders.
 > If this is not done, the texture will appear washed out.

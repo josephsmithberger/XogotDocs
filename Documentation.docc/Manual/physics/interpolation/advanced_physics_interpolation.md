@@ -1,4 +1,3 @@
-<!-- Remove this line to publish to docs.xogot.com -->
 # Advanced physics interpolation
 
 Although the previous instructions will give satisfactory results in a lot of games,
@@ -12,7 +11,7 @@ you would benefit from disabling automatic interpolation for a
 [Node](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node) (or branch of the [SceneTree](https://docs.godotengine.org/en/stable/classes/class_scenetree.html#class-scenetree)), and
 have the finer control of performing interpolation manually.
 
-This is possible using the [Node.physics_interpolation_mode](https://docs.godotengine.org/en/stable/classes/class_node_property_physics_interpolation_mode.html#class-node_property_physics_interpolation_mode)
+This is possible using the [Node.physics_interpolation_mode](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-property-physics-interpolation-mode)
 property which is present in all Nodes. If you for example, turn off interpolation
 for a Node, the children will recursively also be affected (as they default to
 inheriting the parent setting). This means you can easily disable interpolation for
@@ -46,7 +45,7 @@ There are two ways of doing this:
 
 @Image(source: "fti_camera_worldspace.png")
 
-1. Call [Node3D.top_level](https://docs.godotengine.org/en/stable/classes/class_node3d_property_top_level.html#class-node3d_property_top_level) and set this to `true`, which will make the Camera ignore the transform of its parent.
+1. Call [Node3D.top_level](https://docs.godotengine.org/en/stable/classes/class_node3d.html#class-node3d-property-top-level) and set this to `true`, which will make the Camera ignore the transform of its parent.
 
 A typical example of a custom approach is to use the `look_at` function in the
 Camera3D every frame in `_process()` to look at a target node (such as the player).
@@ -62,8 +61,8 @@ What we really want to focus the camera on, is not the position of the target on
 the physics tick, but the interpolated position, i.e. the position at which the
 target will be rendered.
 
-We can do this using the [Node3D.get_global_transform_interpolated](https://docs.godotengine.org/en/stable/classes/class_node3d_method_get_global_transform_interpolated.html#class-node3d_method_get_global_transform_interpolated)
-function. This acts exactly like getting [Node3D.global_transform](https://docs.godotengine.org/en/stable/classes/class_node3d_property_global_transform.html#class-node3d_property_global_transform)
+We can do this using the [Node3D.get_global_transform_interpolated](https://docs.godotengine.org/en/stable/classes/class_node3d.html#class-node3d-method-get-global-transform-interpolated)
+function. This acts exactly like getting [Node3D.global_transform](https://docs.godotengine.org/en/stable/classes/class_node3d.html#class-node3d-property-global-transform)
 but it gives you the interpolated transform (during a `_process()` call).
 
 > Important: `get_global_transform_interpolated()` should only be used once or
@@ -117,7 +116,7 @@ follow these mouse movements on the next frame, rather than waiting until the ne
 physics tick.
 
 In this situation, it can be better to disable physics interpolation for the camera
-node (using [Node.physics_interpolation_mode](https://docs.godotengine.org/en/stable/classes/class_node_property_physics_interpolation_mode.html#class-node_property_physics_interpolation_mode))
+node (using [Node.physics_interpolation_mode](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-property-physics-interpolation-mode))
 and directly apply the mouse input to the camera rotation, rather than apply it in
 `_physics_process`.
 
@@ -125,11 +124,11 @@ Sometimes, especially with cameras, you will want to use a combination of
 interpolation and non-interpolation:
 
 - A first person camera may position the camera at a player location (perhaps using
-[Node3D.get_global_transform_interpolated](https://docs.godotengine.org/en/stable/classes/class_node3d_method_get_global_transform_interpolated.html#class-node3d_method_get_global_transform_interpolated)),
+[Node3D.get_global_transform_interpolated](https://docs.godotengine.org/en/stable/classes/class_node3d.html#class-node3d-method-get-global-transform-interpolated)),
 but control the Camera rotation from mouse look without interpolation.
 
 - A third person camera may similarly determine the look at (target location) of the camera using
-[Node3D.get_global_transform_interpolated](https://docs.godotengine.org/en/stable/classes/class_node3d_method_get_global_transform_interpolated.html#class-node3d_method_get_global_transform_interpolated),
+[Node3D.get_global_transform_interpolated](https://docs.godotengine.org/en/stable/classes/class_node3d.html#class-node3d-method-get-global-transform-interpolated),
 but position the camera using mouse look without interpolation.
 
 There are many permutations and variations of camera types, but it should be clear
@@ -152,8 +151,8 @@ some extra functions for controlling interpolation functionality on a
 per-instance basis. You should explore these functions if you are using
 interpolated MultiMeshes.
 
-- [MultiMesh.reset_instance_physics_interpolation](https://docs.godotengine.org/en/stable/classes/class_multimesh_method_reset_instance_physics_interpolation.html#class-multimesh_method_reset_instance_physics_interpolation)
+- [MultiMesh.reset_instance_physics_interpolation](https://docs.godotengine.org/en/stable/classes/class_multimesh.html#class-multimesh-method-reset-instance-physics-interpolation)
 
-- [MultiMesh.set_buffer_interpolated](https://docs.godotengine.org/en/stable/classes/class_multimesh_method_set_buffer_interpolated.html#class-multimesh_method_set_buffer_interpolated)
+- [MultiMesh.set_buffer_interpolated](https://docs.godotengine.org/en/stable/classes/class_multimesh.html#class-multimesh-method-set-buffer-interpolated)
 
 Full details are in the [MultiMesh](https://docs.godotengine.org/en/stable/classes/class_multimesh.html#class-multimesh) documentation.

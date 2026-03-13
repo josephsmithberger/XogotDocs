@@ -69,13 +69,13 @@ All of these properties can be toggled as needed according to the project's use 
 ## Configuring pseudolocalization at runtime
 
 Pseudolocalization can be toggled at runtime using the
-[pseudolocalization_enabled](https://docs.godotengine.org/en/stable/classes/class_translationserver_property_pseudolocalization_enabled.html#class-translationserver_property_pseudolocalization_enabled) property
+[pseudolocalization_enabled](https://docs.godotengine.org/en/stable/classes/class_translationserver.html#class-translationserver-property-pseudolocalization-enabled) property
 in TranslationServer.
 However, if runtime configuration of pseudolocalization properties is required,
 they can be directly configured using
-[ProjectSettings.set_setting(property, value)](https://docs.godotengine.org/en/stable/classes/class_projectsettings_method_set_setting.html#class-projectsettings_method_set_setting)
+[ProjectSettings.set_setting(property, value)](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-method-set-setting)
 and then calling
-[TranslationServer.reload_pseudolocalization()](https://docs.godotengine.org/en/stable/classes/class_translationserver_method_reload_pseudolocalization.html#class-translationserver_method_reload_pseudolocalization)
+[TranslationServer.reload_pseudolocalization()](https://docs.godotengine.org/en/stable/classes/class_translationserver.html#class-translationserver-method-reload-pseudolocalization)
 which reparses the pseudolocalization properties and reloads the pseudolocalization.
 The following code snippet shall turn on `replace_with_accents` and `double_vowels` properties
 and then call `reload_pseudolocalization()` for the changes to get reflected:

@@ -2,8 +2,8 @@
 
 Games run in a loop. Each frame, you need to update the state of your game world
 before drawing it on screen. Godot provides two virtual methods in the Node
-class to do so: [Node._process()](https://docs.godotengine.org/en/stable/classes/class_node_private_method__process.html#class-node_private_method__process) and
-[Node._physics_process()](https://docs.godotengine.org/en/stable/classes/class_node_private_method__physics_process.html#class-node_private_method__physics_process). If you
+class to do so: [Node._process()](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-private-method-process) and
+[Node._physics_process()](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-private-method-physics-process). If you
 define either or both in a script, the engine will call them automatically.
 
 There are two types of processing available to you:
@@ -17,7 +17,7 @@ running smoothly. You should use it for anything that involves the physics
 engine, like moving a body that collides with the environment.
 
 You can activate idle processing by defining the `_process()` method in a
-script. You can turn it off and back on by calling [Node.set_process()](https://docs.godotengine.org/en/stable/classes/class_node_method_set_process.html#class-node_method_set_process).
+script. You can turn it off and back on by calling [Node.set_process()](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-method-set-process).
 
 The engine calls this method every time it draws a frame:
 

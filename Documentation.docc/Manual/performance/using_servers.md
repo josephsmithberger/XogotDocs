@@ -67,13 +67,13 @@ can be directly casted to an RID. Not all resources contain an RID, though: in s
 
 For nodes, there are many functions available:
 
-- For CanvasItem, the [CanvasItem.get_canvas_item()](https://docs.godotengine.org/en/stable/classes/class_canvasitem_method_get_canvas_item.html#class-canvasitem_method_get_canvas_item)
+- For CanvasItem, the [CanvasItem.get_canvas_item()](https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#class-canvasitem-method-get-canvas-item)
 method will return the canvas item RID in the server.
 
-- For CanvasLayer, the [CanvasLayer.get_canvas()](https://docs.godotengine.org/en/stable/classes/class_canvaslayer_method_get_canvas.html#class-canvaslayer_method_get_canvas)
+- For CanvasLayer, the [CanvasLayer.get_canvas()](https://docs.godotengine.org/en/stable/classes/class_canvaslayer.html#class-canvaslayer-method-get-canvas)
 method will return the canvas RID in the server.
 
-- For Viewport, the [Viewport.get_viewport_rid()](https://docs.godotengine.org/en/stable/classes/class_viewport_method_get_viewport_rid.html#class-viewport_method_get_viewport_rid)
+- For Viewport, the [Viewport.get_viewport_rid()](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport-method-get-viewport-rid)
 method will return the viewport RID in the server.
 
 - For 3D, the [World3D](https://docs.godotengine.org/en/stable/classes/class_world3d.html#class-world3d) resource (obtainable in the [Viewport](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport)
@@ -87,8 +87,8 @@ contains functions to get the RenderingServer Canvas, and the Physics2DServer Sp
 allows creating 2D objects directly with the server API and using them.
 
 - The [VisualInstance3D](https://docs.godotengine.org/en/stable/classes/class_visualinstance3d.html#class-visualinstance3d) class, allows getting the scenario instance and
-instance base via the [VisualInstance3D.get_instance()](https://docs.godotengine.org/en/stable/classes/class_visualinstance3d_method_get_instance.html#class-visualinstance3d_method_get_instance)
-and [VisualInstance3D.get_base()](https://docs.godotengine.org/en/stable/classes/class_visualinstance3d_method_get_base.html#class-visualinstance3d_method_get_base) respectively.
+instance base via the [VisualInstance3D.get_instance()](https://docs.godotengine.org/en/stable/classes/class_visualinstance3d.html#class-visualinstance3d-method-get-instance)
+and [VisualInstance3D.get_base()](https://docs.godotengine.org/en/stable/classes/class_visualinstance3d.html#class-visualinstance3d-method-get-base) respectively.
 
 Try exploring the nodes and resources you are familiar with and find the functions to obtain the server RIDs.
 
@@ -102,7 +102,7 @@ This is an example of how to create a sprite from code and move it using the low
 
 > Note: When creating canvas items using the RenderingServer, you should reset physics
 > interpolation on the first frame using
-> [RenderingServer.canvas_item_reset_physics_interpolation()](https://docs.godotengine.org/en/stable/classes/class_renderingserver_method_canvas_item_reset_physics_interpolation.html#class-renderingserver_method_canvas_item_reset_physics_interpolation).
+> [RenderingServer.canvas_item_reset_physics_interpolation()](https://docs.godotengine.org/en/stable/classes/class_renderingserver.html#class-renderingserver-method-canvas-item-reset-physics-interpolation).
 > This ensures proper synchronization between the rendering and physics systems.
 >
 

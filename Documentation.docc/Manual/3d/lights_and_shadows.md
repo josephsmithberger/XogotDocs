@@ -69,7 +69,7 @@ performance allows). However, there's still a default limit of 512 clustered
 elements that can be present in the current camera view. A clustered element is
 an omni light, a spot light, a <doc:using_decals> or a
 <doc:reflection_probes>. This limit can be increased by adjusting
-[Max Clustered Elements](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_rendering/limits/cluster_builder/max_clustered_elements.html#class-projectsettings_property_rendering/limits/cluster_builder/max_clustered_elements)
+[Max Clustered Elements](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-rendering-limits-cluster-builder-max-clustered-elements)
 in **Project Settings > Rendering > Limits > Cluster Builder**.
 
 When using the Mobile renderer, there is a limitation of 8 OmniLights + 8 SpotLights
@@ -79,8 +79,8 @@ can be rendered in the current camera view. These limits currently cannot be cha
 When using the Compatibility renderer, up to 8 OmniLights + 8 SpotLights can be
 rendered per mesh resource. This limit can be increased in the advanced Project
 Settings by adjusting
-[Max Renderable Elements](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_rendering/limits/opengl/max_renderable_elements.html#class-projectsettings_property_rendering/limits/opengl/max_renderable_elements)
-and/or [Max Lights per Object](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_rendering/limits/opengl/max_lights_per_object.html#class-projectsettings_property_rendering/limits/opengl/max_lights_per_object)
+[Max Renderable Elements](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-rendering-limits-opengl-max-renderable-elements)
+and/or [Max Lights per Object](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-rendering-limits-opengl-max-lights-per-object)
 in **Rendering > Limits > OpenGL**, at the cost of performance and longer shader
 compilation times. The limit can also be decreased to reduce shader compilation
 times and improve performance slightly.

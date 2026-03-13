@@ -99,7 +99,7 @@ you'll see the autoloaded nodes appear:
 
 This tutorial will demonstrate building a scene switcher using autoloads.
 For basic scene switching, you can use the
-[SceneTree.change_scene_to_file()](https://docs.godotengine.org/en/stable/classes/class_scenetree_method_change_scene_to_file.html#class-scenetree_method_change_scene_to_file)
+[SceneTree.change_scene_to_file()](https://docs.godotengine.org/en/stable/classes/class_scenetree.html#class-scenetree-method-change-scene-to-file)
 method (see <doc:scene_tree> for details). However, if you need more
 complex behavior when changing scenes, this method provides more functionality.
 
@@ -184,7 +184,7 @@ func _deferred_goto_scene(path):
     get_tree().current_scene = current_scene
 ```
 
-Using [Object.call_deferred()](https://docs.godotengine.org/en/stable/classes/class_object_method_call_deferred.html#class-object_method_call_deferred),
+Using [Object.call_deferred()](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-method-call-deferred),
 the second function will only run once all code from the current scene has
 completed. Thus, the current scene will not be removed while it is
 still being used (i.e. its code is still running).

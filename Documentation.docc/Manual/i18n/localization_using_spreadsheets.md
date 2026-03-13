@@ -84,7 +84,7 @@ There is %d apple,There are %d apples,Il y a %d pomme,Есть %d яблоко,�
 > Note:
 >
 > Automatic Control translation is not supported when using plural forms. You must
-> translate the string manually using [tr_n()](https://docs.godotengine.org/en/stable/classes/class_object_method_tr_n.html#class-object_method_tr_n).
+> translate the string manually using [tr_n()](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-method-tr-n).
 >
 
 ### Specifying translation contexts
@@ -110,8 +110,8 @@ Letter,Message,Courrier,Письмо,手紙,信件
 > Note:
 >
 > Automatic Control translation is not supported when using context. You must
-> translate the string manually using [tr()](https://docs.godotengine.org/en/stable/classes/class_object_method_tr.html#class-object_method_tr)
-> or [tr_n()](https://docs.godotengine.org/en/stable/classes/class_object_method_tr_n.html#class-object_method_tr_n).
+> translate the string manually using [tr()](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-method-tr)
+> or [tr_n()](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-method-tr-n).
 >
 
 ## CSV importer

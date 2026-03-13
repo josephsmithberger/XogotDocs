@@ -4,7 +4,7 @@
 
 One key concept to understand in Godot is the distinction between physics ticks
 (sometimes referred to as iterations or physics frames), and rendered frames. The
-physics proceeds at a fixed tick rate (set in [Project Settings > Physics > Common > Physics Tick per Second](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_physics/common/physics_ticks_per_second.html#class-projectsettings_property_physics/common/physics_ticks_per_second)),
+physics proceeds at a fixed tick rate (set in [Project Settings > Physics > Common > Physics Tick per Second](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-physics-common-physics-ticks-per-second)),
 which defaults to 60 ticks per second.
 
 However, the engine does not necessarily **render** at the same rate. Although many
@@ -128,7 +128,7 @@ fraction = 0.2
 ```
 
 This is called the **physics interpolation fraction**, and is handily calculated
-for you by Godot. It can be retrieved on any frame by calling [Engine.get_physics_interpolation_fraction](https://docs.godotengine.org/en/stable/classes/class_engine_method_get_physics_interpolation_fraction.html#class-engine_method_get_physics_interpolation_fraction).
+for you by Godot. It can be retrieved on any frame by calling [Engine.get_physics_interpolation_fraction](https://docs.godotengine.org/en/stable/classes/class_engine.html#class-engine-method-get-physics-interpolation-fraction).
 
 ### Calculating the interpolated position
 

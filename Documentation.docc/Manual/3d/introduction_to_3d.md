@@ -320,7 +320,7 @@ as simple resources.
 
 It is possible to create custom geometry by using the
 [ArrayMesh](https://docs.godotengine.org/en/stable/classes/class_arraymesh.html#class-arraymesh) resource directly. Simply create your arrays
-and use the [ArrayMesh.add_surface_from_arrays()](https://docs.godotengine.org/en/stable/classes/class_arraymesh_method_add_surface_from_arrays.html#class-arraymesh_method_add_surface_from_arrays)
+and use the [ArrayMesh.add_surface_from_arrays()](https://docs.godotengine.org/en/stable/classes/class_arraymesh.html#class-arraymesh-method-add-surface-from-arrays)
 function. A helper class is also available, [SurfaceTool](https://docs.godotengine.org/en/stable/classes/class_surfacetool.html#class-surfacetool),
 which provides a more straightforward API and helpers for indexing,
 generating normals, tangents, etc.

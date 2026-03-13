@@ -35,10 +35,10 @@ Note that the BBCode tags can also be used to some extent for other use cases:
 ## Using BBCode
 
 By default, [RichTextLabel](https://docs.godotengine.org/en/stable/classes/class_richtextlabel.html#class-richtextlabel) functions like a normal [Label](https://docs.godotengine.org/en/stable/classes/class_label.html#class-label).
-It has the [property_text](https://docs.godotengine.org/en/stable/classes/class_richtextlabel_property_text.html#class-richtextlabel_property_text) property, which you can
+It has the [property_text](https://docs.godotengine.org/en/stable/classes/class_richtextlabel.html#class-richtextlabel-property-text) property, which you can
 edit to have uniformly formatted text. To be able to use BBCode for rich text formatting,
-you need to turn on the BBCode mode by setting [bbcode_enabled](https://docs.godotengine.org/en/stable/classes/class_richtextlabel_property_bbcode_enabled.html#class-richtextlabel_property_bbcode_enabled).
-After that, you can edit the [text](https://docs.godotengine.org/en/stable/classes/class_richtextlabel_property_text.html#class-richtextlabel_property_text)
+you need to turn on the BBCode mode by setting [bbcode_enabled](https://docs.godotengine.org/en/stable/classes/class_richtextlabel.html#class-richtextlabel-property-bbcode-enabled).
+After that, you can edit the [text](https://docs.godotengine.org/en/stable/classes/class_richtextlabel.html#class-richtextlabel-property-text)
 property using available tags. Both properties are located at the top of the inspector
 after selecting a RichTextLabel node.
 
@@ -438,7 +438,7 @@ By default, `[url]` tags do nothing when clicked. This is to allow flexible use
 of `[url]` tags rather than limiting them to opening URLs in a web browser.
 
 To handle clicked `[url]` tags, connect the `RichTextLabel` node's
-[meta_clicked](https://docs.godotengine.org/en/stable/classes/class_richtextlabel_signal_meta_clicked.html#class-richtextlabel_signal_meta_clicked) signal to a script function.
+[meta_clicked](https://docs.godotengine.org/en/stable/classes/class_richtextlabel.html#class-richtextlabel-signal-meta-clicked) signal to a script function.
 
 For example, the following method can be connected to `meta_clicked` to open
 clicked URLs using the user's default web browser:
@@ -1127,7 +1127,7 @@ Add the `@tool` annotation to your GDScript file if you wish to have these custo
 run within the editor itself. The RichTextLabel does not need to have a script attached,
 nor does it need to be running in `tool` mode. The new effect can be registered in
 the Inspector by adding it to the **Markup > Custom Effects** array, or in code with the
-[install_effect()](https://docs.godotengine.org/en/stable/classes/class_richtextlabel_method_install_effect.html#class-richtextlabel_method_install_effect) method:
+[install_effect()](https://docs.godotengine.org/en/stable/classes/class_richtextlabel.html#class-richtextlabel-method-install-effect) method:
 
 @Image(source: "bbcode_in_richtextlabel_selecting_custom_richtexteffect.png", alt: "Selecting a custom RichTextEffect after saving a script that extends RichTextEffect with a `class_name`") {Selecting a custom RichTextEffect after saving a script that extends RichTextEffect with a `class_name`}
 
@@ -1167,7 +1167,7 @@ normal circumstances.
 - `glyph_index` and `font` is glyph being drawn and font data resource used to draw it.
 
 - Finally, `env` is a [Dictionary](https://docs.godotengine.org/en/stable/classes/class_dictionary.html#class-dictionary) of parameters assigned to a given custom
-effect. You can use [get()](https://docs.godotengine.org/en/stable/classes/class_dictionary_method_get.html#class-dictionary_method_get) with an optional default value
+effect. You can use [get()](https://docs.godotengine.org/en/stable/classes/class_dictionary.html#class-dictionary-method-get) with an optional default value
 to retrieve each parameter, if specified by the user. For example `[custom_fx spread=0.5 color=#FFFF00]test[/custom_fx]` would have a float `spread` and Color `color`
 parameters in its `env` Dictionary. See below for more usage examples.
 

@@ -119,7 +119,7 @@ func save_game():
 ```
 
 Game saved! Now, to load, we'll read each
-line. Use the [parse](https://docs.godotengine.org/en/stable/classes/class_json_method_parse.html#class-json_method_parse) method to read the
+line. Use the [parse](https://docs.godotengine.org/en/stable/classes/class_json.html#class-json-method-parse) method to read the
 JSON string back to a dictionary, and then iterate over
 the dict to read our values. But we'll need to first create the object
 and we can use the filename and parent values to achieve that. Here is our
@@ -184,7 +184,7 @@ customized based on the needs of the individual project.
 Additionally, our implementation assumes no Persist objects are children of other
 Persist objects. Otherwise, invalid paths would be created. To
 accommodate nested Persist objects, consider saving objects in stages.
-Load parent objects first so they are available for the [add_child()](https://docs.godotengine.org/en/stable/classes/class_node_method_add_child.html#class-node_method_add_child)
+Load parent objects first so they are available for the [add_child()](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-method-add-child)
 call when child objects are loaded. You will also need a way to link
 children to parents as the [NodePath](https://docs.godotengine.org/en/stable/classes/class_nodepath.html#class-nodepath) will likely be invalid.
 
@@ -227,9 +227,9 @@ approach for storing game state, and you can use it with the functions
 custom classes.
 
 Note that not all properties are included. Only properties that are configured
-with the [PROPERTY_USAGE_STORAGE](https://docs.godotengine.org/en/stable/classes/class_@globalscope_constant_property_usage_storage.html#class-@globalscope_constant_property_usage_storage)
+with the [PROPERTY_USAGE_STORAGE](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-constant-property-usage-storage)
 flag set will be serialized. You can add a new usage flag to a property by overriding the
-[_get_property_list](https://docs.godotengine.org/en/stable/classes/class_object_private_method__get_property_list.html#class-object_private_method__get_property_list)
+[_get_property_list](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-private-method-get-property-list)
 method in your class. You can also check how property usage is configured by
 calling `Object._get_property_list`.
 See :ref:`PropertyUsageFlags<enum_@GlobalScope_PropertyUsageFlags>` for the

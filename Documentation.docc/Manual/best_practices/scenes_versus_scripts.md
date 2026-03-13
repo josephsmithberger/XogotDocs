@@ -62,7 +62,7 @@ Editor has no type-awareness of the script or its relationship
 to other engine types or scripts.
 Allows users to define an icon.
 Works for all scripting languages because it deals with Script resources in abstract.
-Set up using [EditorPlugin.add_custom_type](https://docs.godotengine.org/en/stable/classes/class_editorplugin_method_add_custom_type.html#class-editorplugin_method_add_custom_type).
+Set up using [EditorPlugin.add_custom_type](https://docs.godotengine.org/en/stable/classes/class_editorplugin.html#class-editorplugin-method-add-custom-type).
 
 
 
@@ -80,7 +80,7 @@ to other engine types or scripts.
 
 - Works for all scripting languages because it deals with Script resources in abstract.
 
-- Set up using [EditorPlugin.add_custom_type](https://docs.godotengine.org/en/stable/classes/class_editorplugin_method_add_custom_type.html#class-editorplugin_method_add_custom_type).
+- Set up using [EditorPlugin.add_custom_type](https://docs.godotengine.org/en/stable/classes/class_editorplugin.html#class-editorplugin-method-add-custom-type).
 
 - <doc:index#Basics-Class-Name>
 
@@ -133,7 +133,7 @@ to other engine types or scripts.
 
 - Works for all scripting languages because it deals with Script resources in abstract.
 
-- Set up using [EditorPlugin.add_custom_type](https://docs.godotengine.org/en/stable/classes/class_editorplugin_method_add_custom_type.html#class-editorplugin_method_add_custom_type).
+- Set up using [EditorPlugin.add_custom_type](https://docs.godotengine.org/en/stable/classes/class_editorplugin.html#class-editorplugin-method-add-custom-type).
 
 - Editor and runtime accessible.
 

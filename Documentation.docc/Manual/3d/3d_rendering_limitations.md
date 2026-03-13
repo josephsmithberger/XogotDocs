@@ -39,7 +39,7 @@ rendering, where banding may be visible when using smooth gradient textures.
 There are two main ways to alleviate banding:
 
 - If using the Forward+ or Forward Mobile rendering methods, enable
-[Use Debanding](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_rendering/anti_aliasing/quality/use_debanding.html#class-projectsettings_property_rendering/anti_aliasing/quality/use_debanding)
+[Use Debanding](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-rendering-anti-aliasing-quality-use-debanding)
 in **Project Settings > Rendering > Anti Aliasing**. This applies a fullscreen debanding
 shader as a post-processing effect and is very cheap.
 
@@ -93,9 +93,9 @@ objects are sorted back to front before being drawn based on the Node3D's
 position, not the vertex position in world space. Due to this, overlapping
 objects may often be sorted out of order. To fix improperly sorted objects,
 tweak the material's
-[Render Priority](https://docs.godotengine.org/en/stable/classes/class_material_property_render_priority.html#class-material_property_render_priority)
+[Render Priority](https://docs.godotengine.org/en/stable/classes/class_material.html#class-material-property-render-priority)
 property or the node's
-[Sorting Offset](https://docs.godotengine.org/en/stable/classes/class_visualinstance3d_property_sorting_offset.html#class-visualinstance3d_property_sorting_offset).
+[Sorting Offset](https://docs.godotengine.org/en/stable/classes/class_visualinstance3d.html#class-visualinstance3d-property-sorting-offset).
 Render Priority will force specific materials to appear in front of or behind
 other transparent materials, while Sorting Offset will move the object
 forward or backward for the purpose of sorting. Even then, these may not

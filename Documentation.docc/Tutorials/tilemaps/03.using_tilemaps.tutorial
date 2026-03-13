@@ -9,12 +9,12 @@
     @Section(title: "Why use a TileMapLayer node?") {
         @ContentAndMedia {
         A tilemap is a grid of tiles used to create a game's layout. There are several
-        benefits to using [`TileMapLayer`](https://docs.godotengine.org/en/stable/classes/class_TileMapLayer.html#class-TileMapLayer) nodes to design your levels.
+        benefits to using [`TileMapLayer`](https://docs.godotengine.org/en/stable/classes/class_tilemaplayer.html#class-tilemaplayer) nodes to design your levels.
         @Image(source: "tilemap_overview.png")
         }
         
         First, they make it possible to draw the layout by "painting" the tiles onto a
-        grid, which is much faster than placing individual [`Sprite2D`](https://docs.godotengine.org/en/stable/classes/class_Sprite2D.html#class-Sprite2D)
+        grid, which is much faster than placing individual [`Sprite2D`](https://docs.godotengine.org/en/stable/classes/class_sprite2d.html#class-sprite2d)
         nodes one by one. 
         
         Second, they allow for much larger levels because they are
@@ -91,7 +91,7 @@
         
         This node, being an extension of `Node2D`, also contains all the inherited properties as well from `Node2D`, `CanvasItem` and `Node`.
 
-        > Tip: `TileMap` built-in navigation has many practical limitations that result in inferior pathfinding performance and pathfollowing quality. After designing the `TileMap` consider baking it to a more optimized navigation mesh (and disabling the `TileMap` NavigationLayer) using a [`NavigationRegion2D`](https://docs.godotengine.org/en/stable/classes/class_NavigationRegion2D.html#class-NavigationRegion2D) or the [`NavigationServer2D`](https://docs.godotengine.org/en/stable/classes/class_NavigationServer2D.html#class-NavigationServer2D).
+        > Tip: `TileMap` built-in navigation has many practical limitations that result in inferior pathfinding performance and pathfollowing quality. After designing the `TileMap` consider baking it to a more optimized navigation mesh (and disabling the `TileMap` NavigationLayer) using a [`NavigationRegion2D`](https://docs.godotengine.org/en/stable/classes/class_navigationregion2d.html#class-navigationregion2d) or the [`NavigationServer2D`](https://docs.godotengine.org/en/stable/classes/class_navigationserver2d.html#class-navigationserver2d).
 
         > Warning: 2D navigation meshes can not be "layered" or stacked on top of each other like visuals or physic shapes. Attempting to stack navigation meshes on the same navigation map will result in merge and logical errors that break the pathfinding.
     }

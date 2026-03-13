@@ -19,7 +19,7 @@ usefulness when drawing, so they will be detailed next:
 
 Unlike 2D nodes, "size" is important with controls, as it helps to
 organize them in proper layouts. For this, the
-[Control.size](https://docs.godotengine.org/en/stable/classes/class_control_property_size.html#class-control_property_size)
+[Control.size](https://docs.godotengine.org/en/stable/classes/class_control.html#class-control-property-size)
 property is provided. Checking it during `_draw()` is vital to ensure
 everything is kept in-bounds.
 
@@ -28,11 +28,11 @@ everything is kept in-bounds.
 Some controls (such as buttons or text editors) might provide input
 focus for keyboard or joypad input. Examples of this are entering text
 or pressing a button. This is controlled with the
-[Control.focus_mode](https://docs.godotengine.org/en/stable/classes/class_control_property_focus_mode.html#class-control_property_focus_mode)
+[Control.focus_mode](https://docs.godotengine.org/en/stable/classes/class_control.html#class-control-property-focus-mode)
 property. When drawing, and if the control supports input focus, it is
 always desired to show some sort of indicator (highlight, box, etc.) to
 indicate that this is the currently focused control. To check for this
-status, the [Control.has_focus()](https://docs.godotengine.org/en/stable/classes/class_control_method_has_focus.html#class-control_method_has_focus) method
+status, the [Control.has_focus()](https://docs.godotengine.org/en/stable/classes/class_control.html#class-control-method-has-focus) method
 exists. Example
 
 ```
@@ -54,7 +54,7 @@ the minimum size will make sure your custom control is not squished by
 the other controls in the container.
 
 To provide this callback, just override
-[Control._get_minimum_size()](https://docs.godotengine.org/en/stable/classes/class_control_private_method__get_minimum_size.html#class-control_private_method__get_minimum_size),
+[Control._get_minimum_size()](https://docs.godotengine.org/en/stable/classes/class_control.html#class-control-private-method-get-minimum-size),
 for example:
 
 ```
@@ -86,10 +86,10 @@ when:
 captures input until button is released)
 
 - Control provides keyboard/joypad focus via
-[Control.focus_mode](https://docs.godotengine.org/en/stable/classes/class_control_property_focus_mode.html#class-control_property_focus_mode).
+[Control.focus_mode](https://docs.godotengine.org/en/stable/classes/class_control.html#class-control-property-focus-mode).
 
 This function is
-[Control._gui_input()](https://docs.godotengine.org/en/stable/classes/class_control_private_method__gui_input.html#class-control_private_method__gui_input).
+[Control._gui_input()](https://docs.godotengine.org/en/stable/classes/class_control.html#class-control-private-method-gui-input).
 To use it, override it in your control. No processing needs to be set.
 
 ```

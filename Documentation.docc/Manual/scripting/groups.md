@@ -21,8 +21,8 @@ There are two ways to add/remove nodes to groups:
 
 - During design, by using the Node dock in the editor, or the Global Groups in project settings.
 
-- During execution, by calling [Node.add_to_group()](https://docs.godotengine.org/en/stable/classes/class_node_method_add_to_group.html#class-node_method_add_to_group)
-or [Node.remove_from_group()](https://docs.godotengine.org/en/stable/classes/class_node_method_remove_from_group.html#class-node_method_remove_from_group).
+- During execution, by calling [Node.add_to_group()](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-method-add-to-group)
+or [Node.remove_from_group()](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-method-remove-from-group).
 
 ### Using the Node dock
 
@@ -92,7 +92,7 @@ The above code calls the function `enter_alert_mode` on every member of the
 group `guards`.
 
 To get the full list of nodes in the `guards` group as an array, you can call
-[SceneTree.get_nodes_in_group()](https://docs.godotengine.org/en/stable/classes/class_scenetree_method_get_nodes_in_group.html#class-scenetree_method_get_nodes_in_group):
+[SceneTree.get_nodes_in_group()](https://docs.godotengine.org/en/stable/classes/class_scenetree.html#class-scenetree-method-get-nodes-in-group):
 
 ```
 var guards = get_tree().get_nodes_in_group("guards")

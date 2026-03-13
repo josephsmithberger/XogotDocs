@@ -55,7 +55,7 @@ func get_enemy_count():
 ```
 
 The second parameter of
-[Performance.add_custom_monitor](https://docs.godotengine.org/en/stable/classes/class_performance_method_add_custom_monitor.html#class-performance_method_add_custom_monitor)
+[Performance.add_custom_monitor](https://docs.godotengine.org/en/stable/classes/class_performance.html#class-performance-method-add-custom-monitor)
 is a [Callable](https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable).
 
 `enemy.tscn` is a scene with a Node2D root node and Timer child node. The

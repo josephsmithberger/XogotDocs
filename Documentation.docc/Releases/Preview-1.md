@@ -2,9 +2,220 @@
 
 Release notes for our preview release of Xogot to TestFlight.
 
-# Releases
+## Release
 
-## Build 
+### Improvements
+
+* Native Theme Editor is now available - we would love your early testing!
+
+* Switch the subscription page from StoreKit to RevenueCat, and would love your
+  feedback!
+
+* More work on reducing battery usage when idling (Godot PR 117113, onion
+  animation only uses time if enabled, audio is paused when not in use).
+
+* Supports running games on iPad in full screen, without launching a separate
+  window (#2323)
+
+* We now track Godot's editor unfolding rules more closely (#2322)
+
+### Fixes
+
+* Fix AnimationTree: Add node popover sometimes misplaced (#2304, Discord),
+
+
+## Releases 3879
+
+### Improvements
+
+* AnimationPlayer: now supports Onion Skinning (#1015)
+
+* Improves some confirmation dialog UI, they were too tight (#2292)
+
+* Added support for @icon(#path) annotations (#2305, Discord).
+
+* Additional optimizations to reduce the battery consumption while idling.
+
+## Build 3855/Beta 448
+
+### Improvements
+
+* Added support for the AnimationPlayerEditor dummy playback, to integrate with
+  AnimationTree and hooked up various signals so we get the same interactive
+  features of Godot (#1026, #1567)
+
+* Been hard at work to improve the performance of Xogot and make it feel
+  snappier, lots of fixes from profiling and tuning.
+
+* Identified various idle tasks in Godot that were burning battery and CPU when
+  idling, those have been removed.   You can follow our contributions here:
+  https://github.com/godotengine/godot/issues/116845
+   
+### Fixes
+
+* Fixes a crash in the wild with the Skeleton3D editor when dragging other nodes
+  into it, this is a Godot bug,
+  reported upstream: godotengine/godot#116670
+
+
+## Build #3835
+
+This is a bug fix release, no user visible changes - but importantly, it
+contains internal refactors in preparation for a Mac release.
+
+* SpriteSheetImport: order wasn't applied when importing (#2174).
+
+* iPhone: Fix TileMap paint terrains not working on iPhone (#2176).
+
+* Memory leak fixes.
+
+* Fixes a Godot crash in the wild: a user is doing a close in GDSscript and then
+  calling eof_reached on a closed filehandle (#2178, TestFlight).
+
+* Fixes a crash when closing a project.
+
+* Add rescan of resources after extracting data to new file and folders during
+  scene import (#2180).
+
+* RangedSlider: Handle degenerate cases, (#2181, TestFlight
+
+* VirtualController appears onscreen after going to CodeEditorUI even if
+  controllers are turned off in settings (#2182).
+
+* You can now launch the videos from the learning center while editing your
+  project.
+
+* Fixes a crash on the polygon editor (#2196).
+
+* Fix Number entry fields clip after rotating iPad(#2218).
+
+* Fixes a crash when playing an animation and switching scenes (#2239)
+
+* Fixes a crash when nodes on a scene were deleted but you still had a reference
+  to them (#2240, #2241, #2256).
+  
+* Resolves black screen appearing sometimes in 2d and 3d editors when because of
+  structural identity loss / change editor view gets blank because leaving view
+  removes renderingLayer for upcoming view by mistake.
+
+* Fixes remote sync.
+
+* Fixes a crash in the ProjectManager (#2257)
+
+* Fixes a crash that could occur while going to the background while launching.
+
+* Add rescan of resources after extracting data to new file and folders (#2180).
+
+
+## Build 3777/Beta 327
+
+* Video content on the learning center now has captions and has been localized -
+  we would love your feedback on these.
+
+* Small internal styling improvements, it should not change anything, but it
+  made it easier to maintain.
+
+### Fixes
+
+* iPhone: Undo / Redo, 2D / 3D buttons no longer cover the bottom TabBar #2215 - Discord.
+
+* Fixes a warning on the tile set editor (#2214, Testflight)
+
+* Fixes a crash on the popup menu (#2202, Testflight).
+
+## Build 3761/Beta 310
+
+### Improvements
+
+* Vastly improved the performance of the shell when selecting nodes and
+  navigating different nodes, this should be a lot snappier - fix courtesy of
+  Instrument's SwiftUI monitoring.
+
+### Fixes
+
+* Fixes a crash on Godot's polygon editor (Testflight, #2196)
+
+* Fixes a crash when opening a sheet (Testflight, #2197)
+
+* Fixes a crash on the VisualShaderEditor caught in the wild (Testflight).
+
+* Fixes a crash when you have made changes to a proejct and go back to the main
+  screen (Testflight, #2205)
+
+* Fixes a crash in the scene 3D debugging (Testflight, #2206)
+
+* Fixes a crash on various text input fields where we auto-selected text, but
+  the text contained complex unicode strings - a mismatch between Swift's
+  grapheme-based string indexes and UIKit UTF16-scalar based indexes
+  (Testflight, #2208).
+
+* Fixes a crash on code completion on the editor (Testflight, #2210)
+
+* Fixes another unicode crash, because indexes in strings can not be assumed to
+  be the same after a string has been lowercased (Testflight, #2211).
+  
+## Build 3752
+
+### Improvements
+
+* Learning center videos can now be played back from the editor, without going
+  back to the learning center.
+
+
+## Build 3749
+
+### Fixes
+
+* Update mode on the animation track was not showing up for a number of values
+  correctly - for example the 'frame' property of a SpriteFrame (Discord). 
+
+* Remote debugging sync with 4.5
+
+## Build 3742
+
+### Improvements
+
+* Added video tutorials to the learning center.
+
+* Improves handle editing on the Animation Bezier track.
+
+* Improves panning on Mac, where the dragging felt choppy.
+
+### Fixes
+
+* Fixes a Godot crash when a user would close a file and then call eof_reached
+  which would crash the editor (Testflight, #2178)
+
+* Fixes a crash when audio notifications were arriving after a game stopped and
+  could crash the editor (Testflight)
+
+## Build 3725
+
+* Improves panning speed and choppiness on the editor, should feel more natural now.
+
+* Internals that should reduce a class of crashes when closing a project.
+
+### Fixes
+
+* Fix AnimationPlayer bezier editing #2172
+
+* Makes our slide-editor more tolerant to invalid data surfaced in the property
+  editor (#2181)
+
+## Build 3725
+
+We are moving Testflight to version 4.5.1, so that is the major change in this
+release.   The Godot engine is now built in release mode as opposed to debug
+mode, so many operations (in particular importing) should be vastly faster.
+
+### Fixes
+
+* Animation when switching the bottom bar pads should no longer feel "jumpy"
+  (#2162). 
+
+* Fixes a crash on the context menu on the file and scene pad caught in the wild (Testflight)
+
+## Build 3711/Beta 229
 
 ### Improvements
 

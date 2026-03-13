@@ -61,7 +61,7 @@
             }
             @Step {
                 In the Scene dock, press the 2D Scene button. This will add
-                a [`Node2D`](https://docs.godotengine.org/en/stable/classes/class_Node2D.html#class-Node2D) as our root.
+                a [`Node2D`](https://docs.godotengine.org/en/stable/classes/class_node2d.html#class-node2d) as our root.
                 @Image(source: "signals_02_2d_scene.png")
             }
             @Step {
@@ -142,7 +142,7 @@
             > Tip: You might notice something new: `-> void` at the end of our function. In GDScript, the `->` void syntax is called a **return type hint**. In this case it specifically tells the Xogot editor and compiler that the function does not return a value. Generally you can user these to indicate the type of value you want this function to return.
             
             Our `Sprite2D` moves thanks to code in the `_process()` function. The Godot Engine provides
-            a method to toggle processing on and off: [`set_process()`](https://docs.godotengine.org/en/stable/classes/class_Node_method_set_process.html#class-Node-method-set-process). We will use that with another method of the `Node` class: 
+            a method to toggle processing on and off: [`set_process()`](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-method-set-process). We will use that with another method of the `Node` class: 
             `is_processing()`. This method returns `true` if idle processing is active. We can then use
             the `not` keyword to return an inversion of that value.
             @Step {
@@ -182,7 +182,7 @@
             @Image(source: "signals_15_scene_tree.png")
         }
         @Steps {
-            For this section we will use a different node: the Godot Engine has a [`Timer`](https://docs.godotengine.org/en/stable/classes/class_Timer.html#class-Timer) node
+            For this section we will use a different node: the Godot Engine has a [`Timer`](https://docs.godotengine.org/en/stable/classes/class_timer.html#class-timer) node
             that's useful to implement skill cooldown times, weapon reloading, and more.
             
             @Step {
@@ -210,11 +210,11 @@
             listen to the Timer's *timeout* signal.
             
             We want to connect the signal when the scene is instantiated, and we can do that
-            using the [`_ready()`](https://docs.godotengine.org/en/stable/classes/class_Node_private_method__ready.html#class-Node-private-method--ready) built-in function,
+            using the [`_ready()`](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-private-method-ready) built-in function,
             which is called automatically by the engine when a node is fully instantiated.
             
             To get a reference to a node relative to the current one, we use the method
-            [`get_node()`](https://docs.godotengine.org/en/stable/classes/class_Node_method_get_node.html#class-Node-method-get-node). We can store the reference
+            [`get_node()`](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-method-get-node). We can store the reference
             in a variable.
             @Step {
                 To accomplish all that, add the following code above the `_process(delta)` function: 
@@ -335,7 +335,7 @@
             the game world, to a collision, to a character entering or leaving an area, to
             an element of the interface changing size, and much more.
 
-            For example, an [`Area2D`](https://docs.godotengine.org/en/stable/classes/class_Area2D.html#class-Area2D) representing a coin emits a
+            For example, an [`Area2D`](https://docs.godotengine.org/en/stable/classes/class_area2d.html#class-area2d) representing a coin emits a
             `body_entered` signal whenever the player's physics body enters its collision
             shape, allowing you to know when the player collected it.
 

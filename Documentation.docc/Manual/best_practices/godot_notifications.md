@@ -1,7 +1,7 @@
 # Godot notifications
 
 Every Object in Godot implements a
-[_notification](https://docs.godotengine.org/en/stable/classes/class_object_private_method__notification.html#class-object_private_method__notification) method. Its purpose is to
+[_notification](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-private-method-notification) method. Its purpose is to
 allow the Object to respond to a variety of engine-level callbacks that may
 relate to it. For example, if the engine tells a
 [CanvasItem](https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#class-canvasitem) to "draw", it will call
@@ -25,20 +25,20 @@ much so that Godot exposes many of them with dedicated functions:
 What users might not realize is that notifications exist for types other
 than Node alone, for example:
 
-- [Object::NOTIFICATION_POSTINITIALIZE](https://docs.godotengine.org/en/stable/classes/class_object_constant_notification_postinitialize.html#class-object_constant_notification_postinitialize):
+- [Object::NOTIFICATION_POSTINITIALIZE](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-constant-notification-postinitialize):
 a callback that triggers during object initialization. Not accessible to scripts.
 
-- [Object::NOTIFICATION_PREDELETE](https://docs.godotengine.org/en/stable/classes/class_object_constant_notification_predelete.html#class-object_constant_notification_predelete):
+- [Object::NOTIFICATION_PREDELETE](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-constant-notification-predelete):
 a callback that triggers before the engine deletes an Object, i.e. a
 "destructor".
 
 And many of the callbacks that do exist in Nodes don't have any dedicated
 methods, but are still quite useful.
 
-- [Node::NOTIFICATION_PARENTED](https://docs.godotengine.org/en/stable/classes/class_node_constant_notification_parented.html#class-node_constant_notification_parented):
+- [Node::NOTIFICATION_PARENTED](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-constant-notification-parented):
 a callback that triggers anytime one adds a child node to another node.
 
-- [Node::NOTIFICATION_UNPARENTED](https://docs.godotengine.org/en/stable/classes/class_node_constant_notification_unparented.html#class-node_constant_notification_unparented):
+- [Node::NOTIFICATION_UNPARENTED](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-constant-notification-unparented):
 a callback that triggers anytime one removes a child node from another
 node.
 
@@ -50,7 +50,7 @@ One can access all these custom notifications from the universal
 > overridden by scripts.
 >
 > A classic example is the
-> [_init](https://docs.godotengine.org/en/stable/classes/class_object_private_method__init.html#class-object_private_method__init) method in Object. While it has no
+> [_init](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-private-method-init) method in Object. While it has no
 > `NOTIFICATION_*` equivalent, the engine still calls the method. Most languages
 > (except C#) rely on it as a constructor.
 >
@@ -165,7 +165,7 @@ to the SceneTree, the `_enter_tree()` and `_ready()` calls occur.
 
 If one needs to trigger behavior that occurs as nodes parent to another,
 regardless of whether it occurs as part of the main/active scene or not, one
-can use the [PARENTED](https://docs.godotengine.org/en/stable/classes/class_node_constant_notification_parented.html#class-node_constant_notification_parented) notification.
+can use the [PARENTED](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-constant-notification-parented) notification.
 For example, here is a snippet that connects a node's method to
 a custom signal on the parent node without failing. Useful on data-centric
 nodes that one might create at runtime.

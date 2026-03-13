@@ -71,7 +71,7 @@ It is possible to choose other types of imported resources in the Import dock:
 - **BitMap:** 1-bit monochrome texture (intended to be used as a click mask in
 [TextureButton](https://docs.godotengine.org/en/stable/classes/class_texturebutton.html#class-texturebutton) and [TouchScreenButton](https://docs.godotengine.org/en/stable/classes/class_touchscreenbutton.html#class-touchscreenbutton)). This resource
 type cannot be displayed directly onto 2D or 3D nodes, but the pixel values
-can be queried from a script using [get_bit](https://docs.godotengine.org/en/stable/classes/class_bitmap_method_get_bit.html#class-bitmap_method_get_bit).
+can be queried from a script using [get_bit](https://docs.godotengine.org/en/stable/classes/class_bitmap.html#class-bitmap-method-get-bit).
 
 - **Cubemap:** Import the texture as a 6-sided cubemap, with interpolation
 between the cubemap's sides (seamless cubemaps), which can be sampled in
@@ -87,7 +87,7 @@ all characters have the same width. See <doc:gui_using_fonts>.
 
 - **Image:** Import the image as-is. This resource type cannot be displayed
 directly onto 2D or 3D nodes, but the pixel values can be queried from a
-script using [get_pixel](https://docs.godotengine.org/en/stable/classes/class_image_method_get_pixel.html#class-image_method_get_pixel).
+script using [get_pixel](https://docs.godotengine.org/en/stable/classes/class_image.html#class-image-method-get-pixel).
 
 - **Texture2D:** Import the image as a 2-dimensional texture, suited for display
 on 2D and 3D surfaces. This is the default import mode.

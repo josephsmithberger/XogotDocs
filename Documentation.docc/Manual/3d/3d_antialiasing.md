@@ -59,7 +59,7 @@ To make specular aliasing less noticeable, use the Screen-space roughness limite
 which is enabled by default.
 
 MSAA can be enabled in the Project Settings by changing the value of the
-[Rendering > Anti Aliasing > Quality > MSAA 3D](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_rendering/anti_aliasing/quality/msaa_3d.html#class-projectsettings_property_rendering/anti_aliasing/quality/msaa_3d)
+[Rendering > Anti Aliasing > Quality > MSAA 3D](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-rendering-anti-aliasing-quality-msaa-3d)
 setting. It's important to change the value of the **MSAA 3D** setting and not **MSAA 2D**, as these are entirely
 separate settings.
 
@@ -95,7 +95,7 @@ objects. Rendering at a higher framerate will allow TAA to converge faster,
 therefore making those ghosting artifacts less visible.
 
 Temporal antialiasing can be enabled in the Project Settings by changing the value of the
-[Rendering > Anti Aliasing > Quality > TAA](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_rendering/anti_aliasing/quality/use_taa.html#class-projectsettings_property_rendering/anti_aliasing/quality/use_taa)
+[Rendering > Anti Aliasing > Quality > TAA](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-rendering-anti-aliasing-quality-use-taa)
 setting.
 
 Comparison between no antialiasing (left) and TAA (right):
@@ -155,7 +155,7 @@ FXAA introduces a moderate amount of blur when enabled (more than TAA when
 still, but less than TAA when the camera is moving).
 
 FXAA can be enabled in the Project Settings by changing the value of the
-[Rendering > Anti Aliasing > Quality > Screen Space AA](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_rendering/anti_aliasing/quality/screen_space_aa.html#class-projectsettings_property_rendering/anti_aliasing/quality/screen_space_aa)
+[Rendering > Anti Aliasing > Quality > Screen Space AA](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-rendering-anti-aliasing-quality-screen-space-aa)
 setting to `FXAA`.
 
 Comparison between no antialiasing (left) and FXAA (right):
@@ -179,7 +179,7 @@ and some added blurriness. This is most beneficial in fast-moving scenes or just
 after a camera cut, especially at lower FPS.
 
 SMAA 1x can be enabled in the Project Settings by changing the value of the
-[Rendering > Anti Aliasing > Quality > Screen Space AA](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_rendering/anti_aliasing/quality/screen_space_aa.html#class-projectsettings_property_rendering/anti_aliasing/quality/screen_space_aa)
+[Rendering > Anti Aliasing > Quality > Screen Space AA](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-rendering-anti-aliasing-quality-screen-space-aa)
 setting to `SMAA`.
 
 Comparison between no antialiasing (left) and SMAA 1x (right):
@@ -200,9 +200,9 @@ SSAA difficult to use for game purposes, but you may still find supersampling
 useful for <doc:creating_movies>.
 
 Supersample antialiasing is performed by increasing the
-[Rendering > Scaling 3D > Scale](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_rendering/scaling_3d/scale.html#class-projectsettings_property_rendering/scaling_3d/scale)
+[Rendering > Scaling 3D > Scale](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-rendering-scaling-3d-scale)
 advanced project setting above `1.0` while ensuring
-[Rendering > Scaling 3D > Mode](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_rendering/scaling_3d/mode.html#class-projectsettings_property_rendering/scaling_3d/mode)
+[Rendering > Scaling 3D > Mode](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-rendering-scaling-3d-mode)
 is set to `Bilinear` (the default).
 Since the scale factor is defined per-axis, a scale factor of `1.5` will result
 in 2.25× SSAA while a scale factor of `2.0` will result in 4× SSAA. Since Godot

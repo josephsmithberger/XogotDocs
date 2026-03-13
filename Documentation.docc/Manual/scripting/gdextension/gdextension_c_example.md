@@ -1408,7 +1408,7 @@ not only on the documentation page for the custom class but also in the Inspecto
 
 Our custom node now has properties to influence how it operates, but it still
 doesn't do anything. In this section, we will bind the virtual method
-[_process()](https://docs.godotengine.org/en/stable/classes/class_node_private_method__process.html#class-node_private_method__process) and make our custom sprite
+[_process()](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-private-method-process) and make our custom sprite
 move a little bit.
 
 In the `gdexample.h` file, let's add a function that represents the custom
@@ -1869,7 +1869,7 @@ void gdexample_class_bind_methods()
 ```
 
 In order to emit a signal, we need to call the
-[emit_signal()](https://docs.godotengine.org/en/stable/classes/class_object_method_emit_signal.html#class-object_method_emit_signal) method on our custom node.
+[emit_signal()](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-method-emit-signal) method on our custom node.
 Since this is a `vararg` function (meaning it takes any amount of arguments),
 we cannot use `ptrcall`. To do a regular call, we have to create Variants,
 which require a few more steps of plumbing to get done.

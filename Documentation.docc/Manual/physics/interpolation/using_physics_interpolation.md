@@ -10,7 +10,7 @@ special treatment, and these will be described.
 ## Turn on the physics interpolation setting
 
 The first step is to turn on physics interpolation in
-[Project Settings > Physics > Common > Physics Interpolation](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_physics/common/physics_interpolation.html#class-projectsettings_property_physics/common/physics_interpolation)
+[Project Settings > Physics > Common > Physics Interpolation](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-physics-common-physics-interpolation)
 You can now run your game.
 
 It is likely that nothing looks hugely different, particularly if you are running
@@ -21,7 +21,7 @@ behind the scenes.
 >
 > To convert an existing game to use interpolation, it is highly recommended that
 > you temporarily set
-> [Project Settings > Physics > Common > Physics Tick per Second](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_physics/common/physics_ticks_per_second.html#class-projectsettings_property_physics/common/physics_ticks_per_second)
+> [Project Settings > Physics > Common > Physics Tick per Second](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-physics-common-physics-ticks-per-second)
 > to a low value such as `10`, which will make interpolation problems more obvious.
 >
 
@@ -96,7 +96,7 @@ when you are initially placing objects, or moving them to a new location. Here, 
 don't want a smooth motion between where the object was (e.g. the origin) and the
 initial position - you want an instantaneous move.
 
-The solution to this is to call the [Node.reset_physics_interpolation](https://docs.godotengine.org/en/stable/classes/class_node_method_reset_physics_interpolation.html#class-node_method_reset_physics_interpolation)
+The solution to this is to call the [Node.reset_physics_interpolation](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-method-reset-physics-interpolation)
 function. What this function does under the hood is set the internally stored
 previous transform of the object to be equal to the current transform. This
 ensures that when interpolating between these two equal transforms, there will be
@@ -143,7 +143,7 @@ interpolation and get the smoothest gameplay, it is highly recommended to
 temporarily set the physics tick rate to a low value such as 10 TPS.
 
 The gameplay may not work perfectly, but it should enable you to more easily see
-cases where you should be calling [Node.reset_physics_interpolation](https://docs.godotengine.org/en/stable/classes/class_node_method_reset_physics_interpolation.html#class-node_method_reset_physics_interpolation),
+cases where you should be calling [Node.reset_physics_interpolation](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-method-reset-physics-interpolation),
 or where you should be using your own custom interpolation on e.g. a
 [Camera3D](https://docs.godotengine.org/en/stable/classes/class_camera3d.html#class-camera3d). Once you have these cases fixed, you can set the
 physics tick rate back to the desired setting.

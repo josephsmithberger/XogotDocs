@@ -1,6 +1,6 @@
 @Tutorial(time: 15) {
     @Intro(title: "Nodes and Scenes") {
-
+        This tutorial functions as an introduction to Xogot, and by extension many of the building blocks of Godot and everything you need to know to get up to speed. 
         @Image(source: "nodes_cover.png")
         }
     @Section(title: "Nodes") {
@@ -11,51 +11,48 @@
 
             @Image(source: "nodes_and_scenes_nodes.png")
         }
-        @ContentAndMedia {
         
-            All nodes have the following characteristics:
-                
-            * A name.
-            * Editable properties.
-            * They receive callbacks to update every frame.
-            * You can extend them with new properties and functions.
-            * You can add them to another node as a child.
-
-            The last characteristic is important. **Together, nodes form a tree**, which is a powerful
-            feature to organize projects. Since different nodes have different functions,
-            combining them produces more complex behavior. As we saw before, you can build a
-            playable character the camera follows using a [`CharacterBody2D`](https://docs.godotengine.org/en/stable/classes/class_CharacterBody2D.html#class-CharacterBody2D)
-            node, a [`Sprite2D`](https://docs.godotengine.org/en/stable/classes/class_Sprite2D.html#class-Sprite2D) node,
-            a [`Camera2D`](https://docs.godotengine.org/en/stable/classes/class_Camera2D.html#class-Camera2D) node, and a [`CollisionShape2D`](https://docs.godotengine.org/en/stable/classes/class_CollisionShape2D.html#class-CollisionShape2D) node.
-            @Image(source: "nodes_and_scenes_character_nodes.png")
-            }
+        ### What is a Node?
+        Think of nodes as the basic building blocks of your game. No matter what kind of node you are using, they all share these core features:
+            
+        - **A name:** So you can easily identify them.
+        - **Editable properties:** Settings you can tweak, like size, position, or color.
+        - **Built-in updates:** They can automatically run instructions every single frame to handle things like movement and animation.
+        - **Expandable:** You can attach your own scripts to give them custom rules and abilities.
+        - **Parenting:** **You can attach a node to another node as its "child."**
+            
+        ### The Node Tree
+        That last point is the secret to how the engine works. **When you connect nodes together, they form a "tree."** 
+            
+        This tree structure is the main way you organize your game. Because different nodes do different things, snapping them together lets you create complex, interactive objects. 
+        
+        @ContentAndMedia {	
+            ### Example: Building a Player Character
+            Instead of writing complex code from scratch, you can build a fully playable character by grouping these specific nodes together:
+            
+            - [`CharacterBody2D`](https://docs.godotengine.org/en/stable/classes/class_characterbody2d.html#class-characterbody2d): The main parent node that controls the player's physics and movement.
+            - [`Sprite2D`](https://docs.godotengine.org/en/stable/classes/class_sprite2d.html#class-sprite2d): A child node that displays the character's artwork.
+            - [`Camera2D`](https://docs.godotengine.org/en/stable/classes/class_camera2d.html#class-camera2d): A child node that keeps the screen centered on the player.
+            - [`CollisionShape2D`](https://docs.godotengine.org/en/stable/classes/class_collisionshape2d.html#class-collisionshape2d): A child node that defines the character's physical shape so they do not fall through the floor.
+        @Image(source: "nodes_and_scenes_character_nodes.png")
+        }
     }
     @Section(title: "Scenes") {
         @ContentAndMedia {
-            When you organize nodes in a tree, like our character, we call this construct a
-            scene. Once saved, scenes work like new node types in the editor, where you can
-            add them as a child of an existing node. In that case, the instance of the scene
-            appears as a single node with its internals hidden.
-
-            Scenes allow you to structure your game's code however you want. You can
-            **compose nodes** to create custom and complex node types, like a game character
-            that runs and jumps, a life bar, a chest with which you can interact, and more.
-
+            When you group nodes together into a tree, like we did with the player character, it becomes a **Scene**. Once you save a scene, it acts just like a brand new type of node. You can drop it into other scenes as a child node. When you do this, all its inner workings are neatly hidden away, and it looks like a single node in your editor. 
+            
+            Scenes give you the freedom to build your game piece by piece. By combining basic nodes, you can create complex, reusable objects like a running character, a health bar, or an interactive treasure chest.
+            
             @Image(source: "nodes_and_scenes_3d_scene_example.png")
         }
         @ContentAndMedia {
-            The Xogot editor essentially is a **scene editor**. It has plenty of tools for
-            editing 2D and 3D scenes, as well as user interfaces. A Xogot project can
-            contain as many of these scenes as you need. The engine only requires one as
-            your application's **main scene**. This is the scene the Godot engine will first load when
-            you or a player runs the game.
-
-            On top of acting like nodes, scenes have the following characteristics:
-
-            1. They always have one root node, like the "Player" in our example.
-            2. You can save them to your local drive and load them later.
-            3. You can create as many instances of a scene as you'd like. You could have
-            five or ten characters in your game, created from your Character scene.
+            You can think of the engine's editor as a powerful **scene editor**. It provides all the tools you need to build 2D worlds, 3D environments, and user interfaces. Your game project can hold hundreds of different scenes. However, the engine requires exactly one to be the **Main Scene**. This is the starting point that loads first when a player launches your game.
+            
+            Beyond acting like reusable nodes, scenes share these three key rules:
+            
+            1. **One Root Node:** Every scene must have exactly one node at the very top of its tree, like the main "Player" node in our earlier example.
+            2. **Savable:** You can save them as files to your computer and load them up whenever you need them.
+            3. **Reusable (Instancing):** You can create endless copies, or "instances," of a scene. For example, you could easily place ten enemies in a level by copying one single Enemy scene. 
         }
     }
     @Section(title: "Creating your first scene") {
@@ -69,9 +66,9 @@
         @ContentAndMedia {
             In an empty scene, the Scene dock on the left shows several options to add a
             root node quickly: 
-            * 2D Scene adds a [`Node2D`](https://docs.godotengine.org/en/stable/classes/class_Node2D.html#class-Node2D) node
-            * 3D Scene adds a [`Node3D`](https://docs.godotengine.org/en/stable/classes/class_Node3D.html#class-Node3D) node,
-            * User Interface adds a [`Control`](https://docs.godotengine.org/en/stable/classes/class_Control.html#class-Control) node
+            * 2D Scene adds a [`Node2D`](https://docs.godotengine.org/en/stable/classes/class_node2d.html#class-node2d) node
+            * 3D Scene adds a [`Node3D`](https://docs.godotengine.org/en/stable/classes/class_node3d.html#class-node3d) node,
+            * User Interface adds a [`Control`](https://docs.godotengine.org/en/stable/classes/class_control.html#class-control) node
             
             These presets are here for convenience; they are not mandatory.
             Other Node lets you select any node to be the root node.
@@ -80,7 +77,7 @@
             button at the top-left of the Scene dock.
             }
         @Steps {
-            We're going to add a single [`Label`](https://docs.godotengine.org/en/stable/classes/class_Label.html#class-Label) node to our scene. Its function is to draw
+            We're going to add a single [`Label`](https://docs.godotengine.org/en/stable/classes/class_label.html#class-label) node to our scene. Its function is to draw
             text on the screen.
             @Step {
                 Press the **Add Child Node** button or **Other Node** to create a

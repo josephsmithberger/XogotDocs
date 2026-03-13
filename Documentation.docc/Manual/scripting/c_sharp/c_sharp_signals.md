@@ -9,8 +9,8 @@ Signals are implemented using C# events, the idiomatic way to represent
 recommended way to use signals in C# and the focus of this page.
 
 In some cases it's necessary to use the older
-[Connect()](https://docs.godotengine.org/en/stable/classes/class_object_method_connect.html#class-object_method_connect) and
-[Disconnect()](https://docs.godotengine.org/en/stable/classes/class_object_method_disconnect.html#class-object_method_disconnect) APIs.
+[Connect()](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-method-connect) and
+[Disconnect()](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-method-disconnect) APIs.
 See :ref:`using_connect_and_disconnect` for more details.
 
 If you encounter a `System.ObjectDisposedException` while handling a signal,
@@ -108,7 +108,7 @@ Sometimes you'll want to bind values to a signal when the connection is establis
 (or in addition to) when the signal is emitted. To do so, you can use an anonymous function like in
 the following example.
 
-Here, the [Button.Pressed](https://docs.godotengine.org/en/stable/classes/class_basebutton_signal_pressed.html#class-basebutton_signal_pressed) signal does not take any argument. But we
+Here, the [Button.Pressed](https://docs.godotengine.org/en/stable/classes/class_basebutton.html#class-basebutton-signal-pressed) signal does not take any argument. But we
 want to use the same `ModifyValue` for both the "plus" and "minus" buttons. So we bind the
 modifier value at the time we're connecting the signals.
 
@@ -148,8 +148,8 @@ public override void _Ready()
 ## Using Connect and Disconnect
 
 In general, it isn't recommended to use
-[Connect()](https://docs.godotengine.org/en/stable/classes/class_object_method_connect.html#class-object_method_connect) and
-[Disconnect()](https://docs.godotengine.org/en/stable/classes/class_object_method_disconnect.html#class-object_method_disconnect). These APIs don't provide as
+[Connect()](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-method-connect) and
+[Disconnect()](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-method-disconnect). These APIs don't provide as
 much type safety as the events. However, they're necessary for
 :ref:`connecting to signals defined by GDScript <connecting_to_signals_cross_language>`
 and passing :ref:`ConnectFlags<enum_Object_ConnectFlags>`.

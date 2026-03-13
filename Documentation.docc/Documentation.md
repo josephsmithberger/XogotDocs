@@ -5,10 +5,12 @@ To get started building games with Xogot, check out our <doc:Getting-Started> gu
 ## Topics
 
 ### Welcome
-- <doc:Testflight>
 - <doc:Getting-Started>
 - <doc:Xogot-User-Interface>
 - <doc:faq>
+
+### Tutorials
+- <doc:Xogot-Tutorials>
 
 ### Release Notes
 - <doc:AppStore>
@@ -24,9 +26,8 @@ To get started building games with Xogot, check out our <doc:Getting-Started> gu
 - <doc:Working-with-Source-Control>
 - <doc:Xogot-Connect>
 - <doc:Command-Palette>
+- <doc:Testflight>
 
-### Tutorials
-- <doc:Xogot-Tutorials>
 
 ### 2D
 

@@ -55,7 +55,7 @@ is enough. If you want to store some per-gizmo data, you should go with the seco
 
 ## Simple approach
 
-The first step is to, in our custom gizmo plugin, override the [_has_gizmo()](https://docs.godotengine.org/en/stable/classes/class_editornode3dgizmoplugin_private_method__has_gizmo.html#class-editornode3dgizmoplugin_private_method__has_gizmo)
+The first step is to, in our custom gizmo plugin, override the [_has_gizmo()](https://docs.godotengine.org/en/stable/classes/class_editornode3dgizmoplugin.html#class-editornode3dgizmoplugin-private-method-has-gizmo)
 method so that it returns `true` when the node parameter is of our target type.
 
 ```
@@ -69,7 +69,7 @@ func _has_gizmo(node):
 # ...
 ```
 
-Then we can override methods like [_redraw()](https://docs.godotengine.org/en/stable/classes/class_editornode3dgizmoplugin_private_method__redraw.html#class-editornode3dgizmoplugin_private_method__redraw)
+Then we can override methods like [_redraw()](https://docs.godotengine.org/en/stable/classes/class_editornode3dgizmoplugin.html#class-editornode3dgizmoplugin-private-method-redraw)
 or all the handle related ones.
 
 ```
@@ -104,7 +104,7 @@ func _redraw(gizmo):
 ```
 
 Note that we created a material in the `_init` method, and retrieved it in the `_redraw`
-method using [get_material()](https://docs.godotengine.org/en/stable/classes/class_editornode3dgizmoplugin_method_get_material.html#class-editornode3dgizmoplugin_method_get_material). This
+method using [get_material()](https://docs.godotengine.org/en/stable/classes/class_editornode3dgizmoplugin.html#class-editornode3dgizmoplugin-method-get-material). This
 method retrieves one of the material's variants depending on the state of the gizmo
 (selected and/or editable).
 
@@ -160,7 +160,7 @@ maybe because we want to have some state stored in each gizmo or because we are 
 an old gizmo plugin and we don't want to go through the rewriting process.
 
 In these cases all we need to do is, in our new gizmo plugin, override
-[_create_gizmo()](https://docs.godotengine.org/en/stable/classes/class_editornode3dgizmoplugin_private_method__create_gizmo.html#class-editornode3dgizmoplugin_private_method__create_gizmo), so it returns our custom gizmo implementation
+[_create_gizmo()](https://docs.godotengine.org/en/stable/classes/class_editornode3dgizmoplugin.html#class-editornode3dgizmoplugin-private-method-create-gizmo), so it returns our custom gizmo implementation
 for the Node3D nodes we want to target.
 
 ```
