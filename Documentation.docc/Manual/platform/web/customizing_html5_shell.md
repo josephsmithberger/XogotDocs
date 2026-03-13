@@ -64,7 +64,7 @@ The following optional placeholders will enable some extra features in your cust
 
 - `$GODOT_PROJECT_NAME`:
 The project name as defined in the
-[Name](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_application/config/name.html#class-projectsettings_property_application/config/name) setting
+[Name](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-application-config-name) setting
 in **Project Settings > Application > Config**.
 It is a good idea to use it as a `<title>` in your template.
 
@@ -76,12 +76,12 @@ HTML `head` element from the Godot Editor, e.g. for different Web export presets
 
 - `$GODOT_SPLASH`:
 The path to the image used as the boot splash as defined in the
-[Image](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_application/boot_splash/image.html#class-projectsettings_property_application/boot_splash/image) setting
+[Image](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-application-boot-splash-image) setting
 in **Project Settings > Application > Boot Splash**.
 
 - `$GODOT_SPLASH_COLOR`
 The splash screen background color as defined in the
-[BG Color](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_application/boot_splash/bg_color.html#class-projectsettings_property_application/boot_splash/bg_color) setting
+[BG Color](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-application-boot-splash-bg-color) setting
 in **Project Settings > Application > Boot Splash**, converted to a hex color code.
 
 - `$GODOT_SPLASH_CLASSES`:
@@ -91,31 +91,31 @@ based on the splash project settings.
 The following settings from **Project Settings > Application > Boot Splash** are provided,
 represented by the class names shown below depending on the setting's boolean value:
 
-[Show Image](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_application/boot_splash/show_image.html#class-projectsettings_property_application/boot_splash/show_image):
+[Show Image](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-application-boot-splash-show-image):
 `show-image--true`, `show-image--false`
-[Stretch Mode](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_application/boot_splash/stretch_mode.html#class-projectsettings_property_application/boot_splash/stretch_mode):
+[Stretch Mode](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-application-boot-splash-stretch-mode):
 `fullsize--true` (if **not** Disabled), `fullsize--false`
-[Use Filter](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_application/boot_splash/use_filter.html#class-projectsettings_property_application/boot_splash/use_filter):
+[Use Filter](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-application-boot-splash-use-filter):
 `use-filter--true`, `use-filter--false`
 
 
 
-- [Show Image](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_application/boot_splash/show_image.html#class-projectsettings_property_application/boot_splash/show_image):
+- [Show Image](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-application-boot-splash-show-image):
 `show-image--true`, `show-image--false`
 
-- [Stretch Mode](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_application/boot_splash/stretch_mode.html#class-projectsettings_property_application/boot_splash/stretch_mode):
+- [Stretch Mode](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-application-boot-splash-stretch-mode):
 `fullsize--true` (if **not** Disabled), `fullsize--false`
 
-- [Use Filter](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_application/boot_splash/use_filter.html#class-projectsettings_property_application/boot_splash/use_filter):
+- [Use Filter](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-application-boot-splash-use-filter):
 `use-filter--true`, `use-filter--false`
 
-- [Show Image](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_application/boot_splash/show_image.html#class-projectsettings_property_application/boot_splash/show_image):
+- [Show Image](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-application-boot-splash-show-image):
 `show-image--true`, `show-image--false`
 
-- [Stretch Mode](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_application/boot_splash/stretch_mode.html#class-projectsettings_property_application/boot_splash/stretch_mode):
+- [Stretch Mode](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-application-boot-splash-stretch-mode):
 `fullsize--true` (if **not** Disabled), `fullsize--false`
 
-- [Use Filter](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_application/boot_splash/use_filter.html#class-projectsettings_property_application/boot_splash/use_filter):
+- [Use Filter](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-application-boot-splash-use-filter):
 `use-filter--true`, `use-filter--false`
 
 When the custom page is ready, it can be selected in the export options under the Html / Custom Html Shell
@@ -198,7 +198,7 @@ allows to test for a specific major version of WebGL.
 
 As the real executable file does not exist in the Web environment, the engine only stores a virtual
 filename formed from the base name of loaded engine files. This value affects the output of the
-[OS.get_executable_path()](https://docs.godotengine.org/en/stable/classes/class_os_method_get_executable_path.html#class-os_method_get_executable_path) method and defines the name of
+[OS.get_executable_path()](https://docs.godotengine.org/en/stable/classes/class_os.html#class-os-method-get-executable-path) method and defines the name of
 the automatically started main pack. The :js:attr:`executable` override option can be
 used to override this value.
 

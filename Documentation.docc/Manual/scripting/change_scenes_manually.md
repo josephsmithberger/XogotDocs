@@ -22,8 +22,8 @@ balancing operation speed and memory consumption, as well as balancing data
 access and integrity.
 
 1. **Delete the existing scene.**
-[SceneTree.change_scene_to_file()](https://docs.godotengine.org/en/stable/classes/class_scenetree_method_change_scene_to_file.html#class-scenetree_method_change_scene_to_file) and
-[SceneTree.change_scene_to_packed()](https://docs.godotengine.org/en/stable/classes/class_scenetree_method_change_scene_to_packed.html#class-scenetree_method_change_scene_to_packed)
+[SceneTree.change_scene_to_file()](https://docs.godotengine.org/en/stable/classes/class_scenetree.html#class-scenetree-method-change-scene-to-file) and
+[SceneTree.change_scene_to_packed()](https://docs.godotengine.org/en/stable/classes/class_scenetree.html#class-scenetree-method-change-scene-to-packed)
 will delete the current scene immediately. You can also delete the
 main scene. Assuming the root node's name is "Main", you could do
 `get_node("/root/Main").free()` to delete the whole scene.
@@ -68,7 +68,7 @@ player's perspective.
 
 1. **Remove the existing scene from the tree.** Assign a variable
 to the existing scene's root node. Then use
-[Node.remove_child(Node)](https://docs.godotengine.org/en/stable/classes/class_node_method_remove_child.html#class-node_method_remove_child) to detach the entire
+[Node.remove_child(Node)](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-method-remove-child) to detach the entire
 scene from the tree.
 
 - Memory still exists (similar pros/cons as hiding it from view).

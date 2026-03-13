@@ -203,8 +203,8 @@ One quirk of the [SceneTree](https://docs.godotengine.org/en/stable/classes/clas
 get much better performance by removing nodes from the SceneTree, rather than by
 pausing or hiding them. You don't have to delete a detached node. You can for
 example, keep a reference to a node, detach it from the scene tree using
-[Node.remove_child(node)](https://docs.godotengine.org/en/stable/classes/class_node_method_remove_child.html#class-node_method_remove_child), then reattach
-it later using [Node.add_child(node)](https://docs.godotengine.org/en/stable/classes/class_node_method_add_child.html#class-node_method_add_child).
+[Node.remove_child(node)](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-method-remove-child), then reattach
+it later using [Node.add_child(node)](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-method-add-child).
 This can be very useful for adding and removing areas from a game, for example.
 
 You can avoid the SceneTree altogether by using Server APIs. For more

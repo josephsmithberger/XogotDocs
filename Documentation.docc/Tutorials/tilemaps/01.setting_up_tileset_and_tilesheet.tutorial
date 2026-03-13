@@ -6,12 +6,12 @@
     @Section(title: "Introduction") {
         @ContentAndMedia {
             A tilemap is a grid of tiles used to create a game's layout. There are several
-            benefits to using [`TileMapLayer`](https://docs.godotengine.org/en/stable/classes/class_TileMapLayer.html#class-TileMapLayer) nodes to design your
+            benefits to using [`TileMapLayer`](https://docs.godotengine.org/en/stable/classes/class_tilemaplayer.html#class-tilemaplayer) nodes to design your
             levels
             @Image(source: "Tileset_cover.png")
         }
         First, they let you draw a layout by "painting" tiles onto a grid,
-        which is much faster than placing individual [`Sprite2D`](https://docs.godotengine.org/en/stable/classes/class_Sprite2D.html#class-Sprite2D) nodes one by one. Second, they allow for larger levels
+        which is much faster than placing individual [`Sprite2D`](https://docs.godotengine.org/en/stable/classes/class_sprite2d.html#class-sprite2d) nodes one by one. Second, they allow for larger levels
         because they are optimized for drawing large numbers of tiles.
         Finally, they allow you to add greater functionality to your tiles with
         collision, occlusion, and navigation shapes.

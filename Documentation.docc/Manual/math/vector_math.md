@@ -138,8 +138,8 @@ can find the position for step 2 by adding the velocity to the current position.
 >
 > In a typical 2D game scenario, you would have a velocity in pixels per
 > second, and multiply it by the `delta` parameter (time elapsed since
-> the previous frame) from the [_process()](https://docs.godotengine.org/en/stable/classes/class_node_private_method__process.html#class-node_private_method__process)
-> or [_physics_process()](https://docs.godotengine.org/en/stable/classes/class_node_private_method__physics_process.html#class-node_private_method__physics_process)
+> the previous frame) from the [_process()](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-private-method-process)
+> or [_physics_process()](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-private-method-physics-process)
 > callbacks.
 >
 
@@ -165,7 +165,7 @@ helpful when you need to keep track of a direction.
 **Normalizing** a vector means reducing its length to `1` while preserving its
 direction. This is done by dividing each of its components by its magnitude.
 Because this is such a common operation, Godot provides a dedicated
-[normalized()](https://docs.godotengine.org/en/stable/classes/class_vector2_method_normalized.html#class-vector2_method_normalized) method for this:
+[normalized()](https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2-method-normalized) method for this:
 
 ```
 a = a.normalized()
@@ -192,7 +192,7 @@ other object:
 The surface normal has a value of `(0, -1)` because this is a horizontal
 surface. When the ball collides, we take its remaining motion (the amount left
 over when it hits the surface) and reflect it using the normal. In Godot, there
-is a [bounce()](https://docs.godotengine.org/en/stable/classes/class_vector2_method_bounce.html#class-vector2_method_bounce) method to handle this.
+is a [bounce()](https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2-method-bounce) method to handle this.
 Here is a code example of the above diagram using a [CharacterBody2D](https://docs.godotengine.org/en/stable/classes/class_characterbody2d.html#class-characterbody2d):
 
 ```
@@ -221,7 +221,7 @@ and
 The mathematical notation ||A|| represents the magnitude of vector `A`, and
 Ax means the `x` component of vector `A`.
 
-However, in most cases it is easiest to use the built-in [dot()](https://docs.godotengine.org/en/stable/classes/class_vector2_method_dot.html#class-vector2_method_dot) method. Note that the order of the two vectors does not matter:
+However, in most cases it is easiest to use the built-in [dot()](https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2-method-dot) method. Note that the order of the two vectors does not matter:
 
 ```
 var c = a.dot(b)
@@ -250,7 +250,7 @@ The green arrows `fA` and `fB` are **unit vectors** representing the
 zombie's facing direction and the blue semicircle represents its field of view.
 For zombie `A`, we find the direction vector `AP` pointing to the player
 using `P - A` and normalize it, however, Godot has a helper method to do this
-called [direction_to()](https://docs.godotengine.org/en/stable/classes/class_vector2_method_direction_to.html#class-vector2_method_direction_to). If the angle
+called [direction_to()](https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2-method-direction-to). If the angle
 between this vector and the facing vector is less than 90°, then the zombie can
 see the player.
 
@@ -282,14 +282,14 @@ c.y = (a.z * b.x) - (a.x * b.z)
 c.z = (a.x * b.y) - (a.y * b.x)
 ```
 
-With Godot, you can use the built-in [Vector3.cross()](https://docs.godotengine.org/en/stable/classes/class_vector3_method_cross.html#class-vector3_method_cross)
+With Godot, you can use the built-in [Vector3.cross()](https://docs.godotengine.org/en/stable/classes/class_vector3.html#class-vector3-method-cross)
 method:
 
 ```
 var c = a.cross(b)
 ```
 
-The cross product is not mathematically defined in 2D. The [Vector2.cross()](https://docs.godotengine.org/en/stable/classes/class_vector2_method_cross.html#class-vector2_method_cross) method is a commonly used analog of the 3D cross
+The cross product is not mathematically defined in 2D. The [Vector2.cross()](https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2-method-cross) method is a commonly used analog of the 3D cross
 product for 2D vectors.
 
 > Note: In the cross product, order matters. `a.cross(b)` does not give the

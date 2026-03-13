@@ -85,7 +85,7 @@ A <doc:singletons_autoload> is an always loaded node
 that can be accessed directly by any node regardless of the scene. These are useful
 when some data or functionality is shared globally.
 
-[Node.find_child()](https://docs.godotengine.org/en/stable/classes/class_node_method_find_child.html#class-node_method_find_child) finds a node by name
+[Node.find_child()](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-method-find-child) finds a node by name
 without knowing its full path. This seems similar to a scene unique node, but
 this method is able to find nodes in nested scenes, and doesn't require marking
 the node in the scene editor in any way. However, this method is slow. Scene

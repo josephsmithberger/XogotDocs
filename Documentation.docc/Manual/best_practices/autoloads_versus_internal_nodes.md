@@ -3,7 +3,7 @@
 Godot offers a feature to automatically load nodes at the root of your project,
 allowing you to access them globally, that can fulfill the role of a Singleton:
 <doc:singletons_autoload>. These autoloaded nodes are not freed when you
-change the scene from code with [SceneTree.change_scene_to_file](https://docs.godotengine.org/en/stable/classes/class_scenetree_method_change_scene_to_file.html#class-scenetree_method_change_scene_to_file).
+change the scene from code with [SceneTree.change_scene_to_file](https://docs.godotengine.org/en/stable/classes/class_scenetree.html#class-scenetree-method-change-scene-to-file).
 
 In this guide, you will learn when to use the Autoload feature, and techniques
 you can use to avoid it.

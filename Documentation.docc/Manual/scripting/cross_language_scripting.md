@@ -46,7 +46,7 @@ instantiate nodes directly from the code.
 
 Using C# from GDScript doesn't need much work. Once loaded
 (see <doc:index#Classes-As-Resources>), the script can be instantiated
-with [new()](https://docs.godotengine.org/en/stable/classes/class_csharpscript_method_new.html#class-csharpscript_method_new).
+with [new()](https://docs.godotengine.org/en/stable/classes/class_csharpscript.html#class-csharpscript-method-new).
 
 ```
 var MyCSharpScript = load("res://Path/To/MyCSharpNode.cs")
@@ -72,7 +72,7 @@ var my_csharp_node = MyCSharpScript.new()
 ### Instantiating GDScript nodes from C#
 
 From the C# side, everything work the same way. Once loaded, the GDScript can
-be instantiated with [GDScript.New()](https://docs.godotengine.org/en/stable/classes/class_gdscript_method_new.html#class-gdscript_method_new).
+be instantiated with [GDScript.New()](https://docs.godotengine.org/en/stable/classes/class_gdscript.html#class-gdscript-method-new).
 
 ```
 var myGDScript = GD.Load<GDScript>("res://path/to/my_gd_script.gd");
@@ -100,8 +100,8 @@ print(my_csharp_node.MyProperty)
 ### Accessing GDScript fields from C#
 
 As C# is statically typed, accessing GDScript from C# is a bit more
-convoluted. You will have to use [GodotObject.Get()](https://docs.godotengine.org/en/stable/classes/class_object_method_get.html#class-object_method_get)
-and [GodotObject.Set()](https://docs.godotengine.org/en/stable/classes/class_object_method_set.html#class-object_method_set). The first argument is the name of the field you want to access.
+convoluted. You will have to use [GodotObject.Get()](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-method-get)
+and [GodotObject.Set()](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-method-set). The first argument is the name of the field you want to access.
 
 ```
 // Output: "my gdscript value".
@@ -143,7 +143,7 @@ my_csharp_node.PrintArray([1, 2, 3])
 ### Calling GDScript methods from C#
 
 To call GDScript methods from C# you'll need to use
-[GodotObject.Call()](https://docs.godotengine.org/en/stable/classes/class_object_method_call.html#class-object_method_call). The first argument is the
+[GodotObject.Call()](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-method-call). The first argument is the
 name of the method you want to call. The following arguments will be passed
 to said method.
 

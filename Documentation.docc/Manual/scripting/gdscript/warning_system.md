@@ -23,7 +23,7 @@ script editor's status bar. The example below has 2 warnings:
 @Image(source: "typed_gdscript_warning_example.png")
 
 To ignore single warnings within a file, use the
-[@warning_ignore](https://docs.godotengine.org/en/stable/classes/class_@gdscript_annotation_@warning_ignore.html#class-@gdscript_annotation_@warning_ignore) annotation.
+[@warning_ignore](https://docs.godotengine.org/en/stable/classes/class_%40gdscript.html#class-gdscript-annotation-warning-ignore) annotation.
 You can click on the ignore link to the left of the warning's description.
 Godot will add an annotation above the corresponding line and the code
 won't trigger the corresponding warning anymore:
@@ -31,8 +31,8 @@ won't trigger the corresponding warning anymore:
 @Image(source: "typed_gdscript_warning_system_ignore.png")
 
 To ignore multiple warnings in a region within a file, use the
-[@warning_ignore_start](https://docs.godotengine.org/en/stable/classes/class_@gdscript_annotation_@warning_ignore_start.html#class-@gdscript_annotation_@warning_ignore_start)
-and [@warning_ignore_restore](https://docs.godotengine.org/en/stable/classes/class_@gdscript_annotation_@warning_ignore_restore.html#class-@gdscript_annotation_@warning_ignore_restore)
+[@warning_ignore_start](https://docs.godotengine.org/en/stable/classes/class_%40gdscript.html#class-gdscript-annotation-warning-ignore-start)
+and [@warning_ignore_restore](https://docs.godotengine.org/en/stable/classes/class_%40gdscript.html#class-gdscript-annotation-warning-ignore-restore)
 annotations. You can omit `@warning_ignore_restore` if you want to ignore
 the specified warning types until the end of the file.
 

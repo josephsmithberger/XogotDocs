@@ -74,8 +74,8 @@ editor, and it must inherit from [EditorPlugin](https://docs.godotengine.org/en/
 
 It's important to deal with initialization and clean-up of resources.
 A good practice is to use the virtual function
-[_enter_tree()](https://docs.godotengine.org/en/stable/classes/class_node_private_method__enter_tree.html#class-node_private_method__enter_tree) to initialize your plugin and
-[_exit_tree()](https://docs.godotengine.org/en/stable/classes/class_node_private_method__exit_tree.html#class-node_private_method__exit_tree) to clean it up. Thankfully,
+[_enter_tree()](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-private-method-enter-tree) to initialize your plugin and
+[_exit_tree()](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-private-method-exit-tree) to clean it up. Thankfully,
 the dialog generates these callbacks for you. Your script should look something
 like this:
 
@@ -113,7 +113,7 @@ custom behavior.
 >
 
 To create a new node type, you can use the function
-[add_custom_type()](https://docs.godotengine.org/en/stable/classes/class_editorplugin_method_add_custom_type.html#class-editorplugin_method_add_custom_type) from the
+[add_custom_type()](https://docs.godotengine.org/en/stable/classes/class_editorplugin.html#class-editorplugin-method-add-custom-type) from the
 [EditorPlugin](https://docs.godotengine.org/en/stable/classes/class_editorplugin.html#class-editorplugin) class. This function can add new types to the editor
 (nodes or resources). However, before you can create the type, you need a script
 that will act as the logic for the type. While that script doesn't have to use
@@ -225,7 +225,7 @@ Also, don't forget to add some text to your button.
 
 Save this scene as `my_dock.tscn`. Now, we need to grab the scene we created
 then add it as a dock in the editor. For this, you can rely on the function
-[add_control_to_dock()](https://docs.godotengine.org/en/stable/classes/class_editorplugin_method_add_control_to_dock.html#class-editorplugin_method_add_control_to_dock) from the
+[add_control_to_dock()](https://docs.godotengine.org/en/stable/classes/class_editorplugin.html#class-editorplugin-method-add-control-to-dock) from the
 [EditorPlugin](https://docs.godotengine.org/en/stable/classes/class_editorplugin.html#class-editorplugin) class.
 
 You need to select a dock position and define the control to add

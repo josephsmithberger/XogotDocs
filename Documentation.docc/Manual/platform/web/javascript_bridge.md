@@ -14,7 +14,7 @@ The `JavaScriptBridge` singleton provides methods to wrap a native JavaScript ob
 a Godot [JavaScriptObject](https://docs.godotengine.org/en/stable/classes/class_javascriptobject.html#class-javascriptobject) that tries to feel
 natural in the context of Godot scripting (e.g. GDScript and C#).
 
-The [JavaScriptBridge.get_interface()](https://docs.godotengine.org/en/stable/classes/class_javascriptbridge_method_get_interface.html#class-javascriptbridge_method_get_interface)
+The [JavaScriptBridge.get_interface()](https://docs.godotengine.org/en/stable/classes/class_javascriptbridge.html#class-javascriptbridge-method-get-interface)
 method retrieves an object in the global scope.
 
 ```
@@ -27,7 +27,7 @@ func _ready():
     console.log("test")
 ```
 
-The [JavaScriptBridge.create_object()](https://docs.godotengine.org/en/stable/classes/class_javascriptbridge_method_create_object.html#class-javascriptbridge_method_create_object)
+The [JavaScriptBridge.create_object()](https://docs.godotengine.org/en/stable/classes/class_javascriptbridge.html#class-javascriptbridge-method-create-object)
 creates a new object via the JavaScript `new` constructor.
 
 ```
@@ -90,7 +90,7 @@ func _my_callback(args):
 
 > Warning:
 >
-> Callback methods created via [JavaScriptBridge.get_interface()](https://docs.godotengine.org/en/stable/classes/class_javascriptbridge_method_get_interface.html#class-javascriptbridge_method_get_interface)
+> Callback methods created via [JavaScriptBridge.get_interface()](https://docs.godotengine.org/en/stable/classes/class_javascriptbridge.html#class-javascriptbridge-method-get-interface)
 > (`_my_callback` in the above example) **must** take exactly one [Array](https://docs.godotengine.org/en/stable/classes/class_array.html#class-array)
 > argument, which is going to be the JavaScript arguments object
 > converted to an array. Otherwise, the callback method will not be called.
@@ -241,7 +241,7 @@ func my_func4():
 
 Downloading files (e.g. a save game) from the Godot Web export to the user's computer can be done by directly interacting with JavaScript, but given it is a
 very common use case, Godot exposes this functionality to scripting via
-a dedicated [JavaScriptBridge.download_buffer()](https://docs.godotengine.org/en/stable/classes/class_javascriptbridge_method_download_buffer.html#class-javascriptbridge_method_download_buffer)
+a dedicated [JavaScriptBridge.download_buffer()](https://docs.godotengine.org/en/stable/classes/class_javascriptbridge.html#class-javascriptbridge-method-download-buffer)
 function which lets you download any generated buffer.
 
 Here is a minimal example on how to use it:

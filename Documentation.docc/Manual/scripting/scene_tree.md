@@ -54,7 +54,7 @@ mode or quitting the process.
 When a node is part of the Scene Tree, the
 [SceneTree](https://docs.godotengine.org/en/stable/classes/class_scenetree.html#class-scenetree)
 singleton can be obtained by calling
-[Node.get_tree()](https://docs.godotengine.org/en/stable/classes/class_node_method_get_tree.html#class-node_method_get_tree).
+[Node.get_tree()](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-method-get-tree).
 
 ## Root viewport
 
@@ -139,7 +139,7 @@ bottom-to-top order (the exact reverse of top-to-bottom order).
 
 After a scene is loaded, you may want to change this scene for
 another one. One way to do this is to use the
-[SceneTree.change_scene_to_file()](https://docs.godotengine.org/en/stable/classes/class_scenetree_method_change_scene_to_file.html#class-scenetree_method_change_scene_to_file)
+[SceneTree.change_scene_to_file()](https://docs.godotengine.org/en/stable/classes/class_scenetree.html#class-scenetree-method-change-scene-to-file)
 function:
 
 ```
@@ -150,7 +150,7 @@ func _my_level_was_completed():
 Rather than using file paths, one can also use ready-made
 [PackedScene](https://docs.godotengine.org/en/stable/classes/class_packedscene.html#class-packedscene) resources using the equivalent
 function
-[SceneTree.change_scene_to_packed(PackedScene scene)](https://docs.godotengine.org/en/stable/classes/class_scenetree_method_change_scene_to_packed.html#class-scenetree_method_change_scene_to_packed):
+[SceneTree.change_scene_to_packed(PackedScene scene)](https://docs.godotengine.org/en/stable/classes/class_scenetree.html#class-scenetree-method-change-scene-to-packed):
 
 ```
 var next_scene = preload("res://levels/level2.tscn")

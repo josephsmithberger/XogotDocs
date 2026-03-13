@@ -26,11 +26,11 @@ precise playback timing.
 
 ## Using the system clock to sync
 
-As mentioned before, If you call [AudioStreamPlayer.play()](https://docs.godotengine.org/en/stable/classes/class_audiostreamplayer_method_play.html#class-audiostreamplayer_method_play), sound will not begin immediately, but when the audio thread processes the next chunk.
+As mentioned before, If you call [AudioStreamPlayer.play()](https://docs.godotengine.org/en/stable/classes/class_audiostreamplayer.html#class-audiostreamplayer-method-play), sound will not begin immediately, but when the audio thread processes the next chunk.
 
-This delay can't be avoided but it can be estimated by calling [AudioServer.get_time_to_next_mix()](https://docs.godotengine.org/en/stable/classes/class_audioserver_method_get_time_to_next_mix.html#class-audioserver_method_get_time_to_next_mix).
+This delay can't be avoided but it can be estimated by calling [AudioServer.get_time_to_next_mix()](https://docs.godotengine.org/en/stable/classes/class_audioserver.html#class-audioserver-method-get-time-to-next-mix).
 
-The output latency (what happens after the mix) can also be estimated by calling [AudioServer.get_output_latency()](https://docs.godotengine.org/en/stable/classes/class_audioserver_method_get_output_latency.html#class-audioserver_method_get_output_latency).
+The output latency (what happens after the mix) can also be estimated by calling [AudioServer.get_output_latency()](https://docs.godotengine.org/en/stable/classes/class_audioserver.html#class-audioserver-method-get-output-latency).
 
 Add these two and it's possible to guess almost exactly when sound or music will begin playing in the speakers during _process():
 
@@ -61,9 +61,9 @@ For a rhythm game where a song begins and ends after a few minutes, this approac
 
 ## Using the sound hardware clock to sync
 
-Using [AudioStreamPlayer.get_playback_position()](https://docs.godotengine.org/en/stable/classes/class_audiostreamplayer_method_get_playback_position.html#class-audiostreamplayer_method_get_playback_position) to obtain the current position for the song sounds ideal, but it's not that useful as-is. This value will increment in chunks (every time the audio callback mixed a block of sound), so many calls can return the same value. Added to this, the value will be out of sync with the speakers too because of the previously mentioned reasons.
+Using [AudioStreamPlayer.get_playback_position()](https://docs.godotengine.org/en/stable/classes/class_audiostreamplayer.html#class-audiostreamplayer-method-get-playback-position) to obtain the current position for the song sounds ideal, but it's not that useful as-is. This value will increment in chunks (every time the audio callback mixed a block of sound), so many calls can return the same value. Added to this, the value will be out of sync with the speakers too because of the previously mentioned reasons.
 
-To compensate for the "chunked" output, there is a function that can help: [AudioServer.get_time_since_last_mix()](https://docs.godotengine.org/en/stable/classes/class_audioserver_method_get_time_since_last_mix.html#class-audioserver_method_get_time_since_last_mix).
+To compensate for the "chunked" output, there is a function that can help: [AudioServer.get_time_since_last_mix()](https://docs.godotengine.org/en/stable/classes/class_audioserver.html#class-audioserver-method-get-time-since-last-mix).
 
 Adding the return value from this function to get_playback_position() increases precision:
 

@@ -3,7 +3,7 @@
 
 If you want to run a dedicated server for your project on a machine that doesn't
 have a GPU or display server available, you'll need to run Godot with the `headless`
-display server and `Dummy` [audio driver](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_audio/driver/driver.html#class-projectsettings_property_audio/driver/driver).
+display server and `Dummy` [audio driver](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-audio-driver-driver).
 
 Since Godot 4.0, this can be done by running a Godot binary on any platform with
 the `--headless` command line argument, or running a project exported as

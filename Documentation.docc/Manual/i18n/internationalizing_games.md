@@ -57,9 +57,9 @@ Select the resource to be remapped then add some alternatives for each locale.
 ## Automatically setting a language
 
 It is recommended to default to the user's preferred language which can be
-obtained via [OS.get_locale_language()](https://docs.godotengine.org/en/stable/classes/class_os_method_get_locale_language.html#class-os_method_get_locale_language).
+obtained via [OS.get_locale_language()](https://docs.godotengine.org/en/stable/classes/class_os.html#class-os-method-get-locale-language).
 If your game is not available in that language, it will fall back to the
-[Fallback](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_internationalization/locale/fallback.html#class-projectsettings_property_internationalization/locale/fallback)
+[Fallback](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-internationalization-locale-fallback)
 in **Project Settings > Internationalization > Locale**, or to `en` if empty.
 Nevertheless, letting players change the language in game is recommended for
 various reasons (e.g. translation quality or player preference).
@@ -118,7 +118,7 @@ want the player's name to be translated if it matches a translation key. To
 disable automatic translation on a specific node, disable **Localization > Auto
 Translate** in the inspector.
 
-In code, the [Object.tr()](https://docs.godotengine.org/en/stable/classes/class_object_method_tr.html#class-object_method_tr) function can be used.
+In code, the [Object.tr()](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-method-tr) function can be used.
 This will just look up the text in the translations and convert it if found:
 
 ```
@@ -329,9 +329,9 @@ Custom callbacks provide a way to override BiDi for the other types of structure
 
 Controls specifically designed for number input or output (e.g. ProgressBar, SpinBox)
 will use localized numbering system automatically, for the other control
-[TextServer.format_number(string, language)](https://docs.godotengine.org/en/stable/classes/class_textserver_method_format_number.html#class-textserver_method_format_number)
+[TextServer.format_number(string, language)](https://docs.godotengine.org/en/stable/classes/class_textserver.html#class-textserver-method-format-number)
 can be used to convert Western Arabic numbers (0..9) to the localized numbering system
-and [TextServer.parse_number(string, language)](https://docs.godotengine.org/en/stable/classes/class_textserver_method_parse_number.html#class-textserver_method_parse_number)
+and [TextServer.parse_number(string, language)](https://docs.godotengine.org/en/stable/classes/class_textserver.html#class-textserver-method-parse-number)
 to convert it back.
 
 ## Localizing icons and images

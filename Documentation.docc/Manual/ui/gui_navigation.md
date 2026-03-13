@@ -60,7 +60,7 @@ For keyboard and controller navigation to work correctly, any node must be focus
 using code when the scene starts. Without doing this, pressing buttons or keys won't
 do anything.
 
-You can use the [Control.grab_focus()](https://docs.godotengine.org/en/stable/classes/class_control_method_grab_focus.html#class-control_method_grab_focus) method
+You can use the [Control.grab_focus()](https://docs.godotengine.org/en/stable/classes/class_control.html#class-control-method-grab-focus) method
 to focus a control. Here is a basic example of setting initial focus with code:
 
 ```

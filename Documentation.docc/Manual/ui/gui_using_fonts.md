@@ -162,7 +162,7 @@ property that accepts a Font resource.
 > in mind when comparing font sizes across different software.
 >
 > The texture filter mode can also be set on individual nodes that inherit from CanvasItem
-> by setting [CanvasItem.texture_filter](https://docs.godotengine.org/en/stable/classes/class_canvasitem_property_texture_filter.html#class-canvasitem_property_texture_filter).
+> by setting [CanvasItem.texture_filter](https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#class-canvasitem-property-texture-filter).
 >
 
 ## Font outlines and shadows

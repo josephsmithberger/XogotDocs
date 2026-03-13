@@ -28,9 +28,9 @@ There are other types of interpolations, which will not be covered here. A recom
 ## Vector interpolation
 
 Vector types ([Vector2](https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2) and [Vector3](https://docs.godotengine.org/en/stable/classes/class_vector3.html#class-vector3)) can also be interpolated, they come with handy functions to do it
-[Vector2.lerp()](https://docs.godotengine.org/en/stable/classes/class_vector2_method_lerp.html#class-vector2_method_lerp) and [Vector3.lerp()](https://docs.godotengine.org/en/stable/classes/class_vector3_method_lerp.html#class-vector3_method_lerp).
+[Vector2.lerp()](https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2-method-lerp) and [Vector3.lerp()](https://docs.godotengine.org/en/stable/classes/class_vector3.html#class-vector3-method-lerp).
 
-For cubic interpolation, there are also [Vector2.cubic_interpolate()](https://docs.godotengine.org/en/stable/classes/class_vector2_method_cubic_interpolate.html#class-vector2_method_cubic_interpolate) and [Vector3.cubic_interpolate()](https://docs.godotengine.org/en/stable/classes/class_vector3_method_cubic_interpolate.html#class-vector3_method_cubic_interpolate), which do a <doc:beziers_and_curves> style interpolation.
+For cubic interpolation, there are also [Vector2.cubic_interpolate()](https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2-method-cubic-interpolate) and [Vector3.cubic_interpolate()](https://docs.godotengine.org/en/stable/classes/class_vector3.html#class-vector3-method-cubic-interpolate), which do a <doc:beziers_and_curves> style interpolation.
 
 Here is example pseudo-code for going from point A to B using interpolation:
 
@@ -50,7 +50,7 @@ It will produce the following motion:
 ## Transform interpolation
 
 It is also possible to interpolate whole transforms (make sure they have either uniform scale or, at least, the same non-uniform scale).
-For this, the function [Transform3D.interpolate_with()](https://docs.godotengine.org/en/stable/classes/class_transform3d_method_interpolate_with.html#class-transform3d_method_interpolate_with) can be used.
+For this, the function [Transform3D.interpolate_with()](https://docs.godotengine.org/en/stable/classes/class_transform3d.html#class-transform3d-method-interpolate-with) can be used.
 
 Here is an example of transforming a monkey from Position1 to Position2:
 

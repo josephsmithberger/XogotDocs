@@ -212,7 +212,7 @@ Calculates the arc tangent given a numerator and denominator. The signs of
 `y` and `x` are used to determine the quadrant that the angle lies in.
 The result is undefined if `x == 0`.
 
-Equivalent to [atan2()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_atan2.html#class-@globalscope_method_atan2) in GDScript.
+Equivalent to [atan2()](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-method-atan2) in GDScript.
 
 The numerator of the fraction whose arc tangent to return.
 
@@ -668,7 +668,7 @@ Performs a linear interpolation between `a` and `b` using `c` to weight between 
 
 Computed as `a * (1 - c) + b * c`.
 
-Equivalent to [lerp()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_lerp.html#class-@globalscope_method_lerp) in GDScript.
+Equivalent to [lerp()](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-method-lerp) in GDScript.
 
 The start of the range in which to interpolate.
 

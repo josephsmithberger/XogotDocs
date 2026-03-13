@@ -91,7 +91,7 @@ doesn't support using a lower detail level than the source mesh (but shadow
 rendering will make use of LODs when relevant).
 
 - **Light Baking:** Configures the meshes'
-[global illumination mode](https://docs.godotengine.org/en/stable/classes/class_geometryinstance3d_property_gi_mode.html#class-geometryinstance3d_property_gi_mode)
+[global illumination mode](https://docs.godotengine.org/en/stable/classes/class_geometryinstance3d.html#class-geometryinstance3d-property-gi-mode)
 in the 3D scene. If set to **Static Lightmaps**, sets the meshes' GI mode to
 **Static** and generates UV2 on import for <doc:using_lightmap_gi>.
 
@@ -227,7 +227,7 @@ are also included.
 
 - **Custom Properties:** If checked, imports custom properties from Blender as glTF extras.
 This data can then be used from an editor plugin that uses
-[GLTFDocument.register_gltf_document_extension()](https://docs.godotengine.org/en/stable/classes/class_gltfdocument_method_register_gltf_document_extension.html#class-gltfdocument_method_register_gltf_document_extension),
+[GLTFDocument.register_gltf_document_extension()](https://docs.godotengine.org/en/stable/classes/class_gltfdocument.html#class-gltfdocument-method-register-gltf-document-extension),
 which can set node metadata on import (among other use cases).
 
 - **Modifiers:** If set to **No Modifiers**, object modifiers are ignored on import.
@@ -357,7 +357,7 @@ consists of two types of statements, the first for choosing which animations to
 filter, and the second for filtering individual tracks within the matched
 animation. All name patterns are performed using a case-insensitive expression
 match, with support for `?` and `*` wildcards (using
-[String.matchn()](https://docs.godotengine.org/en/stable/classes/class_string_method_matchn.html#class-string_method_matchn) under the hood).
+[String.matchn()](https://docs.godotengine.org/en/stable/classes/class_string.html#class-string-method-matchn) under the hood).
 
 The script must start with an animation filter statement (as denoted by the line
 beginning with an `@`). For example, if we would like to apply filters to all

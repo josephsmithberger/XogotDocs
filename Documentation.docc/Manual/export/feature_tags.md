@@ -152,9 +152,9 @@ in many sections of the project settings.
 ## Taking feature tags into account when reading project settings
 
 By default, feature tags are **not** taken into account when reading project settings
-using the typical approaches ([ProjectSettings.get_setting](https://docs.godotengine.org/en/stable/classes/class_projectsettings_method_get_setting.html#class-projectsettings_method_get_setting)
-or [ProjectSettings.get](https://docs.godotengine.org/en/stable/classes/class_object_private_method__get.html#class-object_private_method__get)).
-Instead, you must use [ProjectSettings.get_setting_with_override](https://docs.godotengine.org/en/stable/classes/class_projectsettings_method_get_setting.html#class-projectsettings_method_get_setting).
+using the typical approaches ([ProjectSettings.get_setting](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-method-get-setting)
+or [ProjectSettings.get](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-private-method-get)).
+Instead, you must use [ProjectSettings.get_setting_with_override](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-method-get-setting).
 
 For example, with the following project settings:
 

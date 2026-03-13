@@ -63,10 +63,10 @@ func _exit_tree():
 
 When this plugin is activated, it will create a new instance of the import
 plugin (which we'll soon make) and add it to the editor using the
-[add_import_plugin()](https://docs.godotengine.org/en/stable/classes/class_editorplugin_method_add_import_plugin.html#class-editorplugin_method_add_import_plugin) method. We store
+[add_import_plugin()](https://docs.godotengine.org/en/stable/classes/class_editorplugin.html#class-editorplugin-method-add-import-plugin) method. We store
 a reference to it in a class member `import_plugin` so we can refer to it
 later when removing it. The
-[remove_import_plugin()](https://docs.godotengine.org/en/stable/classes/class_editorplugin_method_remove_import_plugin.html#class-editorplugin_method_remove_import_plugin) method is
+[remove_import_plugin()](https://docs.godotengine.org/en/stable/classes/class_editorplugin.html#class-editorplugin-method-remove-import-plugin) method is
 called when the plugin is deactivated to clean up the memory and let the editor
 know the import plugin isn't available anymore.
 
@@ -94,7 +94,7 @@ func _get_importer_name():
 ```
 
 The first method is the
-[_get_importer_name()](https://docs.godotengine.org/en/stable/classes/class_editorimportplugin_private_method__get_importer_name.html#class-editorimportplugin_private_method__get_importer_name). This is a
+[_get_importer_name()](https://docs.godotengine.org/en/stable/classes/class_editorimportplugin.html#class-editorimportplugin-private-method-get-importer-name). This is a
 unique name for your plugin that is used by Godot to know which import was used
 in a certain file. When the files needs to be reimported, the editor will know
 which plugin to call.
@@ -104,7 +104,7 @@ func _get_visible_name():
     return "Silly Material"
 ```
 
-The [_get_visible_name()](https://docs.godotengine.org/en/stable/classes/class_editorimportplugin_private_method__get_visible_name.html#class-editorimportplugin_private_method__get_visible_name) method is
+The [_get_visible_name()](https://docs.godotengine.org/en/stable/classes/class_editorimportplugin.html#class-editorimportplugin-private-method-get-visible-name) method is
 responsible for returning the name of the type it imports and it will be shown to the
 user in the Import dock.
 
@@ -118,7 +118,7 @@ func _get_recognized_extensions():
 ```
 
 Godot's import system detects file types by their extension. In the
-[_get_recognized_extensions()](https://docs.godotengine.org/en/stable/classes/class_editorimportplugin_private_method__get_recognized_extensions.html#class-editorimportplugin_private_method__get_recognized_extensions)
+[_get_recognized_extensions()](https://docs.godotengine.org/en/stable/classes/class_editorimportplugin.html#class-editorimportplugin-private-method-get-recognized-extensions)
 method you return an array of strings to represent each extension that this
 plugin can understand. If an extension is recognized by more than one plugin,
 the user can select which one to use when importing the files.
@@ -193,7 +193,7 @@ func _get_preset_count():
     return Presets.size()
 ```
 
-The [_get_preset_count()](https://docs.godotengine.org/en/stable/classes/class_editorimportplugin_private_method__get_preset_count.html#class-editorimportplugin_private_method__get_preset_count) method
+The [_get_preset_count()](https://docs.godotengine.org/en/stable/classes/class_editorimportplugin.html#class-editorimportplugin-private-method-get-preset-count) method
 returns the amount of presets that this plugins defines. We only have one preset
 now, but we can make this method future-proof by returning the size of our
 `Presets` enumeration.
@@ -208,7 +208,7 @@ func _get_preset_name(preset_index):
 ```
 
 Here we have the
-[_get_preset_name()](https://docs.godotengine.org/en/stable/classes/class_editorimportplugin_private_method__get_preset_name.html#class-editorimportplugin_private_method__get_preset_name) method, which
+[_get_preset_name()](https://docs.godotengine.org/en/stable/classes/class_editorimportplugin.html#class-editorimportplugin-private-method-get-preset-name) method, which
 gives names to the presets as they will be presented to the user, so be sure to
 use short and clear names.
 
@@ -233,7 +233,7 @@ func _get_import_options(path, preset_index):
 ```
 
 This is the method which defines the available options.
-[_get_import_options()](https://docs.godotengine.org/en/stable/classes/class_editorimportplugin_private_method__get_import_options.html#class-editorimportplugin_private_method__get_import_options) returns
+[_get_import_options()](https://docs.godotengine.org/en/stable/classes/class_editorimportplugin.html#class-editorimportplugin-private-method-get-import-options) returns
 an array of dictionaries, and each dictionary contains a few keys that are
 checked to customize the option as it's shown to the user. The following table
 shows the possible keys:
@@ -266,7 +266,7 @@ func _get_option_visibility(path, option_name, options):
 ```
 
 For the
-[_get_option_visibility()](https://docs.godotengine.org/en/stable/classes/class_editorimportplugin_private_method__get_option_visibility.html#class-editorimportplugin_private_method__get_option_visibility)
+[_get_option_visibility()](https://docs.godotengine.org/en/stable/classes/class_editorimportplugin.html#class-editorimportplugin-private-method-get-option-visibility)
 method, we simply return `true` because all of our options (i.e. the single
 one we defined) are visible all the time.
 
@@ -276,7 +276,7 @@ value, you can add the logic in this method.
 ## The `import` method
 
 The heavy part of the process, responsible for converting the files into
-resources, is covered by the [_import()](https://docs.godotengine.org/en/stable/classes/class_editorimportplugin_private_method__import.html#class-editorimportplugin_private_method__import)
+resources, is covered by the [_import()](https://docs.godotengine.org/en/stable/classes/class_editorimportplugin.html#class-editorimportplugin-private-method-import)
 method. Our sample code is a bit long, so let's split in a few parts:
 
 ```
@@ -336,7 +336,7 @@ this we call the `_get_save_extension` method that we defined earlier, so we
 can be sure that they won't get out of sync.
 
 We also return the result from the
-[ResourceSaver.save()](https://docs.godotengine.org/en/stable/classes/class_resourcesaver_method_save.html#class-resourcesaver_method_save) method, so if there's an
+[ResourceSaver.save()](https://docs.godotengine.org/en/stable/classes/class_resourcesaver.html#class-resourcesaver-method-save) method, so if there's an
 error in this step, the editor will know about it.
 
 ## Platform variants and generated files

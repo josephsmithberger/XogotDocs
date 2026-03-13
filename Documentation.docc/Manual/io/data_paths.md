@@ -25,18 +25,18 @@ guarantee that everything will work as intended.
 >
 > The String class offers over a dozen methods to work with strings that represent file paths:
 >
-> - [String.filecasecmp_to()](https://docs.godotengine.org/en/stable/classes/class_string_method_filecasecmp_to.html#class-string_method_filecasecmp_to)
-> - [String.filenocasecmp_to()](https://docs.godotengine.org/en/stable/classes/class_string_method_filenocasecmp_to.html#class-string_method_filenocasecmp_to)
-> - [String.get_base_dir()](https://docs.godotengine.org/en/stable/classes/class_string_method_get_base_dir.html#class-string_method_get_base_dir)
-> - [String.get_basename()](https://docs.godotengine.org/en/stable/classes/class_string_method_get_basename.html#class-string_method_get_basename)
-> - [String.get_extension()](https://docs.godotengine.org/en/stable/classes/class_string_method_get_extension.html#class-string_method_get_extension)
-> - [String.get_file()](https://docs.godotengine.org/en/stable/classes/class_string_method_get_file.html#class-string_method_get_file)
-> - [String.is_absolute_path()](https://docs.godotengine.org/en/stable/classes/class_string_method_is_absolute_path.html#class-string_method_is_absolute_path)
-> - [String.is_relative_path()](https://docs.godotengine.org/en/stable/classes/class_string_method_is_relative_path.html#class-string_method_is_relative_path)
-> - [String.is_valid_filename()](https://docs.godotengine.org/en/stable/classes/class_string_method_is_valid_filename.html#class-string_method_is_valid_filename)
-> - [String.path_join()](https://docs.godotengine.org/en/stable/classes/class_string_method_path_join.html#class-string_method_path_join)
-> - [String.simplify_path()](https://docs.godotengine.org/en/stable/classes/class_string_method_simplify_path.html#class-string_method_simplify_path)
-> - [String.validate_filename()](https://docs.godotengine.org/en/stable/classes/class_string_method_validate_filename.html#class-string_method_validate_filename)
+> - [String.filecasecmp_to()](https://docs.godotengine.org/en/stable/classes/class_string.html#class-string-method-filecasecmp-to)
+> - [String.filenocasecmp_to()](https://docs.godotengine.org/en/stable/classes/class_string.html#class-string-method-filenocasecmp-to)
+> - [String.get_base_dir()](https://docs.godotengine.org/en/stable/classes/class_string.html#class-string-method-get-base-dir)
+> - [String.get_basename()](https://docs.godotengine.org/en/stable/classes/class_string.html#class-string-method-get-basename)
+> - [String.get_extension()](https://docs.godotengine.org/en/stable/classes/class_string.html#class-string-method-get-extension)
+> - [String.get_file()](https://docs.godotengine.org/en/stable/classes/class_string.html#class-string-method-get-file)
+> - [String.is_absolute_path()](https://docs.godotengine.org/en/stable/classes/class_string.html#class-string-method-is-absolute-path)
+> - [String.is_relative_path()](https://docs.godotengine.org/en/stable/classes/class_string.html#class-string-method-is-relative-path)
+> - [String.is_valid_filename()](https://docs.godotengine.org/en/stable/classes/class_string.html#class-string-method-is-valid-filename)
+> - [String.path_join()](https://docs.godotengine.org/en/stable/classes/class_string.html#class-string-method-path-join)
+> - [String.simplify_path()](https://docs.godotengine.org/en/stable/classes/class_string.html#class-string-method-simplify-path)
+> - [String.validate_filename()](https://docs.godotengine.org/en/stable/classes/class_string.html#class-string-method-validate-filename)
 >
 
 ## Accessing files in the project folder (`res://`)
@@ -68,14 +68,14 @@ Project Settings:
 `app_userdata/[project_name]` folder. This is the default so that prototypes
 and test projects stay self-contained within Godot's data folder.
 
-- If [application/config/use_custom_user_dir](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_application/config/use_custom_user_dir.html#class-projectsettings_property_application/config/use_custom_user_dir)
+- If [application/config/use_custom_user_dir](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-application-config-use-custom-user-dir)
 is enabled in the Project Settings, the `user://` folder is created **next
 to** Godot's editor data path, i.e. in the standard location for applications
 data.
 
 By default, the folder name will be inferred from the project name, but it
 can be further customized with
-[application/config/custom_user_dir_name](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_application/config/custom_user_dir_name.html#class-projectsettings_property_application/config/custom_user_dir_name).
+[application/config/custom_user_dir_name](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-application-config-custom-user-dir-name).
 This path can contain path separators, so you can use it e.g. to group
 projects of a given studio with a `Studio Name/Game Name` structure.
 
@@ -83,13 +83,13 @@ projects of a given studio with a `Studio Name/Game Name` structure.
 
 - By default, the folder name will be inferred from the project name, but it
 can be further customized with
-[application/config/custom_user_dir_name](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_application/config/custom_user_dir_name.html#class-projectsettings_property_application/config/custom_user_dir_name).
+[application/config/custom_user_dir_name](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-application-config-custom-user-dir-name).
 This path can contain path separators, so you can use it e.g. to group
 projects of a given studio with a `Studio Name/Game Name` structure.
 
 - By default, the folder name will be inferred from the project name, but it
 can be further customized with
-[application/config/custom_user_dir_name](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_application/config/custom_user_dir_name.html#class-projectsettings_property_application/config/custom_user_dir_name).
+[application/config/custom_user_dir_name](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-application-config-custom-user-dir-name).
 This path can contain path separators, so you can use it e.g. to group
 projects of a given studio with a `Studio Name/Game Name` structure.
 
@@ -120,15 +120,15 @@ through the [JavaScriptBridge](https://docs.godotengine.org/en/stable/classes/cl
 
 ## Converting paths to absolute paths or "local" paths
 
-You can use [ProjectSettings.globalize_path()](https://docs.godotengine.org/en/stable/classes/class_projectsettings_method_globalize_path.html#class-projectsettings_method_globalize_path)
+You can use [ProjectSettings.globalize_path()](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-method-globalize-path)
 to convert a "local" path like `res://path/to/file.txt` to an absolute OS path.
-For example, [ProjectSettings.globalize_path()](https://docs.godotengine.org/en/stable/classes/class_projectsettings_method_globalize_path.html#class-projectsettings_method_globalize_path)
+For example, [ProjectSettings.globalize_path()](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-method-globalize-path)
 can be used to open "local" paths in the OS file manager
-using [OS.shell_open()](https://docs.godotengine.org/en/stable/classes/class_os_method_shell_open.html#class-os_method_shell_open) since it only accepts
+using [OS.shell_open()](https://docs.godotengine.org/en/stable/classes/class_os.html#class-os-method-shell-open) since it only accepts
 native OS paths.
 
 To convert an absolute OS path to a "local" path starting with `res://`
-or `user://`, use [ProjectSettings.localize_path()](https://docs.godotengine.org/en/stable/classes/class_projectsettings_method_localize_path.html#class-projectsettings_method_localize_path).
+or `user://`, use [ProjectSettings.localize_path()](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-method-localize-path).
 This only works for absolute paths that point to files or folders in your
 project's root or `user://` folders.
 
@@ -179,7 +179,7 @@ self-contained mode by default.
 >
 > Self-contained mode is not supported in exported projects yet.
 > To read and write files relative to the executable path, use
-> [OS.get_executable_path()](https://docs.godotengine.org/en/stable/classes/class_os_method_get_executable_path.html#class-os_method_get_executable_path).
+> [OS.get_executable_path()](https://docs.godotengine.org/en/stable/classes/class_os.html#class-os-method-get-executable-path).
 > Note that writing files in the executable path only works if the executable
 > is placed in a writable location (i.e. **not** Program Files or another
 > directory that is read-only for regular users).

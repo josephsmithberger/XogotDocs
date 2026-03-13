@@ -15,9 +15,9 @@
         the previous lesson was an example. We call those files "Packed Scenes" as they
         pack information about your scene's content.
         @ContentAndMedia {
-            Here's an example of a ball. It's composed of a [`RigidBody2D`](https://docs.godotengine.org/en/stable/classes/class_RigidBody2D.html#class-RigidBody2D) node as its root named Ball, which allows the ball to fall
-            and bounce on walls, a [`Sprite2D`](https://docs.godotengine.org/en/stable/classes/class_Sprite2D.html#class-Sprite2D) node, and a
-            [`CollisionShape2D`](https://docs.godotengine.org/en/stable/classes/class_CollisionShape2D.html#class-CollisionShape2D).
+            Here's an example of a ball. It's composed of a [`RigidBody2D`](https://docs.godotengine.org/en/stable/classes/class_rigidbody2d.html#class-rigidbody2d) node as its root named Ball, which allows the ball to fall
+            and bounce on walls, a [`Sprite2D`](https://docs.godotengine.org/en/stable/classes/class_sprite2d.html#class-sprite2d) node, and a
+            [`CollisionShape2D`](https://docs.godotengine.org/en/stable/classes/class_collisionshape2d.html#class-collisionshape2d).
             @Image(source: "instancing_ball_scene.png")
         }
         @ContentAndMedia {

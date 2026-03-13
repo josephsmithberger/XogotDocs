@@ -164,7 +164,7 @@ A path query can return additional metadata for every path point.
 
 - The `PATH_METADATA_INCLUDE_RIDS` flag collects an array with the [RIDs](https://docs.godotengine.org/en/stable/classes/class_rid.html#class-rid) of the point owners. Depending on point owner primitive, these RIDs can be used with the various NavigationServer functions related to regions or links.
 
-- The `PATH_METADATA_INCLUDE_OWNERS` flag collects an array with the `ObjectIDs` of the point owners. These object IDs can be used with [@GlobalScope.instance_from_id()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_instance_from_id.html#class-@globalscope_method_instance_from_id) to retrieve the node behind that object instance, e.g. a NavigationRegion or NavigationLink node.
+- The `PATH_METADATA_INCLUDE_OWNERS` flag collects an array with the `ObjectIDs` of the point owners. These object IDs can be used with [@GlobalScope.instance_from_id()](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-method-instance-from-id) to retrieve the node behind that object instance, e.g. a NavigationRegion or NavigationLink node.
 
 By default all path metadata is collected as this metadata can be essential for more advanced navigation gameplay.
 

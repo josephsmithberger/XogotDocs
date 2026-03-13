@@ -15,7 +15,7 @@ of each 2D instance.
 This has some implications:
 
 - In 3D, it is easy to turn interpolation on and off at the level of each `Node`,
-via the [physics_interpolation_mode](https://docs.godotengine.org/en/stable/classes/class_node_property_physics_interpolation_mode.html#class-node_property_physics_interpolation_mode)
+via the [physics_interpolation_mode](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-property-physics-interpolation-mode)
 property in the Inspector, which can be set to `On`, `Off`, or `Inherited`.
 
 @Image(source: "physics_interpolation_mode.png")

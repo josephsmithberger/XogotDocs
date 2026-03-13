@@ -22,7 +22,7 @@ Variant numberVariant3 = Variant.From(x);
 ```
 
 Implicit conversions to `Godot.Variant` make passing variants as method arguments very convenient.
-For example, the third argument of [tween_property](https://docs.godotengine.org/en/stable/classes/class_tween_method_tween_property.html#class-tween_method_tween_property)
+For example, the third argument of [tween_property](https://docs.godotengine.org/en/stable/classes/class_tween.html#class-tween-method-tween-property)
 specifying the final color of the tween is a `Godot.Variant`.
 
 ```

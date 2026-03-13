@@ -12,7 +12,7 @@ Godot.
 ## How pausing works
 
 To pause the game the pause state must be set. This is done by assigning
-`true` to the [SceneTree.paused](https://docs.godotengine.org/en/stable/classes/class_scenetree_property_paused.html#class-scenetree_property_paused) property:
+`true` to the [SceneTree.paused](https://docs.godotengine.org/en/stable/classes/class_scenetree.html#class-scenetree-property-paused) property:
 
 ```
 get_tree().paused = true

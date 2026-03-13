@@ -30,12 +30,12 @@ which are ideal for this).
 
 Another alternative is to use a GDExtension and C++, which should be extremely efficient (it's possible
 to set the entire state for all objects using linear memory via the
-[RenderingServer.multimesh_set_buffer()](https://docs.godotengine.org/en/stable/classes/class_renderingserver_method_multimesh_set_buffer.html#class-renderingserver_method_multimesh_set_buffer)
+[RenderingServer.multimesh_set_buffer()](https://docs.godotengine.org/en/stable/classes/class_renderingserver.html#class-renderingserver-method-multimesh-set-buffer)
 function). This way, the array can be created with multiple threads, then set in one call, providing
 high cache efficiency.
 
 Finally, it's not required to have all MultiMesh instances visible. The amount of visible ones can be
-controlled with the [MultiMesh.visible_instance_count](https://docs.godotengine.org/en/stable/classes/class_multimesh_property_visible_instance_count.html#class-multimesh_property_visible_instance_count)
+controlled with the [MultiMesh.visible_instance_count](https://docs.godotengine.org/en/stable/classes/class_multimesh.html#class-multimesh-property-visible-instance-count)
 property. The typical workflow is to allocate the maximum amount of instances that will be used,
 then change the amount visible depending on how many are currently needed.
 

@@ -68,7 +68,7 @@ Settings.
 >
 
 For development purposes Godot can generate self-signed certificates via
-[Crypto.generate_self_signed_certificate](https://docs.godotengine.org/en/stable/classes/class_crypto_method_generate_self_signed_certificate.html#class-crypto_method_generate_self_signed_certificate).
+[Crypto.generate_self_signed_certificate](https://docs.godotengine.org/en/stable/classes/class_crypto.html#class-crypto-method-generate-self-signed-certificate).
 
 Alternatively, OpenSSL has some documentation about generating keys
 and certificates.

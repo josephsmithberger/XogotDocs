@@ -352,7 +352,7 @@ animation_tree.get_root_motion_rotation_accumulator()
 animation_tree.get_root_motion_scale_accumulator()
 ```
 
-This can be fed to functions such as [CharacterBody3D.move_and_slide](https://docs.godotengine.org/en/stable/classes/class_characterbody3d_method_move_and_slide.html#class-characterbody3d_method_move_and_slide) to control the character movement.
+This can be fed to functions such as [CharacterBody3D.move_and_slide](https://docs.godotengine.org/en/stable/classes/class_characterbody3d.html#class-characterbody3d-method-move-and-slide) to control the character movement.
 
 There is also a tool node, `RootMotionView`, you can place a scene that will act as a custom floor for your
 character and animations (this node is disabled by default during the game).

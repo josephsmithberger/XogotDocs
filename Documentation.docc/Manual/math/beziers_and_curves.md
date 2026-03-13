@@ -170,14 +170,14 @@ Additionally, if both control points were `0, 0` (remember they are relative vec
 Before drawing Bezier curves, tessellation is required. This is often done with a recursive or divide and conquer function that splits the curve until the curvature amount becomes less than a certain threshold.
 
 The Curve classes provide this via the
-[Curve2D.tessellate()](https://docs.godotengine.org/en/stable/classes/class_curve2d_method_tessellate.html#class-curve2d_method_tessellate) function (which receives optional `stages` of recursion and angle `tolerance` arguments). This way, drawing something based on a curve is easier.
+[Curve2D.tessellate()](https://docs.godotengine.org/en/stable/classes/class_curve2d.html#class-curve2d-method-tessellate) function (which receives optional `stages` of recursion and angle `tolerance` arguments). This way, drawing something based on a curve is easier.
 
 ## Traversal
 
 The last common use case for the curves is to traverse them. Because of what was mentioned before regarding constant speed, this is also difficult.
 
-To make this easier, the curves need to be baked into equidistant points. This way, they can be approximated with regular interpolation (which can be improved further with a cubic option). To do this, just use the [Curve3D.sample_baked()](https://docs.godotengine.org/en/stable/classes/class_curve3d_method_sample_baked.html#class-curve3d_method_sample_baked) method together with
-[Curve2D.get_baked_length()](https://docs.godotengine.org/en/stable/classes/class_curve2d_method_get_baked_length.html#class-curve2d_method_get_baked_length). The first call to either of them will bake the curve internally.
+To make this easier, the curves need to be baked into equidistant points. This way, they can be approximated with regular interpolation (which can be improved further with a cubic option). To do this, just use the [Curve3D.sample_baked()](https://docs.godotengine.org/en/stable/classes/class_curve3d.html#class-curve3d-method-sample-baked) method together with
+[Curve2D.get_baked_length()](https://docs.godotengine.org/en/stable/classes/class_curve2d.html#class-curve2d-method-get-baked-length). The first call to either of them will bake the curve internally.
 
 Traversal at constant speed, then, can be done with the following pseudo-code:
 

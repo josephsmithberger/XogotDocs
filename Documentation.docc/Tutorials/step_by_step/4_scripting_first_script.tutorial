@@ -85,7 +85,7 @@
             Every GDScript file functions implicitly as an extension of a class. The `extends` keyword defines the class this script inherits or extends. In this case, it's `Sprite2D`, meaning our script will get access to all the properties and functions of the Sprite2D node, including classes it extends, like `Node2D`, `CanvasItem`, and `Node`.
 
             > Tip: In GDScript, if you omit the line with the `extends` keyword, your
-                class will implicitly extend [`RefCounted`](https://docs.godotengine.org/en/stable/classes/class_RefCounted.html#class-RefCounted), which
+                class will implicitly extend [`RefCounted`](https://docs.godotengine.org/en/stable/classes/class_refcounted.html#class-refcounted), which
                 the Godot Engine uses to manage your application's memory.
 
             By extending we have access to inherited properties which include the ones you can see in the Inspector dock, like
@@ -205,7 +205,7 @@
             
             Multiplying this direction by `speed` gives us our movement vector. Finally, we add `velocity * delta` to the node's position property to move it
             
-            The position property is a  [`Vector2`](https://docs.godotengine.org/en/stable/classes/class_Vector2.html#class-Vector2)
+            The position property is a  [`Vector2`](https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2)
             ; a built-in type in the Godot Engine
             representing a 2D vector.
             

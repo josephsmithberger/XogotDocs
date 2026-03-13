@@ -10,7 +10,7 @@ the Root Viewport.
 @Image(source: "subviewportnode.png")
 
 are multiple surfaces to draw on. When we are drawing to a SubViewport, we call it a render target. We can access the contents
-of a render target by accessing its corresponding [texture](https://docs.godotengine.org/en/stable/classes/class_viewport_method_get_texture.html#class-viewport_method_get_texture).
+of a render target by accessing its corresponding [texture](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport-method-get-texture).
 By using a SubViewport as render target, we can either render multiple scenes simultaneously or we can render to
 a [ViewportTexture](https://docs.godotengine.org/en/stable/classes/class_viewporttexture.html#class-viewporttexture) which is applied to an object in the scene, for example a dynamic
 skybox.
@@ -40,7 +40,7 @@ flexible. If you want to use the texture of a Viewport, you'll be working with [
 scaled input events to their children nodes. By default [SubViewports](https://docs.godotengine.org/en/stable/classes/class_subviewport.html#class-subviewport) don't
 automatically receive input, unless they receive it from their direct
 [SubViewportContainer](https://docs.godotengine.org/en/stable/classes/class_subviewportcontainer.html#class-subviewportcontainer) parent node. In this case, input can be
-disabled with the [Disable Input](https://docs.godotengine.org/en/stable/classes/class_viewport_property_gui_disable_input.html#class-viewport_property_gui_disable_input) property.
+disabled with the [Disable Input](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport-property-gui-disable-input) property.
 
 @Image(source: "input.png")
 
@@ -70,7 +70,7 @@ be visible from the SubViewport because SubViewports only
 capture nodes below them in the hierarchy.
 
 There can only be one active camera per [Viewport](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport), so if there is more
-than one, make sure that the desired one has the [current](https://docs.godotengine.org/en/stable/classes/class_camera3d_property_current.html#class-camera3d_property_current) property set,
+than one, make sure that the desired one has the [current](https://docs.godotengine.org/en/stable/classes/class_camera3d.html#class-camera3d-property-current) property set,
 or make it the current camera by calling:
 
 ```
@@ -78,13 +78,13 @@ camera.make_current()
 ```
 
 By default, cameras will render all objects in their world. In 3D, cameras can use their
-[cull_mask](https://docs.godotengine.org/en/stable/classes/class_camera3d_property_cull_mask.html#class-camera3d_property_cull_mask) property combined with the
-[VisualInstance3D's](https://docs.godotengine.org/en/stable/classes/class_visualinstance3d.html#class-visualinstance3d) [layer](https://docs.godotengine.org/en/stable/classes/class_visualinstance3d_property_layers.html#class-visualinstance3d_property_layers)
+[cull_mask](https://docs.godotengine.org/en/stable/classes/class_camera3d.html#class-camera3d-property-cull-mask) property combined with the
+[VisualInstance3D's](https://docs.godotengine.org/en/stable/classes/class_visualinstance3d.html#class-visualinstance3d) [layer](https://docs.godotengine.org/en/stable/classes/class_visualinstance3d.html#class-visualinstance3d-property-layers)
 property to restrict which objects are rendered.
 
 ## Scale & stretching
 
-[SubViewports](https://docs.godotengine.org/en/stable/classes/class_subviewport.html#class-subviewport) have a [size](https://docs.godotengine.org/en/stable/classes/class_subviewport_property_size.html#class-subviewport_property_size) property, which represents the size of the SubViewport
+[SubViewports](https://docs.godotengine.org/en/stable/classes/class_subviewport.html#class-subviewport) have a [size](https://docs.godotengine.org/en/stable/classes/class_subviewport.html#class-subviewport-property-size) property, which represents the size of the SubViewport
 in pixels. For SubViewports which are children of [SubViewportContainers](https://docs.godotengine.org/en/stable/classes/class_subviewportcontainer.html#class-subviewportcontainer),
 these values are overridden, but for all others, this sets their resolution.
 
@@ -108,7 +108,7 @@ use the same as their parent Viewport. The Root Viewport always contains a
 World3D, which is the one objects are rendered to by default.
 
 A [World3D](https://docs.godotengine.org/en/stable/classes/class_world3d.html#class-world3d) can
-be set in a [Viewport](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport) using the [World 3D](https://docs.godotengine.org/en/stable/classes/class_viewport_property_world_3d.html#class-viewport_property_world_3d) property, that will separate
+be set in a [Viewport](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport) using the [World 3D](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport-property-world-3d) property, that will separate
 all children nodes of this [Viewport](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport) and will prevent them from interacting with the parent
 Viewport's World3D. This is especially useful in scenarios where, for
 example, you might want to show a separate character in 3D imposed over
@@ -116,12 +116,12 @@ the game (like in StarCraft).
 
 As a helper for situations where you want to create [Viewports](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport) that
 display single objects and don't want to create a [World3D](https://docs.godotengine.org/en/stable/classes/class_world3d.html#class-world3d), Viewport has
-the option to use its [Own World3D](https://docs.godotengine.org/en/stable/classes/class_viewport_property_own_world_3d.html#class-viewport_property_own_world_3d). This is useful when you want to
+the option to use its [Own World3D](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport-property-own-world-3d). This is useful when you want to
 instance 3D characters or objects in [World2D](https://docs.godotengine.org/en/stable/classes/class_world2d.html#class-world2d).
 
 For 2D, each [Viewport](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport) always contains its own [World2D](https://docs.godotengine.org/en/stable/classes/class_world2d.html#class-world2d).
 This suffices in most cases, but in case sharing them may be desired, it
-is possible to do so by setting [world_2d](https://docs.godotengine.org/en/stable/classes/class_viewport_property_world_2d.html#class-viewport_property_world_2d) on the Viewport through code.
+is possible to do so by setting [world_2d](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport-property-world-2d) on the Viewport through code.
 
 For an example of how this works, see the demo projects 3D in 2D and 2D in 3D respectively.
 
@@ -157,7 +157,7 @@ If the [SubViewport](https://docs.godotengine.org/en/stable/classes/class_subvie
 @Image(source: "container.png")
 
 The [SubViewport](https://docs.godotengine.org/en/stable/classes/class_subviewport.html#class-subviewport) will cover the area of its parent [SubViewportContainer](https://docs.godotengine.org/en/stable/classes/class_subviewportcontainer.html#class-subviewportcontainer) completely
-if [Stretch](https://docs.godotengine.org/en/stable/classes/class_subviewportcontainer_property_stretch.html#class-subviewportcontainer_property_stretch) is set to `true` in the SubViewportContainer.
+if [Stretch](https://docs.godotengine.org/en/stable/classes/class_subviewportcontainer.html#class-subviewportcontainer-property-stretch) is set to `true` in the SubViewportContainer.
 
 > Note:
 >
@@ -168,21 +168,21 @@ if [Stretch](https://docs.godotengine.org/en/stable/classes/class_subviewportcon
 
 Due to the fact that the [Viewport](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport) is an entryway into another rendering surface, it exposes a few
 rendering properties that can be different from the project settings. You can
-choose to use a different level of [MSAA](https://docs.godotengine.org/en/stable/classes/class_viewport_property_msaa_2d.html#class-viewport_property_msaa_2d) for each Viewport. The default behavior is `Disabled`.
+choose to use a different level of [MSAA](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport-property-msaa-2d) for each Viewport. The default behavior is `Disabled`.
 
-If you know that the [Viewport](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport) is only going to be used for 2D, you can [Disable 3D](https://docs.godotengine.org/en/stable/classes/class_viewport_property_disable_3d.html#class-viewport_property_disable_3d). Godot will then
+If you know that the [Viewport](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport) is only going to be used for 2D, you can [Disable 3D](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport-property-disable-3d). Godot will then
 restrict how the Viewport is drawn.
 Disabling 3D is slightly faster and uses less memory compared to enabled 3D. It's a good idea to disable 3D if your viewport doesn't render anything in 3D.
 
 > Note:
 >
-> If you need to render 3D shadows in the viewport, make sure to set the viewport's [positional_shadow_atlas_size](https://docs.godotengine.org/en/stable/classes/class_viewport_property_positional_shadow_atlas_size.html#class-viewport_property_positional_shadow_atlas_size) property to a value higher than `0`.
+> If you need to render 3D shadows in the viewport, make sure to set the viewport's [positional_shadow_atlas_size](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport-property-positional-shadow-atlas-size) property to a value higher than `0`.
 > Otherwise, shadows won't be rendered. By default, the equivalent project setting is set to `4096` on desktop platforms and `2048` on mobile platforms.
 >
 
-Godot also provides a way of customizing how everything is drawn inside [Viewports](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport) using [Debug Draw](https://docs.godotengine.org/en/stable/classes/class_viewport_property_debug_draw.html#class-viewport_property_debug_draw).
+Godot also provides a way of customizing how everything is drawn inside [Viewports](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport) using [Debug Draw](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport-property-debug-draw).
 Debug Draw allows you to specify a mode which determines how the Viewport will display things drawn
-inside it. Debug Draw is `Disabled` by default. Some other options are `Unshaded`, `Overdraw`, and `Wireframe`. For a full list, refer to the [Viewport Documentation](https://docs.godotengine.org/en/stable/classes/class_viewport_property_debug_draw.html#class-viewport_property_debug_draw).
+inside it. Debug Draw is `Disabled` by default. Some other options are `Unshaded`, `Overdraw`, and `Wireframe`. For a full list, refer to the [Viewport Documentation](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport-property-debug-draw).
 
 - **Debug Draw = Disabled** (default): The scene is drawn normally.
 
@@ -227,13 +227,13 @@ and then selecting the [Viewport](https://docs.godotengine.org/en/stable/classes
 @Image(source: "texturepath.png")
 
 Every frame, the [Viewport's](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport) texture is cleared away with the default clear color (or a transparent
-color if [Transparent BG](https://docs.godotengine.org/en/stable/classes/class_viewport_property_transparent_bg.html#class-viewport_property_transparent_bg) is set to `true`). This can be changed by setting [Clear Mode](https://docs.godotengine.org/en/stable/classes/class_subviewport_property_render_target_clear_mode.html#class-subviewport_property_render_target_clear_mode) to `Never` or `Next Frame`.
+color if [Transparent BG](https://docs.godotengine.org/en/stable/classes/class_viewport.html#class-viewport-property-transparent-bg) is set to `true`). This can be changed by setting [Clear Mode](https://docs.godotengine.org/en/stable/classes/class_subviewport.html#class-subviewport-property-render-target-clear-mode) to `Never` or `Next Frame`.
 As the name implies, Never means the texture will never be cleared, while next frame will
 clear the texture on the next frame and then set itself to Never.
 
 By default, re-rendering of the [SubViewport](https://docs.godotengine.org/en/stable/classes/class_subviewport.html#class-subviewport) happens when
 its [ViewportTexture](https://docs.godotengine.org/en/stable/classes/class_viewporttexture.html#class-viewporttexture) has been drawn in a frame. If visible, it will be
-rendered, otherwise, it will not. This behavior can be changed by setting [Update Mode](https://docs.godotengine.org/en/stable/classes/class_subviewport_property_render_target_update_mode.html#class-subviewport_property_render_target_update_mode) to `Never`, `Once`, `Always`, or `When Parent Visible`.
+rendered, otherwise, it will not. This behavior can be changed by setting [Update Mode](https://docs.godotengine.org/en/stable/classes/class_subviewport.html#class-subviewport-property-render-target-update-mode) to `Never`, `Once`, `Always`, or `When Parent Visible`.
 Never and Always will never or always re-render respectively. Once will re-render the next frame and change to Never afterwards. This can be used to manually update the Viewport.
 This flexibility allows users to render an image once and then use the texture without incurring the cost of rendering every frame.
 

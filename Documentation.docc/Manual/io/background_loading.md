@@ -7,8 +7,8 @@ that progress is being made, or you may want to load additional resources
 during gameplay.
 
 The standard load method
-([ResourceLoader.load](https://docs.godotengine.org/en/stable/classes/class_resourceloader_method_load.html#class-resourceloader_method_load) or GDScript's simpler
-[load](https://docs.godotengine.org/en/stable/classes/class_@gdscript_method_load.html#class-@gdscript_method_load)) blocks your
+([ResourceLoader.load](https://docs.godotengine.org/en/stable/classes/class_resourceloader.html#class-resourceloader-method-load) or GDScript's simpler
+[load](https://docs.godotengine.org/en/stable/classes/class_%40gdscript.html#class-gdscript-method-load)) blocks your
 thread, making your game appear unresponsive while the resource is being loaded.
 
 One way around this is using `ResourceLoader` to load resources asynchronously
@@ -17,16 +17,16 @@ in background threads.
 ## Using ResourceLoader
 
 Generally, you queue requests to load resources for a path using
-[ResourceLoader.load_threaded_request](https://docs.godotengine.org/en/stable/classes/class_resourceloader_method_load_threaded_request.html#class-resourceloader_method_load_threaded_request),
+[ResourceLoader.load_threaded_request](https://docs.godotengine.org/en/stable/classes/class_resourceloader.html#class-resourceloader-method-load-threaded-request),
 which will then be loaded in threads in the background.
 
 You can check the status with
-[ResourceLoader.load_threaded_get_status](https://docs.godotengine.org/en/stable/classes/class_resourceloader_method_load_threaded_get_status.html#class-resourceloader_method_load_threaded_get_status).
+[ResourceLoader.load_threaded_get_status](https://docs.godotengine.org/en/stable/classes/class_resourceloader.html#class-resourceloader-method-load-threaded-get-status).
 Progress can be obtained by passing an array variable via progress which will return
 a one element array containing the percentage.
 
 Finally, you retrieve loaded resources by calling
-[ResourceLoader.load_threaded_get](https://docs.godotengine.org/en/stable/classes/class_resourceloader_method_load_threaded_get.html#class-resourceloader_method_load_threaded_get).
+[ResourceLoader.load_threaded_get](https://docs.godotengine.org/en/stable/classes/class_resourceloader.html#class-resourceloader-method-load-threaded-get).
 
 Once you call `load_threaded_get()`, either the resource finished loading in
 the background and will be returned instantly or the load will block at this point like

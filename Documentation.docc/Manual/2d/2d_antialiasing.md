@@ -71,7 +71,7 @@ affect** the following kinds of aliasing in any way:
 - Aliasing in font rendering.
 
 MSAA can be enabled in the Project Settings by changing the value of the
-[Rendering > Anti Aliasing > Quality > MSAA 2D](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_rendering/anti_aliasing/quality/msaa_2d.html#class-projectsettings_property_rendering/anti_aliasing/quality/msaa_2d)
+[Rendering > Anti Aliasing > Quality > MSAA 2D](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-rendering-anti-aliasing-quality-msaa-2d)
 setting. It's important to change the value of the **MSAA 2D** setting and not **MSAA 3D**, as these are entirely
 separate settings.
 

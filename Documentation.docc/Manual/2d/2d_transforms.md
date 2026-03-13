@@ -39,7 +39,7 @@ on each viewport.
 
 Input events are multiplied by this transform, but lack the ones above. To
 convert InputEvent coordinates to local CanvasItem coordinates, the
-[CanvasItem.make_input_local()](https://docs.godotengine.org/en/stable/classes/class_canvasitem_method_make_input_local.html#class-canvasitem_method_make_input_local)
+[CanvasItem.make_input_local()](https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#class-canvasitem-method-make-input-local)
 function was added for convenience.
 
 ## Window transform
@@ -61,7 +61,7 @@ the following chain of transforms must be applied:
 
 The above graphic shows some available transform functions. All transforms are directed from right
 to left, this means multiplying a transform with a coordinate results in a coordinate system
-further to the left, multiplying the [affine inverse](https://docs.godotengine.org/en/stable/classes/class_transform2d_method_affine_inverse.html#class-transform2d_method_affine_inverse)
+further to the left, multiplying the [affine inverse](https://docs.godotengine.org/en/stable/classes/class_transform2d.html#class-transform2d-method-affine-inverse)
 of a transform results in a coordinate system further to the right:
 
 ```

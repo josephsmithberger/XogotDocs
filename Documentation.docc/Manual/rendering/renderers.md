@@ -109,7 +109,7 @@ driver is not supported either, the engine will then fall back to Compatibility
 when the RenderingDevice backend is not supported. This allows the project to run
 anyway, but it may look different than the intended appearance due to the more
 limited renderer. This behavior can be disabled in the project settings by unchecking
-[Rendering > Rendering Device > Fallback to OpenGL 3](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_rendering/rendering_device/fallback_to_opengl3.html#class-projectsettings_property_rendering/rendering_device/fallback_to_opengl3).
+[Rendering > Rendering Device > Fallback to OpenGL 3](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-rendering-rendering-device-fallback-to-opengl3).
 
 ## Feature comparison
 

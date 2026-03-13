@@ -113,8 +113,8 @@ Global built-ins are available everywhere, including custom functions.
 Built-in | Description
 -------- | -----------
 in float**TIME** | Global time since the engine has started, in seconds. It repeats after every`3,600`seconds (which can be changed with the
-[rollover](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_rendering/limits/time/time_rollover_secs.html#class-projectsettings_property_rendering/limits/time/time_rollover_secs)
-setting). It's affected by [time_scale](https://docs.godotengine.org/en/stable/classes/class_engine_property_time_scale.html#class-engine_property_time_scale) but not by pausing.
+[rollover](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-rendering-limits-time-time-rollover-secs)
+setting). It's affected by [time_scale](https://docs.godotengine.org/en/stable/classes/class_engine.html#class-engine-property-time-scale) but not by pausing.
 If you need a`TIME`variable that is not affected by time scale, add your own
 <doc:shading_language#Global-Uniforms> and update it each
 frame.
@@ -370,7 +370,7 @@ If you want the lights to add together, add the light contribution to `DIFFUSE_L
 > Warning:
 >
 > The `light()` function won't be run if the `vertex_lighting` render mode is enabled, or if
-> [Rendering > Quality > Shading > Force Vertex Shading](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_rendering/shading/overrides/force_vertex_shading.html#class-projectsettings_property_rendering/shading/overrides/force_vertex_shading)
+> [Rendering > Quality > Shading > Force Vertex Shading](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-rendering-shading-overrides-force-vertex-shading)
 > is enabled in the Project Settings. (It's enabled by default on mobile platforms.)
 >
 
@@ -390,11 +390,11 @@ in vec2**UV** | UV that comes from the`vertex()`function.
 in vec2**UV2** | UV2 that comes from the`vertex()`function.
 in vec3**VIEW** | View vector, in view space.
 in vec3**LIGHT** | Light vector, in view space.
-in vec3**LIGHT_COLOR** | [Light color](https://docs.godotengine.org/en/stable/classes/class_light3d_property_light_color.html#class-light3d_property_light_color) multiplied by
-[light energy](https://docs.godotengine.org/en/stable/classes/class_light3d_property_light_energy.html#class-light3d_property_light_energy) multiplied by`PI`. The`PI`multiplication is present because
+in vec3**LIGHT_COLOR** | [Light color](https://docs.godotengine.org/en/stable/classes/class_light3d.html#class-light3d-property-light-color) multiplied by
+[light energy](https://docs.godotengine.org/en/stable/classes/class_light3d.html#class-light3d-property-light-energy) multiplied by`PI`. The`PI`multiplication is present because
 physically-based lighting models include a division by`PI`.
 in float**SPECULAR_AMOUNT** | For [OmniLight3D](https://docs.godotengine.org/en/stable/classes/class_omnilight3d.html#class-omnilight3d) and [SpotLight3D](https://docs.godotengine.org/en/stable/classes/class_spotlight3d.html#class-spotlight3d),`2.0`multiplied by
-[light_specular](https://docs.godotengine.org/en/stable/classes/class_light3d_property_light_specular.html#class-light3d_property_light_specular).
+[light_specular](https://docs.godotengine.org/en/stable/classes/class_light3d.html#class-light3d-property-light-specular).
 For [DirectionalLight3D](https://docs.godotengine.org/en/stable/classes/class_directionallight3d.html#class-directionallight3d),`1.0`.
 in bool**LIGHT_IS_DIRECTIONAL** | `true`if this pass is a [DirectionalLight3D](https://docs.godotengine.org/en/stable/classes/class_directionallight3d.html#class-directionallight3d).
 in float**ATTENUATION** | Attenuation based on distance or shadow.

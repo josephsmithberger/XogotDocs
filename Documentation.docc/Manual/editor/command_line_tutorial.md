@@ -65,7 +65,7 @@ lowercase and the rest is optional. See <doc:locales> for more details.
 `--scene <path>` | Path or UID of a scene in the project that should be started.
 `-u`,`--upwards` | Scan folders upwards for 'project.godot' file.
 `--main-pack <file>` | Path to a pack (.pck) file to load.
-`--render-thread <mode>` | Render thread mode ('unsafe', 'safe', 'separate'). See [Thread Model](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_rendering/driver/threads/thread_model.html#class-projectsettings_property_rendering/driver/threads/thread_model)
+`--render-thread <mode>` | Render thread mode ('unsafe', 'safe', 'separate'). See [Thread Model](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-rendering-driver-threads-thread-model)
 for more details.
 `--remote-fs <address>` | Remote filesystem (`<host/IP>[:<port>]`address).
 `--remote-fs-password <password>` | Password for remote filesystem.

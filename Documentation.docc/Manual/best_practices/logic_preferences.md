@@ -23,15 +23,15 @@ position.
 ## Loading vs. preloading
 
 In GDScript, there exists the global
-[preload](https://docs.godotengine.org/en/stable/classes/class_@gdscript_method_preload.html#class-@gdscript_method_preload) method. It loads resources as
+[preload](https://docs.godotengine.org/en/stable/classes/class_%40gdscript.html#class-gdscript-method-preload) method. It loads resources as
 early as possible to front-load the "loading" operations and avoid loading
 resources while in the middle of performance-sensitive code.
 
-Its counterpart, the [load](https://docs.godotengine.org/en/stable/classes/class_@gdscript_method_load.html#class-@gdscript_method_load) method, loads a
+Its counterpart, the [load](https://docs.godotengine.org/en/stable/classes/class_%40gdscript.html#class-gdscript-method-load) method, loads a
 resource only when it reaches the load statement. That is, it will load a
 resource in-place which can cause slowdowns when it occurs in the middle of
 sensitive processes. The `load()` function is also an alias for
-[ResourceLoader.load(path)](https://docs.godotengine.org/en/stable/classes/class_resourceloader_method_load.html#class-resourceloader_method_load) which is
+[ResourceLoader.load(path)](https://docs.godotengine.org/en/stable/classes/class_resourceloader.html#class-resourceloader-method-load) which is
 accessible to all scripting languages.
 
 So, when exactly does preloading occur versus loading, and when should one use

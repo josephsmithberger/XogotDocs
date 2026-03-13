@@ -103,7 +103,7 @@ resources of type [PackedScene](https://docs.godotengine.org/en/stable/classes/c
 scene is packed inside a [Resource](https://docs.godotengine.org/en/stable/classes/class_resource.html#class-resource).
 
 To get an instance of the scene, you have to use the
-[PackedScene.instantiate()](https://docs.godotengine.org/en/stable/classes/class_packedscene_method_instantiate.html#class-packedscene_method_instantiate) method.
+[PackedScene.instantiate()](https://docs.godotengine.org/en/stable/classes/class_packedscene.html#class-packedscene-method-instantiate) method.
 
 ```
 func _on_shoot():
@@ -115,7 +115,7 @@ This method creates the nodes in the scene's hierarchy, configures them, and
 returns the root node of the scene. You can then add it as a child of any other
 node.
 
-The approach has several advantages. As the [PackedScene.instantiate()](https://docs.godotengine.org/en/stable/classes/class_packedscene_method_instantiate.html#class-packedscene_method_instantiate) function is fast, you can create new
+The approach has several advantages. As the [PackedScene.instantiate()](https://docs.godotengine.org/en/stable/classes/class_packedscene.html#class-packedscene-method-instantiate) function is fast, you can create new
 enemies, bullets, effects, etc. without having to load them again from disk each
 time. Remember that, as always, images, meshes, etc. are all shared between the
 scene instances.

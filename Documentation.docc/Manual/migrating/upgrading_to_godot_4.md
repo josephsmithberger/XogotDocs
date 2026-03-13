@@ -77,7 +77,7 @@ GDExtension.
 
 - By default, rendering in 2D is no longer performed in HDR, which means
 "overbright" modulate values have no visible effect. Since Godot 4.2, you can
-enable the project setting [HDR 2D](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_rendering/viewport/hdr_2d.html#class-projectsettings_property_rendering/viewport/hdr_2d)
+enable the project setting [HDR 2D](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-rendering-viewport-hdr-2d)
 to perform 2D rendering in HDR. See also <doc:environment_and_post_processing#Using-Glow-In-2d>.
 
 - While rendering still happens in HDR in 3D when using the Forward+ or Mobile

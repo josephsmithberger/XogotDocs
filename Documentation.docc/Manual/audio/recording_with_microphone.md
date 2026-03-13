@@ -17,7 +17,7 @@ A simple demo is included in the official demo projects and will be used as
 support for this tutorial:
 https://github.com/godotengine/godot-demo-projects/tree/master/audio/mic_record.
 
-You will need to enable audio input in the [Audio > Driver > Enable Input](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_audio/driver/enable_input.html#class-projectsettings_property_audio/driver/enable_input) project setting, or you'll just get empty audio files.
+You will need to enable audio input in the [Audio > Driver > Enable Input](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-audio-driver-enable-input) project setting, or you'll just get empty audio files.
 
 ## The structure of the demo
 
@@ -47,9 +47,9 @@ func _ready():
 
 The audio recording is handled by the [AudioEffectRecord](https://docs.godotengine.org/en/stable/classes/class_audioeffectrecord.html#class-audioeffectrecord) resource
 which has three methods:
-[get_recording()](https://docs.godotengine.org/en/stable/classes/class_audioeffectrecord_method_get_recording.html#class-audioeffectrecord_method_get_recording),
-[is_recording_active()](https://docs.godotengine.org/en/stable/classes/class_audioeffectrecord_method_is_recording_active.html#class-audioeffectrecord_method_is_recording_active),
-and [set_recording_active()](https://docs.godotengine.org/en/stable/classes/class_audioeffectrecord_method_set_recording_active.html#class-audioeffectrecord_method_set_recording_active).
+[get_recording()](https://docs.godotengine.org/en/stable/classes/class_audioeffectrecord.html#class-audioeffectrecord-method-get-recording),
+[is_recording_active()](https://docs.godotengine.org/en/stable/classes/class_audioeffectrecord.html#class-audioeffectrecord-method-is-recording-active),
+and [set_recording_active()](https://docs.godotengine.org/en/stable/classes/class_audioeffectrecord.html#class-audioeffectrecord-method-set-recording-active).
 
 ```
 func _on_record_button_pressed():

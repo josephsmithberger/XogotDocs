@@ -50,7 +50,7 @@ func _exit_tree():
 
 Your function will, then, run in a separate thread until it returns.
 Even if the function has returned already, the thread must collect it, so call
-[Thread.wait_to_finish()](https://docs.godotengine.org/en/stable/classes/class_thread_method_wait_to_finish.html#class-thread_method_wait_to_finish), which will
+[Thread.wait_to_finish()](https://docs.godotengine.org/en/stable/classes/class_thread.html#class-thread-method-wait-to-finish), which will
 wait until the thread is done (if not done yet), then properly dispose of it.
 
 > Warning:
@@ -81,10 +81,10 @@ synchronization problems, as the data is not always updated between CPU cores
 when modified. Always use a [Mutex](https://docs.godotengine.org/en/stable/classes/class_mutex.html#class-mutex) when accessing
 a piece of data from different threads.
 
-When calling [Mutex.lock()](https://docs.godotengine.org/en/stable/classes/class_mutex_method_lock.html#class-mutex_method_lock), a thread ensures that
+When calling [Mutex.lock()](https://docs.godotengine.org/en/stable/classes/class_mutex.html#class-mutex-method-lock), a thread ensures that
 all other threads will be blocked (put on suspended state) if they try to lock
 the same mutex. When the mutex is unlocked by calling
-[Mutex.unlock()](https://docs.godotengine.org/en/stable/classes/class_mutex_method_unlock.html#class-mutex_method_unlock), the other threads will be
+[Mutex.unlock()](https://docs.godotengine.org/en/stable/classes/class_mutex.html#class-mutex-method-unlock), the other threads will be
 allowed to proceed with the lock (but only one at a time).
 
 Here is an example of using a Mutex:
@@ -125,11 +125,11 @@ func _exit_tree():
 Sometimes you want your thread to work "on demand". In other words, tell it
 when to work and let it suspend when it isn't doing anything.
 For this, [Semaphores](https://docs.godotengine.org/en/stable/classes/class_semaphore.html#class-semaphore) are used. The function
-[Semaphore.wait()](https://docs.godotengine.org/en/stable/classes/class_semaphore_method_wait.html#class-semaphore_method_wait) is used in the thread to
+[Semaphore.wait()](https://docs.godotengine.org/en/stable/classes/class_semaphore.html#class-semaphore-method-wait) is used in the thread to
 suspend it until some data arrives.
 
 The main thread, instead, uses
-[Semaphore.post()](https://docs.godotengine.org/en/stable/classes/class_semaphore_method_post.html#class-semaphore_method_post) to signal that data is
+[Semaphore.post()](https://docs.godotengine.org/en/stable/classes/class_semaphore.html#class-semaphore-method-post) to signal that data is
 ready to be processed:
 
 ```

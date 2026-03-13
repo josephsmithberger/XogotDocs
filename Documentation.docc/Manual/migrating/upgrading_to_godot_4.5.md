@@ -175,13 +175,13 @@ In 4.5, some behavior changes have been introduced, which might require you to a
 
 ### TileMapLayer
 
-[TileMapLayer.get_coords_for_body_rid()](https://docs.godotengine.org/en/stable/classes/class_tilemaplayer_method_get_coords_for_body_rid.html#class-tilemaplayer_method_get_coords_for_body_rid)
+[TileMapLayer.get_coords_for_body_rid()](https://docs.godotengine.org/en/stable/classes/class_tilemaplayer.html#class-tilemaplayer-method-get-coords-for-body-rid)
 will return different values in 4.5 compared to 4.4,
 as TileMapLayer physics chunking is enabled by default. Higher values of
-[TileMapLayer.physics_quadrant_size](https://docs.godotengine.org/en/stable/classes/class_tilemaplayer_property_physics_quadrant_size.html#class-tilemaplayer_property_physics_quadrant_size)
+[TileMapLayer.physics_quadrant_size](https://docs.godotengine.org/en/stable/classes/class_tilemaplayer.html#class-tilemaplayer-property-physics-quadrant-size)
 will make this function less precise. To get the exact cell coordinates like in 4.4 and prior
 versions, you need to set
-[TileMapLayer.physics_quadrant_size](https://docs.godotengine.org/en/stable/classes/class_tilemaplayer_property_physics_quadrant_size.html#class-tilemaplayer_property_physics_quadrant_size)
+[TileMapLayer.physics_quadrant_size](https://docs.godotengine.org/en/stable/classes/class_tilemaplayer.html#class-tilemaplayer-property-physics-quadrant-size)
 to `1`, which disables physics chunking.
 
 ### 3D Model Import
@@ -198,25 +198,25 @@ new behavior, you must change the "Naming Version" option at the bottom of the I
 
 > Note:
 >
-> [Resource.duplicate(true)](https://docs.godotengine.org/en/stable/classes/class_resource_method_duplicate.html#class-resource_method_duplicate) (which performs
+> [Resource.duplicate(true)](https://docs.godotengine.org/en/stable/classes/class_resource.html#class-resource-method-duplicate) (which performs
 > deep duplication) now only duplicates resources internal to the resource file
 > it's called on. In 4.4, this duplicated everything instead, including external resources.
 > If you were deep-duplicating a resource that contained references to other
 > external resources, those external resources aren't duplicated anymore. You must call
-> [Resource.duplicate_deep(DEEP_DUPLICATE_ALL)](https://docs.godotengine.org/en/stable/classes/class_resource_method_duplicate_deep.html#class-resource_method_duplicate_deep)
+> [Resource.duplicate_deep(DEEP_DUPLICATE_ALL)](https://docs.godotengine.org/en/stable/classes/class_resource.html#class-resource-method-duplicate-deep)
 > instead to keep the old behavior.
 >
 
 > Note:
 >
-> [ProjectSettings.add_property_info()](https://docs.godotengine.org/en/stable/classes/class_projectsettings_method_add_property_info.html#class-projectsettings_method_add_property_info)
+> [ProjectSettings.add_property_info()](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-method-add-property-info)
 > now prints a warning when the dictionary parameter has missing keys or invalid keys.
 > Most importantly, it will now warn when a `usage` key is passed, as this key is not used.
 > This was also the case before 4.5, but it was silently ignored instead.
 > As a reminder, to set property usage information correctly, you must use
-> [ProjectSettings.set_as_basic()](https://docs.godotengine.org/en/stable/classes/class_projectsettings_method_set_as_basic.html#class-projectsettings_method_set_as_basic),
-> [ProjectSettings.set_restart_if_changed()](https://docs.godotengine.org/en/stable/classes/class_projectsettings_method_set_restart_if_changed.html#class-projectsettings_method_set_restart_if_changed),
-> or [ProjectSettings.set_as_internal()](https://docs.godotengine.org/en/stable/classes/class_projectsettings_method_set_as_internal.html#class-projectsettings_method_set_as_internal) instead.
+> [ProjectSettings.set_as_basic()](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-method-set-as-basic),
+> [ProjectSettings.set_restart_if_changed()](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-method-set-restart-if-changed),
+> or [ProjectSettings.set_as_internal()](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-method-set-as-internal) instead.
 >
 
 > Note:

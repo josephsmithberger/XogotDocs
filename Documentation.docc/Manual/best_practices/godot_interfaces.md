@@ -68,7 +68,7 @@ that one can pass resources around as references as well.
 
 1. Keep in mind that loading a resource fetches the cached resource
 instance maintained by the engine. To get a new object, one must
-[duplicate](https://docs.godotengine.org/en/stable/classes/class_resource_method_duplicate.html#class-resource_method_duplicate) an existing reference
+[duplicate](https://docs.godotengine.org/en/stable/classes/class_resource.html#class-resource-method-duplicate) an existing reference
 or instantiate one from scratch with `new()`.
 
 Nodes likewise have an alternative access point: the SceneTree.
@@ -139,7 +139,7 @@ It instead checks that the object **implements** the individual method.
 For example, the [CanvasItem](https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#class-canvasitem) class has a `visible`
 property. All properties exposed to the scripting API are in fact a setter and
 getter pair bound to a name. If one tried to access
-[CanvasItem.visible](https://docs.godotengine.org/en/stable/classes/class_canvasitem_property_visible.html#class-canvasitem_property_visible), then Godot would do the
+[CanvasItem.visible](https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#class-canvasitem-property-visible), then Godot would do the
 following checks, in order:
 
 - If the object has a script attached, it will attempt to set the property
@@ -199,7 +199,7 @@ get_parent().visible = false
 ```
 
 - A method check. In the case of
-[CanvasItem.visible](https://docs.godotengine.org/en/stable/classes/class_canvasitem_property_visible.html#class-canvasitem_property_visible), one can
+[CanvasItem.visible](https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#class-canvasitem-property-visible), one can
 access the methods, `set_visible` and `is_visible` like any other method.
 
 ```

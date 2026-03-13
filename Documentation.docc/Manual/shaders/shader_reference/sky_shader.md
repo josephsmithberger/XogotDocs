@@ -63,10 +63,10 @@ the radiance cubemap:
 
 Try to avoid updating the radiance cubemap needlessly. If you do need to
 update the radiance cubemap each frame, make sure your
-[Sky process mode](https://docs.godotengine.org/en/stable/classes/class_sky_property_process_mode.html#class-sky_property_process_mode) is set to
-[PROCESS_MODE_REALTIME](https://docs.godotengine.org/en/stable/classes/class_sky_constant_process_mode_realtime.html#class-sky_constant_process_mode_realtime).
+[Sky process mode](https://docs.godotengine.org/en/stable/classes/class_sky.html#class-sky-property-process-mode) is set to
+[PROCESS_MODE_REALTIME](https://docs.godotengine.org/en/stable/classes/class_sky.html#class-sky-constant-process-mode-realtime).
 
-Note that the [process mode](https://docs.godotengine.org/en/stable/classes/class_sky_property_process_mode.html#class-sky_property_process_mode) only
+Note that the [process mode](https://docs.godotengine.org/en/stable/classes/class_sky.html#class-sky-property-process-mode) only
 affects the rendering of the radiance cubemap. The visible sky is always
 rendered by calling the fragment shader for every pixel. With complex fragment
 shaders, this can result in a high rendering overhead. If the sky is static
@@ -99,8 +99,8 @@ void sky() {
 ```
 
 This way, the complex calculations happen only in the cubemap pass, which can
-be optimized by setting the sky's [process mode](https://docs.godotengine.org/en/stable/classes/class_sky_property_process_mode.html#class-sky_property_process_mode)
-and the [radiance size](https://docs.godotengine.org/en/stable/classes/class_sky_property_radiance_size.html#class-sky_property_radiance_size) to get the
+be optimized by setting the sky's [process mode](https://docs.godotengine.org/en/stable/classes/class_sky.html#class-sky-property-process-mode)
+and the [radiance size](https://docs.godotengine.org/en/stable/classes/class_sky.html#class-sky-property-radiance-size) to get the
 desired balance between performance and visual fidelity.
 
 ## Render modes
@@ -148,8 +148,8 @@ There are 4 `LIGHTX` lights, accessed as `LIGHT0`, `LIGHT1`, `LIGHT2`, and `LIGH
 Built-in | Description
 -------- | -----------
 in float**TIME** | Global time since the engine has started, in seconds. It repeats after every`3,600`seconds (which can be changed with the
-[rollover](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_rendering/limits/time/time_rollover_secs.html#class-projectsettings_property_rendering/limits/time/time_rollover_secs)
-setting). It's affected by [time_scale](https://docs.godotengine.org/en/stable/classes/class_engine_property_time_scale.html#class-engine_property_time_scale) but not by pausing. If you need a`TIME`variable that is not affected by time scale, add your own
+[rollover](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-rendering-limits-time-time-rollover-secs)
+setting). It's affected by [time_scale](https://docs.godotengine.org/en/stable/classes/class_engine.html#class-engine-property-time-scale) but not by pausing. If you need a`TIME`variable that is not affected by time scale, add your own
 <doc:shading_language#Global-Uniforms> and update it each
 frame.
 in vec3**POSITION** | Camera position, in world space.

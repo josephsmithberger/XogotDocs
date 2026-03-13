@@ -47,9 +47,9 @@ Global built-ins are available everywhere, including custom functions.
 Built-in | Description
 -------- | -----------
 in float**TIME** | Global time since the engine has started, in seconds. It repeats after every`3,600`seconds (which can be changed with the
-[rollover](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_rendering/limits/time/time_rollover_secs.html#class-projectsettings_property_rendering/limits/time/time_rollover_secs)
+[rollover](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-rendering-limits-time-time-rollover-secs)
 setting). It's affected by
-[time_scale](https://docs.godotengine.org/en/stable/classes/class_engine_property_time_scale.html#class-engine_property_time_scale) but not by pausing. If you need a`TIME`variable that is not affected by time scale, add your own
+[time_scale](https://docs.godotengine.org/en/stable/classes/class_engine.html#class-engine-property-time-scale) but not by pausing. If you need a`TIME`variable that is not affected by time scale, add your own
 <doc:shading_language#Global-Uniforms> and update it each
 frame.
 in float**PI** | A`PI`constant (`3.141592`).
@@ -83,10 +83,10 @@ in uint**FLAG_EMIT_VELOCITY** | A flag for the last argument of the`emit_subpart
 in uint**FLAG_EMIT_COLOR** | A flag for the last argument of the`emit_subparticle()`function to assign a color to a new particle.
 in uint**FLAG_EMIT_CUSTOM** | A flag for the last argument of the`emit_subparticle()`function to assign a custom data vector to a new particle.
 in vec3**EMITTER_VELOCITY** | Velocity of the [Particles2D](https://docs.godotengine.org/en/stable/classes/class_gpuparticles2d.html#class-gpuparticles2d) ([3D](https://docs.godotengine.org/en/stable/classes/class_gpuparticles3d.html#class-gpuparticles3d)) node.
-in float**INTERPOLATE_TO_END** | Value of the [interp_to_end](https://docs.godotengine.org/en/stable/classes/class_gpuparticles2d_property_interp_to_end.html#class-gpuparticles2d_property_interp_to_end)
-([3D](https://docs.godotengine.org/en/stable/classes/class_gpuparticles3d_property_interp_to_end.html#class-gpuparticles3d_property_interp_to_end)) property of the Particles node.
-in uint**AMOUNT_RATIO** | Value of the [amount_ratio](https://docs.godotengine.org/en/stable/classes/class_gpuparticles2d_property_amount_ratio.html#class-gpuparticles2d_property_amount_ratio)
-([3D](https://docs.godotengine.org/en/stable/classes/class_gpuparticles3d_property_amount_ratio.html#class-gpuparticles3d_property_amount_ratio)) property of the Particles node.
+in float**INTERPOLATE_TO_END** | Value of the [interp_to_end](https://docs.godotengine.org/en/stable/classes/class_gpuparticles2d.html#class-gpuparticles2d-property-interp-to-end)
+([3D](https://docs.godotengine.org/en/stable/classes/class_gpuparticles3d.html#class-gpuparticles3d-property-amount-ratio)) property of the Particles node.
+in uint**AMOUNT_RATIO** | Value of the [amount_ratio](https://docs.godotengine.org/en/stable/classes/class_gpuparticles2d.html#class-gpuparticles2d-property-amount-ratio)
+([3D](https://docs.godotengine.org/en/stable/classes/class_gpuparticles3d.html#class-gpuparticles3d-property-amount-ratio)) property of the Particles node.
 
 > Note: In order to use the `COLOR` variable in a StandardMaterial3D, set `vertex_color_use_as_albedo`
 > to `true`. In a ShaderMaterial, access it with the `COLOR` variable.

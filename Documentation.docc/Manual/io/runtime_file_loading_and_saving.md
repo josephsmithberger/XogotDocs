@@ -73,40 +73,40 @@ strings and more. These PackedByteArray methods have names that start with
 
 ## Images
 
-Image's [Image.load_from_file](https://docs.godotengine.org/en/stable/classes/class_image_method_load_from_file.html#class-image_method_load_from_file) static method
+Image's [Image.load_from_file](https://docs.godotengine.org/en/stable/classes/class_image.html#class-image-method-load-from-file) static method
 handles everything, from format detection based on file extension to reading the
 file from disk.
 
 If you need error handling or more control (such as changing the scale an SVG is
 loaded at), use one of the following methods depending on the file format:
 
-- [Image.load_jpg_from_buffer](https://docs.godotengine.org/en/stable/classes/class_image_method_load_jpg_from_buffer.html#class-image_method_load_jpg_from_buffer)
+- [Image.load_jpg_from_buffer](https://docs.godotengine.org/en/stable/classes/class_image.html#class-image-method-load-jpg-from-buffer)
 
-- [Image.load_ktx_from_buffer](https://docs.godotengine.org/en/stable/classes/class_image_method_load_ktx_from_buffer.html#class-image_method_load_ktx_from_buffer)
+- [Image.load_ktx_from_buffer](https://docs.godotengine.org/en/stable/classes/class_image.html#class-image-method-load-ktx-from-buffer)
 
-- [Image.load_png_from_buffer](https://docs.godotengine.org/en/stable/classes/class_image_method_load_png_from_buffer.html#class-image_method_load_png_from_buffer)
+- [Image.load_png_from_buffer](https://docs.godotengine.org/en/stable/classes/class_image.html#class-image-method-load-png-from-buffer)
 
-- [Image.load_svg_from_buffer](https://docs.godotengine.org/en/stable/classes/class_image_method_load_svg_from_buffer.html#class-image_method_load_svg_from_buffer)
-or [Image.load_svg_from_string](https://docs.godotengine.org/en/stable/classes/class_image_method_load_svg_from_string.html#class-image_method_load_svg_from_string)
+- [Image.load_svg_from_buffer](https://docs.godotengine.org/en/stable/classes/class_image.html#class-image-method-load-svg-from-buffer)
+or [Image.load_svg_from_string](https://docs.godotengine.org/en/stable/classes/class_image.html#class-image-method-load-svg-from-string)
 
-- [Image.load_tga_from_buffer](https://docs.godotengine.org/en/stable/classes/class_image_method_load_tga_from_buffer.html#class-image_method_load_tga_from_buffer)
+- [Image.load_tga_from_buffer](https://docs.godotengine.org/en/stable/classes/class_image.html#class-image-method-load-tga-from-buffer)
 
-- [Image.load_webp_from_buffer](https://docs.godotengine.org/en/stable/classes/class_image_method_load_webp_from_buffer.html#class-image_method_load_webp_from_buffer)
+- [Image.load_webp_from_buffer](https://docs.godotengine.org/en/stable/classes/class_image.html#class-image-method-load-webp-from-buffer)
 
 Several image formats can also be saved by Godot at runtime using the following
 methods:
 
-- [Image.save_png](https://docs.godotengine.org/en/stable/classes/class_image_method_save_png.html#class-image_method_save_png)
-or [Image.save_png_to_buffer](https://docs.godotengine.org/en/stable/classes/class_image_method_save_png_to_buffer.html#class-image_method_save_png_to_buffer)
+- [Image.save_png](https://docs.godotengine.org/en/stable/classes/class_image.html#class-image-method-save-png)
+or [Image.save_png_to_buffer](https://docs.godotengine.org/en/stable/classes/class_image.html#class-image-method-save-png-to-buffer)
 
-- [Image.save_webp](https://docs.godotengine.org/en/stable/classes/class_image_method_save_webp.html#class-image_method_save_webp)
-or [Image.save_webp_to_buffer](https://docs.godotengine.org/en/stable/classes/class_image_method_save_webp_to_buffer.html#class-image_method_save_webp_to_buffer)
+- [Image.save_webp](https://docs.godotengine.org/en/stable/classes/class_image.html#class-image-method-save-webp)
+or [Image.save_webp_to_buffer](https://docs.godotengine.org/en/stable/classes/class_image.html#class-image-method-save-webp-to-buffer)
 
-- [Image.save_jpg](https://docs.godotengine.org/en/stable/classes/class_image_method_save_jpg.html#class-image_method_save_jpg)
-or [Image.save_jpg_to_buffer](https://docs.godotengine.org/en/stable/classes/class_image_method_save_jpg_to_buffer.html#class-image_method_save_jpg_to_buffer)
+- [Image.save_jpg](https://docs.godotengine.org/en/stable/classes/class_image.html#class-image-method-save-jpg)
+or [Image.save_jpg_to_buffer](https://docs.godotengine.org/en/stable/classes/class_image.html#class-image-method-save-jpg-to-buffer)
 
-- [Image.save_exr](https://docs.godotengine.org/en/stable/classes/class_image_method_save_exr.html#class-image_method_save_exr)
-or [Image.save_exr_to_buffer](https://docs.godotengine.org/en/stable/classes/class_image_method_save_exr_to_buffer.html#class-image_method_save_exr_to_buffer)
+- [Image.save_exr](https://docs.godotengine.org/en/stable/classes/class_image.html#class-image-method-save-exr)
+or [Image.save_exr_to_buffer](https://docs.godotengine.org/en/stable/classes/class_image.html#class-image-method-save-exr-to-buffer)
 (only available in editor builds, cannot be used in exported projects)
 
 The methods with the `to_buffer` suffix save the image to a PackedByteArray
@@ -117,7 +117,7 @@ increase performance by reducing I/O utilization.
 > Note:
 >
 > If displaying the loaded image on a 3D surface, make sure to call
-> [Image.generate_mipmaps](https://docs.godotengine.org/en/stable/classes/class_image_method_generate_mipmaps.html#class-image_method_generate_mipmaps)
+> [Image.generate_mipmaps](https://docs.godotengine.org/en/stable/classes/class_image.html#class-image-method-generate-mipmaps)
 > so that the texture doesn't look grainy when viewed at a distance.
 > This is also useful in 2D when following instructions on
 > <doc:multiple_resolutions#Reducing-Aliasing-On-Downsampling>.
@@ -217,18 +217,18 @@ gltf_document_save.write_to_filesystem(gltf_state_save, path)
 > way for Godot to infer this path.
 >
 > To set the base path, set
-> [GLTFState.base_path](https://docs.godotengine.org/en/stable/classes/class_gltfstate_property_base_path.html#class-gltfstate_property_base_path) on your
+> [GLTFState.base_path](https://docs.godotengine.org/en/stable/classes/class_gltfstate.html#class-gltfstate-property-base-path) on your
 > GLTFState instance before calling
-> [GLTFDocument.append_from_buffer](https://docs.godotengine.org/en/stable/classes/class_gltfdocument_method_append_from_buffer.html#class-gltfdocument_method_append_from_buffer)
-> or [GLTFDocument.append_from_file](https://docs.godotengine.org/en/stable/classes/class_gltfdocument_method_append_from_file.html#class-gltfdocument_method_append_from_file).
+> [GLTFDocument.append_from_buffer](https://docs.godotengine.org/en/stable/classes/class_gltfdocument.html#class-gltfdocument-method-append-from-buffer)
+> or [GLTFDocument.append_from_file](https://docs.godotengine.org/en/stable/classes/class_gltfdocument.html#class-gltfdocument-method-append-from-file).
 >
 
 ## Fonts
 
-[FontFile.load_dynamic_font](https://docs.godotengine.org/en/stable/classes/class_fontfile_method_load_bitmap_font.html#class-fontfile_method_load_bitmap_font) supports the following
+[FontFile.load_dynamic_font](https://docs.godotengine.org/en/stable/classes/class_fontfile.html#class-fontfile-method-load-bitmap-font) supports the following
 font file formats: TTF, OTF, WOFF, WOFF2, PFB, PFM
 
-On the other hand, [FontFile.load_bitmap_font](https://docs.godotengine.org/en/stable/classes/class_fontfile_method_load_bitmap_font.html#class-fontfile_method_load_bitmap_font) supports
+On the other hand, [FontFile.load_bitmap_font](https://docs.godotengine.org/en/stable/classes/class_fontfile.html#class-fontfile-method-load-bitmap-font) supports
 the BMFont format (`.fnt` or `.font`).
 
 Additionally, it is possible to load any font that is installed on the system using
@@ -269,7 +269,7 @@ imported Godot resources rather than the original project files).
 
 > Note:
 >
-> Use [ProjectSettings.load_resource_pack](https://docs.godotengine.org/en/stable/classes/class_projectsettings_method_load_resource_pack.html#class-projectsettings_method_load_resource_pack)
+> Use [ProjectSettings.load_resource_pack](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-method-load-resource-pack)
 > to load PCK or ZIP files exported by Godot as
 > <doc:exporting_pcks>. That approach is preferred
 > for DLCs, as it makes interacting with additional data packs seamless (virtual filesystem).

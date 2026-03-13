@@ -122,7 +122,7 @@ distance. See <doc:3d_antialiasing> for more information.
 
 There is a last solution that is more complex to set up, but provides the most
 flexibility: projecting a 2D node onto 3D space. This can be achieved using the
-return value of [unproject_position](https://docs.godotengine.org/en/stable/classes/class_camera3d_method_unproject_position.html#class-camera3d_method_unproject_position)
+return value of [unproject_position](https://docs.godotengine.org/en/stable/classes/class_camera3d.html#class-camera3d-method-unproject-position)
 method on a Camera3D node in a script's `_process()` function. This return value
 should then be used to set the `position` property of a Control node.
 

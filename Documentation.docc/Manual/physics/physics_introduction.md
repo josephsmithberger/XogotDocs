@@ -125,7 +125,7 @@ Code that runs each frame is called idle processing and code that runs on each p
 tick is called physics processing. Godot provides two different callbacks, one for each
 of those processing rates.
 
-The physics callback, [Node._physics_process()](https://docs.godotengine.org/en/stable/classes/class_node_private_method__physics_process.html#class-node_private_method__physics_process),
+The physics callback, [Node._physics_process()](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-private-method-physics-process),
 is called before each physics step. Any code that needs to access a body's properties should
 be run in here. This method will be passed a `delta`
 parameter, which is a floating-point number equal to the time passed in
@@ -314,7 +314,7 @@ automatically be calculated by the physics engine.
 However, if you do wish to have some control over the body, you should take
 care - altering the `position`, `linear_velocity`, or other physics properties
 of a rigid body can result in unexpected behavior. If you need to alter any
-of the physics-related properties, you should use the [_integrate_forces()](https://docs.godotengine.org/en/stable/classes/class_rigidbody2d_private_method__integrate_forces.html#class-rigidbody2d_private_method__integrate_forces)
+of the physics-related properties, you should use the [_integrate_forces()](https://docs.godotengine.org/en/stable/classes/class_rigidbody2d.html#class-rigidbody2d-private-method-integrate-forces)
 callback instead of `_physics_process()`. In this callback, you have access
 to the body's [PhysicsDirectBodyState2D](https://docs.godotengine.org/en/stable/classes/class_physicsdirectbodystate2d.html#class-physicsdirectbodystate2d),
 which allows for safely changing properties and synchronizing them with
@@ -348,7 +348,7 @@ the body and letting the physics engine calculate the resulting movement.
 > Note: When a rigid body goes to sleep, the `_integrate_forces()`
 > function will not be called. To override this behavior, you will
 > need to keep the body awake by creating a collision, applying a
-> force to it, or by disabling the [can_sleep](https://docs.godotengine.org/en/stable/classes/class_rigidbody2d_property_can_sleep.html#class-rigidbody2d_property_can_sleep)
+> force to it, or by disabling the [can_sleep](https://docs.godotengine.org/en/stable/classes/class_rigidbody2d.html#class-rigidbody2d-property-can-sleep)
 > property. Be aware that this can have a negative effect on performance.
 >
 
@@ -356,12 +356,12 @@ the body and letting the physics engine calculate the resulting movement.
 
 By default, rigid bodies do not keep track of contacts, because this can
 require a huge amount of memory if many bodies are in the scene. To enable
-contact reporting, set the [max_contacts_reported](https://docs.godotengine.org/en/stable/classes/class_rigidbody2d_property_max_contacts_reported.html#class-rigidbody2d_property_max_contacts_reported)
+contact reporting, set the [max_contacts_reported](https://docs.godotengine.org/en/stable/classes/class_rigidbody2d.html#class-rigidbody2d-property-max-contacts-reported)
 property to a non-zero value. The contacts can then be obtained via
-[PhysicsDirectBodyState2D.get_contact_count()](https://docs.godotengine.org/en/stable/classes/class_physicsdirectbodystate2d_method_get_contact_count.html#class-physicsdirectbodystate2d_method_get_contact_count)
+[PhysicsDirectBodyState2D.get_contact_count()](https://docs.godotengine.org/en/stable/classes/class_physicsdirectbodystate2d.html#class-physicsdirectbodystate2d-method-get-contact-count)
 and related functions.
 
-Contact monitoring via signals can be enabled via the [contact_monitor](https://docs.godotengine.org/en/stable/classes/class_rigidbody2d_property_contact_monitor.html#class-rigidbody2d_property_contact_monitor)
+Contact monitoring via signals can be enabled via the [contact_monitor](https://docs.godotengine.org/en/stable/classes/class_rigidbody2d.html#class-rigidbody2d-property-contact-monitor)
 property. See [RigidBody2D](https://docs.godotengine.org/en/stable/classes/class_rigidbody2d.html#class-rigidbody2d) for the list of available
 signals.
 

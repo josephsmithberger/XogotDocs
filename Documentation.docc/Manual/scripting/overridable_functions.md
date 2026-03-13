@@ -27,7 +27,7 @@ have entered the scene tree first, so you can safely call `get_node()` on them.
 >
 
 Another related callback is `_exit_tree()`, which the engine calls every time
-a node is about to exit the scene tree. This can be when you call [Node.remove_child()](https://docs.godotengine.org/en/stable/classes/class_node_method_remove_child.html#class-node_method_remove_child) or when you free a node.
+a node is about to exit the scene tree. This can be when you call [Node.remove_child()](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-method-remove-child) or when you free a node.
 
 ```
 # Called every time the node enters the scene tree.
@@ -60,8 +60,8 @@ func _physics_process(delta):
 ```
 
 Two more essential built-in node callback functions are
-[Node._unhandled_input()](https://docs.godotengine.org/en/stable/classes/class_node_private_method__unhandled_input.html#class-node_private_method__unhandled_input) and
-[Node._input()](https://docs.godotengine.org/en/stable/classes/class_node_private_method__input.html#class-node_private_method__input), which you use to both receive
+[Node._unhandled_input()](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-private-method-unhandled-input) and
+[Node._input()](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-private-method-input), which you use to both receive
 and process individual input events. The `_unhandled_input()` method receives
 every key press, mouse click, etc. that have not been handled already in an
 `_input()` callback or in a user interface component. You want to use it for
@@ -82,6 +82,6 @@ func _input(event):
 ```
 
 There are some more overridable functions like
-[Node._get_configuration_warnings()](https://docs.godotengine.org/en/stable/classes/class_node_private_method__get_configuration_warnings.html#class-node_private_method__get_configuration_warnings). Specialized node types provide
-more callbacks like [CanvasItem._draw()](https://docs.godotengine.org/en/stable/classes/class_canvasitem_private_method__draw.html#class-canvasitem_private_method__draw) to
-draw programmatically or [Control._gui_input()](https://docs.godotengine.org/en/stable/classes/class_control_private_method__gui_input.html#class-control_private_method__gui_input) to handle clicks and input on UI elements.
+[Node._get_configuration_warnings()](https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-private-method-get-configuration-warnings). Specialized node types provide
+more callbacks like [CanvasItem._draw()](https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#class-canvasitem-private-method-draw) to
+draw programmatically or [Control._gui_input()](https://docs.godotengine.org/en/stable/classes/class_control.html#class-control-private-method-gui-input) to handle clicks and input on UI elements.

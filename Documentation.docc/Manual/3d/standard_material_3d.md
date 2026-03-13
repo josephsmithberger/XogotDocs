@@ -657,12 +657,12 @@ option makes it use world space instead.
 
 ### Filter
 
-The filtering method for the textures used by the material. See [this page](https://docs.godotengine.org/en/stable/classes/class_basematerial3d_property_texture_filter.html#class-basematerial3d_property_texture_filter)
+The filtering method for the textures used by the material. See [this page](https://docs.godotengine.org/en/stable/classes/class_basematerial3d.html#class-basematerial3d-property-texture-repeat)
 for a full list of options and their description.
 
 ### Repeat
 
-if the textures used by the material repeat, and how they repeat. See [this page](https://docs.godotengine.org/en/stable/classes/class_basematerial3d_property_texture_repeat.html#class-basematerial3d_property_texture_repeat)
+if the textures used by the material repeat, and how they repeat. See [this page](https://docs.godotengine.org/en/stable/classes/class_basematerial3d.html#class-basematerial3d-property-texture-repeat)
 for a full list of options and their description.
 
 ## Shadows
@@ -845,20 +845,20 @@ The rendering order of objects can be changed, although this is mostly
 useful for transparent objects (or opaque objects that perform depth draw
 but no color draw, such as cracks on the floor).
 
-Objects are sorted by an opaque/transparent queue, then [render_priority](https://docs.godotengine.org/en/stable/classes/class_material_property_render_priority.html#class-material_property_render_priority),
+Objects are sorted by an opaque/transparent queue, then [render_priority](https://docs.godotengine.org/en/stable/classes/class_material.html#class-material-property-render-priority),
 with higher priority being drawn later. Transparent objects are also sorted by depth.
 
 Depth testing overrules priority. Priority alone cannot force opaque objects to be drawn over each other.
 
 ## Next Pass
 
-Setting [next_pass](https://docs.godotengine.org/en/stable/classes/class_material_property_next_pass.html#class-material_property_next_pass) on a material
+Setting [next_pass](https://docs.godotengine.org/en/stable/classes/class_material.html#class-material-property-next-pass) on a material
 will cause an object to be rendered again with that next material.
 
-Materials are sorted by an opaque/transparent queue, then [render_priority](https://docs.godotengine.org/en/stable/classes/class_material_property_render_priority.html#class-material_property_render_priority),
+Materials are sorted by an opaque/transparent queue, then [render_priority](https://docs.godotengine.org/en/stable/classes/class_material.html#class-material-property-render-priority),
 with higher priority being drawn later.
 
 @Image(source: "next_pass.png")
 
 Depth will test equal between both materials unless the grow setting or other vertex transformations are used.
-Multiple transparent passes should use [render_priority](https://docs.godotengine.org/en/stable/classes/class_material_property_render_priority.html#class-material_property_render_priority) to ensure correct ordering.
+Multiple transparent passes should use [render_priority](https://docs.godotengine.org/en/stable/classes/class_material.html#class-material-property-render-priority) to ensure correct ordering.

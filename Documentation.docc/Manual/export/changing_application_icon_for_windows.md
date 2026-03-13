@@ -5,7 +5,7 @@ Windows applications use a Windows only format called ICO for their file icon an
 taskbar icon. Since Godot 4.1, Godot can create an ICO file for you based on the
 icon file defined in the Windows export preset. Supported formats are PNG, WebP,
 and SVG. If no icon is defined in the Windows export preset, the
-[application/config/icon](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_application/config/icon.html#class-projectsettings_property_application/config/icon)
+[application/config/icon](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-application-config-icon)
 project setting is used automatically instead.
 
 This means you no longer need to follow the steps in this section to

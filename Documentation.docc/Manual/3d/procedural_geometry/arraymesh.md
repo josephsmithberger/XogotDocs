@@ -2,7 +2,7 @@
 
 This tutorial will present the basics of using an [ArrayMesh](https://docs.godotengine.org/en/stable/classes/class_arraymesh.html#class-arraymesh).
 
-To do so, we will use the function [add_surface_from_arrays()](https://docs.godotengine.org/en/stable/classes/class_arraymesh_method_add_surface_from_arrays.html#class-arraymesh_method_add_surface_from_arrays),
+To do so, we will use the function [add_surface_from_arrays()](https://docs.godotengine.org/en/stable/classes/class_arraymesh.html#class-arraymesh-method-add-surface-from-arrays),
 which takes up to five parameters. The first two are required, while the last three are optional.
 
 The first parameter is the `PrimitiveType`, an OpenGL concept that instructs the GPU
@@ -36,7 +36,7 @@ All the other arrays carry information about the vertices. They are optional and
 use one entry per vertex to provide extra information about vertices. They must have the same size as the vertex array. Other arrays (e.g. `ARRAY_TANGENT`) use
 four entries to describe a single vertex. These must be exactly four times larger than the vertex array.
 
-For normal usage, the last three parameters in [add_surface_from_arrays()](https://docs.godotengine.org/en/stable/classes/class_arraymesh_method_add_surface_from_arrays.html#class-arraymesh_method_add_surface_from_arrays) are typically left empty.
+For normal usage, the last three parameters in [add_surface_from_arrays()](https://docs.godotengine.org/en/stable/classes/class_arraymesh.html#class-arraymesh-method-add-surface-from-arrays) are typically left empty.
 
 ## Setting up the ArrayMesh
 

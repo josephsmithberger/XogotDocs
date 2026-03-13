@@ -107,8 +107,8 @@ public int NumberWithBackingField
 > `NumberWithBackingField` will return `5`. This difference may cause
 > confusing behavior. To avoid this, don't use complex properties. Alternatively,
 > if the default value can be explicitly specified, it can be overridden with the
-> [_PropertyCanRevert()](https://docs.godotengine.org/en/stable/classes/class_object_private_method__property_can_revert.html#class-object_private_method__property_can_revert) and
-> [_PropertyGetRevert()](https://docs.godotengine.org/en/stable/classes/class_object_private_method__property_get_revert.html#class-object_private_method__property_get_revert) methods.
+> [_PropertyCanRevert()](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-private-method-property-can-revert) and
+> [_PropertyGetRevert()](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-private-method-property-get-revert) methods.
 >
 
 Any type of `Resource` or `Node` can be exported. The property editor shows
@@ -255,7 +255,7 @@ public int Number { get; set; }
 
 ## Floats with easing hint
 
-Display a visual representation of the [ease](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_ease.html#class-@globalscope_method_ease)
+Display a visual representation of the [ease](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-method-ease)
 function when editing.
 
 ```
@@ -499,7 +499,7 @@ public partial class MyNode : Node
 ```
 
 You can also set an icon for the button with a second argument. If specified, an
-icon will be fetched via [GetThemeIcon()](https://docs.godotengine.org/en/stable/classes/class_control_method_get_theme_icon.html#class-control_method_get_theme_icon),
+icon will be fetched via [GetThemeIcon()](https://docs.godotengine.org/en/stable/classes/class_control.html#class-control-method-get-theme-icon),
 from the `"EditorIcons"` theme type.
 
 ```
@@ -607,7 +607,7 @@ public Vector3[] Vectors { get; set; } =
 When changing an exported variable's value from a script in
 <doc:index#Tool-Mode>, the value in the inspector won't be updated
 automatically. To update it, call
-[NotifyPropertyListChanged()](https://docs.godotengine.org/en/stable/classes/class_object_method_notify_property_list_changed.html#class-object_method_notify_property_list_changed)
+[NotifyPropertyListChanged()](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-method-notify-property-list-changed)
 after setting the exported variable's value.
 
 ## Advanced exports
@@ -618,9 +618,9 @@ common exporting features which can be implemented with a low-level API.
 
 Before reading further, you should get familiar with the way properties are
 handled and how they can be customized with
-[_Set()](https://docs.godotengine.org/en/stable/classes/class_object_private_method__set.html#class-object_private_method__set),
-[_Get()](https://docs.godotengine.org/en/stable/classes/class_object_private_method__get.html#class-object_private_method__get), and
-[_GetPropertyList()](https://docs.godotengine.org/en/stable/classes/class_object_private_method__get_property_list.html#class-object_private_method__get_property_list) methods as
+[_Set()](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-private-method-set),
+[_Get()](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-private-method-get), and
+[_GetPropertyList()](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-private-method-get-property-list) methods as
 described in <doc:accessing_data_or_logic_from_object>.
 
 > Seealso: For binding properties using the above methods in C++, see

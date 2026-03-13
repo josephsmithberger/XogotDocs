@@ -4,8 +4,8 @@
 
 Godot has a serialization API based on Variant. It's used for
 converting data types to an array of bytes efficiently. This API is exposed
-via the global [bytes_to_var()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_bytes_to_var.html#class-@globalscope_method_bytes_to_var)
-and [var_to_bytes()](https://docs.godotengine.org/en/stable/classes/class_@globalscope_method_var_to_bytes.html#class-@globalscope_method_var_to_bytes) functions,
+via the global [bytes_to_var()](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-method-bytes-to-var)
+and [var_to_bytes()](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-method-var-to-bytes) functions,
 but it is also used in the `get_var` and `store_var` methods of
 [FileAccess](https://docs.godotengine.org/en/stable/classes/class_fileaccess.html#class-fileaccess) as well as the packet APIs for [PacketPeer](https://docs.godotengine.org/en/stable/classes/class_packetpeer.html#class-packetpeer).
 This format is not used for binary scenes and resources.
@@ -286,9 +286,9 @@ Y+4+Z | W | <variable> | Property value, using this same format
 > Note:
 >
 > Not all properties are included. Only properties that are configured with the
-> [PROPERTY_USAGE_STORAGE](https://docs.godotengine.org/en/stable/classes/class_@globalscope_constant_property_usage_storage.html#class-@globalscope_constant_property_usage_storage)
+> [PROPERTY_USAGE_STORAGE](https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#class-globalscope-constant-property-usage-storage)
 > flag set will be serialized. You can add a new usage flag to a property by overriding the
-> [_get_property_list](https://docs.godotengine.org/en/stable/classes/class_object_private_method__get_property_list.html#class-object_private_method__get_property_list)
+> [_get_property_list](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-private-method-get-property-list)
 > method in your class. You can also check how property usage is configured by
 > calling `Object._get_property_list` See
 > :ref:`PropertyUsageFlags<enum_@GlobalScope_PropertyUsageFlags>` for the

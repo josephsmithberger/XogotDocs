@@ -157,7 +157,7 @@ This is the final result:
 
 The ragdoll is now ready to use. To start the simulation and play the ragdoll animation,
 you need to call the
-[PhysicalBoneSimulator3D.physical_bones_start_simulation()](https://docs.godotengine.org/en/stable/classes/class_physicalbonesimulator3d_method_physical_bones_start_simulation.html#class-physicalbonesimulator3d_method_physical_bones_start_simulation)
+[PhysicalBoneSimulator3D.physical_bones_start_simulation()](https://docs.godotengine.org/en/stable/classes/class_physicalbonesimulator3d.html#class-physicalbonesimulator3d-method-physical-bones-start-simulation)
 method. Attach a script to the [PhysicalBoneSimulator3D](https://docs.godotengine.org/en/stable/classes/class_physicalbonesimulator3d.html#class-physicalbonesimulator3d) node
 that is the parent of all the PhysicalBone3D nodes in our scene, then call it in the script's
 `_ready` method:
@@ -168,7 +168,7 @@ func _ready():
 ```
 
 To stop the simulation, call the
-[PhysicalBoneSimulator3D.physical_bones_stop_simulation()](https://docs.godotengine.org/en/stable/classes/class_physicalbonesimulator3d_method_physical_bones_stop_simulation.html#class-physicalbonesimulator3d_method_physical_bones_stop_simulation)
+[PhysicalBoneSimulator3D.physical_bones_stop_simulation()](https://docs.godotengine.org/en/stable/classes/class_physicalbonesimulator3d.html#class-physicalbonesimulator3d-method-physical-bones-stop-simulation)
 method.
 
 You can also limit the simulation to only a few bones. This can be useful
@@ -230,8 +230,8 @@ with its own (inactive) ragdoll. This can cause the player to wildly
 bounce around or get stuck.
 
 Like RigidBody3D, PhysicalBone3D supports collision exceptions through code
-using the [physical_bones_add_collision_exception()](https://docs.godotengine.org/en/stable/classes/class_physicalbonesimulator3d_method_physical_bones_add_collision_exception.html#class-physicalbonesimulator3d_method_physical_bones_add_collision_exception)
-and [physical_bones_remove_collision_exception()](https://docs.godotengine.org/en/stable/classes/class_physicalbonesimulator3d_method_physical_bones_remove_collision_exception.html#class-physicalbonesimulator3d_method_physical_bones_remove_collision_exception)
+using the [physical_bones_add_collision_exception()](https://docs.godotengine.org/en/stable/classes/class_physicalbonesimulator3d.html#class-physicalbonesimulator3d-method-physical-bones-add-collision-exception)
+and [physical_bones_remove_collision_exception()](https://docs.godotengine.org/en/stable/classes/class_physicalbonesimulator3d.html#class-physicalbonesimulator3d-method-physical-bones-remove-collision-exception)
 methods. This can be used to prevent collisions with a specific object
 without relying on layers and masks.
 

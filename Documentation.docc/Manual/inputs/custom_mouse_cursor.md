@@ -23,9 +23,9 @@ cursor:
 ## Using project settings
 
 Open the **Project Settings** and go to **Display > Mouse Cursor**. You will see the settings
-[Custom Image](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_display/mouse_cursor/custom_image.html#class-projectsettings_property_display/mouse_cursor/custom_image),
-[Custom Image Hotspot](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_display/mouse_cursor/custom_image_hotspot.html#class-projectsettings_property_display/mouse_cursor/custom_image_hotspot),
-and [Tooltip Position Offset](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_display/mouse_cursor/tooltip_position_offset.html#class-projectsettings_property_display/mouse_cursor/tooltip_position_offset).
+[Custom Image](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-display-mouse-cursor-custom-image),
+[Custom Image Hotspot](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-display-mouse-cursor-custom-image-hotspot),
+and [Tooltip Position Offset](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-display-mouse-cursor-tooltip-position-offset).
 
 @Image(source: "cursor_project_settings.png")
 
@@ -64,7 +64,7 @@ func _ready():
 
 > Seealso:
 >
-> Check [Input.set_custom_mouse_cursor()](https://docs.godotengine.org/en/stable/classes/class_input_method_set_custom_mouse_cursor.html#class-input_method_set_custom_mouse_cursor)'s
+> Check [Input.set_custom_mouse_cursor()](https://docs.godotengine.org/en/stable/classes/class_input.html#class-input-method-set-custom-mouse-cursor)'s
 > documentation for more information on usage and platform-specific caveats.
 >
 

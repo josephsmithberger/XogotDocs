@@ -14,7 +14,7 @@ found here on GitHub and in Godot's asset
 library.
 
 To change the 3D physics engine to be Jolt Physics, set
-[Project Settings > Physics > 3D > Physics Engine](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_physics/3d/physics_engine.html#class-projectsettings_property_physics/3d/physics_engine)
+[Project Settings > Physics > 3D > Physics Engine](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-physics-3d-physics-engine)
 to `Jolt Physics`. Once you've done that, click the **Save & Restart** button.
 When the editor opens again, 3D scenes should now be using Jolt for physics.
 
@@ -47,7 +47,7 @@ default values.
 
 You can, in Godot, omit one of the joint bodies for a two-body joint and effectively
 have "the world" be the other body. However, the node path that you assign your body
-to ([node_a](https://docs.godotengine.org/en/stable/classes/class_joint3d_property_node_a.html#class-joint3d_property_node_a) vs [node_b](https://docs.godotengine.org/en/stable/classes/class_joint3d_property_node_b.html#class-joint3d_property_node_b))
+to ([node_a](https://docs.godotengine.org/en/stable/classes/class_joint3d.html#class-joint3d-property-node-a) vs [node_b](https://docs.godotengine.org/en/stable/classes/class_joint3d.html#class-joint3d-property-node-b))
 is ignored. Godot Physics will always behave as if you
 assigned it to `node_a`, and since `node_a` is also what defines the frame of reference
 for the joint limits, you end up with inverted limits and a potentially strange
@@ -55,7 +55,7 @@ limit shape, especially if your limits allow both linear and angular degrees of
 freedom.
 
 Jolt will behave as if you assigned the body to `node_b` instead, with `node_a`
-representing "the world". There is a project setting called [Physics > Jolt Physics 3D > Joints > World Node](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_physics/jolt_physics_3d/joints/world_node.html#class-projectsettings_property_physics/jolt_physics_3d/joints/world_node)
+representing "the world". There is a project setting called [Physics > Jolt Physics 3D > Joints > World Node](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-physics-jolt-physics-3d-joints-world-node)
 that lets you toggle this behavior, if you need compatibility for an existing project.
 
 ### Collision margins
@@ -76,7 +76,7 @@ shape.
 
 To prevent having to tweak this margin property manually, since its default value
 can be problematic for smaller shapes, the Jolt module exposes a project setting
-called [Physics > Jolt Physics 3D > Collisions > Collision Margin Fraction](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_physics/jolt_physics_3d/collisions/collision_margin_fraction.html#class-projectsettings_property_physics/jolt_physics_3d/collisions/collision_margin_fraction)
+called [Physics > Jolt Physics 3D > Collisions > Collision Margin Fraction](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-physics-jolt-physics-3d-collisions-collision-margin-fraction)
 which is multiplied with the smallest axis of the shape's AABB to calculate the
 actual margin. The margin property of the shape is then instead used as an upper
 bound.
@@ -97,7 +97,7 @@ the velocity of the body. This means it cannot overshoot but it may take longer 
 resolve the penetration.
 
 The strength of this stabilization can be tweaked using the project setting
-[Physics > Jolt Physics 3D > Simulation > Baumgarte Stabilization Factor](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_physics/jolt_physics_3d/simulation/baumgarte_stabilization_factor.html#class-projectsettings_property_physics/jolt_physics_3d/simulation/baumgarte_stabilization_factor).
+[Physics > Jolt Physics 3D > Simulation > Baumgarte Stabilization Factor](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-physics-jolt-physics-3d-simulation-baumgarte-stabilization-factor).
 Setting this project setting to `0.0` will turn Baumgarte stabilization off.
 Setting it to `1.0` will resolve penetration in 1 simulation step. This is fast
 but often also unstable.
@@ -115,7 +115,7 @@ edge the collision normal will be replaced with the triangle's normal instead, t
 lessen the effect of ghost collisions.
 
 The angle threshold for this active edge detection is configurable through the
-project setting [Physics >Jolt Physics 3D > Collisions > Active Edge Threshold](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_physics/jolt_physics_3d/collisions/active_edge_threshold.html#class-projectsettings_property_physics/jolt_physics_3d/collisions/active_edge_threshold).
+project setting [Physics >Jolt Physics 3D > Collisions > Active Edge Threshold](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-physics-jolt-physics-3d-collisions-active-edge-threshold).
 
 The second technique, called "enhanced internal edge removal", instead adds runtime
 checks to detect whether an edge is active or inactive, based on the contact points
@@ -124,9 +124,9 @@ of the two bodies. This has the benefit of applying not only to collisions with
 the same body.
 
 Enhanced internal edge removal can be toggled on and off for the various contexts to
-which it's applied, using the [Physics >Jolt Physics 3D > Simulation > Use Enhanced Internal Edge Removal](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_physics/jolt_physics_3d/simulation/use_enhanced_internal_edge_removal.html#class-projectsettings_property_physics/jolt_physics_3d/simulation/use_enhanced_internal_edge_removal),
-project setting, and the similar settings for [queries](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_physics/jolt_physics_3d/queries/use_enhanced_internal_edge_removal.html#class-projectsettings_property_physics/jolt_physics_3d/queries/use_enhanced_internal_edge_removal)
-and [motion queries](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_physics/jolt_physics_3d/motion_queries/use_enhanced_internal_edge_removal.html#class-projectsettings_property_physics/jolt_physics_3d/motion_queries/use_enhanced_internal_edge_removal).
+which it's applied, using the [Physics >Jolt Physics 3D > Simulation > Use Enhanced Internal Edge Removal](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-physics-jolt-physics-3d-simulation-use-enhanced-internal-edge-removal),
+project setting, and the similar settings for [queries](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-physics-jolt-physics-3d-queries-use-enhanced-internal-edge-removal)
+and [motion queries](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-physics-jolt-physics-3d-motion-queries-use-enhanced-internal-edge-removal).
 
 Note that neither the active edge detection nor enhanced internal edge removal apply
 when dealing with ghost collisions between two different bodies.
@@ -135,13 +135,13 @@ when dealing with ghost collisions between two different bodies.
 
 Jolt uses a stack allocator for temporary allocations within its simulation step.
 This stack allocator requires allocating a set amount of memory up front, which can
-be configured using the [Physics > Jolt Physics 3D > Limits > Temporary Memory Buffer Size](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_physics/jolt_physics_3d/limits/temporary_memory_buffer_size.html#class-projectsettings_property_physics/jolt_physics_3d/limits/temporary_memory_buffer_size)
+be configured using the [Physics > Jolt Physics 3D > Limits > Temporary Memory Buffer Size](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-physics-jolt-physics-3d-limits-temporary-memory-buffer-size)
 project setting.
 
 ### Ray-cast face index
 
-The `face_index` property returned in the results of [intersect_ray()](https://docs.godotengine.org/en/stable/classes/class_physicsdirectspacestate3d_method_intersect_ray.html#class-physicsdirectspacestate3d_method_intersect_ray)
-and RayCast3D will by default always be `-1` with Jolt. The project setting [Physics > Jolt Physics 3D > Queries > Enable Ray Cast Face Index](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_physics/jolt_physics_3d/queries/enable_ray_cast_face_index.html#class-projectsettings_property_physics/jolt_physics_3d/queries/enable_ray_cast_face_index)
+The `face_index` property returned in the results of [intersect_ray()](https://docs.godotengine.org/en/stable/classes/class_physicsdirectspacestate3d.html#class-physicsdirectspacestate3d-method-intersect-ray)
+and RayCast3D will by default always be `-1` with Jolt. The project setting [Physics > Jolt Physics 3D > Queries > Enable Ray Cast Face Index](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-physics-jolt-physics-3d-queries-enable-ray-cast-face-index)
 will enable them.
 
 Note that enabling this setting will increase the memory requirement of [ConcavePolygonShape3D](https://docs.godotengine.org/en/stable/classes/class_concavepolygonshape3d.html#class-concavepolygonshape3d)
@@ -149,20 +149,20 @@ with about 25%.
 
 ### Kinematic RigidBody3D contacts
 
-When using Jolt, a [RigidBody3D](https://docs.godotengine.org/en/stable/classes/class_rigidbody3d.html#class-rigidbody3d) frozen with [FREEZE_MODE_KINEMATIC](https://docs.godotengine.org/en/stable/classes/class_rigidbody3d_constant_freeze_mode_kinematic.html#class-rigidbody3d_constant_freeze_mode_kinematic)
+When using Jolt, a [RigidBody3D](https://docs.godotengine.org/en/stable/classes/class_rigidbody3d.html#class-rigidbody3d) frozen with [FREEZE_MODE_KINEMATIC](https://docs.godotengine.org/en/stable/classes/class_rigidbody3d.html#class-rigidbody3d-constant-freeze-mode-kinematic)
 will by default not report contacts from collisions with other static/kinematic
-bodies, for performance reasons, even when setting a non-zero [max_contacts_reported](https://docs.godotengine.org/en/stable/classes/class_rigidbody3d_property_max_contacts_reported.html#class-rigidbody3d_property_max_contacts_reported).
+bodies, for performance reasons, even when setting a non-zero [max_contacts_reported](https://docs.godotengine.org/en/stable/classes/class_rigidbody3d.html#class-rigidbody3d-property-max-contacts-reported).
 If you have many/large kinematic bodies overlapping with complex static geometry,
 such as [ConcavePolygonShape3D](https://docs.godotengine.org/en/stable/classes/class_concavepolygonshape3d.html#class-concavepolygonshape3d) or [HeightMapShape3D](https://docs.godotengine.org/en/stable/classes/class_heightmapshape3d.html#class-heightmapshape3d), you can
 end up wasting a significant amount of CPU performance and memory without realizing
 it.
 
 For this reason this behavior is opt-in through the project setting
-[Physics > Jolt Physics 3D > Simulation > Generate All Kinematic Contacts](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_physics/jolt_physics_3d/simulation/generate_all_kinematic_contacts.html#class-projectsettings_property_physics/jolt_physics_3d/simulation/generate_all_kinematic_contacts).
+[Physics > Jolt Physics 3D > Simulation > Generate All Kinematic Contacts](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-physics-jolt-physics-3d-simulation-generate-all-kinematic-contacts).
 
 ### Contact impulses
 
-Due to limitations internal to Jolt, the contact impulses provided by [PhysicsDirectBodyState3D.get_contact_impulse()](https://docs.godotengine.org/en/stable/classes/class_physicsdirectbodystate3d_method_get_contact_impulse.html#class-physicsdirectbodystate3d_method_get_contact_impulse)
+Due to limitations internal to Jolt, the contact impulses provided by [PhysicsDirectBodyState3D.get_contact_impulse()](https://docs.godotengine.org/en/stable/classes/class_physicsdirectbodystate3d.html#class-physicsdirectbodystate3d-method-get-contact-impulse)
 are estimated ahead of time based on things like the contact manifold and velocities
 of the colliding bodies. This means that the reported impulses will only be accurate
 in cases where the two bodies in question are not colliding with any other bodies.
@@ -180,7 +180,7 @@ implemented a bit differently in Jolt compared to Godot Physics. Both engines ha
 an upper limit for how big the effective size of this plane can be, but this size is
 much smaller when using Jolt, in order to avoid precision issues.
 
-You can configure this size using the [Physics > Jolt Physics 3D > Limits > World Boundary Shape Size](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_physics/jolt_physics_3d/limits/world_boundary_shape_size.html#class-projectsettings_property_physics/jolt_physics_3d/limits/world_boundary_shape_size)
+You can configure this size using the [Physics > Jolt Physics 3D > Limits > World Boundary Shape Size](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-physics-jolt-physics-3d-limits-world-boundary-shape-size)
 project setting.
 
 ## Notable differences to the Godot Jolt extension
@@ -262,6 +262,6 @@ have not been included in the Jolt module.
 ### Thread safety
 
 Unlike the Godot Jolt extension, the Jolt module does have thread-safety,
-including support for the [Physics > 3D > Run On Separate Thread](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_physics/3d/run_on_separate_thread.html#class-projectsettings_property_physics/3d/run_on_separate_thread)
+including support for the [Physics > 3D > Run On Separate Thread](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-physics-3d-run-on-separate-thread)
 project setting. However this has not been tested very thoroughly, so it should be
 considered experimental.

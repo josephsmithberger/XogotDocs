@@ -105,14 +105,14 @@ implementation("org.godotengine:godot:<version>")
 
 If your build system does not support including hidden directories, you can
 configure the Godot project to not use hidden directories by deselecting
-[Application > Config > Use Hidden Project Data Directory](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_application/config/use_hidden_project_data_directory.html#class-projectsettings_property_application/config/use_hidden_project_data_directory)
+[Application > Config > Use Hidden Project Data Directory](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-application-config-use-hidden-project-data-directory)
 in the Project Settings.
 
 
 
 - If your build system does not support including hidden directories, you can
 configure the Godot project to not use hidden directories by deselecting
-[Application > Config > Use Hidden Project Data Directory](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_application/config/use_hidden_project_data_directory.html#class-projectsettings_property_application/config/use_hidden_project_data_directory)
+[Application > Config > Use Hidden Project Data Directory](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-application-config-use-hidden-project-data-directory)
 in the Project Settings.
 
 - If using `gradle`, add the following to the `dependency` section of the app's gradle build file. Make sure to update `<version>` to the latest version of the Godot Android library:
@@ -123,7 +123,7 @@ implementation("org.godotengine:godot:<version>")
 
 - If your build system does not support including hidden directories, you can
 configure the Godot project to not use hidden directories by deselecting
-[Application > Config > Use Hidden Project Data Directory](https://docs.godotengine.org/en/stable/classes/class_projectsettings_property_application/config/use_hidden_project_data_directory.html#class-projectsettings_property_application/config/use_hidden_project_data_directory)
+[Application > Config > Use Hidden Project Data Directory](https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-property-application-config-use-hidden-project-data-directory)
 in the Project Settings.
 
 ```

@@ -237,7 +237,7 @@ uniform float height_scale = 0.5;
 
 Godot lets you initialize a uniform with a value; here, `height_scale` is set
 to `0.5`. You can set uniforms from GDScript by calling the function
-[set_shader_parameter()](https://docs.godotengine.org/en/stable/classes/class_shadermaterial_method_set_shader_parameter.html#class-shadermaterial_method_set_shader_parameter)
+[set_shader_parameter()](https://docs.godotengine.org/en/stable/classes/class_shadermaterial.html#class-shadermaterial-method-set-shader-parameter)
 on the material corresponding to the shader. The value passed from GDScript
 takes precedence over the value used to initialize it in the shader.
 

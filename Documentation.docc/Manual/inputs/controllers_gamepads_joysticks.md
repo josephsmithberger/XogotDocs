@@ -116,13 +116,13 @@ game. For instance, in a racing game, you can convey the surface the car is
 currently driving on through vibration, or create a sudden vibration on a crash.
 
 Use the Input singleton's
-[start_joy_vibration](https://docs.godotengine.org/en/stable/classes/class_input_method_start_joy_vibration.html#class-input_method_start_joy_vibration) method to
+[start_joy_vibration](https://docs.godotengine.org/en/stable/classes/class_input.html#class-input-method-start-joy-vibration) method to
 start vibrating a gamepad. Use
-[stop_joy_vibration](https://docs.godotengine.org/en/stable/classes/class_input_method_stop_joy_vibration.html#class-input_method_stop_joy_vibration) to stop
+[stop_joy_vibration](https://docs.godotengine.org/en/stable/classes/class_input.html#class-input-method-stop-joy-vibration) to stop
 vibration early (useful if no duration was specified when starting).
 
 On mobile devices, you can also use
-[vibrate_handheld](https://docs.godotengine.org/en/stable/classes/class_input_method_vibrate_handheld.html#class-input_method_vibrate_handheld) to vibrate the
+[vibrate_handheld](https://docs.godotengine.org/en/stable/classes/class_input.html#class-input-method-vibrate-handheld) to vibrate the
 device itself (independently from the gamepad). On Android, this requires the
 `VIBRATE` permission to be enabled in the Android export preset before
 exporting the project.
@@ -174,7 +174,7 @@ events for controller input in the first place.
 
 If you want controller buttons to send echo events, you will have to generate
 [InputEvent](https://docs.godotengine.org/en/stable/classes/class_inputevent.html#class-inputevent) objects by code and parse them using
-[Input.parse_input_event()](https://docs.godotengine.org/en/stable/classes/class_input_method_parse_input_event.html#class-input_method_parse_input_event)
+[Input.parse_input_event()](https://docs.godotengine.org/en/stable/classes/class_input.html#class-input-method-parse-input-event)
 at regular intervals. This can be accomplished
 with the help of a [Timer](https://docs.godotengine.org/en/stable/classes/class_timer.html#class-timer) node.
 
@@ -283,7 +283,7 @@ the `SDL_GAMECONTROLLERCONFIG` environment variable before running Godot:
 
 To test mappings on non-desktop platforms or to distribute your project with
 additional controller mappings, you can add them by calling
-[Input.add_joy_mapping()](https://docs.godotengine.org/en/stable/classes/class_input_method_add_joy_mapping.html#class-input_method_add_joy_mapping)
+[Input.add_joy_mapping()](https://docs.godotengine.org/en/stable/classes/class_input.html#class-input-method-add-joy-mapping)
 as early as possible in a script's `_ready()` function.
 
 Once you are satisfied with the custom mapping, you can contribute it for
