@@ -1,4 +1,3 @@
-<!-- Remove this line to publish to docs.xogot.com -->
 # Advanced physics interpolation
 
 Although the previous instructions will give satisfactory results in a lot of games,

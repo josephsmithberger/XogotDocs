@@ -1,4 +1,3 @@
-<!-- Remove this line to publish to docs.xogot.com -->
 # Making HTTP requests
 
 ## Why use HTTP?
@@ -30,13 +29,6 @@ for which a tutorial is available <doc:http_client_class>.
 For this example, we will make an HTTP request to GitHub to retrieve the name
 of the latest Godot release.
 
-> Warning:
->
-> When exporting to **Android**, make sure to enable the **Internet**
-> permission in the Android export preset before exporting the project or
-> using one-click deploy. Otherwise, network communication of any kind will be
-> blocked by the Android OS.
->
 
 ## Preparing the scene
 

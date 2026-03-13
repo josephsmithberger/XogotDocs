@@ -1,4 +1,3 @@
-<!-- Remove this line to publish to docs.xogot.com -->
 # Using NavigationLayers
 
 NavigationLayers are an optional feature to further control which navigation meshes are considered in a path query.
