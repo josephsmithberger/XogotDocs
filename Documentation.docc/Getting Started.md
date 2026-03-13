@@ -53,6 +53,11 @@ While Xogot is heavily based on the Godot engine, there are some notable differe
 - **User Interface**: Xogot is designed to feel native to iPadOS, with touch-friendly interface, including gestures and simplied menus with larger, easier-to-tap menu options. 
 - **Support for GDScript**: Xogot only supports writing game logic using GDScript.  Projects and addons written in C#, C++, Swift, or other languages are unlikely to work in Xogot. 
 - For more details, check out <doc:Differences> 
+This video is also available for further exploration of Xogot's interface and workflow:
+@Video(
+    source: "https://customer-fku244tec8fwlbfi.cloudflarestream.com/d9393fd9872838d31e98be4cee4cdedf/manifest/video.m3u8",
+    caption: "Xogot for Godot Users: Getting Oriented on iPad & iPhone"
+)
 
 ## 4. Known Issues in This Preview Release
 

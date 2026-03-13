@@ -189,3 +189,11 @@ these 2D Editor Toolbar.
 
 The <doc:Command-Palette> provides a convenient way of navigating your project
 as well as running commands for users that are more comfortable using a keyboard.
+
+## Additional Resources
+
+This video may be helpful in familiarizing yourself with the interface, especially for those migrating from Godot:
+@Video(
+    source: "https://customer-fku244tec8fwlbfi.cloudflarestream.com/d9393fd9872838d31e98be4cee4cdedf/manifest/video.m3u8",
+    caption: "Xogot for Godot Users: Getting Oriented on iPad & iPhone"
+)
